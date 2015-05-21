@@ -281,7 +281,7 @@ mysql:
         version: '5.6'
         root_password: '123'
         override_options: {  }
-    adminer: '1'
+    adminer: 0
     users:
         mysqlnu_ubw4ls9lwu4g:
             name: cms
@@ -289,8 +289,13 @@ mysql:
     databases:
         mysqlnd_zlyrp60byuos:
             name: cms
-            sql: ''
-    grants: {  }
+            sql: /var/www/sql/cms.sql
+    grants:
+        mysqlng_352t8ky8v7f9:
+            user: cms
+            table: '*.*'
+            privileges:
+                - ALL
 postgresql:
     install: '1'
     settings:
