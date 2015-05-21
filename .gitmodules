@@ -1,0 +1,3 @@
+[submodule "ogdch.dev/cms"]
+	path = ogdch.dev/cms
+	url = https://github.com/WordPress/WordPress.git
