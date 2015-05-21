@@ -4,9 +4,9 @@
 // DB config
 // ===================================================
 
-define( 'DB_NAME', 'cms' );
-define( 'DB_USER', 'cms' );
-define( 'DB_PASSWORD', '123' );
+define( 'DB_NAME', '' );
+define( 'DB_USER', '' );
+define( 'DB_PASSWORD', '' );
 define( 'DB_HOST', 'localhost' );
 
 
@@ -35,8 +35,8 @@ define( 'WPCACHEHOME', dirname( __FILE__ ) . '/content/plugins/wp-super-cache/' 
 // Define Siteurl
 // ===================================================
 
-define( 'WP_HOME', 'http://ogdch.dev' );
-define( 'WP_SITEURL', 'http://ogdch.dev/cms' );
+define( 'WP_HOME', '' );
+define( 'WP_SITEURL', '' );
 
 
 // ===================================================

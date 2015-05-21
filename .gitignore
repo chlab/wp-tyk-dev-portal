@@ -2,7 +2,9 @@
 .htaccess
 sitemap.xml
 sitemap.xml.gz
-wp-config.php
+wp-local-config.php
+wp-test-config.php
+wp-live-config.php
 
 content/advanced-cache.php
 content/backup-db/
@@ -12,6 +14,9 @@ content/cache/
 content/upgrade/
 content/uploads/
 content/wp-cache-config.php
+content/themes/twentyfifteen/
 ogdch.dev/adminer/adminer-4.2.1-de.php
 .vagrant
 html
+.idea/
+.DS_Store
