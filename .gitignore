@@ -1,0 +1,17 @@
+*.log
+.htaccess
+sitemap.xml
+sitemap.xml.gz
+wp-config.php
+
+content/advanced-cache.php
+content/backup-db/
+content/backups/
+content/blogs.dir/
+content/cache/
+content/upgrade/
+content/uploads/
+content/wp-cache-config.php
+ogdch.dev/adminer/adminer-4.2.1-de.php
+.vagrant
+html
