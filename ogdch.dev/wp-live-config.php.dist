@@ -1,0 +1,63 @@
+<?php
+
+// ===================================================
+// DB config
+// ===================================================
+
+define( 'DB_NAME', '' );
+define( 'DB_USER', '' );
+define( 'DB_PASSWORD', '' );
+define( 'DB_HOST', 'localhost' );
+
+
+// ===================================================
+// Various Dev Settings
+// ===================================================
+
+define( 'WP_LOCAL_DEV', false );
+define( 'WP_DEBUG', false );
+define( 'WP_DEBUG_LOG', false );
+define( 'WP_DEBUG_DISPLAY', false );
+define( 'SCRIPT_DEBUG', false );
+define( 'SAVEQUERIES', false );
+define( 'FS_METHOD', 'direct' );
+
+
+// ===================================================
+// Cache
+// ===================================================
+
+define( 'WP_CACHE', false );
+define( 'WPCACHEHOME', dirname( __FILE__ ) . '/content/plugins/wp-super-cache/' );
+
+
+// ===================================================
+// Define Siteurl
+// ===================================================
+
+define( 'WP_HOME', '' );
+define( 'WP_SITEURL', '' );
+
+
+// ===================================================
+// Define path & url for Content
+// ===================================================
+
+define( 'WP_CONTENT_DIR', dirname( __FILE__ ) . '/content' );
+define( 'WP_CONTENT_URL', WP_HOME .'/content' );
+
+
+// ===================================================
+// Define path & url for Uploads and Plugins
+// ===================================================
+
+define( 'WP_PLUGIN_DIR', dirname( __FILE__ ) . '/content/plugins' );
+define( 'WP_PLUGIN_URL', WP_HOME . '/content/plugins' );
+
+
+// ===================================================
+// Set path to MU Plugins
+// ===================================================
+
+define( 'WPMU_PLUGIN_DIR', dirname( __FILE__ ) . '/content/mu-plugins' );
+define( 'WPMU_PLUGIN_URL', WP_HOME . '/content/mu-plugins' );
