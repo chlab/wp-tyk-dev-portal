@@ -18,3 +18,7 @@ Adminer for the CMS: http://ogdch.dev/adminer/adminer-4.2.1-de.php?username=cms
 ### Redis
     $ vagrant ssh
     $ redis-cli
+    
+to see what Redis is doing type:
+    $ vagrant ssh
+    $ redis-cli monitor

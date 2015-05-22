@@ -28,7 +28,10 @@ define( 'FS_METHOD', 'direct' );
 // ===================================================
 
 define( 'WP_CACHE', false );
-define( 'WPCACHEHOME', dirname( __FILE__ ) . '/content/plugins/wp-super-cache/' );
+
+$redis_server = array( 'host' => '127.0.0.1',
+                       'port' => 6379
+                     );
 
 
 // ===================================================
