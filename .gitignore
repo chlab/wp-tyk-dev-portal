@@ -19,3 +19,5 @@ content/themes/twentyfifteen/
 /html
 .idea/
 .DS_Store
+vendor/
+composer.phar
