@@ -9,9 +9,9 @@
 
 1. Clone this repo
 2. Run `git submodule init` and `git submodule update`
-3. Switch to ogdch.dev folder `cd ogdch.dev`
+3. Switch to ogdch.dev/ folder `cd ogdch.dev/`
 4. Install composer if it isn't installed system wide:
-    curl -sS https://getcomposer.org/installer | php
+    $ curl -sS https://getcomposer.org/installer | php
 5. Run `php composer install` to install dependencies
 
 ## Working
