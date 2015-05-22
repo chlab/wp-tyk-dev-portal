@@ -38,3 +38,5 @@ In case you run into problems with the guest additions of VirtualBox, run the fo
 ```bash
 sudo ln -s /opt/VBoxGuestAdditions-4.3.10/lib/VBoxGuestAdditions /usr/lib/VBoxGuestAdditions
 ```
+
+You should always be able to login to the box (`vagrant ssh`) with user vagrant / password vagrant.
