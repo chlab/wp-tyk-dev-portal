@@ -16,6 +16,6 @@ content/uploads/
 content/wp-cache-config.php
 content/themes/twentyfifteen/
 .vagrant
-html
+/html
 .idea/
 .DS_Store
