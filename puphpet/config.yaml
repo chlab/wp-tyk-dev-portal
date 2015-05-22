@@ -352,7 +352,17 @@ rabbitmq:
     install: '1'
     settings:
         port: '5672'
-    users: {  }
+    users:
+        rmqu_ofbqxvay99is:
+            admin: '1'
+            name: admin
+            password: '123'
+            permissions:
+                rmqup_h9dgxdnrkdvv:
+                    host: /
+                    configure_permission: '.*'
+                    read_permission: '.*'
+                    write_permission: '.*'
     vhosts: {  }
     plugins: {  }
 elastic_search:
