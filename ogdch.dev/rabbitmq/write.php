@@ -23,11 +23,18 @@ $channel = $connection->channel();
 
 $channel->queue_declare('ckan', false, false, false, false);
 
-$msg = new AMQPMessage('{"ref":123,"title":{"de":"titel DE","fr":"titel FR","en":"titel EN","it":"titel IT"},"action":"insert"}');
-$channel->basic_publish($msg, '', 'ckan');
+$ref = rand(100, 999);
+$mock_ckan_data = array(
+	'{"ref":' . $ref . ',"title":{"de":"titel DE ' . $ref . '","fr":"titel FR ' . $ref . '","en":"titel EN ' . $ref . '","it":"titel IT ' . $ref . '"},"action":"insert"}',
+);
+$queue_name = 'ckan';
 
-$msg = new AMQPMessage('{"ref":1253,"title":{"de":"titel DE2","fr":"titel FR2","en":"titel EN2","it":"titel IT2"},"action":"update"}');
-$channel->basic_publish($msg, '', 'ckan');
+foreach($mock_ckan_data as $ckan_data) {
+	$msg = new AMQPMessage($ckan_data);
+	$channel->basic_publish($msg, '', $queue_name);
+}
 
 $channel->close();
 $connection->close();
+
+echo ' [*] Sent ' . count($mock_ckan_data) . ' messages to ' . $queue_name . ' queue.', "\n";
