@@ -15,7 +15,7 @@
     $ curl -sS https://getcomposer.org/installer | php
     
 5. Run `php composer.phar install` to install dependencies
-6. Install RabbitMQ deamon
+6. Install RabbitMQ Deamon in Vagrant-Box
 
     $ sudo cp --force /var/www/ogd-rabbitmq-worker.conf /etc/init/ogd-rabbitmq-worker.conf
 
@@ -33,7 +33,7 @@ to see what Redis is doing type:
     $ vagrant ssh
     $ redis-cli monitor
 
-### RabbitMQ deamon handling
+### RabbitMQ deamon handling in Vagrant-Box
 Start deamon:
     $ sudo service ogd-rabbitmq-worker start
 Stop deamon:

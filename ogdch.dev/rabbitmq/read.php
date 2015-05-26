@@ -44,6 +44,8 @@ $callback = function($msg) {
         );
 
         $new_id = wp_insert_post ( $post, true ); // Insert Post
+        add_post_meta( $new_id, '_ckandataset_reference', $msg->ref, TRUE );
+
         pll_set_post_language( $new_id, $lang );  // Set Langauge
 
         $translations[$lang] = $new_id;

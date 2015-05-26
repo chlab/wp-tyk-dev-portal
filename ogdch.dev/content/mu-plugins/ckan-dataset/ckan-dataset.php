@@ -73,7 +73,7 @@ function ckan_dataset_fields() {
 
 	$cmb->add_field( array(
 		'name' => 'CKAN Ref. ID',
-		'id'   => '_cmb2_person_email',
+		'id'   => $prefix . 'reference',
 		'type' => 'ref_field',
 		'desc' => 'Ref. ID from CKAN',
 	) );
