@@ -26,7 +26,7 @@ use PhpAmqpLib\Message\AMQPMessage;
 $connection = new AMQPConnection('localhost', 5672, 'admin', '123');
 $channel = $connection->channel();
 
-$channel->queue_declare('hello', false, false, false, false);
+$channel->queue_declare('ckan', false, false, false, false);
 
 echo ' [*] Waiting for messages. To exit press CTRL+C', "\n";
 
@@ -55,7 +55,7 @@ $callback = function($msg) {
 
 };
 
-$channel->basic_consume('hello', '', false, true, false, false, $callback);
+$channel->basic_consume('ckan', '', false, true, false, false, $callback);
 
 while(count($channel->callbacks)) {
 	$channel->wait();
