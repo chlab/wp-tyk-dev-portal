@@ -13,7 +13,7 @@
 
     var_dump(json_encode($msg));die;*/
 
-require_once '../vendor/autoload.php';
+require_once(__DIR__ . '/../vendor/autoload.php');
 
 use PhpAmqpLib\Connection\AMQPConnection;
 use PhpAmqpLib\Message\AMQPMessage;

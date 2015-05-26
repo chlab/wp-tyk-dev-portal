@@ -13,8 +13,8 @@ $msg = array(
 );*/
 
 define('WP_USE_THEMES', false);
-require_once '../cms/wp-load.php';
-require_once '../vendor/autoload.php';
+require_once(__DIR__ . '/../cms/wp-load.php');
+require_once(__DIR__ . '/../vendor/autoload.php');
 
 if( ! function_exists('pll_save_post_translations')) {
     die('pll_save_post_translations does not exist');
