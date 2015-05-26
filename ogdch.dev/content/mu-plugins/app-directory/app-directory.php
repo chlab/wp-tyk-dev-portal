@@ -57,3 +57,81 @@ function register_app_post_type() {
 }
 
 add_action( 'init', 'register_app_post_type', 0 );
+
+/**
+ * Define the metabox and field configurations.
+ */
+function cmb2_app_metaboxes() {
+
+	// Start with an underscore to hide fields from custom fields list
+	$prefix = '_app_';
+
+	/**
+	 * Initiate the metabox
+	 */
+	$cmb = new_cmb2_box( array(
+		'id'            => 'app_metabox',
+		'title'         => __( 'App Information', 'cmb2' ),
+		'object_types'  => array( 'app', ), // Post type
+		'context'       => 'normal',
+		'priority'      => 'high',
+		'show_names'    => true, // Show field names on the left
+	) );
+
+	// URL
+	$cmb->add_field( array(
+		'name' => __( 'URL', 'cmb2' ),
+		'desc' => __( 'Landing page of app', 'cmb2' ),
+		'id'   => $prefix . 'url',
+		'type' => 'text_url',
+		'protocols' => array( 'http', 'https' ), // Array of allowed protocols
+		'attributes'  => array(
+			'placeholder' => 'http://myapp.io',
+			'rows'        => 3,
+			'required'    => 'required',
+		),
+	) );
+
+	// Author Name
+	$cmb->add_field( array(
+		'name'       => __( 'Author Name', 'cmb2' ),
+		'id'         => $prefix . 'author_name',
+		'type'       => 'text',
+		'attributes'  => array(
+			'required'    => 'required',
+		),
+	) );
+
+	// Author Email
+	$cmb->add_field( array(
+		'name' => __( 'Author Email', 'cmb2' ),
+		'desc' => __( 'Email address of author', 'cmb2' ),
+		'id'   => $prefix . 'author_email',
+		'type' => 'text_email',
+		'attributes'  => array(
+			'placeholder' => 'author@app.dev',
+			'required'    => 'required',
+		),
+	) );
+
+	// Version
+	$cmb->add_field( array(
+		'name'       => __( 'Version', 'cmb2' ),
+		'id'         => $prefix . 'version',
+		'type'       => 'text_small',
+		'attributes'  => array(
+			'placeholder' => '1.2.0',
+		),
+	) );
+
+
+	// Icon
+	$cmb->add_field( array(
+		'name'       => __( 'Icon', 'cmb2' ),
+		'id'         => $prefix . 'icon',
+		'type'       => 'file',
+	) );
+
+}
+
+add_action( 'cmb2_init', 'cmb2_app_metaboxes' );
