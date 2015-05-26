@@ -15,6 +15,10 @@
     $ curl -sS https://getcomposer.org/installer | php
     
 5. Run `php composer.phar install` to install dependencies
+6. Install RabbitMQ deamon
+
+    $ sudo cp --force /var/www/ogd-rabbitmq-worker.conf /etc/init/ogd-rabbitmq-worker.conf
+
 
 ## Working
 
@@ -28,3 +32,11 @@ Adminer for the CMS: http://ogdch.dev/adminer/adminer-4.2.1-de.php?username=cms
 to see what Redis is doing type:
     $ vagrant ssh
     $ redis-cli monitor
+
+### RabbitMQ deamon handling
+Start deamon:
+    $ sudo service ogd-rabbitmq-worker start
+Stop deamon:
+    $ sudo service ogd-rabbitmq-worker stop
+Getting status of process:
+    $ sudo service ogd-rabbitmq-worker status

@@ -13,8 +13,8 @@ $msg = array(
 );*/
 
 define('WP_USE_THEMES', false);
-require_once '../cms/wp-load.php';
-require_once '../vendor/autoload.php';
+require_once(__DIR__ . '/../cms/wp-load.php');
+require_once(__DIR__ . '/../vendor/autoload.php');
 
 if( ! function_exists('pll_save_post_translations')) {
     die('pll_save_post_translations does not exist');
@@ -26,7 +26,7 @@ use PhpAmqpLib\Message\AMQPMessage;
 $connection = new AMQPConnection('localhost', 5672, 'admin', '123');
 $channel = $connection->channel();
 
-$channel->queue_declare('hello', false, false, false, false);
+$channel->queue_declare('ckan', false, false, false, false);
 
 echo ' [*] Waiting for messages. To exit press CTRL+C', "\n";
 
@@ -55,7 +55,7 @@ $callback = function($msg) {
 
 };
 
-$channel->basic_consume('hello', '', false, true, false, false, $callback);
+$channel->basic_consume('ckan', '', false, true, false, false, $callback);
 
 while(count($channel->callbacks)) {
 	$channel->wait();
