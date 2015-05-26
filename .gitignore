@@ -12,7 +12,7 @@ content/backups/
 content/blogs.dir/
 content/cache/
 content/upgrade/
-content/uploads/
+content/uploads/**
 content/wp-cache-config.php
 content/themes/twentyfifteen/
 .vagrant
@@ -21,3 +21,4 @@ content/themes/twentyfifteen/
 .DS_Store
 vendor/
 composer.phar
+node_modules/
