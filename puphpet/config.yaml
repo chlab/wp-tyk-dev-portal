@@ -1,8 +1,8 @@
 vagrantfile:
     target: local
     vm:
-        box: puphpet/ubuntu1404-x64
-        box_url: puphpet/ubuntu1404-x64
+        box: puphpet/centos65-x64
+        box_url: puphpet/centos65-x64
         hostname: ogdch.dev
         memory: '1024'
         cpus: '1'
