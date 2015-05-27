@@ -1,15 +1,7 @@
 /*
-
- to install gulp at all:
- > sudo npm install -g gulp
-
- to install in the project:
- > sudo npm install --save-dev gulp
-
- than run
-
- > sudo npm install gulp-ruby-sass gulp-autoprefixer gulp-minify-css gulp-concat gulp-uglify gulp-clean gulp-notify gulp-cache gulp-util gulp-watch --save-dev
-
+ to install dependencies:
+ > cd ogdch.dev/content/themes/ogdch/
+ > sudo npm install
  */
 
 var gulp = require('gulp'),
@@ -23,15 +15,13 @@ var gulp = require('gulp'),
 
 gulp.task('default', function(){});
 
-// sass task
-gulp.task('sass', function () {
-    gulp.src('./assets/scss/app.scss')
-        .pipe(sass({
-            noCache: true,
-            style: "compressed",
-            lineNumbers: false,
-            loadPath: './assets/scss/*'
-        }))
+gulp.task('sass', function() {
+    return sass('./assets/scss/app.scss', {
+        noCache: true,
+        style: "compressed",
+        lineNumbers: false,
+        loadPath: './assets/scss/*'
+    })
         .pipe(minifycss())
         .pipe(autoprefixer('last 2 version'))
         .pipe(concat('app.css'))
@@ -39,9 +29,8 @@ gulp.task('sass', function () {
         .pipe(notify({ message: 'Styles task complete' }));
 });
 
-
 gulp.task('scripts', function() {
-    gulp.src([
+    return gulp.src([
         './assets/js/app.js'
     ])
         .pipe(concat('app.min.js'))
