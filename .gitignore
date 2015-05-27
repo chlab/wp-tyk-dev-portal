@@ -12,11 +12,15 @@ content/backups/
 content/blogs.dir/
 content/cache/
 content/upgrade/
-content/uploads/
+content/uploads/**
 content/wp-cache-config.php
 content/themes/twentyfifteen/
+
 .vagrant
-html
+/html
 .idea/
 .DS_Store
 ckanext/
+vendor/
+composer.phar
+node_modules/
