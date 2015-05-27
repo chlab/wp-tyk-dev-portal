@@ -17,17 +17,24 @@
     ```
 
 5. Run `php composer.phar install` to install dependencies
-6. Install RabbitMQ Deamon in Vagrant-Box
-
-    ```
-    $ sudo cp --force /var/www/ogd-rabbitmq-worker.conf /etc/init/ogd-rabbitmq-worker.conf
-    ```
-
-7. Install theme dependencies
+6. Install theme dependencies
 
     ```
     $ cd ogdch.dev/content/themes/ogdch/
     $ sudo npm install
+    ```
+
+7. Start Vagrant-Box
+
+    ```
+    $ vagrant up
+    ```
+
+8. Install RabbitMQ Deamon **in Vagrant-Box**
+
+    ```
+    $ vagrant ssh
+    $ sudo cp --force /var/www/ogd-rabbitmq-worker.conf /etc/init/ogd-rabbitmq-worker.conf
     ```
 
 ## Working
