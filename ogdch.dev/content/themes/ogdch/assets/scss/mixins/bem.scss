@@ -4,24 +4,20 @@
 * E: Element
 * M: Modifier
 
+Example:
+.post {
+    @include element('title') {
+        font-family: monospace;
 
-.navigation{ // Block
-    @include element('button'){ // Element
-    	background-color: gray;
-    	color: white;
-    	border: 0;
-    	padding: .25em .5em;
-    	@include modifier('success'){ // Modifier
-    		background-color: green;
-    	}
-    	@include modifier('error'){ // Modifier
-    		background-color: red;
-    	}
-    	@include modifier('warning'){ // Modifier
-    		background-color: orange;
-    	}
+        @include modifier('page') {
+            color: red;
+        }
     }
 }
+
+generates:
+.post__title{font-family:monospace}
+.post__title--page{color:red}
 
 */
 

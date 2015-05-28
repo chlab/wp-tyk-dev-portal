@@ -1,13 +1,10 @@
+
 .post {
     @include element('title') {
         font-family: monospace;
 
-        @include modifier('page') {
+        @include modifier('page') {
             color: red;
         }
     }
-}
-
-p {
-    color: red;
 }
