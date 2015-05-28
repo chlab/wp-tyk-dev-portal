@@ -1,0 +1,42 @@
+/*
+
+* B: Block
+* E: Element
+* M: Modifier
+
+
+.navigation{ // Block
+    @include element('button'){ // Element
+    	background-color: gray;
+    	color: white;
+    	border: 0;
+    	padding: .25em .5em;
+    	@include modifier('success'){ // Modifier
+    		background-color: green;
+    	}
+    	@include modifier('error'){ // Modifier
+    		background-color: red;
+    	}
+    	@include modifier('warning'){ // Modifier
+    		background-color: orange;
+    	}
+    }
+}
+
+*/
+
+
+// * Build Element(E)::
+@mixin element($e) {
+    &__#{$e}{
+	    @content;
+    }
+}
+
+
+// * Build Modifier(M)::
+@mixin modifier($m) {
+    &--#{$m}{
+	    @content;
+    }
+}
