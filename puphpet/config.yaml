@@ -29,12 +29,12 @@ vagrantfile:
                 module_path: puphpet/puppet/modules
                 options:
                     - '--verbose'
-                    - '--hiera_config /vagrant/puphpet/puppet/hiera.yaml'
+                    - '--hiera_config /var/www/puphpet/puppet/hiera.yaml'
                     - '--parser future'
         synced_folder:
             vflsf_0t01o3pxhnte:
                 source: ./
-                target: /vagrant
+                target: /var/www
                 sync_type: nfs
                 rsync:
                     args:
@@ -45,7 +45,7 @@ vagrantfile:
                         - .vagrant/
                         - .git/
                     auto: 'true'
-                owner: www-data
+                owner: vagrant
                 group: www-data
         usable_port_range:
             start: 10200
@@ -161,7 +161,7 @@ apache:
     vhosts:
         av_xmss2h8jnusd:
             servername: ogdch.dev
-            docroot: /vagrant/ogdch.dev
+            docroot: /var/www/ogdch.dev
             port: '80'
             setenv:
                 - 'APP_ENV dev'
@@ -175,7 +175,7 @@ apache:
             ssl_cipher: ''
             directories:
                 avd_8vowqw2whifr:
-                    path: /vagrant/ogdch.dev
+                    path: /var/www/ogdch.dev
                     options:
                         - Indexes
                         - FollowSymlinks
@@ -207,7 +207,7 @@ php:
             - mysql
             - tidy
             - xmlrpc
-        pear: {  }
+        pear: { }
         pecl:
             - pecl_http
             - redis
@@ -300,7 +300,7 @@ mysql:
     databases:
         mysqlnd_zlyrp60byuos:
             name: cms
-            sql: /vagrant/sql/cms.sql
+            sql: /var/www/sql/cms.sql
     grants:
         mysqlng_352t8ky8v7f9:
             user: cms
