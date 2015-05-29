@@ -29,9 +29,11 @@ define( 'FS_METHOD', 'direct' );
 
 define( 'WP_CACHE', false );
 
-$redis_server = array( 'host' => '127.0.0.1',
-                       'port' => 6379
-                     );
+// ===================================================
+// Object-Cache
+// ===================================================
+
+$redis_server = array( 'host' => '127.0.0.1', 'port' => 6379 );
 
 
 // ===================================================
@@ -64,3 +66,10 @@ define( 'WP_PLUGIN_URL', WP_HOME . '/content/plugins' );
 
 define( 'WPMU_PLUGIN_DIR', dirname( __FILE__ ) . '/content/mu-plugins' );
 define( 'WPMU_PLUGIN_URL', WP_HOME . '/content/mu-plugins' );
+
+
+// ===================================================
+// CKAN
+// ===================================================
+
+define( 'CKAN_API_ENDPOINT', 'http://ckan.ogdch.dev/api/3/' );

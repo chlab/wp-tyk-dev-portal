@@ -7,6 +7,10 @@
  * Date: 21.05.2015
  */
 
+// ===================================================
+// Register Post Type
+// ===================================================
+
 function register_ckan_post_type() {
 
 	$labels  = array(
@@ -58,6 +62,10 @@ function register_ckan_post_type() {
 add_action( 'init', 'register_ckan_post_type', 0 );
 
 
+// ===================================================
+// Define CMB2 fields for Post Type
+// ===================================================
+
 function ckan_dataset_fields() {
 
 	$prefix = '_ckandataset_';
@@ -74,25 +82,100 @@ function ckan_dataset_fields() {
 	$cmb->add_field( array(
 		'name' => 'CKAN Ref. ID',
 		'id'   => $prefix . 'reference',
-		'type' => 'ref_field',
+		'type' => 'text',
 		'desc' => 'Ref. ID from CKAN',
+		//'attributes' => array( 'disabled' => true )
 	) );
 
+	$cmb->add_field( array(
+		'name' => 'CKAN Name',
+		'id'   => $prefix . 'name',
+		'type' => 'text',
+		'desc' => 'Name from CKAN',
+		//'attributes' => array( 'disabled' => true )
+	) );
+
+	$cmb->add_field( array(
+		'name' => 'CKAN Request Time',
+		'id'   => $prefix . 'last_request',
+		'type' => 'text',
+		'desc' => 'CKAN Last Request Time',
+		//'attributes' => array( 'disabled' => true )
+	) );
+
+	$cmb->add_field( array(
+		'name' => 'CKAN JSON Response',
+		'id'   => $prefix . 'response',
+		'type' => 'textarea',
+		'desc' => 'CKAN Response as JSON',
+		//'attributes' => array( 'disabled' => true )
+	) );
 
 }
 
 add_action( 'cmb2_init', 'ckan_dataset_fields' );
 
-/* Render Callback for Ref. Field (renders read only field) */
-function cmb2_render_callback_ref_field( $field, $escaped_value, $object_id, $object_type, $field_type_object ) {
-	echo $field_type_object->input( array( 'type' => 'text', 'disabled' => true ) );
+
+// ===================================================
+// Get JSON Data from Single CKAN Entry
+// ===================================================
+
+function get_ckan_dataset( $ID = 0, $ckan_name ) {
+	if ( false === ( $response = get_transient( 'ckan_data_' . $ckan_name ) ) ) {
+		$response = get_post_meta( get_ckan_dataset_master( $ID ), '_ckandataset_response', true );
+		set_transient( 'ckan_data_' . $ckan_name, $response, 60 );
+	}
+
+	return $response;
 }
 
-add_action( 'cmb2_render_ref_field', 'cmb2_render_callback_ref_field', 10, 5 );
+function get_ckan_dataset_master( $ID ) {
+	$term            = wp_get_post_terms( $ID, 'post_translations' );
+	$post_connection = unserialize( $term[0]->description );
 
-/* Santize Callback for Ref. Field */
-function cmb2_sanitize_ref_field_callback( $override_value, $value ) {
-	return $value;
+	return $post_connection['de'];
 }
 
-add_filter( 'cmb2_sanitize_ref_field', 'cmb2_sanitize_ref_field_callback', 10, 2 );
+
+// Get the JSON (Only called by RabbitMq Reader)
+function ckan_dataset_get_single_json( $ID = 0, $ckan_name ) {
+	// If WP ID is 0 or not numeric
+	if ( $ID == 0 || ! is_numeric( $ID ) ) {
+		return;
+	}
+
+	// Get CKAN API Response
+	$endpoint = CKAN_API_ENDPOINT . 'action/package_show?id=' . $ckan_name;
+	$response = wp_remote_get( $endpoint );
+
+	return $response;
+}
+
+
+// Save JSON in Meta Field from the belonging WP Entry nad Cache Response Body
+function ckan_dataset_save_single_json( $ID = 0, $response, $ckan_name ) {
+
+	// If WP ID is 0 or not numeric
+	if ( $ID == 0 || ! is_numeric( $ID ) ) {
+		return;
+	}
+
+	// If Response is not a Array
+	if ( ! is_array( $response ) ) {
+		return;
+	}
+
+	$res = json_decode( $response['body'] );
+
+	if ( $res->success == false ) {
+		return;
+	}
+
+
+	// Set Cache
+	delete_transient( 'ckan_data_' . $ckan_name );
+	set_transient( 'ckan_data_' . $ckan_name, $response['body'], 60 );
+
+	update_post_meta( $ID, '_ckandataset_last_request', $response['headers']['date'] );
+	update_post_meta( $ID, '_ckandataset_response', $response['body'] );
+}
