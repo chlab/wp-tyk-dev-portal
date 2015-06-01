@@ -80,35 +80,35 @@ function ckan_dataset_fields() {
 	) );
 
 	$cmb->add_field( array(
-		'name' => 'CKAN Ref. ID',
-		'id'   => $prefix . 'reference',
-		'type' => 'text',
-		'desc' => 'Ref. ID from CKAN',
-		//'attributes' => array( 'disabled' => true )
+		'name'       => 'CKAN Ref. ID',
+		'id'         => $prefix . 'reference',
+		'type'       => 'text',
+		'desc'       => 'Ref. ID from CKAN',
+		'attributes' => array( 'disabled' => true )
 	) );
 
 	$cmb->add_field( array(
-		'name' => 'CKAN Name',
-		'id'   => $prefix . 'name',
-		'type' => 'text',
-		'desc' => 'Name from CKAN',
-		//'attributes' => array( 'disabled' => true )
+		'name'       => 'CKAN Name',
+		'id'         => $prefix . 'name',
+		'type'       => 'text',
+		'desc'       => 'Name from CKAN',
+		'attributes' => array( 'disabled' => true )
 	) );
 
 	$cmb->add_field( array(
-		'name' => 'CKAN Request Time',
-		'id'   => $prefix . 'last_request',
-		'type' => 'text',
-		'desc' => 'CKAN Last Request Time',
-		//'attributes' => array( 'disabled' => true )
+		'name'       => 'CKAN Request Time',
+		'id'         => $prefix . 'last_request',
+		'type'       => 'text',
+		'desc'       => 'CKAN Last Request Time',
+		'attributes' => array( 'disabled' => true )
 	) );
 
 	$cmb->add_field( array(
-		'name' => 'CKAN JSON Response',
-		'id'   => $prefix . 'response',
-		'type' => 'textarea',
-		'desc' => 'CKAN Response as JSON',
-		//'attributes' => array( 'disabled' => true )
+		'name'       => 'CKAN JSON Response',
+		'id'         => $prefix . 'response',
+		'type'       => 'textarea',
+		'desc'       => 'CKAN Response as JSON',
+		'attributes' => array( 'disabled' => true )
 	) );
 
 }
@@ -117,9 +117,13 @@ add_action( 'cmb2_init', 'ckan_dataset_fields' );
 
 
 // ===================================================
-// Get JSON Data from Single CKAN Entry
+// CKAN Dataset Functions
 // ===================================================
 
+/**
+ * Get a CKAN Dataset from WP
+ * Gets the JSON Repsonse from CKAN but from the WP Instance. If it's not in Cache get it from DB and cache again.
+ */
 function get_ckan_dataset( $ID = 0, $ckan_name ) {
 	if ( false === ( $response = get_transient( 'ckan_data_' . $ckan_name ) ) ) {
 		$response = get_post_meta( get_ckan_dataset_master( $ID ), '_ckandataset_response', true );
@@ -129,6 +133,11 @@ function get_ckan_dataset( $ID = 0, $ckan_name ) {
 	return $response;
 }
 
+
+/**
+ * Get the parent dataset of a dataset
+ * Gets the 'post_translation' term, unserializes it and returns the german post ID
+ */
 function get_ckan_dataset_master( $ID ) {
 	$term            = wp_get_post_terms( $ID, 'post_translations' );
 	$post_connection = unserialize( $term[0]->description );
@@ -137,7 +146,10 @@ function get_ckan_dataset_master( $ID ) {
 }
 
 
-// Get the JSON (Only called by RabbitMq Reader)
+/**
+ * Get the JSON (Only called by RabbitMQ Reader)
+ * Makes a request to the CKAN Instance and returns the JSON repsonse (ckan_dataset_save_single_json() should be called after that)
+ */
 function ckan_dataset_get_single_json( $ID = 0, $ckan_name ) {
 	// If WP ID is 0 or not numeric
 	if ( $ID == 0 || ! is_numeric( $ID ) ) {
@@ -152,7 +164,10 @@ function ckan_dataset_get_single_json( $ID = 0, $ckan_name ) {
 }
 
 
-// Save JSON in Meta Field from the belonging WP Entry nad Cache Response Body
+/**
+ * Save JSON in Meta Field from the belonging WP Entry nad Cache Response Body
+ * Saves the Request Body (JSON) in acustom Field of the belonging WP entry and puts it into the Cache
+ */
 function ckan_dataset_save_single_json( $ID = 0, $response, $ckan_name ) {
 
 	// If WP ID is 0 or not numeric
@@ -167,12 +182,11 @@ function ckan_dataset_save_single_json( $ID = 0, $response, $ckan_name ) {
 
 	$res = json_decode( $response['body'] );
 
-	if ( $res->success == false ) {
+	if ( $res->success === false ) {
 		return;
 	}
 
 
-	// Set Cache
 	delete_transient( 'ckan_data_' . $ckan_name );
 	set_transient( 'ckan_data_' . $ckan_name, $response['body'], 60 );
 

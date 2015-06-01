@@ -29,6 +29,9 @@ $callback = function ( $msg ) {
 
 		$action = $msg->action;
 
+		/**
+		 * Prepare Data for WP
+		 */
 		$post = array(
 			'post_author' => 1,
 			'post_type'   => 'ckan-dataset',
@@ -36,6 +39,9 @@ $callback = function ( $msg ) {
 			'post_status' => 'publish',
 		);
 
+		/**
+		 * Check if entry exists
+		 */
 		$args = array(
 			'meta_key'       => '_ckandataset_reference',
 			'meta_value'     => $msg->ref,
@@ -52,7 +58,10 @@ $callback = function ( $msg ) {
 		$num_res = count( $res );
 
 
-		// Error handling
+		/**
+		 * Error preventing
+		 * Correct in case of wrong 'action' provided by CKAN
+		 */
 		if ( $num_res === 1 && $action == 'insert' ) { // If Ref. ID exists but action is insert -> update
 			$action = 'update';
 		} elseif ( $num_res === 0 && $action == 'update' ) { // If Ref. ID does not exists but action is update -> insert
@@ -60,18 +69,24 @@ $callback = function ( $msg ) {
 		}
 
 
-		if ( $num_res === 1 && $action == 'update' ) {
-
-			// Post exists so update it
+		/**
+		 * Update CKAN-Dataset
+		 * Update WP Entry for CKAN Dataset (Update the Titel)
+		 * Data will be recieved later
+		 */
+		if ( $num_res === 1 && 'update' === $action ) {
 			$post['ID'] = $res[0];
 			$new_id     = $res[0];
 			wp_update_post( $post );
 
 			echo "UPDATE " . $post['ID'] . " to " . $post['post_title'] . " \n";
 
-		} elseif ( $num_res === 0 && $action == 'insert' ) {
+		} /**
+		 * Insert CKAN-Dataset
+		 * Inserts a new entry into WP. Saves the CKAN Reference and Name in a Custom Field and sets the language
+		 */
+		elseif ( $num_res === 0 && 'insert' === $action ) {
 
-			// Post does not exist so create it, add reference as custom field and set language of post
 			$new_id = wp_insert_post( $post, true );
 
 			echo "INSERT " . $post['ID'] . " to " . $post['post_title'] . " \n";
@@ -80,22 +95,45 @@ $callback = function ( $msg ) {
 			add_post_meta( $new_id, '_ckandataset_name', $msg->name, true );
 			pll_set_post_language( $new_id, $lang );  // Set Langauge
 
-		} else {
-			echo "ERROR\n";
+		} /**
+		 * Delete CKAN-Dataset
+		 */
+		elseif ( $num_res === 1 && 'delete' === $action ) {
+			wp_delete_post( $res[0] );
+			echo "DELETE " . $res[0] . " \n";
+		} /**
+		 * Something went very wrong
+		 */
+		else {
+			echo "ERROR";
 		}
 
-		echo 'get data for ' . $new_id . '->' . $msg->name . " \n\n";
 
-		if ( $response === '' ) {
-			$response = ckan_dataset_get_single_json( $new_id, $msg->name );
+		/**
+		 * Get CKAN Data from CKAN Instance
+		 * Gets the JSON Data from CKAN if 'action' was not delete.
+		 * More Informations in ckan-data-set.php
+		 */
+		if ( 'delete' != $action ) {
+			echo 'get data for ' . $new_id . '->' . $msg->name . " \n\n";
+
+			if ( $response === '' ) {
+				$response = ckan_dataset_get_single_json( $new_id, $msg->name );
+			}
+			ckan_dataset_save_single_json( $new_id, $response, $msg->name );
 		}
-		ckan_dataset_save_single_json( $new_id, $response, $msg->name );
 
+		/* Fill Tranlations Array */
 		$translations[ $lang ] = $new_id;
 
 	}
 
-	// Connect Posts with each other
+	/**
+	 * Connect CKAN-Datasets
+	 * Connects the fresh insertet CKAN-Datasets together so Polylang can work with it.
+	 * This Function inserts a Term with a serialized array.
+	 * More Info: https://polylang.wordpress.com/documentation/documentation-for-developers/functions-reference/
+	 */
 	if ( $action === 'insert' ) {
 		pll_save_post_translations( $translations );
 	}
