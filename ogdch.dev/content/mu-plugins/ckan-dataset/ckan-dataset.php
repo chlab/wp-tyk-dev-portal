@@ -183,9 +183,6 @@ function ckan_dataset_save_single_json( $ckan_dataset, $ckan_id ) {
 		'it' => 'Mammamia! Titel'
 	);
 
-	print_r($ckan_dataset_name);
-	print_r($ckan_dataset_title);
-
 	// TODO: What are we doing with this transient?
 	delete_transient( 'ckan_data_' . $ckan_id );
 	set_transient( 'ckan_data_' . $ckan_id, $ckan_dataset['body'], 60 );
@@ -229,6 +226,8 @@ function ckan_dataset_get_posts_by_ckanid($ckan_id) {
 		'cache_results'  => false,
 		'fields'         => 'ids',
 		'post_status'    => 'any',
+		'lang' => '', // Leave empty to query all languages
+		'nopaging' => true // disable paging
 	);
 	return get_posts( $args );
 }
