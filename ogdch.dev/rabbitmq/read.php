@@ -28,10 +28,8 @@ $callback = function ( $msg ) {
 		return FALSE;
 	}
 
-	// Always delete all posts for given id
-	ckan_dataset_delete_posts_by_ckanid( $ckan_id );
 	if ( 'delete' === $action ) {
-		// If action for this id is delete stop here
+		ckan_dataset_delete_posts_by_ckanid( $ckan_id );
 		return TRUE;
 	}
 

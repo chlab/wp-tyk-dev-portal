@@ -172,59 +172,89 @@ function ckan_dataset_save_single_json( $ckan_dataset, $ckan_id ) {
 	}
 
 	$ckan_dataset_result = $ckan_dataset_body['result'];
-	$ckan_dataset_name = $ckan_dataset_result['name'];
 	$ckan_dataset_title = $ckan_dataset_result['title'];
 
 	// TODO: remove this lines when ckanext-fluent plugin is active
 	$ckan_dataset_title = array(
-		'en' => 'My Title',
-		'de' => 'Mein Titel',
-		'fr' => 'Mon Titel',
-		'it' => 'Mammamia! Titel'
+		'en' => 'My Dataset',
+		'de' => 'Mein Datensatz',
+		'fr' => '', // TODO: assumtion -> empty title means no translation available
+		'it' => 'Mammamia! Datensatz'
 	);
 
 	// TODO: What are we doing with this transient?
 	delete_transient( 'ckan_data_' . $ckan_id );
 	set_transient( 'ckan_data_' . $ckan_id, $ckan_dataset['body'], 60 );
 
-	foreach($ckan_dataset_title as $lang => $title) {
-		$post = array(
-			'post_author' => 1,
-			'post_type'   => 'ckan-dataset',
-			'post_title'  => $title,
-			'post_status' => 'publish',
-		);
-		$new_id = wp_insert_post( $post, true );
+	$posts_ids = ckan_dataset_get_posts_by_ckanid($ckan_id, 'ids');
 
-		echo "INSERT " . $post['post_title'] . " \n";
-
-		add_post_meta( $new_id, '_ckandataset_reference', $ckan_id, true );
-		add_post_meta( $new_id, '_ckandataset_last_request', $ckan_dataset['headers']['date'] );
-		add_post_meta( $new_id, '_ckandataset_response', $ckan_dataset['body'] );
-		pll_set_post_language( $new_id, $lang );  // Set Langauge
-		$translations[ $lang ] = $new_id;
+	// if posts already exist -> update
+	if(count($posts_ids) > 0) {
+		foreach($posts_ids as $post_id) {
+			$post_language = pll_get_post_language($post_id);
+			$title = $ckan_dataset_title[$post_language];
+			if(empty($title)) {
+				// delete post if translation doesn't exist anymore
+				echo "DELETE post " . $post_id . " \n";
+				wp_delete_post( $post_id, true );
+			} else {
+				// update post
+				$post = array(
+					'post_title'  => $title
+				);
+				echo "UPDATE post " . $post_id . ' / new title: ' . $post['post_title'] . " \n";
+				wp_update_post( $post, true );
+				update_post_meta( $post_id, '_ckandataset_reference', $ckan_id, true );
+				update_post_meta( $post_id, '_ckandataset_last_request', $ckan_dataset['headers']['date'] );
+				$translations[ $post_language ] = $post_id;
+			}
+			// remove current language from array
+			if(array_key_exists($post_language, $ckan_dataset_title)) {
+				unset($ckan_dataset_title[$post_language]);
+			}
+		}
 	}
 
+	// create new posts for all remaining translations
+	foreach($ckan_dataset_title as $lang => $title) {
+		if(!empty($title)) {
+			$post = array(
+				'post_author' => 1,
+				'post_type'   => 'ckan-dataset',
+				'post_title'  => $title,
+				'post_status' => 'publish',
+			);
+			echo "INSERT " . $post['post_title'] . " \n";
+			$new_id = wp_insert_post( $post, true );
+			add_post_meta( $new_id, '_ckandataset_reference', $ckan_id, true );
+			add_post_meta( $new_id, '_ckandataset_last_request', $ckan_dataset['headers']['date'] );
+			add_post_meta( $new_id, '_ckandataset_response', $ckan_dataset['body'] );
+			pll_set_post_language( $new_id, $lang );  // Set Langauge
+			$translations[ $lang ] = $new_id;
+		}
+	}
+
+	// set post translations
 	pll_save_post_translations( $translations );
 }
 
 function ckan_dataset_delete_posts_by_ckanid($ckan_id) {
-	$posts = ckan_dataset_get_posts_by_ckanid($ckan_id);
-	foreach($posts as $post) {
-		wp_delete_post( $post, true );
-		echo "DELETE " . $post . " \n";
+	$posts_ids = ckan_dataset_get_posts_by_ckanid($ckan_id, 'ids');
+	foreach($posts_ids as $post_id) {
+		echo "DELETE post " . $post_id . " \n";
+		wp_delete_post( $post_id, true );
 	}
-	return count($posts);
+	return count($posts_ids);
 }
 
-function ckan_dataset_get_posts_by_ckanid($ckan_id) {
+function ckan_dataset_get_posts_by_ckanid($ckan_id, $fields = '') {
 	$args = array(
 		'meta_key'       => '_ckandataset_reference',
 		'meta_value'     => $ckan_id,
 		'meta_compare'   => '=',
 		'post_type'      => 'ckan-dataset',
 		'cache_results'  => false,
-		'fields'         => 'ids',
+		'fields'         => $fields,
 		'post_status'    => 'any',
 		'lang' => '', // Leave empty to query all languages
 		'nopaging' => true // disable paging
