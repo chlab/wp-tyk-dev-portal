@@ -182,11 +182,17 @@ function ckan_dataset_save_single_json( $ckan_dataset, $ckan_id ) {
 		'it' => 'Mammamia! Datensatz'
 	);
 
+	$posts_ids = ckan_dataset_get_posts_by_ckanid($ckan_id, 'ids');
+
+	// check if all languages are empty
+	if(!(array_filter($ckan_dataset_title))) {
+		$first_post_id = reset($posts_ids);
+		ckan_dataset_delete_post_translations($first_post_id);
+	}
+
 	// TODO: What are we doing with this transient?
 	delete_transient( 'ckan_data_' . $ckan_id );
 	set_transient( 'ckan_data_' . $ckan_id, $ckan_dataset['body'], 60 );
-
-	$posts_ids = ckan_dataset_get_posts_by_ckanid($ckan_id, 'ids');
 
 	// if posts already exist -> update
 	if(count($posts_ids) > 0) {
@@ -195,14 +201,14 @@ function ckan_dataset_save_single_json( $ckan_dataset, $ckan_id ) {
 			$title = $ckan_dataset_title[$post_language];
 			if(empty($title)) {
 				// delete post if translation doesn't exist anymore
-				echo "DELETE post " . $post_id . " \n";
+				echo "DELETE post " . $post_id . "\n";
 				wp_delete_post( $post_id, true );
 			} else {
 				// update post
 				$post = array(
 					'post_title'  => $title
 				);
-				echo "UPDATE post " . $post_id . ' / new title: ' . $post['post_title'] . " \n";
+				echo "UPDATE post " . $post_id . ' / new title: ' . $post['post_title'] . "\n";
 				wp_update_post( $post, true );
 				update_post_meta( $post_id, '_ckandataset_reference', $ckan_id, true );
 				update_post_meta( $post_id, '_ckandataset_last_request', $ckan_dataset['headers']['date'] );
@@ -224,7 +230,7 @@ function ckan_dataset_save_single_json( $ckan_dataset, $ckan_id ) {
 				'post_title'  => $title,
 				'post_status' => 'publish',
 			);
-			echo "INSERT " . $post['post_title'] . " \n";
+			echo "INSERT " . $post['post_title'] . "\n";
 			$new_id = wp_insert_post( $post, true );
 			add_post_meta( $new_id, '_ckandataset_reference', $ckan_id, true );
 			add_post_meta( $new_id, '_ckandataset_last_request', $ckan_dataset['headers']['date'] );
@@ -234,23 +240,19 @@ function ckan_dataset_save_single_json( $ckan_dataset, $ckan_id ) {
 		}
 	}
 
-	if(empty($translations)) {
-		$first_post_id = reset($posts_ids);
-		ckan_dataset_delete_post_translations($first_post_id);
-	} else {
-		pll_save_post_translations( $translations );
-	}
+	pll_save_post_translations( $translations );
 }
 
 function ckan_dataset_delete_posts_by_ckanid($ckan_id) {
 	$posts_ids = ckan_dataset_get_posts_by_ckanid($ckan_id, 'ids');
-	foreach($posts_ids as $post_id) {
-		echo "DELETE post " . $post_id . " \n";
-		wp_delete_post( $post_id, true );
-	}
 
 	$first_post_id = reset($posts_ids);
 	ckan_dataset_delete_post_translations($first_post_id);
+
+	foreach($posts_ids as $post_id) {
+		echo "DELETE post " . $post_id . "\n";
+		wp_delete_post( $post_id, true );
+	}
 
 	return count($posts_ids);
 }
@@ -274,6 +276,9 @@ function ckan_dataset_get_posts_by_ckanid($ckan_id, $fields = '') {
 function ckan_dataset_delete_post_translations($post_id) {
 	$taxonomy = 'post_translations';
 	$args = array('fields' => 'ids');
-	$post_term_id = wp_get_post_terms($post_id, $taxonomy, $args);
-	return wp_delete_term($post_term_id, $taxonomy);
+	$post_terms_ids = wp_get_post_terms($post_id, $taxonomy, $args);
+	foreach($post_terms_ids as $term_id) {
+		echo "DELETE term " . $term_id . "\n";
+		return wp_delete_term($term_id, $taxonomy);
+	}
 }
