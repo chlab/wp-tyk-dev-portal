@@ -54,8 +54,30 @@
 
 # Working
 
-## DB Admin
-Adminer for the CMS (PW: 123): http://ogdch.dev/adminer/adminer-4.2.1-de.php?username=cms
+## Users
+
+### WordPress Admin-User
+
+URL: http://ogdch.dev/cms/wp-login.php
+Username: liip
+Password: liip
+
+### WordPress MySQL Database
+
+URL: http://ogdch.dev/adminer/adminer-4.2.1-de.php?username=cms
+Username: cms
+Password: 123
+
+### CKAN Admin-User
+
+URL: http://ckan.ogdch.dev/user/login
+Username: admin
+Password: pass
+
+### CKAN PostgreSQL Database
+
+Username: admin
+Password: pass
 
 ## Redis
     $ vagrant ssh
