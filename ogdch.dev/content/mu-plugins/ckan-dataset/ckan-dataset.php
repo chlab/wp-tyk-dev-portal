@@ -178,7 +178,7 @@ function ckan_dataset_save_single_json( $ckan_dataset, $ckan_id ) {
 	$ckan_dataset_title = array(
 		'en' => 'My Dataset',
 		'de' => 'Mein Datensatz',
-		'fr' => '', // TODO: assumtion -> empty title means no translation available
+		'fr' => '', // TODO: assumption -> empty title means no translation available
 		'it' => 'Mammamia! Datensatz'
 	);
 
@@ -234,8 +234,12 @@ function ckan_dataset_save_single_json( $ckan_dataset, $ckan_id ) {
 		}
 	}
 
-	// set post translations
-	pll_save_post_translations( $translations );
+	if(empty($translations)) {
+		$first_post_id = reset($posts_ids);
+		ckan_dataset_delete_post_translations($first_post_id);
+	} else {
+		pll_save_post_translations( $translations );
+	}
 }
 
 function ckan_dataset_delete_posts_by_ckanid($ckan_id) {
@@ -244,6 +248,10 @@ function ckan_dataset_delete_posts_by_ckanid($ckan_id) {
 		echo "DELETE post " . $post_id . " \n";
 		wp_delete_post( $post_id, true );
 	}
+
+	$first_post_id = reset($posts_ids);
+	ckan_dataset_delete_post_translations($first_post_id);
+
 	return count($posts_ids);
 }
 
@@ -260,4 +268,12 @@ function ckan_dataset_get_posts_by_ckanid($ckan_id, $fields = '') {
 		'nopaging' => true // disable paging
 	);
 	return get_posts( $args );
+}
+
+
+function ckan_dataset_delete_post_translations($post_id) {
+	$taxonomy = 'post_translations';
+	$args = array('fields' => 'ids');
+	$post_term_id = wp_get_post_terms($post_id, $taxonomy, $args);
+	return wp_delete_term($post_term_id, $taxonomy);
 }
