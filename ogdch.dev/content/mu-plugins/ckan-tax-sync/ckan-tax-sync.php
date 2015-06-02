@@ -88,181 +88,183 @@ function ckan_taxonomy() {
 	register_taxonomy( 'ckan_groups', array( 'ckan-dataset' ), $args );
 }
 
+add_action( 'init', 'ckan_taxonomy', 0 );
 
 // ===================================================
 // Options Page
 // ===================================================
 
-add_action( 'admin_menu', 'ckan_tax_data_sync_add_admin_menu' );
-add_action( 'admin_init', 'ckan_tax_data_sync_settings_init' );
 
+add_action( 'admin_menu', 'ckan_tax_sync_menu' );
+add_action( 'admin_enqueue_scripts', 'ckan_tax_sync_scripts' );
 
-function ckan_tax_data_sync_add_admin_menu(  ) {
-	add_menu_page( 'CKAN Tax-Data', 'CKAN Tax-Data', 'manage_options', 'ckan_tax_data_sync', 'ckan_tax_data_sync_options_page' );
+function ckan_tax_sync_menu() {
+	add_menu_page( 'CKAN Tax', 'CKAN Tax.-Data', 'manage_options', 'ckan_tax_sync', 'ckan_tax_sync_init' );
 }
 
-
-function ckan_tax_data_sync_settings_init(  ) {
-
-	register_setting( 'pluginPage', 'ckan_tax_data_sync_settings' );
-
-	add_settings_section(
-		'ckan_tax_data_sync_pluginPage_section',
-		__( 'Update / Delete Data', 'ogdch' ),
-		'ckan_tax_data_sync_settings_section_callback',
-		'pluginPage'
-	);
-
-	add_settings_field(
-		'ckan_tax_data_sync_select_field_0',
-		__( 'Get Organisations', 'ogdch' ),
-		'ckan_tax_data_sync_select_field_0_render',
-		'pluginPage',
-		'ckan_tax_data_sync_pluginPage_section'
-	);
-
-    add_settings_field(
-		'ckan_tax_data_sync_select_field_1',
-		__( 'Get Groups', 'ogdch' ),
-		'ckan_tax_data_sync_select_field_1_render',
-		'pluginPage',
-		'ckan_tax_data_sync_pluginPage_section'
-	);
-}
-
-
-function ckan_tax_data_sync_select_field_0_render(  ) {
-	echo '<input type="checkbox" />';
-}
-
-function ckan_tax_data_sync_select_field_1_render(  ) {
-	echo '<input type="checkbox" />';
-}
-
-
-function ckan_tax_data_sync_settings_section_callback(  ) {
-	echo __( 'Get/Flush Taxonomie Data from CKAN', 'ogdch' );
-}
-
-
-function ckan_tax_data_sync_options_page(  ) {
-
+function ckan_tax_sync_init() {
 	?>
-	<form action='options.php' method='post'>
+	<h1>CKAN Taxonimie Data</h1>
+	<p>Get Taxonomie Date from CKAN Instance or update it</p>
 
-		<h2>CKAN Tax-Data Sync</h2>
+	<h3>Groups</h3>
+	<?php submit_button( 'Get / Update Groups', 'primary', 'ckan_tax_sync_groups' ); ?>
+	<div id="ckan_tax_sync_groups_status"></div>
 
-		<?php
-		settings_fields( 'pluginPage' );
-		do_settings_sections( 'pluginPage' );
-		submit_button();
-		?>
+	<h3>Organisations</h3>
+	<?php submit_button( 'Get / Update Organisations', 'primary', 'ckan_tax_sync_organisations' ); ?>
+	<div id="ckan_tax_sync_organisations_status"></div>
 
-	</form>
-	<?php
+<?php
+}
+
+function ckan_tax_sync_scripts() {
+	$screen = get_current_screen();
+	if ( $screen->id != 'toplevel_page_ckan_tax_sync' ) {
+		return;
+	}
+
+	wp_register_script( 'ckan_tax_sync', plugins_url( '/js/ckan_tax_sync.js', __FILE__ ), array( 'jquery' ), null );
+	wp_enqueue_script( 'jquery' );
+	wp_enqueue_script( 'ckan_tax_sync' );
 
 }
 
 
+// ===================================================
+// Init AJAX Actions
+// ===================================================
+
+add_action( 'wp_ajax_ckan_tax_sync_groups_action', 'ckan_sync_tax' );
+add_action( 'wp_ajax_nopriv_ckan_tax_sync_groups_action', 'ckan_sync_tax' );
+
+add_action( 'wp_ajax_ckan_tax_sync_organisations_action', 'ckan_sync_tax' );
+add_action( 'wp_ajax_nopriv_ckan_tax_sync_organisations_action', 'ckan_sync_tax' );
 
 
+function ckan_sync_tax() {
+	$action = $_REQUEST['action'];
+	$return = array( 'status' => 'error' );
 
 
-
-/*
-add_action( 'init', 'ckan_taxonomy', 0 );
-
-
-class Ckan_Tax_Data_Page {
-
-	private $key = 'ckan_tax_data';
-	private $metabox_id = 'ckan_tax_data_metabox';
-	private $textdomain = 'odgch';
-
-	protected $title = '';
-	protected $options_page = '';
-
-	public function __construct() {
-		$this->title = __( 'CKAN Tax Data', $this->textdomain );
+	if ( 'ckan_tax_sync_groups_action' === $action ) {
+		$endpoint = CKAN_API_ENDPOINT . 'action/group_list';
+		$taxonomy = 'ckan_groups';
+	} elseif ( 'ckan_tax_sync_organisations_action' === $action ) {
+		$endpoint = CKAN_API_ENDPOINT . 'action/organization_list';
+		$taxonomy = 'ckan_organisation';
+	} else {
+		header( 'Content: application/json' );
+		$return['message'] = 'No Endpoint found';
+		echo json_encode( $return );
+		die;
 	}
 
-	public function hooks() {
-		add_action( 'admin_init', array( $this, 'init' ) );
-		add_action( 'admin_menu', array( $this, 'add_options_page' ) );
-		add_action( 'cmb2_init', array( $this, 'add_options_page_metabox' ) );
-	}
+	$response = wp_remote_get( $endpoint );
 
-	public function init() {
-		register_setting( $this->key, $this->key );
-	}
+	$data = json_decode( $response['body'] );
 
-	public function add_options_page() {
-		$this->options_page = add_menu_page( $this->title, $this->title, 'manage_options', $this->key, array(
-				$this,
-				'admin_page_display'
-			) );
-		add_action( "admin_print_styles-{$this->options_page}", array( 'CMB2_hookup', 'enqueue_cmb_css' ) );
-	}
+	if ( ! is_object( $data ) ) {
+		$return['message'] = 'No Data recieved';
+	} else {
+		$data = $data->result;
+		if ( ! is_array( $data ) ) {
+			$return['message'] = 'No Data recieved';
+		} else {
 
-	public function admin_page_display() {
-		?>
-		<div class="wrap cmb2-options-page <?php echo $this->key; ?>">
-			<h2><?php echo esc_html( get_admin_page_title() ); ?></h2>
-			<?php cmb2_metabox_form( $this->metabox_id, $this->key, array( 'cmb_styles' => false ) ); ?>
-		</div>
-	<?php
-	}
-
-
-	function add_options_page_metabox() {
-		$cmb = new_cmb2_box( array(
-			'id'      => $this->metabox_id,
-			'hookup'  => false,
-			'show_on' => array(
-				// These are important, don't remove
-				'key'   => 'options-page',
-				'value' => array( $this->key, )
-			),
-		) );
-		// Set our CMB2 fields
-		$cmb->add_field( array(
-			'name'    => __( 'Test Text2', $this->textdomain ),
-			'desc'    => __( 'field description (optional)', $this->textdomain ),
-			'id'      => 'test_text',
-			'type'    => 'text',
-			'default' => 'Default Text',
-		) );
-		$cmb->add_field( array(
-			'name'    => __( 'Test Color Picker', $this->textdomain ),
-			'desc'    => __( 'field description (optional)', $this->textdomain ),
-			'id'      => 'test_colorpicker',
-			'type'    => 'colorpicker',
-			'default' => '#bada55',
-		) );
-	}
-
-	public function __get( $field ) {
-		// Allowed fields to retrieve
-		if ( in_array( $field, array( 'key', 'metabox_id', 'title', 'options_page' ), true ) ) {
-			return $this->{$field};
+			$return = json_decode( ckan_synchronize_taxonomy( $taxonomy, $data ) );
 		}
-		throw new Exception( 'Invalid property: ' . $field );
-	}
-}
-
-function ckan_tax_data_sync_page() {
-	static $object = null;
-	if ( is_null( $object ) ) {
-		$object = new Ckan_Tax_Data_Page();
-		$object->hooks();
 	}
 
-	return $object;
+	header( 'Content: application/json' );
+	echo json_encode( $return );
+	die;
 }
 
-function ckan_data_sync_get_option( $key = '' ) {
-	return cmb2_get_option( myprefix_admin()->key, $key );
+
+// ===================================================
+// Sync Functions
+// ===================================================
+
+function ckan_synchronize_taxonomy( $taxonomy, $data ) {
+	$ckan_data = $data;
+
+	$return = array(
+		'updated'  => 0,
+		'inserted' => 0,
+		'deleted'  => 0,
+		'status'   => 'error',
+		'message'  => 'fail'
+	);
+
+	if ( $taxonomy === 'ckan_groups' ) {
+		$action = 'group_show';
+	} elseif ( $taxonomy === 'ckan_organisation' ) {
+		$action = 'organization_show';
+	}
+
+	foreach ( $data as $slug ) {
+		$endpoint = CKAN_API_ENDPOINT . 'action/' . $action . '?id=' . $slug;
+		$response = wp_remote_get( $endpoint );
+
+		$data = json_decode( $response['body'] );
+
+		if ( ! is_object( $data ) ) {
+			continue;
+		}
+
+		$data = $data->result;
+		if ( ! is_object( $data ) ) {
+			continue;
+		}
+
+		$term = get_term_by( 'slug', $slug, $taxonomy );
+		if ( is_object( $term ) ) {
+			// update term
+			wp_update_term( $term->term_id, $taxonomy, array(
+				'name'        => $data->display_name,
+				'description' => $data->description
+			) );
+			$return['updated'] = $return['updated'] + 1;
+
+		} else {
+			// create term
+			$new_term = wp_insert_term(
+				$data->display_name,
+				$taxonomy,
+				array(
+					'description' => $data->description,
+					'slug'        => $slug,
+				)
+			);
+
+			if ( ! is_array( $new_term ) ) {
+				echo 'could not create term: ' . $slug;
+			} else {
+				pll_set_term_language( $new_term['term_id'], 'de' );
+				$return['inserted'] = $return['inserted'] + 1;
+			}
+		}
+	}
+
+
+	// Delete not recieved terms
+	$delete_terms  = array();
+	$current_terms = get_terms( $taxonomy, array( 'hide_empty' => false ) );
+
+	if ( is_array( $current_terms ) ) {
+		foreach ( $current_terms as $cterm ) {
+			if ( ! in_array( $cterm->slug, $ckan_data ) ) {
+				$term = get_term_by( 'slug', $cterm->slug, $taxonomy );
+				wp_delete_term( $term->term_id, $taxonomy );
+				$return['deleted'] = $return['deleted'] + 1;
+			}
+		}
+	}
+
+	$return['status']  = 'success';
+	$return['message'] = 'Import finished. Updated: ' . $return['updated'] . ', Inserted: ' . $return['inserted'] . ' Deleted: ' . $return['deleted'];
+
+	return json_encode( $return );
 }
 
-
-ckan_tax_data_sync_page();*/
