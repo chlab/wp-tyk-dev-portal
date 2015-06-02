@@ -30,11 +30,10 @@ $callback = function ( $msg ) {
 
 	if ( 'delete' === $action ) {
 		ckan_dataset_delete_posts_by_ckanid( $ckan_id );
-		return TRUE;
+	} else {
+		ckan_dataset_update_posts_by_ckanid( $ckan_id );
 	}
 
-	$ckan_dataset = ckan_dataset_get_single_json( $ckan_id );
-	ckan_dataset_save_single_json( $ckan_dataset, $ckan_id );
 	return TRUE;
 };
 
