@@ -10,15 +10,11 @@ $queue_name = 'ckan';
 
 $channel->queue_declare( $queue_name, false, false, false, false );
 
-$ref            = rand( 100, 999 );
-$ref            = 'caa92e13-a975-4644-9e85-c3c752b46297';
 $mock_ckan_data = array(
-	'{"ref":"' . $ref . '","name":"ich-bin-ein-datensatz","title":{"de":"Ich bin ein Datensatz DE","fr":"Ich bin ein Datensatz FR","en":"Ich bin ein Datensatz EN","it":"Ich bin ein Datensatz IT"},"action":"insert"}',
-	//'{"ref":' . $ref . ',"title":{"de":"titelyolo DE ' . $ref . '","fr":"titelyolo FR ' . $ref . '","en":"titelyolo EN ' . $ref . '","it":"titelyolo IT ' . $ref . '"},"action":"insert"}',
-	//'{"ref":' . $ref . ',"title":{"de":"titelyolo DE ' . $ref . '","fr":"titelyolo FR ' . $ref . '","en":"titelyolo EN ' . $ref . '","it":"titelyolo IT ' . $ref . '"},"action":"update"}',
-	//'{"ref":' . $ref . ',"title":{"de":"titel2 DE ' . $ref . '","fr":"titel2 FR ' . $ref . '","en":"titel2 EN ' . $ref . '","it":"titel2 IT ' . $ref . '"},"action":"update"}',
-	//'{"ref":' . $ref . ',"title":{"de":"titel3 DE ' . $ref . '","fr":"titel33 FR ' . $ref . '","en":"titel333 EN ' . $ref . '","it":"titel33333 IT ' . $ref . '"},"action":"update"}',
-	//'{"ref":653,"title":{"de":"titel--3 DE ' . $ref . '","fr":"titel--33 FR ' . $ref . '","en":"titel--333 EN ' . $ref . '","it":"titel---33333 IT ' . $ref . '"},"action":"update"}',
+	'{
+		"id":"71a37fef-df2f-47a0-be06-cebf83765d26",
+		"action":"insert"
+	}',
 );
 
 foreach ( $mock_ckan_data as $ckan_data ) {

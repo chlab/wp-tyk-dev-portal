@@ -88,14 +88,6 @@ function ckan_dataset_fields() {
 	) );
 
 	$cmb->add_field( array(
-		'name'       => 'CKAN Name',
-		'id'         => $prefix . 'name',
-		'type'       => 'text',
-		'desc'       => 'Name from CKAN',
-		'attributes' => array( 'disabled' => true )
-	) );
-
-	$cmb->add_field( array(
 		'name'       => 'CKAN Request Time',
 		'id'         => $prefix . 'last_request',
 		'type'       => 'text',
@@ -150,14 +142,9 @@ function get_ckan_dataset_master( $ID ) {
  * Get the JSON (Only called by RabbitMQ Reader)
  * Makes a request to the CKAN Instance and returns the JSON repsonse (ckan_dataset_save_single_json() should be called after that)
  */
-function ckan_dataset_get_single_json( $ID = 0, $ckan_name ) {
-	// If WP ID is 0 or not numeric
-	if ( $ID == 0 || ! is_numeric( $ID ) ) {
-		return;
-	}
-
+function ckan_dataset_get_single_json( $ckan_id ) {
 	// Get CKAN API Response
-	$endpoint = CKAN_API_ENDPOINT . 'action/package_show?id=' . $ckan_name;
+	$endpoint = CKAN_API_ENDPOINT . 'action/package_show?id=' . $ckan_id;
 	$response = wp_remote_get( $endpoint );
 
 	return $response;
@@ -168,28 +155,80 @@ function ckan_dataset_get_single_json( $ID = 0, $ckan_name ) {
  * Save JSON in Meta Field from the belonging WP Entry nad Cache Response Body
  * Saves the Request Body (JSON) in acustom Field of the belonging WP entry and puts it into the Cache
  */
-function ckan_dataset_save_single_json( $ID = 0, $response, $ckan_name ) {
+function ckan_dataset_save_single_json( $ckan_dataset, $ckan_id ) {
 
-	// If WP ID is 0 or not numeric
-	if ( $ID == 0 || ! is_numeric( $ID ) ) {
-		return;
-	}
+	$translations = array();
 
 	// If Response is not a Array
-	if ( ! is_array( $response ) ) {
+	if ( ! is_array( $ckan_dataset ) ) {
 		return;
 	}
 
-	$res = json_decode( $response['body'] );
+	// Check if response is valid JSON
+	$ckan_dataset_body = json_decode( $ckan_dataset['body'], true );
 
-	if ( $res->success === false ) {
+	if ( !$ckan_dataset_body || $ckan_dataset_body['success'] === false ) {
 		return;
 	}
 
+	$ckan_dataset_result = $ckan_dataset_body['result'];
+	$ckan_dataset_name = $ckan_dataset_result['name'];
+	$ckan_dataset_title = $ckan_dataset_result['title'];
 
-	delete_transient( 'ckan_data_' . $ckan_name );
-	set_transient( 'ckan_data_' . $ckan_name, $response['body'], 60 );
+	// TODO: remove this lines when ckanext-fluent plugin is active
+	$ckan_dataset_title = array(
+		'en' => 'My Title',
+		'de' => 'Mein Titel',
+		'fr' => 'Mon Titel',
+		'it' => 'Mammamia! Titel'
+	);
 
-	update_post_meta( $ID, '_ckandataset_last_request', $response['headers']['date'] );
-	update_post_meta( $ID, '_ckandataset_response', $response['body'] );
+	print_r($ckan_dataset_name);
+	print_r($ckan_dataset_title);
+
+	// TODO: What are we doing with this transient?
+	delete_transient( 'ckan_data_' . $ckan_id );
+	set_transient( 'ckan_data_' . $ckan_id, $ckan_dataset['body'], 60 );
+
+	foreach($ckan_dataset_title as $lang => $title) {
+		$post = array(
+			'post_author' => 1,
+			'post_type'   => 'ckan-dataset',
+			'post_title'  => $title,
+			'post_status' => 'publish',
+		);
+		$new_id = wp_insert_post( $post, true );
+
+		echo "INSERT " . $post['post_title'] . " \n";
+
+		add_post_meta( $new_id, '_ckandataset_reference', $ckan_id, true );
+		add_post_meta( $new_id, '_ckandataset_last_request', $ckan_dataset['headers']['date'] );
+		add_post_meta( $new_id, '_ckandataset_response', $ckan_dataset['body'] );
+		pll_set_post_language( $new_id, $lang );  // Set Langauge
+		$translations[ $lang ] = $new_id;
+	}
+
+	pll_save_post_translations( $translations );
+}
+
+function ckan_dataset_delete_posts_by_ckanid($ckan_id) {
+	$posts = ckan_dataset_get_posts_by_ckanid($ckan_id);
+	foreach($posts as $post) {
+		wp_delete_post( $post, true );
+		echo "DELETE " . $post . " \n";
+	}
+	return count($posts);
+}
+
+function ckan_dataset_get_posts_by_ckanid($ckan_id) {
+	$args = array(
+		'meta_key'       => '_ckandataset_reference',
+		'meta_value'     => $ckan_id,
+		'meta_compare'   => '=',
+		'post_type'      => 'ckan-dataset',
+		'cache_results'  => false,
+		'fields'         => 'ids',
+		'post_status'    => 'any',
+	);
+	return get_posts( $args );
 }
