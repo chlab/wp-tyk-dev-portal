@@ -178,6 +178,7 @@ function ckan_dataset_save_single_json( $ckan_dataset, $ckan_id ) {
 	$ckan_dataset_result       = $ckan_dataset_body['result'];
 	$ckan_dataset_title        = $ckan_dataset_result['title'];
 	$ckan_dataset_organisation = $ckan_dataset_result['organization'];
+	$ckan_dataset_groups       = $ckan_dataset_result['groups'];
 
 	// TODO: remove these lines when ckanext-fluent plugin is active
 	$ckan_dataset_title = array(
@@ -190,6 +191,15 @@ function ckan_dataset_save_single_json( $ckan_dataset, $ckan_id ) {
 	$organisation_id = false;
 	if ( is_array( $ckan_dataset_organisation ) && ! empty( $ckan_dataset_organisation['name'] ) ) {
 		$organisation_id = ckan_dataset_get_organisation_id_by_slug( $ckan_dataset_organisation['name'] );
+	}
+	$group_ids = array();
+	if ( is_array( $ckan_dataset_groups ) ) {
+		foreach ( $ckan_dataset_groups as $group ) {
+			$group_id = ckan_dataset_get_group_id_by_slug( $group['name'] );
+			if ( $group_id ) {
+				$group_ids[] = $group_id;
+			}
+		}
 	}
 
 	$post_ids = ckan_dataset_get_posts_by_ckanid( $ckan_id, 'ids' );
@@ -210,7 +220,7 @@ function ckan_dataset_save_single_json( $ckan_dataset, $ckan_id ) {
 				// Delete post if translation doesn't exist anymore
 				ckan_dataset_delete_post( $post_id );
 			} else {
-				ckan_dataset_update_post( $post_id, $ckan_id, $title, $request_date, $ckan_dataset_body_raw, $organisation_id );
+				ckan_dataset_update_post( $post_id, $ckan_id, $title, $request_date, $ckan_dataset_body_raw, $organisation_id, $group_ids );
 				$translations[ $post_language ] = $post_id;
 			}
 
@@ -222,7 +232,7 @@ function ckan_dataset_save_single_json( $ckan_dataset, $ckan_id ) {
 	// Create new posts for all remaining translations
 	foreach ( $ckan_dataset_title as $lang => $title ) {
 		if ( ! empty( $title ) ) {
-			$new_id                = ckan_dataset_insert_post( $ckan_id, $title, $request_date, $ckan_dataset_body_raw, $organisation_id, $lang );
+			$new_id                = ckan_dataset_insert_post( $ckan_id, $title, $request_date, $ckan_dataset_body_raw, $organisation_id, $group_ids, $lang );
 			$translations[ $lang ] = $new_id;
 		}
 	}
@@ -336,8 +346,46 @@ function ckan_dataset_add_organisation_to_post( $post_id, $organisation_id ) {
 		return false;
 	}
 	$organisation_add_success = wp_set_object_terms( $post_id, $organisation_id, 'ckan_organisation' );
-	if ( ! is_array( $organisation_add_success ) ) {
+	if ( is_wp_error ( $organisation_add_success ) || ! is_array( $organisation_add_success ) ) {
 		echo "ERROR: Failed inserting organisation " . $organisation_id . "\n";
+	}
+
+	return true;
+}
+
+/**
+ * Get group id by slug
+ *
+ * @param string $group_slug
+ *
+ * @return bool|int Returns id of found group / false if group was not found
+ */
+function ckan_dataset_get_group_id_by_slug( $group_slug ) {
+	$group = get_term_by( 'slug', $group_slug, 'ckan_groups' );
+	if ( ! $group ) {
+		echo "ERROR: Group " . $group_slug . " does not exist\n";
+
+		return false;
+	}
+
+	return (int) $group->term_id;
+}
+
+/**
+ * Adds groups to given post
+ *
+ * @param int $post_id
+ * @param array $group_ids
+ *
+ * @return bool
+ */
+function ckan_dataset_add_groups_to_post( $post_id, $group_ids ) {
+	if ( $post_id == 0 || empty ( $group_ids ) ) {
+		return false;
+	}
+	$groups_add_success = wp_set_object_terms( $post_id, $group_ids, 'ckan_groups' );
+	if ( is_wp_error ( $groups_add_success ) || ! is_array( $groups_add_success ) ) {
+		echo "ERROR: Failed inserting groups " . implode ( ',', $group_ids ) . "\n";
 	}
 
 	return true;
@@ -351,11 +399,12 @@ function ckan_dataset_add_organisation_to_post( $post_id, $organisation_id ) {
  * @param string $request_date
  * @param string $response
  * @param int $organisation_id
+ * @param array $group_ids
  * @param string $lang
  *
  * @return int|WP_Error
  */
-function ckan_dataset_insert_post( $ckan_id, $title, $request_date, $response, $organisation_id, $lang ) {
+function ckan_dataset_insert_post( $ckan_id, $title, $request_date, $response, $organisation_id, $group_ids, $lang ) {
 	$post = array(
 		'post_author' => 1,
 		'post_type'   => 'ckan-dataset',
@@ -364,11 +413,18 @@ function ckan_dataset_insert_post( $ckan_id, $title, $request_date, $response, $
 	);
 	echo "INSERT " . $post['post_title'] . "\n";
 	$new_id = wp_insert_post( $post, true );
+	if( is_wp_error($new_id) ) {
+		echo "Something went wrong while inserting post " . implode ( ',', $post );
+		return false;
+	}
 	add_post_meta( $new_id, '_ckandataset_reference', $ckan_id, true );
 	add_post_meta( $new_id, '_ckandataset_last_request', $request_date );
 	add_post_meta( $new_id, '_ckandataset_response', $response );
 	if ( $organisation_id ) {
 		ckan_dataset_add_organisation_to_post( $new_id, $organisation_id );
+	}
+	if ( !empty ( $group_ids ) ) {
+		ckan_dataset_add_groups_to_post( $new_id, $group_ids );
 	}
 	pll_set_post_language( $new_id, $lang );  // Set Langauge
 
@@ -384,20 +440,29 @@ function ckan_dataset_insert_post( $ckan_id, $title, $request_date, $response, $
  * @param string $request_date
  * @param string $response
  * @param int $organisation_id
+ * @param array $group_ids
  *
  * @return int|WP_Error
  */
-function ckan_dataset_update_post( $post_id, $ckan_id, $title, $request_date, $response, $organisation_id ) {
+function ckan_dataset_update_post( $post_id, $ckan_id, $title, $request_date, $response, $organisation_id, $group_ids ) {
 	$post = array(
+		'ID'         => $post_id,
 		'post_title' => $title
 	);
 	echo "UPDATE post " . $post_id . ' / new title: ' . $post['post_title'] . "\n";
-	$post_id = wp_update_post( $post, true );
+	$update_success = wp_update_post( $post, true );
+	if( is_wp_error($update_success) ) {
+		echo "Something went wrong while updating post " . $post_id;
+		return false;
+	}
 	update_post_meta( $post_id, '_ckandataset_reference', $ckan_id, true );
 	update_post_meta( $post_id, '_ckandataset_last_request', $request_date );
 	update_post_meta( $post_id, '_ckandataset_response', $response );
 	if ( $organisation_id ) {
 		ckan_dataset_add_organisation_to_post( $post_id, $organisation_id );
+	}
+	if ( ! empty ( $group_ids ) ) {
+		ckan_dataset_add_groups_to_post( $post_id, $group_ids );
 	}
 
 	return $post_id;
