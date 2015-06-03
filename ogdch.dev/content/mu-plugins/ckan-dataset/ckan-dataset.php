@@ -175,8 +175,9 @@ function ckan_dataset_save_single_json( $ckan_dataset, $ckan_id ) {
 	}
 
 	// Gather data
-	$ckan_dataset_result = $ckan_dataset_body['result'];
-	$ckan_dataset_title  = $ckan_dataset_result['title'];
+	$ckan_dataset_result       = $ckan_dataset_body['result'];
+	$ckan_dataset_title        = $ckan_dataset_result['title'];
+	$ckan_dataset_organisation = $ckan_dataset_result['organization'];
 
 	// TODO: remove this lines when ckanext-fluent plugin is active
 	$ckan_dataset_title = array(
@@ -185,6 +186,11 @@ function ckan_dataset_save_single_json( $ckan_dataset, $ckan_id ) {
 		'fr' => '', // TODO: assumption -> empty title means no translation available
 		'it' => 'Mammamia! Datensatz'
 	);
+
+	$organisation_id = false;
+	if ( is_array( $ckan_dataset_organisation ) && ! empty( $ckan_dataset_organisation['name'] ) ) {
+		$organisation_id = ckan_dataset_get_organisation_id_by_slug( $ckan_dataset_organisation['name'] );
+	}
 
 	$post_ids = ckan_dataset_get_posts_by_ckanid( $ckan_id, 'ids' );
 
@@ -214,6 +220,9 @@ function ckan_dataset_save_single_json( $ckan_dataset, $ckan_id ) {
 				update_post_meta( $post_id, '_ckandataset_reference', $ckan_id, true );
 				update_post_meta( $post_id, '_ckandataset_last_request', $ckan_dataset['headers']['date'] );
 				update_post_meta( $post_id, '_ckandataset_response', $ckan_dataset['body'] );
+				if ( $organisation_id ) {
+					ckan_dataset_add_organisation_to_post( $post_id, $organisation_id );
+				}
 				$translations[ $post_language ] = $post_id;
 			}
 
@@ -236,6 +245,9 @@ function ckan_dataset_save_single_json( $ckan_dataset, $ckan_id ) {
 			add_post_meta( $new_id, '_ckandataset_reference', $ckan_id, true );
 			add_post_meta( $new_id, '_ckandataset_last_request', $ckan_dataset['headers']['date'] );
 			add_post_meta( $new_id, '_ckandataset_response', $ckan_dataset['body'] );
+			if ( $organisation_id ) {
+				ckan_dataset_add_organisation_to_post( $new_id, $organisation_id );
+			}
 			pll_set_post_language( $new_id, $lang );  // Set Langauge
 			$translations[ $lang ] = $new_id;
 		}
@@ -318,4 +330,42 @@ function ckan_dataset_delete_post_translations( $post_id ) {
 		echo "DELETE term " . $term_id . "\n";
 		wp_delete_term( $term_id, $taxonomy );
 	}
+}
+
+/**
+ * Get organisation id by slug
+ *
+ * @param string $organisation_slug
+ *
+ * @return bool|int Returns id of found organisation / false if organisation was not found
+ */
+function ckan_dataset_get_organisation_id_by_slug( $organisation_slug ) {
+	$organisation = get_term_by( 'slug', $organisation_slug, 'ckan_organisation' );
+	if ( ! $organisation ) {
+		echo "ERROR: Organisation " . $organisation_slug . " does not exist\n";
+
+		return false;
+	}
+
+	return (int) $organisation->term_id;
+}
+
+/**
+ * Adds organisation to given post
+ *
+ * @param int $post_id
+ * @param int $organisation_id
+ *
+ * @return bool
+ */
+function ckan_dataset_add_organisation_to_post( $post_id, $organisation_id ) {
+	if ( $post_id == 0 || $organisation_id == 0 ) {
+		return false;
+	}
+	$organisation_add_success = wp_set_object_terms( $post_id, $organisation_id, 'ckan_organisation' );
+	if ( ! is_array( $organisation_add_success ) ) {
+		echo "ERROR: Failed inserting organisation " . $organisation_id . "\n";
+	}
+
+	return true;
 }
