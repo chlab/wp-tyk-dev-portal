@@ -160,26 +160,26 @@ function ckan_dataset_get_single_json( $ckan_id ) {
  * @return bool Returns true if data storing was successful.
  */
 function ckan_dataset_save_single_json( $ckan_dataset, $ckan_id ) {
-
-	$translations = array();
-
 	// Check if response is not an array
 	if ( ! is_array( $ckan_dataset ) ) {
 		return false;
 	}
 
 	// Check if response body is a valid JSON
-	$ckan_dataset_body = json_decode( $ckan_dataset['body'], true );
+	$ckan_dataset_body_raw = $ckan_dataset['body'];
+	$ckan_dataset_body     = json_decode( $ckan_dataset_body_raw, true );
 	if ( ! $ckan_dataset_body || $ckan_dataset_body['success'] === false ) {
 		return false;
 	}
 
 	// Gather data
+	$translations              = array();
+	$request_date              = $ckan_dataset['headers']['date'];
 	$ckan_dataset_result       = $ckan_dataset_body['result'];
 	$ckan_dataset_title        = $ckan_dataset_result['title'];
 	$ckan_dataset_organisation = $ckan_dataset_result['organization'];
 
-	// TODO: remove this lines when ckanext-fluent plugin is active
+	// TODO: remove these lines when ckanext-fluent plugin is active
 	$ckan_dataset_title = array(
 		'en' => 'My Dataset',
 		'de' => 'Mein Datensatz',
@@ -210,7 +210,7 @@ function ckan_dataset_save_single_json( $ckan_dataset, $ckan_id ) {
 				// Delete post if translation doesn't exist anymore
 				ckan_dataset_delete_post( $post_id );
 			} else {
-				ckan_dataset_update_post( $post_id, $ckan_id, $title, $ckan_dataset['headers']['date'], $ckan_dataset['body'], $organisation_id );
+				ckan_dataset_update_post( $post_id, $ckan_id, $title, $request_date, $ckan_dataset_body_raw, $organisation_id );
 				$translations[ $post_language ] = $post_id;
 			}
 
@@ -222,7 +222,7 @@ function ckan_dataset_save_single_json( $ckan_dataset, $ckan_id ) {
 	// Create new posts for all remaining translations
 	foreach ( $ckan_dataset_title as $lang => $title ) {
 		if ( ! empty( $title ) ) {
-			$new_id                = ckan_dataset_insert_post( $ckan_id, $title, $ckan_dataset['headers']['date'], $ckan_dataset['body'], $organisation_id, $lang );
+			$new_id                = ckan_dataset_insert_post( $ckan_id, $title, $request_date, $ckan_dataset_body_raw, $organisation_id, $lang );
 			$translations[ $lang ] = $new_id;
 		}
 	}
