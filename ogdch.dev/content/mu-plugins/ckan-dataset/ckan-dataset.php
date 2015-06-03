@@ -213,6 +213,7 @@ function ckan_dataset_save_single_json( $ckan_dataset, $ckan_id ) {
 				wp_update_post( $post, true );
 				update_post_meta( $post_id, '_ckandataset_reference', $ckan_id, true );
 				update_post_meta( $post_id, '_ckandataset_last_request', $ckan_dataset['headers']['date'] );
+				update_post_meta( $post_id, '_ckandataset_response', $ckan_dataset['body'] );
 				$translations[ $post_language ] = $post_id;
 			}
 
