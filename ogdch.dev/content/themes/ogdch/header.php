@@ -17,3 +17,12 @@
 </head>
 
 <body <?php body_class(); ?>>
+
+<?php
+wp_nav_menu( array(
+	'theme_location' => 'service_navigation',
+	'container'      => '',
+	'menu_class'     => '',
+	'items_wrap'     => '%3$s',
+) );
+?>
