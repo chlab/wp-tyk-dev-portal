@@ -208,21 +208,9 @@ function ckan_dataset_save_single_json( $ckan_dataset, $ckan_id ) {
 
 			if ( empty( $title ) ) {
 				// Delete post if translation doesn't exist anymore
-				echo "DELETE post " . $post_id . "\n";
-				wp_delete_post( $post_id, true );
+				ckan_dataset_delete_post( $post_id );
 			} else {
-				// Update post
-				$post = array(
-					'post_title' => $title
-				);
-				echo "UPDATE post " . $post_id . ' / new title: ' . $post['post_title'] . "\n";
-				wp_update_post( $post, true );
-				update_post_meta( $post_id, '_ckandataset_reference', $ckan_id, true );
-				update_post_meta( $post_id, '_ckandataset_last_request', $ckan_dataset['headers']['date'] );
-				update_post_meta( $post_id, '_ckandataset_response', $ckan_dataset['body'] );
-				if ( $organisation_id ) {
-					ckan_dataset_add_organisation_to_post( $post_id, $organisation_id );
-				}
+				ckan_dataset_update_post( $post_id, $ckan_id, $title, $ckan_dataset['headers']['date'], $ckan_dataset['body'], $organisation_id );
 				$translations[ $post_language ] = $post_id;
 			}
 
@@ -234,21 +222,7 @@ function ckan_dataset_save_single_json( $ckan_dataset, $ckan_id ) {
 	// Create new posts for all remaining translations
 	foreach ( $ckan_dataset_title as $lang => $title ) {
 		if ( ! empty( $title ) ) {
-			$post = array(
-				'post_author' => 1,
-				'post_type'   => 'ckan-dataset',
-				'post_title'  => $title,
-				'post_status' => 'publish',
-			);
-			echo "INSERT " . $post['post_title'] . "\n";
-			$new_id = wp_insert_post( $post, true );
-			add_post_meta( $new_id, '_ckandataset_reference', $ckan_id, true );
-			add_post_meta( $new_id, '_ckandataset_last_request', $ckan_dataset['headers']['date'] );
-			add_post_meta( $new_id, '_ckandataset_response', $ckan_dataset['body'] );
-			if ( $organisation_id ) {
-				ckan_dataset_add_organisation_to_post( $new_id, $organisation_id );
-			}
-			pll_set_post_language( $new_id, $lang );  // Set Langauge
+			$new_id                = ckan_dataset_insert_post( $ckan_id, $title, $ckan_dataset['headers']['date'], $ckan_dataset['body'], $organisation_id, $lang );
 			$translations[ $lang ] = $new_id;
 		}
 	}
@@ -368,4 +342,77 @@ function ckan_dataset_add_organisation_to_post( $post_id, $organisation_id ) {
 	}
 
 	return true;
+}
+
+/**
+ * Adds new dataset post to database
+ *
+ * @param string $ckan_id
+ * @param string $title
+ * @param string $request_date
+ * @param string $response
+ * @param int $organisation_id
+ * @param string $lang
+ *
+ * @return int|WP_Error
+ */
+function ckan_dataset_insert_post( $ckan_id, $title, $request_date, $response, $organisation_id, $lang ) {
+	$post = array(
+		'post_author' => 1,
+		'post_type'   => 'ckan-dataset',
+		'post_title'  => $title,
+		'post_status' => 'publish',
+	);
+	echo "INSERT " . $post['post_title'] . "\n";
+	$new_id = wp_insert_post( $post, true );
+	add_post_meta( $new_id, '_ckandataset_reference', $ckan_id, true );
+	add_post_meta( $new_id, '_ckandataset_last_request', $request_date );
+	add_post_meta( $new_id, '_ckandataset_response', $response );
+	if ( $organisation_id ) {
+		ckan_dataset_add_organisation_to_post( $new_id, $organisation_id );
+	}
+	pll_set_post_language( $new_id, $lang );  // Set Langauge
+
+	return $new_id;
+}
+
+/**
+ * Updates dataset post in database
+ *
+ * @param int $post_id
+ * @param string $ckan_id
+ * @param string $title
+ * @param string $request_date
+ * @param string $response
+ * @param int $organisation_id
+ *
+ * @return int|WP_Error
+ */
+function ckan_dataset_update_post( $post_id, $ckan_id, $title, $request_date, $response, $organisation_id ) {
+	$post = array(
+		'post_title' => $title
+	);
+	echo "UPDATE post " . $post_id . ' / new title: ' . $post['post_title'] . "\n";
+	$post_id = wp_update_post( $post, true );
+	update_post_meta( $post_id, '_ckandataset_reference', $ckan_id, true );
+	update_post_meta( $post_id, '_ckandataset_last_request', $request_date );
+	update_post_meta( $post_id, '_ckandataset_response', $response );
+	if ( $organisation_id ) {
+		ckan_dataset_add_organisation_to_post( $post_id, $organisation_id );
+	}
+
+	return $post_id;
+}
+
+/**
+ * Deletes dataset post
+ *
+ * @param $post_id
+ *
+ * @return array|bool|WP_Post False on failure.
+ */
+function ckan_dataset_delete_post( $post_id ) {
+	echo "DELETE post " . $post_id . "\n";
+
+	return wp_delete_post( $post_id, true );
 }
