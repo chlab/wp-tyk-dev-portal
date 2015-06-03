@@ -246,8 +246,7 @@ function ckan_dataset_delete_posts_by_ckanid( $ckan_id ) {
 	ckan_dataset_delete_post_translations( $first_post_id );
 
 	foreach ( $post_ids as $post_id ) {
-		echo "DELETE post " . $post_id . "\n";
-		wp_delete_post( $post_id, true );
+		ckan_dataset_delete_post( $post_id );
 	}
 
 	return count( $post_ids );
