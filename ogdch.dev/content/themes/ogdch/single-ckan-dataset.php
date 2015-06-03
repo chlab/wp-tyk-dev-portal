@@ -1,5 +1,7 @@
 <?php get_header(); ?>
 
+<a href="<?php echo get_post_type_archive_link( 'ckan-dataset' ); ?>">Archiv</a>
+
 <?php if ( have_posts() ) : ?>
 	<?php while ( have_posts() ) : the_post();?>
 		<h1 class="post__title"><?php the_title(); ?></h1>
@@ -22,5 +24,6 @@
     Nix gefunden
 <?php endif; ?>
 
+<?php comments_template(); ?>
 
 <?php get_footer(); ?>

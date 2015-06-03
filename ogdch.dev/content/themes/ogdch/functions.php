@@ -53,3 +53,15 @@ unset( $file, $filepath );
 	}
 	unset( $file, $filepath );
 }*/
+
+
+// =======================================================================//
+// Polylang - Remove comments filter
+// see: https://wordpress.org/support/topic/multilang-comment?replies=4#post-4089847
+// =======================================================================//
+function polylang_remove_comments_filter() {
+	global $wp_filter;
+	global $polylang;
+	remove_filter('comments_clauses', array(&$polylang, 'comments_clauses'));
+}
+add_action('wp','polylang_remove_comments_filter');
