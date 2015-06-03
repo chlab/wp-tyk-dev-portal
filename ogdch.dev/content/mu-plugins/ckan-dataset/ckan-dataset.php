@@ -40,7 +40,7 @@ function register_ckan_post_type() {
 		'label'               => __( 'CKAN', 'ogdch' ),
 		'description'         => __( 'Contains Data from the CKAN Instance', 'ogdch' ),
 		'labels'              => $labels,
-		'supports'            => array( 'title', 'editor', 'thumbnail', ),
+		'supports'            => array( 'title', 'editor', 'thumbnail', 'comments' ),
 		'hierarchical'        => false,
 		'public'              => true,
 		'show_ui'             => true,
