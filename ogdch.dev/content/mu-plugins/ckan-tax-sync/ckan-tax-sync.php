@@ -219,10 +219,26 @@ function ckan_synchronize_taxonomy( $taxonomy, $data ) {
 		}
 
 		$term = get_term_by( 'slug', $slug, $taxonomy );
+
+		// if is object than the trem has a parent and $parent_term will be set (default is 0)
+		$parent_term = 0;
+
+		if ( is_array( $data->groups ) ) {
+			if ( sizeof( $data->groups ) > 0 ) {
+				$group       = $data->groups[0];
+				$parent_term = get_term_by( 'slug', $group->name, $taxonomy );
+				if ( $parent_term->term_id > 0 ) {
+					$parent_term = $parent_term->term_id;
+				}
+			}
+		}
+
+
 		if ( is_object( $term ) ) {
 			// update term
 			wp_update_term( $term->term_id, $taxonomy, array(
 				'name'        => $data->display_name,
+				'parent'      => $parent_term,
 				'description' => $data->description
 			) );
 			$return['updated'] = $return['updated'] + 1;
@@ -233,6 +249,7 @@ function ckan_synchronize_taxonomy( $taxonomy, $data ) {
 				$data->display_name,
 				$taxonomy,
 				array(
+					'parent'      => $parent_term,
 					'description' => $data->description,
 					'slug'        => $slug,
 				)
