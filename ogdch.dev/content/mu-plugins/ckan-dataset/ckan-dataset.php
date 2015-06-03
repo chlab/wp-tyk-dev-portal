@@ -346,7 +346,7 @@ function ckan_dataset_add_organisation_to_post( $post_id, $organisation_id ) {
 		return false;
 	}
 	$organisation_add_success = wp_set_object_terms( $post_id, $organisation_id, 'ckan_organisation' );
-	if ( is_wp_error ( $organisation_add_success ) || ! is_array( $organisation_add_success ) ) {
+	if ( is_wp_error( $organisation_add_success ) || ! is_array( $organisation_add_success ) ) {
 		echo "ERROR: Failed inserting organisation " . $organisation_id . "\n";
 	}
 
@@ -384,8 +384,8 @@ function ckan_dataset_add_groups_to_post( $post_id, $group_ids ) {
 		return false;
 	}
 	$groups_add_success = wp_set_object_terms( $post_id, $group_ids, 'ckan_groups' );
-	if ( is_wp_error ( $groups_add_success ) || ! is_array( $groups_add_success ) ) {
-		echo "ERROR: Failed inserting groups " . implode ( ',', $group_ids ) . "\n";
+	if ( is_wp_error( $groups_add_success ) || ! is_array( $groups_add_success ) ) {
+		echo "ERROR: Failed inserting groups " . implode( ',', $group_ids ) . "\n";
 	}
 
 	return true;
@@ -413,8 +413,9 @@ function ckan_dataset_insert_post( $ckan_id, $title, $request_date, $response, $
 	);
 	echo "INSERT " . $post['post_title'] . "\n";
 	$new_id = wp_insert_post( $post, true );
-	if( is_wp_error($new_id) ) {
-		echo "Something went wrong while inserting post " . implode ( ',', $post );
+	if ( is_wp_error( $new_id ) ) {
+		echo "Something went wrong while inserting post " . implode( ',', $post );
+
 		return false;
 	}
 	add_post_meta( $new_id, '_ckandataset_reference', $ckan_id, true );
@@ -423,7 +424,7 @@ function ckan_dataset_insert_post( $ckan_id, $title, $request_date, $response, $
 	if ( $organisation_id ) {
 		ckan_dataset_add_organisation_to_post( $new_id, $organisation_id );
 	}
-	if ( !empty ( $group_ids ) ) {
+	if ( ! empty ( $group_ids ) ) {
 		ckan_dataset_add_groups_to_post( $new_id, $group_ids );
 	}
 	pll_set_post_language( $new_id, $lang );  // Set Langauge
@@ -451,8 +452,9 @@ function ckan_dataset_update_post( $post_id, $ckan_id, $title, $request_date, $r
 	);
 	echo "UPDATE post " . $post_id . ' / new title: ' . $post['post_title'] . "\n";
 	$update_success = wp_update_post( $post, true );
-	if( is_wp_error($update_success) ) {
+	if ( is_wp_error( $update_success ) ) {
 		echo "Something went wrong while updating post " . $post_id;
+
 		return false;
 	}
 	update_post_meta( $post_id, '_ckandataset_reference', $ckan_id, true );
