@@ -152,25 +152,29 @@ function ckan_dataset_get_single_json( $ckan_id ) {
 
 
 /**
- * Save JSON in Meta Field from the belonging WP Entry nad Cache Response Body
- * Saves the Request Body (JSON) in acustom Field of the belonging WP entry and puts it into the Cache
+ * Stores a CKAN api response in database.
+ *
+ * @param array $ckan_dataset
+ * @param string $ckan_id
+ *
+ * @return bool Returns true if data storing was successful.
  */
 function ckan_dataset_save_single_json( $ckan_dataset, $ckan_id ) {
 
 	$translations = array();
 
-	// If Response is not a Array
+	// Check if response is not an array
 	if ( ! is_array( $ckan_dataset ) ) {
-		return;
+		return false;
 	}
 
-	// Check if response is valid JSON
+	// Check if response body is a valid JSON
 	$ckan_dataset_body = json_decode( $ckan_dataset['body'], true );
-
 	if ( ! $ckan_dataset_body || $ckan_dataset_body['success'] === false ) {
-		return;
+		return false;
 	}
 
+	// Gather data
 	$ckan_dataset_result = $ckan_dataset_body['result'];
 	$ckan_dataset_title  = $ckan_dataset_result['title'];
 
@@ -182,29 +186,26 @@ function ckan_dataset_save_single_json( $ckan_dataset, $ckan_id ) {
 		'it' => 'Mammamia! Datensatz'
 	);
 
-	$posts_ids = ckan_dataset_get_posts_by_ckanid( $ckan_id, 'ids' );
+	$post_ids = ckan_dataset_get_posts_by_ckanid( $ckan_id, 'ids' );
 
-	// check if all languages are empty
-	if ( ! ( array_filter( $ckan_dataset_title ) ) ) {
-		$first_post_id = reset( $posts_ids );
-		ckan_dataset_delete_post_translations( $first_post_id );
-	}
+	// If posts already exist -> update
+	if ( count( $post_ids ) > 0 ) {
+		// If all languages are empty -> delete post translations before posts get deleted
+		if ( ! ( array_filter( $ckan_dataset_title ) ) ) {
+			$first_post_id = reset( $post_ids );
+			ckan_dataset_delete_post_translations( $first_post_id );
+		}
 
-	// TODO: What are we doing with this transient?
-	delete_transient( 'ckan_data_' . $ckan_id );
-	set_transient( 'ckan_data_' . $ckan_id, $ckan_dataset['body'], 60 );
-
-	// if posts already exist -> update
-	if ( count( $posts_ids ) > 0 ) {
-		foreach ( $posts_ids as $post_id ) {
+		foreach ( $post_ids as $post_id ) {
 			$post_language = pll_get_post_language( $post_id );
 			$title         = $ckan_dataset_title[ $post_language ];
+
 			if ( empty( $title ) ) {
-				// delete post if translation doesn't exist anymore
+				// Delete post if translation doesn't exist anymore
 				echo "DELETE post " . $post_id . "\n";
 				wp_delete_post( $post_id, true );
 			} else {
-				// update post
+				// Update post
 				$post = array(
 					'post_title' => $title
 				);
@@ -214,14 +215,13 @@ function ckan_dataset_save_single_json( $ckan_dataset, $ckan_id ) {
 				update_post_meta( $post_id, '_ckandataset_last_request', $ckan_dataset['headers']['date'] );
 				$translations[ $post_language ] = $post_id;
 			}
-			// remove current language from array
-			if ( array_key_exists( $post_language, $ckan_dataset_title ) ) {
-				unset( $ckan_dataset_title[ $post_language ] );
-			}
+
+			// Remove current language from array
+			unset( $ckan_dataset_title[ $post_language ] );
 		}
 	}
 
-	// create new posts for all remaining translations
+	// Create new posts for all remaining translations
 	foreach ( $ckan_dataset_title as $lang => $title ) {
 		if ( ! empty( $title ) ) {
 			$post = array(
@@ -245,26 +245,49 @@ function ckan_dataset_save_single_json( $ckan_dataset, $ckan_id ) {
 	return true;
 }
 
+/**
+ * Deletes all posts for given ckanid.
+ *
+ * @param string $ckan_id
+ *
+ * @return int Returns count of deleted entries.
+ */
 function ckan_dataset_delete_posts_by_ckanid( $ckan_id ) {
-	$posts_ids = ckan_dataset_get_posts_by_ckanid( $ckan_id, 'ids' );
+	$post_ids = ckan_dataset_get_posts_by_ckanid( $ckan_id, 'ids' );
 
-	$first_post_id = reset( $posts_ids );
+	$first_post_id = reset( $post_ids );
 	ckan_dataset_delete_post_translations( $first_post_id );
 
-	foreach ( $posts_ids as $post_id ) {
+	foreach ( $post_ids as $post_id ) {
 		echo "DELETE post " . $post_id . "\n";
 		wp_delete_post( $post_id, true );
 	}
 
-	return count( $posts_ids );
+	return count( $post_ids );
 }
 
+/**
+ * Updates all posts for given ckanid by getting data from CKAN api.
+ *
+ * @param string $ckan_id
+ *
+ * @return bool Returns true if no error occurs while updating.
+ */
 function ckan_dataset_update_posts_by_ckanid( $ckan_id ) {
 	$ckan_dataset = ckan_dataset_get_single_json( $ckan_id );
 
 	return ckan_dataset_save_single_json( $ckan_dataset, $ckan_id );
 }
 
+/**
+ * Gets posts for given ckanid from database.
+ * If $fields parameter is empty all fields are returned.
+ *
+ * @param string $ckan_id
+ * @param string $fields
+ *
+ * @return array List of posts.
+ */
 function ckan_dataset_get_posts_by_ckanid( $ckan_id, $fields = '' ) {
 	$args = array(
 		'meta_key'      => '_ckandataset_reference',
@@ -281,14 +304,17 @@ function ckan_dataset_get_posts_by_ckanid( $ckan_id, $fields = '' ) {
 	return get_posts( $args );
 }
 
-
+/**
+ * Delete translation entry of post in term table.
+ *
+ * @param int $post_id
+ */
 function ckan_dataset_delete_post_translations( $post_id ) {
 	$taxonomy       = 'post_translations';
 	$args           = array( 'fields' => 'ids' );
 	$post_terms_ids = wp_get_post_terms( $post_id, $taxonomy, $args );
 	foreach ( $post_terms_ids as $term_id ) {
 		echo "DELETE term " . $term_id . "\n";
-
-		return wp_delete_term( $term_id, $taxonomy );
+		wp_delete_term( $term_id, $taxonomy );
 	}
 }
