@@ -85,7 +85,7 @@ function ckan_taxonomy() {
 		'show_tagcloud'     => false,
 		'rewrite'           => $rewrite,
 	);
-	register_taxonomy( 'ckan_groups', array( 'ckan-dataset' ), $args );
+	register_taxonomy( 'ckan_group', array( 'ckan-dataset' ), $args );
 }
 
 add_action( 'init', 'ckan_taxonomy', 0 );
@@ -149,7 +149,7 @@ function ckan_sync_tax() {
 
 	if ( 'ckan_tax_sync_groups_action' === $action ) {
 		$endpoint = CKAN_API_ENDPOINT . 'action/group_list';
-		$taxonomy = 'ckan_groups';
+		$taxonomy = 'ckan_group';
 	} elseif ( 'ckan_tax_sync_organisations_action' === $action ) {
 		$endpoint = CKAN_API_ENDPOINT . 'action/organization_list';
 		$taxonomy = 'ckan_organisation';
@@ -197,7 +197,7 @@ function ckan_synchronize_taxonomy( $taxonomy, $data ) {
 		'message'  => 'fail'
 	);
 
-	if ( $taxonomy === 'ckan_groups' ) {
+	if ( $taxonomy === 'ckan_group' ) {
 		$action = 'group_show';
 	} elseif ( $taxonomy === 'ckan_organisation' ) {
 		$action = 'organization_show';

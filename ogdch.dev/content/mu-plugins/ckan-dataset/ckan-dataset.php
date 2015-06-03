@@ -361,7 +361,7 @@ function ckan_dataset_add_organisation_to_post( $post_id, $organisation_id ) {
  * @return bool|int Returns id of found group / false if group was not found
  */
 function ckan_dataset_get_group_id_by_slug( $group_slug ) {
-	$group = get_term_by( 'slug', $group_slug, 'ckan_groups' );
+	$group = get_term_by( 'slug', $group_slug, 'ckan_group' );
 	if ( ! $group ) {
 		echo "ERROR: Group " . $group_slug . " does not exist\n";
 
@@ -383,7 +383,7 @@ function ckan_dataset_add_groups_to_post( $post_id, $group_ids ) {
 	if ( $post_id == 0 || empty ( $group_ids ) ) {
 		return false;
 	}
-	$groups_add_success = wp_set_object_terms( $post_id, $group_ids, 'ckan_groups' );
+	$groups_add_success = wp_set_object_terms( $post_id, $group_ids, 'ckan_group' );
 	if ( is_wp_error( $groups_add_success ) || ! is_array( $groups_add_success ) ) {
 		echo "ERROR: Failed inserting groups " . implode( ',', $group_ids ) . "\n";
 	}
