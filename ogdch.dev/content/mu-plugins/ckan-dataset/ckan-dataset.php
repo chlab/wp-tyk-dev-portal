@@ -496,7 +496,7 @@ function ckan_dataset_delete_post( $post_id ) {
  * @return array
  */
 function ckan_dataset_prepare_data( $raw_data ) {
-	// TODO implement and remove mock data
+	// TODO: implement and remove mock data
 	return array(
 		'en' => array(
 			'title'       => 'My dataset',
@@ -546,5 +546,6 @@ function ckan_dataset_get_data_in_different_language( $ckan_dataset_data ) {
 function ckan_dataset_has_data( $data ) {
 	// TODO: assumption -> empty title means no translation available
 	$key_field = 'title';
-	return is_array( $data ) && array_key_exists( $key_field, $data ) && ( ! empty( $data[$key_field] ) );
+
+	return is_array( $data ) && array_key_exists( $key_field, $data ) && ( ! empty( $data[ $key_field ] ) );
 }
