@@ -188,6 +188,7 @@ function ckan_dataset_save_single_json( $ckan_dataset, $ckan_id ) {
 	$translations              = array();
 	$request_date              = $ckan_dataset['headers']['date'];
 	$ckan_dataset_result       = $ckan_dataset_body['result'];
+	$ckan_dataset_name         = $ckan_dataset_result['name'];
 	$ckan_dataset_organisation = $ckan_dataset_result['organization'];
 	$ckan_dataset_groups       = $ckan_dataset_result['groups'];
 	$ckan_dataset_data         = ckan_dataset_prepare_data( $ckan_dataset_result );
@@ -237,7 +238,8 @@ function ckan_dataset_save_single_json( $ckan_dataset, $ckan_id ) {
 			if ( ! ckan_dataset_has_data( $data ) ) {
 				$data = ckan_dataset_get_data_in_different_language( $ckan_dataset_data );
 			}
-			ckan_dataset_update_post( $post_id, $ckan_id, $data, $request_date, $ckan_dataset_body_raw, $organisation_id, $group_ids );
+			$name = $post_language . '-' . $ckan_dataset_name;
+			ckan_dataset_update_post( $post_id, $ckan_id, $data, $name, $request_date, $ckan_dataset_body_raw, $organisation_id, $group_ids );
 			$translations[ $post_language ] = $post_id;
 
 			// Remove current language from array
@@ -248,13 +250,14 @@ function ckan_dataset_save_single_json( $ckan_dataset, $ckan_id ) {
 	}
 
 	// Create new posts for all remaining translations
-	foreach ( $langugages_todo as $lang ) {
-		$data = $ckan_dataset_data[ $lang ];
+	foreach ( $langugages_todo as $language ) {
+		$data = $ckan_dataset_data[ $language ];
 		if ( ! ckan_dataset_has_data( $data ) ) {
 			$data = ckan_dataset_get_data_in_different_language( $ckan_dataset_data );
 		}
-		$new_id                = ckan_dataset_insert_post( $ckan_id, $data, $request_date, $ckan_dataset_body_raw, $organisation_id, $group_ids, $lang );
-		$translations[ $lang ] = $new_id;
+		$name                      = $language . '-' . $ckan_dataset_name;
+		$new_id                    = ckan_dataset_insert_post( $ckan_id, $data, $name, $request_date, $ckan_dataset_body_raw, $organisation_id, $group_ids, $language );
+		$translations[ $language ] = $new_id;
 	}
 
 	pll_save_post_translations( $translations );
@@ -416,20 +419,23 @@ function ckan_dataset_add_groups_to_post( $post_id, $group_ids ) {
  *
  * @param string $ckan_id
  * @param array $data
+ * @param string $name
  * @param string $request_date
  * @param string $response
  * @param int $organisation_id
  * @param array $group_ids
- * @param string $lang
+ * @param string $language
  *
  * @return int|WP_Error
  */
-function ckan_dataset_insert_post( $ckan_id, $data, $request_date, $response, $organisation_id, $group_ids, $lang ) {
-	$post = array(
-		'post_author' => 1,
-		'post_type'   => 'ckan-dataset',
-		'post_title'  => $data['title'],
-		'post_status' => 'publish',
+function ckan_dataset_insert_post( $ckan_id, $data, $name, $request_date, $response, $organisation_id, $group_ids, $language ) {
+	$post   = array(
+		'post_content' => $data['description'],
+		'post_name'    => $name,
+		'post_title'   => $data['title'],
+		'post_type'    => 'ckan-dataset',
+		'post_author'  => 1,
+		'post_status'  => 'publish',
 	);
 	$new_id = wp_insert_post( $post, true );
 	echo "INSERT post " . $new_id . ' / title ' . $post['post_title'] . "\n";
@@ -447,7 +453,7 @@ function ckan_dataset_insert_post( $ckan_id, $data, $request_date, $response, $o
 	if ( ! empty ( $group_ids ) ) {
 		ckan_dataset_add_groups_to_post( $new_id, $group_ids );
 	}
-	pll_set_post_language( $new_id, $lang );  // Set Langauge
+	pll_set_post_language( $new_id, $language );  // Set Langauge
 
 	return $new_id;
 }
@@ -458,6 +464,7 @@ function ckan_dataset_insert_post( $ckan_id, $data, $request_date, $response, $o
  * @param int $post_id
  * @param string $ckan_id
  * @param array $data
+ * @param string $name
  * @param string $request_date
  * @param string $response
  * @param int $organisation_id
@@ -465,9 +472,10 @@ function ckan_dataset_insert_post( $ckan_id, $data, $request_date, $response, $o
  *
  * @return int|WP_Error
  */
-function ckan_dataset_update_post( $post_id, $ckan_id, $data, $request_date, $response, $organisation_id, $group_ids ) {
+function ckan_dataset_update_post( $post_id, $ckan_id, $data, $name, $request_date, $response, $organisation_id, $group_ids ) {
 	$post = array(
 		'ID'         => $post_id,
+		'post_name'  => $name,
 		'post_title' => $data['title']
 	);
 	echo "UPDATE post " . $post_id . ' / new title: ' . $post['post_title'] . "\n";
