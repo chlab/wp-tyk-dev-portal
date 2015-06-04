@@ -1,5 +1,6 @@
 <?php get_header(); ?>
 
+<?php wp_nav_menu( array( 'menu' => 'langauge-nav' ) ); ?>
 <a href="<?php echo get_post_type_archive_link( 'ckan-dataset' ); ?>">Archiv</a>
 
 <?php if ( have_posts() ) : ?>
@@ -13,7 +14,7 @@
 
 
 		<h2>Data</h2>
-		<pre><?php echo get_ckan_dataset( get_the_ID (), get_post_meta( get_the_ID(), '_ckandataset_name' , true ) ); ?></pre>
+		<pre><?php echo get_ckan_dataset( get_the_ID(), get_post_meta( get_the_ID(), '_ckandataset_name' , true ) ); ?></pre>
 
 
 		<h2>Master Post</h2>
