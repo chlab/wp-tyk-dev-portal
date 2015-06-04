@@ -136,13 +136,11 @@ or watch changes
 
 In case you run into problems with the guest additions of VirtualBox, run the following command in the box:
 
-    ```bash
-    sudo ln -s /opt/VBoxGuestAdditions-4.3.10/lib/VBoxGuestAdditions /usr/lib/VBoxGuestAdditions
-    ```
+    $ sudo ln -s /opt/VBoxGuestAdditions-4.3.10/lib/VBoxGuestAdditions /usr/lib/VBoxGuestAdditions
 
 You should always be able to login to the box (`vagrant ssh`) with user vagrant / password vagrant.
 
-## Re-Provision an existing Vagrant-Box
+## Re-Provisioning an existing Vagrant-Box
 
 You might get the following error when you try to reprovision an exisiting Vagrant-Box:
 
@@ -150,7 +148,6 @@ You might get the following error when you try to reprovision an exisiting Vagra
 
 If this happens just execute the following command:
 
-    ```bash
-    rm .vagrant/machines/default/virtualbox/synced_folders
-    vagrant reload --provision
-    ```
+    $ rm .vagrant/machines/default/virtualbox/synced_folders
+    $ vagrant reload --provision
+
