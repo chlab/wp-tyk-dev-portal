@@ -214,65 +214,49 @@ end
 #
 # EXTENSION BLOCK
 #
-bash "Install the harvest extension" do
-  user USER
-  cwd INSTALL_DIR
-  code <<-EOH
-  source #{HOME}/pyenv/bin/activate
-  pip install -e git+https://github.com/okfn/ckanext-harvest.git@stable#egg=ckanext-harvest --src #{INSTALL_DIR}
-  cd #{INSTALL_DIR}/ckanext-harvest
-  python setup.py develop
-  EOH
-end
 
-bash "Installing the ckan-harvest requirements" do
-  user USER
-  cwd "#{INSTALL_DIR}/ckanext-harvest"
-  code <<-EOH
-  source #{HOME}/pyenv/bin/activate
-  pip install -r pip-requirements.txt
-  EOH
-end
+# Put one custom extension on each line like this: { "name-of-ckanext" => "repository-url", ... }
+{
+  "ckanext-harvest" => "https://github.com/okfn/ckanext-harvest.git@stable",
+  "ckanext-fluent" => "https://github.com/open-data/ckanext-fluent.git",
+  "ckanext-scheming" => "https://github.com/open-data/ckanext-scheming.git",
+  "ckanext-hierarchy" => "https://github.com/datagovuk/ckanext-hierarchy.git"
+}.each do | ckan_ext, repo_uri |
+    bash "Clone #{ckan_ext}" do
+      user USER
+      not_if "test -d #{INSTALL_DIR}/#{ckan_ext}"
+      cwd INSTALL_DIR
+      code <<-EOH
+      source #{HOME}/pyenv/bin/activate
+      pip install -e git+#{repo_uri}#egg=#{ckan_ext} --src #{INSTALL_DIR}
+      EOH
+    end
 
-# Install custom extensions
-# Put one custom extension on each line inside the %w()
-# %w(
-# ).each do | ckan_ext |
-#     bash "Clone #{ckan_ext}" do
-#       user USER
-#       not_if "test -d #{INSTALL_DIR}/#{ckan_ext}"
-#       cwd INSTALL_DIR
-#       code <<-EOH
-#       source #{HOME}/pyenv/bin/activate
-#       pip install -e git+https://github.com/openresearchdata/#{ckan_ext}.git#egg=#{ckan_ext} --src #{INSTALL_DIR}
-#       EOH
-#     end
-# 
-#     bash "Update #{ckan_ext}" do
-#       user USER
-#       only_if "git branch | grep '* master'"
-#       cwd "#{INSTALL_DIR}/#{ckan_ext}"
-#       code <<-EOH
-#       GIT_SSL_NO_VERIFY=true git pull origin master
-#       EOH
-#     end
-# 
-#     bash "Install #{ckan_ext}" do
-#       user USER
-#       cwd INSTALL_DIR
-#       code <<-EOH
-#       source #{HOME}/pyenv/bin/activate
-#       cd #{INSTALL_DIR}/#{ckan_ext}
-#       python setup.py develop
-#       if test -e pip-requirements.txt; then
-#           pip install -r pip-requirements.txt
-#       fi
-#       if test -e requirements.txt; then
-#           pip install -r requirements.txt
-#       fi
-#       EOH
-#     end
-# end
+    bash "Update #{ckan_ext}" do
+      user USER
+      only_if "git branch | grep '* master'"
+      cwd "#{INSTALL_DIR}/#{ckan_ext}"
+      code <<-EOH
+      GIT_SSL_NO_VERIFY=true git pull origin master
+      EOH
+    end
+
+    bash "Install #{ckan_ext}" do
+      user USER
+      cwd INSTALL_DIR
+      code <<-EOH
+      source #{HOME}/pyenv/bin/activate
+      cd #{INSTALL_DIR}/#{ckan_ext}
+      python setup.py develop
+      if test -e pip-requirements.txt; then
+          pip install -r pip-requirements.txt
+      fi
+      if test -e requirements.txt; then
+          pip install -r requirements.txt
+      fi
+      EOH
+    end
+end
 
 #################################################################
 
