@@ -184,19 +184,32 @@ function ckan_dataset_save_single_json( $ckan_dataset, $ckan_id ) {
 	}
 
 	// Gather data
+	$langugages_todo           = array('en', 'de', 'fr', 'it');
 	$translations              = array();
 	$request_date              = $ckan_dataset['headers']['date'];
 	$ckan_dataset_result       = $ckan_dataset_body['result'];
-	$ckan_dataset_title        = $ckan_dataset_result['title'];
 	$ckan_dataset_organisation = $ckan_dataset_result['organization'];
 	$ckan_dataset_groups       = $ckan_dataset_result['groups'];
 
+	// TODO: do some array magic to get $data = array( 'en' => $data_en, 'de' => $data_de, ... )
 	// TODO: remove these lines when ckanext-fluent plugin is active
-	$ckan_dataset_title = array(
-		'en' => 'My Dataset',
-		'de' => 'Mein Datensatz',
-		'fr' => '', // TODO: assumption -> empty title means no translation available
-		'it' => 'Mammamia! Datensatz'
+	$ckan_dataset_data = array(
+		'en' => array(
+			'title' => 'My dataset',
+			'description' => 'My long description'
+		),
+		'de' => array(
+			'title' => 'Mein Datensatz',
+			'description' => 'Meine lange Beschreibung'
+		),
+		'fr' => array(
+			'title' => '', // TODO: assumption -> empty title means no translation available
+			'description' => ''
+		),
+		'it' => array(
+			'title' => 'Mammamia! Datensatz',
+			'description' => 'Babedi bubedi'
+		)
 	);
 
 	$organisation_id = false;
@@ -217,35 +230,31 @@ function ckan_dataset_save_single_json( $ckan_dataset, $ckan_id ) {
 
 	// If posts already exist -> update
 	if ( count( $post_ids ) > 0 ) {
-		// If all languages are empty -> delete post translations before posts get deleted
-		if ( ! ( array_filter( $ckan_dataset_title ) ) ) {
-			$first_post_id = reset( $post_ids );
-			ckan_dataset_delete_post_translations( $first_post_id );
-		}
-
 		foreach ( $post_ids as $post_id ) {
 			$post_language = pll_get_post_language( $post_id );
-			$title         = $ckan_dataset_title[ $post_language ];
+			$data          = $ckan_dataset_data[ $post_language ];
 
-			if ( empty( $title ) ) {
-				// Delete post if translation doesn't exist anymore
-				ckan_dataset_delete_post( $post_id );
-			} else {
-				ckan_dataset_update_post( $post_id, $ckan_id, $title, $request_date, $ckan_dataset_body_raw, $organisation_id, $group_ids );
-				$translations[ $post_language ] = $post_id;
+			if ( empty( $data['title'] ) ) {
+				$data = ckan_dataset_get_data_in_different_language($ckan_dataset_data);
 			}
+			ckan_dataset_update_post( $post_id, $ckan_id, $data, $request_date, $ckan_dataset_body_raw, $organisation_id, $group_ids );
+			$translations[ $post_language ] = $post_id;
 
 			// Remove current language from array
-			unset( $ckan_dataset_title[ $post_language ] );
+			if(($key = array_search($post_language, $langugages_todo)) !== false) {
+				unset($langugages_todo[$key]);
+			}
 		}
 	}
 
 	// Create new posts for all remaining translations
-	foreach ( $ckan_dataset_title as $lang => $title ) {
-		if ( ! empty( $title ) ) {
-			$new_id                = ckan_dataset_insert_post( $ckan_id, $title, $request_date, $ckan_dataset_body_raw, $organisation_id, $group_ids, $lang );
-			$translations[ $lang ] = $new_id;
+	foreach ( $langugages_todo as $lang ) {
+		$data = $ckan_dataset_data[ $lang ];
+		if ( empty( $data['title'] ) ) {
+			$data = ckan_dataset_get_data_in_different_language($ckan_dataset_data);
 		}
+		$new_id                = ckan_dataset_insert_post( $ckan_id, $data, $request_date, $ckan_dataset_body_raw, $organisation_id, $group_ids, $lang );
+		$translations[ $lang ] = $new_id;
 	}
 
 	pll_save_post_translations( $translations );
@@ -406,7 +415,7 @@ function ckan_dataset_add_groups_to_post( $post_id, $group_ids ) {
  * Adds new dataset post to database
  *
  * @param string $ckan_id
- * @param string $title
+ * @param array $data
  * @param string $request_date
  * @param string $response
  * @param int $organisation_id
@@ -415,11 +424,11 @@ function ckan_dataset_add_groups_to_post( $post_id, $group_ids ) {
  *
  * @return int|WP_Error
  */
-function ckan_dataset_insert_post( $ckan_id, $title, $request_date, $response, $organisation_id, $group_ids, $lang ) {
+function ckan_dataset_insert_post( $ckan_id, $data, $request_date, $response, $organisation_id, $group_ids, $lang ) {
 	$post = array(
 		'post_author' => 1,
 		'post_type'   => 'ckan-dataset',
-		'post_title'  => $title,
+		'post_title'  => $data['title'],
 		'post_status' => 'publish',
 	);
 	echo "INSERT " . $post['post_title'] . "\n";
@@ -448,7 +457,7 @@ function ckan_dataset_insert_post( $ckan_id, $title, $request_date, $response, $
  *
  * @param int $post_id
  * @param string $ckan_id
- * @param string $title
+ * @param array $data
  * @param string $request_date
  * @param string $response
  * @param int $organisation_id
@@ -456,10 +465,10 @@ function ckan_dataset_insert_post( $ckan_id, $title, $request_date, $response, $
  *
  * @return int|WP_Error
  */
-function ckan_dataset_update_post( $post_id, $ckan_id, $title, $request_date, $response, $organisation_id, $group_ids ) {
+function ckan_dataset_update_post( $post_id, $ckan_id, $data, $request_date, $response, $organisation_id, $group_ids ) {
 	$post = array(
 		'ID'         => $post_id,
-		'post_title' => $title
+		'post_title' => $data['title']
 	);
 	echo "UPDATE post " . $post_id . ' / new title: ' . $post['post_title'] . "\n";
 	$update_success = wp_update_post( $post, true );
@@ -494,3 +503,12 @@ function ckan_dataset_delete_post( $post_id ) {
 	return wp_delete_post( $post_id, true );
 }
 
+function ckan_dataset_get_data_in_different_language($ckan_dataset_data) {
+	// Use other language instead (according to $language_priority array)
+	global $language_priority;
+	foreach( $language_priority as $language ) {
+		if( !empty( $ckan_dataset_data[ $language ][ 'title' ] ) ) {
+			return $ckan_dataset_data[ $language ];
+		}
+	}
+}

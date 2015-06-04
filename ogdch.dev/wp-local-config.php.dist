@@ -73,3 +73,9 @@ define( 'WPMU_PLUGIN_URL', WP_HOME . '/content/mu-plugins' );
 // ===================================================
 
 define( 'CKAN_API_ENDPOINT', 'http://ckan.ogdch.dev/api/3/' );
+$language_priority = array(
+	1 => 'en',
+	2 => 'de',
+	3 => 'fr',
+	4 => 'it'
+);
