@@ -54,7 +54,7 @@ define( 'ENFORCE_GZIP', true );
 // Some admin tweeks
 // ===================================================
 
-define( 'WP_POST_REVISIONS', 30 );
+define( 'WP_POST_REVISIONS', 0 );
 define( 'AUTOSAVE_INTERVAL', 86400 );
 
 define( 'DB_CHARSET', 'utf8' );

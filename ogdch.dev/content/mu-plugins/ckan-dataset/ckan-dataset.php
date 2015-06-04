@@ -114,16 +114,6 @@ add_action( 'cmb2_init', 'ckan_dataset_fields' );
 
 
 /**
- * Magic rewrite
- */
-hm_add_rewrite_rule(
-	array(
-		'regex' => '^([^/]+)/dataset/([^/]+)/?',
-		'query' => 'index.php?post_type=ckan-dataset&name=$matches[2]',
-	)
-);
-
-/**
  * Get a CKAN Dataset from WP
  * Gets the JSON Repsonse from CKAN but from the WP Instance. If it's not in Cache get it from DB and cache again.
  */
