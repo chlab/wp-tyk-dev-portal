@@ -104,8 +104,8 @@ function ckan_tax_sync_menu() {
 
 function ckan_tax_sync_init() {
 	?>
-	<h1>CKAN Taxonimie Data</h1>
-	<p>Get Taxonomie Date from CKAN Instance or update it</p>
+	<h1>CKAN Taxonomy Data synchronization</h1>
+	<p>Get Taxonomie Data from CKAN Instance and rebuild it in WP</p>
 
 	<h3>Groups</h3>
 	<?php submit_button( 'Get / Update Groups', 'primary', 'ckan_tax_sync_groups' ); ?>

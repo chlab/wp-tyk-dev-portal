@@ -32,7 +32,7 @@ function register_ckan_post_type() {
 	);
 	$rewrite = array(
 		'slug'       => 'dataset',
-		'with_front' => true,
+		'with_front' => false,
 		'pages'      => true,
 		'feeds'      => true,
 	);
