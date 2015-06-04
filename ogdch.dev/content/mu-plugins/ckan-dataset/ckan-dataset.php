@@ -117,10 +117,10 @@ add_action( 'cmb2_init', 'ckan_dataset_fields' );
  * Magic rewrite
  */
 hm_add_rewrite_rule(
-    array(
-        'regex'     => '^([^/]+)/dataset/([^/]+)/?',
-        'query'     => 'index.php?post_type=ckan-dataset&name=$matches[2]',
-    )
+	array(
+		'regex' => '^([^/]+)/dataset/([^/]+)/?',
+		'query' => 'index.php?post_type=ckan-dataset&name=$matches[2]',
+	)
 );
 
 /**
@@ -184,30 +184,30 @@ function ckan_dataset_save_single_json( $ckan_dataset, $ckan_id ) {
 	}
 
 	// Gather data
-	$langugages_todo           = array('en', 'de', 'fr', 'it');
+	$langugages_todo           = array( 'en', 'de', 'fr', 'it' );
 	$translations              = array();
 	$request_date              = $ckan_dataset['headers']['date'];
 	$ckan_dataset_result       = $ckan_dataset_body['result'];
 	$ckan_dataset_organisation = $ckan_dataset_result['organization'];
 	$ckan_dataset_groups       = $ckan_dataset_result['groups'];
+	$ckan_dataset_data         = ckan_dataset_prepare_data( $ckan_dataset_result );
 
-	// TODO: do some array magic to get $data = array( 'en' => $data_en, 'de' => $data_de, ... )
-	// TODO: remove these lines when ckanext-fluent plugin is active
+	// TODO: remove these lines when ckanext-fluent plugin is active and ckan_dataset_prepare_data() is implemented
 	$ckan_dataset_data = array(
 		'en' => array(
-			'title' => 'My dataset',
+			'title'       => 'My dataset',
 			'description' => 'My long description'
 		),
 		'de' => array(
-			'title' => 'Mein Datensatz',
+			'title'       => 'Mein Datensatz',
 			'description' => 'Meine lange Beschreibung'
 		),
 		'fr' => array(
-			'title' => '', // TODO: assumption -> empty title means no translation available
+			'title'       => '',
 			'description' => ''
 		),
 		'it' => array(
-			'title' => 'Mammamia! Datensatz',
+			'title'       => 'Mammamia! Datensatz',
 			'description' => 'Babedi bubedi'
 		)
 	);
@@ -234,15 +234,15 @@ function ckan_dataset_save_single_json( $ckan_dataset, $ckan_id ) {
 			$post_language = pll_get_post_language( $post_id );
 			$data          = $ckan_dataset_data[ $post_language ];
 
-			if ( empty( $data['title'] ) ) {
-				$data = ckan_dataset_get_data_in_different_language($ckan_dataset_data);
+			if ( ! ckan_dataset_has_data( $data ) ) {
+				$data = ckan_dataset_get_data_in_different_language( $ckan_dataset_data );
 			}
 			ckan_dataset_update_post( $post_id, $ckan_id, $data, $request_date, $ckan_dataset_body_raw, $organisation_id, $group_ids );
 			$translations[ $post_language ] = $post_id;
 
 			// Remove current language from array
-			if(($key = array_search($post_language, $langugages_todo)) !== false) {
-				unset($langugages_todo[$key]);
+			if ( ( $key = array_search( $post_language, $langugages_todo ) ) !== false ) {
+				unset( $langugages_todo[ $key ] );
 			}
 		}
 	}
@@ -250,8 +250,8 @@ function ckan_dataset_save_single_json( $ckan_dataset, $ckan_id ) {
 	// Create new posts for all remaining translations
 	foreach ( $langugages_todo as $lang ) {
 		$data = $ckan_dataset_data[ $lang ];
-		if ( empty( $data['title'] ) ) {
-			$data = ckan_dataset_get_data_in_different_language($ckan_dataset_data);
+		if ( ! ckan_dataset_has_data( $data ) ) {
+			$data = ckan_dataset_get_data_in_different_language( $ckan_dataset_data );
 		}
 		$new_id                = ckan_dataset_insert_post( $ckan_id, $data, $request_date, $ckan_dataset_body_raw, $organisation_id, $group_ids, $lang );
 		$translations[ $lang ] = $new_id;
@@ -431,8 +431,8 @@ function ckan_dataset_insert_post( $ckan_id, $data, $request_date, $response, $o
 		'post_title'  => $data['title'],
 		'post_status' => 'publish',
 	);
-	echo "INSERT " . $post['post_title'] . "\n";
 	$new_id = wp_insert_post( $post, true );
+	echo "INSERT post " . $new_id . ' / title ' . $post['post_title'] . "\n";
 	if ( is_wp_error( $new_id ) ) {
 		echo "Something went wrong while inserting post " . implode( ',', $post );
 
@@ -503,12 +503,46 @@ function ckan_dataset_delete_post( $post_id ) {
 	return wp_delete_post( $post_id, true );
 }
 
-function ckan_dataset_get_data_in_different_language($ckan_dataset_data) {
-	// Use other language instead (according to $language_priority array)
+/**
+ * Reformat ckan array to get
+ * $data = array( 'en' => $data_en, 'de' => $data_de, ... )
+ *
+ * @param array $raw_data
+ *
+ * @return array
+ */
+function ckan_dataset_prepare_data( $raw_data ) {
+	// TODO implement
+	return $raw_data;
+}
+
+/**
+ * Returns data from different language (according to $language_priority array)
+ *
+ * @param array $ckan_dataset_data
+ *
+ * @return array
+ */
+function ckan_dataset_get_data_in_different_language( $ckan_dataset_data ) {
 	global $language_priority;
-	foreach( $language_priority as $language ) {
-		if( !empty( $ckan_dataset_data[ $language ][ 'title' ] ) ) {
-			return $ckan_dataset_data[ $language ];
+	foreach ( $language_priority as $language ) {
+		$data = $ckan_dataset_data[ $language ];
+		if ( ckan_dataset_has_data( $data ) ) {
+			return $data;
 		}
 	}
+
+	return false;
+}
+
+/**
+ * Tells if data is available in given array
+ *
+ * @param array $data
+ *
+ * @return bool
+ */
+function ckan_dataset_has_data( $data ) {
+	// TODO: assumption -> empty title means no translation available
+	return is_array( $data ) && array_key_exists( 'title', $data ) && ( ! empty( $data['title'] ) );
 }
