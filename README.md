@@ -106,36 +106,51 @@ to see what is happening:
 
     $ redis-cli monitor
 
-# Troubleshooting
-
-In case you run into problems with the guest additions of VirtualBox, run the following command in the box:
-
-    bash
-    sudo ln -s /opt/VBoxGuestAdditions-4.3.10/lib/VBoxGuestAdditions /usr/lib/VBoxGuestAdditions
-
-You should always be able to login to the box (`vagrant ssh`) with user vagrant / password vagrant.
-
-
-### RabbitMQ deamon handling in Vagrant-Box
+## RabbitMQ deamon handling in Vagrant-Box
 Start deamon:
 
     $ sudo service ogd-rabbitmq-worker start
-    
+
 Stop deamon:
 
     $ sudo service ogd-rabbitmq-worker stop
-    
+
 Getting status of process:
 
     $ sudo service ogd-rabbitmq-worker status
-    
-### Compile theme resources
+
+## Compile theme resources
+
     $ cd ogdch.dev/content/themes/ogdch/
     $ gulp sass
     $ gulp scripts
-    
+
 or watch changes
 
     $ cd ogdch.dev/content/themes/ogdch/
     $ gulp watch
-    
+
+# Troubleshooting
+
+## Problems with Guest Additions of VirtualBox
+
+In case you run into problems with the guest additions of VirtualBox, run the following command in the box:
+
+    ```bash
+    sudo ln -s /opt/VBoxGuestAdditions-4.3.10/lib/VBoxGuestAdditions /usr/lib/VBoxGuestAdditions
+    ```
+
+You should always be able to login to the box (`vagrant ssh`) with user vagrant / password vagrant.
+
+## Re-Provision an existing Vagrant-Box
+
+You might get the following error when you try to reprovision an exisiting Vagrant-Box:
+
+`Shared folders that Chef requires are missing on the virtual machine. ...`
+
+If this happens just execute the following command:
+
+    ```bash
+    rm .vagrant/machines/default/virtualbox/synced_folders
+    vagrant reload --provision
+    ```
