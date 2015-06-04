@@ -193,26 +193,6 @@ function ckan_dataset_save_single_json( $ckan_dataset, $ckan_id ) {
 	$ckan_dataset_groups       = $ckan_dataset_result['groups'];
 	$ckan_dataset_data         = ckan_dataset_prepare_data( $ckan_dataset_result );
 
-	// TODO: remove these lines when ckanext-fluent plugin is active and ckan_dataset_prepare_data() is implemented
-	$ckan_dataset_data = array(
-		'en' => array(
-			'title'       => 'My dataset',
-			'description' => 'My long description'
-		),
-		'de' => array(
-			'title'       => 'Mein Datensatz',
-			'description' => 'Meine lange Beschreibung'
-		),
-		'fr' => array(
-			'title'       => '',
-			'description' => ''
-		),
-		'it' => array(
-			'title'       => 'Mammamia! Datensatz',
-			'description' => 'Babedi bubedi'
-		)
-	);
-
 	$organisation_id = false;
 	if ( is_array( $ckan_dataset_organisation ) && ! empty( $ckan_dataset_organisation['name'] ) ) {
 		$organisation_id = ckan_dataset_get_organisation_id_by_slug( $ckan_dataset_organisation['name'] );
@@ -512,16 +492,39 @@ function ckan_dataset_delete_post( $post_id ) {
 }
 
 /**
- * Reformat ckan array to get
- * $data = array( 'en' => $data_en, 'de' => $data_de, ... )
+ * Reformat ckan data to array with the following structure:
+ *
+ * array(
+ *      'en' => array( 'title' => 'Title EN', ... ),
+ *      'de' => array( 'title' => 'Titel DE', ... ),
+ *      'fr' => array( 'title' => 'Titre FR', ... ),
+ *      'it' => array( 'title' => 'Titolo IT', ... )
+ * )
  *
  * @param array $raw_data
  *
  * @return array
  */
 function ckan_dataset_prepare_data( $raw_data ) {
-	// TODO implement
-	return $raw_data;
+	// TODO implement and remove mock data
+	return array(
+		'en' => array(
+			'title'       => 'My dataset',
+			'description' => 'My long description'
+		),
+		'de' => array(
+			'title'       => 'Mein Datensatz',
+			'description' => 'Meine lange Beschreibung'
+		),
+		'fr' => array(
+			'title'       => '',
+			'description' => ''
+		),
+		'it' => array(
+			'title'       => 'Mammamia! Datensatz',
+			'description' => 'Babedi bubedi'
+		)
+	);
 }
 
 /**
@@ -529,7 +532,7 @@ function ckan_dataset_prepare_data( $raw_data ) {
  *
  * @param array $ckan_dataset_data
  *
- * @return array
+ * @return array|bool Array with data if data in different language found. False if no data is found.
  */
 function ckan_dataset_get_data_in_different_language( $ckan_dataset_data ) {
 	global $language_priority;
@@ -552,5 +555,6 @@ function ckan_dataset_get_data_in_different_language( $ckan_dataset_data ) {
  */
 function ckan_dataset_has_data( $data ) {
 	// TODO: assumption -> empty title means no translation available
-	return is_array( $data ) && array_key_exists( 'title', $data ) && ( ! empty( $data['title'] ) );
+	$key_field = 'title';
+	return is_array( $data ) && array_key_exists( $key_field, $data ) && ( ! empty( $data[$key_field] ) );
 }
