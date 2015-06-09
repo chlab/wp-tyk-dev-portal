@@ -26,3 +26,8 @@ wp_nav_menu( array(
 	'items_wrap'     => '%3$s',
 ) );
 ?>
+
+<p><a href="<?php echo esc_url( home_url( '/' ) ); ?>">Home</a></p>
+<?php wp_nav_menu( array( 'menu' => 'langauge-nav' ) ); ?>
+
+<a href="<?php echo get_post_type_archive_link( 'ckan-dataset' ); ?>">CKAN-Dataset Archiv</a>
