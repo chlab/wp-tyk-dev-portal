@@ -14,7 +14,7 @@ if ( $the_datasets_query->have_posts() ) {
 	echo '<ul>';
 	while ( $the_datasets_query->have_posts() ) {
 		$the_datasets_query->the_post();
-		echo '<li><a href="' . get_permalink() . '">' . get_the_title() . '</a></li>';
+		get_template_part( 'partials/post', 'dataset-teaser' );
 	}
 	echo '</ul>';
 } else {
