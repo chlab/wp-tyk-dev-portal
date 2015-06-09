@@ -50,26 +50,6 @@
     $ vagrant ssh
     $ sudo cp --force /var/www/ogd-rabbitmq-worker.conf /etc/init/ogd-rabbitmq-worker.conf
     ```
-13. Install `ckanext-hierarchy` for CKAN
-    ```
-    $ vagrant ssh
-    $ source /home/vagrant/pyenv/bin/activate
-    $ pip install -e "git+https://github.com/datagovuk/ckanext-hierarchy.git#egg=ckanext-hierarchy"
-    $ vi /home/vagrant/pyenv/src/ckan/development.ini
-    ```
-    
-    find this line:
-    ```
-    ckan.plugins = stats text_view recline_view ... 
-    ```
-    
-    append
-    
-    ```
-    hierarchy_display hierarchy_form
-    ```
-    
-    and restart Apache
 
 # Working
 
@@ -150,4 +130,3 @@ If this happens just execute the following command:
 
     $ rm .vagrant/machines/default/virtualbox/synced_folders
     $ vagrant reload --provision
-
