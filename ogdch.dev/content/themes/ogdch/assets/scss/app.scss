@@ -6,7 +6,7 @@
 @import '_settings';
 @import 'mixins/bem';
 
-@import 'external/grid';
+//@import 'external/grid';
 
 @import 'elements/layout';
 
@@ -14,3 +14,14 @@
 @import 'typo/baseline';
 @import 'typo/headings';
 @import 'typo/text';
+
+
+.navbar {
+  margin-bottom: 0;
+}
+
+header {
+  background-color: #c10a22;
+  padding: 10px;
+  color: #fff;
+}

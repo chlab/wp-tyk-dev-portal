@@ -18,16 +18,42 @@
 
 <body <?php body_class(); ?>>
 
-<?php
-wp_nav_menu( array(
-	'theme_location' => 'service_navigation',
-	'container'      => '',
-	'menu_class'     => '',
-	'items_wrap'     => '%3$s',
-) );
-?>
+<nav class="navbar navbar-default">
+	<div class="container-fluid">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>">OGD.CH</a>
+		</div>
 
-<p><a href="<?php echo esc_url( home_url( '/' ) ); ?>">Home</a></p>
-<?php wp_nav_menu( array( 'menu' => 'langauge-nav' ) ); ?>
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Langauge <span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<?php
+						$translations = pll_the_languages(array('raw'=>1));
 
-<a href="<?php echo get_post_type_archive_link( 'ckan-dataset' ); ?>">CKAN-Dataset Archiv</a>
+						foreach($translations as $translation) {
+							echo '<li><a href="' . $translation['url'] . '"><img src="' . $translation['flag'] . '"/> ' . $translation['name'] . '</a></li>';
+						}
+						?>
+					</ul>
+				</li>
+				<li>
+					<a href="<?php echo get_post_type_archive_link( 'ckan-dataset' ); ?>">CKAN-Dataset Archiv</a>
+				</li>
+			</ul>
+		</div><!-- /.navbar-collapse -->
+	</div><!-- /.container-fluid -->
+</nav>
+
+<header>
+	<h1>ODG.CH PORTAL</h1>
+</header>
