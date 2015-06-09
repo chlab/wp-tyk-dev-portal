@@ -31,18 +31,18 @@ unset( $file, $filepath );
 // Only Backend Includes
 // =======================================================================//
 
-/*if ( is_admin() ) {
+if ( is_admin() ) {
 
 	$backend_includes = array(
-		'assets/php/backend/filters.php',             // Admin Filters
-		'assets/php/backend/scripts_backend.php',     // Admin Scripts / CSS
-		'assets/php/backend/custom_field_types.php',  // Custom Field Types
+		//'assets/php/backend/filters.php',             // Admin Filters
+		'assets/php/backend/scripts.php',     // Admin Scripts / CSS
+		/*'assets/php/backend/custom_field_types.php',  // Custom Field Types
 		'assets/php/backend/custom_fields.php',       // Custom Fields / Metaboxes
 		'assets/php/backend/admin_cols.php',          // Admin Columns
 		'assets/php/backend/dashboard_widgets.php',   // Dashboard
 		'assets/php/backend/user_fields.php',         // Custom Fields in User Edit
 		'assets/php/backend/caps.php',                // Caps for Post Types
-		'assets/php/backend/wysiwyg.php'
+		'assets/php/backend/wysiwyg.php'*/
 	);
 
 	foreach ( $backend_includes as $file ) {
@@ -52,7 +52,7 @@ unset( $file, $filepath );
 		require_once $filepath;
 	}
 	unset( $file, $filepath );
-}*/
+}
 
 
 // =======================================================================//

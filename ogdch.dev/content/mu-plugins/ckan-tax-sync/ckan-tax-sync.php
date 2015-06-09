@@ -48,7 +48,7 @@ function ckan_taxonomy() {
 		'show_tagcloud'     => false,
 		'rewrite'           => $rewrite,
 	);
-	register_taxonomy( 'ckan_organisation', array( 'ckan-dataset' ), $args );
+	register_taxonomy( 'ckan_organisation', array( 'ckan-dataset', 'ckan-local-dataset' ), $args );
 
 
 	$labels  = array(
@@ -85,7 +85,7 @@ function ckan_taxonomy() {
 		'show_tagcloud'     => false,
 		'rewrite'           => $rewrite,
 	);
-	register_taxonomy( 'ckan_group', array( 'ckan-dataset' ), $args );
+	register_taxonomy( 'ckan_group', array( 'ckan-dataset', 'ckan-local-dataset' ), $args );
 }
 
 add_action( 'init', 'ckan_taxonomy', 0 );

@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: ODGch App Directory
+ * Plugin Name: ODGch CKAN Dataset
  * Description: Adds CKAN-Dataset Post-Type
  * Author: Team Jazz <bart@liip.ch>
  * Version: 1.0

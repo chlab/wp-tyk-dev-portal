@@ -10,4 +10,5 @@
 require WPMU_PLUGIN_DIR.'/hm-rewrite/hm-rewrites.php';
 require WPMU_PLUGIN_DIR.'/app-directory/app-directory.php';
 require WPMU_PLUGIN_DIR.'/ckan-dataset/ckan-dataset.php';
+require WPMU_PLUGIN_DIR.'/ckan-local-dataset/ckan-local-dataset.php';
 require WPMU_PLUGIN_DIR.'/ckan-tax-sync/ckan-tax-sync.php';
