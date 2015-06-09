@@ -1,27 +1,33 @@
 <?php get_header(); ?>
 
-<?php if ( have_posts() ) : ?>
-	<?php while ( have_posts() ) : the_post();?>
-		<h1 class="post__title"><?php the_title(); ?></h1>
-		<h2>Ref ID</h2>
-		<?php var_dump( get_post_meta( get_the_ID(), '_ckandataset_reference' , true ) ); ?>
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+			<?php if ( have_posts() ) : ?>
+				<?php while ( have_posts() ) : the_post();?>
+					<h2 class="post__title"><?php the_title(); ?></h2>
+					<h3>Ref ID</h3>
+					<?php var_dump( get_post_meta( get_the_ID(), '_ckandataset_reference' , true ) ); ?>
 
-        <h2>Last update</h2>
-		<?php var_dump( get_post_meta( get_the_ID(), '_ckandataset_last_request' , true ) ); ?>
+					<h3>Last update</h3>
+					<?php var_dump( get_post_meta( get_the_ID(), '_ckandataset_last_request' , true ) ); ?>
 
+					<h3>Data</h3>
+					<pre><?php var_dump( get_post_meta( get_the_ID(), '_ckandataset_response' , true ) ); ?></pre>
+				<?php endwhile; ?>
 
-		<h2>Data</h2>
-		<pre><?php echo get_ckan_dataset( get_the_ID(), get_post_meta( get_the_ID(), '_ckandataset_name' , true ) ); ?></pre>
+			<?php else : ?>
+				Nix gefunden
+			<?php endif; ?>
+		</div>
+	</div>
 
+	<div class="row">
+		<div class="col-xs-12">
+			<?php comments_template(); ?>
+		</div>
+	</div>
+</div>
 
-		<h2>Master Post</h2>
-		<?php echo get_the_title( get_ckan_dataset_master( get_the_ID() ) ); ?>
-	<?php endwhile; ?>
-
-<?php else : ?>
-    Nix gefunden
-<?php endif; ?>
-
-<?php comments_template(); ?>
 
 <?php get_footer(); ?>
