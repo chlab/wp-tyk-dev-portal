@@ -322,106 +322,142 @@ function sync_ckan_local_dataset() {
 	if ( wp_is_post_revision( $post->ID ) || ! isset( $post->post_status ) )
 		return;
 
-
-
-    // If "Action" is trash, untrash or delete set CKAN Data set to deleted
+    // If "Action" is trash, untrash or delete set CKAN dataset to deleted
 	if ( isset( $_GET ) && ( $_GET['action'] === 'trash' || $_GET['action'] === 'untrash' || $_GET['action'] === 'delete' ) ) {
-		$ckan_post = array( 'state' => 'deleted' );
-		update_post_meta( $_GET['post'], '_ckan_local_dataset_visibility', 'deleted' );
-		$_POST['_ckan_local_dataset_visibility'] = 'deleted';
-
-		if( get_post_meta( $_GET['post'], '_ckan_local_dataset_reference', true ) === '' ) {
-    		return;
-		}
+		ckan_local_dataset_trash_action($post);
 	}
 	// Or generate Data for insert/update
 	else {
+		ckan_local_dataset_update_action($post);
+	}
+}
 
+add_action( 'save_post_ckan-local-dataset', 'sync_ckan_local_dataset' );
 
-        // Check if Custom Fields are added. If yes generate CKANinsh Array
-    	if ( $_POST['_ckan_local_dataset_custom_fields'][0]['key'] != '' ) {
-    		$extras = array();
-    		foreach ( $_POST['_ckan_local_dataset_custom_fields'] as $key => $value ) {
-    			$extras[] = array( $value['key'], $value['value'] );
-    		}
-    	}
+function ckan_local_dataset_trash_action($post) {
+	$ckan_post = array( 'state' => 'deleted' );
+	$post_id = $_GET['post'];
 
-        // Get "Name" for Dataset. If no Title entered use a uniqid
-    	if ( $_POST['_ckan_local_dataset_name'] != '' ) {
-    		$slug = sanitize_title_with_dashes( $_POST['_ckan_local_dataset_name'] );
-    	} else {
-        	$title = $_POST['post_title'];
+	// set internal post visibility state to deleted
+	update_post_meta( $post_id, '_ckan_local_dataset_visibility', 'deleted' );
 
-        	if ( $title === '' )
-        	    $title = uniqid();
-
-    		$slug = sanitize_title_with_dashes( $title );
-    	}
-
-
-		$ckan_post = array(
-			'name'             => $slug,
-			'title'            => $_POST['post_title'],
-			'maintainer'       => $_POST['_ckan_local_dataset_maintainer'],
-			'maintainer_email' => $_POST['_ckan_local_dataset_maintainer_email'],
-			'author'           => $_POST['_ckan_local_dataset_author'],
-			'author_email'     => $_POST['_ckan_local_dataset_author_email'],
-			'notes'            => $_POST['_ckan_local_dataset_data_description_de'],
-			'url'              => $_POST['_ckan_local_dataset_data_file'],
-			'version'          => $_POST['_ckan_local_dataset_version'],
-			'state'            => $_POST['_ckan_local_dataset_visibility'],
-			'extras'           => $extras,
-		);
+	// if no CKAN reference id is defined don't send update request to ckan
+	if( get_post_meta( $post_id, '_ckan_local_dataset_reference', true ) === '' ) {
+		return false;
 	}
 
+	// Define endpoint for request
+	$ckan_ref = get_post_meta( $post_id, '_ckan_local_dataset_reference', true );
+	$endpoint = CKAN_REST_API_ENDPOINT . 'dataset' . '/' . $ckan_ref;
+
+	$result = ckan_local_dataset_do_api_request($endpoint, $ckan_post);
+
+	$success = ckan_local_dataset_handle_response($result);
+	if( $success ) {
+		if ( isset( $result->id ) && $result->id != '' ) {
+			ckan_local_dataset_update_fields_from_ckan($post, $result->id, $result->name);
+		}
+	}
+}
+
+function ckan_local_dataset_update_action($post) {
+	$extras = ckan_local_dataset_get_custom_fields_for_ckan();
+
+	// Gernerate slug of dataset. If no title is entered use an uniqid
+	if ( $_POST['_ckan_local_dataset_name'] != '' ) {
+		$title = $_POST['_ckan_local_dataset_name'];
+	} else {
+		$title = $_POST['post_title'];
+
+		if ( $title === '' ) {
+			$title = uniqid();
+		}
+	}
+	$slug = sanitize_title_with_dashes( $title );
+
+	$ckan_post = array(
+		'name'             => $slug,
+		'title'            => $_POST['post_title'],
+		'maintainer'       => $_POST['_ckan_local_dataset_maintainer'],
+		'maintainer_email' => $_POST['_ckan_local_dataset_maintainer_email'],
+		'author'           => $_POST['_ckan_local_dataset_author'],
+		'author_email'     => $_POST['_ckan_local_dataset_author_email'],
+		'notes'            => $_POST['_ckan_local_dataset_data_description_de'],
+		'url'              => $_POST['_ckan_local_dataset_data_file'],
+		'version'          => $_POST['_ckan_local_dataset_version'],
+		'state'            => $_POST['_ckan_local_dataset_visibility'],
+		'extras'           => $extras,
+	);
 
 	// Filter empty values as CKAN seems not to like it and make the Array a JSON String
 	$ckan_post = json_encode( array_filter( $ckan_post ) );
 
-    // Define Entpoint for Request (Default: create)
+	// Define endpoint for request (No reference -> insert)
 	$endpoint = CKAN_REST_API_ENDPOINT . 'dataset';
 
-	// If Post has Ref ID get the CKAN "Name" and add it to the Entpoint
+	// If Post has Ref ID use it as endpoint -> update action
 	if ( isset( $_POST['_ckan_local_dataset_reference'] ) && $_POST['_ckan_local_dataset_reference'] != '' ) {
 		$endpoint .= '/' . $_POST['_ckan_local_dataset_reference'];
-	} // If Action is trash, untrash or delete get "Name" for $_GET['post']
-	elseif ( isset( $_GET ) && ( $_GET['action'] === 'trash' || $_GET['action'] === 'untrash' || $_GET['action'] === 'delete' ) ) {
-		$endpoint .= '/' . get_post_meta( $_GET['post'], '_ckan_local_dataset_name', true );
 	}
 
+	$result = ckan_local_dataset_do_api_request($endpoint, $ckan_post);
 
+	$success = ckan_local_dataset_handle_response($result);
+	if( $success ) {
+		if ( isset( $result->id ) && $result->id != '' ) {
+			ckan_local_dataset_update_fields_from_ckan($post, $result->id, $result->name);
+		}
+	}
+}
+
+function ckan_local_dataset_do_api_request($endpoint, $data) {
 	// send request
 	$ch = curl_init( $endpoint );
 	curl_setopt( $ch, CURLOPT_CUSTOMREQUEST, "POST" );
-	curl_setopt( $ch, CURLOPT_POSTFIELDS, $ckan_post );
+	curl_setopt( $ch, CURLOPT_POSTFIELDS, $data );
 	curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
 	curl_setopt( $ch, CURLOPT_HTTPHEADER, [ 'Authorization: ' . CKAN_API_KEY . '' ] );
 
 	$result = curl_exec( $ch );
 	$result = json_decode( $result );
 
+	curl_close($ch);
 
-	if ( is_object( $result ) ) {
-		if ( isset( $result->success ) && $result->success === false ) {
+	return $result;
+}
+
+function ckan_local_dataset_handle_response($response) {
+	if ( is_object( $response ) ) {
+		if ( isset( $response->success ) && $response->success === false ) {
 			die( 'FAILED' );
-		} elseif ( $result->name && ! isset( $result->id ) ) {
-			$res = $result->name;
+		} elseif ( $response->name && ! isset( $response->id ) ) {
+			$res = $response->name;
 			die( 'Error: ' . $res[0] );
 		}
-
-		if ( isset( $result->id ) && $result->id != '' ) {
-    		// Set Ref. ID and add it to $_POST because the real meta save will follow after this action
-			update_post_meta( $post->ID, '_ckan_local_dataset_reference', $result->id );
-			update_post_meta( $post->ID, '_ckan_local_dataset_name', $result->name );
-			$_POST['_ckan_local_dataset_reference'] = $result->id;
-			$_POST['_ckan_local_dataset_name'] = $result->name;
-		}
+		return true;
 	} else {
 		die( 'Save/update failed. CKAN entry not found.' );
 	}
-
 }
 
-add_action( 'save_post_ckan-local-dataset', 'sync_ckan_local_dataset' );
+function ckan_local_dataset_update_fields_from_ckan($post, $id, $name) {
+	// Set Ref. ID and add it to $_POST because the real meta save will follow after this action
+	update_post_meta( $post->ID, '_ckan_local_dataset_reference', $id );
+	update_post_meta( $post->ID, '_ckan_local_dataset_name', $name );
+	$_POST['_ckan_local_dataset_reference'] = $id;
+	$_POST['_ckan_local_dataset_name'] = $name;
+}
 
+function ckan_local_dataset_get_custom_fields_for_ckan() {
+	$extras = array();
+
+	// Check if Custom Fields are added. If yes generate CKANinsh Array
+	if ( $_POST['_ckan_local_dataset_custom_fields'][0]['key'] != '' ) {
+		foreach ( $_POST['_ckan_local_dataset_custom_fields'] as $key => $value ) {
+			$extras[] = array( $value['key'], $value['value'] );
+		}
+	}
+
+	return $extras;
+}
 ?>
