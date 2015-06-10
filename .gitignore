@@ -6,15 +6,15 @@ wp-local-config.php
 wp-test-config.php
 wp-live-config.php
 
-content/advanced-cache.php
-content/backup-db/
-content/backups/
-content/blogs.dir/
-content/cache/
-content/upgrade/
-content/uploads/**
-content/wp-cache-config.php
-content/themes/twentyfifteen/
+ogdch.dev/content/advanced-cache.php
+ogdch.dev/content/backup-db/
+ogdch.dev/content/backups/
+ogdch.dev/content/blogs.dir/
+ogdch.dev/content/cache/
+ogdch.dev/content/upgrade/
+ogdch.dev/content/uploads/**
+ogdch.dev/content/wp-cache-config.php
+ogdch.dev/content/themes/twentyfifteen/
 
 .vagrant
 /html
