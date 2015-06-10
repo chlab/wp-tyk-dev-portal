@@ -400,9 +400,9 @@ function ckan_dataset_add_groups_to_post( $post_id, $group_ids ) {
  */
 function ckan_dataset_insert_post( $ckan_id, $data, $name, $request_date, $response, $organisation_id, $group_ids, $language ) {
 	$post   = array(
-		'post_content' => $data['description'],
 		'post_name'    => $name,
 		'post_title'   => $data['title'],
+		'post_content' => $data['notes'],
 		'post_type'    => 'ckan-dataset',
 		'post_author'  => 1,
 		'post_status'  => 'publish',
@@ -444,9 +444,10 @@ function ckan_dataset_insert_post( $ckan_id, $data, $name, $request_date, $respo
  */
 function ckan_dataset_update_post( $post_id, $ckan_id, $data, $name, $request_date, $response, $organisation_id, $group_ids ) {
 	$post = array(
-		'ID'         => $post_id,
-		'post_name'  => $name,
-		'post_title' => $data['title']
+		'ID'           => $post_id,
+		'post_name'    => $name,
+		'post_title'   => $data['title'],
+		'post_content' => $data['notes'],
 	);
 	echo "UPDATE post " . $post_id . ' / new title: ' . $post['post_title'] . "\n";
 	$update_success = wp_update_post( $post, true );
@@ -496,25 +497,24 @@ function ckan_dataset_delete_post( $post_id ) {
  * @return array
  */
 function ckan_dataset_prepare_data( $raw_data ) {
-	// TODO: implement and remove mock data
-	return array(
-		'en' => array(
-			'title'       => 'My dataset',
-			'description' => 'My long description'
-		),
-		'de' => array(
-			'title'       => 'Mein Datensatz',
-			'description' => 'Meine lange Beschreibung'
-		),
-		'fr' => array(
-			'title'       => '',
-			'description' => ''
-		),
-		'it' => array(
-			'title'       => 'Mammamia! Datensatz',
-			'description' => 'Babedi bubedi'
-		)
+	global $language_priority;
+	$reconstructed_data = array();
+	$expected_fields = array(
+		'title',
+		'notes'
 	);
+
+	foreach ( $expected_fields as $field ) {
+		foreach ( $language_priority as $language ) {
+			if ( array_key_exists( $field, $raw_data ) && array_key_exists( $language, $raw_data[ $field ] ) ) {
+				$reconstructed_data[ $language ][ $field ] = $raw_data[ $field ][ $language ];
+			} else {
+				$reconstructed_data[ $language ][ $field ] = '';
+			}
+		}
+	}
+
+	return $reconstructed_data;
 }
 
 /**
