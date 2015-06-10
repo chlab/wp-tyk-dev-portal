@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: ODGch local CKAN Dataset
+ * Plugin Name: OGDch local CKAN Dataset
  * Description: Adds CKAN-Dataset Post-Type to add posts locally and syncs them to CKAN
  * Author: Team Jazz <bart@liip.ch>
  * Version: 1.0
@@ -153,9 +153,9 @@ function ckan_local_dataset_fields() {
 		'id'      => $prefix . 'custom_fields',
 		'type'    => 'group',
 		'options' => array(
-			'group_title'   => __( 'Custom Field {#}', 'odgch' ),
-			'add_button'    => __( 'Add another Field', 'cmb' ),
-			'remove_button' => __( 'Remove Field', 'odgch' ),
+			'group_title'   => __( 'Custom Field {#}', 'ogdch' ),
+			'add_button'    => __( 'Add another Field', 'ogdch' ),
+			'remove_button' => __( 'Remove Field', 'ogdch' ),
 		),
 	) );
 

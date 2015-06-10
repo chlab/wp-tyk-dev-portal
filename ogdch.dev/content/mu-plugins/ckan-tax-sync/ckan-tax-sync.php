@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: ODGch CKAN Tax Sync
+ * Plugin Name: OGDch CKAN Tax Sync
  * Description: Syncs the Groups and Organizations into WP
  * Author: Team Jazz <bart@liip.ch>
  * Version: 1.0
@@ -15,23 +15,23 @@
 function ckan_taxonomy() {
 
 	$labels  = array(
-		'name'                       => _x( 'Organisationen', 'Taxonomy General Name', 'odgch' ),
-		'singular_name'              => _x( 'Organisation', 'Taxonomy Singular Name', 'odgch' ),
-		'menu_name'                  => __( 'Organisationen', 'odgch' ),
-		'all_items'                  => __( 'All Items', 'odgch' ),
-		'parent_item'                => __( 'Parent Item', 'odgch' ),
-		'parent_item_colon'          => __( 'Parent Item:', 'odgch' ),
-		'new_item_name'              => __( 'New Item Name', 'odgch' ),
-		'add_new_item'               => __( 'Add New Item', 'odgch' ),
-		'edit_item'                  => __( 'Edit Item', 'odgch' ),
-		'update_item'                => __( 'Update Item', 'odgch' ),
-		'view_item'                  => __( 'View Item', 'odgch' ),
-		'separate_items_with_commas' => __( 'Separate items with commas', 'odgch' ),
-		'add_or_remove_items'        => __( 'Add or remove items', 'odgch' ),
-		'choose_from_most_used'      => __( 'Choose from the most used', 'odgch' ),
-		'popular_items'              => __( 'Popular Items', 'odgch' ),
-		'search_items'               => __( 'Search Items', 'odgch' ),
-		'not_found'                  => __( 'Not Found', 'odgch' ),
+		'name'                       => _x( 'Organisations', 'Taxonomy General Name', 'ogdch' ),
+		'singular_name'              => _x( 'Organisation', 'Taxonomy Singular Name', 'ogdch' ),
+		'menu_name'                  => __( 'Organisation', 'ogdch' ),
+		'all_items'                  => __( 'All Items', 'ogdch' ),
+		'parent_item'                => __( 'Parent Item', 'ogdch' ),
+		'parent_item_colon'          => __( 'Parent Item:', 'ogdch' ),
+		'new_item_name'              => __( 'New Item Name', 'ogdch' ),
+		'add_new_item'               => __( 'Add New Item', 'ogdch' ),
+		'edit_item'                  => __( 'Edit Item', 'ogdch' ),
+		'update_item'                => __( 'Update Item', 'ogdch' ),
+		'view_item'                  => __( 'View Item', 'ogdch' ),
+		'separate_items_with_commas' => __( 'Separate items with commas', 'ogdch' ),
+		'add_or_remove_items'        => __( 'Add or remove items', 'ogdch' ),
+		'choose_from_most_used'      => __( 'Choose from the most used', 'ogdch' ),
+		'popular_items'              => __( 'Popular Items', 'ogdch' ),
+		'search_items'               => __( 'Search Items', 'ogdch' ),
+		'not_found'                  => __( 'Not Found', 'ogdch' ),
 	);
 	$rewrite = array(
 		'slug'         => 'organisationen',
@@ -52,23 +52,23 @@ function ckan_taxonomy() {
 
 
 	$labels  = array(
-		'name'                       => _x( 'Gruppen', 'Taxonomy General Name', 'odgch' ),
-		'singular_name'              => _x( 'Gruppe', 'Taxonomy Singular Name', 'odgch' ),
-		'menu_name'                  => __( 'Gruppen', 'odgch' ),
-		'all_items'                  => __( 'All Items', 'odgch' ),
-		'parent_item'                => __( 'Parent Item', 'odgch' ),
-		'parent_item_colon'          => __( 'Parent Item:', 'odgch' ),
-		'new_item_name'              => __( 'New Item Name', 'odgch' ),
-		'add_new_item'               => __( 'Add New Item', 'odgch' ),
-		'edit_item'                  => __( 'Edit Item', 'odgch' ),
-		'update_item'                => __( 'Update Item', 'odgch' ),
-		'view_item'                  => __( 'View Item', 'odgch' ),
-		'separate_items_with_commas' => __( 'Separate items with commas', 'odgch' ),
-		'add_or_remove_items'        => __( 'Add or remove items', 'odgch' ),
-		'choose_from_most_used'      => __( 'Choose from the most used', 'odgch' ),
-		'popular_items'              => __( 'Popular Items', 'odgch' ),
-		'search_items'               => __( 'Search Items', 'odgch' ),
-		'not_found'                  => __( 'Not Found', 'odgch' ),
+		'name'                       => _x( 'Groups', 'Taxonomy General Name', 'ogdch' ),
+		'singular_name'              => _x( 'Group', 'Taxonomy Singular Name', 'ogdch' ),
+		'menu_name'                  => __( 'Groups', 'ogdch' ),
+		'all_items'                  => __( 'All Items', 'ogdch' ),
+		'parent_item'                => __( 'Parent Item', 'ogdch' ),
+		'parent_item_colon'          => __( 'Parent Item:', 'ogdch' ),
+		'new_item_name'              => __( 'New Item Name', 'ogdch' ),
+		'add_new_item'               => __( 'Add New Item', 'ogdch' ),
+		'edit_item'                  => __( 'Edit Item', 'ogdch' ),
+		'update_item'                => __( 'Update Item', 'ogdch' ),
+		'view_item'                  => __( 'View Item', 'ogdch' ),
+		'separate_items_with_commas' => __( 'Separate items with commas', 'ogdch' ),
+		'add_or_remove_items'        => __( 'Add or remove items', 'ogdch' ),
+		'choose_from_most_used'      => __( 'Choose from the most used', 'ogdch' ),
+		'popular_items'              => __( 'Popular Items', 'ogdch' ),
+		'search_items'               => __( 'Search Items', 'ogdch' ),
+		'not_found'                  => __( 'Not Found', 'ogdch' ),
 	);
 	$rewrite = array(
 		'slug'         => 'gruppen',

@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: ODGch App Directory
+ * Plugin Name: OGDch App Directory
  * Description: Adds App Post-Type
  * Author: Team Jazz <bart@liip.ch>
  * Version: 1.0

@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: ODGch CKAN Dataset
+ * Plugin Name: OGDch CKAN Dataset
  * Description: Adds CKAN-Dataset Post-Type
  * Author: Team Jazz <bart@liip.ch>
  * Version: 1.0
@@ -80,26 +80,26 @@ function ckan_dataset_fields() {
 	) );
 
 	$cmb->add_field( array(
-		'name'       => 'CKAN Ref. ID',
+		'name'       => __( 'CKAN Ref. ID', 'ogdch' ),
 		'id'         => $prefix . 'reference',
 		'type'       => 'text',
-		'desc'       => 'Ref. ID from CKAN',
+		'desc'       => __( 'Unique ID of dataset in CKAN', 'ogdch' ),
 		'attributes' => array( 'disabled' => true )
 	) );
 
 	$cmb->add_field( array(
-		'name'       => 'CKAN Request Time',
+		'name'       => __( 'CKAN Request Time', 'ogdch' ),
 		'id'         => $prefix . 'last_request',
 		'type'       => 'text',
-		'desc'       => 'CKAN Last Request Time',
+		'desc'       => __( 'Time of last CKAN request', 'ogdch' ),
 		'attributes' => array( 'disabled' => true )
 	) );
 
 	$cmb->add_field( array(
-		'name'       => 'CKAN JSON Response',
+		'name'       => __( 'CKAN JSON Response', 'ogdch' ),
 		'id'         => $prefix . 'response',
 		'type'       => 'textarea',
-		'desc'       => 'CKAN Response as JSON',
+		'desc'       => __( 'CKAN response as JSON string', 'ogdch' ),
 		'attributes' => array( 'disabled' => true )
 	) );
 
