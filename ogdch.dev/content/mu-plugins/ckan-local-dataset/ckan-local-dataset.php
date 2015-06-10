@@ -14,8 +14,8 @@
 function register_ckan_local_post_type() {
 
 	$labels = array(
-		'name'               => _x( 'CKAN local Datasets', 'Post Type General Name', 'ogdch' ),
-		'singular_name'      => _x( 'CKAN local Dataset', 'Post Type Singular Name', 'ogdch' ),
+		'name'               => __( 'CKAN local Datasets', 'ogdch' ),
+		'singular_name'      => __( 'CKAN local Dataset', 'ogdch' ),
 		'menu_name'          => __( 'CKAN local Data', 'ogdch' ),
 		'name_admin_bar'     => __( 'CKAN local Data', 'ogdch' ),
 		'parent_item_colon'  => __( 'Parent Dataset:', 'ogdch' ),
@@ -62,9 +62,9 @@ add_action( 'init', 'register_ckan_local_post_type', 0 );
 
 function ckan_local_dataset_fields() {
 
+    global $language_priority;
 	$prefix = '_ckan_local_dataset_';
 
-	$languages = array( 'de', 'en', 'it', 'fr' );
 
 	$cmb = new_cmb2_box( array(
 		'id'           => 'ckan-local-dataset-box',
@@ -77,10 +77,10 @@ function ckan_local_dataset_fields() {
 
 	/* CKAN Ref ID (If Set.. update.. set on first save) */
 	$cmb->add_field( array(
-		'name'       => 'CKAN Ref. ID',
+		'name'       => __( 'CKAN Ref. ID', 'ogdch' ),
 		'id'         => $prefix . 'reference',
 		'type'       => 'text',
-		'desc'       => 'Ref. ID from CKAN',
+		'desc'       => __( 'Ref. ID from CKAN', 'ogdch' ),
 		'attributes' => array(
 			'readonly' => 'readonly',
 		),
@@ -89,18 +89,18 @@ function ckan_local_dataset_fields() {
 
 	/* Title */
 	$cmb->add_field( array(
-		'name' => 'Dataset Title',
+		'name' => __( 'Dataset Title', 'ogdch' ),
 		'type' => 'title',
 		'id'   => 'title_title'
 	) );
 
-	foreach ( $languages as $lang ) {
+	foreach ( $language_priority as $lang ) {
 		$cmb->add_field( array(
-			'name'       => 'Title (' . strtoupper( $lang ) . ')',
+			'name'       => __( 'Title', 'ogdch' ) . ' (' . strtoupper( $lang ) . ')',
 			'id'         => $prefix . 'name_' . $lang,
 			'type'       => 'text',
 			'attributes' => array(
-				'placeholder' => 'z.B. ein beschreibender Titel'
+				'placeholder' => __( 'z.B. ein beschreibender Titel', 'ogdch' )
 			)
 		) );
 	}
@@ -108,16 +108,16 @@ function ckan_local_dataset_fields() {
 
 	/* Permalink */
 	$cmb->add_field( array(
-		'name' => 'Dataset Permalink',
+		'name' => __( 'Dataset Permalink', 'ogdch' ),
 		'type' => 'title',
 		'id'   => 'permalink_title'
 	) );
 
 	$cmb->add_field( array(
-		'name'       => 'Name (Slug)',
+		'name'       => __( 'Name (Slug)', 'ogdch' ),
 		'id'         => $prefix . 'name',
 		'type'       => 'text',
-		'desc'       => 'Permalink Name',
+		'desc'       => __( 'Permalink Name', 'ogdch' ),
 		'attributes' => array(
 			'placeholder' => 'my-dataset-about-paper'
 		)
@@ -126,13 +126,13 @@ function ckan_local_dataset_fields() {
 
 	/* Description */
 	$cmb->add_field( array(
-		'name' => 'Dataset Description',
+		'name' => __( 'Dataset Description', 'ogdch' ),
 		'type' => 'title',
 		'id'   => 'description_title',
-		'desc' => 'Markdown Syntax can be used to format the description.'
+		'desc' => __( 'Markdown Syntax can be used to format the description.', 'ogdch' ),
 	) );
 
-	foreach ( $languages as $lang ) {
+	foreach ( $language_priority as $lang ) {
 		$cmb->add_field( array(
 			'name'       => 'Description (' . strtoupper( $lang ) . ')',
 			'id'         => $prefix . 'description_' . $lang,
@@ -144,7 +144,7 @@ function ckan_local_dataset_fields() {
 
 	/* Custom Fields */
 	$cmb->add_field( array(
-		'name' => 'Custom Fields',
+		'name' => __( 'Custom Fields', 'ogdch' ),
 		'type' => 'title',
 		'id'   => 'customfields_title',
 	) );
@@ -160,13 +160,13 @@ function ckan_local_dataset_fields() {
 	) );
 
 	$cmb->add_group_field( $custom_fields_id, array(
-		'name' => 'Key',
+		'name' => __( 'Key', 'ogdch' ),
 		'id'   => 'key',
 		'type' => 'text',
 	) );
 
 	$cmb->add_group_field( $custom_fields_id, array(
-		'name' => 'Value',
+		'name' => __( 'Value', 'ogdch' ),
 		'id'   => 'value',
 		'type' => 'text',
 	) );
@@ -174,14 +174,14 @@ function ckan_local_dataset_fields() {
 
 	/* Visibility */
 	$cmb->add_field( array(
-		'name' => 'Sichtbarkeit',
+		'name' => __( 'Sichtbarkeit', 'ogdch' ),
 		'type' => 'title',
 		'id'   => 'visibility_title',
 	) );
 
 	$cmb->add_field( array(
-		'name'    => 'Visibility',
-		'desc'    => 'Select the visibility of the Dataset',
+		'name'    => __( 'Visibility', 'ogdch' ),
+		'desc'    => __( 'Select the visibility of the Dataset', 'ogdch' ),
 		'id'      => $prefix . 'visibility',
 		'type'    => 'radio',
 		'default' => 'active',
@@ -194,13 +194,13 @@ function ckan_local_dataset_fields() {
 
 	/* Source */
 	$cmb->add_field( array(
-		'name' => 'Source',
+		'name' => __( 'Source', 'ogdch' ),
 		'type' => 'title',
 		'id'   => 'source_title',
 	) );
 
 	$cmb->add_field( array(
-		'name'       => 'Spource',
+		'name'       => __( 'Source', 'ogdch' ),
 		'id'         => $prefix . 'source',
 		'type'       => 'text',
 		'attributes' => array(
@@ -209,7 +209,7 @@ function ckan_local_dataset_fields() {
 	) );
 
 	$cmb->add_field( array(
-		'name'       => 'Version',
+		'name'       => __( 'Version', 'ogdch' ),
 		'id'         => $prefix . 'version',
 		'type'       => 'text',
 		'attributes' => array(
@@ -220,65 +220,65 @@ function ckan_local_dataset_fields() {
 
 	/* Author */
 	$cmb->add_field( array(
-		'name' => 'Dataset Author',
+		'name' => __( 'Dataset Author', 'ogdch' ),
 		'type' => 'title',
 		'id'   => 'author_title'
 	) );
 
 	$cmb->add_field( array(
-		'name'       => 'Author Name',
+		'name'       => __( 'Author Name', 'ogdch' ),
 		'id'         => $prefix . 'author',
 		'type'       => 'text',
 		'attributes' => array(
-			'placeholder' => 'Hans Musterman'
+			'placeholder' => __( 'Hans Musterman', 'ogdch' ),
 		)
 	) );
 
 	$cmb->add_field( array(
-		'name'       => 'Author Email',
+		'name'       => __( 'Author Email', 'ogdch' ),
 		'id'         => $prefix . 'author_email',
 		'type'       => 'text',
 		'attributes' => array(
-			'placeholder' => 'hans@musterman.ch'
+			'placeholder' => __( 'hans@musterman.ch', 'ogdch' ),
 		)
 	) );
 
 
 	/* Maintainer */
 	$cmb->add_field( array(
-		'name' => 'Dataset Maintainer',
+		'name' => __( 'Dataset Maintainer', 'ogdch' ),
 		'type' => 'title',
 		'id'   => 'maintainer_title'
 	) );
 
 	$cmb->add_field( array(
-		'name'       => 'Maintainer Name',
+		'name'       => __( 'Maintainer Name', 'ogdch' ),
 		'id'         => $prefix . 'maintainer',
 		'type'       => 'text',
 		'attributes' => array(
-			'placeholder' => 'Peter Müller'
+			'placeholder' => __( 'Peter Müller', 'ogdch' ),
 		)
 	) );
 
 	$cmb->add_field( array(
-		'name'       => 'Maintainer Email',
+		'name'       => __( 'Maintainer Email', 'ogdch' ),
 		'id'         => $prefix . 'maintainer_email',
 		'type'       => 'text',
 		'attributes' => array(
-			'placeholder' => 'peter@mueller.ch'
+			'placeholder' => __( 'peter@mueller.ch', 'ogdch' ),
 		)
 	) );
 
 	/* Data */
 	$cmb->add_field( array(
-		'name' => 'Add Data',
+		'name' => __( 'Add Data', 'ogdch' ),
 		'type' => 'title',
 		'id'   => 'data_title'
 	) );
 
 	$cmb->add_field( array(
-		'name'    => 'File',
-		'desc'    => 'Upload a Datafile or enter an URL.',
+		'name'    => __( 'File', 'ogdch' ),
+		'desc'    => __( 'Upload a Datafile or enter an URL.', 'ogdch' ),
 		'id'      => $prefix . 'data_file',
 		'type'    => 'file',
 		'options' => array(
@@ -286,14 +286,14 @@ function ckan_local_dataset_fields() {
 		),
 	) );
 
-	foreach ( $languages as $lang ) {
+	foreach ( $language_priority as $lang ) {
 		$cmb->add_field( array(
-			'name'       => 'Data Description (' . strtoupper( $lang ) . ')',
+			'name'       => __('Data Description', 'ogdch' ) . ' (' . strtoupper( $lang ) . ')',
 			'id'         => $prefix . 'data_description_' . $lang,
 			'type'       => 'textarea',
 			'attributes' => array(
 				'rows'        => 3,
-				'placeholder' => 'Nützliche Hinweise zu den Daten'
+				'placeholder' => __( 'Nützliche Hinweise zu den Daten', 'ogdch' )
 			),
 		) );
 	}

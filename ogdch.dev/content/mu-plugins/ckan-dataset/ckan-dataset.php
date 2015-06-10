@@ -14,8 +14,8 @@
 function register_ckan_post_type() {
 
 	$labels  = array(
-		'name'               => _x( 'CKAN Datasets', 'Post Type General Name', 'ogdch' ),
-		'singular_name'      => _x( 'CKAN Dataset', 'Post Type Singular Name', 'ogdch' ),
+		'name'               => __( 'CKAN Datasets', 'ogdch' ),
+		'singular_name'      => __( 'CKAN Dataset', 'ogdch' ),
 		'menu_name'          => __( 'CKAN Data', 'ogdch' ),
 		'name_admin_bar'     => __( 'CKAN Data', 'ogdch' ),
 		'parent_item_colon'  => __( 'Parent Dataset:', 'ogdch' ),

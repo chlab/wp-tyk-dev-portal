@@ -10,8 +10,8 @@
 function register_app_post_type() {
 
 	$labels = array(
-		'name'                => _x( 'Apps', 'Post Type General Name', 'ogdch' ),
-		'singular_name'       => _x( 'App', 'Post Type Singular Name', 'ogdch' ),
+		'name'                => __( 'Apps', 'ogdch' ),
+		'singular_name'       => __( 'App', 'ogdch' ),
 		'menu_name'           => __( 'Apps', 'ogdch' ),
 		'name_admin_bar'      => __( 'Apps', 'ogdch' ),
 		'parent_item_colon'   => __( 'Parent App:', 'ogdch' ),
@@ -71,7 +71,7 @@ function cmb2_app_metaboxes() {
 	 */
 	$cmb = new_cmb2_box( array(
 		'id'            => 'app_metabox',
-		'title'         => __( 'App Information', 'cmb2' ),
+		'title'         => __( 'App Information', 'ogdch' ),
 		'object_types'  => array( 'app', ), // Post type
 		'context'       => 'normal',
 		'priority'      => 'high',
@@ -80,8 +80,8 @@ function cmb2_app_metaboxes() {
 
 	// URL
 	$cmb->add_field( array(
-		'name' => __( 'URL', 'cmb2' ),
-		'desc' => __( 'Landing page of app', 'cmb2' ),
+		'name' => __( 'URL', 'ogdch' ),
+		'desc' => __( 'Landing page of app', 'ogdch' ),
 		'id'   => $prefix . 'url',
 		'type' => 'text_url',
 		'protocols' => array( 'http', 'https' ), // Array of allowed protocols
@@ -94,7 +94,7 @@ function cmb2_app_metaboxes() {
 
 	// Author Name
 	$cmb->add_field( array(
-		'name'       => __( 'Author Name', 'cmb2' ),
+		'name'       => __( 'Author Name', 'ogdch' ),
 		'id'         => $prefix . 'author_name',
 		'type'       => 'text',
 		'attributes'  => array(
@@ -104,8 +104,8 @@ function cmb2_app_metaboxes() {
 
 	// Author Email
 	$cmb->add_field( array(
-		'name' => __( 'Author Email', 'cmb2' ),
-		'desc' => __( 'Email address of author', 'cmb2' ),
+		'name' => __( 'Author Email', 'ogdch' ),
+		'desc' => __( 'Email address of author', 'ogdch' ),
 		'id'   => $prefix . 'author_email',
 		'type' => 'text_email',
 		'attributes'  => array(
@@ -116,7 +116,7 @@ function cmb2_app_metaboxes() {
 
 	// Version
 	$cmb->add_field( array(
-		'name'       => __( 'Version', 'cmb2' ),
+		'name'       => __( 'Version', 'ogdch' ),
 		'id'         => $prefix . 'version',
 		'type'       => 'text_small',
 		'attributes'  => array(
@@ -127,7 +127,7 @@ function cmb2_app_metaboxes() {
 
 	// Icon
 	$cmb->add_field( array(
-		'name'       => __( 'Icon', 'cmb2' ),
+		'name'       => __( 'Icon', 'ogdch' ),
 		'id'         => $prefix . 'icon',
 		'type'       => 'file',
 	) );
