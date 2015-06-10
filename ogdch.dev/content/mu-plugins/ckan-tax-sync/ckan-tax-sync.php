@@ -17,7 +17,7 @@ function ckan_taxonomy() {
 	$labels  = array(
 		'name'                       => _x( 'Organisations', 'Taxonomy General Name', 'ogdch' ),
 		'singular_name'              => _x( 'Organisation', 'Taxonomy Singular Name', 'ogdch' ),
-		'menu_name'                  => __( 'Organisation', 'ogdch' ),
+		'menu_name'                  => __( 'Organisations', 'ogdch' ),
 		'all_items'                  => __( 'All Items', 'ogdch' ),
 		'parent_item'                => __( 'Parent Item', 'ogdch' ),
 		'parent_item_colon'          => __( 'Parent Item:', 'ogdch' ),
