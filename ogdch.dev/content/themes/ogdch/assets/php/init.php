@@ -16,7 +16,7 @@ function theme_setup() {
 	// Translations
 	// =======================================================================//
 
-	load_theme_textdomain( 'odgch', get_template_directory() . '/languages' );
+	load_theme_textdomain( 'ogdch', get_template_directory() . '/languages' );
 
 
 	// =======================================================================//
@@ -24,8 +24,8 @@ function theme_setup() {
 	// =======================================================================//
 
 	register_nav_menus( array(
-		'service_navigation' => __( 'Service-Navigation', 'vw' ),
-		'main_navigation'    => __( 'Haupt-Navigation', 'vw' ),
+		'service_navigation' => __( 'Service-Navigation', 'ogdch' ),
+		'main_navigation'    => __( 'Haupt-Navigation', 'ogdch' ),
 	) );
 
 	// =======================================================================//

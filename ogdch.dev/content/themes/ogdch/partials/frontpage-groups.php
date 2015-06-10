@@ -18,4 +18,6 @@ if ( count( $terms > 0 ) ) {
 		echo '<li>' . $term->name . '</li>';
 	}
 	echo '</ul>';
+} else {
+	echo '<p>' . __('Nothing found!', 'ogdch') . '</p>';
 }
