@@ -271,25 +271,15 @@ function ckan_local_dataset_fields() {
 
 	/* Resource */
 	$cmb->add_field( array(
-		'name' => __( 'Resources', 'ogdch' ),
+		'name' => __( 'Add Resource', 'ogdch' ),
 		'type' => 'title',
 		'id'   => 'resource_title'
 	) );
 
-	$resources_id = $cmb->add_field( array(
-		'id'      => $prefix . 'resources',
-		'type'    => 'group',
-		'options' => array(
-			'group_title'   => __( 'Resource {#}', 'ogdch' ),
-			'add_button'    => __( 'Add another Resource', 'ogdch' ),
-			'remove_button' => __( 'Remove Resource', 'ogdch' ),
-		),
-	) );
-
-	$cmb->add_group_field( $resources_id, array(
+	$cmb->add_field( array(
 		'name'    => __( 'File', 'ogdch' ),
 		'desc'    => __( 'Upload a File or enter an URL.', 'ogdch' ),
-		'id'      => 'file',
+		'id'      => $prefix . 'file_url',
 		'type'    => 'file',
 		'options' => array(
 			'url' => true,
@@ -297,9 +287,9 @@ function ckan_local_dataset_fields() {
 	) );
 
 	foreach ( $language_priority as $lang ) {
-		$cmb->add_group_field( $resources_id, array(
+		$cmb->add_field( array(
 			'name'       => __( 'Resource Title', 'ogdch' ) . ' (' . strtoupper( $lang ) . ')',
-			'id'         => 'title_' . $lang,
+			'id'         => $prefix . 'file_title_' . $lang,
 			'type'       => 'text',
 			'attributes' => array(
 				'placeholder' => __( 'e.g. Useful resource', 'ogdch' )
@@ -307,9 +297,9 @@ function ckan_local_dataset_fields() {
 		) );
 	}
 	foreach ( $language_priority as $lang ) {
-		$cmb->add_group_field( $resources_id, array(
+		$cmb->add_field( array(
 			'name'       => __( 'Resource Description', 'ogdch' ) . ' (' . strtoupper( $lang ) . ')',
-			'id'         => 'description_' . $lang,
+			'id'         => $prefix . 'file_description_' . $lang,
 			'type'       => 'textarea',
 			'attributes' => array(
 				'rows'        => 3,
@@ -526,20 +516,18 @@ function ckan_local_dataset_prepare_custom_fields() {
  */
 function ckan_local_dataset_prepare_resources() {
 	// If no resource was added
-	if ( $_POST['_ckan_local_dataset_resources'][0]['file'] == '' ) {
+	if ( $_POST['_ckan_local_dataset_file_url'] == '' ) {
 		return '';
 	}
 
 	$resources = array();
-	foreach ( $_POST['_ckan_local_dataset_resources'] as $resource ) {
-		$resources[] = array(
-			'url' => $resource['file'],
-			// TODO: use all languages
-			'name' => $resource['title_de'],
-			// TODO: use all languages
-			'description' => $resource['description_de'],
-		);
-	}
+	$resources[] = array(
+		'url' => $_POST['_ckan_local_dataset_file_url'],
+		// TODO: use all languages
+		'name' => $_POST['_ckan_local_dataset_file_title_de'],
+		// TODO: use all languages
+		'description' => $_POST['_ckan_local_dataset_file_description_de'],
+	);
 
 	return $resources;
 }
