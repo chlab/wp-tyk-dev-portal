@@ -142,36 +142,6 @@ function ckan_local_dataset_fields() {
 	}
 
 
-	/* Custom Fields */
-	$cmb->add_field( array(
-		'name' => __( 'Custom Fields', 'ogdch' ),
-		'type' => 'title',
-		'id'   => 'customfields_title',
-	) );
-
-	$custom_fields_id = $cmb->add_field( array(
-		'id'      => $prefix . 'custom_fields',
-		'type'    => 'group',
-		'options' => array(
-			'group_title'   => __( 'Custom Field {#}', 'ogdch' ),
-			'add_button'    => __( 'Add another Field', 'ogdch' ),
-			'remove_button' => __( 'Remove Field', 'ogdch' ),
-		),
-	) );
-
-	$cmb->add_group_field( $custom_fields_id, array(
-		'name' => __( 'Key', 'ogdch' ),
-		'id'   => 'key',
-		'type' => 'text',
-	) );
-
-	$cmb->add_group_field( $custom_fields_id, array(
-		'name' => __( 'Value', 'ogdch' ),
-		'id'   => 'value',
-		'type' => 'text',
-	) );
-
-
 	/* Visibility */
 	$cmb->add_field( array(
 		'name' => __( 'Sichtbarkeit', 'ogdch' ),
@@ -282,6 +252,37 @@ function ckan_local_dataset_fields() {
 		'id'   => $prefix . 'resources',
 		'type' => 'file_list',
 	) );
+
+
+	/* Custom Fields */
+	$cmb->add_field( array(
+		'name' => __( 'Custom Fields', 'ogdch' ),
+		'type' => 'title',
+		'id'   => 'customfields_title',
+	) );
+
+	$custom_fields_id = $cmb->add_field( array(
+		'id'      => $prefix . 'custom_fields',
+		'type'    => 'group',
+		'options' => array(
+			'group_title'   => __( 'Custom Field {#}', 'ogdch' ),
+			'add_button'    => __( 'Add another Field', 'ogdch' ),
+			'remove_button' => __( 'Remove Field', 'ogdch' ),
+		),
+	) );
+
+	$cmb->add_group_field( $custom_fields_id, array(
+		'name' => __( 'Key', 'ogdch' ),
+		'id'   => 'key',
+		'type' => 'text',
+	) );
+
+	$cmb->add_group_field( $custom_fields_id, array(
+		'name' => __( 'Value', 'ogdch' ),
+		'id'   => 'value',
+		'type' => 'text',
+	) );
+
 }
 
 add_action( 'cmb2_init', 'ckan_local_dataset_fields' );
@@ -363,6 +364,8 @@ function ckan_local_dataset_trash_action() {
  * @return bool True when CKAN request was successful.
  */
 function ckan_local_dataset_update_action( $post ) {
+	$ckan_organisation_slug = ckan_local_dataset_get_selected_organisation_slug( $_POST['ckan_organisation'] );
+
 	// Gernerate slug of dataset. If no title is entered use an uniqid
 	if ( $_POST['_ckan_local_dataset_name'] != '' ) {
 		$title = $_POST['_ckan_local_dataset_name'];
@@ -386,12 +389,14 @@ function ckan_local_dataset_update_action( $post ) {
 		'notes'            => $_POST['_ckan_local_dataset_description_de'],
 		'version'          => $_POST['_ckan_local_dataset_version'],
 		'state'            => $_POST['_ckan_local_dataset_visibility'],
-		'extras'           => '', // leave empty to clear all custom fields -> they are added in separate api call
-		'resources'        => '', // leave empty to clear all resources -> they are added in separate api call
+		'extras'           => array(), // leave empty to clear all custom fields -> they are added in separate api call
+		'resources'        => array(), // leave empty to clear all resources -> they are added in separate api call
+		'groups'           => array(), // leave empty to clear all resources -> they are added in separate api call
+		'owner_org'        => $ckan_organisation_slug
 	);
 
 	// Filter empty values as CKAN seems not to like it and make the array a JSON string
-	$ckan_post = json_encode( array_filter( $ckan_post ) );
+	$ckan_post = json_encode( $ckan_post );
 
 	// Define endpoint for request (No reference -> insert)
 	$endpoint = CKAN_REST_API_ENDPOINT . 'dataset';
@@ -492,11 +497,6 @@ function ckan_local_dataset_prepare_custom_fields() {
  * @return array CKAN friendly custom fields
  */
 function ckan_local_dataset_prepare_resources() {
-	// If no resource was added
-	if ( count( $_POST['_ckan_local_dataset_resources'] ) < 1 ) {
-		return '';
-	}
-
 	$resources = array();
 	foreach ( $_POST['_ckan_local_dataset_resources'] as $attachment_id => $url ) {
 		$attachment  = get_post( $attachment_id );
@@ -524,6 +524,7 @@ function ckan_local_dataset_send_additional_fields( $ckan_id ) {
 
 	$extras    = ckan_local_dataset_prepare_custom_fields();
 	$resources = ckan_local_dataset_prepare_resources();
+	$groups    = ckan_local_dataset_get_selected_groups( $_POST['tax_input']['ckan_group'] );
 
 	if ( $ckan_id == '' ) {
 		return false;
@@ -533,15 +534,48 @@ function ckan_local_dataset_send_additional_fields( $ckan_id ) {
 		return true;
 	}
 
-	$data   = array(
+	$data = array(
 		'id'        => $ckan_id,
 		'extras'    => $extras,
-		'resources' => $resources // resources have to be added here otherwise they disappear
+		'resources' => $resources, // have to be added here otherwise they disappear
+		'groups'    => $groups // have to be added here otherwise they disappear
 	);
-	$data   = json_encode( array_filter( $data ) );
+	$data = json_encode( $data );
+
 	$result = ckan_local_dataset_do_api_request( $endpoint, $data );
 
 	return ckan_local_dataset_handle_response( $result );
+}
+
+function ckan_local_dataset_get_selected_organisation_slug( $organisation_id ) {
+	if ( $organisation_id < 1 ) {
+		return '';
+	}
+
+	$organisation = get_term( $organisation_id, 'ckan_organisation' );
+	if ( is_object( $organisation ) && $organisation->slug != '' ) {
+		return $organisation->slug;
+	}
+
+	return '';
+}
+
+function ckan_local_dataset_get_selected_groups( $selected_groups ) {
+	$groups = array();
+
+	foreach ( $selected_groups as $group_id ) {
+		// First entry is always a 0 -> not used
+		if ( $group_id == 0 ) {
+			continue;
+		}
+
+		$group = get_term( $group_id, 'ckan_group' );
+		if ( is_object( $group ) && $group->slug != '' ) {
+			$groups[] = array( 'name' => $group->slug );
+		}
+	}
+
+	return $groups;
 }
 
 ?>
