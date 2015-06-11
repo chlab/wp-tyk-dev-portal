@@ -306,7 +306,10 @@ add_action( 'cmb2_init', 'ckan_local_dataset_fields' );
 // Send Data to CKAN
 // ===================================================
 
-
+/**
+ * This action gets called when a post of type ckan-local-dataset
+ * is saved/changed/deleted/trashed.
+ */
 function sync_ckan_local_dataset() {
 	global $post;
 
@@ -327,7 +330,7 @@ function sync_ckan_local_dataset() {
 
 	// If "Action" is trash, untrash or delete set CKAN dataset to deleted
 	if ( isset( $_GET ) && ( $_GET['action'] === 'trash' || $_GET['action'] === 'untrash' || $_GET['action'] === 'delete' ) ) {
-		ckan_local_dataset_trash_action( $post );
+		ckan_local_dataset_trash_action();
 	} // Or generate data for insert/update
 	else {
 		ckan_local_dataset_update_action( $post );
@@ -336,7 +339,14 @@ function sync_ckan_local_dataset() {
 
 add_action( 'save_post_ckan-local-dataset', 'sync_ckan_local_dataset' );
 
-function ckan_local_dataset_trash_action( $post ) {
+/**
+ * Gets called when a ckan-local-dataset is trashed/untrashed or deleted.
+ * Sets internal post visibility field to deleted. (also when it's untrashed)
+ * Tells CKAN to change state of dataset to deleted.
+ *
+ * @return bool True when CKAN request was successful.
+ */
+function ckan_local_dataset_trash_action() {
 	// It's not possible to delete a ckan record via api. So we mark him as deleted with his state.
 	$ckan_post = array( 'state' => 'deleted' );
 	$post_id   = $_GET['post'];
@@ -356,9 +366,17 @@ function ckan_local_dataset_trash_action( $post ) {
 
 	$result = ckan_local_dataset_do_api_request( $endpoint, $ckan_post );
 
-	ckan_local_dataset_handle_response( $result );
+	return ckan_local_dataset_handle_response( $result );
 }
 
+/**
+ * Gets called when a ckan-local-dataset is saved/updated.
+ * Sends new/updated dataset to CKAN and updates reference id and name (slug) from CKAN.
+ *
+ * @param object $post The ckan-local-dataset post to updated/save
+ *
+ * @return bool True when CKAN request was successful.
+ */
 function ckan_local_dataset_update_action( $post ) {
 	$extras = ckan_local_dataset_prepare_custom_fields_for_ckan();
 
@@ -411,8 +429,18 @@ function ckan_local_dataset_update_action( $post ) {
 			$_POST['_ckan_local_dataset_name']      = $result->name;
 		}
 	}
+
+	return $success;
 }
 
+/**
+ * Sends a curl request with given data to specified CKAN endpoint.
+ *
+ * @param string $endpoint CKAN API endpoint which gets called
+ * @param array $data Data to send
+ *
+ * @return object The CKAN dataset as object
+ */
 function ckan_local_dataset_do_api_request( $endpoint, $data ) {
 	$ch = curl_init( $endpoint );
 	curl_setopt( $ch, CURLOPT_CUSTOMREQUEST, "POST" );
@@ -429,32 +457,44 @@ function ckan_local_dataset_do_api_request( $endpoint, $data ) {
 	return $result;
 }
 
+/**
+ * Validates ckan api response
+ *
+ * @param object $response The json_decoded response from the CKAN api
+ *
+ * @return bool True if response looks good
+ */
 function ckan_local_dataset_handle_response( $response ) {
-	if ( is_object( $response ) ) {
-		if ( isset( $response->success ) && $response->success === false ) {
-			die( 'FAILED' );
-		} elseif ( $response->name && ! isset( $response->id ) ) {
-			$res = $response->name;
-			die( 'Error: ' . $res[0] );
-		}
-
-		return true;
-	} else {
+	if ( ! is_object( $response ) ) {
 		die( 'Save/update failed. CKAN entry not found.' );
 	}
+
+	if ( isset( $response->success ) && $response->success === false ) {
+		die( 'FAILED' );
+	} elseif ( $response->name && ! isset( $response->id ) ) {
+		$res = $response->name;
+		die( 'Error: ' . $res[0] );
+	}
+
+	return true;
 }
 
+/**
+ * Transforms custom field values from WP form to a CKAN friendly form.
+ *
+ * @return array CKAN friendly custom fields
+ */
 function ckan_local_dataset_prepare_custom_fields_for_ckan() {
-	$extras = array();
+	$custom_fields = array();
 
-	// Check if Custom Fields are added. If yes generate CKANinsh Array
+	// Check if custom fields are added. If yes generate CKAN friendly array.
 	if ( $_POST['_ckan_local_dataset_custom_fields'][0]['key'] != '' ) {
 		foreach ( $_POST['_ckan_local_dataset_custom_fields'] as $key => $value ) {
-			$extras[] = array( $value['key'], $value['value'] );
+			$custom_fields[] = array( $value['key'], $value['value'] );
 		}
 	}
 
-	return $extras;
+	return $custom_fields;
 }
 
 ?>
