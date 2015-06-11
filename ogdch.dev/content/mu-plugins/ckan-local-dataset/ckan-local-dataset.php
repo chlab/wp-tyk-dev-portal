@@ -464,7 +464,7 @@ function ckan_local_dataset_handle_response( $response ) {
 	}
 
 	if ( isset( $response->success ) && $response->success === false ) {
-		die( 'FAILED' );
+		die( 'Error: ' . $response->error->name[0] );
 	}
 
 	return true;
