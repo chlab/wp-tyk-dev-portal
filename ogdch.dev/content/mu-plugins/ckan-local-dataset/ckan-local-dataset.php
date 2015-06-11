@@ -271,42 +271,17 @@ function ckan_local_dataset_fields() {
 
 	/* Resource */
 	$cmb->add_field( array(
-		'name' => __( 'Add Resource', 'ogdch' ),
+		'name' => __( 'Resources', 'ogdch' ),
 		'type' => 'title',
 		'id'   => 'resource_title'
 	) );
 
 	$cmb->add_field( array(
-		'name'    => __( 'File', 'ogdch' ),
-		'desc'    => __( 'Upload a File or enter an URL.', 'ogdch' ),
-		'id'      => $prefix . 'file_url',
-		'type'    => 'file',
-		'options' => array(
-			'url' => true,
-		),
+		'name' => 'Add Resource',
+		'desc' => '',
+		'id'   => $prefix . 'resources',
+		'type' => 'file_list',
 	) );
-
-	foreach ( $language_priority as $lang ) {
-		$cmb->add_field( array(
-			'name'       => __( 'Resource Title', 'ogdch' ) . ' (' . strtoupper( $lang ) . ')',
-			'id'         => $prefix . 'file_title_' . $lang,
-			'type'       => 'text',
-			'attributes' => array(
-				'placeholder' => __( 'e.g. Useful resource', 'ogdch' )
-			),
-		) );
-	}
-	foreach ( $language_priority as $lang ) {
-		$cmb->add_field( array(
-			'name'       => __( 'Resource Description', 'ogdch' ) . ' (' . strtoupper( $lang ) . ')',
-			'id'         => $prefix . 'file_description_' . $lang,
-			'type'       => 'textarea',
-			'attributes' => array(
-				'rows'        => 3,
-				'placeholder' => __( 'Useful information about the resource', 'ogdch' )
-			),
-		) );
-	}
 }
 
 add_action( 'cmb2_init', 'ckan_local_dataset_fields' );
@@ -388,8 +363,6 @@ function ckan_local_dataset_trash_action() {
  * @return bool True when CKAN request was successful.
  */
 function ckan_local_dataset_update_action( $post ) {
-	$resources = ckan_local_dataset_prepare_resources();
-
 	// Gernerate slug of dataset. If no title is entered use an uniqid
 	if ( $_POST['_ckan_local_dataset_name'] != '' ) {
 		$title = $_POST['_ckan_local_dataset_name'];
@@ -414,7 +387,7 @@ function ckan_local_dataset_update_action( $post ) {
 		'version'          => $_POST['_ckan_local_dataset_version'],
 		'state'            => $_POST['_ckan_local_dataset_visibility'],
 		'extras'           => '', // leave empty to clear all custom fields -> they are added in separate api call
-		'resources'        => $resources
+		'resources'        => '', // leave empty to clear all resources -> they are added in separate api call
 	);
 
 	// Filter empty values as CKAN seems not to like it and make the array a JSON string
@@ -439,7 +412,7 @@ function ckan_local_dataset_update_action( $post ) {
 			$_POST['_ckan_local_dataset_reference'] = $result->id;
 			$_POST['_ckan_local_dataset_name']      = $result->name;
 
-			ckan_local_dataset_send_custom_fields( $result->id );
+			ckan_local_dataset_send_custom_fields_and_resources( $result->id );
 		}
 	}
 
@@ -520,24 +493,25 @@ function ckan_local_dataset_prepare_custom_fields() {
  */
 function ckan_local_dataset_prepare_resources() {
 	// If no resource was added
-	if ( $_POST['_ckan_local_dataset_file_url'] == '' ) {
+	if ( count($_POST['_ckan_local_dataset_resources']) < 1 ) {
 		return '';
 	}
 
-	$resources   = array();
-	$resources[] = array(
-		'url'         => $_POST['_ckan_local_dataset_file_url'],
-		// TODO: use all languages
-		'name'        => $_POST['_ckan_local_dataset_file_title_de'],
-		// TODO: use all languages
-		'description' => $_POST['_ckan_local_dataset_file_description_de'],
-	);
+	$resources = array();
+	foreach($_POST['_ckan_local_dataset_resources'] as $attachment_id => $url) {
+		$attachment = get_post( $attachment_id );
+		$resources[] = array(
+			'url'         => $url,
+			'name'        => $attachment->post_title,
+			'description' => $attachment->post_content
+		);
+	}
 
 	return $resources;
 }
 
 /**
- * Sends custom fields to CKAN API.
+ * Sends custom fields and resources to CKAN API.
  * It's not possible to delete a key/value pair from custom field list in insert or update action.
  * So we have to delete all pairs first (in insert/update action) and insert them again in this function.
  *
@@ -545,15 +519,17 @@ function ckan_local_dataset_prepare_resources() {
  *
  * @return bool True if custom fields were successfully inserted
  */
-function ckan_local_dataset_send_custom_fields( $ckan_id ) {
+function ckan_local_dataset_send_custom_fields_and_resources( $ckan_id ) {
 	$endpoint = CKAN_API_ENDPOINT . 'action/package_update';
 
 	$extras = ckan_local_dataset_prepare_custom_fields();
+	$resources = ckan_local_dataset_prepare_resources();
 
 	if ( ! empty( $extras ) && $ckan_id != '' ) {
 		$data = array(
 			'id'     => $ckan_id,
-			'extras' => $extras
+			'extras' => $extras,
+			'resources' => $resources // resources have to be added here otherwise they disappear
 		);
 		$data = json_encode( array_filter( $data ) );
 		$result = ckan_local_dataset_do_api_request( $endpoint, $data );
