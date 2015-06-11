@@ -365,8 +365,8 @@ function ckan_local_dataset_trash_action() {
  */
 function ckan_local_dataset_update_action( $post ) {
 	$ckan_organisation_slug = ckan_local_dataset_get_selected_organisation_slug( $_POST['ckan_organisation'] );
-	$extras                 = ckan_local_dataset_prepare_custom_fields($_POST['_ckan_local_dataset_custom_fields']);
-	$resources              = ckan_local_dataset_prepare_resources($_POST['_ckan_local_dataset_resources']);
+	$extras                 = ckan_local_dataset_prepare_custom_fields( $_POST['_ckan_local_dataset_custom_fields'] );
+	$resources              = ckan_local_dataset_prepare_resources( $_POST['_ckan_local_dataset_resources'] );
 	$groups                 = ckan_local_dataset_get_selected_groups( $_POST['tax_input']['ckan_group'] );
 
 	// Gernerate slug of dataset. If no title is entered use an uniqid
@@ -401,13 +401,14 @@ function ckan_local_dataset_update_action( $post ) {
 	$ckan_post = json_encode( $ckan_post );
 
 
-
 	// Define endpoint for request (No reference -> insert)
-	$endpoint = CKAN_REST_API_ENDPOINT . 'dataset';
+	$endpoint = CKAN_API_ENDPOINT . 'action/';
 
 	// If post has ref id use it as endpoint -> update action
 	if ( isset( $_POST['_ckan_local_dataset_reference'] ) && $_POST['_ckan_local_dataset_reference'] != '' ) {
-		$endpoint .= '/' . $_POST['_ckan_local_dataset_reference'];
+		$endpoint .= 'package_update?id=' . $_POST['_ckan_local_dataset_reference'];
+	} else {
+		$endpoint .= 'package_insert';
 	}
 
 	$result = ckan_local_dataset_do_api_request( $endpoint, $ckan_post );
@@ -477,7 +478,7 @@ function ckan_local_dataset_handle_response( $response ) {
  *
  * @return array CKAN friendly custom fields
  */
-function ckan_local_dataset_prepare_custom_fields($custom_fields) {
+function ckan_local_dataset_prepare_custom_fields( $custom_fields ) {
 	$ckan_custom_fields = array();
 
 	// Check if custom fields are added. If yes generate CKAN friendly array.
@@ -498,10 +499,10 @@ function ckan_local_dataset_prepare_custom_fields($custom_fields) {
  *
  * @return array CKAN friendly custom fields
  */
-function ckan_local_dataset_prepare_resources($resources) {
+function ckan_local_dataset_prepare_resources( $resources ) {
 	$ckan_resources = array();
 	foreach ( $resources as $attachment_id => $url ) {
-		$attachment  = get_post( $attachment_id );
+		$attachment       = get_post( $attachment_id );
 		$ckan_resources[] = array(
 			'url'         => $url,
 			'name'        => $attachment->post_title,
@@ -536,7 +537,7 @@ function ckan_local_dataset_get_selected_groups( $selected_groups ) {
 
 		$group = get_term( $group_id, 'ckan_group' );
 		if ( is_object( $group ) && $group->slug != '' ) {
-			$ckan_groups[] = $group->slug;
+			$ckan_groups[] = array( 'name' => $group->slug );
 		}
 	}
 
