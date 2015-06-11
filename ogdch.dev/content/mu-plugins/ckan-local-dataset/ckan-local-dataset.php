@@ -388,7 +388,6 @@ function ckan_local_dataset_trash_action() {
  * @return bool True when CKAN request was successful.
  */
 function ckan_local_dataset_update_action( $post ) {
-	$extras = ckan_local_dataset_prepare_custom_fields();
 	$resources = ckan_local_dataset_prepare_resources();
 
 	// Gernerate slug of dataset. If no title is entered use an uniqid
@@ -414,7 +413,7 @@ function ckan_local_dataset_update_action( $post ) {
 		'notes'            => $_POST['_ckan_local_dataset_description_de'],
 		'version'          => $_POST['_ckan_local_dataset_version'],
 		'state'            => $_POST['_ckan_local_dataset_visibility'],
-		'extras'           => $extras,
+		'extras'           => '', // leave empty to clear all custom fields -> they are added in separate api call
 		'resources'        => $resources
 	);
 
@@ -439,6 +438,8 @@ function ckan_local_dataset_update_action( $post ) {
 			update_post_meta( $post->ID, '_ckan_local_dataset_name', $result->name );
 			$_POST['_ckan_local_dataset_reference'] = $result->id;
 			$_POST['_ckan_local_dataset_name']      = $result->name;
+
+			ckan_local_dataset_send_custom_fields( $result->id );
 		}
 	}
 
@@ -502,7 +503,10 @@ function ckan_local_dataset_prepare_custom_fields() {
 	// Check if custom fields are added. If yes generate CKAN friendly array.
 	if ( $_POST['_ckan_local_dataset_custom_fields'][0]['key'] != '' ) {
 		foreach ( $_POST['_ckan_local_dataset_custom_fields'] as $custom_field ) {
-			$custom_fields[] = array( $custom_field['key'], $custom_field['value'] );
+			$custom_fields[] = array(
+				'key'   => $custom_field['key'],
+				'value' => $custom_field['value']
+			);
 		}
 	}
 
@@ -520,16 +524,42 @@ function ckan_local_dataset_prepare_resources() {
 		return '';
 	}
 
-	$resources = array();
+	$resources   = array();
 	$resources[] = array(
-		'url' => $_POST['_ckan_local_dataset_file_url'],
+		'url'         => $_POST['_ckan_local_dataset_file_url'],
 		// TODO: use all languages
-		'name' => $_POST['_ckan_local_dataset_file_title_de'],
+		'name'        => $_POST['_ckan_local_dataset_file_title_de'],
 		// TODO: use all languages
 		'description' => $_POST['_ckan_local_dataset_file_description_de'],
 	);
 
 	return $resources;
+}
+
+/**
+ * Sends custom fields to CKAN API.
+ * It's not possible to delete a key/value pair from custom field list in insert or update action.
+ * So we have to delete all pairs first (in insert/update action) and insert them again in this function.
+ *
+ * @param string $ckan_id
+ *
+ * @return bool True if custom fields were successfully inserted
+ */
+function ckan_local_dataset_send_custom_fields( $ckan_id ) {
+	$endpoint = CKAN_API_ENDPOINT . 'action/package_update';
+
+	$extras = ckan_local_dataset_prepare_custom_fields();
+
+	if ( ! empty( $extras ) && $ckan_id != '' ) {
+		$data = array(
+			'id'     => $ckan_id,
+			'extras' => $extras
+		);
+		$data = json_encode( array_filter( $data ) );
+		$result = ckan_local_dataset_do_api_request( $endpoint, $data );
+
+		return ckan_local_dataset_handle_response( $result );
+	}
 }
 
 ?>
