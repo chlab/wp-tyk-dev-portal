@@ -365,6 +365,9 @@ function ckan_local_dataset_trash_action() {
  */
 function ckan_local_dataset_update_action( $post ) {
 	$ckan_organisation_slug = ckan_local_dataset_get_selected_organisation_slug( $_POST['ckan_organisation'] );
+	$extras                 = ckan_local_dataset_prepare_custom_fields($_POST['_ckan_local_dataset_custom_fields']);
+	$resources              = ckan_local_dataset_prepare_resources($_POST['_ckan_local_dataset_resources']);
+	$groups                 = ckan_local_dataset_get_selected_groups( $_POST['tax_input']['ckan_group'] );
 
 	// Gernerate slug of dataset. If no title is entered use an uniqid
 	if ( $_POST['_ckan_local_dataset_name'] != '' ) {
@@ -385,18 +388,19 @@ function ckan_local_dataset_update_action( $post ) {
 		'maintainer_email' => $_POST['_ckan_local_dataset_maintainer_email'],
 		'author'           => $_POST['_ckan_local_dataset_author'],
 		'author_email'     => $_POST['_ckan_local_dataset_author_email'],
-		// TODO: use all language here
-		'notes'            => $_POST['_ckan_local_dataset_description_de'],
+		'notes'            => $_POST['_ckan_local_dataset_description_de'], // TODO: use all language here
 		'version'          => $_POST['_ckan_local_dataset_version'],
 		'state'            => $_POST['_ckan_local_dataset_visibility'],
-		'extras'           => array(), // leave empty to clear all custom fields -> they are added in separate api call
-		'resources'        => array(), // leave empty to clear all resources -> they are added in separate api call
-		'groups'           => array(), // leave empty to clear all resources -> they are added in separate api call
+		'extras'           => $extras,
+		'resources'        => $resources,
+		'groups'           => $groups,
 		'owner_org'        => $ckan_organisation_slug
 	);
 
 	// Filter empty values as CKAN seems not to like it and make the array a JSON string
 	$ckan_post = json_encode( $ckan_post );
+
+
 
 	// Define endpoint for request (No reference -> insert)
 	$endpoint = CKAN_REST_API_ENDPOINT . 'dataset';
@@ -416,8 +420,6 @@ function ckan_local_dataset_update_action( $post ) {
 			update_post_meta( $post->ID, '_ckan_local_dataset_name', $result->name );
 			$_POST['_ckan_local_dataset_reference'] = $result->id;
 			$_POST['_ckan_local_dataset_name']      = $result->name;
-
-			ckan_local_dataset_send_additional_fields( $result->id );
 		}
 	}
 
@@ -475,20 +477,20 @@ function ckan_local_dataset_handle_response( $response ) {
  *
  * @return array CKAN friendly custom fields
  */
-function ckan_local_dataset_prepare_custom_fields() {
-	$custom_fields = array();
+function ckan_local_dataset_prepare_custom_fields($custom_fields) {
+	$ckan_custom_fields = array();
 
 	// Check if custom fields are added. If yes generate CKAN friendly array.
-	if ( $_POST['_ckan_local_dataset_custom_fields'][0]['key'] != '' ) {
-		foreach ( $_POST['_ckan_local_dataset_custom_fields'] as $custom_field ) {
-			$custom_fields[] = array(
+	if ( $custom_fields[0]['key'] != '' ) {
+		foreach ( $custom_fields as $custom_field ) {
+			$ckan_custom_fields[] = array(
 				'key'   => $custom_field['key'],
 				'value' => $custom_field['value']
 			);
 		}
 	}
 
-	return $custom_fields;
+	return $ckan_custom_fields;
 }
 
 /**
@@ -496,55 +498,18 @@ function ckan_local_dataset_prepare_custom_fields() {
  *
  * @return array CKAN friendly custom fields
  */
-function ckan_local_dataset_prepare_resources() {
-	$resources = array();
-	foreach ( $_POST['_ckan_local_dataset_resources'] as $attachment_id => $url ) {
+function ckan_local_dataset_prepare_resources($resources) {
+	$ckan_resources = array();
+	foreach ( $resources as $attachment_id => $url ) {
 		$attachment  = get_post( $attachment_id );
-		$resources[] = array(
+		$ckan_resources[] = array(
 			'url'         => $url,
 			'name'        => $attachment->post_title,
 			'description' => $attachment->post_content
 		);
 	}
 
-	return $resources;
-}
-
-/**
- * Sends custom fields and resources to CKAN API.
- * It's not possible to delete a key/value pair from custom field list in insert or update action.
- * So we have to delete all pairs first (in insert/update action) and insert them again in this function.
- *
- * @param string $ckan_id
- *
- * @return bool True if additional fields were successfully inserted
- */
-function ckan_local_dataset_send_additional_fields( $ckan_id ) {
-	$endpoint = CKAN_API_ENDPOINT . 'action/package_update';
-
-	$extras    = ckan_local_dataset_prepare_custom_fields();
-	$resources = ckan_local_dataset_prepare_resources();
-	$groups    = ckan_local_dataset_get_selected_groups( $_POST['tax_input']['ckan_group'] );
-
-	if ( $ckan_id == '' ) {
-		return false;
-	}
-	if ( empty ( $extras ) && empty ( $resources ) ) {
-		// Nothing to send
-		return true;
-	}
-
-	$data = array(
-		'id'        => $ckan_id,
-		'extras'    => $extras,
-		'resources' => $resources, // have to be added here otherwise they disappear
-		'groups'    => $groups // have to be added here otherwise they disappear
-	);
-	$data = json_encode( $data );
-
-	$result = ckan_local_dataset_do_api_request( $endpoint, $data );
-
-	return ckan_local_dataset_handle_response( $result );
+	return $ckan_resources;
 }
 
 function ckan_local_dataset_get_selected_organisation_slug( $organisation_id ) {
@@ -561,7 +526,7 @@ function ckan_local_dataset_get_selected_organisation_slug( $organisation_id ) {
 }
 
 function ckan_local_dataset_get_selected_groups( $selected_groups ) {
-	$groups = array();
+	$ckan_groups = array();
 
 	foreach ( $selected_groups as $group_id ) {
 		// First entry is always a 0 -> not used
@@ -571,11 +536,11 @@ function ckan_local_dataset_get_selected_groups( $selected_groups ) {
 
 		$group = get_term( $group_id, 'ckan_group' );
 		if ( is_object( $group ) && $group->slug != '' ) {
-			$groups[] = array( 'name' => $group->slug );
+			$ckan_groups[] = $group->slug;
 		}
 	}
 
-	return $groups;
+	return $ckan_groups;
 }
 
 ?>
