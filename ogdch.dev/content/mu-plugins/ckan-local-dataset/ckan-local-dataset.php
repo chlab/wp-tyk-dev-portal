@@ -347,7 +347,7 @@ add_action( 'save_post_ckan-local-dataset', 'sync_ckan_local_dataset' );
  * @return bool True when CKAN request was successful.
  */
 function ckan_local_dataset_trash_action() {
-	// It's not possible to delete a ckan record via api. So we mark him as deleted with his state.
+	// It's not possible to delete a CKAN dataset via API. So we mark it as deleted with its state.
 	$ckan_post = array( 'state' => 'deleted' );
 	$post_id   = $_GET['post'];
 
@@ -356,7 +356,7 @@ function ckan_local_dataset_trash_action() {
 
 	$ckan_ref = get_post_meta( $post_id, '_ckan_local_dataset_reference', true );
 
-	// If no CKAN reference id is defined don't send request to CKAN
+	// If no CKAN reference id is defined don't send request a to CKAN
 	if ( $ckan_ref === '' ) {
 		return false;
 	}
@@ -458,9 +458,9 @@ function ckan_local_dataset_do_api_request( $endpoint, $data ) {
 }
 
 /**
- * Validates ckan api response
+ * Validates CKAN API response
  *
- * @param object $response The json_decoded response from the CKAN api
+ * @param object $response The json_decoded response from the CKAN API
  *
  * @return bool True if response looks good
  */
