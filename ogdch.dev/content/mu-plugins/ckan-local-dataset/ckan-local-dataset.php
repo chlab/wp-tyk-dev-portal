@@ -62,7 +62,7 @@ add_action( 'init', 'register_ckan_local_post_type', 0 );
 
 function ckan_local_dataset_fields() {
 
-    global $language_priority;
+	global $language_priority;
 	$prefix = '_ckan_local_dataset_';
 
 
@@ -100,7 +100,7 @@ function ckan_local_dataset_fields() {
 			'id'         => $prefix . 'name_' . $lang,
 			'type'       => 'text',
 			'attributes' => array(
-				'placeholder' => __( 'z.B. ein beschreibender Titel', 'ogdch' )
+				'placeholder' => __( 'e.g. Awesome dataset', 'ogdch' )
 			)
 		) );
 	}
@@ -269,17 +269,17 @@ function ckan_local_dataset_fields() {
 		)
 	) );
 
-	/* Data */
+	/* Resource */
 	$cmb->add_field( array(
-		'name' => __( 'Add Data', 'ogdch' ),
+		'name' => __( 'Add Resource', 'ogdch' ),
 		'type' => 'title',
-		'id'   => 'data_title'
+		'id'   => 'resource_title'
 	) );
 
 	$cmb->add_field( array(
 		'name'    => __( 'File', 'ogdch' ),
-		'desc'    => __( 'Upload a Datafile or enter an URL.', 'ogdch' ),
-		'id'      => $prefix . 'data_file',
+		'desc'    => __( 'Upload a File or enter an URL.', 'ogdch' ),
+		'id'      => $prefix . 'resource_file',
 		'type'    => 'file',
 		'options' => array(
 			'url' => true,
@@ -288,12 +288,22 @@ function ckan_local_dataset_fields() {
 
 	foreach ( $language_priority as $lang ) {
 		$cmb->add_field( array(
-			'name'       => __('Data Description', 'ogdch' ) . ' (' . strtoupper( $lang ) . ')',
-			'id'         => $prefix . 'data_description_' . $lang,
+			'name'       => __( 'Resource Title', 'ogdch' ) . ' (' . strtoupper( $lang ) . ')',
+			'id'         => $prefix . 'resource_title_' . $lang,
+			'type'       => 'text',
+			'attributes' => array(
+				'placeholder' => __( 'e.g. Useful resource', 'ogdch' )
+			),
+		) );
+	}
+	foreach ( $language_priority as $lang ) {
+		$cmb->add_field( array(
+			'name'       => __( 'Resource Description', 'ogdch' ) . ' (' . strtoupper( $lang ) . ')',
+			'id'         => $prefix . 'resource_description_' . $lang,
 			'type'       => 'textarea',
 			'attributes' => array(
 				'rows'        => 3,
-				'placeholder' => __( 'Nützliche Hinweise zu den Daten', 'ogdch' )
+				'placeholder' => __( 'Useful information about the resource', 'ogdch' )
 			),
 		) );
 	}
@@ -378,7 +388,8 @@ function ckan_local_dataset_trash_action() {
  * @return bool True when CKAN request was successful.
  */
 function ckan_local_dataset_update_action( $post ) {
-	$extras = ckan_local_dataset_prepare_custom_fields_for_ckan();
+	$extras = ckan_local_dataset_prepare_custom_fields();
+	$resources = ckan_local_dataset_prepare_resources();
 
 	// Gernerate slug of dataset. If no title is entered use an uniqid
 	if ( $_POST['_ckan_local_dataset_name'] != '' ) {
@@ -399,11 +410,12 @@ function ckan_local_dataset_update_action( $post ) {
 		'maintainer_email' => $_POST['_ckan_local_dataset_maintainer_email'],
 		'author'           => $_POST['_ckan_local_dataset_author'],
 		'author_email'     => $_POST['_ckan_local_dataset_author_email'],
-		'notes'            => $_POST['_ckan_local_dataset_data_description_de'],
-		'url'              => $_POST['_ckan_local_dataset_data_file'],
+		// TODO: use all language here
+		'notes'            => $_POST['_ckan_local_dataset_description_de'],
 		'version'          => $_POST['_ckan_local_dataset_version'],
 		'state'            => $_POST['_ckan_local_dataset_visibility'],
 		'extras'           => $extras,
+		'resources'        => $resources
 	);
 
 	// Filter empty values as CKAN seems not to like it and make the array a JSON string
@@ -484,7 +496,7 @@ function ckan_local_dataset_handle_response( $response ) {
  *
  * @return array CKAN friendly custom fields
  */
-function ckan_local_dataset_prepare_custom_fields_for_ckan() {
+function ckan_local_dataset_prepare_custom_fields() {
 	$custom_fields = array();
 
 	// Check if custom fields are added. If yes generate CKAN friendly array.
@@ -495,6 +507,29 @@ function ckan_local_dataset_prepare_custom_fields_for_ckan() {
 	}
 
 	return $custom_fields;
+}
+
+/**
+ * Transforms resources field values from WP form to a CKAN friendly form.
+ *
+ * @return array CKAN friendly custom fields
+ */
+function ckan_local_dataset_prepare_resources() {
+	// If no resource was added
+	if ( $_POST['_ckan_local_dataset_resource_file'] == '' ) {
+		return '';
+	}
+
+	$resources = array();
+	$resources[] = array(
+		'url' => $_POST['_ckan_local_dataset_resource_file'],
+		// TODO: use all languages
+		'name' => $_POST['_ckan_local_dataset_resource_title_de'],
+		// TODO: use all languages
+		'description' => $_POST['_ckan_local_dataset_resource_description_de'],
+	);
+
+	return $resources;
 }
 
 ?>
