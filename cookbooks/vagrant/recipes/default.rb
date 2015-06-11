@@ -218,7 +218,7 @@ end
 # Put one custom extension on each line like this: { "name-of-ckanext" => "repository-url", ... }
 {
   "ckanext-harvest" => "https://github.com/okfn/ckanext-harvest.git@stable",
-  "ckanext-fluent" => "https://github.com/open-data/ckanext-fluent.git",
+  "ckanext-fluent" => "https://github.com/ogdch/ckanext-fluent.git",
   "ckanext-scheming" => "https://github.com/open-data/ckanext-scheming.git",
   "ckanext-hierarchy" => "https://github.com/datagovuk/ckanext-hierarchy.git"
 }.each do | ckan_ext, repo_uri |
