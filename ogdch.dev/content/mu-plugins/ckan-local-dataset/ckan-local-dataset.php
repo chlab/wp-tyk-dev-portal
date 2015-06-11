@@ -412,7 +412,7 @@ function ckan_local_dataset_update_action( $post ) {
 			$_POST['_ckan_local_dataset_reference'] = $result->id;
 			$_POST['_ckan_local_dataset_name']      = $result->name;
 
-			ckan_local_dataset_send_custom_fields_and_resources( $result->id );
+			ckan_local_dataset_send_additional_fields( $result->id );
 		}
 	}
 
@@ -517,25 +517,31 @@ function ckan_local_dataset_prepare_resources() {
  *
  * @param string $ckan_id
  *
- * @return bool True if custom fields were successfully inserted
+ * @return bool True if additional fields were successfully inserted
  */
-function ckan_local_dataset_send_custom_fields_and_resources( $ckan_id ) {
+function ckan_local_dataset_send_additional_fields( $ckan_id ) {
 	$endpoint = CKAN_API_ENDPOINT . 'action/package_update';
 
 	$extras    = ckan_local_dataset_prepare_custom_fields();
 	$resources = ckan_local_dataset_prepare_resources();
 
-	if ( ! empty( $extras ) && $ckan_id != '' ) {
-		$data   = array(
-			'id'        => $ckan_id,
-			'extras'    => $extras,
-			'resources' => $resources // resources have to be added here otherwise they disappear
-		);
-		$data   = json_encode( array_filter( $data ) );
-		$result = ckan_local_dataset_do_api_request( $endpoint, $data );
-
-		return ckan_local_dataset_handle_response( $result );
+	if ( $ckan_id == '' ) {
+		return false;
 	}
+	if ( empty ( $extras ) && empty ( $resources ) ) {
+		// Nothing to send
+		return true;
+	}
+
+	$data   = array(
+		'id'        => $ckan_id,
+		'extras'    => $extras,
+		'resources' => $resources // resources have to be added here otherwise they disappear
+	);
+	$data   = json_encode( array_filter( $data ) );
+	$result = ckan_local_dataset_do_api_request( $endpoint, $data );
+
+	return ckan_local_dataset_handle_response( $result );
 }
 
 ?>
