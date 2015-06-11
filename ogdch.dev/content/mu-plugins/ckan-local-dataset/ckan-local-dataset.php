@@ -493,13 +493,13 @@ function ckan_local_dataset_prepare_custom_fields() {
  */
 function ckan_local_dataset_prepare_resources() {
 	// If no resource was added
-	if ( count($_POST['_ckan_local_dataset_resources']) < 1 ) {
+	if ( count( $_POST['_ckan_local_dataset_resources'] ) < 1 ) {
 		return '';
 	}
 
 	$resources = array();
-	foreach($_POST['_ckan_local_dataset_resources'] as $attachment_id => $url) {
-		$attachment = get_post( $attachment_id );
+	foreach ( $_POST['_ckan_local_dataset_resources'] as $attachment_id => $url ) {
+		$attachment  = get_post( $attachment_id );
 		$resources[] = array(
 			'url'         => $url,
 			'name'        => $attachment->post_title,
@@ -522,16 +522,16 @@ function ckan_local_dataset_prepare_resources() {
 function ckan_local_dataset_send_custom_fields_and_resources( $ckan_id ) {
 	$endpoint = CKAN_API_ENDPOINT . 'action/package_update';
 
-	$extras = ckan_local_dataset_prepare_custom_fields();
+	$extras    = ckan_local_dataset_prepare_custom_fields();
 	$resources = ckan_local_dataset_prepare_resources();
 
 	if ( ! empty( $extras ) && $ckan_id != '' ) {
-		$data = array(
-			'id'     => $ckan_id,
-			'extras' => $extras,
+		$data   = array(
+			'id'        => $ckan_id,
+			'extras'    => $extras,
 			'resources' => $resources // resources have to be added here otherwise they disappear
 		);
-		$data = json_encode( array_filter( $data ) );
+		$data   = json_encode( array_filter( $data ) );
 		$result = ckan_local_dataset_do_api_request( $endpoint, $data );
 
 		return ckan_local_dataset_handle_response( $result );
