@@ -400,7 +400,6 @@ function ckan_local_dataset_update_action( $post ) {
 	// Filter empty values as CKAN seems not to like it and make the array a JSON string
 	$ckan_post = json_encode( $ckan_post );
 
-
 	// Define endpoint for request (No reference -> insert)
 	$endpoint = CKAN_API_ENDPOINT . 'action/';
 
@@ -408,19 +407,20 @@ function ckan_local_dataset_update_action( $post ) {
 	if ( isset( $_POST['_ckan_local_dataset_reference'] ) && $_POST['_ckan_local_dataset_reference'] != '' ) {
 		$endpoint .= 'package_update?id=' . $_POST['_ckan_local_dataset_reference'];
 	} else {
-		$endpoint .= 'package_insert';
+		$endpoint .= 'package_create';
 	}
 
 	$result = ckan_local_dataset_do_api_request( $endpoint, $ckan_post );
 
 	$success = ckan_local_dataset_handle_response( $result );
 	if ( $success ) {
-		if ( isset( $result->id ) && $result->id != '' ) {
+		$ckan_dataset = $result->result;
+		if ( isset( $ckan_dataset->id ) && $ckan_dataset->id != '' ) {
 			// Set Ref. ID and add it to $_POST because the real meta save will follow after this action
-			update_post_meta( $post->ID, '_ckan_local_dataset_reference', $result->id );
-			update_post_meta( $post->ID, '_ckan_local_dataset_name', $result->name );
-			$_POST['_ckan_local_dataset_reference'] = $result->id;
-			$_POST['_ckan_local_dataset_name']      = $result->name;
+			update_post_meta( $post->ID, '_ckan_local_dataset_reference', $ckan_dataset->id );
+			update_post_meta( $post->ID, '_ckan_local_dataset_name', $ckan_dataset->name );
+			$_POST['_ckan_local_dataset_reference'] = $ckan_dataset->id;
+			$_POST['_ckan_local_dataset_name']      = $ckan_dataset->name;
 		}
 	}
 
@@ -465,9 +465,6 @@ function ckan_local_dataset_handle_response( $response ) {
 
 	if ( isset( $response->success ) && $response->success === false ) {
 		die( 'FAILED' );
-	} elseif ( $response->name && ! isset( $response->id ) ) {
-		$res = $response->name;
-		die( 'Error: ' . $res[0] );
 	}
 
 	return true;
