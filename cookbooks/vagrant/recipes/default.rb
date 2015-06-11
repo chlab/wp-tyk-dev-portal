@@ -86,15 +86,11 @@ dest = "/etc/solr/conf/"
   end
 end
 
-bash "make sure postgres is using UTF-8" do
-  user "root"
-  not_if "sudo -u postgres psql -c '\\l' | grep UTF8"
-  code <<-EOH
-service apache2 stop
-pg_dropcluster --stop 9.1 main
-pg_createcluster --start -e UTF-8 9.1 main
-EOH
-  notifies :restart, "service[apache2]"
+# patch solr schema.xml (see: https://github.com/ckan/ckan/issues/2161)
+template "/etc/solr/conf/schema.xml" do
+  user USER
+  mode 0644
+  source "schema.xml"
 end
 
 # copy the development.ini
