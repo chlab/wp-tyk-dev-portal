@@ -84,7 +84,9 @@ function ckan_dataset_fields() {
 		'id'         => $prefix . 'reference',
 		'type'       => 'text',
 		'desc'       => __( 'Unique ID of dataset in CKAN', 'ogdch' ),
-		'attributes' => array( 'disabled' => true )
+		'attributes' => array(
+			'readonly' => 'readonly',
+		),
 	) );
 
 	$cmb->add_field( array(
@@ -92,7 +94,9 @@ function ckan_dataset_fields() {
 		'id'         => $prefix . 'last_request',
 		'type'       => 'text',
 		'desc'       => __( 'Time of last CKAN request', 'ogdch' ),
-		'attributes' => array( 'disabled' => true )
+		'attributes' => array(
+			'readonly' => 'readonly',
+		),
 	) );
 
 	$cmb->add_field( array(
@@ -100,7 +104,9 @@ function ckan_dataset_fields() {
 		'id'         => $prefix . 'response',
 		'type'       => 'textarea',
 		'desc'       => __( 'CKAN response as JSON string', 'ogdch' ),
-		'attributes' => array( 'disabled' => true )
+		/*'attributes' => array(
+			'readonly' => 'readonly',
+		),*/
 	) );
 
 }
