@@ -532,6 +532,13 @@ function ckan_local_dataset_prepare_resources( $resources ) {
 	return $ckan_resources;
 }
 
+/**
+ * Gets slug from selected organisation
+ *
+ * @param int $organisation_id
+ *
+ * @return string Slug of organisation or empty string if organisation wasn't found
+ */
 function ckan_local_dataset_get_selected_organisation_slug( $organisation_id ) {
 	if ( $organisation_id < 1 ) {
 		return '';
@@ -545,6 +552,13 @@ function ckan_local_dataset_get_selected_organisation_slug( $organisation_id ) {
 	return '';
 }
 
+/**
+ * Create CKAN friendly array of all selected groups
+ *
+ * @param array $selected_groups IDs of selected groups
+ *
+ * @return array CKAN friendly array with all selected groups
+ */
 function ckan_local_dataset_get_selected_groups( $selected_groups ) {
 	$ckan_groups = array();
 
