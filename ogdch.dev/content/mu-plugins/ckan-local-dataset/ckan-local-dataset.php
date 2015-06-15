@@ -314,10 +314,10 @@ function sync_ckan_local_dataset() {
 		return;
 	}
 
-	// If "Action" is trash, untrash or delete set CKAN dataset to deleted
+	// If action is trash or delete set CKAN dataset to deleted
 	if ( isset( $_GET ) && ( $_GET['action'] === 'trash' || $_GET['action'] === 'delete' ) ) {
 		ckan_local_dataset_trash_action();
-	}
+	} // If action is untrash set CKAN dataset to active
 	elseif ( isset( $_GET ) && $_GET['action'] === 'untrash' ) {
 		ckan_local_dataset_trash_action( true );
 	} // Or generate data for insert/update
