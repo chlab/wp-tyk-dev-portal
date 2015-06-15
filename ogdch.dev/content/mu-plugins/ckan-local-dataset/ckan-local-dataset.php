@@ -315,8 +315,11 @@ function sync_ckan_local_dataset() {
 	}
 
 	// If "Action" is trash, untrash or delete set CKAN dataset to deleted
-	if ( isset( $_GET ) && ( $_GET['action'] === 'trash' || $_GET['action'] === 'untrash' || $_GET['action'] === 'delete' ) ) {
+	if ( isset( $_GET ) && ( $_GET['action'] === 'trash' || $_GET['action'] === 'delete' ) ) {
 		ckan_local_dataset_trash_action();
+	}
+	elseif ( isset( $_GET ) && $_GET['action'] === 'untrash' ) {
+		ckan_local_dataset_trash_action( true );
 	} // Or generate data for insert/update
 	else {
 		ckan_local_dataset_update_action( $post );
@@ -327,18 +330,22 @@ add_action( 'save_post_ckan-local-dataset', 'sync_ckan_local_dataset' );
 
 /**
  * Gets called when a ckan-local-dataset is trashed/untrashed or deleted.
- * Sets internal post visibility field to deleted. (also when it's untrashed)
- * Tells CKAN to change state of dataset to deleted.
+ * Updates internal post visibility field and CKAN dataset state.
+ *
+ * @param bool $untrash Set true if dataset should be untrashed
  *
  * @return bool True when CKAN request was successful.
  */
-function ckan_local_dataset_trash_action() {
-	// It's not possible to delete a CKAN dataset via API. So we mark it as deleted with its state.
-	$ckan_post = array( 'state' => 'deleted' );
+function ckan_local_dataset_trash_action( $untrash = false ) {
 	$post_id   = $_GET['post'];
 
-	// Set internal post visibility state to deleted
-	update_post_meta( $post_id, '_ckan_local_dataset_visibility', 'deleted' );
+	if( $untrash ) {
+		// Set internal post visibility state to active
+		update_post_meta( $post_id, '_ckan_local_dataset_visibility', 'active' );
+	} else {
+		// Set internal post visibility state to deleted
+		update_post_meta( $post_id, '_ckan_local_dataset_visibility', 'deleted' );
+	}
 
 	$ckan_ref = get_post_meta( $post_id, '_ckan_local_dataset_reference', true );
 
@@ -347,10 +354,25 @@ function ckan_local_dataset_trash_action() {
 		return false;
 	}
 
-	// Define endpoint for request
-	$endpoint = CKAN_REST_API_ENDPOINT . 'dataset' . '/' . $ckan_ref;
+	// Get current CKAN data and update state property
+	$endpoint = CKAN_API_ENDPOINT . 'action/package_show?id=' . $ckan_ref;
+	$result = ckan_local_dataset_do_api_request( $endpoint );
+	$success = ckan_local_dataset_handle_response( $result );
+	$ckan_dataset = $result->result;
 
-	$result = ckan_local_dataset_do_api_request( $endpoint, $ckan_post );
+	if( $untrash ) {
+		// Set CKAN state to active.
+		$ckan_dataset->state = 'active';
+	} else {
+		// Set CKAN state to deleted
+		$ckan_dataset->state = 'deleted';
+	}
+
+	$ckan_dataset = json_encode( $ckan_dataset );
+
+	// Send updated data to CKAN
+	$endpoint = CKAN_API_ENDPOINT . 'action/package_update?id=' . $ckan_ref;
+	$result = ckan_local_dataset_do_api_request( $endpoint, $ckan_dataset );
 
 	return ckan_local_dataset_handle_response( $result );
 }
@@ -397,16 +419,16 @@ function ckan_local_dataset_update_action( $post ) {
 		'owner_org'        => $ckan_organisation_slug
 	);
 
-	// Filter empty values as CKAN seems not to like it and make the array a JSON string
 	$ckan_post = json_encode( $ckan_post );
 
-	// Define endpoint for request (No reference -> insert)
+	// Define endpoint for request
 	$endpoint = CKAN_API_ENDPOINT . 'action/';
 
-	// If post has ref id use it as endpoint -> update action
+	// If post has reference id use it as endpoint -> update existing dataset
 	if ( isset( $_POST['_ckan_local_dataset_reference'] ) && $_POST['_ckan_local_dataset_reference'] != '' ) {
 		$endpoint .= 'package_update?id=' . $_POST['_ckan_local_dataset_reference'];
 	} else {
+		// Insert new dataset
 		$endpoint .= 'package_create';
 	}
 
@@ -416,7 +438,7 @@ function ckan_local_dataset_update_action( $post ) {
 	if ( $success ) {
 		$ckan_dataset = $result->result;
 		if ( isset( $ckan_dataset->id ) && $ckan_dataset->id != '' ) {
-			// Set Ref. ID and add it to $_POST because the real meta save will follow after this action
+			// Set reference id from CKAN and add it to $_POST because the real meta save will follow after this action
 			update_post_meta( $post->ID, '_ckan_local_dataset_reference', $ckan_dataset->id );
 			update_post_meta( $post->ID, '_ckan_local_dataset_name', $ckan_dataset->name );
 			$_POST['_ckan_local_dataset_reference'] = $ckan_dataset->id;
@@ -431,11 +453,11 @@ function ckan_local_dataset_update_action( $post ) {
  * Sends a curl request with given data to specified CKAN endpoint.
  *
  * @param string $endpoint CKAN API endpoint which gets called
- * @param array $data Data to send
+ * @param string $data Data to send
  *
  * @return object The CKAN dataset as object
  */
-function ckan_local_dataset_do_api_request( $endpoint, $data ) {
+function ckan_local_dataset_do_api_request( $endpoint, $data = '' ) {
 	$ch = curl_init( $endpoint );
 	curl_setopt( $ch, CURLOPT_CUSTOMREQUEST, "POST" );
 	curl_setopt( $ch, CURLOPT_POSTFIELDS, $data );
