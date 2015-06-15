@@ -86,6 +86,17 @@ function ckan_local_dataset_fields() {
 		),
 	) );
 
+	/* Permalink */
+	$cmb->add_field( array(
+		'name'       => __( 'Name (Slug)', 'ogdch' ),
+		'id'         => $prefix . 'name',
+		'type'       => 'text',
+		'desc'       => __( 'Permalink Name', 'ogdch' ),
+		'attributes' => array(
+			'placeholder' => 'my-dataset-about-paper',
+			'readonly'    => 'readonly',
+		),
+	) );
 
 	/* Title */
 	$cmb->add_field( array(
@@ -104,24 +115,6 @@ function ckan_local_dataset_fields() {
 			)
 		) );
 	}
-
-
-	/* Permalink */
-	$cmb->add_field( array(
-		'name' => __( 'Dataset Permalink', 'ogdch' ),
-		'type' => 'title',
-		'id'   => 'permalink_title'
-	) );
-
-	$cmb->add_field( array(
-		'name'       => __( 'Name (Slug)', 'ogdch' ),
-		'id'         => $prefix . 'name',
-		'type'       => 'text',
-		'desc'       => __( 'Permalink Name', 'ogdch' ),
-		'attributes' => array(
-			'placeholder' => 'my-dataset-about-paper'
-		)
-	) );
 
 
 	/* Description */
@@ -327,6 +320,8 @@ function sync_ckan_local_dataset() {
 }
 
 add_action( 'save_post_ckan-local-dataset', 'sync_ckan_local_dataset' );
+// display all notices
+add_action( 'admin_notices', 'ckan_local_dataset_show_admin_notices', 0 );
 
 /**
  * Gets called when a ckan-local-dataset is trashed/untrashed or deleted.
@@ -337,9 +332,9 @@ add_action( 'save_post_ckan-local-dataset', 'sync_ckan_local_dataset' );
  * @return bool True when CKAN request was successful.
  */
 function ckan_local_dataset_trash_action( $untrash = false ) {
-	$post_id   = $_GET['post'];
+	$post_id = $_GET['post'];
 
-	if( $untrash ) {
+	if ( $untrash ) {
 		// Set internal post visibility state to active
 		update_post_meta( $post_id, '_ckan_local_dataset_visibility', 'active' );
 	} else {
@@ -355,12 +350,12 @@ function ckan_local_dataset_trash_action( $untrash = false ) {
 	}
 
 	// Get current CKAN data and update state property
-	$endpoint = CKAN_API_ENDPOINT . 'action/package_show?id=' . $ckan_ref;
-	$result = ckan_local_dataset_do_api_request( $endpoint );
-	$success = ckan_local_dataset_handle_response( $result );
-	$ckan_dataset = $result->result;
+	$endpoint     = CKAN_API_ENDPOINT . 'action/package_show?id=' . $ckan_ref;
+	$response       = ckan_local_dataset_do_api_request( $endpoint );
+	$success      = ckan_local_dataset_check_response_for_errors( $response );
+	$ckan_dataset = $response->result;
 
-	if( $untrash ) {
+	if ( $untrash ) {
 		// Set CKAN state to active.
 		$ckan_dataset->state = 'active';
 	} else {
@@ -372,9 +367,9 @@ function ckan_local_dataset_trash_action( $untrash = false ) {
 
 	// Send updated data to CKAN
 	$endpoint = CKAN_API_ENDPOINT . 'action/package_update?id=' . $ckan_ref;
-	$result = ckan_local_dataset_do_api_request( $endpoint, $ckan_dataset );
+	$response   = ckan_local_dataset_do_api_request( $endpoint, $ckan_dataset );
 
-	return ckan_local_dataset_handle_response( $result );
+	return ckan_local_dataset_check_response_for_errors( $response );
 }
 
 /**
@@ -432,11 +427,11 @@ function ckan_local_dataset_update_action( $post ) {
 		$endpoint .= 'package_create';
 	}
 
-	$result = ckan_local_dataset_do_api_request( $endpoint, $ckan_post );
+	$response = ckan_local_dataset_do_api_request( $endpoint, $ckan_post );
 
-	$success = ckan_local_dataset_handle_response( $result );
+	$success = ckan_local_dataset_check_response_for_errors( $response );
 	if ( $success ) {
-		$ckan_dataset = $result->result;
+		$ckan_dataset = $response->result;
 		if ( isset( $ckan_dataset->id ) && $ckan_dataset->id != '' ) {
 			// Set reference id from CKAN and add it to $_POST because the real meta save will follow after this action
 			update_post_meta( $post->ID, '_ckan_local_dataset_reference', $ckan_dataset->id );
@@ -447,6 +442,23 @@ function ckan_local_dataset_update_action( $post ) {
 	}
 
 	return $success;
+}
+
+/**
+ * Displays all admin notices
+ *
+ * @return string
+ */
+function ckan_local_dataset_show_admin_notices() {
+	$notice = get_option( 'ckan_local_dataset_notice' );
+	if ( empty( $notice ) ) {
+		return '';
+	}
+	//print the message
+	foreach ( $notice as $key => $m ) {
+		echo '<div class="error"><p>' . $m . '</p></div>';
+	}
+	delete_option( 'ckan_local_dataset_notice' );
 }
 
 /**
@@ -465,12 +477,12 @@ function ckan_local_dataset_do_api_request( $endpoint, $data = '' ) {
 	curl_setopt( $ch, CURLOPT_HTTPHEADER, [ 'Authorization: ' . CKAN_API_KEY . '' ] );
 
 	// send request
-	$result = curl_exec( $ch );
-	$result = json_decode( $result );
+	$response = curl_exec( $ch );
+	$response = json_decode( $response );
 
 	curl_close( $ch );
 
-	return $result;
+	return $response;
 }
 
 /**
@@ -480,14 +492,21 @@ function ckan_local_dataset_do_api_request( $endpoint, $data = '' ) {
  *
  * @return bool True if response looks good
  */
-function ckan_local_dataset_handle_response( $response ) {
+function ckan_local_dataset_check_response_for_errors( $response ) {
+	// store all error notices in option array
+	$notice = get_option( 'ckan_local_dataset_notice' );
 	if ( ! is_object( $response ) ) {
-		die( 'Save/update failed. CKAN entry not found.' );
+		$notice[] = 'There was a problem sending the request.';
 	}
 
 	if ( isset( $response->success ) && $response->success === false ) {
-		die( 'Error: ' . $response->error->name[0] );
+		if ( isset( $response->error ) && isset( $response->error->name ) && is_array( $response->error->name ) ) {
+			$notice[] = $response->error->name[0];
+		} else {
+			$notice[] = 'API responded with unknown error.';
+		}
 	}
+	update_option( 'ckan_local_dataset_notice', $notice );
 
 	return true;
 }
