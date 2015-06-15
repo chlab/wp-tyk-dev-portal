@@ -1,8 +1,20 @@
-<h4><?php the_title(); ?></h4>
+<h4><a href="/dataset/<?php echo pll_current_language() . '/' . $res->name; ?>"><?php echo $res->title; ?></a></h4>
 <p>
-    <?php echo get_post_meta( get_the_id(), '_ckandataset_reference', true ); ?>
+    <b>Groups:</b>
+    <?php
+        $groups = array();
+        foreach($res->groups as $group) {
+          $groups[] = $group->display_name;
+        }
+        echo implode(', ', $groups);
+    ?>
 </p>
-<p><?php the_terms( get_the_id(), 'ckan_group', 'groups: ', ' / ' ); ?></p>
-<p><?php the_terms( get_the_id(), 'ckan_organisation', 'orgs: ', ' / ' ); ?></p>
+<p>
+    <b>Organization:</b>
+    <?php
+        $org = $res->organization;
+        echo $org->title;
+    ?>
+</p>
 
 <hr />

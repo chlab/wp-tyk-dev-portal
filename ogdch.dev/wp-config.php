@@ -61,14 +61,14 @@ define( 'DISALLOW_FILE_EDIT', true );
 // Authentication Unique Keys and Salts.
 // ===================================================
 
-define('AUTH_KEY',         'ffFir(Z;glFwc*/<STo+.4t-jQJty`!av<iOY&-mM=rk[-H!mQ~c|X=_1nzMb7Ky');
-define('SECURE_AUTH_KEY',  '~XAUdj)T0|>{K5G?uo=a0CA8 4;J/x>V3!e`Bz=NGHD2MH=L.I!j|mS?53J):6;,');
-define('LOGGED_IN_KEY',    'VTNPr8- >E=Lv/%+rA!SP0;U9P_MfuFD9+a;+J=r/VFw3|L>ib#_Ap&^Shit1)<}');
-define('NONCE_KEY',        '4$+%qQ<Yf{Mzsy5rF->%8LpkvBV&4KsL[2gP,}S}>C%xn$6Bm-bRI<m2y:6C: SE');
-define('AUTH_SALT',        ':{y.;s7M MUrw/)F]qSE-jyA5.Qi8z8U:O$f|WdDDKzyiB`aQ+czUS!44e-AggV)');
-define('SECURE_AUTH_SALT', 'Hf2[K*Fi}lra6E9[6|+vg5rn9Z|ZtNSK30?{`QdoO0auq@g,sro5da%K4d7}4{AI');
-define('LOGGED_IN_SALT',   'gqIN+FZ 5+KhW4E-yY8dl|}m`c~^}7$2^Swew9;/J@!!^8kC=iXJ+_ywup@/FD/S');
-define('NONCE_SALT',       '9q-$mg]u3Jm+P{5EvKo52SG*(f{?6-]2.j43pq$a 1lsL)2TT^TH1s:i%U)m@<rE');
+define( 'AUTH_KEY', 'ffFir(Z;glFwc*/<STo+.4t-jQJty`!av<iOY&-mM=rk[-H!mQ~c|X=_1nzMb7Ky' );
+define( 'SECURE_AUTH_KEY', '~XAUdj)T0|>{K5G?uo=a0CA8 4;J/x>V3!e`Bz=NGHD2MH=L.I!j|mS?53J):6;,' );
+define( 'LOGGED_IN_KEY', 'VTNPr8- >E=Lv/%+rA!SP0;U9P_MfuFD9+a;+J=r/VFw3|L>ib#_Ap&^Shit1)<}' );
+define( 'NONCE_KEY', '4$+%qQ<Yf{Mzsy5rF->%8LpkvBV&4KsL[2gP,}S}>C%xn$6Bm-bRI<m2y:6C: SE' );
+define( 'AUTH_SALT', ':{y.;s7M MUrw/)F]qSE-jyA5.Qi8z8U:O$f|WdDDKzyiB`aQ+czUS!44e-AggV)' );
+define( 'SECURE_AUTH_SALT', 'Hf2[K*Fi}lra6E9[6|+vg5rn9Z|ZtNSK30?{`QdoO0auq@g,sro5da%K4d7}4{AI' );
+define( 'LOGGED_IN_SALT', 'gqIN+FZ 5+KhW4E-yY8dl|}m`c~^}7$2^Swew9;/J@!!^8kC=iXJ+_ywup@/FD/S' );
+define( 'NONCE_SALT', '9q-$mg]u3Jm+P{5EvKo52SG*(f{?6-]2.j43pq$a 1lsL)2TT^TH1s:i%U)m@<rE' );
 
 // ===================================================
 // DO NOT EDIT FORM HERE ! ! !

@@ -31,6 +31,9 @@ gulp.task('sass', function() {
 
 gulp.task('scripts', function() {
     return gulp.src([
+        './assets/js/lib/URI.js',
+        './assets/js/lib/jquery.URI.min.js',
+        './assets/js/functions.js',
         './assets/js/app.js'
     ])
         .pipe(concat('app.min.js'))
