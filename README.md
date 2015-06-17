@@ -12,6 +12,11 @@
 3. Install omnibus plugin for vagrant: `vagrant plugin install vagrant-omnibus`
 4. Run `vagrant up`
 5. Copy the `ogdch.dev/wp-local-config.php.dist` to `ogdch.dev/wp-local-config.php` and fill in the DB config values
+    ```
+    define( 'DB_NAME', 'cms' );
+    define( 'DB_USER', 'cms' );
+    define( 'DB_PASSWORD', '123' );
+    ```
 6.  Add the following entries to your hosts (usually `/etc/hosts`) file:
     ```
     192.168.56.101 ogdch.dev
