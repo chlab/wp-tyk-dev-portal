@@ -20,7 +20,7 @@ class Ckan_Backend_Main {
 
 	private function load_dependencies() {
 		require_once plugin_dir_path( __FILE__ ) . 'post-types/ckan-backend-local-dataset.php';
-		require_once plugin_dir_path( __FILE__ ) . 'sync/ckan-backend-sync-main.php';
+		require_once plugin_dir_path( __FILE__ ) . 'sync/ckan-backend-sync-abstract.php';
 		require_once plugin_dir_path( __FILE__ ) . 'sync/ckan-backend-sync-local-dataset.php';
 	}
 

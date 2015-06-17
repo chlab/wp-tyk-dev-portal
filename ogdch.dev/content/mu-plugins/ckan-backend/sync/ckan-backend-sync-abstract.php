@@ -1,5 +1,5 @@
 <?php
-class Ckan_Backend_Sync_Main {
+abstract class Ckan_Backend_Sync_Abstract {
 
 	public $post_type = '';
 	public $field_prefix = '';
@@ -18,6 +18,41 @@ class Ckan_Backend_Sync_Main {
 			$this->api_type = $this->type_api_mapping[$post_type];
 		} else {
 			return false;
+		}
+	}
+
+	/**
+	 * This action gets called when a post of type ckan-local-dataset
+	 * is saved/changed/deleted/trashed.
+	 */
+	function do_sync() {
+		global $post;
+
+		// Exit if WP is doing a auto-save
+		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+			return;
+		}
+
+		// Exit is $post is empty (Should never happen)
+		if ( ! $post ) {
+			return;
+		}
+
+		// Exit if THIS saved Post is a revision (Revisions are deactivated in wp-config.. but just in case)
+		if ( wp_is_post_revision( $post->ID ) || ! isset( $post->post_status ) ) {
+			return;
+		}
+
+		// If action is trash or delete set CKAN dataset to deleted
+		if ( isset( $_GET ) && ( $_GET['action'] === 'trash' || $_GET['action'] === 'delete' ) ) {
+			$this->trash_action();
+		} // If action is untrash set CKAN dataset to active
+		elseif ( isset( $_GET ) && $_GET['action'] === 'untrash' ) {
+			$this->trash_action( true );
+		} // Or generate data for insert/update
+		else {
+			$data = $this->get_update_data();
+			$this->update_action( $post, $data );
 		}
 	}
 
@@ -119,6 +154,8 @@ class Ckan_Backend_Sync_Main {
 
 		return true;
 	}
+
+	abstract protected function get_update_data();
 
 	/**
 	 * Gets called when a ckan-local-dataset is saved/updated.

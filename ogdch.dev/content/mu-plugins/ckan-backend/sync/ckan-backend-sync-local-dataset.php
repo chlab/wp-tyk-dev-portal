@@ -1,15 +1,13 @@
 <?php
 
-class Ckan_Backend_Sync_Local_Dataset {
-
-	protected $sync;
+class Ckan_Backend_Sync_Local_Dataset extends Ckan_Backend_Sync_Abstract {
 
 	public function __construct() {
-		$this->sync = new Ckan_Backend_Sync_Main(Ckan_Backend_Local_Dataset::POST_TYPE, Ckan_Backend_Local_Dataset::FIELD_PREFIX);
+		parent::__construct(Ckan_Backend_Local_Dataset::POST_TYPE, Ckan_Backend_Local_Dataset::FIELD_PREFIX);
 
 		add_action( 'save_post_' . Ckan_Backend_Local_Dataset::POST_TYPE, array( $this, 'do_sync' ) );
 		// display all notices
-		add_action( 'admin_notices', array( $this->sync, 'show_admin_notices' ), 0 );
+		add_action( 'admin_notices', array( $this, 'show_admin_notices' ), 0 );
 	}
 
 	protected function get_update_data() {
@@ -47,41 +45,6 @@ class Ckan_Backend_Sync_Local_Dataset {
 		);
 
 		return $data;
-	}
-
-	/**
-	 * This action gets called when a post of type ckan-local-dataset
-	 * is saved/changed/deleted/trashed.
-	 */
-	function do_sync() {
-		global $post;
-
-		// Exit if WP is doing a auto-save
-		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
-			return;
-		}
-
-		// Exit is $post is empty (Should never happen)
-		if ( ! $post ) {
-			return;
-		}
-
-		// Exit if THIS saved Post is a revision (Revisions are deactivated in wp-config.. but just in case)
-		if ( wp_is_post_revision( $post->ID ) || ! isset( $post->post_status ) ) {
-			return;
-		}
-
-		// If action is trash or delete set CKAN dataset to deleted
-		if ( isset( $_GET ) && ( $_GET['action'] === 'trash' || $_GET['action'] === 'delete' ) ) {
-			$this->sync->trash_action();
-		} // If action is untrash set CKAN dataset to active
-		elseif ( isset( $_GET ) && $_GET['action'] === 'untrash' ) {
-			$this->sync->trash_action( true );
-		} // Or generate data for insert/update
-		else {
-			$data = $this->get_update_data();
-			$this->sync->update_action( $post, $data );
-		}
 	}
 
 	/**
