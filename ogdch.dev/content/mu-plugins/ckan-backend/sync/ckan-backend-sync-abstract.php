@@ -27,31 +27,39 @@ abstract class Ckan_Backend_Sync_Abstract {
 	 * is saved/changed/deleted/trashed.
 	 */
 	public function do_sync() {
-		global $post;
-
 		// Exit if WP is doing a auto-save
 		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 			return;
 		}
 
-		// Exit is $post is empty (Should never happen)
-		if ( ! $post ) {
-			return;
-		}
-
-		// Exit if THIS saved Post is a revision (Revisions are deactivated in wp-config.. but just in case)
-		if ( wp_is_post_revision( $post->ID ) || ! isset( $post->post_status ) ) {
-			return;
-		}
-
 		// If action is trash or delete set CKAN dataset to deleted
 		if ( isset( $_GET ) && ( $_GET['action'] === 'trash' || $_GET['action'] === 'delete' ) ) {
-			$this->trash_action();
+			$post_id = $_GET['post'];
+			$this->trash_action($post_id);
 		} // If action is untrash set CKAN dataset to active
 		elseif ( isset( $_GET ) && $_GET['action'] === 'untrash' ) {
-			$this->trash_action( true );
+			if( $_GET['doaction'] === 'undo' ) {
+				$ids = explode( ',', $_GET['ids'] );
+				foreach($ids as $post_id) {
+					$this->trash_action( $post_id, true );
+				}
+			} else {
+				$post_id = $_GET['post'];
+				$this->trash_action( $post_id, true );
+			}
 		} // Or generate data for insert/update
 		else {
+			global $post;
+
+			// Exit if $post is empty (Should never happen)
+			if ( ! $post ) {
+				return;
+			}
+
+			// Exit if THIS saved Post is a revision (Revisions are deactivated in wp-config.. but just in case)
+			if ( is_object( $post ) && ( wp_is_post_revision( $post->ID ) || ! isset( $post->post_status ) ) ) {
+				return;
+			}
 			$data = $this->get_update_data();
 			$this->update_action( $post, $data );
 		}
@@ -65,8 +73,7 @@ abstract class Ckan_Backend_Sync_Abstract {
 	 *
 	 * @return bool True when CKAN request was successful.
 	 */
-	protected function trash_action( $untrash = false ) {
-		$post_id = $_GET['post'];
+	protected function trash_action( $post_id, $untrash = false ) {
 
 		if ( $untrash ) {
 			// Set internal post visibility state to active
@@ -87,21 +94,21 @@ abstract class Ckan_Backend_Sync_Abstract {
 		$endpoint = CKAN_API_ENDPOINT . 'action/' . $this->api_type . '_show?id=' . $ckan_ref;
 		$response = $this->do_api_request( $endpoint );
 		$success  = $this->check_response_for_errors( $response );
-		$result   = $response->result;
+		$data     = $response->result;
 
 		if ( $untrash ) {
 			// Set CKAN state to active.
-			$result->state = 'active';
+			$data->state = 'active';
 		} else {
 			// Set CKAN state to deleted
-			$result->state = 'deleted';
+			$data->state = 'deleted';
 		}
 
-		$result = json_encode( $result );
+		$data = json_encode( $data );
 
 		// Send updated data to CKAN
 		$endpoint = CKAN_API_ENDPOINT . 'action/' . $this->api_type . '_update';
-		$response = $this->do_api_request( $endpoint, $result );
+		$response = $this->do_api_request( $endpoint, $data );
 
 		return $this->check_response_for_errors( $response );
 	}
