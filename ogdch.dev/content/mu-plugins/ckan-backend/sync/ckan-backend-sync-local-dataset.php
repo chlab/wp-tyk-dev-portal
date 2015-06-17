@@ -3,7 +3,7 @@
 class Ckan_Backend_Sync_Local_Dataset extends Ckan_Backend_Sync_Abstract {
 
 	public function __construct() {
-		parent::__construct(Ckan_Backend_Local_Dataset::POST_TYPE, Ckan_Backend_Local_Dataset::FIELD_PREFIX);
+		parent::__construct( Ckan_Backend_Local_Dataset::POST_TYPE, Ckan_Backend_Local_Dataset::FIELD_PREFIX );
 
 		add_action( 'save_post_' . Ckan_Backend_Local_Dataset::POST_TYPE, array( $this, 'do_sync' ) );
 		// display all notices

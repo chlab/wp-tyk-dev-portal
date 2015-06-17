@@ -1,21 +1,22 @@
 <?php
+
 abstract class Ckan_Backend_Sync_Abstract {
 
 	public $post_type = '';
 	public $field_prefix = '';
 	private $type_api_mapping = array(
-		'ckan-local-dataset' => 'package',
+		'ckan-local-dataset'      => 'package',
 		'ckan-local-organisation' => 'organization',
-		'ckan-local-group' => 'group',
+		'ckan-local-group'        => 'group',
 	);
 	private $api_type = '';
 
-	public function __construct($post_type, $field_prefix) {
-		$this->post_type = $post_type;
+	public function __construct( $post_type, $field_prefix ) {
+		$this->post_type    = $post_type;
 		$this->field_prefix = $field_prefix;
 
-		if(array_key_exists($post_type, $this->type_api_mapping)) {
-			$this->api_type = $this->type_api_mapping[$post_type];
+		if ( array_key_exists( $post_type, $this->type_api_mapping ) ) {
+			$this->api_type = $this->type_api_mapping[ $post_type ];
 		} else {
 			return false;
 		}
@@ -83,10 +84,10 @@ abstract class Ckan_Backend_Sync_Abstract {
 		}
 
 		// Get current CKAN data and update state property
-		$endpoint     = CKAN_API_ENDPOINT . 'action/' . $this->api_type . '_show?id=' . $ckan_ref;
-		$response     = $this->do_api_request( $endpoint );
-		$success      = $this->check_response_for_errors( $response );
-		$result       = $response->result;
+		$endpoint = CKAN_API_ENDPOINT . 'action/' . $this->api_type . '_show?id=' . $ckan_ref;
+		$response = $this->do_api_request( $endpoint );
+		$success  = $this->check_response_for_errors( $response );
+		$result   = $response->result;
 
 		if ( $untrash ) {
 			// Set CKAN state to active.
@@ -172,8 +173,8 @@ abstract class Ckan_Backend_Sync_Abstract {
 		$endpoint = CKAN_API_ENDPOINT . 'action/';
 
 		// If post has reference id use it as endpoint -> update existing dataset
-		if ( isset( $_POST[$this->field_prefix . 'reference'] ) && $_POST[$this->field_prefix . 'reference'] != '' ) {
-			$endpoint .= $this->api_type . '_update?id=' . $_POST[$this->field_prefix . 'reference'];
+		if ( isset( $_POST[ $this->field_prefix . 'reference' ] ) && $_POST[ $this->field_prefix . 'reference' ] != '' ) {
+			$endpoint .= $this->api_type . '_update?id=' . $_POST[ $this->field_prefix . 'reference' ];
 		} else {
 			// Insert new dataset
 			$endpoint .= $this->api_type . '_create';
@@ -188,8 +189,8 @@ abstract class Ckan_Backend_Sync_Abstract {
 				// Set reference id from CKAN and add it to $_POST because the real meta save will follow after this action
 				update_post_meta( $post->ID, $this->field_prefix . 'reference', $result->id );
 				update_post_meta( $post->ID, $this->field_prefix . 'name', $result->name );
-				$_POST[$this->field_prefix . 'reference'] = $result->id;
-				$_POST[$this->field_prefix . 'name']      = $result->name;
+				$_POST[ $this->field_prefix . 'reference' ] = $result->id;
+				$_POST[ $this->field_prefix . 'name' ]      = $result->name;
 			}
 		}
 

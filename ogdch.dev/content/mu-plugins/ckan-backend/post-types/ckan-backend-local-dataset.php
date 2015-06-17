@@ -1,12 +1,13 @@
 <?php
+
 class Ckan_Backend_Local_Dataset {
 
 	const POST_TYPE = 'ckan-local-dataset';
 	const FIELD_PREFIX = '_ckan_local_dataset_';
 
 	public function __construct() {
-		add_action( 'init', array( $this, 'register_post_type'), 0 );
-		add_action( 'cmb2_init', array( $this, 'define_fields') );
+		add_action( 'init', array( $this, 'register_post_type' ), 0 );
+		add_action( 'cmb2_init', array( $this, 'define_fields' ) );
 
 		// initialize local dataset sync
 		$ckan_backend_sync_local_dataset = new Ckan_Backend_Sync_Local_Dataset();
