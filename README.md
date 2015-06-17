@@ -17,6 +17,7 @@
     define( 'DB_USER', 'cms' );
     define( 'DB_PASSWORD', '123' );
     ```
+
 6.  Add the following entries to your hosts (usually `/etc/hosts`) file:
     ```
     192.168.56.101 ogdch.dev
