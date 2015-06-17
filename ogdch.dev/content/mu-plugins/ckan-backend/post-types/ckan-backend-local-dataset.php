@@ -58,9 +58,9 @@ class Ckan_Backend_Local_Dataset {
 		global $language_priority;
 
 		$cmb = new_cmb2_box( array(
-			'id'           => 'ckan-local-dataset-box',
+			'id'           => self::POST_TYPE . '-box',
 			'title'        => __( 'Ressource Data', 'ogdch' ),
-			'object_types' => array( 'ckan-local-dataset', ),
+			'object_types' => array( self::POST_TYPE, ),
 			'context'      => 'normal',
 			'priority'     => 'high',
 			'show_names'   => true,

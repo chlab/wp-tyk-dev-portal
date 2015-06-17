@@ -17,8 +17,8 @@ class Ckan_Backend_Sync_Local_Dataset extends Ckan_Backend_Sync_Abstract {
 		$groups                 = $this->get_selected_groups( $_POST['tax_input']['ckan_group'] );
 
 		// Gernerate slug of dataset. If no title is entered use an uniqid
-		if ( $_POST['_ckan_local_dataset_name'] != '' ) {
-			$title = $_POST['_ckan_local_dataset_name'];
+		if ( $_POST[Ckan_Backend_Local_Dataset::FIELD_PREFIX . 'name'] != '' ) {
+			$title = $_POST[Ckan_Backend_Local_Dataset::FIELD_PREFIX . 'name'];
 		} else {
 			$title = $_POST['post_title'];
 
@@ -30,7 +30,7 @@ class Ckan_Backend_Sync_Local_Dataset extends Ckan_Backend_Sync_Abstract {
 
 		$data = array(
 			'name'             => $slug,
-			'title'            => $_POST['post_title'],
+			'title'            => $_POST['post_title'], // TODO: use all language here
 			'maintainer'       => $_POST['_ckan_local_dataset_maintainer'],
 			'maintainer_email' => $_POST['_ckan_local_dataset_maintainer_email'],
 			'author'           => $_POST['_ckan_local_dataset_author'],
