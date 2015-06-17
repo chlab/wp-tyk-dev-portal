@@ -26,7 +26,7 @@ abstract class Ckan_Backend_Sync_Abstract {
 	 * This action gets called when a post of type ckan-local-dataset
 	 * is saved/changed/deleted/trashed.
 	 */
-	function do_sync() {
+	public function do_sync() {
 		global $post;
 
 		// Exit if WP is doing a auto-save
@@ -65,7 +65,7 @@ abstract class Ckan_Backend_Sync_Abstract {
 	 *
 	 * @return bool True when CKAN request was successful.
 	 */
-	public function trash_action( $untrash = false ) {
+	protected function trash_action( $untrash = false ) {
 		$post_id = $_GET['post'];
 
 		if ( $untrash ) {
@@ -100,7 +100,7 @@ abstract class Ckan_Backend_Sync_Abstract {
 		$result = json_encode( $result );
 
 		// Send updated data to CKAN
-		$endpoint = CKAN_API_ENDPOINT . 'action/' . $this->api_type . '_update?id=' . $ckan_ref;
+		$endpoint = CKAN_API_ENDPOINT . 'action/' . $this->api_type . '_update';
 		$response = $this->do_api_request( $endpoint, $result );
 
 		return $this->check_response_for_errors( $response );
@@ -114,7 +114,7 @@ abstract class Ckan_Backend_Sync_Abstract {
 	 *
 	 * @return object The CKAN dataset as object
 	 */
-	public function do_api_request( $endpoint, $data = '' ) {
+	protected function do_api_request( $endpoint, $data = '' ) {
 		$ch = curl_init( $endpoint );
 		curl_setopt( $ch, CURLOPT_CUSTOMREQUEST, "POST" );
 		curl_setopt( $ch, CURLOPT_POSTFIELDS, $data );
@@ -137,7 +137,7 @@ abstract class Ckan_Backend_Sync_Abstract {
 	 *
 	 * @return bool True if response looks good
 	 */
-	public function check_response_for_errors( $response ) {
+	protected function check_response_for_errors( $response ) {
 		// store all error notices in option array
 		$notice = get_option( $this->field_prefix . 'notice' );
 		if ( ! is_object( $response ) ) {
@@ -147,6 +147,8 @@ abstract class Ckan_Backend_Sync_Abstract {
 		if ( isset( $response->success ) && $response->success === false ) {
 			if ( isset( $response->error ) && isset( $response->error->name ) && is_array( $response->error->name ) ) {
 				$notice[] = $response->error->name[0];
+			} else if ( isset( $response->error ) && isset( $response->error->id ) && is_array( $response->error->id ) ) {
+				$notice[] = $response->error->id[0];
 			} else {
 				$notice[] = 'API responded with unknown error.';
 			}
@@ -166,15 +168,15 @@ abstract class Ckan_Backend_Sync_Abstract {
 	 *
 	 * @return bool True when CKAN request was successful.
 	 */
-	public function update_action( $post, $data ) {
+	protected function update_action( $post, $data ) {
 		$data = json_encode( $data );
 
 		// Define endpoint for request
 		$endpoint = CKAN_API_ENDPOINT . 'action/';
 
 		// If post has reference id use it as endpoint -> update existing dataset
-		if ( isset( $_POST[ $this->field_prefix . 'reference' ] ) && $_POST[ $this->field_prefix . 'reference' ] != '' ) {
-			$endpoint .= $this->api_type . '_update?id=' . $_POST[ $this->field_prefix . 'reference' ];
+		if ( isset( $data['id'] ) ) {
+			$endpoint .= $this->api_type . '_update';
 		} else {
 			// Insert new dataset
 			$endpoint .= $this->api_type . '_create';
@@ -202,7 +204,7 @@ abstract class Ckan_Backend_Sync_Abstract {
 	 *
 	 * @return string
 	 */
-	protected function show_admin_notices() {
+	public function show_admin_notices() {
 		$notice = get_option( $this->field_prefix . 'notice' );
 		if ( empty( $notice ) ) {
 			return '';

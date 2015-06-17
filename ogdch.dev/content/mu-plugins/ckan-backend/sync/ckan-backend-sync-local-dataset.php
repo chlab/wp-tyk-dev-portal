@@ -44,6 +44,10 @@ class Ckan_Backend_Sync_Local_Dataset extends Ckan_Backend_Sync_Abstract {
 			'owner_org'        => $ckan_organisation_slug
 		);
 
+		if ( isset( $_POST[ Ckan_Backend_Local_Dataset::FIELD_PREFIX . 'reference' ] ) && $_POST[ Ckan_Backend_Local_Dataset::FIELD_PREFIX . 'reference' ] != '' ) {
+			$data['id'] = $_POST[ Ckan_Backend_Local_Dataset::FIELD_PREFIX . 'reference' ];
+		}
+
 		return $data;
 	}
 
