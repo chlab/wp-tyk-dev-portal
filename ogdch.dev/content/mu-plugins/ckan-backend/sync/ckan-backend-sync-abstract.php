@@ -34,18 +34,28 @@ abstract class Ckan_Backend_Sync_Abstract {
 
 		// If action is trash or delete set CKAN dataset to deleted
 		if ( isset( $_GET ) && ( $_GET['action'] === 'trash' || $_GET['action'] === 'delete' ) ) {
-			$post_id = $_GET['post'];
-			$this->trash_action($post_id);
+			if( is_array( $_GET['post'] ) ) {
+				foreach($_GET['post'] as $post_id) {
+					$this->trash_action( $post_id );
+				}
+			} else {
+				$this->trash_action( $_GET['post'] );
+			}
 		} // If action is untrash set CKAN dataset to active
 		elseif ( isset( $_GET ) && $_GET['action'] === 'untrash' ) {
 			if( $_GET['doaction'] === 'undo' ) {
-				$ids = explode( ',', $_GET['ids'] );
-				foreach($ids as $post_id) {
+				$post_ids = explode( ',', $_GET['ids'] );
+				foreach($post_ids as $post_id) {
 					$this->trash_action( $post_id, true );
 				}
 			} else {
-				$post_id = $_GET['post'];
-				$this->trash_action( $post_id, true );
+				if( is_array( $_GET['post'] ) ) {
+					foreach($_GET['post'] as $post_id) {
+						$this->trash_action( $post_id, true );
+					}
+				} else {
+					$this->trash_action( $_GET['post'], true );
+				}
 			}
 		} // Or generate data for insert/update
 		else {
