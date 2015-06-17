@@ -27,6 +27,7 @@ class Ckan_Backend_Sync_Local_Group extends Ckan_Backend_Sync_Abstract {
 			'name'             => $slug,
 			'title'            => $_POST['post_title'], // TODO: use all language here
 			'description'      => $_POST[Ckan_Backend_Local_Group::FIELD_PREFIX . 'description_de'], // TODO: use all language here
+			'state'            => $_POST[Ckan_Backend_Local_Group::FIELD_PREFIX . 'visibility'],
 		);
 
 		if ( isset( $_POST[ Ckan_Backend_Local_Group::FIELD_PREFIX . 'reference' ] ) && $_POST[ Ckan_Backend_Local_Group::FIELD_PREFIX . 'reference' ] != '' ) {

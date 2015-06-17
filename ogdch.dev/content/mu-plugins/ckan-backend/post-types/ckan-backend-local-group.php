@@ -89,6 +89,25 @@ class Ckan_Backend_Local_Group {
 			),
 		) );
 
+		/* Visibility */
+		$cmb->add_field( array(
+			'name' => __( 'Sichtbarkeit', 'ogdch' ),
+			'type' => 'title',
+			'id'   => 'visibility_title',
+		) );
+
+		$cmb->add_field( array(
+			'name'    => __( 'Visibility', 'ogdch' ),
+			'desc'    => __( 'Select the visibility of the Dataset', 'ogdch' ),
+			'id'      => self::FIELD_PREFIX . 'visibility',
+			'type'    => 'radio',
+			'default' => 'active',
+			'options' => array(
+				'active'  => __( 'Active', 'ogdch' ),
+				'deleted' => __( 'Deleted', 'ogdch' ),
+			),
+		) );
+
 		/* Title */
 		$cmb->add_field( array(
 			'name' => __( 'Group Title', 'ogdch' ),
