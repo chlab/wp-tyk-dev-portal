@@ -23,50 +23,54 @@ abstract class Ckan_Backend_Sync_Abstract {
 	}
 
 	/**
-	 * This action gets called when a post of type ckan-local-dataset
-	 * is saved/changed/deleted/trashed.
+	 * This action gets called when a CKAN post-type is saved, changed, trashed or deleted.
 	 */
 	public function do_sync() {
-		// Exit if WP is doing a auto-save
+		// Exit if WP is doing an auto-save
 		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 			return;
 		}
 
 		// If action is trash or delete set CKAN dataset to deleted
 		if ( isset( $_GET ) && ( $_GET['action'] === 'trash' || $_GET['action'] === 'delete' ) ) {
-			if( is_array( $_GET['post'] ) ) {
-				foreach($_GET['post'] as $post_id) {
+			// If action was executed by selecting post with checkbox and choose delete in menu $_GET['post'] is array with all selected post ids
+			if ( is_array( $_GET['post'] ) ) {
+				foreach ( $_GET['post'] as $post_id ) {
 					$this->trash_action( $post_id );
 				}
 			} else {
+				// If action was executed with delete link next to post $_GET['post'] corresponds to id of post
 				$this->trash_action( $_GET['post'] );
 			}
 		} // If action is untrash set CKAN dataset to active
 		elseif ( isset( $_GET ) && $_GET['action'] === 'untrash' ) {
-			if( $_GET['doaction'] === 'undo' ) {
+			// If Undo Link was clicked the $_GET['post'] variable isn't set
+			if ( $_GET['doaction'] === 'undo' ) {
 				$post_ids = explode( ',', $_GET['ids'] );
-				foreach($post_ids as $post_id) {
-					$this->trash_action( $post_id, true );
+				foreach ( $post_ids as $post_id ) {
+					$this->untrash_action( $post_id );
 				}
 			} else {
-				if( is_array( $_GET['post'] ) ) {
-					foreach($_GET['post'] as $post_id) {
-						$this->trash_action( $post_id, true );
+				// If action was executed by selecting post with checkbox and choose untrash in menu $_GET['post'] is array with all selected post ids
+				if ( is_array( $_GET['post'] ) ) {
+					foreach ( $_GET['post'] as $post_id ) {
+						$this->untrash_action( $post_id );
 					}
 				} else {
-					$this->trash_action( $_GET['post'], true );
+					// If action was executed with untrash link next to post $_GET['post'] corresponds to id of post
+					$this->untrash_action( $_GET['post'] );
 				}
 			}
 		} // Or generate data for insert/update
 		else {
 			global $post;
 
-			// Exit if $post is empty (Should never happen)
+			// Exit if $post is empty (Should never happen when post gets inserted or updated)
 			if ( ! $post ) {
 				return;
 			}
 
-			// Exit if THIS saved Post is a revision (Revisions are deactivated in wp-config.. but just in case)
+			// Exit if saved post is a revision (revisions are deactivated in wp-config... but just in case)
 			if ( is_object( $post ) && ( wp_is_post_revision( $post->ID ) || ! isset( $post->post_status ) ) ) {
 				return;
 			}
@@ -76,15 +80,26 @@ abstract class Ckan_Backend_Sync_Abstract {
 	}
 
 	/**
-	 * Gets called when a ckan-local-dataset is trashed/untrashed or deleted.
-	 * Updates internal post visibility field and CKAN dataset state.
+	 * Just a convenience function which calls trash_action with preset untrash parameter
 	 *
+	 * @param int $post_id ID of CKAN post-type
+	 *
+	 * @return bool True when CKAN request was successful.
+	 */
+	protected function untrash_action( $post_id ) {
+		return $this->trash_action( $post_id, true );
+	}
+
+	/**
+	 * Gets called when a CKAN post-type is trashed, untrashed or deleted.
+	 * Updates internal post visibility field and CKAN state.
+	 *
+	 * @param int $post_id ID of CKAN post-type
 	 * @param bool $untrash Set true if dataset should be untrashed
 	 *
 	 * @return bool True when CKAN request was successful.
 	 */
 	protected function trash_action( $post_id, $untrash = false ) {
-
 		if ( $untrash ) {
 			// Set internal post visibility state to active
 			update_post_meta( $post_id, $this->field_prefix . 'visibility', 'active' );
@@ -129,7 +144,7 @@ abstract class Ckan_Backend_Sync_Abstract {
 	 * @param string $endpoint CKAN API endpoint which gets called
 	 * @param string $data Data to send
 	 *
-	 * @return object The CKAN dataset as object
+	 * @return object The CKAN data as object
 	 */
 	protected function do_api_request( $endpoint, $data = '' ) {
 		$ch = curl_init( $endpoint );
@@ -175,13 +190,19 @@ abstract class Ckan_Backend_Sync_Abstract {
 		return true;
 	}
 
+	/**
+	 * This method should return an array with the updated data
+	 *
+	 * @return array $data Updated data to send
+	 */
 	abstract protected function get_update_data();
 
 	/**
-	 * Gets called when a ckan-local-dataset is saved/updated.
-	 * Sends new/updated dataset to CKAN and updates reference id and name (slug) from CKAN.
+	 * Gets called when a CKAN data is saved/updated.
+	 * Sends new/updated data to CKAN and updates reference id and name (slug) from CKAN.
 	 *
-	 * @param object $post The ckan-local-dataset post to updated/save
+	 * @param object $post The post from WordPress which is updated/saved
+	 * @param array $data The updated/saved data to send
 	 *
 	 * @return bool True when CKAN request was successful.
 	 */
@@ -191,7 +212,7 @@ abstract class Ckan_Backend_Sync_Abstract {
 		// Define endpoint for request
 		$endpoint = CKAN_API_ENDPOINT . 'action/';
 
-		// If post has reference id use it as endpoint -> update existing dataset
+		// If post data holds reference id -> do update in CKAN
 		if ( isset( $data['id'] ) ) {
 			$endpoint .= $this->api_type . '_update';
 		} else {
