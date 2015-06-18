@@ -128,7 +128,7 @@ class Ckan_Backend_Local_Group {
 
 		/* Description */
 		$cmb->add_field( array(
-			'name' => __( 'Dataset Description', 'ogdch' ),
+			'name' => __( 'Group Description', 'ogdch' ),
 			'type' => 'title',
 			'id'   => 'description_title',
 			'desc' => __( 'Markdown Syntax can be used to format the description.', 'ogdch' ),
@@ -136,12 +136,25 @@ class Ckan_Backend_Local_Group {
 
 		foreach ( $language_priority as $lang ) {
 			$cmb->add_field( array(
-				'name'       => 'Description (' . strtoupper( $lang ) . ')',
+				'name'       => __( 'Description', 'ogdch' ) . ' (' . strtoupper( $lang ) . ')',
 				'id'         => self::FIELD_PREFIX . 'description_' . $lang,
 				'type'       => 'textarea',
 				'attributes' => array( 'rows' => 3 ),
 			) );
 		}
+
+		/* Image */
+		$cmb->add_field( array(
+			'name' => __( 'Group Image', 'ogdch' ),
+			'type' => 'title',
+			'id'   => 'image_title',
+		) );
+
+		$cmb->add_field( array(
+			'name'       => __( 'Image', 'ogdch' ),
+			'id'         => self::FIELD_PREFIX . 'image',
+			'type'    => 'file'
+		) );
 	}
 
 }
