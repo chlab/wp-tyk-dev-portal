@@ -4,10 +4,6 @@ class Ckan_Backend_Sync_Local_Group extends Ckan_Backend_Sync_Abstract {
 
 	public function __construct() {
 		parent::__construct( Ckan_Backend_Local_Group::POST_TYPE, Ckan_Backend_Local_Group::FIELD_PREFIX );
-
-		add_action( 'save_post_' . Ckan_Backend_Local_Group::POST_TYPE, array( $this, 'do_sync' ) );
-		// display all notices
-		add_action( 'admin_notices', array( $this, 'show_admin_notices' ), 0 );
 	}
 
 	protected function get_update_data() {

@@ -20,6 +20,12 @@ abstract class Ckan_Backend_Sync_Abstract {
 		} else {
 			return false;
 		}
+
+		// add save post action for current post type
+		add_action( 'save_post_' . $this->post_type, array( $this, 'do_sync' ) );
+
+		// display all notices after saving post
+		add_action( 'admin_notices', array( $this, 'show_admin_notices' ), 0 );
 	}
 
 	/**
@@ -207,7 +213,6 @@ abstract class Ckan_Backend_Sync_Abstract {
 	 * @return bool True when CKAN request was successful.
 	 */
 	protected function update_action( $post, $data ) {
-		$data = json_encode( $data );
 
 		// Define endpoint for request
 		$endpoint = CKAN_API_ENDPOINT . 'action/';
@@ -219,6 +224,8 @@ abstract class Ckan_Backend_Sync_Abstract {
 			// Insert new dataset
 			$endpoint .= $this->api_type . '_create';
 		}
+
+		$data = json_encode( $data );
 
 		$response = $this->do_api_request( $endpoint, $data );
 
