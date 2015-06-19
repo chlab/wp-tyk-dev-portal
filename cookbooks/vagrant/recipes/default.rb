@@ -55,7 +55,6 @@ end
 src  = "#{CKAN_DIR}/ckanext/multilingual/solr/"
 dest = "/etc/solr/conf/"
 [
- "schema.xml",
  "english_stop.txt",
  "fr_elision.txt",
  "french_stop.txt",
