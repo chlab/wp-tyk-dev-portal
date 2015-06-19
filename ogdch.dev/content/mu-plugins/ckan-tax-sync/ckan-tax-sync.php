@@ -38,6 +38,13 @@ function ckan_taxonomy() {
 		'with_front'   => true,
 		'hierarchical' => true,
 	);
+	// read-only taxonomy
+	$capabilities = array(
+		'manage_terms' => '',
+		'edit_terms' => '',
+		'delete_terms' => '',
+		'assign_terms' => 'edit_posts'
+	);
 	$args    = array(
 		'labels'            => $labels,
 		'hierarchical'      => true,
@@ -47,6 +54,7 @@ function ckan_taxonomy() {
 		'show_in_nav_menus' => true,
 		'show_tagcloud'     => false,
 		'rewrite'           => $rewrite,
+		'capabilities'      => $capabilities,
 	);
 	register_taxonomy( 'ckan_organisation', array( 'ckan-dataset', 'ckan-local-dataset' ), $args );
 
@@ -75,6 +83,13 @@ function ckan_taxonomy() {
 		'with_front'   => true,
 		'hierarchical' => true,
 	);
+	// read-only taxonomy
+	$capabilities = array(
+		'manage_terms' => '',
+		'edit_terms' => '',
+		'delete_terms' => '',
+		'assign_terms' => 'edit_posts'
+	);
 	$args    = array(
 		'labels'            => $labels,
 		'hierarchical'      => true,
@@ -84,6 +99,7 @@ function ckan_taxonomy() {
 		'show_in_nav_menus' => true,
 		'show_tagcloud'     => false,
 		'rewrite'           => $rewrite,
+		'capabilities'      => $capabilities,
 	);
 	register_taxonomy( 'ckan_group', array( 'ckan-dataset', 'ckan-local-dataset' ), $args );
 }
