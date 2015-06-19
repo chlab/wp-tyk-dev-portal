@@ -1,8 +1,7 @@
 USER = node[:user]
-REPOSITORY = node[:repository]
 HOME = "/home/#{USER}"
 SOURCE_DIR = "#{HOME}/pyenv/src"
-CKAN_DIR = "#{SOURCE_DIR}/ckan"
+CKAN_DIR = node[:ckan_dir]
 INSTALL_DIR = node[:install_dir]
 
 template "/home/vagrant/.bash_aliases" do
@@ -46,17 +45,6 @@ end
 directory SOURCE_DIR do
   owner USER
   group USER
-end
-
-bash "clone ckan" do
-  user USER
-  group USER
-  not_if "test -f #{CKAN_DIR}/README.rst"
-  code <<-EOH
-  git clone #{REPOSITORY} -b release-v2.3.1 #{CKAN_DIR}
-  cd #{CKAN_DIR}
-  git submodule update --init
-EOH
 end
 
 service "jetty" do
@@ -212,31 +200,12 @@ end
 #
 
 # Put one custom extension on each line like this: { "name-of-ckanext" => "repository-url", ... }
-{
-  "ckanext-harvest" => "https://github.com/okfn/ckanext-harvest.git@stable",
-  "ckanext-fluent" => "https://github.com/ogdch/ckanext-fluent.git",
-  "ckanext-scheming" => "https://github.com/open-data/ckanext-scheming.git",
-  "ckanext-hierarchy" => "https://github.com/datagovuk/ckanext-hierarchy.git"
-}.each do | ckan_ext, repo_uri |
-    bash "Clone #{ckan_ext}" do
-      user USER
-      not_if "test -d #{INSTALL_DIR}/#{ckan_ext}"
-      cwd INSTALL_DIR
-      code <<-EOH
-      source #{HOME}/pyenv/bin/activate
-      pip install -e git+#{repo_uri}#egg=#{ckan_ext} --src #{INSTALL_DIR}
-      EOH
-    end
-
-    bash "Update #{ckan_ext}" do
-      user USER
-      only_if "git branch | grep '* master'"
-      cwd "#{INSTALL_DIR}/#{ckan_ext}"
-      code <<-EOH
-      GIT_SSL_NO_VERIFY=true git pull origin master
-      EOH
-    end
-
+%w(
+ckanext-harvest
+ckanext-fluent
+ckanext-scheming
+ckanext-hierarchy
+).each do | ckan_ext |
     bash "Install #{ckan_ext}" do
       user USER
       cwd INSTALL_DIR
