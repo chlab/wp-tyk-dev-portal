@@ -1,8 +1,6 @@
 
 .post {
     @include element('title') {
-        font-family: monospace;
-
         @include modifier('page') {
             color: red;
         }

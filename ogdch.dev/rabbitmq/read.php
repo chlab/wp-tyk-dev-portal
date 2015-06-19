@@ -19,76 +19,22 @@ $channel->queue_declare( 'ckan', false, false, false, false );
 echo '[*] Waiting for messages. To exit press CTRL+C', "\n";
 
 $callback = function ( $msg ) {
-	$msg          = json_decode( $msg->body );
-	$translations = array();
-	$baseaction   = $msg->action;
 
-	foreach ( $msg->title as $lang => $title ) {
+	$msg = json_decode( $msg->body );
+	$action = $msg->action;
+	$ckan_id = $msg->id;
 
-		$action = $msg->action;
-
-		$post = array(
-			'post_author' => 1,
-			'post_type'   => 'ckan-dataset',
-			'post_title'  => $title,
-		);
-
-		$args = array(
-			'meta_key'       => '_ckandataset_reference',
-			'meta_value'     => $msg->ref,
-			'meta_compare'   => '=',
-			'post_type'      => 'ckan-dataset',
-			'posts_per_page' => 1,
-			'cache_results'  => false,
-			'fields'         => 'ids',
-			'post_status'    => 'any',
-			'lang'           => $lang,
-		);
-
-        $res = get_posts( $args );
-		$num_res = count( $res );
-
-
-		// Error handling
-		if ( $num_res === 1 && $action == 'insert' ) { // If Ref. ID exists but action is insert -> update
-			$action = 'update';
-		} elseif ( $num_res === 0 && $action == 'update' ) { // If Ref. ID does not exists but action is update -> insert
-			$action = 'insert';
-		}
-
-
-		if ( $num_res === 1 && $action == 'update' ) {
-
-			// Post exists so update it
-			$post['ID'] = $res[0];
-			$new_id     = $res[0];
-			wp_update_post( $post );
-
-			echo "UPDATE " . $post['ID'] . " to " . $post['post_title'] . " \n";
-
-		} elseif ( $num_res === 0 && $action == 'insert' ) {
-
-			// Post does not exist so create it, add reference as custom field and set language of post
-			$new_id = wp_insert_post( $post, true );
-			add_post_meta( $new_id, '_ckandataset_reference', $msg->ref, true );
-			pll_set_post_language( $new_id, $lang );  // Set Langauge
-
-			echo "Insert " . $new_id . " as " . $post['post_title'] . " \n";
-
-		} else {
-			echo "ERROR\n";
-		}
-
-
-		$translations[ $lang ] = $new_id;
-
+	if( empty( $ckan_id ) ) {
+		return FALSE;
 	}
 
-	// Connect Posts with each other
-	if ( $action === 'insert' ) {
-		pll_save_post_translations( $translations );
+	if ( 'delete' === $action ) {
+		ckan_dataset_delete_posts_by_ckanid( $ckan_id );
+	} else {
+		ckan_dataset_update_posts_by_ckanid( $ckan_id );
 	}
 
+	return TRUE;
 };
 
 

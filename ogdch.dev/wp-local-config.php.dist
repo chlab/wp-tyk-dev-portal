@@ -29,9 +29,11 @@ define( 'FS_METHOD', 'direct' );
 
 define( 'WP_CACHE', false );
 
-$redis_server = array( 'host' => '127.0.0.1',
-                       'port' => 6379
-                     );
+// ===================================================
+// Object-Cache
+// ===================================================
+
+$redis_server = array( 'host' => '127.0.0.1', 'port' => 6379 );
 
 
 // ===================================================
@@ -47,7 +49,7 @@ define( 'WP_SITEURL', 'http://ogdch.dev/cms' );
 // ===================================================
 
 define( 'WP_CONTENT_DIR', dirname( __FILE__ ) . '/content' );
-define( 'WP_CONTENT_URL', WP_HOME .'/content' );
+define( 'WP_CONTENT_URL', WP_HOME . '/content' );
 
 
 // ===================================================
@@ -64,3 +66,26 @@ define( 'WP_PLUGIN_URL', WP_HOME . '/content/plugins' );
 
 define( 'WPMU_PLUGIN_DIR', dirname( __FILE__ ) . '/content/mu-plugins' );
 define( 'WPMU_PLUGIN_URL', WP_HOME . '/content/mu-plugins' );
+
+
+// ===================================================
+// CKAN
+// ===================================================
+
+define( 'CKAN_API_ENDPOINT', 'http://ckan.ogdch.dev/api/3/' );
+define( 'CKAN_REST_API_ENDPOINT', 'http://ckan.ogdch.dev/api/rest/' );
+define( 'CKAN_SEARCH_API_ENDPOINT', 'http://ckan.ogdch.dev/api/3/action/package_search' );
+define( 'CKAN_API_KEY', 'c4c33823-02ec-401b-b7b2-7ab3271f7021' ); // adminsuer key
+
+$language_priority = array(
+	1 => 'en',
+	2 => 'de',
+	3 => 'fr',
+	4 => 'it'
+);
+
+// ===================================================
+// WP Behavior
+// ===================================================
+
+define( 'MEDIA_TRASH', false );
