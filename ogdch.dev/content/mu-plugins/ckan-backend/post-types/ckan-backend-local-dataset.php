@@ -2,6 +2,7 @@
 
 class Ckan_Backend_Local_Dataset {
 
+	// Be careful max. 20 characters allowed!
 	const POST_TYPE = 'ckan-local-dataset';
 	const FIELD_PREFIX = '_ckan_local_dataset_';
 

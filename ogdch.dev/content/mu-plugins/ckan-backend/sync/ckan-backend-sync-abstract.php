@@ -6,7 +6,7 @@ abstract class Ckan_Backend_Sync_Abstract {
 	public $field_prefix = '';
 	private $type_api_mapping = array(
 		'ckan-local-dataset'      => 'package',
-		'ckan-local-organisation' => 'organization',
+		'ckan-local-org' => 'organization',
 		'ckan-local-group'        => 'group',
 	);
 	private $api_type = '';

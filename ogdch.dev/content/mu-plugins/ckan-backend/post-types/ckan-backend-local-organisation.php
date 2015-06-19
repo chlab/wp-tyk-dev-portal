@@ -1,34 +1,33 @@
 <?php
 
-class Ckan_Backend_Local_Group {
+class Ckan_Backend_Local_Organisation {
 
 	// Be careful max. 20 characters allowed!
-	const POST_TYPE = 'ckan-local-group';
-	const FIELD_PREFIX = '_ckan_local_group_';
+	const POST_TYPE = 'ckan-local-org';
+	const FIELD_PREFIX = '_ckan_local_org_';
 
 	public function __construct() {
 		add_action( 'init', array( $this, 'register_post_type' ), 0 );
 		add_action( 'cmb2_init', array( $this, 'define_fields' ) );
-
-		// initialize local group sync
-		$ckan_backend_sync_local_group = new Ckan_Backend_Sync_Local_Group();
+		// initialize local organisation sync
+		$ckan_backend_sync_local_organisation = new Ckan_Backend_Sync_Local_Organisation();
 	}
 
 	public function register_post_type() {
 		$labels = array(
-			'name'               => __( 'CKAN local Groups', 'ogdch' ),
-			'singular_name'      => __( 'CKAN local Group', 'ogdch' ),
-			'menu_name'          => __( 'CKAN local Group', 'ogdch' ),
-			'name_admin_bar'     => __( 'CKAN local Group', 'ogdch' ),
-			'parent_item_colon'  => __( 'Parent Group:', 'ogdch' ),
-			'all_items'          => __( 'All local Groups', 'ogdch' ),
-			'add_new_item'       => __( 'Add New Group', 'ogdch' ),
+			'name'               => __( 'CKAN local Organisations', 'ogdch' ),
+			'singular_name'      => __( 'CKAN local Organisation', 'ogdch' ),
+			'menu_name'          => __( 'CKAN local Organisation', 'ogdch' ),
+			'name_admin_bar'     => __( 'CKAN local Organisation', 'ogdch' ),
+			'parent_item_colon'  => __( 'Parent Organisation:', 'ogdch' ),
+			'all_items'          => __( 'All local Organisations', 'ogdch' ),
+			'add_new_item'       => __( 'Add New Organisation', 'ogdch' ),
 			'add_new'            => __( 'Add New', 'ogdch' ),
-			'new_item'           => __( 'New local Group', 'ogdch' ),
-			'edit_item'          => __( 'Edit local Group', 'ogdch' ),
-			'update_item'        => __( 'Update local Group', 'ogdch' ),
-			'view_item'          => __( 'View Group', 'ogdch' ),
-			'search_items'       => __( 'Search Group', 'ogdch' ),
+			'new_item'           => __( 'New local Organisation', 'ogdch' ),
+			'edit_item'          => __( 'Edit local Organisation', 'ogdch' ),
+			'update_item'        => __( 'Update local Organisation', 'ogdch' ),
+			'view_item'          => __( 'View Organisation', 'ogdch' ),
+			'search_items'       => __( 'Search Organisation', 'ogdch' ),
 			'not_found'          => __( 'Not found', 'ogdch' ),
 			'not_found_in_trash' => __( 'Not found in Trash', 'ogdch' ),
 		);
@@ -85,7 +84,7 @@ class Ckan_Backend_Local_Group {
 			'type'       => 'text',
 			'desc'       => __( 'Permalink Name', 'ogdch' ),
 			'attributes' => array(
-				'placeholder' => 'my-group',
+				'placeholder' => 'my-organisation',
 				'readonly'    => 'readonly',
 			),
 		) );
@@ -111,7 +110,7 @@ class Ckan_Backend_Local_Group {
 
 		/* Title */
 		$cmb->add_field( array(
-			'name' => __( 'Group Title', 'ogdch' ),
+			'name' => __( 'Organisation Title', 'ogdch' ),
 			'type' => 'title',
 			'id'   => 'title_title'
 		) );
@@ -129,7 +128,7 @@ class Ckan_Backend_Local_Group {
 
 		/* Description */
 		$cmb->add_field( array(
-			'name' => __( 'Group Description', 'ogdch' ),
+			'name' => __( 'Organisation Description', 'ogdch' ),
 			'type' => 'title',
 			'id'   => 'description_title',
 			'desc' => __( 'Markdown Syntax can be used to format the description.', 'ogdch' ),
@@ -146,7 +145,7 @@ class Ckan_Backend_Local_Group {
 
 		/* Image */
 		$cmb->add_field( array(
-			'name' => __( 'Group Image', 'ogdch' ),
+			'name' => __( 'Organisation Image', 'ogdch' ),
 			'type' => 'title',
 			'id'   => 'image_title',
 		) );
