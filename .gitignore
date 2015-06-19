@@ -20,7 +20,6 @@ ogdch.dev/content/themes/twentyfifteen/
 /html
 .idea/
 .DS_Store
-ckanext/
 vendor/
 composer.phar
 node_modules/

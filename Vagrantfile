@@ -31,7 +31,7 @@ Vagrant.configure("2") do |config|
     chef.json = {
       :host_name => data['vm']['hostname'],
       :user => "vagrant",
-      :repository => "https://github.com/ckan/ckan.git",
+      :ckan_dir => "#{data['vm']['synced_folder']['vflsf_0t01o3pxhnte']['target']}/ckan",
       :install_dir => "#{data['vm']['synced_folder']['vflsf_0t01o3pxhnte']['target']}/ckanext"
     }
   end

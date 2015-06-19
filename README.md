@@ -130,3 +130,19 @@ If this happens just execute the following command:
 
     $ rm .vagrant/machines/default/virtualbox/synced_folders
     $ vagrant reload --provision
+
+## Permission problems with NFS mount
+
+You might get errors with the permissions of the shared folder when using NFS:
+
+```
+chown: changing ownership of ‘/var/www’: Operation not permitted
+```
+
+This is a [known issues of PuPHPet](https://github.com/puphpet/puphpet/wiki/Shared-Folder:-Permission-Denied) and can be solved by editing the Vagrant file. Add the following to the `config.vm.synced_folder` option:
+
+```
+:linux__nfs_options => ["rw","no_root_squash","no_subtree_check"]
+```
+
+

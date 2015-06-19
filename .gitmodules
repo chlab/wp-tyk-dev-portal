@@ -7,3 +7,18 @@
 [submodule "ogdch.dev/content/themes/wp-ogdch-theme"]
 	path = ogdch.dev/content/themes/wp-ogdch-theme
 	url = git@gitlab.liip.ch:jazz/wp-ogdch-theme.git
+[submodule "ckan"]
+	path = ckan
+	url = https://github.com/ckan/ckan.git
+[submodule "ckanext/ckanext-harvest"]
+	path = ckanext/ckanext-harvest
+	url = https://github.com/ckan/ckanext-harvest.git
+[submodule "ckanext/ckanext-fluent"]
+	path = ckanext/ckanext-fluent
+	url = https://github.com/open-data/ckanext-fluent.git
+[submodule "ckanext/ckanext-scheming"]
+	path = ckanext/ckanext-scheming
+	url = https://github.com/open-data/ckanext-scheming.git
+[submodule "ckanext/ckanext-hierarchy"]
+	path = ckanext/ckanext-hierarchy
+	url = https://github.com/datagovuk/ckanext-hierarchy.git
