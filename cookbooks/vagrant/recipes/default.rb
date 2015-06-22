@@ -75,7 +75,7 @@ end
 
 # patch solr schema.xml (see: https://github.com/ckan/ckan/issues/2161)
 template "/etc/solr/conf/schema.xml" do
-  user user
+  user USER
   mode 0644
   source "schema.xml"
 end
