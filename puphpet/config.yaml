@@ -374,6 +374,15 @@ rabbitmq:
                     configure_permission: '.*'
                     read_permission: '.*'
                     write_permission: '.*'
+        ckan:
+            name: ckan
+            password: 'ckan'
+            permissions:
+                rmqup_h9dgxdnrkdvv:
+                    host: /
+                    configure_permission: '.*'
+                    read_permission: '.*'
+                    write_permission: '.*'
     vhosts: {  }
     plugins: { }
 elastic_search:

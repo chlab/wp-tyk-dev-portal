@@ -1,8 +1,8 @@
 USER = node[:user]
 HOME = "/home/#{USER}"
 SOURCE_DIR = "#{HOME}/pyenv/src"
-CKAN_DIR = node[:ckan_dir]
-INSTALL_DIR = node[:install_dir]
+CKAN_DIR = "/vagrant/ckan"
+INSTALL_DIR = "/vagrant/ckanext"
 
 template "/home/vagrant/.bash_aliases" do
   user "vagrant"
@@ -75,7 +75,7 @@ end
 
 # patch solr schema.xml (see: https://github.com/ckan/ckan/issues/2161)
 template "/etc/solr/conf/schema.xml" do
-  user USER
+  user user
   mode 0644
   source "schema.xml"
 end
@@ -204,6 +204,7 @@ ckanext-harvest
 ckanext-fluent
 ckanext-scheming
 ckanext-hierarchy
+ckanext-dcat
 ).each do | ckan_ext |
     bash "Install #{ckan_ext}" do
       user USER

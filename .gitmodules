@@ -22,3 +22,6 @@
 [submodule "ckanext/ckanext-hierarchy"]
 	path = ckanext/ckanext-hierarchy
 	url = https://github.com/datagovuk/ckanext-hierarchy.git
+[submodule "ckanext/ckanext-dcat"]
+	path = ckanext/ckanext-dcat
+	url = git@github.com:ckan/ckanext-dcat.git
