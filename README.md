@@ -8,48 +8,49 @@
 # Installation
 
 1. Clone this repo
-2. Run `git submodule init` and `git submodule update`
-3. Install omnibus plugin for vagrant: `vagrant plugin install vagrant-omnibus`
-4. Run `vagrant up`
-5. Copy the `ogdch.dev/wp-local-config.php.dist` to `ogdch.dev/wp-local-config.php` and fill in the DB config values
+1. Run `git submodule init` and `git submodule update`
+1. Install omnibus plugin for vagrant: `vagrant plugin install vagrant-omnibus`
+1. Install trigger plugin for vagrant: `vagrant plugin install vagrant-triggers`
+1. Run `vagrant up`
+1. Copy the `ogdch.dev/wp-local-config.php.dist` to `ogdch.dev/wp-local-config.php` and fill in the DB config values
     ```
     define( 'DB_NAME', 'cms' );
     define( 'DB_USER', 'cms' );
     define( 'DB_PASSWORD', '123' );
     ```
 
-6.  Add the following entries to your hosts (usually `/etc/hosts`) file:
+1.  Add the following entries to your hosts (usually `/etc/hosts`) file:
     ```
     192.168.56.101 ogdch.dev
     192.168.56.101 ckan.ogdch.dev
     ```
     
-7. Open http://ogdch.dev to access the WordPress installation and http://ckan.ogdch.dev to access the CKAN installation
+1. Open http://ogdch.dev to access the WordPress installation and http://ckan.ogdch.dev to access the CKAN installation
 
-8. Install composer if it isn't installed system wide:
+1. Install composer if it isn't installed system wide:
     ```
-    $ cd ogdch.dev/
-    $ curl -sS https://getcomposer.org/installer | php
-    ```
-    
-9. Run `php composer.phar install` to install dependencies
+   $ cd ogdch.dev/
+   $ curl -sS https://getcomposer.org/installer | php
+   ```
 
-10. Install theme dependencies
-    ```
-    $ cd content/themes/ogdch/
-    $ sudo npm install
-    ```
+1. Run `php composer.phar install` to install dependencies
+
+1. Install theme dependencies
+   ```
+   $ cd content/themes/ogdch/
+   $ sudo npm install
+   ```
+
+1. Start Vagrant-Box
+   ```
+   $ vagrant up
+   ```
     
-11. Start Vagrant-Box
-    ```
-    $ vagrant up
-    ```
-    
-12. Install RabbitMQ Deamon **in Vagrant-Box**
-    ```
-    $ vagrant ssh
-    $ sudo cp --force /var/www/ogd-rabbitmq-worker.conf /etc/init/ogd-rabbitmq-worker.conf
-    ```
+1. Install RabbitMQ Deamon **in Vagrant-Box**
+   ```
+   $ vagrant ssh
+   $ sudo cp --force /var/www/ogd-rabbitmq-worker.conf /etc/init/ogd-rabbitmq-worker.conf
+   ```
 
 # Working
 
@@ -130,6 +131,8 @@ If this happens just execute the following command:
 
     $ rm .vagrant/machines/default/virtualbox/synced_folders
     $ vagrant reload --provision
+
+A workaround for this issue has been added to the Vagrantfile. You should now be able to just run `vagrant reload --provision`
 
 ## Permission problems with NFS mount
 
