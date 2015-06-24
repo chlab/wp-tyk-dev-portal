@@ -78,6 +78,7 @@ template "/etc/solr/conf/schema.xml" do
   user USER
   mode 0644
   source "schema.xml"
+  notifies :restart, "service[jetty]", :immediately
 end
 
 # copy the development.ini
