@@ -9,5 +9,4 @@
 
 require WPMU_PLUGIN_DIR.'/hm-rewrite/hm-rewrites.php';
 require WPMU_PLUGIN_DIR.'/app-directory/app-directory.php';
-require WPMU_PLUGIN_DIR.'/ckan-dataset/ckan-dataset.php';
 require WPMU_PLUGIN_DIR.'/wp-ckan-backend/ckan-backend.php';
