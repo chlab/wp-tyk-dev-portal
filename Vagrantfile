@@ -30,7 +30,7 @@ Vagrant.configure("2") do |config|
   end
 
   config.trigger.before [:reload, :up, :provision], stdout: true do
-    SYNCED_FOLDER = ".vagrant/machines/default/#{ENV['VAGRANT_DEFAULT_PROVIDER']}/synced_folders"
+    SYNCED_FOLDER = ".vagrant/machines/default/virtualbox/synced_folders"
     info "Trying to delete folder #{SYNCED_FOLDER}"
     begin
       File.delete(SYNCED_FOLDER)
