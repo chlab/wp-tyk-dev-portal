@@ -207,21 +207,22 @@ ckanext-scheming
 ckanext-hierarchy
 ckanext-dcat
 ).each do | ckan_ext |
-    bash "Install #{ckan_ext}" do
-      user USER
-      cwd INSTALL_DIR
-      code <<-EOH
-      source #{HOME}/pyenv/bin/activate
-      cd #{INSTALL_DIR}/#{ckan_ext}
-      python setup.py develop
-      if test -e pip-requirements.txt; then
-          pip install -r pip-requirements.txt
-      fi
-      if test -e requirements.txt; then
-          pip install -r requirements.txt
-      fi
-      EOH
-    end
+  bash "Install #{ckan_ext}" do
+    user USER
+    cwd INSTALL_DIR
+    code <<-EOH
+    source #{HOME}/pyenv/bin/activate
+    pip install -e #{INSTALL_DIR}/#{ckan_ext} --src #{INSTALL_DIR}
+    cd #{INSTALL_DIR}/#{ckan_ext}
+    python setup.py develop
+    if test -e pip-requirements.txt; then
+        pip install -r pip-requirements.txt
+    fi
+    if test -e requirements.txt; then
+        pip install -r requirements.txt
+    fi
+    EOH
+  end
 end
 
 #################################################################
