@@ -92,6 +92,7 @@ bash "install the ckan pip package" do
   user USER
   code <<-EOH
 source #{HOME}/pyenv/bin/activate
+pip install -e #{CKAN_DIR} --src #{CKAN_DIR}
 cd #{CKAN_DIR}
 python setup.py develop
 EOH
