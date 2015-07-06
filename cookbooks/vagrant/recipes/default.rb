@@ -78,6 +78,7 @@ template "/etc/solr/conf/schema.xml" do
   user USER
   mode 0644
   source "schema.xml"
+  notifies :restart, "service[jetty]", :immediately
 end
 
 # copy the development.ini
@@ -91,8 +92,9 @@ bash "install the ckan pip package" do
   user USER
   code <<-EOH
 source #{HOME}/pyenv/bin/activate
+pip install -e #{CKAN_DIR} --src #{CKAN_DIR}
 cd #{CKAN_DIR}
-pip install #{CKAN_DIR} --exists-action=i -e #{CKAN_DIR}
+python setup.py develop
 EOH
 end
 
@@ -206,21 +208,22 @@ ckanext-scheming
 ckanext-hierarchy
 ckanext-dcat
 ).each do | ckan_ext |
-    bash "Install #{ckan_ext}" do
-      user USER
-      cwd INSTALL_DIR
-      code <<-EOH
-      source #{HOME}/pyenv/bin/activate
-      cd #{INSTALL_DIR}/#{ckan_ext}
-      python setup.py develop
-      if test -e pip-requirements.txt; then
-          pip install -r pip-requirements.txt
-      fi
-      if test -e requirements.txt; then
-          pip install -r requirements.txt
-      fi
-      EOH
-    end
+  bash "Install #{ckan_ext}" do
+    user USER
+    cwd INSTALL_DIR
+    code <<-EOH
+    source #{HOME}/pyenv/bin/activate
+    pip install -e #{INSTALL_DIR}/#{ckan_ext} --src #{INSTALL_DIR}
+    cd #{INSTALL_DIR}/#{ckan_ext}
+    python setup.py develop
+    if test -e pip-requirements.txt; then
+        pip install -r pip-requirements.txt
+    fi
+    if test -e requirements.txt; then
+        pip install -r requirements.txt
+    fi
+    EOH
+  end
 end
 
 #################################################################
