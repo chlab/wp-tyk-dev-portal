@@ -10,14 +10,14 @@ template "/home/vagrant/.bash_aliases" do
   source ".bash_aliases.erb"
 end
 
-template "/etc/apache2/sites-available/ckan_vhost.conf" do
+template "/etc/httpd/conf.d/ckan_vhost.conf" do
   user "root"
   mode "0644"
   source "ckan_vhost.conf.erb"
-  notifies :reload, "service[apache2]"
+  notifies :reload, "service[httpd]"
 end
 
-service "apache2" do
+service "httpd" do
   supports :restart => true, :reload => true, :status => true
   action [ :enable, :start ]
 end
@@ -106,18 +106,18 @@ pip install -r #{CKAN_DIR}/requirements.txt
 EOH
 end
 
-execute "enable ckan_vhost.conf within apache" do
-  not_if "stat /etc/apache2/sites-enabled/ckan_vhost.conf"
-  notifies :reload, "service[apache2]"
+execute "enable ckan_vhost.conf within httpd" do
+  not_if "stat /etc/httpd/conf.d/ckan_vhost.conf"
+  notifies :reload, "service[httpd]"
   command "a2ensite ckan_vhost.conf"
 end
 
-template "/etc/apache2/ports.conf" do
+template "/etc/httpd/conf/ports.conf" do
   owner "root"
   group "root"
   mode "0644"
   source "ports.conf"
-  notifies :restart, "service[apache2]"
+  notifies :restart, "service[httpd]"
 end
 
 execute "create etc/ckan/default folder" do
@@ -137,7 +137,7 @@ template "/etc/ckan/default/who.ini" do
   group "root"
   mode "0644"
   source "who.ini"
-  notifies :reload, "service[apache2]"
+  notifies :reload, "service[httpd]"
 end
 
 bash "create etc/cron.daily folder" do
@@ -246,7 +246,7 @@ mkdir -p #{HOME}/filestore
 chown vagrant #{HOME}/filestore
 chmod u+rw #{HOME}/filestore
 EOH
-  notifies :restart, "service[apache2]"
+  notifies :restart, "service[httpd]"
 end
 
 bash "creating an admin user" do
