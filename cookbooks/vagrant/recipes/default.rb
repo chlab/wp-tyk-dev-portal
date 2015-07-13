@@ -24,7 +24,7 @@ end
 
 # install the software we need
 %w(
-openjdk-6-jre-headless
+java-1.6.0-openjdk
 solr-jetty
 ).each { | pkg | package pkg }
 
