@@ -1,8 +1,10 @@
 USER = node[:user]
 HOME = "/home/#{USER}"
 SOURCE_DIR = "#{HOME}/pyenv/src"
-CKAN_DIR = "/vagrant/ckan"
-INSTALL_DIR = "/vagrant/ckanext"
+CKAN_DIR = "/var/www/web/ckan"
+INSTALL_DIR = "/var/www/web/ckanext"
+EPEL = node[:epel]
+CACHE = Chef::Config[:file_cache_path]
 
 template "/home/vagrant/.bash_aliases" do
   user "vagrant"
@@ -10,27 +12,77 @@ template "/home/vagrant/.bash_aliases" do
   source ".bash_aliases.erb"
 end
 
-template "/etc/httpd/conf.d/ckan_vhost.conf" do
-  user "root"
-  mode "0644"
-  source "ckan_vhost.conf.erb"
-  notifies :reload, "service[httpd]"
+remote_file "#{CACHE}/epel-release-#{EPEL}.noarch.rpm" do
+  source "http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-#{EPEL}.noarch.rpm"
+  not_if "rpm -qa | egrep -qx 'epel-release-#{EPEL}(|.noarch)'"
+  notifies :install, "rpm_package[epel-release]", :immediately
+  retries 5 # We may be redirected to a FTP URL, CHEF-1031.
 end
 
-service "httpd" do
-  supports :restart => true, :reload => true, :status => true
-  action [ :enable, :start ]
+rpm_package "epel-release" do
+  source "#{CACHE}/epel-release-#{EPEL}.noarch.rpm"
+  only_if {::File.exists?("#{CACHE}/epel-release-#{EPEL}.noarch.rpm")}
+  action :nothing
 end
+
+execute "yum -y update --disablerepo=epel"
+execute "yum -y update"
+
 
 # install the software we need
 %w(
+gcc
+gcc-c++
+git
+httpd
 java-1.6.0-openjdk
-solr-jetty
+java-1.6.0-openjdk-devel
+libxml2-devel
+libxslt-devel
+make
+mod_wsgi
+mysql-server
+ntp
+policycoreutils-python
+postgresql-devel
+postgresql-server
+python-devel
+python-virtualenv
+rabbitmq-server
+redis
+tomcat6
+unzip
+xalan-j2
+xml-commons
 ).each { | pkg | package pkg }
 
-template "/etc/default/jetty" do
-  mode "0644"
-  source "jetty"
+# register and start ntpd
+service "ntpd" do
+  action [:enable, :start]
+end
+
+# register and start rabbitmq
+service "rabbitmq-server" do
+  supports :restart => true, :reload => true, :status => true
+  action [:enable, :start]
+end
+
+# setup postgresql
+execute "service postgresql initdb en_US.UTF8" do
+  not_if "test -f /var/lib/pgsql/data/postgresql.conf"
+end
+
+service "postgresql" do
+  supports :restart => true, :status => true, :reload => true
+  action [:enable, :start]
+end
+
+template "/var/lib/pgsql/data/pg_hba.conf" do
+  user "postgres"
+  group "postgres"
+  mode 0600
+  source "pg_hba.conf"
+  notifies :restart, "service[postgresql]"
 end
 
 bash "create virtualenv" do
@@ -45,11 +97,6 @@ end
 directory SOURCE_DIR do
   owner USER
   group USER
-end
-
-service "jetty" do
-  supports :restart => true, :reload => true, :status => true
-  action [ :enable, :start ]
 end
 
 src  = "#{CKAN_DIR}/ckanext/multilingual/solr/"
@@ -69,7 +116,7 @@ dest = "/etc/solr/conf/"
 ].each do |file|
   link dest + file do
     to src + file
-    notifies :restart, "service[jetty]", :immediately
+    notifies :restart, "service[tomcat6]", :immediately
   end
 end
 
@@ -78,7 +125,7 @@ template "/etc/solr/conf/schema.xml" do
   user USER
   mode 0644
   source "schema.xml"
-  notifies :restart, "service[jetty]", :immediately
+  notifies :restart, "service[tomcat6]", :immediately
 end
 
 # copy the development.ini
@@ -104,6 +151,18 @@ bash "install the ckan pip dependencies" do
 source #{HOME}/pyenv/bin/activate
 pip install -r #{CKAN_DIR}/requirements.txt
 EOH
+end
+
+template "/etc/httpd/conf.d/ckan_vhost.conf" do
+  user "root"
+  mode "0644"
+  source "ckan_vhost.conf.erb"
+  notifies :reload, "service[httpd]"
+end
+
+service "httpd" do
+  supports :restart => true, :reload => true, :status => true
+  action [ :enable, :start ]
 end
 
 execute "enable ckan_vhost.conf within httpd" do
