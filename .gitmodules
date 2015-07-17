@@ -11,17 +11,17 @@
 	path = web/ckan
 	url = https://github.com/ckan/ckan.git
 [submodule "ckanext/ckanext-harvest"]
-	path = ckanext/ckanext-harvest
+	path = web/ckanext/ckanext-harvest
 	url = https://github.com/ckan/ckanext-harvest.git
 [submodule "ckanext/ckanext-fluent"]
-	path = ckanext/ckanext-fluent
+	path = web/ckanext/ckanext-fluent
 	url = https://github.com/open-data/ckanext-fluent.git
 [submodule "ckanext/ckanext-scheming"]
-	path = ckanext/ckanext-scheming
+	path = web/ckanext/ckanext-scheming
 	url = https://github.com/open-data/ckanext-scheming.git
 [submodule "ckanext/ckanext-hierarchy"]
-	path = ckanext/ckanext-hierarchy
+	path = web/ckanext/ckanext-hierarchy
 	url = https://github.com/datagovuk/ckanext-hierarchy.git
 [submodule "ckanext/ckanext-dcat"]
-	path = ckanext/ckanext-dcat
+	path = web/ckanext/ckanext-dcat
 	url = git@github.com:ckan/ckanext-dcat.git
