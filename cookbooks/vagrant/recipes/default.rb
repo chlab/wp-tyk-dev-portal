@@ -99,6 +99,61 @@ directory SOURCE_DIR do
   group USER
 end
 
+# Configure Apache Solr
+bash "download and extract Apache Solr" do
+  user "root"
+  cwd "/root"
+  not_if "test -d /root/apache-solr-1.4.1"
+  code <<-EOH
+  curl http://archive.apache.org/dist/lucene/solr/1.4.1/apache-solr-1.4.1.tgz | tar xzf -
+  EOH
+end
+
+bash "copy apache-solr to the solr directory" do
+  user "root"
+  not_if "test -d /usr/share/solr/apache-solr-1.4.1.war"
+  code <<-EOH
+  cp /root/apache-solr-1.4.1/dist/apache-solr-1.4.1.war /usr/share/solr
+  EOH
+end
+
+bash "copy the solr configuration to the core0 directory" do
+  user "root"
+  not_if "test -d /etc/solr/conf/"
+  code <<-EOH
+  cp -r /root/apache-solr-1.4.1/example/solr/conf /etc/solr/
+  EOH
+end
+
+template "/etc/solr/conf/solrconfig.xml" do
+  user "root"
+  mode "0644"
+  source "solrconfig.xml"
+end
+
+# create a solr.xml file for tomcat
+template "/etc/tomcat6/Catalina/localhost/solr.xml" do
+  mode "0644"
+  source "tomcat_solr.xml"
+end
+
+# create a solr.xml file and copy it into the solr directory
+template "/usr/share/solr/solr.xml" do
+  mode "0644"
+  source "solr.xml"
+end
+
+bash "set permissions for the solr directory" do
+  code <<-EOH
+  chown -R tomcat:tomcat /usr/share/solr /var/lib/solr
+  EOH
+end
+
+service "tomcat6" do
+  supports :restart => true, :status => true, :reload => true
+  action [:enable, :start]
+end
+
 src  = "#{CKAN_DIR}/ckanext/multilingual/solr/"
 dest = "/etc/solr/conf/"
 [
@@ -254,6 +309,15 @@ service "rabbitmq-server" do
   action [ :enable, :start ]
 end
 
+bash "Install setuptools" do
+  user USER
+  cwd VAGRANT_DIR
+  code <<-EOH
+  source #{HOME}/default/bin/activate
+  pip install setuptools
+  EOH
+end
+
 #################################################################
 #
 # EXTENSION BLOCK
@@ -331,3 +395,9 @@ bash "creating a harvest user" do
   EOH
 end
 
+bash "restarting the webserver" do
+	user "root"
+	code <<-EOH
+	service httpd restart
+	EOH
+end
