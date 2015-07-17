@@ -1,11 +1,11 @@
 [submodule "ogdch.dev/cms"]
-	path = ogdch.dev/cms
+	path = web/ogdch.dev/cms
 	url = https://github.com/WordPress/WordPress.git
 [submodule "ogdch.dev/content/mu-plugins/wp-ckan-backend"]
-	path = ogdch.dev/content/mu-plugins/wp-ckan-backend
+	path = web/ogdch.dev/content/mu-plugins/wp-ckan-backend
 	url = git@gitlab.liip.ch:jazz/wp-ckan-backend.git
 [submodule "ogdch.dev/content/themes/wp-ogdch-theme"]
-	path = ogdch.dev/content/themes/wp-ogdch-theme
+	path = web/ogdch.dev/content/themes/wp-ogdch-theme
 	url = git@gitlab.liip.ch:jazz/wp-ogdch-theme.git
 [submodule "ckan"]
 	path = web/ckan
