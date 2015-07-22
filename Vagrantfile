@@ -37,8 +37,10 @@ Vagrant.configure("2") do |config|
   config.vm.provider :virtualbox do |provider, config|
     config.vm.box = "CentOS-6.4-x86_64-v20131103.box"
     config.vm.box_url = "http://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.4-x86_64-v20131103.box"
-
-    config.vm.synced_folder "./web", "/var/www", :nfs => !WINDOWS
+    
+    config.nfs.map_uid = 0
+    config.nfs.map_gid = 0
+    config.vm.synced_folder "./web", "/var/www", :nfs => !WINDOWS, :mount_options => ['nolock,vers=3,udp,noatime']
 
     provider.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/v-root", "1"]
 
@@ -62,7 +64,8 @@ Vagrant.configure("2") do |config|
         :host_name => local_host_name,
         :user => "vagrant",
         :ckan_dir => "/var/www/ckan",
-        :install_dir => "/var/www/ckanext"
+        :install_dir => "/var/www/ckanext",
+        :epel => "6-8"
       }
     end
   end

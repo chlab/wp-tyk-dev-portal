@@ -311,7 +311,6 @@ end
 
 bash "Install setuptools" do
   user USER
-  cwd VAGRANT_DIR
   code <<-EOH
   source #{HOME}/default/bin/activate
   pip install setuptools
