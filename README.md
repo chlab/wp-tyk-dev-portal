@@ -33,12 +33,11 @@
    $ curl -sS https://getcomposer.org/installer | php
    ```
 
-1. Run `php composer.phar install` to install dependencies
+1. Run `php composer.phar install --dev` to install dependencies
 
 1. Install theme dependencies
    ```
-   $ cd content/themes/ogdch/
-   $ sudo npm install
+   $ npm install
    ```
 
 1. Start Vagrant-Box
@@ -51,6 +50,10 @@
    $ vagrant ssh
    $ sudo cp --force /var/www/ogd-rabbitmq-worker.conf /etc/init/ogd-rabbitmq-worker.conf
    ```
+
+1. add wordpress-standard to phpcs: `./bin/phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs`
+
+1. install the `pre-commit.sh` script as a pre-commit hook in your local repositories: `ln -s ../../pre-commit.sh .git/hooks/pre-commit`
 
 # Working
 

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<ruleset name="LiveJobsStandard">
+ <description>The livejobs-specific coding standard (fully includes WordPress rules).</description>
+
+    <!-- Include the whole PSR-2 standard -->
+    <rule ref="WordPress">
+        <exclude name="WordPress.Files.FileName" />
+        <exclude name="WordPress.VIP.ValidatedSanitizedInput" />
+        <exclude name="WordPress.VIP.RestrictedFunctions" />
+        <exclude name="WordPress.VIP.SuperGlobalInputUsage" />
+    </rule>
+    <!-- <rule ref="WordPress.WhiteSpace.ScopeIndent"> -->
+    <!--     <exclude-pattern>*/themes/livejobs/index.php</exclude-pattern> -->
+    <!--     <exclude-pattern>*/themes/livejobs/single.php</exclude-pattern> -->
+    <!--     <exclude-pattern>*/themes/livejobs/page.php</exclude-pattern> -->
+    <!--     <exclude-pattern>*/themes/livejobs/header.php</exclude-pattern> -->
+    <!--     <exclude-pattern>*/themes/livejobs/footer.php</exclude-pattern> -->
+    <!--     <exclude-pattern>*/themes/livejobs/partials/*</exclude-pattern> -->
+    <!--     <exclude-pattern>*/themes/livejobs/templates/*</exclude-pattern> -->
+    <!-- </rule> -->
+
+</ruleset>
