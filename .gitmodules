@@ -2,7 +2,7 @@
 	path = web/ogdch.dev/cms
 	url = https://github.com/WordPress/WordPress.git
 [submodule "ogdch.dev/content/mu-plugins/wp-ckan-backend"]
-	path = web/ogdch.dev/content/mu-plugins/wp-ckan-backend
+	path = web/ogdch.dev/content/plugins/wp-ckan-backend
 	url = git@gitlab.liip.ch:jazz/wp-ckan-backend.git
 [submodule "ogdch.dev/content/themes/wp-ogdch-theme"]
 	path = web/ogdch.dev/content/themes/wp-ogdch-theme
