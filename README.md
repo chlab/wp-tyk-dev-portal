@@ -37,7 +37,8 @@
 
 1. Install theme dependencies
    ```
-   $ npm install
+   $ cd content/themes/ogdch/
+   $ sudo npm install
    ```
 
 1. Start Vagrant-Box
@@ -54,6 +55,14 @@
 1. add wordpress-standard to phpcs: `./bin/phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs`
 
 1. install the `pre-commit.sh` script as a pre-commit hook in your local repositories: `ln -s ../../pre-commit.sh .git/hooks/pre-commit`
+
+# Testing
+
+1. Install Node >=0.12.x
+
+1. run `npm install` in root directory of this project
+
+1. To run a feature test type `cucumber-js test/features/example.feature` in the command line
 
 # Working
 
