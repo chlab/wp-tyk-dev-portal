@@ -105,6 +105,11 @@ to see what is happening:
 
     $ redis-cli monitor
 
+to clear the cache:
+
+    $ redis-cli
+    > flushall
+
 ## RabbitMQ deamon handling in Vagrant-Box
 Start deamon:
 
