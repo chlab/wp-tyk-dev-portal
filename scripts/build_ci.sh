@@ -25,6 +25,10 @@ git submodule init
 git submodule foreach --recursive 'git fetch --tags'
 git submodule update --recursive
 
+# install the vagrant plugins
+vagrant plugin install vagrant-omnibus
+vagrant plugin install vagrant-triggers
+
 vagrant up
 
 # Run build script in the vagrant box
