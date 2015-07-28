@@ -266,6 +266,7 @@ bash "setup mysql db for wordpress" do
 EOH
 end
 
+execute "killall -9 httpd || true"
 template "/etc/httpd/conf.d/ckan_vhost.conf" do
   user "root"
   mode "0644"
@@ -273,6 +274,7 @@ template "/etc/httpd/conf.d/ckan_vhost.conf" do
   notifies :reload, "service[httpd]", :immediately
 end
 
+execute "killall -9 httpd || true"
 template "/etc/httpd/conf/httpd.conf" do
   owner "root"
   group "root"
@@ -281,6 +283,7 @@ template "/etc/httpd/conf/httpd.conf" do
   notifies :restart, "service[httpd]", :immediately
 end
 
+execute "killall -9 httpd || true"
 execute "enable ckan_vhost.conf within httpd" do
   not_if "stat /etc/httpd/conf.d/ckan_vhost.conf"
   notifies :reload, "service[httpd]", :immediately
@@ -294,6 +297,7 @@ chown apache:apache /var/www/cgi-bin/php.fastcgi
 EOH
 end
 
+execute "killall -9 httpd || true"
 template "/etc/httpd/conf/ports.conf" do
   owner "root"
   group "root"
@@ -314,6 +318,7 @@ template "/etc/ckan/default/apache.wsgi" do
   source "apache.wsgi"
 end
 
+execute "killall -9 httpd || true"
 template "/etc/ckan/default/who.ini" do
   owner "root"
   group "root"
@@ -423,6 +428,7 @@ paster --plugin=ckan db init
 EOH
 end
 
+execute "killall -9 httpd || true"
 bash "creating folders necessary for ckan" do
   user "root"
   not_if "stat #{HOME}/filestore"
