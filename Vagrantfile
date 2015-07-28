@@ -1,20 +1,13 @@
-dir = File.dirname(File.expand_path(__FILE__))
-
-require 'yaml'
-require "#{dir}/puphpet/ruby/deep_merge.rb"
-
-configValues = YAML.load_file("#{dir}/puphpet/config.yaml")
-
-if File.file?("#{dir}/puphpet/config-custom.yaml")
-  custom = YAML.load_file("#{dir}/puphpet/config-custom.yaml")
-  configValues.deep_merge!(custom)
-end
-
-data = configValues['vagrantfile']
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
 
 Vagrant.require_version '>= 1.6.0'
 
-eval File.read("#{dir}/puphpet/vagrant/Vagrantfile-#{data['target']}")
+local_ip                = "192.168.56.101"
+local_host_name         = "ogdch.dev"
+
+WINDOWS = (RbConfig::CONFIG['host_os'] =~ /mswin|mingw|cygwin/) ? true : false
+vagrant_dir = File.dirname(__FILE__) + "/"
 
 Vagrant.configure("2") do |config|
   # START WORKAROUND for https://github.com/mitchellh/vagrant/issues/5199
@@ -41,22 +34,39 @@ Vagrant.configure("2") do |config|
   end
   # END WORKAROUND
 
-  config.omnibus.chef_version = :latest
-  config.vm.provision :chef_solo do |chef|
+  config.vm.provider :virtualbox do |provider, config|
+    config.vm.box = "CentOS-6.4-x86_64-v20131103.box"
+    config.vm.box_url = "http://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.4-x86_64-v20131103.box"
+    
+    config.nfs.map_uid = 0
+    config.nfs.map_gid = 0
+    config.vm.synced_folder "./web", "/var/www", :nfs => !WINDOWS, :mount_options => ['nolock,vers=3,udp,noatime']
 
-    chef.cookbooks_path = "cookbooks"
-    # chef debug level, start vagrant like this to debug:
-    # $ CHEF_LOG_LEVEL=debug vagrant <provision or up>
-    chef.log_level = ENV['CHEF_LOG'] || "info"
+    provider.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/v-root", "1"]
 
-    # chef recipes/roles
-    chef.add_recipe("vagrant")
+    config.vm.network :private_network, ip: local_ip
+    config.vm.hostname = local_host_name
 
-    chef.json = {
-      :host_name => data['vm']['hostname'],
-      :user => "vagrant",
-      :ckan_dir => "#{data['vm']['synced_folder']['vflsf_0t01o3pxhnte']['target']}/ckan",
-      :install_dir => "#{data['vm']['synced_folder']['vflsf_0t01o3pxhnte']['target']}/ckanext"
-    }
+    config.ssh.forward_agent = true
+
+    config.omnibus.chef_version = :latest
+    config.vm.provision :chef_solo do |chef|
+  
+      chef.cookbooks_path = "cookbooks"
+      # chef debug level, start vagrant like this to debug:
+      # $ CHEF_LOG_LEVEL=debug vagrant <provision or up>
+      chef.log_level = ENV['CHEF_LOG'] || "info"
+  
+      # chef recipes/roles
+      chef.add_recipe("vagrant")
+  
+      chef.json = {
+        :host_name => local_host_name,
+        :user => "vagrant",
+        :ckan_dir => "/var/www/ckan",
+        :install_dir => "/var/www/ckanext",
+        :epel => "6-8"
+      }
+    end
   end
 end

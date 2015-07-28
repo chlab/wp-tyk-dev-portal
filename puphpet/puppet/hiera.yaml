@@ -1,9 +1,0 @@
----
-:backends: yaml
-:yaml:
-    :datadir: '/var/www/puphpet'
-:hierarchy:
-    - config-custom
-    - config
-:merge_behavior: deeper
-:logger: console

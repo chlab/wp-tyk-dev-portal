@@ -1,8 +1,10 @@
 USER = node[:user]
 HOME = "/home/#{USER}"
 SOURCE_DIR = "#{HOME}/pyenv/src"
-CKAN_DIR = "/vagrant/ckan"
-INSTALL_DIR = "/vagrant/ckanext"
+CKAN_DIR = "/var/www/ckan"
+INSTALL_DIR = "/var/www/ckanext"
+EPEL = node[:epel]
+CACHE = Chef::Config[:file_cache_path]
 
 template "/home/vagrant/.bash_aliases" do
   user "vagrant"
@@ -10,27 +12,121 @@ template "/home/vagrant/.bash_aliases" do
   source ".bash_aliases.erb"
 end
 
-template "/etc/apache2/sites-available/ckan_vhost.conf" do
-  user "root"
-  mode "0644"
-  source "ckan_vhost.conf.erb"
-  notifies :reload, "service[apache2]"
+remote_file "#{CACHE}/epel-release-#{EPEL}.noarch.rpm" do
+  source "http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-#{EPEL}.noarch.rpm"
+  not_if "rpm -qa | egrep -qx 'epel-release-#{EPEL}(|.noarch)'"
+  notifies :install, "rpm_package[epel-release]", :immediately
+  retries 5 # We may be redirected to a FTP URL, CHEF-1031.
 end
 
-service "apache2" do
+rpm_package "epel-release" do
+  source "#{CACHE}/epel-release-#{EPEL}.noarch.rpm"
+  only_if {::File.exists?("#{CACHE}/epel-release-#{EPEL}.noarch.rpm")}
+  action :nothing
+end
+
+remote_file "#{CACHE}/rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm" do
+  source "http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm"
+  not_if "rpm -qa | egrep -qx 'epel-release-0.5.3-1.el6.rf.x86_64'"
+  notifies :install, "rpm_package[rpmforge-release]", :immediately
+  retries 5 # We may be redirected to a FTP URL, CHEF-1031.
+end
+
+rpm_package "rpmforge-release" do
+  source "#{CACHE}/rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm"
+  only_if {::File.exists?("#{CACHE}/rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm")}
+  action :nothing
+end
+
+execute "yum -y update --disablerepo=epel"
+execute "yum -y update"
+
+
+# install the software we need
+%w(
+gcc
+gcc-c++
+git
+httpd
+java-1.6.0-openjdk
+java-1.6.0-openjdk-devel
+libxml2-devel
+libxslt-devel
+make
+mod_wsgi
+mysql-server
+php
+php-cli
+php-mysql
+php-intl
+php-mcrypt
+php-mbstring
+php-redis
+php-curl
+php-tidy
+php-xmlrpc
+mod_fastcgi
+ntp
+policycoreutils-python
+postgresql-devel
+postgresql-server
+python-devel
+python-virtualenv
+rabbitmq-server
+redis
+tomcat6
+unzip
+xalan-j2
+xml-commons
+).each { | pkg | package pkg }
+
+# register and start ntpd
+service "ntpd" do
+  action [:enable, :start]
+end
+
+# register and start rabbitmq
+service "rabbitmq-server" do
+  supports :restart => true, :reload => true, :status => true
+  action [:enable, :start]
+end
+
+# register and start mysql
+service "mysqld" do
+  supports :restart => true, :status => true, :reload => true
+  action [:enable, :start]
+end
+
+# register and start redis
+service "redis" do
+  supports :restart => true, :status => true, :reload => true
+  action [:enable, :start]
+end
+
+# register and start httpd
+execute "killall -9 httpd || true"
+service "httpd" do
   supports :restart => true, :reload => true, :status => true
   action [ :enable, :start ]
 end
 
-# install the software we need
-%w(
-openjdk-6-jre-headless
-solr-jetty
-).each { | pkg | package pkg }
 
-template "/etc/default/jetty" do
-  mode "0644"
-  source "jetty"
+# setup postgresql
+execute "service postgresql initdb en_US.UTF8" do
+  not_if "test -f /var/lib/pgsql/data/postgresql.conf"
+end
+
+service "postgresql" do
+  supports :restart => true, :status => true, :reload => true
+  action [:enable, :start]
+end
+
+template "/var/lib/pgsql/data/pg_hba.conf" do
+  user "postgres"
+  group "postgres"
+  mode 0600
+  source "pg_hba.conf"
+  notifies :restart, "service[postgresql]"
 end
 
 bash "create virtualenv" do
@@ -47,9 +143,53 @@ directory SOURCE_DIR do
   group USER
 end
 
-service "jetty" do
-  supports :restart => true, :reload => true, :status => true
-  action [ :enable, :start ]
+# Configure Apache Solr
+bash "download and extract Apache Solr" do
+  user "root"
+  cwd "/root"
+  not_if "test -d /root/apache-solr-1.4.1"
+  code <<-EOH
+  curl http://archive.apache.org/dist/lucene/solr/1.4.1/apache-solr-1.4.1.tgz | tar xzf -
+  EOH
+end
+
+bash "copy apache-solr to the solr directory" do
+  user "root"
+  not_if "test -f /etc/solr/apache-solr-1.4.1.war"
+  code <<-EOH
+  mkdir -p /etc/solr
+  cp /root/apache-solr-1.4.1/dist/apache-solr-1.4.1.war /etc/solr
+  EOH
+end
+
+bash "copy the solr configuration" do
+  user "root"
+  not_if "test -d /etc/solr/conf/"
+  code <<-EOH
+  mkdir -p /etc/solr/conf
+  cp -r /root/apache-solr-1.4.1/example/solr/conf /etc/solr/
+  EOH
+end
+
+# create a solr.xml file for tomcat
+template "/etc/tomcat6/Catalina/localhost/solr.xml" do
+  mode "0644"
+  source "tomcat_solr.xml"
+end
+
+# replace default port 8080 of tomcat with 8983
+execute "sudo sed -i s/8080/8983/g /etc/tomcat6/server.xml"
+
+bash "set permissions for the solr directory" do
+  code <<-EOH
+  mkdir -p /var/lib/solr
+  chown -R tomcat:tomcat /etc/solr /var/lib/solr /usr/share/tomcat6
+  EOH
+end
+
+service "tomcat6" do
+  supports :restart => true, :status => true, :reload => true
+  action [:enable, :start]
 end
 
 src  = "#{CKAN_DIR}/ckanext/multilingual/solr/"
@@ -69,7 +209,7 @@ dest = "/etc/solr/conf/"
 ].each do |file|
   link dest + file do
     to src + file
-    notifies :restart, "service[jetty]", :immediately
+    notifies :restart, "service[tomcat6]", :immediately
   end
 end
 
@@ -78,7 +218,7 @@ template "/etc/solr/conf/schema.xml" do
   user USER
   mode 0644
   source "schema.xml"
-  notifies :restart, "service[jetty]", :immediately
+  notifies :restart, "service[tomcat6]", :immediately
 end
 
 # copy the development.ini
@@ -106,18 +246,64 @@ pip install -r #{CKAN_DIR}/requirements.txt
 EOH
 end
 
-execute "enable ckan_vhost.conf within apache" do
-  not_if "stat /etc/apache2/sites-enabled/ckan_vhost.conf"
-  notifies :reload, "service[apache2]"
+# Setup MySQL
+bash "setup mysql user for wordpress" do
+  user "root"
+  not_if "mysql -u root -e\"SELECT user FROM mysql.user;\" | grep cms"
+  code <<-EOH
+  mysql -u root -e"CREATE USER 'cms'@'localhost' IDENTIFIED BY '123';"
+  mysql -u root -e"GRANT ALL PRIVILEGES ON * . * TO 'cms'@'localhost';"
+  mysql -u root -e"FLUSH PRIVILEGES;"
+EOH
+end
+
+bash "setup mysql db for wordpress" do
+  user "root"
+  not_if "mysql -u root -e\"show databases;\" | grep cms"
+  code <<-EOH
+  mysql -u root -e"CREATE DATABASE cms;"
+  mysql -u root cms < /vagrant/sql/cms.sql
+EOH
+end
+
+execute "killall -9 httpd || true"
+template "/etc/httpd/conf.d/ckan_vhost.conf" do
+  user "root"
+  mode "0644"
+  source "ckan_vhost.conf.erb"
+  notifies :reload, "service[httpd]", :immediately
+end
+
+execute "killall -9 httpd || true"
+template "/etc/httpd/conf/httpd.conf" do
+  owner "root"
+  group "root"
+  mode "0644"
+  source "httpd.conf"
+  notifies :restart, "service[httpd]", :immediately
+end
+
+execute "killall -9 httpd || true"
+execute "enable ckan_vhost.conf within httpd" do
+  not_if "stat /etc/httpd/conf.d/ckan_vhost.conf"
+  notifies :reload, "service[httpd]", :immediately
   command "a2ensite ckan_vhost.conf"
 end
 
-template "/etc/apache2/ports.conf" do
+bash "Make sure apache has access to fcgi" do
+  user "root"
+  code <<-EOH
+chown apache:apache /var/www/cgi-bin/php.fastcgi
+EOH
+end
+
+execute "killall -9 httpd || true"
+template "/etc/httpd/conf/ports.conf" do
   owner "root"
   group "root"
   mode "0644"
   source "ports.conf"
-  notifies :restart, "service[apache2]"
+  notifies :restart, "service[httpd]", :immediately
 end
 
 execute "create etc/ckan/default folder" do
@@ -132,12 +318,13 @@ template "/etc/ckan/default/apache.wsgi" do
   source "apache.wsgi"
 end
 
+execute "killall -9 httpd || true"
 template "/etc/ckan/default/who.ini" do
   owner "root"
   group "root"
   mode "0644"
   source "who.ini"
-  notifies :reload, "service[apache2]"
+  notifies :reload, "service[httpd]", :immediately
 end
 
 bash "create etc/cron.daily folder" do
@@ -190,9 +377,12 @@ pip install -r #{CKAN_DIR}/dev-requirements.txt
 EOH
 end
 
-service "rabbitmq-server" do
-  supports :restart => true, :status => true
-  action [ :enable, :start ]
+bash "Install setuptools" do
+  user USER
+  code <<-EOH
+  source #{HOME}/pyenv/bin/activate
+  pip install setuptools
+  EOH
 end
 
 #################################################################
@@ -238,6 +428,7 @@ paster --plugin=ckan db init
 EOH
 end
 
+execute "killall -9 httpd || true"
 bash "creating folders necessary for ckan" do
   user "root"
   not_if "stat #{HOME}/filestore"
@@ -246,7 +437,7 @@ mkdir -p #{HOME}/filestore
 chown vagrant #{HOME}/filestore
 chmod u+rw #{HOME}/filestore
 EOH
-  notifies :restart, "service[apache2]"
+  notifies :restart, "service[httpd]", :immediately
 end
 
 bash "creating an admin user" do
@@ -272,3 +463,10 @@ bash "creating a harvest user" do
   EOH
 end
 
+bash "open firewall for httpd and restart" do
+  user "root"
+  code <<-EOH
+  sudo iptables -I INPUT -p tcp -m tcp --dport 80 -j ACCEPT
+  EOH
+  notifies :restart, "service[httpd]", :immediately
+end

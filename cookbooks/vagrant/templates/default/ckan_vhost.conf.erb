@@ -1,4 +1,28 @@
-# Override the Apache User (vhosts are included at the end of apache2.conf)
+<VirtualHost *:80>
+  ServerName ogdch.dev
+
+  ## Vhost docroot
+  DocumentRoot "/var/www/ogdch.dev"
+
+  ScriptAlias /cgi-bin/ "/var/www/cgi-bin/"
+  <Directory "/var/www/ogdch.dev">
+    Options +Indexes FollowSymLinks +ExecCGI
+    AddHandler php5-fastcgi .php
+    Action php5-fastcgi /cgi-bin/php.fastcgi
+    AllowOverride All
+    Order allow,deny
+    Allow from All
+  </Directory>
+
+  ## Logging
+  ErrorLog "/var/log/httpd/wp_error.log"
+  ServerSignature Off
+  CustomLog "/var/log/httpd/wp_access.log" combined
+
+  ## SetEnv/SetEnvIf for environment variables
+  SetEnv APP_ENV dev
+</VirtualHost>
+
 User vagrant
 Group vagrant
 
@@ -18,8 +42,7 @@ WSGISocketPrefix /var/run/wsgi
 
     WSGIProcessGroup ckan_default
 
-    ErrorLog /var/log/apache2/ckan_default.error.log
-    CustomLog /var/log/apache2/ckan_default.custom.log combined
+    ErrorLog /var/log/httpd/ckan_default.error.log
+    CustomLog /var/log/httpd/ckan_default.custom.log combined
 
 </VirtualHost>
-
