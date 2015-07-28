@@ -5,6 +5,7 @@ CKAN_DIR = "/var/www/ckan"
 INSTALL_DIR = "/var/www/ckanext"
 VAGRANT_DIR = "/vagrant"
 EPEL = node[:epel]
+CI = node[:ci] == "yes" ? true : false
 CACHE = Chef::Config[:file_cache_path]
 
 template "/home/vagrant/.bash_aliases" do
@@ -39,6 +40,9 @@ rpm_package "rpmforge-release" do
   action :nothing
 end
 
+# install node repo
+execute "curl --silent --location https://rpm.nodesource.com/setup | bash -"
+
 execute "yum -y update --disablerepo=epel"
 execute "yum -y update"
 
@@ -67,7 +71,7 @@ php-curl
 php-tidy
 php-xmlrpc
 mod_fastcgi
-npm
+nodejs
 ntp
 policycoreutils-python
 postgresql-devel
@@ -194,27 +198,29 @@ service "tomcat6" do
   action [:enable, :start]
 end
 
-src  = "#{CKAN_DIR}/ckanext/multilingual/solr/"
-dest = "/etc/solr/conf/"
-[
- "english_stop.txt",
- "fr_elision.txt",
- "french_stop.txt",
- "german_stop.txt",
- "italian_stop.txt",
- "dutch_stop.txt",
- "greek_stopwords.txt",
- "polish_stop.txt",
- "portuguese_stop.txt",
- "romanian_stop.txt",
- "spanish_stop.txt"
-].each do |file|
-  link dest + file do
-    to src + file
-    notifies :restart, "service[tomcat6]", :immediately
+unless CI then
+  src  = "#{CKAN_DIR}/ckanext/multilingual/solr/"
+  dest = "/etc/solr/conf/"
+  [
+   "english_stop.txt",
+   "fr_elision.txt",
+   "french_stop.txt",
+   "german_stop.txt",
+   "italian_stop.txt",
+   "dutch_stop.txt",
+   "greek_stopwords.txt",
+   "polish_stop.txt",
+   "portuguese_stop.txt",
+   "romanian_stop.txt",
+   "spanish_stop.txt"
+  ].each do |file|
+    link dest + file do
+      to src + file
+      notifies :restart, "service[tomcat6]", :immediately
+    end
   end
 end
-
+  
 # patch solr schema.xml (see: https://github.com/ckan/ckan/issues/2161)
 template "/etc/solr/conf/schema.xml" do
   user USER
@@ -243,9 +249,9 @@ end
 bash "install the ckan pip dependencies" do
   user USER
   code <<-EOH
-source #{HOME}/pyenv/bin/activate
-pip install -r #{CKAN_DIR}/requirements.txt
-EOH
+  source #{HOME}/pyenv/bin/activate
+  pip install -r #{CKAN_DIR}/requirements.txt
+  EOH
 end
 
 # Setup MySQL

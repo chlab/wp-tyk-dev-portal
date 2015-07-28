@@ -70,7 +70,8 @@ Vagrant.configure("2") do |config|
         :user => "vagrant",
         :ckan_dir => "/var/www/ckan",
         :install_dir => "/var/www/ckanext",
-        :epel => "6-8"
+        :epel => "6-8",
+        :ci => ENV['LIIP_DOCKER_CI']
       }
     end
   end
