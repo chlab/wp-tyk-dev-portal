@@ -1,5 +1,4 @@
 *.log
-web/.htaccess
 web/sitemap.xml
 web/sitemap.xml.gz
 
