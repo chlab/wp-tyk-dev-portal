@@ -38,7 +38,7 @@
 1. Install theme dependencies
    ```
    $ cd content/themes/ogdch/
-   $ sudo npm install
+   $ npm install
    ```
 
 1. Start Vagrant-Box
@@ -58,7 +58,7 @@
 
 # Testing
 
-1. Install Node >=0.12.x
+1. Install Node.js >=0.12.x
 
 1. run `npm install` in root directory of this project
 
