@@ -126,7 +126,7 @@ template "/var/lib/pgsql/data/pg_hba.conf" do
   group "postgres"
   mode 0600
   source "pg_hba.conf"
-  notifies :restart, "service[postgresql]"
+  notifies :restart, "service[postgresql]", :immediately
 end
 
 bash "create virtualenv" do
