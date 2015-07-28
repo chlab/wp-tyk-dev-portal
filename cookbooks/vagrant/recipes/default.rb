@@ -3,6 +3,7 @@ HOME = "/home/#{USER}"
 SOURCE_DIR = "#{HOME}/pyenv/src"
 CKAN_DIR = "/var/www/ckan"
 INSTALL_DIR = "/var/www/ckanext"
+VAGRANT_DIR = "/vagrant"
 EPEL = node[:epel]
 CACHE = Chef::Config[:file_cache_path]
 
@@ -66,6 +67,7 @@ php-curl
 php-tidy
 php-xmlrpc
 mod_fastcgi
+npm
 ntp
 policycoreutils-python
 postgresql-devel
@@ -469,4 +471,13 @@ bash "open firewall for httpd and restart" do
   sudo iptables -I INPUT -p tcp -m tcp --dport 80 -j ACCEPT
   EOH
   notifies :restart, "service[httpd]", :immediately
+end
+
+bash "Install test dependencies" do
+  user USER
+  cwd VAGRANT_DIR
+  code <<-EOH
+  sudo npm install -g cucumber
+  npm install
+  EOH
 end

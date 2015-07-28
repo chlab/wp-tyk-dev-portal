@@ -1,0 +1,19 @@
+{
+  "name": "ogd-ch",
+  "version": "0.0.1",
+  "description": "Open Data Portal CH",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.liip.ch:jazz/ogd-ch.git"
+  },
+  "author": "Team Jazz",
+  "license": "ISC",
+  "devDependencies": {
+    "cucumber": "latest",
+    "zombie": "4.0.8"
+  }
+}

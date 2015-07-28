@@ -35,6 +35,14 @@
 
 1. Run `php composer.phar install --dev` to install dependencies
 
+1. Install Node.js >=0.12.x
+
+1. Install test dependencies
+   ```
+   $ sudo npm install -g cucumber
+   $ npm install
+   ```
+
 1. Install theme dependencies
    ```
    $ cd content/themes/ogdch/
@@ -58,11 +66,9 @@
 
 # Testing
 
-1. Install Node.js >=0.12.x
-
-1. run `npm install` in root directory of this project
-
 1. To run a feature test type `cucumber-js test/features/example.feature` in the command line
+
+1. To run unit tests type `bin/phpunit`
 
 # Working
 
