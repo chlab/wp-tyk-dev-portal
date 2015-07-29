@@ -6,7 +6,7 @@ DIR=`dirname $0`
 
 # Installation
 # $DIR/install-wp-test.sh wordpress_test cms '123' localhost latest
-# cd $DIR/..
+cd $DIR/..
 curl -s https://getcomposer.org/installer | php
 php composer.phar install --dev
 $DIR/../bin/phpcs --config-set installed_paths $DIR/../vendor/wp-coding-standards/wpcs
