@@ -484,7 +484,7 @@ bash "Install test dependencies" do
   cwd VAGRANT_DIR
   code <<-EOH
   sudo npm install -g cucumber
-  npm install
+  sudo npm install
   EOH
 end
 
