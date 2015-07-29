@@ -80,6 +80,7 @@ python-devel
 python-virtualenv
 rabbitmq-server
 redis
+subversion
 tomcat6
 unzip
 xalan-j2
