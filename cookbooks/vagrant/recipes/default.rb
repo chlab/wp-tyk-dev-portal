@@ -487,3 +487,16 @@ bash "Install test dependencies" do
   npm install
   EOH
 end
+
+bash "Make sure daemons are started" do
+  user "root"
+  code <<-EOH
+  chkconfig ntpd on
+  chkconfig httpd on
+  chkconfig mysqld on
+  chkconfig postgresql on
+  chkconfig tomcat6 on
+  chkconfig rabbitmq-server on
+  chkconfig redis on
+  EOH
+end
