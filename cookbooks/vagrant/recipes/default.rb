@@ -40,6 +40,19 @@ rpm_package "rpmforge-release" do
   action :nothing
 end
 
+remote_file "#{CACHE}/remi-release-6.rpm" do
+  source "http://rpms.famillecollet.com/enterprise/remi-release-6.rpm"
+  not_if "rpm -qa | egrep -qx 'remi-release-6.rpm'"
+  notifies :install, "rpm_package[remi-release]", :immediately
+  retries 5 # We may be redirected to a FTP URL, CHEF-1031.
+end
+
+rpm_package "remi-release" do
+  source "#{CACHE}/remi-release-6.rpm"
+  only_if {::File.exists?("#{CACHE}/remi-release-6.rpm")}
+  action :nothing
+end
+
 # install node repo
 execute "curl --silent --location https://rpm.nodesource.com/setup | bash -"
 
@@ -86,7 +99,14 @@ tomcat6
 unzip
 xalan-j2
 xml-commons
-).each { | pkg | package pkg }
+).each do |pkg|
+    package pkg do
+      action :upgrade
+    end
+  end
+
+# install PHP 5.4 from the remi repository
+execute "yum --enablerepo=remi install -y php"
 
 # register and start ntpd
 service "ntpd" do
