@@ -15,7 +15,7 @@ $DIR/../bin/phpcs --config-set installed_paths $DIR/../vendor/wp-coding-standard
 $DIR/../phpcodesniffer.sh $DIR/../web/ogdch.dev/content/mu-plugins/wp-ckan-backend/ $DIR/../web/ogdch.dev/content/themes/wp-ogdch-theme
 
 # run cucumber tests
-cucumber.js $DIR/test/features
+cucumber.js $DIR/tests/features
 
 # Run tests
 $DIR/../bin/phpunit
