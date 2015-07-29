@@ -35,9 +35,9 @@ install_wp() {
     wget -nv -O $WP_CORE_DIR/wp-content/db.php https://raw.github.com/markoheijnen/wp-mysqli/master/db.php
 
     mkdir -p $WP_CORE_DIR/wp-content/mu-plugins
-    yes | cp -r $DIR/../content/mu-plugins/* $WP_CORE_DIR/wp-content/mu-plugins
-    yes | cp -r $DIR/../content/plugins/* $WP_CORE_DIR/wp-content/plugins
-    yes | cp -r $DIR/../content/themes/* $WP_CORE_DIR/wp-content/themes
+    yes | cp -r $DIR/../web/ogdch.dev/content/mu-plugins/* $WP_CORE_DIR/wp-content/mu-plugins
+    yes | cp -r $DIR/../web/ogdch.dev/content/plugins/* $WP_CORE_DIR/wp-content/plugins
+    yes | cp -r $DIR/../web/ogdch.dev/content/themes/* $WP_CORE_DIR/wp-content/themes
 }
 
 install_test_suite() {
