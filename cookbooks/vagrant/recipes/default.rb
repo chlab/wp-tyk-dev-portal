@@ -523,6 +523,14 @@ bash "Add ckan.ogdch.dev to hosts file" do
   EOH
 end
 
+bash "Ping ckan.ogdch.dev and ogdch.dev" do
+  user "root"
+  code <<-EOH
+  ping -c 1 ogdch.dev
+  ping -c 1 ckan.ogdch.dev
+  EOH
+end
+
 bash "Install test dependencies" do
   user USER
   cwd VAGRANT_DIR
