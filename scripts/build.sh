@@ -5,7 +5,7 @@ set -e
 DIR=`dirname $0`
 
 # Installation
-# $DIR/install-wp-test.sh wordpress_test cms '123' localhost latest
+$DIR/install-wp-test.sh wordpress_test cms '123' localhost latest
 cd $DIR/..
 curl -s https://getcomposer.org/installer | php
 php composer.phar install

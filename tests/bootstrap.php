@@ -1,6 +1,6 @@
 <?php
 
-require_once dirname( __FILE__ ) . '/../wp-unittest-config.php';
+require_once dirname( __FILE__ ) . '/../web/ogdch.dev/wp-unittest-config.php';
 
 $_tests_dir = getenv( 'WP_TESTS_DIR' );
 if ( ! $_tests_dir ) {
