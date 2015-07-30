@@ -15,9 +15,20 @@ set +e
 
 # Check code style
 $DIR/../phpcodesniffer.sh $DIR/../web/ogdch.dev/content/plugins/wp-ckan-backend/ $DIR/../web/ogdch.dev/content/themes/wp-ogdch-theme
+phpcs_exit=$?
 
 # run cucumber tests
 cucumber.js $DIR/../tests/features
+func_exit=$?
 
 # Run tests
 $DIR/../bin/phpunit
+unit_exit=$?
+
+if [ $phpcs_exit -eq 0 -a $func_exit -eq 0 -a $unit_exit -eq 0 ] ; then
+    echo "Everything okay!"
+    exit 0
+else
+    echo "Something went wrong, see output above"
+    exit 1
+fi
