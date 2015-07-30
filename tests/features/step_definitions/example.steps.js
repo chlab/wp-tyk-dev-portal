@@ -5,7 +5,7 @@ module.exports = function () {
         // Express the regexp above with the code you wish you had.
         // `this` is set to a new this.World instance.
         // i.e. you may use this.browser to execute the step:
-
+        //
         this.visit('http://' + domain + '/', callback);
 
         // The callback is passed to visit() so that when the job's finished, the next step can
