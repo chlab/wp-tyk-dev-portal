@@ -515,6 +515,14 @@ bash "open firewall for httpd and restart" do
   notifies :restart, "service[httpd]", :immediately
 end
 
+bash "Add ckan.ogdch.dev to hosts file" do
+  user "root"
+  not_if "cat /etc/hosts | grep ckan.ogdch.dev"
+  code <<-EOH
+  echo "127.0.0.1    ckan.ogdch.dev" >> /etc/hosts
+  EOH
+end
+
 bash "Install test dependencies" do
   user USER
   cwd VAGRANT_DIR
