@@ -497,6 +497,7 @@ bash "open firewall for httpd and restart" do
   user "root"
   code <<-EOH
   sudo iptables -I INPUT -p tcp -m tcp --dport 80 -j ACCEPT
+  service iptables save
   EOH
   notifies :restart, "service[httpd]", :immediately
 end
