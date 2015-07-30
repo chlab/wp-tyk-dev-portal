@@ -53,9 +53,6 @@ rpm_package "remi-release" do
   action :nothing
 end
 
-# install node repo
-execute "curl --silent --location https://rpm.nodesource.com/setup | bash -"
-
 execute "yum -y update --disablerepo=epel"
 execute "yum -y update"
 
@@ -85,7 +82,6 @@ php-tidy
 php-xmlrpc
 php-xml
 mod_fastcgi
-nodejs
 ntp
 policycoreutils-python
 postgresql-devel
@@ -107,6 +103,23 @@ xml-commons
 
 # install PHP 5.4 from the remi repository
 execute "yum --enablerepo=remi install -y php"
+
+
+# install node 0.12.x
+bash "Install node 0.12.x" do
+  user "vagrant"
+  cwd HOME
+  not_if "test -d /home/#{USER}/node"
+  code <<-EOH
+  git clone https://github.com/joyent/node.git
+  cd node
+  git fetch --tags
+  git checkout v0.12.7
+  ./configure
+  make
+  sudo make install
+  EOH
+end
 
 # register and start ntpd
 service "ntpd" do
