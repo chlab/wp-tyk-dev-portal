@@ -17,7 +17,7 @@ set +e
 $DIR/../phpcodesniffer.sh $DIR/../web/ogdch.dev/content/plugins/wp-ckan-backend/ $DIR/../web/ogdch.dev/content/themes/wp-ogdch-theme
 
 # run cucumber tests
-cucumber.js $DIR/tests/features
+cucumber.js $DIR/../tests/features
 
 # Run tests
 $DIR/../bin/phpunit
