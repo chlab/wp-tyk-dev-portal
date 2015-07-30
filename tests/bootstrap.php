@@ -16,7 +16,7 @@ function _manually_switch_theme() {
 tests_add_filter( 'plugins_loaded', '_manually_switch_theme' );
 
 function _manually_load_plugins() {
-	require '/tmp/wordpress/wp-content/plugins/ckan-backend.php';
+	require dirname( __FILE__ ) . '/../web/ogdch.dev/content/plugins/wp-ckan-backend/ckan-backend.php';
 }
 tests_add_filter( 'muplugins_loaded', '_manually_load_plugins' );
 
