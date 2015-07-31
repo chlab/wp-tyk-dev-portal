@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<ruleset name="OgdChStandard">
+ <description>The ogdch-specific coding standard (fully includes WordPress rules).</description>
+
+    <!-- Include the whole PSR-2 standard -->
+    <rule ref="WordPress">
+        <exclude name="WordPress.Files.FileName" />
+        <exclude name="WordPress.CSRF.NonceVerification" />
+        <exclude name="WordPress.VIP.ValidatedSanitizedInput" />
+        <exclude name="WordPress.VIP.RestrictedFunctions" />
+        <exclude name="WordPress.VIP.SuperGlobalInputUsage" />
+        <exclude name="Squiz.Commenting.InlineComment" />
+        <exclude name="Squiz.Commenting.BlockComment" />
+    </rule>
+    <rule ref="Internal.NoCodeFound">
+        <severity>0</severity>
+    </rule>
+    <rule ref="Generic.WhiteSpace.DisallowSpaceIndent">
+        <exclude-pattern>*/themes/wp-ogdch-theme/archive*.php</exclude-pattern>
+        <exclude-pattern>*/themes/wp-ogdch-theme/index.php</exclude-pattern>
+        <exclude-pattern>*/themes/wp-ogdch-theme/front-page.php</exclude-pattern>
+        <exclude-pattern>*/themes/wp-ogdch-theme/single*.php</exclude-pattern>
+        <exclude-pattern>*/themes/wp-ogdch-theme/page.php</exclude-pattern>
+        <exclude-pattern>*/themes/wp-ogdch-theme/header.php</exclude-pattern>
+        <exclude-pattern>*/themes/wp-ogdch-theme/taxonomy.php</exclude-pattern>
+        <exclude-pattern>*/themes/wp-ogdch-theme/footer.php</exclude-pattern>
+        <exclude-pattern>*/themes/wp-ogdch-theme/partials/*</exclude-pattern>
+        <exclude-pattern>*/themes/wp-ogdch-theme/templates/*</exclude-pattern>
+    </rule>
+    <rule ref="Squiz.Commenting.FileComment">
+        <exclude-pattern>*/themes/wp-ogdch-theme/functions.php</exclude-pattern>
+        <exclude-pattern>*/themes/wp-ogdch-theme/archive*.php</exclude-pattern>
+        <exclude-pattern>*/themes/wp-ogdch-theme/index.php</exclude-pattern>
+        <exclude-pattern>*/themes/wp-ogdch-theme/front-page.php</exclude-pattern>
+        <exclude-pattern>*/themes/wp-ogdch-theme/single*.php</exclude-pattern>
+        <exclude-pattern>*/themes/wp-ogdch-theme/page.php</exclude-pattern>
+        <exclude-pattern>*/themes/wp-ogdch-theme/header.php</exclude-pattern>
+        <exclude-pattern>*/themes/wp-ogdch-theme/taxonomy.php</exclude-pattern>
+        <exclude-pattern>*/themes/wp-ogdch-theme/footer.php</exclude-pattern>
+        <exclude-pattern>*/themes/wp-ogdch-theme/partials/*</exclude-pattern>
+        <exclude-pattern>*/themes/wp-ogdch-theme/templates/*</exclude-pattern>
+        <exclude-pattern>*/themes/wp-ogdch-theme/assets/php/*</exclude-pattern>
+    </rule>
+    <rule ref="Generic.WhiteSpace.ScopeIndent">
+        <exclude-pattern>*/themes/wp-ogdch-theme/archive*.php</exclude-pattern>
+        <exclude-pattern>*/themes/wp-ogdch-theme/index.php</exclude-pattern>
+        <exclude-pattern>*/themes/wp-ogdch-theme/front-page.php</exclude-pattern>
+        <exclude-pattern>*/themes/wp-ogdch-theme/single*.php</exclude-pattern>
+        <exclude-pattern>*/themes/wp-ogdch-theme/page.php</exclude-pattern>
+        <exclude-pattern>*/themes/wp-ogdch-theme/header.php</exclude-pattern>
+        <exclude-pattern>*/themes/wp-ogdch-theme/taxonomy.php</exclude-pattern>
+        <exclude-pattern>*/themes/wp-ogdch-theme/footer.php</exclude-pattern>
+        <exclude-pattern>*/themes/wp-ogdch-theme/partials/*</exclude-pattern>
+        <exclude-pattern>*/themes/wp-ogdch-theme/templates/*</exclude-pattern>
+    </rule>
+
+
+</ruleset>

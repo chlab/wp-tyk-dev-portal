@@ -40,7 +40,12 @@ Vagrant.configure("2") do |config|
     
     config.nfs.map_uid = 0
     config.nfs.map_gid = 0
-    config.vm.synced_folder "./web", "/var/www", :nfs => !WINDOWS, :mount_options => ['nolock,vers=3,udp,noatime']
+
+    if ENV['LIIP_DOCKER_CI'] == 'yes'
+        config.vm.synced_folder "./web", "/var/www"
+    else
+        config.vm.synced_folder "./web", "/var/www", :nfs => !WINDOWS, :mount_options => ['nolock,vers=3,udp,noatime']
+    end
 
     provider.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/v-root", "1"]
 
@@ -65,7 +70,8 @@ Vagrant.configure("2") do |config|
         :user => "vagrant",
         :ckan_dir => "/var/www/ckan",
         :install_dir => "/var/www/ckanext",
-        :epel => "6-8"
+        :epel => "6-8",
+        :ci => ENV['LIIP_DOCKER_CI']
       }
     end
   end

@@ -24,4 +24,4 @@
 	url = https://github.com/datagovuk/ckanext-hierarchy.git
 [submodule "ckanext/ckanext-dcat"]
 	path = web/ckanext/ckanext-dcat
-	url = git@github.com:ckan/ckanext-dcat.git
+	url = https://github.com/ckan/ckanext-dcat.git

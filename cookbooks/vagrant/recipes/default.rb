@@ -3,7 +3,9 @@ HOME = "/home/#{USER}"
 SOURCE_DIR = "#{HOME}/pyenv/src"
 CKAN_DIR = "/var/www/ckan"
 INSTALL_DIR = "/var/www/ckanext"
+VAGRANT_DIR = "/vagrant"
 EPEL = node[:epel]
+CI = node[:ci] == "yes" ? true : false
 CACHE = Chef::Config[:file_cache_path]
 
 template "/home/vagrant/.bash_aliases" do
@@ -38,6 +40,19 @@ rpm_package "rpmforge-release" do
   action :nothing
 end
 
+remote_file "#{CACHE}/remi-release-6.rpm" do
+  source "http://rpms.famillecollet.com/enterprise/remi-release-6.rpm"
+  not_if "rpm -qa | egrep -qx 'remi-release-6.rpm'"
+  notifies :install, "rpm_package[remi-release]", :immediately
+  retries 5 # We may be redirected to a FTP URL, CHEF-1031.
+end
+
+rpm_package "remi-release" do
+  source "#{CACHE}/remi-release-6.rpm"
+  only_if {::File.exists?("#{CACHE}/remi-release-6.rpm")}
+  action :nothing
+end
+
 execute "yum -y update --disablerepo=epel"
 execute "yum -y update"
 
@@ -65,6 +80,7 @@ php-redis
 php-curl
 php-tidy
 php-xmlrpc
+php-xml
 mod_fastcgi
 ntp
 policycoreutils-python
@@ -74,11 +90,36 @@ python-devel
 python-virtualenv
 rabbitmq-server
 redis
+subversion
 tomcat6
 unzip
 xalan-j2
 xml-commons
-).each { | pkg | package pkg }
+).each do |pkg|
+    package pkg do
+      action :upgrade
+    end
+  end
+
+# install PHP 5.4 from the remi repository
+execute "yum --enablerepo=remi install -y php"
+
+
+# install node 0.12.x
+bash "Install node 0.12.x" do
+  user "vagrant"
+  cwd HOME
+  not_if "test -d /home/#{USER}/node"
+  code <<-EOH
+  git clone https://github.com/joyent/node.git
+  cd node
+  git fetch --tags
+  git checkout v0.12.7
+  ./configure
+  make
+  sudo make install
+  EOH
+end
 
 # register and start ntpd
 service "ntpd" do
@@ -126,7 +167,7 @@ template "/var/lib/pgsql/data/pg_hba.conf" do
   group "postgres"
   mode 0600
   source "pg_hba.conf"
-  notifies :restart, "service[postgresql]"
+  notifies :restart, "service[postgresql]", :immediately
 end
 
 bash "create virtualenv" do
@@ -192,27 +233,29 @@ service "tomcat6" do
   action [:enable, :start]
 end
 
-src  = "#{CKAN_DIR}/ckanext/multilingual/solr/"
-dest = "/etc/solr/conf/"
-[
- "english_stop.txt",
- "fr_elision.txt",
- "french_stop.txt",
- "german_stop.txt",
- "italian_stop.txt",
- "dutch_stop.txt",
- "greek_stopwords.txt",
- "polish_stop.txt",
- "portuguese_stop.txt",
- "romanian_stop.txt",
- "spanish_stop.txt"
-].each do |file|
-  link dest + file do
-    to src + file
-    notifies :restart, "service[tomcat6]", :immediately
+unless CI then
+  src  = "#{CKAN_DIR}/ckanext/multilingual/solr/"
+  dest = "/etc/solr/conf/"
+  [
+   "english_stop.txt",
+   "fr_elision.txt",
+   "french_stop.txt",
+   "german_stop.txt",
+   "italian_stop.txt",
+   "dutch_stop.txt",
+   "greek_stopwords.txt",
+   "polish_stop.txt",
+   "portuguese_stop.txt",
+   "romanian_stop.txt",
+   "spanish_stop.txt"
+  ].each do |file|
+    link dest + file do
+      to src + file
+      notifies :restart, "service[tomcat6]", :immediately
+    end
   end
 end
-
+  
 # patch solr schema.xml (see: https://github.com/ckan/ckan/issues/2161)
 template "/etc/solr/conf/schema.xml" do
   user USER
@@ -241,9 +284,9 @@ end
 bash "install the ckan pip dependencies" do
   user USER
   code <<-EOH
-source #{HOME}/pyenv/bin/activate
-pip install -r #{CKAN_DIR}/requirements.txt
-EOH
+  source #{HOME}/pyenv/bin/activate
+  pip install -r #{CKAN_DIR}/requirements.txt
+  EOH
 end
 
 # Setup MySQL
@@ -467,6 +510,45 @@ bash "open firewall for httpd and restart" do
   user "root"
   code <<-EOH
   sudo iptables -I INPUT -p tcp -m tcp --dport 80 -j ACCEPT
+  service iptables save
   EOH
   notifies :restart, "service[httpd]", :immediately
+end
+
+bash "Add ckan.ogdch.dev to hosts file" do
+  user "root"
+  not_if "cat /etc/hosts | grep ckan.ogdch.dev"
+  code <<-EOH
+  echo "127.0.0.1    ckan.ogdch.dev" >> /etc/hosts
+  EOH
+end
+
+bash "Ping ckan.ogdch.dev and ogdch.dev" do
+  user "root"
+  code <<-EOH
+  ping -c 1 ogdch.dev
+  ping -c 1 ckan.ogdch.dev
+  EOH
+end
+
+bash "Install test dependencies" do
+  user USER
+  cwd VAGRANT_DIR
+  code <<-EOH
+  sudo npm install -g cucumber
+  sudo npm install
+  EOH
+end
+
+bash "Make sure daemons are started" do
+  user "root"
+  code <<-EOH
+  chkconfig ntpd on
+  chkconfig httpd on
+  chkconfig mysqld on
+  chkconfig postgresql on
+  chkconfig tomcat6 on
+  chkconfig rabbitmq-server on
+  chkconfig redis on
+  EOH
 end
