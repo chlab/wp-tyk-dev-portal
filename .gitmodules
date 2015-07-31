@@ -25,3 +25,6 @@
 [submodule "ckanext/ckanext-dcat"]
 	path = web/ckanext/ckanext-dcat
 	url = https://github.com/ckan/ckanext-dcat.git
+[submodule "web/ckanext/ckanext-switzerland"]
+	path = web/ckanext/ckanext-switzerland
+	url = git@github.com:ogdch/ckanext-switzerland.git
