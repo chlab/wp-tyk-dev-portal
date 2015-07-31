@@ -25,6 +25,10 @@ fi
 GITLAB_HOST='gitlab.liip.ch'
 ssh-keyscan -H $GITLAB_HOST >> ~gitlab_ci_runner/.ssh/known_hosts
 
+# make sure GitHub is known to the runner
+GITHUB_HOST='github.com'
+ssh-keyscan -H $GITHUB_HOST >> ~gitlab_ci_runner/.ssh/known_hosts
+
 git submodule init
 git submodule foreach --recursive 'git fetch --tags'
 git submodule update --recursive
