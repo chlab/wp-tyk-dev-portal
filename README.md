@@ -29,7 +29,6 @@
 
 1. Install composer if it isn't installed system wide:
     ```
-   $ cd ogdch.dev/
    $ curl -sS https://getcomposer.org/installer | php
    ```
 
@@ -52,12 +51,6 @@
 1. Start Vagrant-Box
    ```
    $ vagrant up
-   ```
-    
-1. Install RabbitMQ Deamon **in Vagrant-Box**
-   ```
-   $ vagrant ssh
-   $ sudo cp --force /var/www/ogd-rabbitmq-worker.conf /etc/init/ogd-rabbitmq-worker.conf
    ```
 
 1. add wordpress-standard to phpcs: `./bin/phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs`
