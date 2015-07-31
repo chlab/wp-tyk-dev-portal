@@ -440,6 +440,7 @@ ckanext-fluent
 ckanext-scheming
 ckanext-hierarchy
 ckanext-dcat
+ckanext-switzerland
 ).each do | ckan_ext |
   bash "Install #{ckan_ext}" do
     user USER
