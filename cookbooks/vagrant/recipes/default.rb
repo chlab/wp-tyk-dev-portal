@@ -8,6 +8,12 @@ EPEL = node[:epel]
 CI = node[:ci] == "yes" ? true : false
 CACHE = Chef::Config[:file_cache_path]
 
+template "/etc/sudoers" do
+  user "root"
+  mode "0440"
+  source "sudoers"
+end
+
 template "/home/vagrant/.bash_aliases" do
   user "vagrant"
   mode "0644"
