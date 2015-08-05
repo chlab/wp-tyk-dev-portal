@@ -346,15 +346,6 @@ chown apache:apache /var/www/cgi-bin/php.fastcgi
 EOH
 end
 
-execute "killall -9 httpd || true"
-template "/etc/httpd/conf/ports.conf" do
-  owner "root"
-  group "root"
-  mode "0644"
-  source "ports.conf"
-  notifies :restart, "service[httpd]", :immediately
-end
-
 execute "create etc/ckan/default folder" do
   not_if "stat /etc/ckan/default"
   command "mkdir -p /etc/ckan/default"
