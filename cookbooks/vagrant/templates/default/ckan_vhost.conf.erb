@@ -1,5 +1,3 @@
-NameVirtualHost *:80
-
 <VirtualHost *:80>
   ServerName ogdch.dev
 
@@ -7,7 +5,7 @@ NameVirtualHost *:80
   DocumentRoot "/var/www/ogdch.dev"
 
   <Directory "/var/www/ogdch.dev">
-    Options +Indexes FollowSymLinks 
+    Options +Indexes +FollowSymLinks 
     AllowOverride All
     Require all granted
   </Directory>
@@ -24,10 +22,12 @@ NameVirtualHost *:80
 User vagrant
 Group vagrant
 
-NameVirtualHost *:8080
-
 WSGISocketPrefix /var/run/wsgi
 <VirtualHost *:8080>
+
+    <Directory />
+        Require all granted
+    </Directory>
 
     ServerName <%= node[:host_name]  %>
     ServerAlias ckan.<%= node[:host_name]  %>

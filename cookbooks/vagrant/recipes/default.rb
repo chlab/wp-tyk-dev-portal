@@ -32,19 +32,6 @@ rpm_package "epel-release" do
   action :nothing
 end
 
-remote_file "#{CACHE}/rpmforge-release-0.5.3-1.el7.rf.x86_64.rpm" do
-  source "http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.3-1.el7.rf.x86_64.rpm"
-  not_if "rpm -qa | egrep -qx 'rpmforge-release-0.5.3-1.el7.rf.x86_64.rpm'"
-  notifies :install, "rpm_package[rpmforge-release]", :immediately
-  retries 5 # We may be redirected to a FTP URL, CHEF-1031.
-end
-
-rpm_package "rpmforge-release" do
-  source "#{CACHE}/rpmforge-release-0.5.3-1.el7.rf.x86_64.rpm"
-  only_if {::File.exists?("#{CACHE}/rpmforge-release-0.5.3-1.el7.rf.x86_64.rpm")}
-  action :nothing
-end
-
 remote_file "#{CACHE}/mysql-community-release-el7-5.noarch.rpm" do
   source "http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpm"
   not_if "rpm -qa | egrep -qx 'mysql-community-release-el7-5.noarch.rpm'"
@@ -77,7 +64,7 @@ mod_wsgi
 mysql-server
 php
 php-cli
-php-mysql
+php-mysqlnd
 php-intl
 php-mcrypt
 php-mbstring
@@ -95,7 +82,7 @@ python-virtualenv
 rabbitmq-server
 redis
 subversion
-tomcat6
+tomcat
 unzip
 xalan-j2
 xml-commons
@@ -213,22 +200,22 @@ bash "copy the solr configuration" do
 end
 
 # create a solr.xml file for tomcat
-template "/etc/tomcat6/Catalina/localhost/solr.xml" do
+template "/etc/tomcat/Catalina/localhost/solr.xml" do
   mode "0644"
   source "tomcat_solr.xml"
 end
 
 # replace default port 8080 of tomcat with 8983
-execute "sudo sed -i s/8080/8983/g /etc/tomcat6/server.xml"
+execute "sudo sed -i s/8080/8983/g /etc/tomcat/server.xml"
 
 bash "set permissions for the solr directory" do
   code <<-EOH
   mkdir -p /var/lib/solr
-  chown -R tomcat:tomcat /etc/solr /var/lib/solr /usr/share/tomcat6
+  chown -R tomcat:tomcat /etc/solr /var/lib/solr /usr/share/tomcat
   EOH
 end
 
-service "tomcat6" do
+service "tomcat" do
   supports :restart => true, :status => true, :reload => true
   action [:enable, :start]
 end
@@ -251,7 +238,7 @@ unless CI then
   ].each do |file|
     link dest + file do
       to src + file
-      notifies :restart, "service[tomcat6]", :immediately
+      notifies :restart, "service[tomcat]", :immediately
     end
   end
 end
@@ -261,7 +248,7 @@ template "/etc/solr/conf/schema.xml" do
   user USER
   mode 0644
   source "schema.xml"
-  notifies :restart, "service[tomcat6]", :immediately
+  notifies :restart, "service[tomcat]", :immediately
 end
 
 # copy the development.ini
@@ -498,15 +485,6 @@ bash "creating a harvest user" do
   EOH
 end
 
-bash "open firewall for httpd and restart" do
-  user "root"
-  code <<-EOH
-  sudo iptables -I INPUT -p tcp -m tcp --dport 80 -j ACCEPT
-  service iptables save
-  EOH
-  notifies :restart, "service[httpd]", :immediately
-end
-
 bash "Install test dependencies" do
   user USER
   cwd VAGRANT_DIR
@@ -523,7 +501,7 @@ bash "Make sure daemons are started" do
   chkconfig httpd on
   chkconfig mysqld on
   chkconfig postgresql on
-  chkconfig tomcat6 on
+  chkconfig tomcat on
   chkconfig rabbitmq-server on
   chkconfig redis on
   EOH
