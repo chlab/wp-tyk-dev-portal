@@ -86,7 +86,6 @@ php-curl
 php-tidy
 php-xmlrpc
 php-xml
-mod_fastcgi
 ntp
 policycoreutils-python
 postgresql-devel

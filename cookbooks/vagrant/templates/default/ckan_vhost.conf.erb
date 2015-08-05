@@ -6,14 +6,10 @@ NameVirtualHost *:80
   ## Vhost docroot
   DocumentRoot "/var/www/ogdch.dev"
 
-  ScriptAlias /cgi-bin/ "/var/www/cgi-bin/"
   <Directory "/var/www/ogdch.dev">
-    Options +Indexes FollowSymLinks +ExecCGI
-    AddHandler php5-fastcgi .php
-    Action php5-fastcgi /cgi-bin/php.fastcgi
+    Options +Indexes FollowSymLinks 
     AllowOverride All
-    Order allow,deny
-    Allow from All
+    Require all granted
   </Directory>
 
   ## Logging
