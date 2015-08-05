@@ -4,7 +4,6 @@ SOURCE_DIR = "#{HOME}/pyenv/src"
 CKAN_DIR = "/var/www/ckan"
 INSTALL_DIR = "/var/www/ckanext"
 VAGRANT_DIR = "/vagrant"
-EPEL = node[:epel]
 CI = node[:ci] == "yes" ? true : false
 CACHE = Chef::Config[:file_cache_path]
 
@@ -20,42 +19,42 @@ template "/home/vagrant/.bash_aliases" do
   source ".bash_aliases.erb"
 end
 
-remote_file "#{CACHE}/epel-release-#{EPEL}.noarch.rpm" do
-  source "http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-#{EPEL}.noarch.rpm"
-  not_if "rpm -qa | egrep -qx 'epel-release-#{EPEL}(|.noarch)'"
+remote_file "#{CACHE}/epel-release-7-5.noarch.rpm" do
+  source "http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm"
+  not_if "rpm -qa | egrep -qx 'epel-release-7-5(|.noarch)'"
   notifies :install, "rpm_package[epel-release]", :immediately
   retries 5 # We may be redirected to a FTP URL, CHEF-1031.
 end
 
 rpm_package "epel-release" do
-  source "#{CACHE}/epel-release-#{EPEL}.noarch.rpm"
-  only_if {::File.exists?("#{CACHE}/epel-release-#{EPEL}.noarch.rpm")}
+  source "#{CACHE}/epel-release-7-5.noarch.rpm"
+  only_if {::File.exists?("#{CACHE}/epel-release-7-5.noarch.rpm")}
   action :nothing
 end
 
-remote_file "#{CACHE}/rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm" do
-  source "http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm"
-  not_if "rpm -qa | egrep -qx 'epel-release-0.5.3-1.el6.rf.x86_64'"
+remote_file "#{CACHE}/rpmforge-release-0.5.3-1.el7.rf.x86_64.rpm" do
+  source "http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.3-1.el7.rf.x86_64.rpm"
+  not_if "rpm -qa | egrep -qx 'rpmforge-release-0.5.3-1.el7.rf.x86_64.rpm'"
   notifies :install, "rpm_package[rpmforge-release]", :immediately
   retries 5 # We may be redirected to a FTP URL, CHEF-1031.
 end
 
 rpm_package "rpmforge-release" do
-  source "#{CACHE}/rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm"
-  only_if {::File.exists?("#{CACHE}/rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm")}
+  source "#{CACHE}/rpmforge-release-0.5.3-1.el7.rf.x86_64.rpm"
+  only_if {::File.exists?("#{CACHE}/rpmforge-release-0.5.3-1.el7.rf.x86_64.rpm")}
   action :nothing
 end
 
-remote_file "#{CACHE}/remi-release-6.rpm" do
-  source "http://rpms.famillecollet.com/enterprise/remi-release-6.rpm"
-  not_if "rpm -qa | egrep -qx 'remi-release-6.rpm'"
-  notifies :install, "rpm_package[remi-release]", :immediately
+remote_file "#{CACHE}/mysql-community-release-el7-5.noarch.rpm" do
+  source "http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpm"
+  not_if "rpm -qa | egrep -qx 'mysql-community-release-el7-5.noarch.rpm'"
+  notifies :install, "rpm_package[mysql-release]", :immediately
   retries 5 # We may be redirected to a FTP URL, CHEF-1031.
 end
 
-rpm_package "remi-release" do
-  source "#{CACHE}/remi-release-6.rpm"
-  only_if {::File.exists?("#{CACHE}/remi-release-6.rpm")}
+rpm_package "mysql-release" do
+  source "#{CACHE}/mysql-community-release-el7-5.noarch.rpm"
+  only_if {::File.exists?("#{CACHE}/mysql-community-release-el7-5.noarch.rpm")}
   action :nothing
 end
 
@@ -106,10 +105,6 @@ xml-commons
       action :upgrade
     end
   end
-
-# install PHP 5.4 from the remi repository
-execute "yum --enablerepo=remi install -y php"
-
 
 # install node 0.12.x
 bash "Install node 0.12.x" do

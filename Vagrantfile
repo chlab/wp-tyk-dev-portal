@@ -35,8 +35,7 @@ Vagrant.configure("2") do |config|
   # END WORKAROUND
 
   config.vm.provider :virtualbox do |provider, config|
-    config.vm.box = "CentOS-6.4-x86_64-v20131103.box"
-    config.vm.box_url = "http://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.4-x86_64-v20131103.box"
+    config.vm.box = "chef/centos-7.0"
     
     config.nfs.map_uid = 0
     config.nfs.map_gid = 0
@@ -70,7 +69,6 @@ Vagrant.configure("2") do |config|
         :user => "vagrant",
         :ckan_dir => "/var/www/ckan",
         :install_dir => "/var/www/ckanext",
-        :epel => "6-8",
         :ci => ENV['LIIP_DOCKER_CI']
       }
     end
