@@ -10,6 +10,6 @@ Funktionalität: Example feature
     Dann I should see "Google" as the page title
 
   Szenario: Reading documentation Local
-    Gegeben sei I am on the ckan.ogdch.dev page
+    Gegeben sei I am on the ogdch.dev/en/dataset page
     Wenn I do nothing
-    Dann I should see "Willkommen - CKAN" as the page title
+Dann I should see "Datasets - CKAN" as the page title

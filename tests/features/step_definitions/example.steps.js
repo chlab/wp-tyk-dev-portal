@@ -1,12 +1,12 @@
 module.exports = function () {
     this.World = require("../support/world.js").World; // overwrite default World constructor
 
-    this.Given(/^I am on the (.*) page$/, function (domain, callback) {
+    this.Given(/^I am on the (.*) page$/, function (page, callback) {
         // Express the regexp above with the code you wish you had.
         // `this` is set to a new this.World instance.
         // i.e. you may use this.browser to execute the step:
         //
-        this.visit('http://' + domain + '/', callback);
+        this.visit('http://' + page, callback);
 
         // The callback is passed to visit() so that when the job's finished, the next step can
         // be executed by Cucumber.

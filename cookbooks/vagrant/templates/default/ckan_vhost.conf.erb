@@ -1,3 +1,5 @@
+NameVirtualHost *:80
+
 <VirtualHost *:80>
   ServerName ogdch.dev
 
@@ -26,10 +28,13 @@
 User vagrant
 Group vagrant
 
-WSGISocketPrefix /var/run/wsgi
-<VirtualHost *:80>
+NameVirtualHost *:8080
 
-    ServerName ckan.<%= node[:host_name]  %>
+WSGISocketPrefix /var/run/wsgi
+<VirtualHost *:8080>
+
+    ServerName <%= node[:host_name]  %>
+    ServerAlias ckan.<%= node[:host_name]  %>
     UseCanonicalName Off
     
     WSGIScriptAlias / /etc/ckan/default/apache.wsgi
