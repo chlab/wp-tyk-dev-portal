@@ -38,6 +38,7 @@ execute "yum -y update"
 
 # install the software we need
 %w(
+dkms
 gcc
 gcc-c++
 git
