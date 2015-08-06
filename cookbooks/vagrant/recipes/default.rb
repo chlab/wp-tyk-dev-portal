@@ -32,19 +32,6 @@ rpm_package "epel-release" do
   action :nothing
 end
 
-remote_file "#{CACHE}/mysql-community-release-el7-5.noarch.rpm" do
-  source "http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpm"
-  not_if "rpm -qa | egrep -qx 'mysql-community-release-el7-5.noarch.rpm'"
-  notifies :install, "rpm_package[mysql-release]", :immediately
-  retries 5 # We may be redirected to a FTP URL, CHEF-1031.
-end
-
-rpm_package "mysql-release" do
-  source "#{CACHE}/mysql-community-release-el7-5.noarch.rpm"
-  only_if {::File.exists?("#{CACHE}/mysql-community-release-el7-5.noarch.rpm")}
-  action :nothing
-end
-
 execute "yum -y update --disablerepo=epel"
 execute "yum -y update"
 
@@ -61,7 +48,7 @@ libxml2-devel
 libxslt-devel
 make
 mod_wsgi
-mysql-server
+mariadb-server
 php
 php-cli
 php-mysqlnd
@@ -119,8 +106,8 @@ service "rabbitmq-server" do
   action [:enable, :start]
 end
 
-# register and start mysql
-service "mysqld" do
+# register and start mariadb
+service "mariadb" do
   supports :restart => true, :status => true, :reload => true
   action [:enable, :start]
 end
@@ -499,7 +486,7 @@ bash "Make sure daemons are started" do
   code <<-EOH
   chkconfig ntpd on
   chkconfig httpd on
-  chkconfig mysqld on
+  chkconfig mariadb on
   chkconfig postgresql on
   chkconfig tomcat on
   chkconfig rabbitmq-server on
