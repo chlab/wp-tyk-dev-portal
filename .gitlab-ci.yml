@@ -1,4 +1,4 @@
 before_script:
-    - export DESTROY_BOX=false
+    - export DESTROY_BOX=true
 jobs:
     script: ./scripts/build_ci.sh
