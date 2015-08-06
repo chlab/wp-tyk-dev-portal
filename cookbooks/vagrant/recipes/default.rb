@@ -80,6 +80,17 @@ xml-commons
     end
   end
 
+bash "Symlink VBoxGuestAdditions" do
+  user "root"
+  code <<-EOH
+  NEWEST_VBOXGUESTADDITIONS_DIR=`find /opt/ -maxdepth 1 -mindepth 1 -name "VBoxGuestAdditions-*" | tail -n 1`;
+  if [[ ! -d "/usr/lib/VBoxGuestAdditions" && -n "$NEWEST_VBOXGUESTADDITIONS_DIR" ]];
+  then
+      ln -s ${NEWEST_VBOXGUESTADDITIONS_DIR}/lib/VBoxGuestAdditions /usr/lib/VBoxGuestAdditions
+  fi
+  EOH
+end
+
 # install node 0.12.x
 bash "Install node 0.12.x" do
   user "vagrant"
@@ -492,5 +503,14 @@ bash "Make sure daemons are started" do
   chkconfig tomcat on
   chkconfig rabbitmq-server on
   chkconfig redis on
+  EOH
+end
+
+# rebuild the vbox kernel module after upgrade
+bash "Rebuild the vbox kernel module after upgrade" do
+  user "root"
+  code <<-EOH
+  yum install kernel-devel-`uname -r`
+  /etc/init.d/vboxadd setup
   EOH
 end

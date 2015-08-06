@@ -21,17 +21,14 @@ Vagrant.configure("2") do |config|
     # Exit with the same status code.
     exit system('vagrant', *ARGV)
   end
-
-  if ENV['LIIP_DOCKER_CI'] != 'yes'
-    config.trigger.before [:reload, :up, :provision], stdout: true do
-      SYNCED_FOLDER = ".vagrant/machines/default/virtualbox/synced_folders"
-      info "Trying to delete folder #{SYNCED_FOLDER}"
-      begin
-        File.delete(SYNCED_FOLDER)
-      rescue StandardError => e
-        warn "Could not delete folder #{SYNCED_FOLDER}."
-        warn e.inspect
-      end
+  config.trigger.before [:reload, :up, :provision], stdout: true do
+    SYNCED_FOLDER = ".vagrant/machines/default/virtualbox/synced_folders"
+    info "Trying to delete folder #{SYNCED_FOLDER}"
+    begin
+      File.delete(SYNCED_FOLDER)
+    rescue StandardError => e
+      warn "Could not delete folder #{SYNCED_FOLDER}."
+      warn e.inspect
     end
   end
   # END WORKAROUND
