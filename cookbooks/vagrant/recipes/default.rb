@@ -4,7 +4,6 @@ SOURCE_DIR = "#{HOME}/pyenv/src"
 CKAN_DIR = "/var/www/ckan"
 INSTALL_DIR = "/var/www/ckanext"
 VAGRANT_DIR = "/vagrant"
-EPEL = node[:epel]
 CI = node[:ci] == "yes" ? true : false
 CACHE = Chef::Config[:file_cache_path]
 
@@ -20,42 +19,16 @@ template "/home/vagrant/.bash_aliases" do
   source ".bash_aliases.erb"
 end
 
-remote_file "#{CACHE}/epel-release-#{EPEL}.noarch.rpm" do
-  source "http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-#{EPEL}.noarch.rpm"
-  not_if "rpm -qa | egrep -qx 'epel-release-#{EPEL}(|.noarch)'"
+remote_file "#{CACHE}/epel-release-7-5.noarch.rpm" do
+  source "http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm"
+  not_if "rpm -qa | egrep -qx 'epel-release-7-5(|.noarch)'"
   notifies :install, "rpm_package[epel-release]", :immediately
   retries 5 # We may be redirected to a FTP URL, CHEF-1031.
 end
 
 rpm_package "epel-release" do
-  source "#{CACHE}/epel-release-#{EPEL}.noarch.rpm"
-  only_if {::File.exists?("#{CACHE}/epel-release-#{EPEL}.noarch.rpm")}
-  action :nothing
-end
-
-remote_file "#{CACHE}/rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm" do
-  source "http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm"
-  not_if "rpm -qa | egrep -qx 'epel-release-0.5.3-1.el6.rf.x86_64'"
-  notifies :install, "rpm_package[rpmforge-release]", :immediately
-  retries 5 # We may be redirected to a FTP URL, CHEF-1031.
-end
-
-rpm_package "rpmforge-release" do
-  source "#{CACHE}/rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm"
-  only_if {::File.exists?("#{CACHE}/rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm")}
-  action :nothing
-end
-
-remote_file "#{CACHE}/remi-release-6.rpm" do
-  source "http://rpms.famillecollet.com/enterprise/remi-release-6.rpm"
-  not_if "rpm -qa | egrep -qx 'remi-release-6.rpm'"
-  notifies :install, "rpm_package[remi-release]", :immediately
-  retries 5 # We may be redirected to a FTP URL, CHEF-1031.
-end
-
-rpm_package "remi-release" do
-  source "#{CACHE}/remi-release-6.rpm"
-  only_if {::File.exists?("#{CACHE}/remi-release-6.rpm")}
+  source "#{CACHE}/epel-release-7-5.noarch.rpm"
+  only_if {::File.exists?("#{CACHE}/epel-release-7-5.noarch.rpm")}
   action :nothing
 end
 
@@ -65,6 +38,7 @@ execute "yum -y update"
 
 # install the software we need
 %w(
+dkms
 gcc
 gcc-c++
 git
@@ -75,10 +49,10 @@ libxml2-devel
 libxslt-devel
 make
 mod_wsgi
-mysql-server
+mariadb-server
 php
 php-cli
-php-mysql
+php-mysqlnd
 php-intl
 php-mcrypt
 php-mbstring
@@ -87,7 +61,6 @@ php-curl
 php-tidy
 php-xmlrpc
 php-xml
-mod_fastcgi
 ntp
 policycoreutils-python
 postgresql-devel
@@ -97,7 +70,7 @@ python-virtualenv
 rabbitmq-server
 redis
 subversion
-tomcat6
+tomcat
 unzip
 xalan-j2
 xml-commons
@@ -107,9 +80,16 @@ xml-commons
     end
   end
 
-# install PHP 5.4 from the remi repository
-execute "yum --enablerepo=remi install -y php"
-
+bash "Symlink VBoxGuestAdditions" do
+  user "root"
+  code <<-EOH
+  NEWEST_VBOXGUESTADDITIONS_DIR=`find /opt/ -maxdepth 1 -mindepth 1 -name "VBoxGuestAdditions-*" | tail -n 1`;
+  if [[ ! -d "/usr/lib/VBoxGuestAdditions" && -n "$NEWEST_VBOXGUESTADDITIONS_DIR" ]];
+  then
+      ln -s ${NEWEST_VBOXGUESTADDITIONS_DIR}/lib/VBoxGuestAdditions /usr/lib/VBoxGuestAdditions
+  fi
+  EOH
+end
 
 # install node 0.12.x
 bash "Install node 0.12.x" do
@@ -138,8 +118,8 @@ service "rabbitmq-server" do
   action [:enable, :start]
 end
 
-# register and start mysql
-service "mysqld" do
+# register and start mariadb
+service "mariadb" do
   supports :restart => true, :status => true, :reload => true
   action [:enable, :start]
 end
@@ -219,22 +199,22 @@ bash "copy the solr configuration" do
 end
 
 # create a solr.xml file for tomcat
-template "/etc/tomcat6/Catalina/localhost/solr.xml" do
+template "/etc/tomcat/Catalina/localhost/solr.xml" do
   mode "0644"
   source "tomcat_solr.xml"
 end
 
 # replace default port 8080 of tomcat with 8983
-execute "sudo sed -i s/8080/8983/g /etc/tomcat6/server.xml"
+execute "sudo sed -i s/8080/8983/g /etc/tomcat/server.xml"
 
 bash "set permissions for the solr directory" do
   code <<-EOH
   mkdir -p /var/lib/solr
-  chown -R tomcat:tomcat /etc/solr /var/lib/solr /usr/share/tomcat6
+  chown -R tomcat:tomcat /etc/solr /var/lib/solr /usr/share/tomcat
   EOH
 end
 
-service "tomcat6" do
+service "tomcat" do
   supports :restart => true, :status => true, :reload => true
   action [:enable, :start]
 end
@@ -257,7 +237,7 @@ unless CI then
   ].each do |file|
     link dest + file do
       to src + file
-      notifies :restart, "service[tomcat6]", :immediately
+      notifies :restart, "service[tomcat]", :immediately
     end
   end
 end
@@ -267,7 +247,7 @@ template "/etc/solr/conf/schema.xml" do
   user USER
   mode 0644
   source "schema.xml"
-  notifies :restart, "service[tomcat6]", :immediately
+  notifies :restart, "service[tomcat]", :immediately
 end
 
 # copy the development.ini
@@ -504,31 +484,6 @@ bash "creating a harvest user" do
   EOH
 end
 
-bash "open firewall for httpd and restart" do
-  user "root"
-  code <<-EOH
-  sudo iptables -I INPUT -p tcp -m tcp --dport 80 -j ACCEPT
-  service iptables save
-  EOH
-  notifies :restart, "service[httpd]", :immediately
-end
-
-bash "Add ckan.ogdch.dev to hosts file" do
-  user "root"
-  not_if "cat /etc/hosts | grep ckan.ogdch.dev"
-  code <<-EOH
-  echo "127.0.0.1    ckan.ogdch.dev" >> /etc/hosts
-  EOH
-end
-
-bash "Ping ckan.ogdch.dev and ogdch.dev" do
-  user "root"
-  code <<-EOH
-  ping -c 1 ogdch.dev
-  ping -c 1 ckan.ogdch.dev
-  EOH
-end
-
 bash "Install test dependencies" do
   user USER
   cwd VAGRANT_DIR
@@ -543,10 +498,19 @@ bash "Make sure daemons are started" do
   code <<-EOH
   chkconfig ntpd on
   chkconfig httpd on
-  chkconfig mysqld on
+  chkconfig mariadb on
   chkconfig postgresql on
-  chkconfig tomcat6 on
+  chkconfig tomcat on
   chkconfig rabbitmq-server on
   chkconfig redis on
+  EOH
+end
+
+# rebuild the vbox kernel module after upgrade
+bash "Rebuild the vbox kernel module after upgrade" do
+  user "root"
+  code <<-EOH
+  yum install kernel-devel-`uname -r`
+  /etc/init.d/vboxadd setup
   EOH
 end
