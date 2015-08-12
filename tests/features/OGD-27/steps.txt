@@ -1,0 +1,8 @@
+Status zuordnen
+1. Edit Landesgrenzen dataset in WordPress
+2. Show dataset list in CKAN (http://ogdch.dev/dataset)
+3. Switch status to Draft
+4. Update
+5. Refresh CKAN dataset list (Aaand it's gone)
+6. Publish dataset again in WP
+7. Refresh CKAN dataset list
