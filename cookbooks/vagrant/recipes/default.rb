@@ -107,6 +107,14 @@ bash "Install node 0.12.x" do
   EOH
 end
 
+# set permissions to php session.save_path
+bash "set permissions to php session.save_path" do
+  user "root"
+  code <<-EOH
+chmod 777 /var/lib/php/session
+EOH
+end
+
 # register and start ntpd
 service "ntpd" do
   action [:enable, :start]
