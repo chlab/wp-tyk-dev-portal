@@ -1,0 +1,8 @@
+0. Make sure wp-local-config.php is created and contains correct CKAN API Key.
+
+1. In WP Backend create following CKAN Organisation:
+    - Title: Swisstopo (other fields: dont matter)
+
+2. In WP Backend create following CKAN Groups:
+    - Bevoelkerung (other fields don't matter)
+    - Mobilitaet und Verkehr (other fields don't matter)

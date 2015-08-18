@@ -1,0 +1,26 @@
+1. Login as Priska
+2. Click on CKAN Dataset -> Add New
+3. Fill in the form with the following values:
+Title: Landesgrenzen (de, en)
+Description (de, en)
+Issued
+Modified
+Publisher
+Contact point
+Theme
+Landing page
+
+Distribution
+Title: WMS Landesgrenzen (de, en)
+Languages: DE, EN
+Access URL: http://wms.admin.ch
+Download URL: http://wms.admin.ch
+Format: wms
+
+4. Save dataset
+5. Open CKAN: http://ogdch.dev/dataset
+6. Edit dataset to show all metadata
+7. Edit Resources to show all metadata
+8. Go back to overview
+    -> show groups
+    -> show organisation

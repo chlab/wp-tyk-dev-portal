@@ -1,0 +1,5 @@
+1. Login as Priska (user Priska, pw priska)
+2. Click on "CKAN Dataset > Import"
+3. Choose ogd-ch/tests/OGD-66/ogdch_dcatap_import.rdf
+4. Show imported dataset in WP
+5. Show imported dataset in CKAN

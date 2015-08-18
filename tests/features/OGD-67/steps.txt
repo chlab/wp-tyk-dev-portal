@@ -1,0 +1,2 @@
+1. Show DCAT-AP Format definition: https://projects.liip.ch/display/OGDCH/Dokumentation+DCAT-AP+for+Switzerland
+2. Show ogdch_dcatap_import.rdf
