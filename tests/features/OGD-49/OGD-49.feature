@@ -31,7 +31,6 @@ Szenario: Alain möchte einen neuen Datensatz validieren.
   Und den Datensatz dann abspeichert
   Dann hat der Datensatz den neuen Status “validiert”
   Und der Datensatz ist unter opendata.swiss nicht abrufbar
-  Und
 
 Szenario: Priska möchte einen validierten Datensatz publizieren.
   Angenommen sie bearbeitet einen Datensatz mit Status “validiert”
@@ -39,7 +38,6 @@ Szenario: Priska möchte einen validierten Datensatz publizieren.
   Und den Datensatz dann abspeichert
   Dann hat der Datensatz den neuen Status “publiziert”
   Und der Datensatz ist unter opendata.swiss abrufbar
-  Und
 
 Szenario: Priska möchte eine neue Ressource hinzufügen.
   Angenommen sie bearbeitet einen Datensatz mit Status “publiziert”
