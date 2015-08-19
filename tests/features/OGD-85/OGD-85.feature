@@ -1,3 +1,4 @@
+#language: de
 Feature: Als Application-Manager will ich einem manuell erstellten und publizierten Datensatz einen Status zuordnen, damit ich der Anfrage eines Daten-Owners nach Rückzug des Datensatzes entsprechen kann.
 
 Hintergrund:

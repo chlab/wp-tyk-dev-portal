@@ -1,3 +1,4 @@
+#language: de
 Feature: Als Datenlieferant (technisch) möchte ich zu einem Datensatz meiner Organisation über ein Web-Frontend Metadaten erfassen und bearbeiten können, so dass dieser Datensatz ohne zusätzliche Investitionen über das Portal zugänglich ist. (OGD-49)
 
 Hintergrund:

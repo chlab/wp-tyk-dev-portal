@@ -1,3 +1,4 @@
+#language: de
 Feature: Als Datenlieferant (technisch) möchte ich einem von mir manuell erstellten Datensatz einen Status zuordnen, so dass sein Publikationsstatus bekannt ist.
 
 Hintergrund:
