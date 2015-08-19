@@ -10,4 +10,3 @@ Szenario: Daniel möchte Datensätze nach Metadaten-Attributen filtern
   Angenommen Daniel hat das Portal opendata.swiss geöffnet
   Und wählt einen Filter aus
   Dann werden die entsprechenden Datensätze aus dem Filter angezeigt
-  

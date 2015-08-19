@@ -1,3 +1,4 @@
+#language: de
 Feature: Als Service-Entwickler oder Daten-Analyst möchte ich alle Datensätze mit einer einzigen Suchabfrage nach sämtlichen verfügbaren Attributen durchsuchen können, so dass ich mir nicht überlegen muss, in welchem Feld ein Stichwort vorkommen könnte.
 
 Hintergrund:
