@@ -1,5 +1,5 @@
 #language: de
-Feature: Als Data-Owner möchte ich die Beschreibung meiner Organisationen bearbeiten, so dass die Informationen auf OGD-CH aussagekräftig sind.
+Funktionalität: Als Data-Owner möchte ich die Beschreibung meiner Organisationen bearbeiten, so dass die Informationen auf OGD-CH aussagekräftig sind.
 
 Hintergrund:
   Angenommen ein Admin-Back-End genannt Admin

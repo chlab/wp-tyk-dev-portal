@@ -1,5 +1,5 @@
 #language: de
-Feature: Als Service-Entwickler oder Daten-Analyst möchte ich Datensätze nach Metadaten-Attributen filtern können, um meine Suche nach bestimmten Datensätzen zu unterstützen.
+Funktionalität: Als Service-Entwickler oder Daten-Analyst möchte ich Datensätze nach Metadaten-Attributen filtern können, um meine Suche nach bestimmten Datensätzen zu unterstützen.
 
 Hintergrund:
   Angenommen ein Service-Entwickler Namens Daniel

@@ -1,5 +1,5 @@
 #language: de
-Feature: User-Story
+Funktionalität: User-Story
 
 Hintergrund:
   Angenommen

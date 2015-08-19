@@ -1,5 +1,5 @@
 #language: de
-Feature: Als Content-Manager möchte ich statische Inhalte bearbeiten, so dass angebotene Zusatzinformationen jederzeit aktuell gehalten werden können.
+Funktionalität: Als Content-Manager möchte ich statische Inhalte bearbeiten, so dass angebotene Zusatzinformationen jederzeit aktuell gehalten werden können.
 
 Hintergrund:
   Angenommen ein Admin-Back-End genannt Admin
