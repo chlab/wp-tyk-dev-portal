@@ -14,3 +14,7 @@ Szenario: Alain möchte für seine Organisation ein neues Logo einfügen
   Dann ist unter opendata.swiss das neue Logo ersichtlich
 
 Szenario: Alain möchte die Beschreibung seiner Organisation ändern.
+  Angenommen in der Bechreibung steht "Alte Beschreibung"
+  Und diese ist unter opendata.swiss für Oleg sichtbar
+  Wenn Alain die Beschreibung im Admin ändert zu "Neue Beschreibung"
+  Dann sieht Oleg unter opendata.swiss den Text "Neue Beschreibung"
