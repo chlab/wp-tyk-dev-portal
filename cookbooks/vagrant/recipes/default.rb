@@ -394,6 +394,7 @@ bash "setup postgres db for ckan" do
 createuser -S -D -R ckan_default
 psql -c "ALTER USER ckan_default with password 'pass'"
 createdb -O ckan_default ckan_default -E utf-8
+psql ckan_default < /vagrant/sql/ckan_default.sql
 EOH
 end
 
