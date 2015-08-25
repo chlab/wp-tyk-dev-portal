@@ -127,6 +127,17 @@ or watch changes
     $ cd ogdch.dev/content/themes/ogdch/
     $ gulp watch
 
+## Create and restore database dumps
+
+There are two script to dump the CKAN and WordPress databases:
+
+    $ /vagrant/scripts/db_dumps.sh
+
+The dumps are saved to the `sql` directory in the root of the project.
+To restore the databases, you can use the following script:
+
+    $ /vagrant/scripts/restore_dumps.sh
+
 # Troubleshooting
 
 ## Problems with Guest Additions of VirtualBox
