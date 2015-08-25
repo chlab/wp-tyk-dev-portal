@@ -13,4 +13,4 @@ sudo -i -u postgres pg_dump ckan_default > /vagrant/sql/ckan_default.sql
 
 # MySQL (WordPress DB)
 echo "Create dump of cms..."
-mysqldump -u cms --password cms > /vagrant/sql/cms.sql
+mysqldump -u cms -p123 cms > /vagrant/sql/cms.sql
