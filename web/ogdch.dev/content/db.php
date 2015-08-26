@@ -1,1 +1,1 @@
-web/ogdch.dev/content/plugins/query-monitor/wp-content/db.php
+/var/www/ogdch.dev/content/plugins/query-monitor/wp-content/db.php
