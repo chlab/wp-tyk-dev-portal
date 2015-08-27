@@ -8,7 +8,7 @@ function World(callback) {
             maxWait: 10000
         }
     ); // this.browser will be available in step definitions
-    
+
     this.visit = function (url, callback) {
         this.browser.visit(url, callback);
     };

@@ -21,7 +21,3 @@ Szenario: Pierre erstellt eine Tochter-Organisation.
   Und Pierre erfasst ACME Fireworks als Tochter von ACME
   Dann existieren im Admin zwei Organisationen
   Und davon eine als Tochter von ACME
-
-Szenario: Pierre ordnet eine bestehende Tochter-Organisation einer anderen Organisation zu.
-
-Szenario: Pierre löscht eine bestehende Organisation oder Tocher-Organisation.

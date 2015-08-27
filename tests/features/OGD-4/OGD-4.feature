@@ -6,7 +6,7 @@ Hintergrund:
   Und ein Daten-Analyst Namens Alain
   Und ein öffentliches Portal genannt opendata.swiss
 
-Szenario: Daniel möchte Datensätze nach Metadaten-Attributen filtern
+Szenario: Daniel möchte Datensätze nach Metadaten-Attributen filtern (facetted search)
   Angenommen Daniel hat das Portal opendata.swiss geöffnet
   Und wählt einen Filter aus
   Dann werden die entsprechenden Datensätze aus dem Filter angezeigt
