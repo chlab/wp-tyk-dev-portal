@@ -14,6 +14,9 @@ if ( file_exists( dirname( __FILE__ ) . '/wp-local-config.php' ) ) {
 } elseif ( file_exists( dirname( __FILE__ ) . '/wp-test-config.php' ) ) {
 	// Test
 	include( dirname( __FILE__ ) . '/wp-test-config.php' );
+} elseif ( file_exists( dirname( __FILE__ ) . '/wp-functest-config.php' ) ) {
+	// Functional Tests
+	include( dirname( __FILE__ ) . '/wp-functest-config.php' );
 } else {
 	// Live
 	include( dirname( __FILE__ ) . '/wp-live-config.php' );
