@@ -455,7 +455,6 @@ bash "create database tables" do
   code <<-EOH
 source #{HOME}/pyenv/bin/activate
 paster --plugin=ckan db init
-paster --plugin=ckan search-index rebuild
 EOH
 end
 
