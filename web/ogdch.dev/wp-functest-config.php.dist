@@ -75,7 +75,7 @@ define( 'WPMU_PLUGIN_URL', WP_HOME . '/content/mu-plugins' );
 define( 'CKAN_API_ENDPOINT', 'http://ckan.ogdch.dev/api/3/' );
 define( 'CKAN_REST_API_ENDPOINT', 'http://ckan.ogdch.dev/api/rest/' );
 define( 'CKAN_SEARCH_API_ENDPOINT', 'http://ckan.ogdch.dev/api/3/action/package_search' );
-define( 'CKAN_API_KEY', 'd4d6732d-fe15-4825-bc24-c36daa9a0486' ); // adminsuer key
+define( 'CKAN_API_KEY', 'a3cdeb1f-6130-4a94-839e-f82393c1c393' ); // adminsuer key
 
 $language_priority = array(
 	1 => 'en',
