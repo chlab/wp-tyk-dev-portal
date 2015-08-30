@@ -13,6 +13,7 @@ function World(callback) {
         {
             maxWait: 10000,
             debug: false,
+            loadCSS: false,
             runScripts: false
         }
     );
