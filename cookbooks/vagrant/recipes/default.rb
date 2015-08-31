@@ -227,26 +227,23 @@ service "tomcat" do
   action [:enable, :start]
 end
 
-unless CI then
-  src  = "#{CKAN_DIR}/ckanext/multilingual/solr/"
-  dest = "/etc/solr/conf/"
-  [
-   "english_stop.txt",
-   "fr_elision.txt",
-   "french_stop.txt",
-   "german_stop.txt",
-   "italian_stop.txt",
-   "dutch_stop.txt",
-   "greek_stopwords.txt",
-   "polish_stop.txt",
-   "portuguese_stop.txt",
-   "romanian_stop.txt",
-   "spanish_stop.txt"
-  ].each do |file|
-    link dest + file do
-      to src + file
-      notifies :restart, "service[tomcat]", :immediately
-    end
+src  = "#{CKAN_DIR}/ckanext/multilingual/solr/"
+dest = "/etc/solr/conf/"
+[
+ "english_stop.txt",
+ "fr_elision.txt",
+ "french_stop.txt",
+ "german_stop.txt",
+ "italian_stop.txt",
+ "dutch_stop.txt",
+ "greek_stopwords.txt",
+ "polish_stop.txt",
+ "portuguese_stop.txt",
+ "romanian_stop.txt",
+ "spanish_stop.txt"
+].each do |file|
+  link dest + file do
+    to src + file
   end
 end
   
@@ -512,6 +509,14 @@ bash "Make sure daemons are started" do
   chkconfig tomcat on
   chkconfig rabbitmq-server on
   chkconfig redis on
+
+  systemctl restart ntpd
+  systemctl restart httpd
+  systemctl restart mariadb
+  systemctl restart postgresql
+  systemctl restart tomcat
+  systemctl restart rabbitmq-server
+  systemctl restart redis
   EOH
 end
 

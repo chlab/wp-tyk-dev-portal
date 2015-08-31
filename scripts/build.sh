@@ -7,10 +7,6 @@ DIR=`dirname $0`
 # Reset DB
 /vagrant/scripts/restore_dumps.sh
 
-# Rebuild search-index
-source /home/vagrant/pyenv/bin/activate
-paster --plugin=ckan search-index rebuild -c /var/www/ckan/development.ini
-
 # Installation
 $DIR/install-wp-test.sh wordpress_test cms '123' localhost latest
 cd $DIR/..
