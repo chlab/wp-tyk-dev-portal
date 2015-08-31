@@ -21,4 +21,8 @@ mysql -u root -e"show databases;" | grep cms && mysql -u root -e"DROP DATABASE c
 mysql -u root -e"CREATE DATABASE cms;"
 mysql -u root cms < /vagrant/sql/cms.sql
 
+# Flush Redis cache
+sudo redis-cli flushall
+
+# Restart Apache
 sudo systemctl start httpd
