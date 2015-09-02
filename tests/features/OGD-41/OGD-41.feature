@@ -8,12 +8,4 @@ Hintergrund:
   Und eine Startseite
   Und eine Datenseite
 
-Szenario: Aktualisieren der Informationen im Header und Footer.
-  Angenommen der Footer von opendata.swiss ist leer
-  Und Simon bearbeitet den Footer im Admin
-  Und schreibt "Haben Sie Fragen zu opendata.swiss?" für de
-  Und schreibt "Vous avez des questions au sujet de opendata.swiss?" für fr
-  Dann erscheint dieser Text am Seitenende der Startseite in der jeweiligen Spracheinstellung
-  Und ebenso am Seitenende der Datenseite
-
 Szenario: Aktualisieren der Informationen im Body einer statischen Seite.
