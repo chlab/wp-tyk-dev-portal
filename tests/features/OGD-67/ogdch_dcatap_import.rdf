@@ -11,7 +11,7 @@
  xmlns:odrs="http://schema.theodi.org/odrs#"
  xmlns:schema="http://schema.org/">
   <dcat:Dataset>
-    <dct:identifier>325</dct:identifier>
+    <dct:identifier>325@swisstopo</dct:identifier>
     <dct:title xml:lang="de">Eisenbahnlärm Nacht</dct:title>
     <dct:title xml:lang="fr">Bruit ferroviaire nuit</dct:title>
     <dct:title xml:lang="it">Rumore ferroviario notte</dct:title>

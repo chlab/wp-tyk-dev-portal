@@ -5,7 +5,7 @@ Hintergrund:
   Angenommen
   Und
 
-Szenario: Content-Manager will ein Bild anzeigen.
+Szenario: Content-Manager will ein Bild auf statischer Seite anzeigen.
 - neues Bild
 - wird dem Media-Manager hinzugefügt
   Angenommen
