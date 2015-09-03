@@ -1,24 +1,24 @@
 #language: de
-
 Funktionalität: Als Application-Manager möchte ich die im System verfügbaren Organisationen und Unterorganisationen bearbeiten, so dass die Struktur und Übersichtlichkeit des Portals aufrecht erhalten werden
 
 Hintergrund:
   Angenommen ein Admin-Back-End genannt Admin
-  Und einen Application-Manager Namens Pierre
-  Und eine Organisation Namens "Kanton Zürich"
-  Und eine Tochter-Organisation Namens "GIS ZH"
-  Und ein Data-Owner von "GIS ZH" Namens Paul
+  Und einen Service-Manager Namens Pierre
+  Und eine Organisation Namens ACME
+  Und eine Tochter-Organisation Namens ACME Fireworks
+  Und ein Data-Owner von ACME Fireworks Namens Wile
 
 Szenario: Pierre erstellt eine neue Organisation.
-  Angenommen bisher existiert noch keine Organisation "Kanton Zürich"
-  Und Pierre erfasst "Kanton Zürich"
-  Dann existiert im Admin eine Organisation namens "Kanton Zürich"
+  Angenommen bisher existieren noch keine Organisationen
+  Und Pierre erfasst ACME
+  Dann existiert im Admin eine Organisation
+  Und diese heisst ACME
 
 Szenario: Pierre erstellt eine Tochter-Organisation.
-  Angenommen "Kanton Zürich" hat noch keine Tochterorganisation
-  Und Pierre erfasst "GIS ZH" als Tochter von "Kanton Zürich"
-  Dann existieren im Admin zwei Organisationen namens "Kanton Zürich" und "GIS ZH"
-  Und davon eine als Tochter von "Kanton Zürich"
+  Angenommen ACME hat noch keine Tochterorganisation
+  Und Pierre erfasst ACME Fireworks als Tochter von ACME
+  Dann existieren im Admin zwei Organisationen
+  Und davon eine als Tochter von ACME
 
 Szenario: Pierre ordnet eine bestehende Tochter-Organisation einer anderen Organisation zu.
 

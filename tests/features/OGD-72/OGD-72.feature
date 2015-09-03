@@ -1,9 +1,6 @@
 #language: de
 Funktionalität: Als Data-Owner möchte ich einem Benutzer in meiner Organisation gewisse Rollen geben oder entziehen, so dass ich Berechtigungen gezielt vergeben kann.
 
-Hintergrund:
-
-
 Szenario: Der Data-Owner kann einen Benutzer seiner Organisation hinzufügen
 
 Szenario: Der Data-Owner kann einen Benutzer seiner Organisation anpassen

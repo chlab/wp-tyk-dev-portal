@@ -1,9 +1,6 @@
 #language: de
 Funktionalität: Als Application-Manager möchte ich gewisse Berechtigungen in einer Rolle bündeln, so dass ich Zugriffsrechte gebündelt erteilen kann.
 
-Hintergrund:
-
-
 Szenario: Im Admin-Bereich kann Pierre eine Liste von Rollen abrufen
 
 Szenario: Im Admin-Bereich kann Pierre einzelne Rollen bearbeiten
