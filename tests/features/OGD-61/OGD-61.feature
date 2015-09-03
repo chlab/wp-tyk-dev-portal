@@ -6,7 +6,7 @@ Hintergrund:
   Und ein registrierter Benutzer Namens Paul
   Und das opendata.swiss Portal
 
-Szenario: Pierre kann einen neuen Benutzer anlegen und bearbeiten
+Szenario: Pierre kann einen neuen Benutzer Paul anlegen und bearbeiten
 
 Szenario: Pierre kann eine Liste der registrierten Benutzer abrufen
 
