@@ -1,14 +1,17 @@
 #language: de
 Funktionalität: Als Application-Manager möchte ich gewisse Berechtigungen in einer Rolle bündeln, so dass ich Zugriffsrechte gebündelt erteilen kann.
 
-Hintergrund: Es gibt eine Liste mit Berechtigungen
+Hintergrund: 
+Angenommen ein Application-Manager namens Pierre
+Und ein Admin-Bereich existiert
+Und eine Liste mit Berechtigungen
 
-Szenario: Im Admin-Bereich kann Pierre eine Liste von Rollen abrufen
+Szenario: Pierre ruft im Admin-Bereich eine Liste von Rollen ab
 
-Szenario: Im Admin-Bereich kann Pierre einzelne Rollen bearbeiten
+Szenario: Pierre bearbeitet im Admin-Bereich einzelne Rollen
 
-Szenario: Im Admin-Bereich kann Pierre eine neue Rolle erstellen
+Szenario: Pierre erstellt im Admin-Bereich eine neue Rolle
 
-Szenario: Im Admin-Bereich kann Pierre eine Rolle löschen
+Szenario: Pierre löscht im Admin-Bereich eine Rolle
 
-Szenario: Im Admin-Bereich kann Pierre die Rechte von Rollen anpassen (hinzufügen und löschen)
+Szenario: Pierre passt die Rechte von Rollen im Admin-Bereich an (hinzufügen und löschen)
