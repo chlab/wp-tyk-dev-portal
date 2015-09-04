@@ -26,3 +26,8 @@ sudo redis-cli flushall
 
 # Restart Apache
 sudo systemctl start httpd
+
+# make sure solr is fine
+sudo systemctl restart tomcat
+source /home/vagrant/pyenv/bin/activate
+paster --plugin=ckan search-index rebuild -c /var/www/ckan/development.ini

@@ -11,7 +11,7 @@ Browser.waitDuration = '30s';
 function World(callback) {
     this.browser = new Browser(
         {
-            maxWait: 10000,
+            maxWait: 30000,
             debug: false,
             loadCSS: false,
             runScripts: false
