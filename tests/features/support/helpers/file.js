@@ -3,13 +3,17 @@ var Promise = require('promise');
 var fs = require('fs');
 
 module.exports = {
-    file_exists: function(dirname, filename, callback) {
-        var path = fs.realpathSync(dirname + '/../' + filename);
-        if (fs.existsSync(path)) {
-            console.log('File ' + filename + ' exists');
-            callback(null, path);
-            return
-        }
-        callback('File ' + filename +' does not exist!');
+    file_exists: function(dirname, filename) {
+        return new Promise(function(resolve, reject) {
+            var path = fs.realpathSync(dirname + '/../' + filename);
+            fs.exists(path, function(exists) {
+                if (exists) {
+                    console.log('File ' + filename + ' exists');
+                    resolve(path);
+                } else {
+                    reject()
+                }
+            });
+        });
     }
 };

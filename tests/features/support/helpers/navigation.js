@@ -5,12 +5,12 @@ module.exports = {
     page: function(path) {
         return "http://ogdch.dev" + path;
     },
-    visit: function(url, callback) {
+    visit: function(url) {
         if (url.indexOf("http") == - 1) {
-            this.browser.visit(this.page(url), callback);
+            return this.browser.visit(this.page(url));
         }
         else {
-            this.browser.visit(url, callback);
+            return this.browser.visit(url);
         }
     }
 };

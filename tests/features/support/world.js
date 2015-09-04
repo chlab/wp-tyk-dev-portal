@@ -23,10 +23,6 @@ function World(callback) {
 
     load(path.join(__dirname, './helpers'), this.helpers);
 
-    this.visit = function (url, callback) {
-        this.browser.visit(url, callback);
-    };
-
     this.restore_db = function(callback)  {
         if (process.env.RESET_DB) {
             console.log("Restoring DBs...");
