@@ -22,6 +22,11 @@ module.exports = {
                 .then(function() {
                     expect(me.browser.text('title')).to.match(/^(Profile|Dashboard)/);
                     console.log("Logged in as " + username);
+                })
+                .then(function() {
+                    return me.browser.wait();
+                })
+                .then(function() {
                     resolve();
                 })
                 .catch(reject);
@@ -33,6 +38,11 @@ module.exports = {
             me.browser.visit('/cms/wp-login.php?loggedout=true')
                 .then(function() {
                     console.log("Logged out");
+                })
+                .then(function() {
+                    return me.browser.wait();
+                })
+                .then(function() {
                     resolve();
                 })
                 .catch(reject);
@@ -69,6 +79,9 @@ module.exports = {
                     return me.browser.pressButton("#save-post");
                 })
                 .then(function() {
+                    return me.browser.wait();
+                })
+                .then(function() {
                     console.log("Added post");
                     expect(me.browser.text('#message p')).to.match(/^Post draft updated/);
                     expect(me.browser.query("div[class='error']")).not.to.exist;
@@ -92,6 +105,9 @@ module.exports = {
         return new Promise(function(resolve, reject) {
             me.browser.visit(post_edit_url)
                 .then(function() {
+                    return me.browser.wait();
+                })
+                .then(function() {
                     console.log("Opened post edit page");
                     expect(me.browser.text('#post-status-display')).to.equal(availableStatus[expected_status_id]);
                     resolve()
@@ -106,6 +122,9 @@ module.exports = {
         return new Promise(function(resolve, reject) {
             me.browser.visit(post_edit_url)
                 .then(function() {
+                    return me.browser.wait();
+                })
+                .then(function() {
                     console.log("Opened post edit page");
 
                     var button_to_save = '#publish';
@@ -113,8 +132,10 @@ module.exports = {
                         me.browser.select('#post_status', new_status_id);
                         button_to_save = '#save-post';
                     }
-
                     return me.browser.pressButton(button_to_save);
+                })
+                .then(function() {
+                    return me.browser.wait();
                 })
                 .then(function() {
                     console.log("Updated post");
@@ -122,6 +143,9 @@ module.exports = {
                 })
                 .catch(function() {
                     return me.browser.pressButton("#publish");
+                })
+                .then(function() {
+                    return me.browser.wait();
                 })
                 .then(function() {
                     console.log("Updated post");

@@ -1,5 +1,6 @@
 var ogdchHooks = function () {
     this.After(function (callback) {
+        console.log("Cleanup after scenario...");
         this.restore_db(callback);
     });
 
@@ -8,7 +9,7 @@ var ogdchHooks = function () {
         callback();
     });
     this.registerHandler('AfterStep', function (event, callback) {
-        console.log("End Step: ", event.getPayloadItem('step').getName())
+        console.log("End Step: ", event.getPayloadItem('step').getName());
         callback();
     });
 };

@@ -7,12 +7,12 @@ var exec = require('child_process').exec;
 
 Browser.localhost('ogdch.dev', 80);
 Browser.localhost('opendata.swiss', 80);
-Browser.waitDuration = '30s';
+Browser.waitDuration = '60s';
 function World(callback) {
     this.browser = new Browser(
         {
-            maxWait: 30000,
-            debug: false,
+            maxWait: 100000,
+            debug: true,
             loadCSS: false,
             runScripts: false
         }
@@ -30,18 +30,17 @@ function World(callback) {
                 if (error) {
                     callback.fail(error);
                 }
-                /*
                 console.log('stdout: ' + stdout);
                 console.log('stderr: ' + stderr);
-                */
+                
                 console.log("Finished restoring DBs.");
                 callback();
             });
         } else {
+            console.log("Skip restoring DBs...");
             callback();
         }
-
-    }
+    };
 
     callback(); // tell Cucumber we're finished and to use 'this' as the world instance
 };
@@ -55,7 +54,7 @@ function load(helperPath, dest) {
             continue;
         }
         modulePath = path.join(helperPath, files[i]);
-        util.mixin(require(modulePath), dest);;
+        util.mixin(require(modulePath), dest);
     }
 }
 
