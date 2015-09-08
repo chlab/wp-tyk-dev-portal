@@ -73,5 +73,21 @@ module.exports = {
                 })
                 .catch(reject);
         });
+    },
+    get_org_descr: function(orgSlug) {
+        var me = this;
+        return new Promise(function(resolve, reject) {
+            me.browser.visit('/organization/' + orgSlug)
+                .then(function() {
+                    return me.browser.wait();
+                })
+                .then(function () {
+                    console.log("Opened organization page in CKAN");
+                    expect(me.browser.status).to.equal(200);
+                    var org_descr = me.browser.querySelector('.secondary .module-content p').innerHTML;
+                    resolve(org_descr);
+                })
+                .catch(reject);
+        });
     }
 };

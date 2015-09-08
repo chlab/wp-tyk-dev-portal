@@ -69,10 +69,7 @@ module.exports = {
     create_post: function(post_type, title) {
         var me = this;
         return new Promise(function(resolve, reject) {
-            me.browser.visit('/cms/wp-admin/edit.php?post_type=' + post_type)
-                .then(function() {
-                    return me.browser.clickLink("Add New")
-                })
+            me.browser.visit('/cms/wp-admin/post_new.php?post_type=' + post_type)
                 .then(function() {
                     console.log("Add new post");
                     me.browser.fill("#title", title);
@@ -98,8 +95,7 @@ module.exports = {
                     }
                     console.log(me.browser.debug());
                     console.log(me.browser.html());
-                    console.log("datasetUrl", datasetUrl);
-                    console.log("datasetSlug", datasetSlug);
+                    console.log("Slug:", me.browser.query("#_ckan_local_dataset_ckan_name"));
                     reject(err);
                 });
         });
