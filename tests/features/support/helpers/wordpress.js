@@ -69,7 +69,7 @@ module.exports = {
     create_post: function(post_type, title) {
         var me = this;
         return new Promise(function(resolve, reject) {
-            me.browser.visit('/cms/wp-admin/post_new.php?post_type=' + post_type)
+            me.browser.visit('/cms/wp-admin/post-new.php?post_type=' + post_type)
                 .then(function() {
                     console.log("Add new post");
                     me.browser.fill("#title", title);
