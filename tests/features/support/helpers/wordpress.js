@@ -93,10 +93,14 @@ module.exports = {
                     });
                 })
                 .catch(function(err) {
-                    reject(err);
                     if (me.browser.query("div[class='error']")) {
                         console.log("Error:", me.browser.query("div[class='error']").innerHTML);
                     }
+                    console.log(me.browser.debug());
+                    console.log(me.browser.html());
+                    console.log("datasetUrl", datasetUrl);
+                    console.log("datasetSlug", datasetSlug);
+                    reject(err);
                 });
         });
     },
