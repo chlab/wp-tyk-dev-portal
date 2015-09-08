@@ -1,6 +1,4 @@
 #language: de
-
-# Frage: Wodurch sind Struktur und Übersichtlichkeit betroffen?
 Funktionalität: Als Application-Manager möchte ich die im System verfügbaren Organisationen und Unterorganisationen bearbeiten, so dass die Struktur und Übersichtlichkeit des Portals aufrecht erhalten werden
 
 Hintergrund:

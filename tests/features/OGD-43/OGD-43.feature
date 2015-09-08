@@ -13,5 +13,3 @@ Szenario: will ein Dokument oder Bild austauschen
   Dann
 
 Szenario: will ein Dokument oder Bild löschen
-- nur wenn nicht verwendet
-- wenn verwendet, sehen, wo verwendet

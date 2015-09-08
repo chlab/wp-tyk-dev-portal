@@ -5,7 +5,12 @@ Hintergrund:
   Angenommen
   Und
 
-Szenario: im Header, Body und Footer will ich meine Änderungen sehen, bevor ich sie publiziere.
+Szenario: Auf neuen statische Seiten will ich meine Änderungen sehen, bevor ich sie publiziere.
   Angenommen
   Und
   Dann
+
+Szenario: Auf publizierten statischen Seiten will ich meine Änderungen sehen, bevor ich sie wieder publiziere.
+Angenommen
+Und
+Dann
