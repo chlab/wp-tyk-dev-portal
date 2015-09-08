@@ -4,6 +4,9 @@ set -e
 
 DIR=`dirname $0`
 
+# Reset DB
+/vagrant/scripts/restore_dumps.sh
+
 # Installation
 $DIR/install-wp-test.sh wordpress_test cms '123' localhost latest
 cd $DIR/..
@@ -18,8 +21,11 @@ $DIR/../phpcodesniffer.sh $DIR/../web/ogdch.dev/content/plugins/wp-ckan-backend/
 phpcs_exit=$?
 echo "Exit Code: $phpcs_exit"
 
+# make sure there is a valid WP config around
+cp /vagrant/web/ogdch.dev/wp-functest-config.php.dist /vagrant/web/ogdch.dev/wp-functest-config.php
+
 # run cucumber tests
-cucumber.js $DIR/../tests/features
+RESET_DB=true cucumber.js --tags @finished $DIR/../tests/features --require $DIR/../tests/features
 func_exit=$?
 echo "Exit Code: $func_exit"
 

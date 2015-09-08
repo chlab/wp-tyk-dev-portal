@@ -33,6 +33,9 @@ git submodule init
 git submodule foreach --recursive 'git fetch --tags'
 git submodule update --recursive
 
+# remove *.pyc files after checking out everything
+find $DIR/.. -name "*.pyc" | xargs rm
+
 # install the vagrant plugins
 vagrant plugin install vagrant-omnibus
 vagrant plugin install vagrant-triggers
