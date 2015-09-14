@@ -1036,6 +1036,7 @@ af773455-5af2-421b-9368-67fe0cafe750	2015-08-31 12:00:53.923113	082dec4d-1b01-44
 1dae76e9-f44f-4807-854d-a06fe7d56eb3	2015-08-31 12:05:08.630564	082dec4d-1b01-4463-886e-6bb9e5b3a69a	33ab70dd-e2da-464a-ae5f-b166f16d9e2c	679545c5-3292-4119-8583-fd02cc21b8b2	changed group	{"group": {"description": "{'fr': u'', 'de': u'', 'en': u'', 'it': u''}", "title": "{\\"fr\\": \\"Travail, r\\\\u00e9mun\\\\u00e9ration\\", \\"de\\": \\"Arbeit, Erwerb\\", \\"en\\": \\"Work and income\\", \\"it\\": \\"Lavoro e reddito\\"}", "created": "2015-08-25T13:57:41.607386", "approval_status": "approved", "is_organization": false, "state": "active", "image_url": "", "revision_id": "c4b8d128-e3b5-439d-8244-5e8fcce20613", "type": "group", "id": "33ab70dd-e2da-464a-ae5f-b166f16d9e2c", "name": "arbeit"}}
 5d8f3906-e06a-4682-9835-5424f5827cea	2015-08-31 12:05:21.052207	082dec4d-1b01-4463-886e-6bb9e5b3a69a	27b314a5-57b6-4c4e-9c9f-6923365eaecc	70378e95-90f7-4011-b9b9-f2dbd80fc621	changed group	{"group": {"description": "{'fr': u'', 'de': u'', 'en': u'', 'it': u''}", "title": "{\\"fr\\": \\"Espace\\", \\"de\\": \\"Raum\\", \\"en\\": \\"Space\\", \\"it\\": \\"Spazio\\"}", "created": "2015-08-25T13:48:07.986487", "approval_status": "approved", "is_organization": false, "state": "active", "image_url": "", "revision_id": "1c095545-1d23-4082-aa02-7a9c424cfa8c", "type": "group", "id": "27b314a5-57b6-4c4e-9c9f-6923365eaecc", "name": "raum"}}
 ff68f5c2-d7d4-452b-a003-85bf4bd8de7d	2015-08-31 12:05:29.757512	082dec4d-1b01-4463-886e-6bb9e5b3a69a	64d3b89b-ff79-477e-8fb4-9cfc388b0f58	f22a1af7-ed33-4989-a685-75196ad998ce	changed group	{"group": {"description": "{'fr': u'', 'de': u'', 'en': u'', 'it': u''}", "title": "{\\"fr\\": \\"Population\\", \\"de\\": \\"Bev\\\\u00f6lkerung\\", \\"en\\": \\"Population\\", \\"it\\": \\"Popolazione\\"}", "created": "2015-08-25T13:47:23.668582", "approval_status": "approved", "is_organization": false, "state": "active", "image_url": "", "revision_id": "d0771be4-1558-4509-9417-4f58de851f86", "type": "group", "id": "64d3b89b-ff79-477e-8fb4-9cfc388b0f58", "name": "bevoelkerung"}}
+caf4dcd4-06dd-49a0-8d1f-21e407ee9b80	2015-09-14 11:36:11.471578	082dec4d-1b01-4463-886e-6bb9e5b3a69a	7dbaad15-597f-499c-9a72-95de38b95cad	54f98a24-da83-46f5-8217-6054cde1c239	new organization	{"group": {"description": "{'fr': u'', 'de': u'', 'en': u'', 'it': u''}", "title": "{\\"fr\\": \\"Archives f\\\\u00e9d\\\\u00e9rales\\", \\"de\\": \\"Bundesarchiv\\", \\"en\\": \\"Federal Archives\\", \\"it\\": \\"Archivio federale\\"}", "created": "2015-09-14T11:36:11.438714", "approval_status": "approved", "is_organization": true, "state": "active", "image_url": "", "revision_id": "54f98a24-da83-46f5-8217-6054cde1c239", "type": "organization", "id": "7dbaad15-597f-499c-9a72-95de38b95cad", "name": "bundesarchiv"}}
 \.
 
 
@@ -1111,6 +1112,7 @@ afcb4a2a-b4b0-4d7c-984a-9078e964be49	bildung	{"fr": "Education, science", "de": 
 33ab70dd-e2da-464a-ae5f-b166f16d9e2c	arbeit	{"fr": "Travail, r\\u00e9mun\\u00e9ration", "de": "Arbeit, Erwerb", "en": "Work and income", "it": "Lavoro e reddito"}	{'fr': u'', 'de': u'', 'en': u'', 'it': u''}	2015-08-25 13:57:41.607386	active	679545c5-3292-4119-8583-fd02cc21b8b2	group	approved		f
 27b314a5-57b6-4c4e-9c9f-6923365eaecc	raum	{"fr": "Espace", "de": "Raum", "en": "Space", "it": "Spazio"}	{'fr': u'', 'de': u'', 'en': u'', 'it': u''}	2015-08-25 13:48:07.986487	active	70378e95-90f7-4011-b9b9-f2dbd80fc621	group	approved		f
 64d3b89b-ff79-477e-8fb4-9cfc388b0f58	bevoelkerung	{"fr": "Population", "de": "Bev\\u00f6lkerung", "en": "Population", "it": "Popolazione"}	{'fr': u'', 'de': u'', 'en': u'', 'it': u''}	2015-08-25 13:47:23.668582	active	f22a1af7-ed33-4989-a685-75196ad998ce	group	approved		f
+7dbaad15-597f-499c-9a72-95de38b95cad	bundesarchiv	{"fr": "Archives f\\u00e9d\\u00e9rales", "de": "Bundesarchiv", "en": "Federal Archives", "it": "Archivio federale"}	{'fr': u'', 'de': u'', 'en': u'', 'it': u''}	2015-09-14 11:36:11.438714	active	54f98a24-da83-46f5-8217-6054cde1c239	organization	approved		t
 \.
 
 
@@ -1184,6 +1186,7 @@ a20e9d52-0d20-413c-a8ad-9ffd4523bec6	geographie	{"fr": "", "de": "Geographie", "
 33ab70dd-e2da-464a-ae5f-b166f16d9e2c	arbeit	{"fr": "Travail, r\\u00e9mun\\u00e9ration", "de": "Arbeit, Erwerb", "en": "Work and income", "it": "Lavoro e reddito"}	{'fr': u'', 'de': u'', 'en': u'', 'it': u''}	2015-08-25 13:57:41.607386	active	679545c5-3292-4119-8583-fd02cc21b8b2	33ab70dd-e2da-464a-ae5f-b166f16d9e2c	\N	2015-08-31 12:05:08.583555	9999-12-31 00:00:00	\N	group	approved		f
 27b314a5-57b6-4c4e-9c9f-6923365eaecc	raum	{"fr": "Espace", "de": "Raum", "en": "Space", "it": "Spazio"}	{'fr': u'', 'de': u'', 'en': u'', 'it': u''}	2015-08-25 13:48:07.986487	active	70378e95-90f7-4011-b9b9-f2dbd80fc621	27b314a5-57b6-4c4e-9c9f-6923365eaecc	\N	2015-08-31 12:05:21.021387	9999-12-31 00:00:00	\N	group	approved		f
 64d3b89b-ff79-477e-8fb4-9cfc388b0f58	bevoelkerung	{"fr": "Population", "de": "Bev\\u00f6lkerung", "en": "Population", "it": "Popolazione"}	{'fr': u'', 'de': u'', 'en': u'', 'it': u''}	2015-08-25 13:47:23.668582	active	f22a1af7-ed33-4989-a685-75196ad998ce	64d3b89b-ff79-477e-8fb4-9cfc388b0f58	\N	2015-08-31 12:05:29.736109	9999-12-31 00:00:00	\N	group	approved		f
+7dbaad15-597f-499c-9a72-95de38b95cad	bundesarchiv	{"fr": "Archives f\\u00e9d\\u00e9rales", "de": "Bundesarchiv", "en": "Federal Archives", "it": "Archivio federale"}	{'fr': u'', 'de': u'', 'en': u'', 'it': u''}	2015-09-14 11:36:11.438714	active	54f98a24-da83-46f5-8217-6054cde1c239	7dbaad15-597f-499c-9a72-95de38b95cad	\N	2015-09-14 11:36:11.232771	9999-12-31 00:00:00	\N	organization	approved		t
 \.
 
 
@@ -1267,6 +1270,9 @@ cba2b382-b318-4f40-a228-3f440505d463	afc7c340-9bdb-4767-bbcb-70094a1d0dcc
 655702c4-e422-4d2c-b212-64f53164373e	5389c3f2-2f64-436b-9fac-2d1fc342f7b5
 c6345f8a-656e-432b-b61c-fe231071bdf6	5389c3f2-2f64-436b-9fac-2d1fc342f7b5
 30da21a0-1e31-4fe8-8d8a-b612ff5739f0	5389c3f2-2f64-436b-9fac-2d1fc342f7b5
+c0c4dd1d-5dff-401c-8aeb-65213da5a064	7dbaad15-597f-499c-9a72-95de38b95cad
+a602842f-85fd-44d6-9676-366c92e9d06c	7dbaad15-597f-499c-9a72-95de38b95cad
+33473081-0708-4fec-bbe1-113172458b76	7dbaad15-597f-499c-9a72-95de38b95cad
 \.
 
 
@@ -1348,6 +1354,7 @@ d6ac9b5c-28ed-42eb-a860-8bc2847d73b5	082dec4d-1b01-4463-886e-6bb9e5b3a69a	e5d8e8
 7a620dd7-336d-42d9-95f0-536d2b01d5f0	082dec4d-1b01-4463-886e-6bb9e5b3a69a	6aace7ef-f167-40c9-a0d7-87e7e2681c07	active	632e4a2f-5847-44f4-8a4f-104ab859a252	user	admin
 9fd0420a-fd9a-479d-8f86-e434b0eecf87	082dec4d-1b01-4463-886e-6bb9e5b3a69a	afc7c340-9bdb-4767-bbcb-70094a1d0dcc	active	13b62bb7-8d01-4cf3-b972-04b57b24bec2	user	admin
 7034f899-4ecb-4987-89d1-02a0a5c0dc32	082dec4d-1b01-4463-886e-6bb9e5b3a69a	5389c3f2-2f64-436b-9fac-2d1fc342f7b5	active	724bf28d-a858-47f1-af82-01800d9c5d7b	user	admin
+2e8c87a5-9c72-44c7-bcb4-52f64d7542f2	082dec4d-1b01-4463-886e-6bb9e5b3a69a	7dbaad15-597f-499c-9a72-95de38b95cad	active	4d65f47d-87c3-4dda-966b-b09bda95e7cc	user	admin
 \.
 
 
@@ -1381,6 +1388,7 @@ d6ac9b5c-28ed-42eb-a860-8bc2847d73b5	082dec4d-1b01-4463-886e-6bb9e5b3a69a	e5d8e8
 7a620dd7-336d-42d9-95f0-536d2b01d5f0	082dec4d-1b01-4463-886e-6bb9e5b3a69a	6aace7ef-f167-40c9-a0d7-87e7e2681c07	active	632e4a2f-5847-44f4-8a4f-104ab859a252	7a620dd7-336d-42d9-95f0-536d2b01d5f0	\N	2015-08-25 14:15:32.777342	9999-12-31 00:00:00	\N	user	admin
 9fd0420a-fd9a-479d-8f86-e434b0eecf87	082dec4d-1b01-4463-886e-6bb9e5b3a69a	afc7c340-9bdb-4767-bbcb-70094a1d0dcc	active	13b62bb7-8d01-4cf3-b972-04b57b24bec2	9fd0420a-fd9a-479d-8f86-e434b0eecf87	\N	2015-08-25 14:15:57.110853	9999-12-31 00:00:00	\N	user	admin
 7034f899-4ecb-4987-89d1-02a0a5c0dc32	082dec4d-1b01-4463-886e-6bb9e5b3a69a	5389c3f2-2f64-436b-9fac-2d1fc342f7b5	active	724bf28d-a858-47f1-af82-01800d9c5d7b	7034f899-4ecb-4987-89d1-02a0a5c0dc32	\N	2015-08-25 14:16:26.093343	9999-12-31 00:00:00	\N	user	admin
+2e8c87a5-9c72-44c7-bcb4-52f64d7542f2	082dec4d-1b01-4463-886e-6bb9e5b3a69a	7dbaad15-597f-499c-9a72-95de38b95cad	active	4d65f47d-87c3-4dda-966b-b09bda95e7cc	2e8c87a5-9c72-44c7-bcb4-52f64d7542f2	\N	2015-09-14 11:36:11.502078	9999-12-31 00:00:00	\N	user	admin
 \.
 
 
@@ -1594,6 +1602,8 @@ c1db3782-5aa7-4817-a2fc-c418b125fcb1	2015-08-31 12:00:59.621394	admin	REST API: 
 679545c5-3292-4119-8583-fd02cc21b8b2	2015-08-31 12:05:08.583555	admin	REST API: Update Objekt arbeit	active	\N
 70378e95-90f7-4011-b9b9-f2dbd80fc621	2015-08-31 12:05:21.021387	admin	REST API: Update Objekt raum	active	\N
 f22a1af7-ed33-4989-a685-75196ad998ce	2015-08-31 12:05:29.736109	admin	REST API: Update Objekt bevoelkerung	active	\N
+54f98a24-da83-46f5-8217-6054cde1c239	2015-09-14 11:36:11.232771	admin	REST API: Objekt bundesarchiv anlegen	active	\N
+4d65f47d-87c3-4dda-966b-b09bda95e7cc	2015-09-14 11:36:11.502078	admin	REST API: Erstelle Mitgliedsobjekt 	active	\N
 \.
 
 
@@ -1823,6 +1833,9 @@ c6345f8a-656e-432b-b61c-fe231071bdf6	1bf67eeb-5723-4736-bcaa-7905fd0039ce	Group	
 c4a55872-b871-4312-9f57-f8bb63a3336d	e970bf27-483c-4c55-a381-c42e09881c9f	Group	reader	\N
 cba2b382-b318-4f40-a228-3f440505d463	1bf67eeb-5723-4736-bcaa-7905fd0039ce	Group	reader	\N
 5e99b368-d2d5-4a31-b62f-61f84c2ea775	082dec4d-1b01-4463-886e-6bb9e5b3a69a	Group	admin	\N
+c0c4dd1d-5dff-401c-8aeb-65213da5a064	e970bf27-483c-4c55-a381-c42e09881c9f	Group	reader	\N
+a602842f-85fd-44d6-9676-366c92e9d06c	1bf67eeb-5723-4736-bcaa-7905fd0039ce	Group	reader	\N
+33473081-0708-4fec-bbe1-113172458b76	082dec4d-1b01-4463-886e-6bb9e5b3a69a	Group	admin	\N
 \.
 
 

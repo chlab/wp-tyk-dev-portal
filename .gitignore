@@ -1,4 +1,4 @@
-*.log
+*.log*
 web/sitemap.xml
 web/sitemap.xml.gz
 
