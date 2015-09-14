@@ -5,10 +5,10 @@ module.exports = function () {
         var me = this;
         me.username = person.toLowerCase();
         me.helpers.login(me.username)
-        .then(function() {
-            var now = new Date();
-            return me.helpers.create_dataset(title + " " + now.getTime());
-        })
+            .then(function() {
+                var now = new Date();
+                return me.helpers.create_dataset(title + " " + now.getTime());
+            })
             .then(function(post_data) {
                 me.datasetUrl = post_data['url'];
                 me.datasetSlug = post_data['slug'];
@@ -28,7 +28,9 @@ module.exports = function () {
                 var new_status_id = me.helpers.status_id(status);
                 return me.helpers.change_status_of_post(me.datasetUrl, new_status_id);
             })
-            .then(me.helpers.logout())
+            .then(function() {
+                return me.helpers.logout();
+            })
             .then(callback)
             .catch(function(err) {
                 callback.fail(err);
@@ -42,7 +44,9 @@ module.exports = function () {
                 var expected_status_id = me.helpers.status_id(status);
                 return me.helpers.check_status_of_post(me.datasetUrl, expected_status_id);
             })
-            .then(me.helpers.logout())
+            .then(function() {
+                return me.helpers.logout();
+            })
             .then(callback)
             .catch(function(err) {
                 callback.fail(err);
