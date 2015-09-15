@@ -59,9 +59,18 @@
 
 # Testing
 
-1. To run a feature test type `cucumber-js test/features/example.feature` in the command line
+## Run tests
+
+1. To run the cucumber tests type `cucumber-js --tags @finished test/features --require test/features` in the command line
 
 1. To run unit tests type `bin/phpunit`
+
+## Write tests
+
+The cucumber tests are written in [Gherkin](https://github.com/cucumber/cucumber/wiki/Gherkin) using its German version.
+Each test is implemented with cucumber-js using [Zombie.js](http://zombie.js.org/) as a browser (see the [Zombie.js API](http://devres.zoomquiet.io/data/20110811173813/index.html) for specifics).
+
+Unit tests use WordPress-specific PHPUnit test cases, which assume a fresh installation with all the plugins and themes of the original one. The build script already takes care of this.
 
 # Working
 
