@@ -9,22 +9,22 @@ var availableStatus = {
 
 
 module.exports = {
-    login: function (username, password) {
+    login: function (username) {
         var me = this;
         return new Promise(function(resolve, reject) {
             me.browser.visit('/cms/wp-login.php')
                 .then(function() {
                     me.browser
                         .fill("#user_login", username)
-                        .fill("#user_pass", password)
+                        .fill("#user_pass", username)
                     return me.browser.pressButton("#wp-submit");
+                })
+                .then(function() {
+                    return me.browser.wait();
                 })
                 .then(function() {
                     expect(me.browser.text('title')).to.match(/^(Profile|Dashboard)/);
                     console.log("Logged in as " + username);
-                })
-                .then(function() {
-                    return me.browser.wait();
                 })
                 .then(function() {
                     resolve();
@@ -66,20 +66,29 @@ module.exports = {
         var wpStatus = this.status_id(text);
         return availableStatus[wpStatus];
     },
-    create_post: function(post_type, title) {
+    create_dataset: function(title) {
         var me = this;
         return new Promise(function(resolve, reject) {
-            me.browser.visit('/cms/wp-admin/post-new.php?post_type=' + post_type)
+            me.browser.visit('/cms/wp-admin/post-new.php?post_type=ckan-local-dataset')
                 .then(function() {
-                    console.log("Add new post");
-                    me.browser.fill("#title", title);
+                    return me.browser.wait();
+                })
+                .then(function() {
+                    console.log("Add new dataset");
+                    me.browser
+                        .fill("#title", title)
+                        .fill("#_ckan_local_dataset_identifier_original_identifier", '123')
+                        .fill('#_ckan_local_dataset_description_en', title + ' EN')
+                        .fill('#_ckan_local_dataset_description_fr', title + ' FR')
+                        .fill('#_ckan_local_dataset_description_de', title + ' DE')
+                        .fill('#_ckan_local_dataset_description_it', title + ' IT')
                     return me.browser.pressButton("#save-post");
                 })
                 .then(function() {
                     return me.browser.wait();
                 })
                 .then(function() {
-                    console.log("Added post");
+                    console.log("Added dataset");
                     expect(me.browser.text('#message p')).to.match(/^Post draft updated/);
                     expect(me.browser.query("div[class='error']")).not.to.exist;
                     var datasetUrl = me.browser.location.href;
@@ -99,6 +108,7 @@ module.exports = {
                     reject(err);
                 });
         });
+
     },
     check_status_of_post: function(post_edit_url, expected_status_id) {
         var me = this;
@@ -117,7 +127,7 @@ module.exports = {
 
 
     },
-    change_status_of_post: function(post_edit_url, new_status_id, callback) {
+    change_status_of_post: function(post_edit_url, new_status_id) {
         var me = this;
         return new Promise(function(resolve, reject) {
             me.browser.visit(post_edit_url)
@@ -150,6 +160,35 @@ module.exports = {
                 .then(function() {
                     console.log("Updated post");
                     expect(me.browser.text('#post-status-display')).to.equal(availableStatus[new_status_id]);
+                    resolve();
+                })
+                .catch(reject);
+        });
+    },
+    change_title_of_dataset: function(post_edit_url, title) {
+        var me = this;
+        return new Promise(function(resolve, reject) {
+            me.browser.visit(post_edit_url)
+                .then(function() {
+                    return me.browser.wait();
+                })
+                .then(function() {
+                    console.log("Opened post edit page");
+                    me.browser
+                        .fill("#title", title)
+                        .fill("#_ckan_local_dataset_title_en", title)
+                        .fill("#_ckan_local_dataset_title_de", title)
+                        .fill("#_ckan_local_dataset_title_fr", title)
+                        .fill("#_ckan_local_dataset_title_it", title);
+                    return me.browser.pressButton('#publish');
+                })
+                .then(function() {
+                    return me.browser.wait();
+                })
+                .then(function() {
+                    console.log("Updated post");
+                    expect(me.browser.text('#message p')).to.match(/^Post published/);
+                    expect(me.browser.query('#title').value).to.equal(title);
                     resolve();
                 })
                 .catch(reject);

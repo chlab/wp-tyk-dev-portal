@@ -10,15 +10,16 @@ Hintergrund:
   Und ein unregistrierter Benutzer Namens Oleg
 
 Szenario: Der Daten-Lieferant validiert einen Datensatz.
-  Angenommen Priska hat einen Datensatz erfasst
-  Und dieser befindet sich nun im Status "in Bearbeitung"
-  Und opendata.swiss zeigt ihn noch nicht an
+  Angenommen Priska hat einen Datensatz "Niederschlag" erfasst
+  Und dieser befindet sich im Status "in Bearbeitung"
+  Dann ist dieser nicht auffindbar auf opendata.swiss
   Und Priska ändert den Status auf "validiert"
-  Dann zeigt opendata.swiss ihn weiterhin nicht an.
+  Dann ist dieser nicht auffindbar auf opendata.swiss
 
 Szenario: Der Daten-Lieferant zieht einen publizierten Datensatz zurück.
-  Angenommen Priska hat einen veröffentlichten Datensatz
-  Und opendata.swiss zeigt ihn an
+  Angenommen Priska hat einen Datensatz "Niederschlag" erfasst
+  Und Priska ändert den Status auf "publiziert"
+  Dann ist dieser auffindbar auf opendata.swiss
   Und Priska ändert den Status auf "in Bearbeitung"
-  Dann befindet sich dieser anschliessend im Status "in Bearbeitung"
-  Und opendata.swiss zeigt ihn nicht mehr an
+  Dann befindet sich dieser im Status "in Bearbeitung"
+  Dann ist dieser nicht auffindbar auf opendata.swiss

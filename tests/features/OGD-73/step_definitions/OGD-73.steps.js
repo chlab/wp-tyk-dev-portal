@@ -1,17 +1,12 @@
 var expect = require('chai').expect;
-var Promise = require('promise');
-
 
 module.exports = function () {
     this.World = require("../../support/world.js").World; // overwrite default World constructor
 
-    var logoFilename = null;
-    var orgDescription = null;
-
     this.Given(/^es besteht ein Logo "([^"]*)"$/, function (filename, callback) {
         var me = this;
-        logoFilename = filename;
-        me.helpers.login('alain', 'alain')
+        me.logoFilename = filename;
+        me.helpers.login('alain')
             .then(function() {
                 return me.helpers.visit('/cms/wp-admin/edit.php?post_type=ckan-local-org');
             })
@@ -20,7 +15,7 @@ module.exports = function () {
             })
             .then(function() {
                 console.log("Edit Swisstopo organisation");
-                me.browser.fill('#_ckan_local_org_image', 'http://example.com/' + logoFilename);
+                me.browser.fill('#_ckan_local_org_image', 'http://example.com/' + me.logoFilename);
                 return me.browser.pressButton('#publish');
             })
             .then(function() {
@@ -36,7 +31,7 @@ module.exports = function () {
         var me = this;
         me.helpers.get_org_image('swisstopo')
             .then(function(orgImage) {
-                expect(orgImage).to.equal('http://example.com/' + logoFilename)
+                expect(orgImage).to.equal('http://example.com/' + me.logoFilename)
                 callback();
             })
             .catch(function(err) {
@@ -46,8 +41,8 @@ module.exports = function () {
 
     this.Given(/^Alain im Admin ein neues Logo "([^"]*)" einfügt$/, function (filename, callback) {
         var me = this;
-        logoFilename = filename;
-        me.helpers.login('alain', 'alain')
+        me.logoFilename = filename;
+        me.helpers.login('alain')
             .then(function() {
                 return me.helpers.visit('/cms/wp-admin/edit.php?post_type=ckan-local-org');
             })
@@ -56,7 +51,7 @@ module.exports = function () {
             })
             .then(function() {
                 console.log("Edit Swisstopo organisation");
-                me.browser.fill('#_ckan_local_org_image', 'http://example.com/' + logoFilename);
+                me.browser.fill('#_ckan_local_org_image', 'http://example.com/' + me.logoFilename);
                 return me.browser.pressButton('#publish');
             })
             .then(function() {
@@ -72,7 +67,7 @@ module.exports = function () {
         var me = this;
         me.helpers.get_org_image('swisstopo')
             .then(function(orgImage) {
-                expect(orgImage).to.equal('http://example.com/' + logoFilename)
+                expect(orgImage).to.equal('http://example.com/' + me.logoFilename)
                 callback();
             })
             .catch(function(err) {
@@ -82,8 +77,8 @@ module.exports = function () {
 
     this.Given(/^in der Bechreibung steht "([^"]*)"$/, function (descr, callback) {
         var me = this;
-        orgDescription = descr;
-        me.helpers.login('alain', 'alain')
+        me.orgDescription = descr;
+        me.helpers.login('alain')
             .then(function() {
                 return me.helpers.visit('/cms/wp-admin/edit.php?post_type=ckan-local-org');
             })
@@ -92,7 +87,7 @@ module.exports = function () {
             })
             .then(function() {
                 console.log("Edit Swisstopo organisation");
-                me.browser.fill('#_ckan_local_org_description_de', orgDescription);
+                me.browser.fill('#_ckan_local_org_description_de', me.orgDescription);
                 return me.browser.pressButton('#publish');
             })
             .then(function() {
@@ -108,7 +103,7 @@ module.exports = function () {
         var me = this;
         me.helpers.get_org_descr('swisstopo')
             .then(function(orgDescr) {
-                var re = new RegExp(orgDescription);
+                var re = new RegExp(me.orgDescription);
                 expect(orgDescr).to.match(re);
                 callback();
             })
@@ -119,8 +114,8 @@ module.exports = function () {
 
     this.Given(/^Alain die Beschreibung im Admin ändert zu "([^"]*)"$/, function (descr, callback) {
         var me = this;
-        orgDescription = descr;
-        me.helpers.login('alain', 'alain')
+        me.orgDescription = descr;
+        me.helpers.login('alain')
             .then(function() {
                 return me.helpers.visit('/cms/wp-admin/edit.php?post_type=ckan-local-org');
             })
@@ -129,7 +124,7 @@ module.exports = function () {
             })
             .then(function() {
                 console.log("Edit Swisstopo organisation");
-                me.browser.fill('#_ckan_local_org_description_de', orgDescription);
+                me.browser.fill('#_ckan_local_org_description_de', me.orgDescription);
                 return me.browser.pressButton('#publish');
             })
             .then(function() {
@@ -145,7 +140,7 @@ module.exports = function () {
         var me = this;
         me.helpers.get_org_descr('swisstopo')
             .then(function(orgDescr) {
-                var re = new RegExp(orgDescription);
+                var re = new RegExp(me.orgDescription);
                 expect(orgDescr).to.match(re);
                 callback();
             })
