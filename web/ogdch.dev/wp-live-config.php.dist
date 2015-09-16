@@ -4,8 +4,8 @@
 // DB config
 // ===================================================
 
-define( 'DB_NAME', '' );
-define( 'DB_USER', '' );
+define( 'DB_NAME', 'cms' );
+define( 'DB_USER', 'cms' );
 define( 'DB_PASSWORD', '' );
 define( 'DB_HOST', 'localhost' );
 
@@ -30,13 +30,19 @@ define( 'FS_METHOD', 'direct' );
 define( 'WP_CACHE', false );
 define( 'WPCACHEHOME', dirname( __FILE__ ) . '/content/plugins/wp-super-cache/' );
 
+// ===================================================
+// Object-Cache
+// ===================================================
+
+$redis_server = array( 'host' => '127.0.0.1', 'port' => 6379 );
+
 
 // ===================================================
 // Define Siteurl
 // ===================================================
 
-define( 'WP_HOME', '' );
-define( 'WP_SITEURL', '' );
+define( 'WP_HOME', 'http://ogdch.begasoft.ch' );
+define( 'WP_SITEURL', 'http://ogdch.begasoft.ch/cms' );
 
 
 // ===================================================
@@ -61,3 +67,24 @@ define( 'WP_PLUGIN_URL', WP_HOME . '/content/plugins' );
 
 define( 'WPMU_PLUGIN_DIR', dirname( __FILE__ ) . '/content/mu-plugins' );
 define( 'WPMU_PLUGIN_URL', WP_HOME . '/content/mu-plugins' );
+
+// ===================================================
+// CKAN
+// ===================================================
+
+define( 'CKAN_API_ENDPOINT', 'http://ogdch.begasoft.ch/api/3/' );
+define( 'CKAN_SEARCH_API_ENDPOINT', 'http://ogdch.begasoft.ch/api/3/action/package_search' );
+define( 'CKAN_API_KEY', '' ); // adminsuer key
+
+$language_priority = array(
+	1 => 'en',
+	2 => 'de',
+	3 => 'fr',
+	4 => 'it'
+);
+
+// ===================================================
+// WP Behavior
+// ===================================================
+
+define( 'MEDIA_TRASH', false );
