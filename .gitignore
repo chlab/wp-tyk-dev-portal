@@ -1,4 +1,5 @@
 *.log*
+*.pyc
 web/sitemap.xml
 web/sitemap.xml.gz
 

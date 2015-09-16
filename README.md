@@ -42,6 +42,11 @@
    $ npm install
    ```
 
+1. Install python dependencies
+   ```
+   $ pip install -r dev-requirements.txt
+   ```
+
 1. Install theme dependencies
    ```
    $ cd content/themes/ogdch/
