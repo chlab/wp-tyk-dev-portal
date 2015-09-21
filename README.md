@@ -62,6 +62,31 @@
 
 1. install the `pre-commit.sh` script as a pre-commit hook in your local repositories: `ln -s ../../pre-commit.sh .git/hooks/pre-commit`
 
+# Deployment
+
+To deploy this application, we use [Fabric](http://docs.fabfile.org) (make sure it is installed, see above).
+There are a bunch of tasks defined, which can be used to execute certain tasks on the deployment environment:
+
+```
+$ fab --list
+```
+
+To deploy the current master of the application to the test environment:
+```
+$ fab test deploy
+```
+
+To deploy the last commit to the development environment:
+```
+$ fab dev deploy:HEAD
+```
+
+Make sure to always specify an environment task (`dev`, `test` or `stage`) and check the available helpers:
+
+* `restart` to restart all services
+* `restore` to restore the checked-in DB dumps for WP and CKAN
+* `
+
 # Testing
 
 ## Run tests

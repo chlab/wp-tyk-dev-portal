@@ -74,6 +74,9 @@ def rev_parse(rev):
 @roles('wordpress', 'wordpress_db', 'ckan', 'ckan_db')
 @task
 def update_repo(commit):
+    """
+    Update the remote repository to the specified commit.
+    """
     with cd(env.root):
         run('git checkout %s' % commit)
         run('git submodule init')
@@ -83,26 +86,41 @@ def update_repo(commit):
 @roles('wordpress', 'ckan')
 @task
 def restart_apache():
+    """
+    Restore apache webserver
+    """
     sudo('systemctl restart httpd')
 
 @roles('wordpress')
 @task
 def flush_cache():
+    """
+    Flush the cache (redis)
+    """
     sudo('redis-cli flushall')
 
 @roles('ckan')
 @task
 def restart_tomcat():
+    """
+    Restart tomcat server (Solr)
+    """
     sudo("systemctl restart tomcat")
 
 @roles('ckan')
-@task
+@task()
 def rebuild_search_index():
+    """
+    Rebuild the solr search index of CKAN
+    """
     run_paster("--plugin=ckan search-index rebuild -c /var/www/ckan/development.ini") 
 
 @roles('ckan_db')
 @task
 def restore_ckan_db():
+    """
+    Restore the CKAN database based on the checked-in db dump
+    """
     with cd('/tmp'):
         with settings(sudo_user='postgres'):
             db_list = sudo("psql -c '\l'")
@@ -121,6 +139,9 @@ def restore_ckan_db():
 @roles('wordpress_db')
 @task
 def restore_wp_db():
+    """
+    Restore the WordPress databased based on the checked-in db dump
+    """
     if env.vagrant:
         pass_option = ''
     else:
@@ -135,17 +156,30 @@ def restore_wp_db():
 
 @task
 def deploy(rev='origin/master'):
+    """
+    Deploy the whole application
+    """
     commit = rev_parse(rev)
     execute(update_repo, commit=commit)
+    execute(restore)
+    execute(restart)
+
+@task
+def restore():
+    """
+    Restore the CKAN and WordPress database
+    """
     execute(restore_ckan_db)
     execute(restore_wp_db)
     execute(flush_cache)
-    execute(restart_tomcat)
-    execute(restart_apache)
     execute(rebuild_search_index)
+    execute(restart)
 
 @task
-def wakeup():
+def restart():
+    """
+    Restart all services
+    """
     execute(restart_tomcat)
     execute(restart_apache)
 
