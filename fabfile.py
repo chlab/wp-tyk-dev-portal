@@ -1,4 +1,5 @@
 import os
+from pprint import pprint
 from fabric.api import (
     cd, env, execute, get, local, put, require, run, settings, shell_env,
     task, roles, sudo
@@ -12,7 +13,7 @@ ENVIRONMENTS = {
     'stage': {
         'home': '/home/liipadmin',
         'root': '/home/liipadmin/ogd-ch',
-        'mysql_with_password': True,
+        'vagrant': False,
         'roledefs': {
            'wordpress': ['ogdprodwp1'],
            'wordpress_db': ['ogdproddbwp'],
@@ -23,23 +24,23 @@ ENVIRONMENTS = {
     'test': {
         'home': '/home/liipadmin',
         'root': '/home/liipadmin/ogd-ch',
-        'mysql_with_password': True,
+        'vagrant': False,
         'roledefs': {
-           'wordpress': ['ogdentwwp1'],
-           'wordpress_db': ['ogdentwwp1'],
-           'ckan': ['ogdentwckan1'],
-           'ckan_db': ['ogdentwckan1'],
+            'wordpress': ['ogdentwwp1'],
+            'wordpress_db': ['ogdentwwp1'],
+            'ckan': ['ogdentwckan1'],
+            'ckan_db': ['ogdentwckan1'],
         }
     },
     'dev': {
         'home': '/home/vagrant',
         'root': '/vagrant',
-        'mysql_with_password': False,
+        'vagrant': True,
         'roledefs': {
-           'wordpress': ['ogdch.dev'],
-           'wordpress_db': ['ogdch.dev'],
-           'ckan': ['ogdch.dev'],
-           'ckan_db': ['ogdch.dev'],
+            'wordpress': ['vagrant@127.0.0.1:2222'],
+            'wordpress_db': ['vagrant@127.0.0.1:2222'],
+            'ckan': ['vagrant@127.0.0.1:2222'],
+            'ckan_db': ['vagrant@127.0.0.1:2222'],
         }
     }
 }
@@ -120,11 +121,12 @@ def restore_ckan_db():
 @roles('wordpress_db')
 @task
 def restore_wp_db():
-    if env.mysql_with_password:
+    if env.vagrant:
+        pass_option = ''
+    else:
         root_password = run("awk '{print $2}' %s/mariadb.txt" % env.home)
         pass_option = '-p%s' % root_password
-    else:
-        pass_option = ''
+
     db_list = run("mysql -u root %s -e'show databases;'" % pass_option)
     if 'cms' in db_list:
         run("mysql -u root %s -e'DROP DATABASE cms;'" % pass_option)
@@ -138,9 +140,14 @@ def deploy(rev='origin/master'):
     execute(restore_ckan_db)
     execute(restore_wp_db)
     execute(flush_cache)
-    execute(restart_apache)
     execute(restart_tomcat)
+    execute(restart_apache)
     execute(rebuild_search_index)
+
+@task
+def wakeup():
+    execute(restart_tomcat)
+    execute(restart_apache)
 
 # Environment handling stuff
 ############################
@@ -149,6 +156,10 @@ def get_environment_func(key, value):
     def load_environment():
         env.update(value)
         env.environment = key
+        if env.vagrant:
+            result = local('vagrant ssh-config | grep IdentityFile', capture=True)
+            env.key_filename = result.split()[1]
+
     load_environment.__name__ = key
     load_environment.__doc__ = "Definition of the %s environment." % key
 
