@@ -1,13 +1,15 @@
 #language: de
-Funktionalität: Als Service-Entwickler oder Daten-Analyst möchte ich alle Datensätze mit einer einzigen Suchabfrage nach sämtlichen verfügbaren Attributen durchsuchen können, so dass ich mir nicht überlegen muss, in welchem Feld ein Stichwort vorkommen könnte.
+Funktionalität: Als Application-Manager möchte ich informiert werden, falls ein Importjob nicht erfolgreich abgeschlossen werden konnte, so dass ich geeignete Massnahmen ergreifen kann, um das Problem zu beheben.
 
 Hintergrund:
-  Angenommen ein Service-Entwickler Namens Benjamin
-  Und eine öffentliche Datensatz-Suche genannt opendata.swiss
-  Und mindestens ein publizierter Datensatz mit einem Attributwert "Eisenbahn"
+Angenommen ein Application-Manager Namens Pierre
+Und ein Importjob
 
-Szenario: Benjamin sucht nach Daten der Gemeinde Dietlikon
-  Angenommen Benjamin schreibt in das grosse Suchfeld auf opendata.swiss "Eisenbahn"
-  Und klickt auf "Eisenbahn"
-  Dann werden ihm alle Datensätze mit einem Attributwert "Eisenbahn" angezeigt
-  Und das ist mindestens ein Datensatz
+Szenario: Pierre erhält bei fehlgeschlagenem Import eine Nachricht
+Angenommen der Importjob konnte nicht erfolgreich abgeschlossen werden
+Dann wird eine Nachricht/Fehlermeldung and eine definirte Stelle gesendet.
+Und die Nachricht beinhaltet Informationen zum aufgetretenen Fehler.
+
+Szenario: Pierre erhält bei fehlgeschlagenem Import eine Nachricht
+Angenommen der Importjob konnte erfolgreich abgeschlossen
+Dann wird keine Nachricht verschickt.

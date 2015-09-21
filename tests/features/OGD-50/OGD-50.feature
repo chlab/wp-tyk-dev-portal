@@ -1,13 +1,17 @@
 #language: de
-Funktionalität: Als Service-Entwickler oder Daten-Analyst möchte ich alle Datensätze mit einer einzigen Suchabfrage nach sämtlichen verfügbaren Attributen durchsuchen können, so dass ich mir nicht überlegen muss, in welchem Feld ein Stichwort vorkommen könnte.
+Funktionalität: Als Data-Owner möchte ich auf meinem bestehenden Daten-Portal bereit gestellte Datensätze über eine standardisierte Schnittstelle auch auf OGD-CH veröffentlichen, so dass die Unterstützung des Portals meinerseits keinen zusätzlichen Aufwand erzeugt.
 
 Hintergrund:
-  Angenommen ein Service-Entwickler Namens Benjamin
-  Und eine öffentliche Datensatz-Suche genannt opendata.swiss
-  Und mindestens ein publizierter Datensatz mit einem Attributwert "Eisenbahn"
+  Angenommen ein Data-Owner Namens Alain
+  Und ein bestehendes Daten-Portal "Data.Stadt-Zuerich.ch"
+  Und das Portal opendata.swiss
+  Und der Datensatz "Niederschlag_Zuerich" auf dem Portal "Data.Stadt-Zuerich.ch"
 
-Szenario: Benjamin sucht nach Daten der Gemeinde Dietlikon
-  Angenommen Benjamin schreibt in das grosse Suchfeld auf opendata.swiss "Eisenbahn"
-  Und klickt auf "Eisenbahn"
-  Dann werden ihm alle Datensätze mit einem Attributwert "Eisenbahn" angezeigt
-  Und das ist mindestens ein Datensatz
+Szenario: Alain veröffentlicht neuen Datensatz via Schnittstelle
+Angenommen Alain veröffentlicht den neuen Datensatz "Niederschlag_Zuerich" aus seinem Portal "Data.Stadt-Zuerich.ch" über eine Schnittstelle auf opendata.swiss.
+Dann ist der neue Datensatz "Niederschlag_Zuerich" ist mit den neuen Metadaten erstellt
+Und "Niederschlag_Zuerich" ist publiziert
+
+Szenario: Alain aktualisiert Datensatz via Schnittstelle
+Angenommen Alain aktualisiert den Datensatz "Niederschlag_Zuerich" auf seinem Portal "Data.Stadt-Zuerich.ch".
+Dann wird dieser Datensatz auf dem Portal opendata.swiss mit den neuen Metadaten aktualisiert.

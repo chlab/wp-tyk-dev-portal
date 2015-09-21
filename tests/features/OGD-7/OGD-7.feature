@@ -1,13 +1,17 @@
 #language: de
-Funktionalität: Als Service-Entwickler oder Daten-Analyst möchte ich alle Datensätze mit einer einzigen Suchabfrage nach sämtlichen verfügbaren Attributen durchsuchen können, so dass ich mir nicht überlegen muss, in welchem Feld ein Stichwort vorkommen könnte.
+Funktionalität: Als Service-Entwickler oder Daten-Analyst will ich eine im Datensatz referenzierte Ressource herunterladen können, um sie lokal zu bearbeiten.
 
 Hintergrund:
-  Angenommen ein Service-Entwickler Namens Benjamin
-  Und eine öffentliche Datensatz-Suche genannt opendata.swiss
-  Und mindestens ein publizierter Datensatz mit einem Attributwert "Eisenbahn"
+Angenommen ein Service-Entwickler Namens Oleg
+Und ein Daten-Analyst Namens Benjamin
+Und ein öffentliches Portal genannt opendata.swiss
+Und eine Ressource "Messdaten.xls" im Datensatz "Niederschlag"
 
-Szenario: Benjamin sucht nach Daten der Gemeinde Dietlikon
-  Angenommen Benjamin schreibt in das grosse Suchfeld auf opendata.swiss "Eisenbahn"
-  Und klickt auf "Eisenbahn"
-  Dann werden ihm alle Datensätze mit einem Attributwert "Eisenbahn" angezeigt
-  Und das ist mindestens ein Datensatz
+Szenario: Oleg möchte eine Ressource herunterladen
+Angenommen Oleg öffnet im Portal opendata.swiss den Datensatz "Niederschlag"
+Dann kann Oleg die referenzierte Ressource "Messdaten.xls" herunterladen und lokal bearbeiten.
+
+
+Szenario: Benjamin möchte eine Ressource herunterladen
+Angenommen Benjamin öffnet im Portal opendata.swiss den Datensatz "Niederschlag"
+Dann kann Benjamin die referenzierte Ressource "Messdaten.xls" herunterladen und lokal bearbeiten.
