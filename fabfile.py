@@ -66,13 +66,14 @@ def run_paster(args):
     return run_in_virtualenv('paster', args)
 
 def rev_parse(rev):
-    return local("git rev-parse %s" % rev)
+    with cd(env.root):
+        run('git fetch')
+        return run("git rev-parse %s" % rev)
 
 @roles('wordpress', 'wordpress_db', 'ckan', 'ckan_db')
 @task
 def update_repo(commit):
     with cd(env.root):
-        run('git fetch')
         run('git checkout %s' % commit)
         run('git submodule init')
         run("git submodule foreach --recursive 'git fetch --tags'")
@@ -132,8 +133,8 @@ def restore_wp_db():
 
 @task
 def deploy(rev='origin/master'):
-    # commit = rev_parse(rev)
-    # execute(update_repo, commit=commit)
+    commit = rev_parse(rev)
+    execute(update_repo, commit=commit)
     execute(restore_ckan_db)
     execute(restore_wp_db)
     execute(flush_cache)
