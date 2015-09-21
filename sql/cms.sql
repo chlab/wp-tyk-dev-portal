@@ -52,13 +52,13 @@ DROP TABLE IF EXISTS `ogdch_comments`;
 CREATE TABLE `ogdch_comments` (
   `comment_ID` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `comment_post_ID` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `comment_author` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `comment_author` tinytext COLLATE utf8mb4_unicode_ci NOT NULL,
   `comment_author_email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `comment_author_url` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `comment_author_IP` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `comment_date` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `comment_date_gmt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `comment_content` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `comment_content` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `comment_karma` int(11) NOT NULL DEFAULT '0',
   `comment_approved` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1',
   `comment_agent` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
@@ -104,7 +104,7 @@ CREATE TABLE `ogdch_links` (
   `link_rating` int(11) NOT NULL DEFAULT '0',
   `link_updated` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `link_rel` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `link_notes` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `link_notes` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `link_rss` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`link_id`),
   KEY `link_visible` (`link_visible`)
@@ -134,7 +134,7 @@ CREATE TABLE `ogdch_options` (
   `autoload` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'yes',
   PRIMARY KEY (`option_id`),
   UNIQUE KEY `option_name` (`option_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=541 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=650 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -191,7 +191,7 @@ INSERT INTO `ogdch_options` VALUES (45,'comment_registration','','yes');
 INSERT INTO `ogdch_options` VALUES (46,'html_type','text/html','yes');
 INSERT INTO `ogdch_options` VALUES (47,'use_trackback','0','yes');
 INSERT INTO `ogdch_options` VALUES (48,'default_role','subscriber','yes');
-INSERT INTO `ogdch_options` VALUES (49,'db_version','33055','yes');
+INSERT INTO `ogdch_options` VALUES (49,'db_version','33056','yes');
 INSERT INTO `ogdch_options` VALUES (50,'uploads_use_yearmonth_folders','1','yes');
 INSERT INTO `ogdch_options` VALUES (51,'upload_path','','yes');
 INSERT INTO `ogdch_options` VALUES (52,'blog_public','0','yes');
@@ -237,7 +237,7 @@ INSERT INTO `ogdch_options` VALUES (92,'widget_recent-comments','a:2:{i:2;a:2:{s
 INSERT INTO `ogdch_options` VALUES (93,'widget_archives','a:2:{i:2;a:3:{s:5:\"title\";s:0:\"\";s:5:\"count\";i:0;s:8:\"dropdown\";i:0;}s:12:\"_multiwidget\";i:1;}','yes');
 INSERT INTO `ogdch_options` VALUES (94,'widget_meta','a:2:{i:2;a:1:{s:5:\"title\";s:0:\"\";}s:12:\"_multiwidget\";i:1;}','yes');
 INSERT INTO `ogdch_options` VALUES (95,'sidebars_widgets','a:3:{s:19:\"wp_inactive_widgets\";a:0:{}s:18:\"orphaned_widgets_1\";a:1:{i:0;s:17:\"recent-comments-2\";}s:13:\"array_version\";i:3;}','yes');
-INSERT INTO `ogdch_options` VALUES (97,'cron','a:6:{i:1442309246;a:1:{s:16:\"wp_version_check\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:2:{s:8:\"schedule\";b:0;s:4:\"args\";a:0:{}}}}i:1442320981;a:1:{s:30:\"wp_scheduled_auto_draft_delete\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1442323957;a:3:{s:16:\"wp_version_check\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}s:17:\"wp_update_plugins\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}s:16:\"wp_update_themes\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1442324281;a:1:{s:19:\"wp_scheduled_delete\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1442346540;a:1:{s:20:\"wp_maybe_auto_update\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}s:7:\"version\";i:2;}','yes');
+INSERT INTO `ogdch_options` VALUES (97,'cron','a:5:{i:1442842357;a:3:{s:16:\"wp_version_check\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}s:17:\"wp_update_plugins\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}s:16:\"wp_update_themes\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1442842681;a:1:{s:19:\"wp_scheduled_delete\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1442864940;a:1:{s:20:\"wp_maybe_auto_update\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1442925781;a:1:{s:30:\"wp_scheduled_auto_draft_delete\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}s:7:\"version\";i:2;}','yes');
 INSERT INTO `ogdch_options` VALUES (134,'db_upgraded','','yes');
 INSERT INTO `ogdch_options` VALUES (142,'recently_activated','a:0:{}','yes');
 INSERT INTO `ogdch_options` VALUES (147,'members_db_version','2','yes');
@@ -273,9 +273,9 @@ INSERT INTO `ogdch_options` VALUES (488,'theme_mods_wp-ogdch-theme','a:2:{i:0;b:
 INSERT INTO `ogdch_options` VALUES (490,'auto_core_update_notified','a:4:{s:4:\"type\";s:7:\"success\";s:5:\"email\";s:22:\"juerg.hunziker@liip.ch\";s:7:\"version\";s:5:\"4.2.3\";s:9:\"timestamp\";i:1438073767;}','yes');
 INSERT INTO `ogdch_options` VALUES (519,'page_for_posts','0','yes');
 INSERT INTO `ogdch_options` VALUES (520,'finished_splitting_shared_terms','1','yes');
-INSERT INTO `ogdch_options` VALUES (522,'can_compress_scripts','1','yes');
-INSERT INTO `ogdch_options` VALUES (528,'rewrite_rules','a:182:{s:20:\"(de|en|it|fr)/app/?$\";s:40:\"index.php?lang=$matches[1]&post_type=app\";s:50:\"(de|en|it|fr)/app/feed/(feed|rdf|rss|rss2|atom)/?$\";s:57:\"index.php?lang=$matches[1]&post_type=app&feed=$matches[2]\";s:45:\"(de|en|it|fr)/app/(feed|rdf|rss|rss2|atom)/?$\";s:57:\"index.php?lang=$matches[1]&post_type=app&feed=$matches[2]\";s:37:\"(de|en|it|fr)/app/page/([0-9]{1,})/?$\";s:58:\"index.php?lang=$matches[1]&post_type=app&paged=$matches[2]\";s:61:\"(de|en|it|fr)/category/(.+?)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:52:\"index.php?category_name=$matches[2]&feed=$matches[3]\";s:56:\"(de|en|it|fr)/category/(.+?)/(feed|rdf|rss|rss2|atom)/?$\";s:52:\"index.php?category_name=$matches[2]&feed=$matches[3]\";s:49:\"(de|en|it|fr)/category/(.+?)/page/?([0-9]{1,})/?$\";s:53:\"index.php?category_name=$matches[2]&paged=$matches[3]\";s:31:\"(de|en|it|fr)/category/(.+?)/?$\";s:35:\"index.php?category_name=$matches[2]\";s:47:\"category/(.+?)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:52:\"index.php?category_name=$matches[1]&feed=$matches[2]\";s:42:\"category/(.+?)/(feed|rdf|rss|rss2|atom)/?$\";s:52:\"index.php?category_name=$matches[1]&feed=$matches[2]\";s:35:\"category/(.+?)/page/?([0-9]{1,})/?$\";s:53:\"index.php?category_name=$matches[1]&paged=$matches[2]\";s:17:\"category/(.+?)/?$\";s:35:\"index.php?category_name=$matches[1]\";s:58:\"(de|en|it|fr)/tag/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:42:\"index.php?tag=$matches[2]&feed=$matches[3]\";s:53:\"(de|en|it|fr)/tag/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:42:\"index.php?tag=$matches[2]&feed=$matches[3]\";s:46:\"(de|en|it|fr)/tag/([^/]+)/page/?([0-9]{1,})/?$\";s:43:\"index.php?tag=$matches[2]&paged=$matches[3]\";s:28:\"(de|en|it|fr)/tag/([^/]+)/?$\";s:25:\"index.php?tag=$matches[2]\";s:44:\"tag/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:42:\"index.php?tag=$matches[1]&feed=$matches[2]\";s:39:\"tag/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:42:\"index.php?tag=$matches[1]&feed=$matches[2]\";s:32:\"tag/([^/]+)/page/?([0-9]{1,})/?$\";s:43:\"index.php?tag=$matches[1]&paged=$matches[2]\";s:14:\"tag/([^/]+)/?$\";s:25:\"index.php?tag=$matches[1]\";s:59:\"(de|en|it|fr)/type/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:67:\"index.php?lang=$matches[1]&post_format=$matches[2]&feed=$matches[3]\";s:54:\"(de|en|it|fr)/type/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:67:\"index.php?lang=$matches[1]&post_format=$matches[2]&feed=$matches[3]\";s:47:\"(de|en|it|fr)/type/([^/]+)/page/?([0-9]{1,})/?$\";s:68:\"index.php?lang=$matches[1]&post_format=$matches[2]&paged=$matches[3]\";s:29:\"(de|en|it|fr)/type/([^/]+)/?$\";s:50:\"index.php?lang=$matches[1]&post_format=$matches[2]\";s:45:\"(de|en|it|fr)/app/[^/]+/attachment/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[2]\";s:55:\"(de|en|it|fr)/app/[^/]+/attachment/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[2]&tb=1\";s:75:\"(de|en|it|fr)/app/[^/]+/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[2]&feed=$matches[3]\";s:70:\"(de|en|it|fr)/app/[^/]+/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[2]&feed=$matches[3]\";s:70:\"(de|en|it|fr)/app/[^/]+/attachment/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[2]&cpage=$matches[3]\";s:38:\"(de|en|it|fr)/app/([^/]+)/trackback/?$\";s:30:\"index.php?app=$matches[2]&tb=1\";s:58:\"(de|en|it|fr)/app/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:42:\"index.php?app=$matches[2]&feed=$matches[3]\";s:53:\"(de|en|it|fr)/app/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:42:\"index.php?app=$matches[2]&feed=$matches[3]\";s:46:\"(de|en|it|fr)/app/([^/]+)/page/?([0-9]{1,})/?$\";s:43:\"index.php?app=$matches[2]&paged=$matches[3]\";s:53:\"(de|en|it|fr)/app/([^/]+)/comment-page-([0-9]{1,})/?$\";s:43:\"index.php?app=$matches[2]&cpage=$matches[3]\";s:38:\"(de|en|it|fr)/app/([^/]+)(/[0-9]+)?/?$\";s:42:\"index.php?app=$matches[2]&page=$matches[3]\";s:34:\"(de|en|it|fr)/app/[^/]+/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[2]\";s:44:\"(de|en|it|fr)/app/[^/]+/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[2]&tb=1\";s:64:\"(de|en|it|fr)/app/[^/]+/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[2]&feed=$matches[3]\";s:59:\"(de|en|it|fr)/app/[^/]+/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[2]&feed=$matches[3]\";s:59:\"(de|en|it|fr)/app/[^/]+/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[2]&cpage=$matches[3]\";s:31:\"app/[^/]+/attachment/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:41:\"app/[^/]+/attachment/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:61:\"app/[^/]+/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:56:\"app/[^/]+/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:56:\"app/[^/]+/attachment/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:24:\"app/([^/]+)/trackback/?$\";s:30:\"index.php?app=$matches[1]&tb=1\";s:44:\"app/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:42:\"index.php?app=$matches[1]&feed=$matches[2]\";s:39:\"app/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:42:\"index.php?app=$matches[1]&feed=$matches[2]\";s:32:\"app/([^/]+)/page/?([0-9]{1,})/?$\";s:43:\"index.php?app=$matches[1]&paged=$matches[2]\";s:39:\"app/([^/]+)/comment-page-([0-9]{1,})/?$\";s:43:\"index.php?app=$matches[1]&cpage=$matches[2]\";s:24:\"app/([^/]+)(/[0-9]+)?/?$\";s:42:\"index.php?app=$matches[1]&page=$matches[2]\";s:20:\"app/[^/]+/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:30:\"app/[^/]+/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:50:\"app/[^/]+/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:45:\"app/[^/]+/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:45:\"app/[^/]+/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:46:\"ckan-local-dataset/[^/]+/attachment/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:56:\"ckan-local-dataset/[^/]+/attachment/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:76:\"ckan-local-dataset/[^/]+/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:71:\"ckan-local-dataset/[^/]+/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:71:\"ckan-local-dataset/[^/]+/attachment/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:39:\"ckan-local-dataset/([^/]+)/trackback/?$\";s:45:\"index.php?ckan-local-dataset=$matches[1]&tb=1\";s:47:\"ckan-local-dataset/([^/]+)/page/?([0-9]{1,})/?$\";s:58:\"index.php?ckan-local-dataset=$matches[1]&paged=$matches[2]\";s:54:\"ckan-local-dataset/([^/]+)/comment-page-([0-9]{1,})/?$\";s:58:\"index.php?ckan-local-dataset=$matches[1]&cpage=$matches[2]\";s:39:\"ckan-local-dataset/([^/]+)(/[0-9]+)?/?$\";s:57:\"index.php?ckan-local-dataset=$matches[1]&page=$matches[2]\";s:35:\"ckan-local-dataset/[^/]+/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:45:\"ckan-local-dataset/[^/]+/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:65:\"ckan-local-dataset/[^/]+/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:60:\"ckan-local-dataset/[^/]+/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:60:\"ckan-local-dataset/[^/]+/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:44:\"ckan-local-group/[^/]+/attachment/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:54:\"ckan-local-group/[^/]+/attachment/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:74:\"ckan-local-group/[^/]+/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:69:\"ckan-local-group/[^/]+/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:69:\"ckan-local-group/[^/]+/attachment/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:37:\"ckan-local-group/([^/]+)/trackback/?$\";s:43:\"index.php?ckan-local-group=$matches[1]&tb=1\";s:45:\"ckan-local-group/([^/]+)/page/?([0-9]{1,})/?$\";s:56:\"index.php?ckan-local-group=$matches[1]&paged=$matches[2]\";s:52:\"ckan-local-group/([^/]+)/comment-page-([0-9]{1,})/?$\";s:56:\"index.php?ckan-local-group=$matches[1]&cpage=$matches[2]\";s:37:\"ckan-local-group/([^/]+)(/[0-9]+)?/?$\";s:55:\"index.php?ckan-local-group=$matches[1]&page=$matches[2]\";s:33:\"ckan-local-group/[^/]+/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:43:\"ckan-local-group/[^/]+/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:63:\"ckan-local-group/[^/]+/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:58:\"ckan-local-group/[^/]+/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:58:\"ckan-local-group/[^/]+/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:42:\"ckan-local-org/[^/]+/attachment/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:52:\"ckan-local-org/[^/]+/attachment/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:72:\"ckan-local-org/[^/]+/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:67:\"ckan-local-org/[^/]+/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:67:\"ckan-local-org/[^/]+/attachment/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:35:\"ckan-local-org/([^/]+)/trackback/?$\";s:41:\"index.php?ckan-local-org=$matches[1]&tb=1\";s:43:\"ckan-local-org/([^/]+)/page/?([0-9]{1,})/?$\";s:54:\"index.php?ckan-local-org=$matches[1]&paged=$matches[2]\";s:50:\"ckan-local-org/([^/]+)/comment-page-([0-9]{1,})/?$\";s:54:\"index.php?ckan-local-org=$matches[1]&cpage=$matches[2]\";s:35:\"ckan-local-org/([^/]+)(/[0-9]+)?/?$\";s:53:\"index.php?ckan-local-org=$matches[1]&page=$matches[2]\";s:31:\"ckan-local-org/[^/]+/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:41:\"ckan-local-org/[^/]+/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:61:\"ckan-local-org/[^/]+/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:56:\"ckan-local-org/[^/]+/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:56:\"ckan-local-org/[^/]+/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:12:\"robots\\.txt$\";s:18:\"index.php?robots=1\";s:48:\".*wp-(atom|rdf|rss|rss2|feed|commentsrss2)\\.php$\";s:18:\"index.php?feed=old\";s:20:\".*wp-app\\.php(/.*)?$\";s:19:\"index.php?error=403\";s:18:\".*wp-register.php$\";s:23:\"index.php?register=true\";s:46:\"(de|en|it|fr)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:44:\"index.php?lang=$matches[1]&&feed=$matches[2]\";s:41:\"(de|en|it|fr)/(feed|rdf|rss|rss2|atom)/?$\";s:44:\"index.php?lang=$matches[1]&&feed=$matches[2]\";s:34:\"(de|en|it|fr)/page/?([0-9]{1,})/?$\";s:45:\"index.php?lang=$matches[1]&&paged=$matches[2]\";s:16:\"(de|en|it|fr)/?$\";s:26:\"index.php?lang=$matches[1]\";s:55:\"(de|en|it|fr)/comments/feed/(feed|rdf|rss|rss2|atom)/?$\";s:59:\"index.php?lang=$matches[1]&&feed=$matches[2]&withcomments=1\";s:50:\"(de|en|it|fr)/comments/(feed|rdf|rss|rss2|atom)/?$\";s:59:\"index.php?lang=$matches[1]&&feed=$matches[2]&withcomments=1\";s:58:\"(de|en|it|fr)/search/(.+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:57:\"index.php?lang=$matches[1]&s=$matches[2]&feed=$matches[3]\";s:53:\"(de|en|it|fr)/search/(.+)/(feed|rdf|rss|rss2|atom)/?$\";s:57:\"index.php?lang=$matches[1]&s=$matches[2]&feed=$matches[3]\";s:46:\"(de|en|it|fr)/search/(.+)/page/?([0-9]{1,})/?$\";s:58:\"index.php?lang=$matches[1]&s=$matches[2]&paged=$matches[3]\";s:28:\"(de|en|it|fr)/search/(.+)/?$\";s:40:\"index.php?lang=$matches[1]&s=$matches[2]\";s:61:\"(de|en|it|fr)/author/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:67:\"index.php?lang=$matches[1]&author_name=$matches[2]&feed=$matches[3]\";s:56:\"(de|en|it|fr)/author/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:67:\"index.php?lang=$matches[1]&author_name=$matches[2]&feed=$matches[3]\";s:49:\"(de|en|it|fr)/author/([^/]+)/page/?([0-9]{1,})/?$\";s:68:\"index.php?lang=$matches[1]&author_name=$matches[2]&paged=$matches[3]\";s:31:\"(de|en|it|fr)/author/([^/]+)/?$\";s:50:\"index.php?lang=$matches[1]&author_name=$matches[2]\";s:83:\"(de|en|it|fr)/([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/feed/(feed|rdf|rss|rss2|atom)/?$\";s:97:\"index.php?lang=$matches[1]&year=$matches[2]&monthnum=$matches[3]&day=$matches[4]&feed=$matches[5]\";s:78:\"(de|en|it|fr)/([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/(feed|rdf|rss|rss2|atom)/?$\";s:97:\"index.php?lang=$matches[1]&year=$matches[2]&monthnum=$matches[3]&day=$matches[4]&feed=$matches[5]\";s:71:\"(de|en|it|fr)/([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/page/?([0-9]{1,})/?$\";s:98:\"index.php?lang=$matches[1]&year=$matches[2]&monthnum=$matches[3]&day=$matches[4]&paged=$matches[5]\";s:53:\"(de|en|it|fr)/([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/?$\";s:80:\"index.php?lang=$matches[1]&year=$matches[2]&monthnum=$matches[3]&day=$matches[4]\";s:70:\"(de|en|it|fr)/([0-9]{4})/([0-9]{1,2})/feed/(feed|rdf|rss|rss2|atom)/?$\";s:81:\"index.php?lang=$matches[1]&year=$matches[2]&monthnum=$matches[3]&feed=$matches[4]\";s:65:\"(de|en|it|fr)/([0-9]{4})/([0-9]{1,2})/(feed|rdf|rss|rss2|atom)/?$\";s:81:\"index.php?lang=$matches[1]&year=$matches[2]&monthnum=$matches[3]&feed=$matches[4]\";s:58:\"(de|en|it|fr)/([0-9]{4})/([0-9]{1,2})/page/?([0-9]{1,})/?$\";s:82:\"index.php?lang=$matches[1]&year=$matches[2]&monthnum=$matches[3]&paged=$matches[4]\";s:40:\"(de|en|it|fr)/([0-9]{4})/([0-9]{1,2})/?$\";s:64:\"index.php?lang=$matches[1]&year=$matches[2]&monthnum=$matches[3]\";s:57:\"(de|en|it|fr)/([0-9]{4})/feed/(feed|rdf|rss|rss2|atom)/?$\";s:60:\"index.php?lang=$matches[1]&year=$matches[2]&feed=$matches[3]\";s:52:\"(de|en|it|fr)/([0-9]{4})/(feed|rdf|rss|rss2|atom)/?$\";s:60:\"index.php?lang=$matches[1]&year=$matches[2]&feed=$matches[3]\";s:45:\"(de|en|it|fr)/([0-9]{4})/page/?([0-9]{1,})/?$\";s:61:\"index.php?lang=$matches[1]&year=$matches[2]&paged=$matches[3]\";s:27:\"(de|en|it|fr)/([0-9]{4})/?$\";s:43:\"index.php?lang=$matches[1]&year=$matches[2]\";s:41:\"(de|en|it|fr)/.?.+?/attachment/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[2]\";s:51:\"(de|en|it|fr)/.?.+?/attachment/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[2]&tb=1\";s:71:\"(de|en|it|fr)/.?.+?/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[2]&feed=$matches[3]\";s:66:\"(de|en|it|fr)/.?.+?/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[2]&feed=$matches[3]\";s:66:\"(de|en|it|fr)/.?.+?/attachment/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[2]&cpage=$matches[3]\";s:34:\"(de|en|it|fr)/(.?.+?)/trackback/?$\";s:35:\"index.php?pagename=$matches[2]&tb=1\";s:54:\"(de|en|it|fr)/(.?.+?)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:47:\"index.php?pagename=$matches[2]&feed=$matches[3]\";s:49:\"(de|en|it|fr)/(.?.+?)/(feed|rdf|rss|rss2|atom)/?$\";s:47:\"index.php?pagename=$matches[2]&feed=$matches[3]\";s:42:\"(de|en|it|fr)/(.?.+?)/page/?([0-9]{1,})/?$\";s:48:\"index.php?pagename=$matches[2]&paged=$matches[3]\";s:49:\"(de|en|it|fr)/(.?.+?)/comment-page-([0-9]{1,})/?$\";s:48:\"index.php?pagename=$matches[2]&cpage=$matches[3]\";s:34:\"(de|en|it|fr)/(.?.+?)(/[0-9]+)?/?$\";s:47:\"index.php?pagename=$matches[2]&page=$matches[3]\";s:27:\".?.+?/attachment/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:37:\".?.+?/attachment/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:57:\".?.+?/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:52:\".?.+?/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:52:\".?.+?/attachment/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:20:\"(.?.+?)/trackback/?$\";s:35:\"index.php?pagename=$matches[1]&tb=1\";s:40:\"(.?.+?)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:47:\"index.php?pagename=$matches[1]&feed=$matches[2]\";s:35:\"(.?.+?)/(feed|rdf|rss|rss2|atom)/?$\";s:47:\"index.php?pagename=$matches[1]&feed=$matches[2]\";s:28:\"(.?.+?)/page/?([0-9]{1,})/?$\";s:48:\"index.php?pagename=$matches[1]&paged=$matches[2]\";s:35:\"(.?.+?)/comment-page-([0-9]{1,})/?$\";s:48:\"index.php?pagename=$matches[1]&cpage=$matches[2]\";s:20:\"(.?.+?)(/[0-9]+)?/?$\";s:47:\"index.php?pagename=$matches[1]&page=$matches[2]\";s:41:\"(de|en|it|fr)/[^/]+/attachment/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[2]\";s:51:\"(de|en|it|fr)/[^/]+/attachment/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[2]&tb=1\";s:71:\"(de|en|it|fr)/[^/]+/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[2]&feed=$matches[3]\";s:66:\"(de|en|it|fr)/[^/]+/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[2]&feed=$matches[3]\";s:66:\"(de|en|it|fr)/[^/]+/attachment/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[2]&cpage=$matches[3]\";s:34:\"(de|en|it|fr)/([^/]+)/trackback/?$\";s:31:\"index.php?name=$matches[2]&tb=1\";s:54:\"(de|en|it|fr)/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:43:\"index.php?name=$matches[2]&feed=$matches[3]\";s:49:\"(de|en|it|fr)/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:43:\"index.php?name=$matches[2]&feed=$matches[3]\";s:42:\"(de|en|it|fr)/([^/]+)/page/?([0-9]{1,})/?$\";s:44:\"index.php?name=$matches[2]&paged=$matches[3]\";s:49:\"(de|en|it|fr)/([^/]+)/comment-page-([0-9]{1,})/?$\";s:44:\"index.php?name=$matches[2]&cpage=$matches[3]\";s:34:\"(de|en|it|fr)/([^/]+)(/[0-9]+)?/?$\";s:43:\"index.php?name=$matches[2]&page=$matches[3]\";s:30:\"(de|en|it|fr)/[^/]+/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[2]\";s:40:\"(de|en|it|fr)/[^/]+/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[2]&tb=1\";s:60:\"(de|en|it|fr)/[^/]+/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[2]&feed=$matches[3]\";s:55:\"(de|en|it|fr)/[^/]+/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[2]&feed=$matches[3]\";s:55:\"(de|en|it|fr)/[^/]+/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[2]&cpage=$matches[3]\";s:27:\"[^/]+/attachment/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:37:\"[^/]+/attachment/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:57:\"[^/]+/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:52:\"[^/]+/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:52:\"[^/]+/attachment/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:20:\"([^/]+)/trackback/?$\";s:31:\"index.php?name=$matches[1]&tb=1\";s:40:\"([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:43:\"index.php?name=$matches[1]&feed=$matches[2]\";s:35:\"([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:43:\"index.php?name=$matches[1]&feed=$matches[2]\";s:28:\"([^/]+)/page/?([0-9]{1,})/?$\";s:44:\"index.php?name=$matches[1]&paged=$matches[2]\";s:35:\"([^/]+)/comment-page-([0-9]{1,})/?$\";s:44:\"index.php?name=$matches[1]&cpage=$matches[2]\";s:20:\"([^/]+)(/[0-9]+)?/?$\";s:43:\"index.php?name=$matches[1]&page=$matches[2]\";s:16:\"[^/]+/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:26:\"[^/]+/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:46:\"[^/]+/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:41:\"[^/]+/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:41:\"[^/]+/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";}','yes');
 INSERT INTO `ogdch_options` VALUES (539,'theme_mods_twentyfifteen','a:1:{s:16:\"sidebars_widgets\";a:2:{s:4:\"time\";i:1442306264;s:4:\"data\";a:2:{s:19:\"wp_inactive_widgets\";a:0:{}s:9:\"sidebar-1\";a:6:{i:0;s:8:\"search-2\";i:1;s:14:\"recent-posts-2\";i:2;s:17:\"recent-comments-2\";i:3;s:10:\"archives-2\";i:4;s:12:\"categories-2\";i:5;s:6:\"meta-2\";}}}}','yes');
+INSERT INTO `ogdch_options` VALUES (544,'can_compress_scripts','1','yes');
+INSERT INTO `ogdch_options` VALUES (649,'rewrite_rules','a:182:{s:20:\"(de|en|it|fr)/app/?$\";s:40:\"index.php?lang=$matches[1]&post_type=app\";s:50:\"(de|en|it|fr)/app/feed/(feed|rdf|rss|rss2|atom)/?$\";s:57:\"index.php?lang=$matches[1]&post_type=app&feed=$matches[2]\";s:45:\"(de|en|it|fr)/app/(feed|rdf|rss|rss2|atom)/?$\";s:57:\"index.php?lang=$matches[1]&post_type=app&feed=$matches[2]\";s:37:\"(de|en|it|fr)/app/page/([0-9]{1,})/?$\";s:58:\"index.php?lang=$matches[1]&post_type=app&paged=$matches[2]\";s:61:\"(de|en|it|fr)/category/(.+?)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:52:\"index.php?category_name=$matches[2]&feed=$matches[3]\";s:56:\"(de|en|it|fr)/category/(.+?)/(feed|rdf|rss|rss2|atom)/?$\";s:52:\"index.php?category_name=$matches[2]&feed=$matches[3]\";s:49:\"(de|en|it|fr)/category/(.+?)/page/?([0-9]{1,})/?$\";s:53:\"index.php?category_name=$matches[2]&paged=$matches[3]\";s:31:\"(de|en|it|fr)/category/(.+?)/?$\";s:35:\"index.php?category_name=$matches[2]\";s:47:\"category/(.+?)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:52:\"index.php?category_name=$matches[1]&feed=$matches[2]\";s:42:\"category/(.+?)/(feed|rdf|rss|rss2|atom)/?$\";s:52:\"index.php?category_name=$matches[1]&feed=$matches[2]\";s:35:\"category/(.+?)/page/?([0-9]{1,})/?$\";s:53:\"index.php?category_name=$matches[1]&paged=$matches[2]\";s:17:\"category/(.+?)/?$\";s:35:\"index.php?category_name=$matches[1]\";s:58:\"(de|en|it|fr)/tag/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:42:\"index.php?tag=$matches[2]&feed=$matches[3]\";s:53:\"(de|en|it|fr)/tag/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:42:\"index.php?tag=$matches[2]&feed=$matches[3]\";s:46:\"(de|en|it|fr)/tag/([^/]+)/page/?([0-9]{1,})/?$\";s:43:\"index.php?tag=$matches[2]&paged=$matches[3]\";s:28:\"(de|en|it|fr)/tag/([^/]+)/?$\";s:25:\"index.php?tag=$matches[2]\";s:44:\"tag/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:42:\"index.php?tag=$matches[1]&feed=$matches[2]\";s:39:\"tag/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:42:\"index.php?tag=$matches[1]&feed=$matches[2]\";s:32:\"tag/([^/]+)/page/?([0-9]{1,})/?$\";s:43:\"index.php?tag=$matches[1]&paged=$matches[2]\";s:14:\"tag/([^/]+)/?$\";s:25:\"index.php?tag=$matches[1]\";s:59:\"(de|en|it|fr)/type/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:67:\"index.php?lang=$matches[1]&post_format=$matches[2]&feed=$matches[3]\";s:54:\"(de|en|it|fr)/type/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:67:\"index.php?lang=$matches[1]&post_format=$matches[2]&feed=$matches[3]\";s:47:\"(de|en|it|fr)/type/([^/]+)/page/?([0-9]{1,})/?$\";s:68:\"index.php?lang=$matches[1]&post_format=$matches[2]&paged=$matches[3]\";s:29:\"(de|en|it|fr)/type/([^/]+)/?$\";s:50:\"index.php?lang=$matches[1]&post_format=$matches[2]\";s:45:\"(de|en|it|fr)/app/[^/]+/attachment/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[2]\";s:55:\"(de|en|it|fr)/app/[^/]+/attachment/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[2]&tb=1\";s:75:\"(de|en|it|fr)/app/[^/]+/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[2]&feed=$matches[3]\";s:70:\"(de|en|it|fr)/app/[^/]+/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[2]&feed=$matches[3]\";s:70:\"(de|en|it|fr)/app/[^/]+/attachment/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[2]&cpage=$matches[3]\";s:38:\"(de|en|it|fr)/app/([^/]+)/trackback/?$\";s:30:\"index.php?app=$matches[2]&tb=1\";s:58:\"(de|en|it|fr)/app/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:42:\"index.php?app=$matches[2]&feed=$matches[3]\";s:53:\"(de|en|it|fr)/app/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:42:\"index.php?app=$matches[2]&feed=$matches[3]\";s:46:\"(de|en|it|fr)/app/([^/]+)/page/?([0-9]{1,})/?$\";s:43:\"index.php?app=$matches[2]&paged=$matches[3]\";s:53:\"(de|en|it|fr)/app/([^/]+)/comment-page-([0-9]{1,})/?$\";s:43:\"index.php?app=$matches[2]&cpage=$matches[3]\";s:38:\"(de|en|it|fr)/app/([^/]+)(/[0-9]+)?/?$\";s:42:\"index.php?app=$matches[2]&page=$matches[3]\";s:34:\"(de|en|it|fr)/app/[^/]+/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[2]\";s:44:\"(de|en|it|fr)/app/[^/]+/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[2]&tb=1\";s:64:\"(de|en|it|fr)/app/[^/]+/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[2]&feed=$matches[3]\";s:59:\"(de|en|it|fr)/app/[^/]+/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[2]&feed=$matches[3]\";s:59:\"(de|en|it|fr)/app/[^/]+/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[2]&cpage=$matches[3]\";s:31:\"app/[^/]+/attachment/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:41:\"app/[^/]+/attachment/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:61:\"app/[^/]+/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:56:\"app/[^/]+/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:56:\"app/[^/]+/attachment/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:24:\"app/([^/]+)/trackback/?$\";s:30:\"index.php?app=$matches[1]&tb=1\";s:44:\"app/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:42:\"index.php?app=$matches[1]&feed=$matches[2]\";s:39:\"app/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:42:\"index.php?app=$matches[1]&feed=$matches[2]\";s:32:\"app/([^/]+)/page/?([0-9]{1,})/?$\";s:43:\"index.php?app=$matches[1]&paged=$matches[2]\";s:39:\"app/([^/]+)/comment-page-([0-9]{1,})/?$\";s:43:\"index.php?app=$matches[1]&cpage=$matches[2]\";s:24:\"app/([^/]+)(/[0-9]+)?/?$\";s:42:\"index.php?app=$matches[1]&page=$matches[2]\";s:20:\"app/[^/]+/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:30:\"app/[^/]+/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:50:\"app/[^/]+/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:45:\"app/[^/]+/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:45:\"app/[^/]+/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:46:\"ckan-local-dataset/[^/]+/attachment/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:56:\"ckan-local-dataset/[^/]+/attachment/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:76:\"ckan-local-dataset/[^/]+/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:71:\"ckan-local-dataset/[^/]+/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:71:\"ckan-local-dataset/[^/]+/attachment/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:39:\"ckan-local-dataset/([^/]+)/trackback/?$\";s:45:\"index.php?ckan-local-dataset=$matches[1]&tb=1\";s:47:\"ckan-local-dataset/([^/]+)/page/?([0-9]{1,})/?$\";s:58:\"index.php?ckan-local-dataset=$matches[1]&paged=$matches[2]\";s:54:\"ckan-local-dataset/([^/]+)/comment-page-([0-9]{1,})/?$\";s:58:\"index.php?ckan-local-dataset=$matches[1]&cpage=$matches[2]\";s:39:\"ckan-local-dataset/([^/]+)(/[0-9]+)?/?$\";s:57:\"index.php?ckan-local-dataset=$matches[1]&page=$matches[2]\";s:35:\"ckan-local-dataset/[^/]+/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:45:\"ckan-local-dataset/[^/]+/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:65:\"ckan-local-dataset/[^/]+/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:60:\"ckan-local-dataset/[^/]+/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:60:\"ckan-local-dataset/[^/]+/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:44:\"ckan-local-group/[^/]+/attachment/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:54:\"ckan-local-group/[^/]+/attachment/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:74:\"ckan-local-group/[^/]+/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:69:\"ckan-local-group/[^/]+/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:69:\"ckan-local-group/[^/]+/attachment/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:37:\"ckan-local-group/([^/]+)/trackback/?$\";s:43:\"index.php?ckan-local-group=$matches[1]&tb=1\";s:45:\"ckan-local-group/([^/]+)/page/?([0-9]{1,})/?$\";s:56:\"index.php?ckan-local-group=$matches[1]&paged=$matches[2]\";s:52:\"ckan-local-group/([^/]+)/comment-page-([0-9]{1,})/?$\";s:56:\"index.php?ckan-local-group=$matches[1]&cpage=$matches[2]\";s:37:\"ckan-local-group/([^/]+)(/[0-9]+)?/?$\";s:55:\"index.php?ckan-local-group=$matches[1]&page=$matches[2]\";s:33:\"ckan-local-group/[^/]+/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:43:\"ckan-local-group/[^/]+/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:63:\"ckan-local-group/[^/]+/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:58:\"ckan-local-group/[^/]+/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:58:\"ckan-local-group/[^/]+/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:42:\"ckan-local-org/[^/]+/attachment/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:52:\"ckan-local-org/[^/]+/attachment/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:72:\"ckan-local-org/[^/]+/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:67:\"ckan-local-org/[^/]+/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:67:\"ckan-local-org/[^/]+/attachment/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:35:\"ckan-local-org/([^/]+)/trackback/?$\";s:41:\"index.php?ckan-local-org=$matches[1]&tb=1\";s:43:\"ckan-local-org/([^/]+)/page/?([0-9]{1,})/?$\";s:54:\"index.php?ckan-local-org=$matches[1]&paged=$matches[2]\";s:50:\"ckan-local-org/([^/]+)/comment-page-([0-9]{1,})/?$\";s:54:\"index.php?ckan-local-org=$matches[1]&cpage=$matches[2]\";s:35:\"ckan-local-org/([^/]+)(/[0-9]+)?/?$\";s:53:\"index.php?ckan-local-org=$matches[1]&page=$matches[2]\";s:31:\"ckan-local-org/[^/]+/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:41:\"ckan-local-org/[^/]+/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:61:\"ckan-local-org/[^/]+/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:56:\"ckan-local-org/[^/]+/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:56:\"ckan-local-org/[^/]+/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:12:\"robots\\.txt$\";s:18:\"index.php?robots=1\";s:48:\".*wp-(atom|rdf|rss|rss2|feed|commentsrss2)\\.php$\";s:18:\"index.php?feed=old\";s:20:\".*wp-app\\.php(/.*)?$\";s:19:\"index.php?error=403\";s:18:\".*wp-register.php$\";s:23:\"index.php?register=true\";s:46:\"(de|en|it|fr)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:44:\"index.php?lang=$matches[1]&&feed=$matches[2]\";s:41:\"(de|en|it|fr)/(feed|rdf|rss|rss2|atom)/?$\";s:44:\"index.php?lang=$matches[1]&&feed=$matches[2]\";s:34:\"(de|en|it|fr)/page/?([0-9]{1,})/?$\";s:45:\"index.php?lang=$matches[1]&&paged=$matches[2]\";s:16:\"(de|en|it|fr)/?$\";s:26:\"index.php?lang=$matches[1]\";s:55:\"(de|en|it|fr)/comments/feed/(feed|rdf|rss|rss2|atom)/?$\";s:59:\"index.php?lang=$matches[1]&&feed=$matches[2]&withcomments=1\";s:50:\"(de|en|it|fr)/comments/(feed|rdf|rss|rss2|atom)/?$\";s:59:\"index.php?lang=$matches[1]&&feed=$matches[2]&withcomments=1\";s:58:\"(de|en|it|fr)/search/(.+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:57:\"index.php?lang=$matches[1]&s=$matches[2]&feed=$matches[3]\";s:53:\"(de|en|it|fr)/search/(.+)/(feed|rdf|rss|rss2|atom)/?$\";s:57:\"index.php?lang=$matches[1]&s=$matches[2]&feed=$matches[3]\";s:46:\"(de|en|it|fr)/search/(.+)/page/?([0-9]{1,})/?$\";s:58:\"index.php?lang=$matches[1]&s=$matches[2]&paged=$matches[3]\";s:28:\"(de|en|it|fr)/search/(.+)/?$\";s:40:\"index.php?lang=$matches[1]&s=$matches[2]\";s:61:\"(de|en|it|fr)/author/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:67:\"index.php?lang=$matches[1]&author_name=$matches[2]&feed=$matches[3]\";s:56:\"(de|en|it|fr)/author/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:67:\"index.php?lang=$matches[1]&author_name=$matches[2]&feed=$matches[3]\";s:49:\"(de|en|it|fr)/author/([^/]+)/page/?([0-9]{1,})/?$\";s:68:\"index.php?lang=$matches[1]&author_name=$matches[2]&paged=$matches[3]\";s:31:\"(de|en|it|fr)/author/([^/]+)/?$\";s:50:\"index.php?lang=$matches[1]&author_name=$matches[2]\";s:83:\"(de|en|it|fr)/([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/feed/(feed|rdf|rss|rss2|atom)/?$\";s:97:\"index.php?lang=$matches[1]&year=$matches[2]&monthnum=$matches[3]&day=$matches[4]&feed=$matches[5]\";s:78:\"(de|en|it|fr)/([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/(feed|rdf|rss|rss2|atom)/?$\";s:97:\"index.php?lang=$matches[1]&year=$matches[2]&monthnum=$matches[3]&day=$matches[4]&feed=$matches[5]\";s:71:\"(de|en|it|fr)/([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/page/?([0-9]{1,})/?$\";s:98:\"index.php?lang=$matches[1]&year=$matches[2]&monthnum=$matches[3]&day=$matches[4]&paged=$matches[5]\";s:53:\"(de|en|it|fr)/([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/?$\";s:80:\"index.php?lang=$matches[1]&year=$matches[2]&monthnum=$matches[3]&day=$matches[4]\";s:70:\"(de|en|it|fr)/([0-9]{4})/([0-9]{1,2})/feed/(feed|rdf|rss|rss2|atom)/?$\";s:81:\"index.php?lang=$matches[1]&year=$matches[2]&monthnum=$matches[3]&feed=$matches[4]\";s:65:\"(de|en|it|fr)/([0-9]{4})/([0-9]{1,2})/(feed|rdf|rss|rss2|atom)/?$\";s:81:\"index.php?lang=$matches[1]&year=$matches[2]&monthnum=$matches[3]&feed=$matches[4]\";s:58:\"(de|en|it|fr)/([0-9]{4})/([0-9]{1,2})/page/?([0-9]{1,})/?$\";s:82:\"index.php?lang=$matches[1]&year=$matches[2]&monthnum=$matches[3]&paged=$matches[4]\";s:40:\"(de|en|it|fr)/([0-9]{4})/([0-9]{1,2})/?$\";s:64:\"index.php?lang=$matches[1]&year=$matches[2]&monthnum=$matches[3]\";s:57:\"(de|en|it|fr)/([0-9]{4})/feed/(feed|rdf|rss|rss2|atom)/?$\";s:60:\"index.php?lang=$matches[1]&year=$matches[2]&feed=$matches[3]\";s:52:\"(de|en|it|fr)/([0-9]{4})/(feed|rdf|rss|rss2|atom)/?$\";s:60:\"index.php?lang=$matches[1]&year=$matches[2]&feed=$matches[3]\";s:45:\"(de|en|it|fr)/([0-9]{4})/page/?([0-9]{1,})/?$\";s:61:\"index.php?lang=$matches[1]&year=$matches[2]&paged=$matches[3]\";s:27:\"(de|en|it|fr)/([0-9]{4})/?$\";s:43:\"index.php?lang=$matches[1]&year=$matches[2]\";s:41:\"(de|en|it|fr)/.?.+?/attachment/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[2]\";s:51:\"(de|en|it|fr)/.?.+?/attachment/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[2]&tb=1\";s:71:\"(de|en|it|fr)/.?.+?/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[2]&feed=$matches[3]\";s:66:\"(de|en|it|fr)/.?.+?/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[2]&feed=$matches[3]\";s:66:\"(de|en|it|fr)/.?.+?/attachment/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[2]&cpage=$matches[3]\";s:34:\"(de|en|it|fr)/(.?.+?)/trackback/?$\";s:35:\"index.php?pagename=$matches[2]&tb=1\";s:54:\"(de|en|it|fr)/(.?.+?)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:47:\"index.php?pagename=$matches[2]&feed=$matches[3]\";s:49:\"(de|en|it|fr)/(.?.+?)/(feed|rdf|rss|rss2|atom)/?$\";s:47:\"index.php?pagename=$matches[2]&feed=$matches[3]\";s:42:\"(de|en|it|fr)/(.?.+?)/page/?([0-9]{1,})/?$\";s:48:\"index.php?pagename=$matches[2]&paged=$matches[3]\";s:49:\"(de|en|it|fr)/(.?.+?)/comment-page-([0-9]{1,})/?$\";s:48:\"index.php?pagename=$matches[2]&cpage=$matches[3]\";s:34:\"(de|en|it|fr)/(.?.+?)(/[0-9]+)?/?$\";s:47:\"index.php?pagename=$matches[2]&page=$matches[3]\";s:27:\".?.+?/attachment/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:37:\".?.+?/attachment/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:57:\".?.+?/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:52:\".?.+?/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:52:\".?.+?/attachment/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:20:\"(.?.+?)/trackback/?$\";s:35:\"index.php?pagename=$matches[1]&tb=1\";s:40:\"(.?.+?)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:47:\"index.php?pagename=$matches[1]&feed=$matches[2]\";s:35:\"(.?.+?)/(feed|rdf|rss|rss2|atom)/?$\";s:47:\"index.php?pagename=$matches[1]&feed=$matches[2]\";s:28:\"(.?.+?)/page/?([0-9]{1,})/?$\";s:48:\"index.php?pagename=$matches[1]&paged=$matches[2]\";s:35:\"(.?.+?)/comment-page-([0-9]{1,})/?$\";s:48:\"index.php?pagename=$matches[1]&cpage=$matches[2]\";s:20:\"(.?.+?)(/[0-9]+)?/?$\";s:47:\"index.php?pagename=$matches[1]&page=$matches[2]\";s:41:\"(de|en|it|fr)/[^/]+/attachment/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[2]\";s:51:\"(de|en|it|fr)/[^/]+/attachment/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[2]&tb=1\";s:71:\"(de|en|it|fr)/[^/]+/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[2]&feed=$matches[3]\";s:66:\"(de|en|it|fr)/[^/]+/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[2]&feed=$matches[3]\";s:66:\"(de|en|it|fr)/[^/]+/attachment/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[2]&cpage=$matches[3]\";s:34:\"(de|en|it|fr)/([^/]+)/trackback/?$\";s:31:\"index.php?name=$matches[2]&tb=1\";s:54:\"(de|en|it|fr)/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:43:\"index.php?name=$matches[2]&feed=$matches[3]\";s:49:\"(de|en|it|fr)/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:43:\"index.php?name=$matches[2]&feed=$matches[3]\";s:42:\"(de|en|it|fr)/([^/]+)/page/?([0-9]{1,})/?$\";s:44:\"index.php?name=$matches[2]&paged=$matches[3]\";s:49:\"(de|en|it|fr)/([^/]+)/comment-page-([0-9]{1,})/?$\";s:44:\"index.php?name=$matches[2]&cpage=$matches[3]\";s:34:\"(de|en|it|fr)/([^/]+)(/[0-9]+)?/?$\";s:43:\"index.php?name=$matches[2]&page=$matches[3]\";s:30:\"(de|en|it|fr)/[^/]+/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[2]\";s:40:\"(de|en|it|fr)/[^/]+/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[2]&tb=1\";s:60:\"(de|en|it|fr)/[^/]+/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[2]&feed=$matches[3]\";s:55:\"(de|en|it|fr)/[^/]+/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[2]&feed=$matches[3]\";s:55:\"(de|en|it|fr)/[^/]+/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[2]&cpage=$matches[3]\";s:27:\"[^/]+/attachment/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:37:\"[^/]+/attachment/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:57:\"[^/]+/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:52:\"[^/]+/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:52:\"[^/]+/attachment/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:20:\"([^/]+)/trackback/?$\";s:31:\"index.php?name=$matches[1]&tb=1\";s:40:\"([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:43:\"index.php?name=$matches[1]&feed=$matches[2]\";s:35:\"([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:43:\"index.php?name=$matches[1]&feed=$matches[2]\";s:28:\"([^/]+)/page/?([0-9]{1,})/?$\";s:44:\"index.php?name=$matches[1]&paged=$matches[2]\";s:35:\"([^/]+)/comment-page-([0-9]{1,})/?$\";s:44:\"index.php?name=$matches[1]&cpage=$matches[2]\";s:20:\"([^/]+)(/[0-9]+)?/?$\";s:43:\"index.php?name=$matches[1]&page=$matches[2]\";s:16:\"[^/]+/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:26:\"[^/]+/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:46:\"[^/]+/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:41:\"[^/]+/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:41:\"[^/]+/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";}','yes');
 /*!40000 ALTER TABLE `ogdch_options` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -294,7 +294,7 @@ CREATE TABLE `ogdch_postmeta` (
   PRIMARY KEY (`meta_id`),
   KEY `post_id` (`post_id`),
   KEY `meta_key` (`meta_key`(191))
-) ENGINE=InnoDB AUTO_INCREMENT=1480 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1494 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -386,14 +386,6 @@ INSERT INTO `ogdch_postmeta` VALUES (793,172,'_menu_item_target','');
 INSERT INTO `ogdch_postmeta` VALUES (794,172,'_menu_item_classes','a:1:{i:0;s:0:\"\";}');
 INSERT INTO `ogdch_postmeta` VALUES (795,172,'_menu_item_xfn','');
 INSERT INTO `ogdch_postmeta` VALUES (796,172,'_menu_item_url','');
-INSERT INTO `ogdch_postmeta` VALUES (816,175,'_menu_item_type','post_type');
-INSERT INTO `ogdch_postmeta` VALUES (817,175,'_menu_item_menu_item_parent','0');
-INSERT INTO `ogdch_postmeta` VALUES (818,175,'_menu_item_object_id','2');
-INSERT INTO `ogdch_postmeta` VALUES (819,175,'_menu_item_object','page');
-INSERT INTO `ogdch_postmeta` VALUES (820,175,'_menu_item_target','');
-INSERT INTO `ogdch_postmeta` VALUES (821,175,'_menu_item_classes','a:1:{i:0;s:0:\"\";}');
-INSERT INTO `ogdch_postmeta` VALUES (822,175,'_menu_item_xfn','');
-INSERT INTO `ogdch_postmeta` VALUES (823,175,'_menu_item_url','');
 INSERT INTO `ogdch_postmeta` VALUES (825,176,'_menu_item_type','post_type');
 INSERT INTO `ogdch_postmeta` VALUES (826,176,'_menu_item_menu_item_parent','0');
 INSERT INTO `ogdch_postmeta` VALUES (827,176,'_menu_item_object_id','164');
@@ -420,14 +412,6 @@ INSERT INTO `ogdch_postmeta` VALUES (865,180,'_menu_item_target','');
 INSERT INTO `ogdch_postmeta` VALUES (866,180,'_menu_item_classes','a:1:{i:0;s:0:\"\";}');
 INSERT INTO `ogdch_postmeta` VALUES (867,180,'_menu_item_xfn','');
 INSERT INTO `ogdch_postmeta` VALUES (868,180,'_menu_item_url','');
-INSERT INTO `ogdch_postmeta` VALUES (888,183,'_menu_item_type','post_type');
-INSERT INTO `ogdch_postmeta` VALUES (889,183,'_menu_item_menu_item_parent','0');
-INSERT INTO `ogdch_postmeta` VALUES (890,183,'_menu_item_object_id','97');
-INSERT INTO `ogdch_postmeta` VALUES (891,183,'_menu_item_object','page');
-INSERT INTO `ogdch_postmeta` VALUES (892,183,'_menu_item_target','');
-INSERT INTO `ogdch_postmeta` VALUES (893,183,'_menu_item_classes','a:1:{i:0;s:0:\"\";}');
-INSERT INTO `ogdch_postmeta` VALUES (894,183,'_menu_item_xfn','');
-INSERT INTO `ogdch_postmeta` VALUES (895,183,'_menu_item_url','');
 INSERT INTO `ogdch_postmeta` VALUES (897,184,'_menu_item_type','post_type');
 INSERT INTO `ogdch_postmeta` VALUES (898,184,'_menu_item_menu_item_parent','0');
 INSERT INTO `ogdch_postmeta` VALUES (899,184,'_menu_item_object_id','166');
@@ -436,14 +420,6 @@ INSERT INTO `ogdch_postmeta` VALUES (901,184,'_menu_item_target','');
 INSERT INTO `ogdch_postmeta` VALUES (902,184,'_menu_item_classes','a:1:{i:0;s:0:\"\";}');
 INSERT INTO `ogdch_postmeta` VALUES (903,184,'_menu_item_xfn','');
 INSERT INTO `ogdch_postmeta` VALUES (904,184,'_menu_item_url','');
-INSERT INTO `ogdch_postmeta` VALUES (924,187,'_menu_item_type','post_type');
-INSERT INTO `ogdch_postmeta` VALUES (925,187,'_menu_item_menu_item_parent','0');
-INSERT INTO `ogdch_postmeta` VALUES (926,187,'_menu_item_object_id','118');
-INSERT INTO `ogdch_postmeta` VALUES (927,187,'_menu_item_object','page');
-INSERT INTO `ogdch_postmeta` VALUES (928,187,'_menu_item_target','');
-INSERT INTO `ogdch_postmeta` VALUES (929,187,'_menu_item_classes','a:1:{i:0;s:0:\"\";}');
-INSERT INTO `ogdch_postmeta` VALUES (930,187,'_menu_item_xfn','');
-INSERT INTO `ogdch_postmeta` VALUES (931,187,'_menu_item_url','');
 INSERT INTO `ogdch_postmeta` VALUES (933,188,'_menu_item_type','post_type');
 INSERT INTO `ogdch_postmeta` VALUES (934,188,'_menu_item_menu_item_parent','0');
 INSERT INTO `ogdch_postmeta` VALUES (935,188,'_menu_item_object_id','167');
@@ -452,32 +428,24 @@ INSERT INTO `ogdch_postmeta` VALUES (937,188,'_menu_item_target','');
 INSERT INTO `ogdch_postmeta` VALUES (938,188,'_menu_item_classes','a:1:{i:0;s:0:\"\";}');
 INSERT INTO `ogdch_postmeta` VALUES (939,188,'_menu_item_xfn','');
 INSERT INTO `ogdch_postmeta` VALUES (940,188,'_menu_item_url','');
-INSERT INTO `ogdch_postmeta` VALUES (960,191,'_menu_item_type','post_type');
-INSERT INTO `ogdch_postmeta` VALUES (961,191,'_menu_item_menu_item_parent','0');
-INSERT INTO `ogdch_postmeta` VALUES (962,191,'_menu_item_object_id','119');
-INSERT INTO `ogdch_postmeta` VALUES (963,191,'_menu_item_object','page');
-INSERT INTO `ogdch_postmeta` VALUES (964,191,'_menu_item_target','');
-INSERT INTO `ogdch_postmeta` VALUES (965,191,'_menu_item_classes','a:1:{i:0;s:0:\"\";}');
-INSERT INTO `ogdch_postmeta` VALUES (966,191,'_menu_item_xfn','');
-INSERT INTO `ogdch_postmeta` VALUES (967,191,'_menu_item_url','');
 INSERT INTO `ogdch_postmeta` VALUES (969,192,'_edit_last','1');
-INSERT INTO `ogdch_postmeta` VALUES (970,192,'_edit_lock','1441022588:1');
+INSERT INTO `ogdch_postmeta` VALUES (970,192,'_edit_lock','1442841907:1');
 INSERT INTO `ogdch_postmeta` VALUES (971,192,'_ckan_local_group_title_en','Population');
 INSERT INTO `ogdch_postmeta` VALUES (972,192,'_ckan_local_group_title_de','Bevölkerung');
 INSERT INTO `ogdch_postmeta` VALUES (973,192,'_ckan_local_group_title_fr','Population');
 INSERT INTO `ogdch_postmeta` VALUES (974,192,'_ckan_local_group_title_it','Popolazione');
-INSERT INTO `ogdch_postmeta` VALUES (975,192,'_ckan_local_group_rdf_uri','http://opendata.swiss/themes/Bevoelkerung');
+INSERT INTO `ogdch_postmeta` VALUES (975,192,'_ckan_local_group_rdf_uri','http://opendata.swiss/themes/population');
 INSERT INTO `ogdch_postmeta` VALUES (976,192,'_ckan_local_group_ckan_id','64d3b89b-ff79-477e-8fb4-9cfc388b0f58');
 INSERT INTO `ogdch_postmeta` VALUES (977,192,'_ckan_local_group_ckan_name','bevoelkerung');
 INSERT INTO `ogdch_postmeta` VALUES (978,193,'_edit_last','1');
-INSERT INTO `ogdch_postmeta` VALUES (979,193,'_edit_lock','1441022578:1');
+INSERT INTO `ogdch_postmeta` VALUES (979,193,'_edit_lock','1442841879:1');
 INSERT INTO `ogdch_postmeta` VALUES (980,193,'_ckan_local_group_ckan_id','27b314a5-57b6-4c4e-9c9f-6923365eaecc');
 INSERT INTO `ogdch_postmeta` VALUES (981,193,'_ckan_local_group_ckan_name','raum');
-INSERT INTO `ogdch_postmeta` VALUES (982,193,'_ckan_local_group_title_en','Space');
-INSERT INTO `ogdch_postmeta` VALUES (983,193,'_ckan_local_group_title_de','Raum');
-INSERT INTO `ogdch_postmeta` VALUES (984,193,'_ckan_local_group_title_fr','Espace');
-INSERT INTO `ogdch_postmeta` VALUES (985,193,'_ckan_local_group_title_it','Spazio');
-INSERT INTO `ogdch_postmeta` VALUES (986,193,'_ckan_local_group_rdf_uri','http://opendata.swiss/themes/Raum');
+INSERT INTO `ogdch_postmeta` VALUES (982,193,'_ckan_local_group_title_en','Territory and environment');
+INSERT INTO `ogdch_postmeta` VALUES (983,193,'_ckan_local_group_title_de','Raum und Umwelt');
+INSERT INTO `ogdch_postmeta` VALUES (984,193,'_ckan_local_group_title_fr','Territoire et environnement');
+INSERT INTO `ogdch_postmeta` VALUES (985,193,'_ckan_local_group_title_it','Territorio e ambiente');
+INSERT INTO `ogdch_postmeta` VALUES (986,193,'_ckan_local_group_rdf_uri','http://opendata.swiss/themes/territory');
 INSERT INTO `ogdch_postmeta` VALUES (987,194,'_edit_last','1');
 INSERT INTO `ogdch_postmeta` VALUES (988,194,'_edit_lock','1440510383:1');
 INSERT INTO `ogdch_postmeta` VALUES (989,194,'_ckan_local_org_ckan_id','73124d1e-c2aa-4d20-a42d-fa71b8946e93');
@@ -510,7 +478,7 @@ INSERT INTO `ogdch_postmeta` VALUES (1017,198,'_app-showcase-app_url','http://to
 INSERT INTO `ogdch_postmeta` VALUES (1018,198,'_app-showcase-app_author_name','Swisstopo');
 INSERT INTO `ogdch_postmeta` VALUES (1019,198,'_app-showcase-app_author_email','swiss@to.po');
 INSERT INTO `ogdch_postmeta` VALUES (1020,198,'_app-showcase-app_version','1.0.0');
-INSERT INTO `ogdch_postmeta` VALUES (1021,199,'_edit_lock','1441022570:1');
+INSERT INTO `ogdch_postmeta` VALUES (1021,199,'_edit_lock','1442841826:1');
 INSERT INTO `ogdch_postmeta` VALUES (1022,199,'_edit_last','1');
 INSERT INTO `ogdch_postmeta` VALUES (1023,199,'_ckan_local_group_ckan_id','33ab70dd-e2da-464a-ae5f-b166f16d9e2c');
 INSERT INTO `ogdch_postmeta` VALUES (1024,199,'_ckan_local_group_ckan_name','arbeit');
@@ -518,15 +486,15 @@ INSERT INTO `ogdch_postmeta` VALUES (1025,199,'_ckan_local_group_title_en','Work
 INSERT INTO `ogdch_postmeta` VALUES (1026,199,'_ckan_local_group_title_de','Arbeit, Erwerb');
 INSERT INTO `ogdch_postmeta` VALUES (1027,199,'_ckan_local_group_title_fr','Travail, rémunération');
 INSERT INTO `ogdch_postmeta` VALUES (1028,199,'_ckan_local_group_title_it','Lavoro e reddito');
-INSERT INTO `ogdch_postmeta` VALUES (1029,199,'_ckan_local_group_rdf_uri','http://opendata.swiss/themes/Arbeit');
-INSERT INTO `ogdch_postmeta` VALUES (1030,200,'_edit_lock','1441022551:1');
+INSERT INTO `ogdch_postmeta` VALUES (1029,199,'_ckan_local_group_rdf_uri','http://opendata.swiss/themes/work');
+INSERT INTO `ogdch_postmeta` VALUES (1030,200,'_edit_lock','1442841811:1');
 INSERT INTO `ogdch_postmeta` VALUES (1031,200,'_edit_last','1');
 INSERT INTO `ogdch_postmeta` VALUES (1032,200,'_ckan_local_group_ckan_id','7d52132f-7119-41ab-b2b8-e62d69a834ce');
 INSERT INTO `ogdch_postmeta` VALUES (1033,200,'_ckan_local_group_ckan_name','bauwesen');
 INSERT INTO `ogdch_postmeta` VALUES (1034,200,'_ckan_local_group_title_de','Bau- und Wohnungswesen');
 INSERT INTO `ogdch_postmeta` VALUES (1035,200,'_ckan_local_group_title_fr','Construction, logement');
-INSERT INTO `ogdch_postmeta` VALUES (1036,200,'_ckan_local_group_rdf_uri','http://opendata.swiss/themes/Bauwesen');
-INSERT INTO `ogdch_postmeta` VALUES (1037,201,'_edit_lock','1441022331:1');
+INSERT INTO `ogdch_postmeta` VALUES (1036,200,'_ckan_local_group_rdf_uri','http://opendata.swiss/themes/construction');
+INSERT INTO `ogdch_postmeta` VALUES (1037,201,'_edit_lock','1442841782:1');
 INSERT INTO `ogdch_postmeta` VALUES (1038,201,'_edit_last','1');
 INSERT INTO `ogdch_postmeta` VALUES (1039,201,'_ckan_local_group_ckan_id','afcb4a2a-b4b0-4d7c-984a-9078e964be49');
 INSERT INTO `ogdch_postmeta` VALUES (1040,201,'_ckan_local_group_ckan_name','bildung');
@@ -534,8 +502,8 @@ INSERT INTO `ogdch_postmeta` VALUES (1041,201,'_ckan_local_group_title_en','Educ
 INSERT INTO `ogdch_postmeta` VALUES (1042,201,'_ckan_local_group_title_de','Bildung, Wissenschaft');
 INSERT INTO `ogdch_postmeta` VALUES (1043,201,'_ckan_local_group_title_fr','Education, science');
 INSERT INTO `ogdch_postmeta` VALUES (1044,201,'_ckan_local_group_title_it','Formazione e scienza');
-INSERT INTO `ogdch_postmeta` VALUES (1045,201,'_ckan_local_group_rdf_uri','http://opendata.swiss/themes/Bildung');
-INSERT INTO `ogdch_postmeta` VALUES (1046,202,'_edit_lock','1441022319:1');
+INSERT INTO `ogdch_postmeta` VALUES (1045,201,'_ckan_local_group_rdf_uri','http://opendata.swiss/themes/education');
+INSERT INTO `ogdch_postmeta` VALUES (1046,202,'_edit_lock','1442841770:1');
 INSERT INTO `ogdch_postmeta` VALUES (1047,202,'_edit_last','1');
 INSERT INTO `ogdch_postmeta` VALUES (1048,202,'_ckan_local_group_ckan_id','42f56f74-074e-4cbb-b91b-deeb1fd58c56');
 INSERT INTO `ogdch_postmeta` VALUES (1049,202,'_ckan_local_group_ckan_name','energie');
@@ -543,8 +511,8 @@ INSERT INTO `ogdch_postmeta` VALUES (1050,202,'_ckan_local_group_title_en','Ener
 INSERT INTO `ogdch_postmeta` VALUES (1051,202,'_ckan_local_group_title_de','Energie');
 INSERT INTO `ogdch_postmeta` VALUES (1052,202,'_ckan_local_group_title_fr','Energie');
 INSERT INTO `ogdch_postmeta` VALUES (1053,202,'_ckan_local_group_title_it','Energia');
-INSERT INTO `ogdch_postmeta` VALUES (1054,202,'_ckan_local_group_rdf_uri','http://opendata.swiss/themes/Energie');
-INSERT INTO `ogdch_postmeta` VALUES (1055,203,'_edit_lock','1441022310:1');
+INSERT INTO `ogdch_postmeta` VALUES (1054,202,'_ckan_local_group_rdf_uri','http://opendata.swiss/themes/energy');
+INSERT INTO `ogdch_postmeta` VALUES (1055,203,'_edit_lock','1442841759:1');
 INSERT INTO `ogdch_postmeta` VALUES (1056,203,'_edit_last','1');
 INSERT INTO `ogdch_postmeta` VALUES (1057,203,'_ckan_local_group_ckan_id','79cbe120-e9c6-4249-b934-58ca980606d7');
 INSERT INTO `ogdch_postmeta` VALUES (1058,203,'_ckan_local_group_ckan_name','finanzen');
@@ -552,13 +520,13 @@ INSERT INTO `ogdch_postmeta` VALUES (1059,203,'_ckan_local_group_title_en','Fina
 INSERT INTO `ogdch_postmeta` VALUES (1060,203,'_ckan_local_group_title_de','Finanzen');
 INSERT INTO `ogdch_postmeta` VALUES (1061,203,'_ckan_local_group_title_fr','Finances');
 INSERT INTO `ogdch_postmeta` VALUES (1062,203,'_ckan_local_group_title_it','Finanze');
-INSERT INTO `ogdch_postmeta` VALUES (1063,203,'_ckan_local_group_rdf_uri','http://opendata.swiss/themes/Finanzen');
-INSERT INTO `ogdch_postmeta` VALUES (1064,204,'_edit_lock','1441022305:1');
+INSERT INTO `ogdch_postmeta` VALUES (1063,203,'_ckan_local_group_rdf_uri','http://opendata.swiss/themes/finances');
+INSERT INTO `ogdch_postmeta` VALUES (1064,204,'_edit_lock','1442841749:1');
 INSERT INTO `ogdch_postmeta` VALUES (1065,204,'_edit_last','1');
 INSERT INTO `ogdch_postmeta` VALUES (1066,204,'_ckan_local_group_ckan_id','a20e9d52-0d20-413c-a8ad-9ffd4523bec6');
 INSERT INTO `ogdch_postmeta` VALUES (1067,204,'_ckan_local_group_ckan_name','geographie');
 INSERT INTO `ogdch_postmeta` VALUES (1068,204,'_ckan_local_group_title_de','Geographie');
-INSERT INTO `ogdch_postmeta` VALUES (1069,204,'_ckan_local_group_rdf_uri','http://opendata.swiss/themes/Geographie');
+INSERT INTO `ogdch_postmeta` VALUES (1069,204,'_ckan_local_group_rdf_uri','http://opendata.swiss/themes/geography');
 INSERT INTO `ogdch_postmeta` VALUES (1070,205,'_edit_lock','1441022299:1');
 INSERT INTO `ogdch_postmeta` VALUES (1071,205,'_edit_last','1');
 INSERT INTO `ogdch_postmeta` VALUES (1072,205,'_ckan_local_group_ckan_id','28641aa8-b97d-49ed-85bf-c19eb0f729d3');
@@ -568,21 +536,21 @@ INSERT INTO `ogdch_postmeta` VALUES (1075,205,'_ckan_local_group_title_de','Gese
 INSERT INTO `ogdch_postmeta` VALUES (1076,205,'_ckan_local_group_title_fr','Legislation');
 INSERT INTO `ogdch_postmeta` VALUES (1077,205,'_ckan_local_group_title_it','Legislazione');
 INSERT INTO `ogdch_postmeta` VALUES (1078,205,'_ckan_local_group_rdf_uri','http://opendata.swiss/themes/Gesetzgebung');
-INSERT INTO `ogdch_postmeta` VALUES (1079,206,'_edit_lock','1441022292:1');
+INSERT INTO `ogdch_postmeta` VALUES (1079,206,'_edit_lock','1442841730:1');
 INSERT INTO `ogdch_postmeta` VALUES (1080,206,'_edit_last','1');
 INSERT INTO `ogdch_postmeta` VALUES (1081,206,'_ckan_local_group_ckan_id','90848388-d0b6-4b97-a686-e93b40832e1e');
 INSERT INTO `ogdch_postmeta` VALUES (1082,206,'_ckan_local_group_ckan_name','gesundheit');
 INSERT INTO `ogdch_postmeta` VALUES (1083,206,'_ckan_local_group_title_en','Health');
 INSERT INTO `ogdch_postmeta` VALUES (1084,206,'_ckan_local_group_title_de','Gesundheit');
 INSERT INTO `ogdch_postmeta` VALUES (1085,206,'_ckan_local_group_title_fr','Santé');
-INSERT INTO `ogdch_postmeta` VALUES (1086,206,'_ckan_local_group_rdf_uri','http://opendata.swiss/themes/Gesundheit');
-INSERT INTO `ogdch_postmeta` VALUES (1087,207,'_edit_lock','1441022286:1');
+INSERT INTO `ogdch_postmeta` VALUES (1086,206,'_ckan_local_group_rdf_uri','http://opendata.swiss/themes/health');
+INSERT INTO `ogdch_postmeta` VALUES (1087,207,'_edit_lock','1442841687:1');
 INSERT INTO `ogdch_postmeta` VALUES (1088,207,'_edit_last','1');
 INSERT INTO `ogdch_postmeta` VALUES (1089,207,'_ckan_local_group_ckan_id','dc8b567c-fed8-4696-847b-f85510f93d71');
 INSERT INTO `ogdch_postmeta` VALUES (1090,207,'_ckan_local_group_ckan_name','handel');
 INSERT INTO `ogdch_postmeta` VALUES (1091,207,'_ckan_local_group_title_de','Handel');
-INSERT INTO `ogdch_postmeta` VALUES (1092,207,'_ckan_local_group_rdf_uri','http://opendata.swiss/themes/Handel');
-INSERT INTO `ogdch_postmeta` VALUES (1093,208,'_edit_lock','1441022279:1');
+INSERT INTO `ogdch_postmeta` VALUES (1092,207,'_ckan_local_group_rdf_uri','http://opendata.swiss/themes/trade');
+INSERT INTO `ogdch_postmeta` VALUES (1093,208,'_edit_lock','1442841646:1');
 INSERT INTO `ogdch_postmeta` VALUES (1094,208,'_edit_last','1');
 INSERT INTO `ogdch_postmeta` VALUES (1095,208,'_ckan_local_group_ckan_id','168c842c-fd1f-4180-91ce-1aecaac8f282');
 INSERT INTO `ogdch_postmeta` VALUES (1096,208,'_ckan_local_group_ckan_name','industrie');
@@ -590,8 +558,8 @@ INSERT INTO `ogdch_postmeta` VALUES (1097,208,'_ckan_local_group_title_en','Indu
 INSERT INTO `ogdch_postmeta` VALUES (1098,208,'_ckan_local_group_title_de','Industrie, Dienstleistungen');
 INSERT INTO `ogdch_postmeta` VALUES (1099,208,'_ckan_local_group_title_fr','Industrie, services');
 INSERT INTO `ogdch_postmeta` VALUES (1100,208,'_ckan_local_group_title_it','Industria, servizi');
-INSERT INTO `ogdch_postmeta` VALUES (1101,208,'_ckan_local_group_rdf_uri','http://opendata.swiss/themes/Industrie');
-INSERT INTO `ogdch_postmeta` VALUES (1102,209,'_edit_lock','1441022270:1');
+INSERT INTO `ogdch_postmeta` VALUES (1101,208,'_ckan_local_group_rdf_uri','http://opendata.swiss/themes/industry');
+INSERT INTO `ogdch_postmeta` VALUES (1102,209,'_edit_lock','1442841627:1');
 INSERT INTO `ogdch_postmeta` VALUES (1103,209,'_edit_last','1');
 INSERT INTO `ogdch_postmeta` VALUES (1104,209,'_ckan_local_group_ckan_id','2cd03703-e1e3-4031-bd3c-4d0e82d3d7c1');
 INSERT INTO `ogdch_postmeta` VALUES (1105,209,'_ckan_local_group_ckan_name','kriminalitaet');
@@ -599,16 +567,16 @@ INSERT INTO `ogdch_postmeta` VALUES (1106,209,'_ckan_local_group_title_en','Crim
 INSERT INTO `ogdch_postmeta` VALUES (1107,209,'_ckan_local_group_title_de','Kriminalität, Strafrecht');
 INSERT INTO `ogdch_postmeta` VALUES (1108,209,'_ckan_local_group_title_fr','Criminalité, droit pénal');
 INSERT INTO `ogdch_postmeta` VALUES (1109,209,'_ckan_local_group_title_it','Criminalità, diritto penale');
-INSERT INTO `ogdch_postmeta` VALUES (1110,209,'_ckan_local_group_rdf_uri','http://opendata.swiss/themes/Kriminalitaet');
-INSERT INTO `ogdch_postmeta` VALUES (1111,210,'_edit_lock','1441022235:1');
+INSERT INTO `ogdch_postmeta` VALUES (1110,209,'_ckan_local_group_rdf_uri','http://opendata.swiss/themes/crime');
+INSERT INTO `ogdch_postmeta` VALUES (1111,210,'_edit_lock','1442841605:1');
 INSERT INTO `ogdch_postmeta` VALUES (1112,210,'_edit_last','1');
 INSERT INTO `ogdch_postmeta` VALUES (1113,210,'_ckan_local_group_ckan_id','0d77b36f-1de6-40b3-9915-be91ee469f63');
 INSERT INTO `ogdch_postmeta` VALUES (1114,210,'_ckan_local_group_ckan_name','kultur');
 INSERT INTO `ogdch_postmeta` VALUES (1115,210,'_ckan_local_group_title_de','Kultur, Medien, Informationsgesellschaft, Sport');
 INSERT INTO `ogdch_postmeta` VALUES (1116,210,'_ckan_local_group_title_fr','Culture, médias, société de l\'information, sport');
 INSERT INTO `ogdch_postmeta` VALUES (1117,210,'_ckan_local_group_title_it','Cultura, media, società dell\'informazione, sport');
-INSERT INTO `ogdch_postmeta` VALUES (1118,210,'_ckan_local_group_rdf_uri','http://opendata.swiss/themes/Kultur');
-INSERT INTO `ogdch_postmeta` VALUES (1119,211,'_edit_lock','1441022229:1');
+INSERT INTO `ogdch_postmeta` VALUES (1118,210,'_ckan_local_group_rdf_uri','http://opendata.swiss/themes/culture');
+INSERT INTO `ogdch_postmeta` VALUES (1119,211,'_edit_lock','1442841511:1');
 INSERT INTO `ogdch_postmeta` VALUES (1120,211,'_edit_last','1');
 INSERT INTO `ogdch_postmeta` VALUES (1121,211,'_ckan_local_group_ckan_id','c7521678-de76-4731-9075-25d1d6150ecf');
 INSERT INTO `ogdch_postmeta` VALUES (1122,211,'_ckan_local_group_ckan_name','landwirtschaft');
@@ -616,8 +584,8 @@ INSERT INTO `ogdch_postmeta` VALUES (1123,211,'_ckan_local_group_title_en','Agri
 INSERT INTO `ogdch_postmeta` VALUES (1124,211,'_ckan_local_group_title_de','Land- und Forstwirtschaft');
 INSERT INTO `ogdch_postmeta` VALUES (1125,211,'_ckan_local_group_title_fr','Agriculture, sylviculture');
 INSERT INTO `ogdch_postmeta` VALUES (1126,211,'_ckan_local_group_title_it','Agricoltura, selvicoltura');
-INSERT INTO `ogdch_postmeta` VALUES (1127,211,'_ckan_local_group_rdf_uri','http://opendata.swiss/themes/Landwirtschaft');
-INSERT INTO `ogdch_postmeta` VALUES (1128,212,'_edit_lock','1441022223:1');
+INSERT INTO `ogdch_postmeta` VALUES (1127,211,'_ckan_local_group_rdf_uri','http://opendata.swiss/themes/agriculture');
+INSERT INTO `ogdch_postmeta` VALUES (1128,212,'_edit_lock','1442841499:1');
 INSERT INTO `ogdch_postmeta` VALUES (1129,212,'_edit_last','1');
 INSERT INTO `ogdch_postmeta` VALUES (1130,212,'_ckan_local_group_ckan_id','8c2a33d5-475d-48dd-87b6-7ce5eb2033fa');
 INSERT INTO `ogdch_postmeta` VALUES (1131,212,'_ckan_local_group_ckan_name','mobilitaet');
@@ -625,22 +593,22 @@ INSERT INTO `ogdch_postmeta` VALUES (1132,212,'_ckan_local_group_title_en','Mobi
 INSERT INTO `ogdch_postmeta` VALUES (1133,212,'_ckan_local_group_title_de','Mobilität und Verkehr');
 INSERT INTO `ogdch_postmeta` VALUES (1134,212,'_ckan_local_group_title_fr','Mobilité et transports');
 INSERT INTO `ogdch_postmeta` VALUES (1135,212,'_ckan_local_group_title_it','Mobilità e trasporti');
-INSERT INTO `ogdch_postmeta` VALUES (1136,212,'_ckan_local_group_rdf_uri','http://opendata.swiss/themes/Mobilitaet');
-INSERT INTO `ogdch_postmeta` VALUES (1137,213,'_edit_lock','1441022217:1');
+INSERT INTO `ogdch_postmeta` VALUES (1136,212,'_ckan_local_group_rdf_uri','http://opendata.swiss/themes/mobility');
+INSERT INTO `ogdch_postmeta` VALUES (1137,213,'_edit_lock','1442841481:1');
 INSERT INTO `ogdch_postmeta` VALUES (1138,213,'_edit_last','1');
 INSERT INTO `ogdch_postmeta` VALUES (1139,213,'_ckan_local_group_title_de','Öffentliche Ordnung und Sicherheit');
-INSERT INTO `ogdch_postmeta` VALUES (1140,213,'_ckan_local_group_rdf_uri','http://opendata.swiss/themes/Sicherheit');
+INSERT INTO `ogdch_postmeta` VALUES (1140,213,'_ckan_local_group_rdf_uri','http://opendata.swiss/themes/public-order');
 INSERT INTO `ogdch_postmeta` VALUES (1141,213,'_ckan_local_group_ckan_id','620fdda8-a92d-421b-89ad-4ef1b57a9458');
 INSERT INTO `ogdch_postmeta` VALUES (1142,213,'_ckan_local_group_ckan_name','sicherheit');
-INSERT INTO `ogdch_postmeta` VALUES (1143,214,'_edit_lock','1441022211:1');
+INSERT INTO `ogdch_postmeta` VALUES (1143,214,'_edit_lock','1442841430:1');
 INSERT INTO `ogdch_postmeta` VALUES (1144,214,'_edit_last','1');
 INSERT INTO `ogdch_postmeta` VALUES (1145,214,'_ckan_local_group_ckan_id','9beba14c-eab8-426e-89ae-757bc2e6445e');
 INSERT INTO `ogdch_postmeta` VALUES (1146,214,'_ckan_local_group_ckan_name','politik');
 INSERT INTO `ogdch_postmeta` VALUES (1147,214,'_ckan_local_group_title_de','Politik');
 INSERT INTO `ogdch_postmeta` VALUES (1148,214,'_ckan_local_group_title_fr','Politique');
 INSERT INTO `ogdch_postmeta` VALUES (1149,214,'_ckan_local_group_title_it','Politica');
-INSERT INTO `ogdch_postmeta` VALUES (1150,214,'_ckan_local_group_rdf_uri','http://opendata.swiss/themes/Politik');
-INSERT INTO `ogdch_postmeta` VALUES (1151,216,'_edit_lock','1441022204:1');
+INSERT INTO `ogdch_postmeta` VALUES (1150,214,'_ckan_local_group_rdf_uri','http://opendata.swiss/themes/politics');
+INSERT INTO `ogdch_postmeta` VALUES (1151,216,'_edit_lock','1442841415:1');
 INSERT INTO `ogdch_postmeta` VALUES (1152,216,'_edit_last','1');
 INSERT INTO `ogdch_postmeta` VALUES (1153,216,'_ckan_local_group_ckan_id','1deb7a82-612f-46ce-9c62-89c7c0b38ddf');
 INSERT INTO `ogdch_postmeta` VALUES (1154,216,'_ckan_local_group_ckan_name','preise');
@@ -648,8 +616,8 @@ INSERT INTO `ogdch_postmeta` VALUES (1155,216,'_ckan_local_group_title_en','Pric
 INSERT INTO `ogdch_postmeta` VALUES (1156,216,'_ckan_local_group_title_de','Preise');
 INSERT INTO `ogdch_postmeta` VALUES (1157,216,'_ckan_local_group_title_fr','Prix');
 INSERT INTO `ogdch_postmeta` VALUES (1158,216,'_ckan_local_group_title_it','Prezzi');
-INSERT INTO `ogdch_postmeta` VALUES (1159,216,'_ckan_local_group_rdf_uri','http://opendata.swiss/themes/Preise');
-INSERT INTO `ogdch_postmeta` VALUES (1160,217,'_edit_lock','1441022196:1');
+INSERT INTO `ogdch_postmeta` VALUES (1159,216,'_ckan_local_group_rdf_uri','http://opendata.swiss/themes/prices');
+INSERT INTO `ogdch_postmeta` VALUES (1160,217,'_edit_lock','1442841298:1');
 INSERT INTO `ogdch_postmeta` VALUES (1161,217,'_edit_last','1');
 INSERT INTO `ogdch_postmeta` VALUES (1162,217,'_ckan_local_group_ckan_id','011e8933-7b86-412c-8fe6-752060d8e103');
 INSERT INTO `ogdch_postmeta` VALUES (1163,217,'_ckan_local_group_ckan_name','soziale-sicherheit');
@@ -657,8 +625,8 @@ INSERT INTO `ogdch_postmeta` VALUES (1164,217,'_ckan_local_group_title_en','Soci
 INSERT INTO `ogdch_postmeta` VALUES (1165,217,'_ckan_local_group_title_de','Soziale Sicherheit');
 INSERT INTO `ogdch_postmeta` VALUES (1166,217,'_ckan_local_group_title_fr','Protection sociale');
 INSERT INTO `ogdch_postmeta` VALUES (1167,217,'_ckan_local_group_title_it','Sicurezza sociale');
-INSERT INTO `ogdch_postmeta` VALUES (1168,217,'_ckan_local_group_rdf_uri','http://opendata.swiss/themes/Soziale-Sicherheit');
-INSERT INTO `ogdch_postmeta` VALUES (1169,218,'_edit_lock','1441022190:1');
+INSERT INTO `ogdch_postmeta` VALUES (1168,217,'_ckan_local_group_rdf_uri','http://opendata.swiss/themes/social-security');
+INSERT INTO `ogdch_postmeta` VALUES (1169,218,'_edit_lock','1442841156:1');
 INSERT INTO `ogdch_postmeta` VALUES (1170,218,'_edit_last','1');
 INSERT INTO `ogdch_postmeta` VALUES (1171,218,'_ckan_local_group_ckan_id','e5d8e87e-aa10-42f3-a7c2-1f45ee5707c2');
 INSERT INTO `ogdch_postmeta` VALUES (1172,218,'_ckan_local_group_ckan_name','statistische-grundlagen');
@@ -666,8 +634,8 @@ INSERT INTO `ogdch_postmeta` VALUES (1173,218,'_ckan_local_group_title_en','Stat
 INSERT INTO `ogdch_postmeta` VALUES (1174,218,'_ckan_local_group_title_de','Statistische Grundlagen');
 INSERT INTO `ogdch_postmeta` VALUES (1175,218,'_ckan_local_group_title_fr','Bases statistiques');
 INSERT INTO `ogdch_postmeta` VALUES (1176,218,'_ckan_local_group_title_it','Basi statistiche');
-INSERT INTO `ogdch_postmeta` VALUES (1177,218,'_ckan_local_group_rdf_uri','http://opendata.swiss/themes/Statistische-Grundlagen');
-INSERT INTO `ogdch_postmeta` VALUES (1178,219,'_edit_lock','1441022183:1');
+INSERT INTO `ogdch_postmeta` VALUES (1177,218,'_ckan_local_group_rdf_uri','http://opendata.swiss/themes/statistical-basis');
+INSERT INTO `ogdch_postmeta` VALUES (1178,219,'_edit_lock','1442841137:1');
 INSERT INTO `ogdch_postmeta` VALUES (1179,219,'_edit_last','1');
 INSERT INTO `ogdch_postmeta` VALUES (1180,219,'_ckan_local_group_ckan_id','6aace7ef-f167-40c9-a0d7-87e7e2681c07');
 INSERT INTO `ogdch_postmeta` VALUES (1181,219,'_ckan_local_group_ckan_name','tourismus');
@@ -675,8 +643,8 @@ INSERT INTO `ogdch_postmeta` VALUES (1182,219,'_ckan_local_group_title_en','Tour
 INSERT INTO `ogdch_postmeta` VALUES (1183,219,'_ckan_local_group_title_de','Tourismus');
 INSERT INTO `ogdch_postmeta` VALUES (1184,219,'_ckan_local_group_title_fr','Tourisme');
 INSERT INTO `ogdch_postmeta` VALUES (1185,219,'_ckan_local_group_title_it','Turismo');
-INSERT INTO `ogdch_postmeta` VALUES (1186,219,'_ckan_local_group_rdf_uri','http://opendata.swiss/themes/Tourismus');
-INSERT INTO `ogdch_postmeta` VALUES (1187,220,'_edit_lock','1441022175:1');
+INSERT INTO `ogdch_postmeta` VALUES (1186,219,'_ckan_local_group_rdf_uri','http://opendata.swiss/themes/tourism');
+INSERT INTO `ogdch_postmeta` VALUES (1187,220,'_edit_lock','1442841107:1');
 INSERT INTO `ogdch_postmeta` VALUES (1188,220,'_edit_last','1');
 INSERT INTO `ogdch_postmeta` VALUES (1189,220,'_ckan_local_group_ckan_id','afc7c340-9bdb-4767-bbcb-70094a1d0dcc');
 INSERT INTO `ogdch_postmeta` VALUES (1190,220,'_ckan_local_group_ckan_name','verwaltung');
@@ -684,8 +652,8 @@ INSERT INTO `ogdch_postmeta` VALUES (1191,220,'_ckan_local_group_title_en','Admi
 INSERT INTO `ogdch_postmeta` VALUES (1192,220,'_ckan_local_group_title_de','Verwaltung');
 INSERT INTO `ogdch_postmeta` VALUES (1193,220,'_ckan_local_group_title_fr','Administration');
 INSERT INTO `ogdch_postmeta` VALUES (1194,220,'_ckan_local_group_title_it','Amministrazione');
-INSERT INTO `ogdch_postmeta` VALUES (1195,220,'_ckan_local_group_rdf_uri','http://opendata.swiss/themes/Verwaltung');
-INSERT INTO `ogdch_postmeta` VALUES (1196,221,'_edit_lock','1441022159:1');
+INSERT INTO `ogdch_postmeta` VALUES (1195,220,'_ckan_local_group_rdf_uri','http://opendata.swiss/themes/administration');
+INSERT INTO `ogdch_postmeta` VALUES (1196,221,'_edit_lock','1442841077:1');
 INSERT INTO `ogdch_postmeta` VALUES (1197,221,'_edit_last','1');
 INSERT INTO `ogdch_postmeta` VALUES (1198,221,'_ckan_local_group_ckan_id','5389c3f2-2f64-436b-9fac-2d1fc342f7b5');
 INSERT INTO `ogdch_postmeta` VALUES (1199,221,'_ckan_local_group_ckan_name','volkswirtschaft');
@@ -693,7 +661,7 @@ INSERT INTO `ogdch_postmeta` VALUES (1200,221,'_ckan_local_group_title_en','Nati
 INSERT INTO `ogdch_postmeta` VALUES (1201,221,'_ckan_local_group_title_de','Volkswirtschaft');
 INSERT INTO `ogdch_postmeta` VALUES (1202,221,'_ckan_local_group_title_fr','Economie nationale');
 INSERT INTO `ogdch_postmeta` VALUES (1203,221,'_ckan_local_group_title_it','Economia');
-INSERT INTO `ogdch_postmeta` VALUES (1204,221,'_ckan_local_group_rdf_uri','http://opendata.swiss/themes/Volkswirtschaft');
+INSERT INTO `ogdch_postmeta` VALUES (1204,221,'_ckan_local_group_rdf_uri','http://opendata.swiss/themes/national-economy');
 INSERT INTO `ogdch_postmeta` VALUES (1205,222,'_menu_item_type','custom');
 INSERT INTO `ogdch_postmeta` VALUES (1206,222,'_menu_item_menu_item_parent','0');
 INSERT INTO `ogdch_postmeta` VALUES (1207,222,'_menu_item_object_id','222');
@@ -816,6 +784,20 @@ INSERT INTO `ogdch_postmeta` VALUES (1476,246,'_ckan_local_org_title_en','Federa
 INSERT INTO `ogdch_postmeta` VALUES (1477,246,'_ckan_local_org_title_de','Bundesarchiv');
 INSERT INTO `ogdch_postmeta` VALUES (1478,246,'_ckan_local_org_title_fr','Archives fédérales');
 INSERT INTO `ogdch_postmeta` VALUES (1479,246,'_ckan_local_org_title_it','Archivio federale');
+INSERT INTO `ogdch_postmeta` VALUES (1480,214,'_ckan_local_group_title_en','Politics');
+INSERT INTO `ogdch_postmeta` VALUES (1481,213,'_ckan_local_group_title_en','Public order and security');
+INSERT INTO `ogdch_postmeta` VALUES (1482,213,'_ckan_local_group_title_fr','Ordre et sécurité publics');
+INSERT INTO `ogdch_postmeta` VALUES (1483,213,'_ckan_local_group_title_it','Ordine pubblico e sicurezza pubblica');
+INSERT INTO `ogdch_postmeta` VALUES (1484,210,'_ckan_local_group_title_en','Culture, media, information society, sport');
+INSERT INTO `ogdch_postmeta` VALUES (1485,207,'_ckan_local_group_title_en','Trade');
+INSERT INTO `ogdch_postmeta` VALUES (1486,207,'_ckan_local_group_title_fr','Commerce');
+INSERT INTO `ogdch_postmeta` VALUES (1487,207,'_ckan_local_group_title_it','Commercio');
+INSERT INTO `ogdch_postmeta` VALUES (1488,206,'_ckan_local_group_title_it','Sanità');
+INSERT INTO `ogdch_postmeta` VALUES (1489,204,'_ckan_local_group_title_en','Geography');
+INSERT INTO `ogdch_postmeta` VALUES (1490,204,'_ckan_local_group_title_fr','Géographie');
+INSERT INTO `ogdch_postmeta` VALUES (1491,204,'_ckan_local_group_title_it','Geografia');
+INSERT INTO `ogdch_postmeta` VALUES (1492,200,'_ckan_local_group_title_en','Construction and housing');
+INSERT INTO `ogdch_postmeta` VALUES (1493,200,'_ckan_local_group_title_it','Costruzione e abitazione');
 /*!40000 ALTER TABLE `ogdch_postmeta` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -832,15 +814,15 @@ CREATE TABLE `ogdch_posts` (
   `post_date` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `post_date_gmt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `post_content` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `post_title` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `post_excerpt` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `post_title` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `post_excerpt` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `post_status` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'publish',
   `comment_status` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'open',
   `ping_status` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'open',
   `post_password` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `post_name` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `to_ping` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `pinged` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `to_ping` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pinged` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `post_modified` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `post_modified_gmt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `post_content_filtered` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -902,59 +884,55 @@ INSERT INTO `ogdch_posts` VALUES (166,1,'2015-08-25 13:27:36','2015-08-25 13:27:
 INSERT INTO `ogdch_posts` VALUES (167,1,'2015-08-25 13:27:36','2015-08-25 13:27:36','','FAQ','','publish','open','open','','faq','','','2015-08-25 13:27:36','2015-08-25 13:27:36','',0,'http://ogdch.dev/?page_id=167',0,'page','',0);
 INSERT INTO `ogdch_posts` VALUES (168,1,'2015-08-25 13:28:08','0000-00-00 00:00:00',' ','','','draft','open','open','','','','','2015-08-25 13:28:08','0000-00-00 00:00:00','',0,'http://ogdch.dev/?p=168',1,'nav_menu_item','',0);
 INSERT INTO `ogdch_posts` VALUES (171,1,'2015-08-25 13:28:08','0000-00-00 00:00:00',' ','','','draft','open','open','','','','','2015-08-25 13:28:08','0000-00-00 00:00:00','',0,'http://ogdch.dev/?p=171',1,'nav_menu_item','',0);
-INSERT INTO `ogdch_posts` VALUES (172,1,'2015-08-25 13:28:47','2015-08-25 13:28:47',' ','','','publish','open','open','','172','','','2015-08-25 16:00:54','2015-08-25 16:00:54','',0,'http://ogdch.dev/?p=172',4,'nav_menu_item','',0);
-INSERT INTO `ogdch_posts` VALUES (175,1,'2015-08-25 13:28:47','2015-08-25 13:28:47',' ','','','publish','open','open','','175','','','2015-08-25 16:00:54','2015-08-25 16:00:54','',0,'http://ogdch.dev/?p=175',5,'nav_menu_item','',0);
+INSERT INTO `ogdch_posts` VALUES (172,1,'2015-08-25 13:28:47','2015-08-25 13:28:47',' ','','','publish','open','closed','','172','','','2015-09-21 13:10:01','2015-09-21 13:10:01','',0,'http://ogdch.dev/?p=172',4,'nav_menu_item','',0);
 INSERT INTO `ogdch_posts` VALUES (176,1,'2015-08-25 13:29:12','0000-00-00 00:00:00',' ','','','draft','open','open','','','','','2015-08-25 13:29:12','0000-00-00 00:00:00','',0,'http://ogdch.dev/?p=176',1,'nav_menu_item','',0);
 INSERT INTO `ogdch_posts` VALUES (179,1,'2015-08-25 13:29:12','0000-00-00 00:00:00',' ','','','draft','open','open','','','','','2015-08-25 13:29:12','0000-00-00 00:00:00','',0,'http://ogdch.dev/?p=179',1,'nav_menu_item','',0);
-INSERT INTO `ogdch_posts` VALUES (180,1,'2015-08-25 13:29:40','2015-08-25 13:29:40',' ','','','publish','open','open','','180','','','2015-08-25 16:02:13','2015-08-25 16:02:13','',0,'http://ogdch.dev/?p=180',4,'nav_menu_item','',0);
-INSERT INTO `ogdch_posts` VALUES (183,1,'2015-08-25 13:29:40','2015-08-25 13:29:40',' ','','','publish','open','open','','183','','','2015-08-25 16:02:13','2015-08-25 16:02:13','',0,'http://ogdch.dev/?p=183',5,'nav_menu_item','',0);
-INSERT INTO `ogdch_posts` VALUES (184,1,'2015-08-25 13:30:05','2015-08-25 13:30:05',' ','','','publish','open','open','','184','','','2015-08-25 16:04:07','2015-08-25 16:04:07','',0,'http://ogdch.dev/?p=184',4,'nav_menu_item','',0);
-INSERT INTO `ogdch_posts` VALUES (187,1,'2015-08-25 13:30:05','2015-08-25 13:30:05',' ','','','publish','open','open','','187','','','2015-08-25 16:04:07','2015-08-25 16:04:07','',0,'http://ogdch.dev/?p=187',5,'nav_menu_item','',0);
-INSERT INTO `ogdch_posts` VALUES (188,1,'2015-08-25 13:30:42','2015-08-25 13:30:42',' ','','','publish','open','open','','188','','','2015-08-25 16:03:13','2015-08-25 16:03:13','',0,'http://ogdch.dev/?p=188',4,'nav_menu_item','',0);
-INSERT INTO `ogdch_posts` VALUES (191,1,'2015-08-25 13:30:42','2015-08-25 13:30:42',' ','','','publish','open','open','','191','','','2015-08-25 16:03:13','2015-08-25 16:03:13','',0,'http://ogdch.dev/?p=191',5,'nav_menu_item','',0);
-INSERT INTO `ogdch_posts` VALUES (192,1,'2015-08-25 13:46:47','2015-08-25 13:46:47','','Bevoelkerung','','publish','closed','closed','','bevoelkerung','','','2015-08-31 12:05:29','2015-08-31 12:05:29','',0,'http://ogdch.dev/?post_type=ckan-local-group&#038;p=192',0,'ckan-local-group','',0);
-INSERT INTO `ogdch_posts` VALUES (193,1,'2015-08-25 13:48:07','2015-08-25 13:48:07','','Raum','','publish','closed','closed','','raum','','','2015-08-31 12:05:20','2015-08-31 12:05:20','',0,'http://ogdch.dev/?post_type=ckan-local-group&#038;p=193',0,'ckan-local-group','',0);
+INSERT INTO `ogdch_posts` VALUES (180,1,'2015-08-25 13:29:40','2015-08-25 13:29:40',' ','','','publish','open','closed','','180','','','2015-09-21 13:10:08','2015-09-21 13:10:08','',0,'http://ogdch.dev/?p=180',4,'nav_menu_item','',0);
+INSERT INTO `ogdch_posts` VALUES (184,1,'2015-08-25 13:30:05','2015-08-25 13:30:05',' ','','','publish','open','closed','','184','','','2015-09-21 13:10:24','2015-09-21 13:10:24','',0,'http://ogdch.dev/?p=184',4,'nav_menu_item','',0);
+INSERT INTO `ogdch_posts` VALUES (188,1,'2015-08-25 13:30:42','2015-08-25 13:30:42',' ','','','publish','open','closed','','188','','','2015-09-21 13:10:16','2015-09-21 13:10:16','',0,'http://ogdch.dev/?p=188',4,'nav_menu_item','',0);
+INSERT INTO `ogdch_posts` VALUES (192,1,'2015-08-25 13:46:47','2015-08-25 13:46:47','','Bevoelkerung','','publish','closed','closed','','bevoelkerung','','','2015-09-21 13:27:12','2015-09-21 13:27:12','',0,'http://ogdch.dev/?post_type=ckan-local-group&#038;p=192',0,'ckan-local-group','',0);
+INSERT INTO `ogdch_posts` VALUES (193,1,'2015-08-25 13:48:07','2015-08-25 13:48:07','','Raum','','publish','closed','closed','','raum','','','2015-09-21 13:26:55','2015-09-21 13:26:55','',0,'http://ogdch.dev/?post_type=ckan-local-group&#038;p=193',0,'ckan-local-group','',0);
 INSERT INTO `ogdch_posts` VALUES (194,1,'2015-08-25 13:48:42','2015-08-25 13:48:42','','Swisstopo','','publish','closed','closed','','swisstopo','','','2015-08-25 13:48:42','2015-08-25 13:48:42','',0,'http://ogdch.dev/?post_type=ckan-local-org&#038;p=194',0,'ckan-local-org','',0);
 INSERT INTO `ogdch_posts` VALUES (195,1,'2015-08-25 13:54:54','2015-08-25 13:53:35','Beschreibung DE','TopoApp','','publish','closed','closed','','topoapp','','','2015-08-25 13:53:35','2015-08-25 13:53:35','',0,'http://ogdch.dev/?post_type=app&#038;p=195',0,'app','',0);
 INSERT INTO `ogdch_posts` VALUES (196,1,'2015-08-25 13:54:54','2015-08-25 13:54:05','Description EN','TopoApp','','publish','closed','closed','','topoapp','','','2015-08-25 13:54:05','2015-08-25 13:54:05','',0,'http://ogdch.dev/?post_type=app&#038;p=196',0,'app','',0);
 INSERT INTO `ogdch_posts` VALUES (197,1,'2015-08-25 13:54:54','2015-08-25 13:54:31','Description IT','TopoApp','','publish','closed','closed','','topoapp','','','2015-08-25 13:54:31','2015-08-25 13:54:31','',0,'http://ogdch.dev/?post_type=app&#038;p=197',0,'app','',0);
 INSERT INTO `ogdch_posts` VALUES (198,1,'2015-08-25 13:54:54','2015-08-25 13:54:54','Description FR','TopoApp','','publish','closed','closed','','topoapp','','','2015-08-25 13:54:54','2015-08-25 13:54:54','',0,'http://ogdch.dev/?post_type=app&#038;p=198',0,'app','',0);
-INSERT INTO `ogdch_posts` VALUES (199,1,'2015-08-25 13:57:39','2015-08-25 13:57:39','','Arbeit','','publish','closed','closed','','arbeit','','','2015-08-31 12:05:02','2015-08-31 12:05:02','',0,'http://ogdch.dev/?post_type=ckan-local-group&#038;p=199',0,'ckan-local-group','',0);
-INSERT INTO `ogdch_posts` VALUES (200,1,'2015-08-25 13:58:13','2015-08-25 13:58:13','','Bauwesen','','publish','closed','closed','','bauwesen','','','2015-08-31 12:04:48','2015-08-31 12:04:48','',0,'http://ogdch.dev/?post_type=ckan-local-group&#038;p=200',0,'ckan-local-group','',0);
-INSERT INTO `ogdch_posts` VALUES (201,1,'2015-08-25 13:58:47','2015-08-25 13:58:47','','Bildung','','publish','closed','closed','','bildung','','','2015-08-31 12:01:08','2015-08-31 12:01:08','',0,'http://ogdch.dev/?post_type=ckan-local-group&#038;p=201',0,'ckan-local-group','',0);
-INSERT INTO `ogdch_posts` VALUES (202,1,'2015-08-25 13:59:26','2015-08-25 13:59:26','','Energie','','publish','closed','closed','','energie','','','2015-08-31 12:00:59','2015-08-31 12:00:59','',0,'http://ogdch.dev/?post_type=ckan-local-group&#038;p=202',0,'ckan-local-group','',0);
-INSERT INTO `ogdch_posts` VALUES (203,1,'2015-08-25 13:59:54','2015-08-25 13:59:54','','Finanzen','','publish','closed','closed','','finanzen','','','2015-08-31 12:00:53','2015-08-31 12:00:53','',0,'http://ogdch.dev/?post_type=ckan-local-group&#038;p=203',0,'ckan-local-group','',0);
-INSERT INTO `ogdch_posts` VALUES (204,1,'2015-08-25 14:00:19','2015-08-25 14:00:19','','Geographie','','publish','closed','closed','','geographie','','','2015-08-31 12:00:48','2015-08-31 12:00:48','',0,'http://ogdch.dev/?post_type=ckan-local-group&#038;p=204',0,'ckan-local-group','',0);
+INSERT INTO `ogdch_posts` VALUES (199,1,'2015-08-25 13:57:39','2015-08-25 13:57:39','','Arbeit','','publish','closed','closed','','arbeit','','','2015-09-21 13:26:03','2015-09-21 13:26:03','',0,'http://ogdch.dev/?post_type=ckan-local-group&#038;p=199',0,'ckan-local-group','',0);
+INSERT INTO `ogdch_posts` VALUES (200,1,'2015-08-25 13:58:13','2015-08-25 13:58:13','','Bauwesen','','publish','closed','closed','','bauwesen','','','2015-09-21 13:25:52','2015-09-21 13:25:52','',0,'http://ogdch.dev/?post_type=ckan-local-group&#038;p=200',0,'ckan-local-group','',0);
+INSERT INTO `ogdch_posts` VALUES (201,1,'2015-08-25 13:58:47','2015-08-25 13:58:47','','Bildung','','publish','closed','closed','','bildung','','','2015-09-21 13:25:23','2015-09-21 13:25:23','',0,'http://ogdch.dev/?post_type=ckan-local-group&#038;p=201',0,'ckan-local-group','',0);
+INSERT INTO `ogdch_posts` VALUES (202,1,'2015-08-25 13:59:26','2015-08-25 13:59:26','','Energie','','publish','closed','closed','','energie','','','2015-09-21 13:25:10','2015-09-21 13:25:10','',0,'http://ogdch.dev/?post_type=ckan-local-group&#038;p=202',0,'ckan-local-group','',0);
+INSERT INTO `ogdch_posts` VALUES (203,1,'2015-08-25 13:59:54','2015-08-25 13:59:54','','Finanzen','','publish','closed','closed','','finanzen','','','2015-09-21 13:24:59','2015-09-21 13:24:59','',0,'http://ogdch.dev/?post_type=ckan-local-group&#038;p=203',0,'ckan-local-group','',0);
+INSERT INTO `ogdch_posts` VALUES (204,1,'2015-08-25 14:00:19','2015-08-25 14:00:19','','Geographie','','publish','closed','closed','','geographie','','','2015-09-21 13:24:49','2015-09-21 13:24:49','',0,'http://ogdch.dev/?post_type=ckan-local-group&#038;p=204',0,'ckan-local-group','',0);
 INSERT INTO `ogdch_posts` VALUES (205,1,'2015-08-25 14:00:47','2015-08-25 14:00:47','','Gesetzgebung','','publish','closed','closed','','gesetzgebung','','','2015-08-31 12:00:42','2015-08-31 12:00:42','',0,'http://ogdch.dev/?post_type=ckan-local-group&#038;p=205',0,'ckan-local-group','',0);
-INSERT INTO `ogdch_posts` VALUES (206,1,'2015-08-25 14:01:17','2015-08-25 14:01:17','','Gesundheit','','publish','closed','closed','','gesundheit','','','2015-08-31 12:00:35','2015-08-31 12:00:35','',0,'http://ogdch.dev/?post_type=ckan-local-group&#038;p=206',0,'ckan-local-group','',0);
-INSERT INTO `ogdch_posts` VALUES (207,1,'2015-08-25 14:01:43','2015-08-25 14:01:43','','Handel','','publish','closed','closed','','handel','','','2015-08-31 12:00:28','2015-08-31 12:00:28','',0,'http://ogdch.dev/?post_type=ckan-local-group&#038;p=207',0,'ckan-local-group','',0);
-INSERT INTO `ogdch_posts` VALUES (208,1,'2015-08-25 14:02:21','2015-08-25 14:02:21','','Industrie','','publish','closed','closed','','industrie','','','2015-08-31 12:00:20','2015-08-31 12:00:20','',0,'http://ogdch.dev/?post_type=ckan-local-group&#038;p=208',0,'ckan-local-group','',0);
-INSERT INTO `ogdch_posts` VALUES (209,1,'2015-08-25 14:03:08','2015-08-25 14:03:08','','Kriminalitaet','','publish','closed','closed','','kriminalitaet','','','2015-08-31 12:00:08','2015-08-31 12:00:09','',0,'http://ogdch.dev/?post_type=ckan-local-group&#038;p=209',0,'ckan-local-group','',0);
-INSERT INTO `ogdch_posts` VALUES (210,1,'2015-08-25 14:03:55','2015-08-25 14:03:55','','Kultur','','publish','closed','closed','','kultur','','','2015-08-31 11:59:38','2015-08-31 11:59:38','',0,'http://ogdch.dev/?post_type=ckan-local-group&#038;p=210',0,'ckan-local-group','',0);
-INSERT INTO `ogdch_posts` VALUES (211,1,'2015-08-25 14:09:55','2015-08-25 14:09:55','','Landwirtschaft','','publish','closed','closed','','landwirtschaft','','','2015-08-31 11:59:32','2015-08-31 11:59:32','',0,'http://ogdch.dev/?post_type=ckan-local-group&#038;p=211',0,'ckan-local-group','',0);
-INSERT INTO `ogdch_posts` VALUES (212,1,'2015-08-25 14:10:44','2015-08-25 14:10:44','','Mobilitaet','','publish','closed','closed','','mobilitaet','','','2015-08-31 11:59:26','2015-08-31 11:59:26','',0,'http://ogdch.dev/?post_type=ckan-local-group&#038;p=212',0,'ckan-local-group','',0);
-INSERT INTO `ogdch_posts` VALUES (213,1,'2015-08-25 14:11:08','2015-08-25 14:11:08','','Sicherheit','','publish','closed','closed','','sicherheit','','','2015-08-31 11:59:20','2015-08-31 11:59:20','',0,'http://ogdch.dev/?post_type=ckan-local-group&#038;p=213',0,'ckan-local-group','',0);
-INSERT INTO `ogdch_posts` VALUES (214,1,'2015-08-25 14:13:29','2015-08-25 14:13:29','','Politik','','publish','closed','closed','','politik','','','2015-08-31 11:59:13','2015-08-31 11:59:13','',0,'http://ogdch.dev/?post_type=ckan-local-group&#038;p=214',0,'ckan-local-group','',0);
-INSERT INTO `ogdch_posts` VALUES (216,1,'2015-08-25 14:13:55','2015-08-25 14:13:55','','Preise','','publish','closed','closed','','preise','','','2015-08-31 11:59:05','2015-08-31 11:59:05','',0,'http://ogdch.dev/?post_type=ckan-local-group&#038;p=216',0,'ckan-local-group','',0);
-INSERT INTO `ogdch_posts` VALUES (217,1,'2015-08-25 14:14:28','2015-08-25 14:14:28','','Soziale-Sicherheit','','publish','closed','closed','','soziale-sicherheit','','','2015-08-31 11:58:59','2015-08-31 11:58:59','',0,'http://ogdch.dev/?post_type=ckan-local-group&#038;p=217',0,'ckan-local-group','',0);
-INSERT INTO `ogdch_posts` VALUES (218,1,'2015-08-25 14:15:06','2015-08-25 14:15:06','','Statistische-Grundlagen','','publish','closed','closed','','statistische-grundlagen','','','2015-08-31 11:58:52','2015-08-31 11:58:52','',0,'http://ogdch.dev/?post_type=ckan-local-group&#038;p=218',0,'ckan-local-group','',0);
-INSERT INTO `ogdch_posts` VALUES (219,1,'2015-08-25 14:15:31','2015-08-25 14:15:31','','Tourismus','','publish','closed','closed','','tourismus','','','2015-08-31 11:58:44','2015-08-31 11:58:44','',0,'http://ogdch.dev/?post_type=ckan-local-group&#038;p=219',0,'ckan-local-group','',0);
-INSERT INTO `ogdch_posts` VALUES (220,1,'2015-08-25 14:15:55','2015-08-25 14:15:55','','Verwaltung','','publish','closed','closed','','verwaltung','','','2015-08-31 11:58:28','2015-08-31 11:58:28','',0,'http://ogdch.dev/?post_type=ckan-local-group&#038;p=220',0,'ckan-local-group','',0);
-INSERT INTO `ogdch_posts` VALUES (221,1,'2015-08-25 14:16:25','2015-08-25 14:16:25','','Volkswirtschaft','','publish','closed','closed','','volkswirtschaft','','','2015-08-31 11:56:51','2015-08-31 11:56:51','',0,'http://ogdch.dev/?post_type=ckan-local-group&#038;p=221',0,'ckan-local-group','',0);
+INSERT INTO `ogdch_posts` VALUES (206,1,'2015-08-25 14:01:17','2015-08-25 14:01:17','','Gesundheit','','publish','closed','closed','','gesundheit','','','2015-09-21 13:24:30','2015-09-21 13:24:30','',0,'http://ogdch.dev/?post_type=ckan-local-group&#038;p=206',0,'ckan-local-group','',0);
+INSERT INTO `ogdch_posts` VALUES (207,1,'2015-08-25 14:01:43','2015-08-25 14:01:43','','Handel','','publish','closed','closed','','handel','','','2015-09-21 13:23:30','2015-09-21 13:23:30','',0,'http://ogdch.dev/?post_type=ckan-local-group&#038;p=207',0,'ckan-local-group','',0);
+INSERT INTO `ogdch_posts` VALUES (208,1,'2015-08-25 14:02:21','2015-08-25 14:02:21','','Industrie','','publish','closed','closed','','industrie','','','2015-09-21 13:23:07','2015-09-21 13:23:07','',0,'http://ogdch.dev/?post_type=ckan-local-group&#038;p=208',0,'ckan-local-group','',0);
+INSERT INTO `ogdch_posts` VALUES (209,1,'2015-08-25 14:03:08','2015-08-25 14:03:08','','Kriminalitaet','','publish','closed','closed','','kriminalitaet','','','2015-09-21 13:22:46','2015-09-21 13:22:46','',0,'http://ogdch.dev/?post_type=ckan-local-group&#038;p=209',0,'ckan-local-group','',0);
+INSERT INTO `ogdch_posts` VALUES (210,1,'2015-08-25 14:03:55','2015-08-25 14:03:55','','Kultur','','publish','closed','closed','','kultur','','','2015-09-21 13:22:24','2015-09-21 13:22:24','',0,'http://ogdch.dev/?post_type=ckan-local-group&#038;p=210',0,'ckan-local-group','',0);
+INSERT INTO `ogdch_posts` VALUES (211,1,'2015-08-25 14:09:55','2015-08-25 14:09:55','','Landwirtschaft','','publish','closed','closed','','landwirtschaft','','','2015-09-21 13:20:51','2015-09-21 13:20:51','',0,'http://ogdch.dev/?post_type=ckan-local-group&#038;p=211',0,'ckan-local-group','',0);
+INSERT INTO `ogdch_posts` VALUES (212,1,'2015-08-25 14:10:44','2015-08-25 14:10:44','','Mobilitaet','','publish','closed','closed','','mobilitaet','','','2015-09-21 13:20:38','2015-09-21 13:20:38','',0,'http://ogdch.dev/?post_type=ckan-local-group&#038;p=212',0,'ckan-local-group','',0);
+INSERT INTO `ogdch_posts` VALUES (213,1,'2015-08-25 14:11:08','2015-08-25 14:11:08','','Sicherheit','','publish','closed','closed','','sicherheit','','','2015-09-21 13:20:20','2015-09-21 13:20:20','',0,'http://ogdch.dev/?post_type=ckan-local-group&#038;p=213',0,'ckan-local-group','',0);
+INSERT INTO `ogdch_posts` VALUES (214,1,'2015-08-25 14:13:29','2015-08-25 14:13:29','','Politik','','publish','closed','closed','','politik','','','2015-09-21 13:19:29','2015-09-21 13:19:29','',0,'http://ogdch.dev/?post_type=ckan-local-group&#038;p=214',0,'ckan-local-group','',0);
+INSERT INTO `ogdch_posts` VALUES (216,1,'2015-08-25 14:13:55','2015-08-25 14:13:55','','Preise','','publish','closed','closed','','preise','','','2015-09-21 13:19:14','2015-09-21 13:19:14','',0,'http://ogdch.dev/?post_type=ckan-local-group&#038;p=216',0,'ckan-local-group','',0);
+INSERT INTO `ogdch_posts` VALUES (217,1,'2015-08-25 14:14:28','2015-08-25 14:14:28','','Soziale-Sicherheit','','publish','closed','closed','','soziale-sicherheit','','','2015-09-21 13:15:10','2015-09-21 13:15:10','',0,'http://ogdch.dev/?post_type=ckan-local-group&#038;p=217',0,'ckan-local-group','',0);
+INSERT INTO `ogdch_posts` VALUES (218,1,'2015-08-25 14:15:06','2015-08-25 14:15:06','','Statistische-Grundlagen','','publish','closed','closed','','statistische-grundlagen','','','2015-09-21 13:14:55','2015-09-21 13:14:55','',0,'http://ogdch.dev/?post_type=ckan-local-group&#038;p=218',0,'ckan-local-group','',0);
+INSERT INTO `ogdch_posts` VALUES (219,1,'2015-08-25 14:15:31','2015-08-25 14:15:31','','Tourismus','','publish','closed','closed','','tourismus','','','2015-09-21 13:14:29','2015-09-21 13:14:29','',0,'http://ogdch.dev/?post_type=ckan-local-group&#038;p=219',0,'ckan-local-group','',0);
+INSERT INTO `ogdch_posts` VALUES (220,1,'2015-08-25 14:15:55','2015-08-25 14:15:55','','Verwaltung','','publish','closed','closed','','verwaltung','','','2015-09-21 13:13:52','2015-09-21 13:13:52','',0,'http://ogdch.dev/?post_type=ckan-local-group&#038;p=220',0,'ckan-local-group','',0);
+INSERT INTO `ogdch_posts` VALUES (221,1,'2015-08-25 14:16:25','2015-08-25 14:16:25','','Volkswirtschaft','','publish','closed','closed','','volkswirtschaft','','','2015-09-21 13:13:22','2015-09-21 13:13:22','',0,'http://ogdch.dev/?post_type=ckan-local-group&#038;p=221',0,'ckan-local-group','',0);
 INSERT INTO `ogdch_posts` VALUES (222,1,'2015-08-25 14:24:32','0000-00-00 00:00:00','','Menu Item','','draft','open','open','','','','','2015-08-25 14:24:32','0000-00-00 00:00:00','',0,'http://ogdch.dev/?p=222',1,'nav_menu_item','',0);
-INSERT INTO `ogdch_posts` VALUES (233,1,'2015-08-25 15:56:06','2015-08-25 15:56:06','','Datensätze','','publish','open','open','','datensatze','','','2015-08-25 16:00:54','2015-08-25 16:00:54','',0,'http://ogdch.dev/?p=233',1,'nav_menu_item','',0);
-INSERT INTO `ogdch_posts` VALUES (234,1,'2015-08-25 16:00:54','2015-08-25 16:00:54','','Gruppen','','publish','open','open','','gruppen','','','2015-08-25 16:00:54','2015-08-25 16:00:54','',0,'http://ogdch.dev/?p=234',2,'nav_menu_item','',0);
+INSERT INTO `ogdch_posts` VALUES (233,1,'2015-08-25 15:56:06','2015-08-25 15:56:06','','Datensätze','','publish','open','closed','','datensatze','','','2015-09-21 13:10:01','2015-09-21 13:10:01','',0,'http://ogdch.dev/?p=233',1,'nav_menu_item','',0);
+INSERT INTO `ogdch_posts` VALUES (234,1,'2015-08-25 16:00:54','2015-08-25 16:00:54','','Gruppen','','publish','open','closed','','gruppen','','','2015-09-21 13:10:01','2015-09-21 13:10:01','',0,'http://ogdch.dev/?p=234',2,'nav_menu_item','',0);
 INSERT INTO `ogdch_posts` VALUES (235,1,'2015-08-25 16:00:32','0000-00-00 00:00:00','','Menu Item','','draft','open','open','','','','','2015-08-25 16:00:32','0000-00-00 00:00:00','',0,'http://ogdch.dev/?p=235',1,'nav_menu_item','',0);
-INSERT INTO `ogdch_posts` VALUES (236,1,'2015-08-25 16:00:54','2015-08-25 16:00:54','','Apps','','publish','open','open','','apps','','','2015-08-25 16:00:54','2015-08-25 16:00:54','',0,'http://ogdch.dev/?p=236',3,'nav_menu_item','',0);
-INSERT INTO `ogdch_posts` VALUES (237,1,'2015-08-25 16:02:12','2015-08-25 16:02:12','','Datasets','','publish','open','open','','datasets','','','2015-08-25 16:02:12','2015-08-25 16:02:12','',0,'http://ogdch.dev/?p=237',1,'nav_menu_item','',0);
-INSERT INTO `ogdch_posts` VALUES (238,1,'2015-08-25 16:02:13','2015-08-25 16:02:13','','Groups','','publish','open','open','','groups','','','2015-08-25 16:02:13','2015-08-25 16:02:13','',0,'http://ogdch.dev/?p=238',2,'nav_menu_item','',0);
-INSERT INTO `ogdch_posts` VALUES (239,1,'2015-08-25 16:02:13','2015-08-25 16:02:13','','Apps','','publish','open','open','','apps-2','','','2015-08-25 16:02:13','2015-08-25 16:02:13','',0,'http://ogdch.dev/?p=239',3,'nav_menu_item','',0);
-INSERT INTO `ogdch_posts` VALUES (240,1,'2015-08-25 16:03:13','2015-08-25 16:03:13','','Jeux de données','','publish','open','open','','jeux-de-donnees','','','2015-08-25 16:03:13','2015-08-25 16:03:13','',0,'http://ogdch.dev/?p=240',1,'nav_menu_item','',0);
-INSERT INTO `ogdch_posts` VALUES (241,1,'2015-08-25 16:03:13','2015-08-25 16:03:13','','Groupes','','publish','open','open','','groupes','','','2015-08-25 16:03:13','2015-08-25 16:03:13','',0,'http://ogdch.dev/?p=241',2,'nav_menu_item','',0);
-INSERT INTO `ogdch_posts` VALUES (242,1,'2015-08-25 16:03:13','2015-08-25 16:03:13','','Apps','','publish','open','open','','apps-3','','','2015-08-25 16:03:13','2015-08-25 16:03:13','',0,'http://ogdch.dev/?p=242',3,'nav_menu_item','',0);
-INSERT INTO `ogdch_posts` VALUES (243,1,'2015-08-25 16:04:07','2015-08-25 16:04:07','','Dataset','','publish','open','open','','dataset','','','2015-08-25 16:04:07','2015-08-25 16:04:07','',0,'http://ogdch.dev/?p=243',1,'nav_menu_item','',0);
-INSERT INTO `ogdch_posts` VALUES (244,1,'2015-08-25 16:04:07','2015-08-25 16:04:07','','Gruppi','','publish','open','open','','gruppi','','','2015-08-25 16:04:07','2015-08-25 16:04:07','',0,'http://ogdch.dev/?p=244',2,'nav_menu_item','',0);
-INSERT INTO `ogdch_posts` VALUES (245,1,'2015-08-25 16:04:07','2015-08-25 16:04:07','','Apps','','publish','open','open','','apps-4','','','2015-08-25 16:04:07','2015-08-25 16:04:07','',0,'http://ogdch.dev/?p=245',3,'nav_menu_item','',0);
+INSERT INTO `ogdch_posts` VALUES (236,1,'2015-08-25 16:00:54','2015-08-25 16:00:54','','Apps','','publish','open','closed','','apps','','','2015-09-21 13:10:01','2015-09-21 13:10:01','',0,'http://ogdch.dev/?p=236',3,'nav_menu_item','',0);
+INSERT INTO `ogdch_posts` VALUES (237,1,'2015-08-25 16:02:12','2015-08-25 16:02:12','','Datasets','','publish','open','closed','','datasets','','','2015-09-21 13:10:08','2015-09-21 13:10:08','',0,'http://ogdch.dev/?p=237',1,'nav_menu_item','',0);
+INSERT INTO `ogdch_posts` VALUES (238,1,'2015-08-25 16:02:13','2015-08-25 16:02:13','','Groups','','publish','open','closed','','groups','','','2015-09-21 13:10:08','2015-09-21 13:10:08','',0,'http://ogdch.dev/?p=238',2,'nav_menu_item','',0);
+INSERT INTO `ogdch_posts` VALUES (239,1,'2015-08-25 16:02:13','2015-08-25 16:02:13','','Apps','','publish','open','closed','','apps-2','','','2015-09-21 13:10:08','2015-09-21 13:10:08','',0,'http://ogdch.dev/?p=239',3,'nav_menu_item','',0);
+INSERT INTO `ogdch_posts` VALUES (240,1,'2015-08-25 16:03:13','2015-08-25 16:03:13','','Jeux de données','','publish','open','closed','','jeux-de-donnees','','','2015-09-21 13:10:16','2015-09-21 13:10:16','',0,'http://ogdch.dev/?p=240',1,'nav_menu_item','',0);
+INSERT INTO `ogdch_posts` VALUES (241,1,'2015-08-25 16:03:13','2015-08-25 16:03:13','','Groupes','','publish','open','closed','','groupes','','','2015-09-21 13:10:16','2015-09-21 13:10:16','',0,'http://ogdch.dev/?p=241',2,'nav_menu_item','',0);
+INSERT INTO `ogdch_posts` VALUES (242,1,'2015-08-25 16:03:13','2015-08-25 16:03:13','','Apps','','publish','open','closed','','apps-3','','','2015-09-21 13:10:16','2015-09-21 13:10:16','',0,'http://ogdch.dev/?p=242',3,'nav_menu_item','',0);
+INSERT INTO `ogdch_posts` VALUES (243,1,'2015-08-25 16:04:07','2015-08-25 16:04:07','','Dataset','','publish','open','closed','','dataset','','','2015-09-21 13:10:24','2015-09-21 13:10:24','',0,'http://ogdch.dev/?p=243',1,'nav_menu_item','',0);
+INSERT INTO `ogdch_posts` VALUES (244,1,'2015-08-25 16:04:07','2015-08-25 16:04:07','','Gruppi','','publish','open','closed','','gruppi','','','2015-09-21 13:10:24','2015-09-21 13:10:24','',0,'http://ogdch.dev/?p=244',2,'nav_menu_item','',0);
+INSERT INTO `ogdch_posts` VALUES (245,1,'2015-08-25 16:04:07','2015-08-25 16:04:07','','Apps','','publish','open','closed','','apps-4','','','2015-09-21 13:10:24','2015-09-21 13:10:24','',0,'http://ogdch.dev/?p=245',3,'nav_menu_item','',0);
 INSERT INTO `ogdch_posts` VALUES (246,1,'2015-09-14 11:36:04','2015-09-14 11:36:04','','Bundesarchiv','','publish','closed','closed','','bundesarchiv','','','2015-09-14 11:36:04','2015-09-14 11:36:04','',0,'http://ogdch.dev/?post_type=ckan-local-org&#038;p=246',0,'ckan-local-org','',0);
 /*!40000 ALTER TABLE `ogdch_posts` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -1087,13 +1065,9 @@ INSERT INTO `ogdch_term_relationships` VALUES (166,134,0);
 INSERT INTO `ogdch_term_relationships` VALUES (167,13,0);
 INSERT INTO `ogdch_term_relationships` VALUES (167,134,0);
 INSERT INTO `ogdch_term_relationships` VALUES (172,135,0);
-INSERT INTO `ogdch_term_relationships` VALUES (175,135,0);
 INSERT INTO `ogdch_term_relationships` VALUES (180,136,0);
-INSERT INTO `ogdch_term_relationships` VALUES (183,136,0);
 INSERT INTO `ogdch_term_relationships` VALUES (184,137,0);
-INSERT INTO `ogdch_term_relationships` VALUES (187,137,0);
 INSERT INTO `ogdch_term_relationships` VALUES (188,138,0);
-INSERT INTO `ogdch_term_relationships` VALUES (191,138,0);
 INSERT INTO `ogdch_term_relationships` VALUES (195,2,0);
 INSERT INTO `ogdch_term_relationships` VALUES (195,139,0);
 INSERT INTO `ogdch_term_relationships` VALUES (196,5,0);
@@ -1195,10 +1169,10 @@ INSERT INTO `ogdch_term_taxonomy` VALUES (127,127,'term_translations','a:1:{s:2:
 INSERT INTO `ogdch_term_taxonomy` VALUES (130,130,'post_translations','a:4:{s:2:\"de\";i:149;s:2:\"en\";i:150;s:2:\"it\";i:151;s:2:\"fr\";i:152;}',0,4);
 INSERT INTO `ogdch_term_taxonomy` VALUES (131,131,'post_translations','a:2:{s:2:\"it\";i:154;s:2:\"de\";i:144;}',0,2);
 INSERT INTO `ogdch_term_taxonomy` VALUES (134,134,'post_translations','a:4:{s:2:\"en\";i:165;s:2:\"de\";i:164;s:2:\"it\";i:166;s:2:\"fr\";i:167;}',0,4);
-INSERT INTO `ogdch_term_taxonomy` VALUES (135,135,'nav_menu','',0,5);
-INSERT INTO `ogdch_term_taxonomy` VALUES (136,136,'nav_menu','',0,5);
-INSERT INTO `ogdch_term_taxonomy` VALUES (137,137,'nav_menu','',0,5);
-INSERT INTO `ogdch_term_taxonomy` VALUES (138,138,'nav_menu','',0,5);
+INSERT INTO `ogdch_term_taxonomy` VALUES (135,135,'nav_menu','',0,4);
+INSERT INTO `ogdch_term_taxonomy` VALUES (136,136,'nav_menu','',0,4);
+INSERT INTO `ogdch_term_taxonomy` VALUES (137,137,'nav_menu','',0,4);
+INSERT INTO `ogdch_term_taxonomy` VALUES (138,138,'nav_menu','',0,4);
 INSERT INTO `ogdch_term_taxonomy` VALUES (139,139,'post_translations','a:4:{s:2:\"en\";i:196;s:2:\"de\";i:195;s:2:\"it\";i:197;s:2:\"fr\";i:198;}',0,4);
 /*!40000 ALTER TABLE `ogdch_term_taxonomy` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -1324,9 +1298,9 @@ INSERT INTO `ogdch_usermeta` VALUES (10,1,'ogdch_capabilities','a:1:{s:13:\"admi
 INSERT INTO `ogdch_usermeta` VALUES (11,1,'ogdch_user_level','10');
 INSERT INTO `ogdch_usermeta` VALUES (12,1,'dismissed_wp_pointers','wp360_locks,wp390_widgets,wp410_dfw,pll_lgt');
 INSERT INTO `ogdch_usermeta` VALUES (13,1,'show_welcome_panel','0');
-INSERT INTO `ogdch_usermeta` VALUES (14,1,'session_tokens','a:2:{s:64:\"ff035f2fde1855609008aa1052c41b1ffac2ddab0d95f99ac5482e0da3c83bf6\";a:4:{s:10:\"expiration\";i:1442403194;s:2:\"ip\";s:12:\"192.168.56.1\";s:2:\"ua\";s:133:\"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/44.0.2403.89 Chrome/44.0.2403.89 Safari/537.36\";s:5:\"login\";i:1442230394;}s:64:\"53528799a9f1f05af25d4ea419450691ac7572e16e436f0326f7e1ca157e82e1\";a:4:{s:10:\"expiration\";i:1442479054;s:2:\"ip\";s:12:\"192.168.56.1\";s:2:\"ua\";s:120:\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36\";s:5:\"login\";i:1442306254;}}');
+INSERT INTO `ogdch_usermeta` VALUES (14,1,'session_tokens','a:1:{s:64:\"c5e31b03c9edd1bd5f5ec8476f459f466abfe3e6120f52f49199f98ee998cb8c\";a:4:{s:10:\"expiration\";i:1443013155;s:2:\"ip\";s:12:\"192.168.56.1\";s:2:\"ua\";s:120:\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.93 Safari/537.36\";s:5:\"login\";i:1442840355;}}');
 INSERT INTO `ogdch_usermeta` VALUES (15,1,'ogdch_dashboard_quick_press_last_post_id','3');
-INSERT INTO `ogdch_usermeta` VALUES (16,1,'pll_filter_content','');
+INSERT INTO `ogdch_usermeta` VALUES (16,1,'pll_filter_content','de');
 INSERT INTO `ogdch_usermeta` VALUES (17,1,'ogdch_user-settings','posts_list_mode=list&libraryContent=browse&mfold=o&advImgDetails=hide&uploader=1');
 INSERT INTO `ogdch_usermeta` VALUES (18,1,'ogdch_user-settings-time','1442230390');
 INSERT INTO `ogdch_usermeta` VALUES (19,1,'managenav-menuscolumnshidden','a:4:{i:0;s:11:\"link-target\";i:1;s:11:\"css-classes\";i:2;s:3:\"xfn\";i:3;s:11:\"description\";}');
@@ -1462,4 +1436,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-09-15  8:38:19
+-- Dump completed on 2015-09-21 13:27:44
