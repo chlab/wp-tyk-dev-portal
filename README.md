@@ -42,6 +42,11 @@
    $ npm install
    ```
 
+1. Install python dependencies
+   ```
+   $ pip install -r dev-requirements.txt
+   ```
+
 1. Install theme dependencies
    ```
    $ cd content/themes/ogdch/
@@ -56,6 +61,31 @@
 1. add wordpress-standard to phpcs: `./bin/phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs`
 
 1. install the `pre-commit.sh` script as a pre-commit hook in your local repositories: `ln -s ../../pre-commit.sh .git/hooks/pre-commit`
+
+# Deployment
+
+To deploy this application, we use [Fabric](http://docs.fabfile.org) (make sure it is installed, see above).
+There are a bunch of tasks defined, which can be used to execute certain tasks on the deployment environment:
+
+```
+$ fab --list
+```
+
+To deploy the current master of the application to the test environment:
+```
+$ fab test deploy
+```
+
+To deploy the last commit to the development environment:
+```
+$ fab dev deploy:HEAD
+```
+
+Make sure to always specify an environment task (`dev`, `test` or `stage`) and check the available helpers:
+
+* `restart` to restart all services
+* `restore` to restore the checked-in DB dumps for WP and CKAN
+* `
 
 # Testing
 
