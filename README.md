@@ -44,6 +44,7 @@
 
 1. Install python dependencies
    ```
+   $ pip install 'pip>1.5' --upgrade
    $ pip install -r dev-requirements.txt
    ```
 
