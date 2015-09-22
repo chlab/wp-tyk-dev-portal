@@ -2,8 +2,8 @@
 Funktionalität: Als Service-Entwickler oder Daten-Analyst will ich eine im Datensatz referenzierte Ressource herunterladen können, um sie lokal zu bearbeiten.
 
 Hintergrund:
-Angenommen ein Service-Entwickler Namens Oleg
-Und ein Daten-Analyst Namens Benjamin
+Angenommen ein Service-Entwickler namens Oleg
+Und ein Daten-Analyst namens Benjamin
 Und ein öffentliches Portal genannt opendata.swiss
 Und eine Ressource "Messdaten.xls" im Datensatz "Niederschlag"
 
