@@ -1,4 +1,5 @@
 import os
+import pipes
 from fabric.api import (
     cd, env, execute, local, put, run, settings, task, roles, sudo, parallel, serial
 )
@@ -65,6 +66,7 @@ def _run_in_virtualenv(cmd, args):
 def _run_paster(args):
     return _run_in_virtualenv('paster', args)
 
+@roles('wordpress', 'wordpress_db', 'ckan', 'ckan_db')
 def _rev_parse(rev):
     with cd(env.root):
         run('git fetch')
@@ -76,6 +78,7 @@ def update_repo(commit):
     Update the remote repository to the specified commit.
     """
     with cd(env.root):
+        run('git fetch')
         run('git checkout %s' % commit)
         run('git submodule init')
         run("git submodule foreach --recursive 'git fetch --tags'")
@@ -118,6 +121,8 @@ def restore_ckan_db():
         with settings(sudo_user='postgres'):
             db_list = sudo("psql -c '\l'")
             if 'ckan_default' in db_list: 
+                sql = "select pg_terminate_backend(pid) from pg_stat_activity where datname='ckan_default'"
+                sudo("psql -c %s" % pipes.quote(sql))
                 sudo("dropdb ckan_default")
             sudo("createdb -O ckan_default ckan_default -E utf-8")
         
@@ -146,6 +151,7 @@ def restore_wp_db():
     run("mysql -u root %s -e'CREATE DATABASE cms;'" % pass_option)
     run("mysql -u root %s cms < %s/sql/cms.sql" % (pass_option, env.root))
 
+@roles('wordpress', 'wordpress_db', 'ckan', 'ckan_db')
 def deploy(rev='origin/master'):
     """
     Deploy the whole application
