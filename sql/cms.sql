@@ -295,7 +295,7 @@ CREATE TABLE `ogdch_postmeta` (
   PRIMARY KEY (`meta_id`),
   KEY `post_id` (`post_id`),
   KEY `meta_key` (`meta_key`(191))
-) ENGINE=InnoDB AUTO_INCREMENT=1880 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1916 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1122,6 +1122,38 @@ INSERT INTO `ogdch_postmeta` VALUES (1876,285,'_ckan_local_dataset_contact_point
 INSERT INTO `ogdch_postmeta` VALUES (1877,285,'_ckan_local_dataset_themes','a:2:{i:0;s:12:\"construction\";i:1;s:9:\"territory\";}');
 INSERT INTO `ogdch_postmeta` VALUES (1878,285,'_ckan_local_dataset_accrual_periodicity','http://purl.org/cld/freq/completelyIrregular');
 INSERT INTO `ogdch_postmeta` VALUES (1879,285,'_ckan_local_dataset_distributions','a:1:{i:0;a:10:{s:8:\"title_en\";s:19:\"Building Sites 2014\";s:14:\"description_en\";s:14:\"Description EN\";s:8:\"title_de\";s:15:\"Baustellen 2014\";s:14:\"description_de\";s:15:\"Beschreibung DE\";s:9:\"languages\";a:2:{i:0;s:2:\"en\";i:1;s:2:\"de\";}s:6:\"issued\";i:1441843200;s:8:\"modified\";i:1442275200;s:6:\"rights\";s:66:\"NonCommercialAllowed-CommercialWithPermission-ReferenceNotRequired\";s:10:\"access_url\";s:18:\"http://download.ch\";s:12:\"download_url\";s:18:\"http://download.ch\";}}');
+INSERT INTO `ogdch_postmeta` VALUES (1880,286,'_menu_item_type','post_type');
+INSERT INTO `ogdch_postmeta` VALUES (1881,286,'_menu_item_menu_item_parent','0');
+INSERT INTO `ogdch_postmeta` VALUES (1882,286,'_menu_item_object_id','2');
+INSERT INTO `ogdch_postmeta` VALUES (1883,286,'_menu_item_object','page');
+INSERT INTO `ogdch_postmeta` VALUES (1884,286,'_menu_item_target','');
+INSERT INTO `ogdch_postmeta` VALUES (1885,286,'_menu_item_classes','a:1:{i:0;s:0:\"\";}');
+INSERT INTO `ogdch_postmeta` VALUES (1886,286,'_menu_item_xfn','');
+INSERT INTO `ogdch_postmeta` VALUES (1887,286,'_menu_item_url','');
+INSERT INTO `ogdch_postmeta` VALUES (1889,287,'_menu_item_type','post_type');
+INSERT INTO `ogdch_postmeta` VALUES (1890,287,'_menu_item_menu_item_parent','0');
+INSERT INTO `ogdch_postmeta` VALUES (1891,287,'_menu_item_object_id','97');
+INSERT INTO `ogdch_postmeta` VALUES (1892,287,'_menu_item_object','page');
+INSERT INTO `ogdch_postmeta` VALUES (1893,287,'_menu_item_target','');
+INSERT INTO `ogdch_postmeta` VALUES (1894,287,'_menu_item_classes','a:1:{i:0;s:0:\"\";}');
+INSERT INTO `ogdch_postmeta` VALUES (1895,287,'_menu_item_xfn','');
+INSERT INTO `ogdch_postmeta` VALUES (1896,287,'_menu_item_url','');
+INSERT INTO `ogdch_postmeta` VALUES (1898,288,'_menu_item_type','post_type');
+INSERT INTO `ogdch_postmeta` VALUES (1899,288,'_menu_item_menu_item_parent','0');
+INSERT INTO `ogdch_postmeta` VALUES (1900,288,'_menu_item_object_id','119');
+INSERT INTO `ogdch_postmeta` VALUES (1901,288,'_menu_item_object','page');
+INSERT INTO `ogdch_postmeta` VALUES (1902,288,'_menu_item_target','');
+INSERT INTO `ogdch_postmeta` VALUES (1903,288,'_menu_item_classes','a:1:{i:0;s:0:\"\";}');
+INSERT INTO `ogdch_postmeta` VALUES (1904,288,'_menu_item_xfn','');
+INSERT INTO `ogdch_postmeta` VALUES (1905,288,'_menu_item_url','');
+INSERT INTO `ogdch_postmeta` VALUES (1907,289,'_menu_item_type','post_type');
+INSERT INTO `ogdch_postmeta` VALUES (1908,289,'_menu_item_menu_item_parent','0');
+INSERT INTO `ogdch_postmeta` VALUES (1909,289,'_menu_item_object_id','118');
+INSERT INTO `ogdch_postmeta` VALUES (1910,289,'_menu_item_object','page');
+INSERT INTO `ogdch_postmeta` VALUES (1911,289,'_menu_item_target','');
+INSERT INTO `ogdch_postmeta` VALUES (1912,289,'_menu_item_classes','a:1:{i:0;s:0:\"\";}');
+INSERT INTO `ogdch_postmeta` VALUES (1913,289,'_menu_item_xfn','');
+INSERT INTO `ogdch_postmeta` VALUES (1914,289,'_menu_item_url','');
 /*!40000 ALTER TABLE `ogdch_postmeta` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1161,7 +1193,7 @@ CREATE TABLE `ogdch_posts` (
   KEY `type_status_date` (`post_type`,`post_status`,`post_date`,`ID`),
   KEY `post_parent` (`post_parent`),
   KEY `post_author` (`post_author`)
-) ENGINE=InnoDB AUTO_INCREMENT=286 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=290 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1208,12 +1240,12 @@ INSERT INTO `ogdch_posts` VALUES (166,1,'2015-08-25 13:27:36','2015-08-25 13:27:
 INSERT INTO `ogdch_posts` VALUES (167,1,'2015-08-25 13:27:36','2015-08-25 13:27:36','','FAQ','','publish','open','open','','faq','','','2015-08-25 13:27:36','2015-08-25 13:27:36','',0,'http://ogdch.dev/?page_id=167',0,'page','',0);
 INSERT INTO `ogdch_posts` VALUES (168,1,'2015-08-25 13:28:08','0000-00-00 00:00:00',' ','','','draft','open','open','','','','','2015-08-25 13:28:08','0000-00-00 00:00:00','',0,'http://ogdch.dev/?p=168',1,'nav_menu_item','',0);
 INSERT INTO `ogdch_posts` VALUES (171,1,'2015-08-25 13:28:08','0000-00-00 00:00:00',' ','','','draft','open','open','','','','','2015-08-25 13:28:08','0000-00-00 00:00:00','',0,'http://ogdch.dev/?p=171',1,'nav_menu_item','',0);
-INSERT INTO `ogdch_posts` VALUES (172,1,'2015-08-25 13:28:47','2015-08-25 13:28:47',' ','','','publish','open','closed','','172','','','2015-09-23 15:58:14','2015-09-23 13:58:14','',0,'http://ogdch.dev/?p=172',4,'nav_menu_item','',0);
+INSERT INTO `ogdch_posts` VALUES (172,1,'2015-08-25 13:28:47','2015-08-25 13:28:47',' ','','','publish','open','closed','','172','','','2015-09-23 18:02:09','2015-09-23 16:02:09','',0,'http://ogdch.dev/?p=172',5,'nav_menu_item','',0);
 INSERT INTO `ogdch_posts` VALUES (176,1,'2015-08-25 13:29:12','0000-00-00 00:00:00',' ','','','draft','open','open','','','','','2015-08-25 13:29:12','0000-00-00 00:00:00','',0,'http://ogdch.dev/?p=176',1,'nav_menu_item','',0);
 INSERT INTO `ogdch_posts` VALUES (179,1,'2015-08-25 13:29:12','0000-00-00 00:00:00',' ','','','draft','open','open','','','','','2015-08-25 13:29:12','0000-00-00 00:00:00','',0,'http://ogdch.dev/?p=179',1,'nav_menu_item','',0);
-INSERT INTO `ogdch_posts` VALUES (180,1,'2015-08-25 13:29:40','2015-08-25 13:29:40',' ','','','publish','open','closed','','180','','','2015-09-23 15:58:28','2015-09-23 13:58:28','',0,'http://ogdch.dev/?p=180',4,'nav_menu_item','',0);
-INSERT INTO `ogdch_posts` VALUES (184,1,'2015-08-25 13:30:05','2015-08-25 13:30:05',' ','','','publish','open','closed','','184','','','2015-09-23 15:59:34','2015-09-23 13:59:34','',0,'http://ogdch.dev/?p=184',4,'nav_menu_item','',0);
-INSERT INTO `ogdch_posts` VALUES (188,1,'2015-08-25 13:30:42','2015-08-25 13:30:42',' ','','','publish','open','closed','','188','','','2015-09-23 15:59:13','2015-09-23 13:59:13','',0,'http://ogdch.dev/?p=188',4,'nav_menu_item','',0);
+INSERT INTO `ogdch_posts` VALUES (180,1,'2015-08-25 13:29:40','2015-08-25 13:29:40',' ','','','publish','open','closed','','180','','','2015-09-23 18:02:42','2015-09-23 16:02:42','',0,'http://ogdch.dev/?p=180',5,'nav_menu_item','',0);
+INSERT INTO `ogdch_posts` VALUES (184,1,'2015-08-25 13:30:05','2015-08-25 13:30:05',' ','','','publish','open','closed','','184','','','2015-09-23 18:03:51','2015-09-23 16:03:51','',0,'http://ogdch.dev/?p=184',5,'nav_menu_item','',0);
+INSERT INTO `ogdch_posts` VALUES (188,1,'2015-08-25 13:30:42','2015-08-25 13:30:42',' ','','','publish','open','closed','','188','','','2015-09-23 18:03:18','2015-09-23 16:03:18','',0,'http://ogdch.dev/?p=188',5,'nav_menu_item','',0);
 INSERT INTO `ogdch_posts` VALUES (192,1,'2015-08-25 13:46:47','2015-08-25 13:46:47','','Population','','publish','closed','closed','','bevoelkerung','','','2015-09-21 13:46:58','2015-09-21 13:46:58','',0,'http://ogdch.dev/?post_type=ckan-local-group&#038;p=192',0,'ckan-local-group','',0);
 INSERT INTO `ogdch_posts` VALUES (193,1,'2015-08-25 13:48:07','2015-08-25 13:48:07','','Territory','','publish','closed','closed','','raum','','','2015-09-21 13:46:45','2015-09-21 13:46:45','',0,'http://ogdch.dev/?post_type=ckan-local-group&#038;p=193',0,'ckan-local-group','',0);
 INSERT INTO `ogdch_posts` VALUES (194,1,'2015-08-25 13:48:42','2015-08-25 13:48:42','','Swisstopo','','publish','closed','closed','','swisstopo','','','2015-08-25 13:48:42','2015-08-25 13:48:42','',0,'http://ogdch.dev/?post_type=ckan-local-org&#038;p=194',0,'ckan-local-org','',0);
@@ -1244,19 +1276,19 @@ INSERT INTO `ogdch_posts` VALUES (219,1,'2015-08-25 14:15:31','2015-08-25 14:15:
 INSERT INTO `ogdch_posts` VALUES (220,1,'2015-08-25 14:15:55','2015-08-25 14:15:55','','Administration','','publish','closed','closed','','verwaltung','','','2015-09-21 13:38:16','2015-09-21 13:38:16','',0,'http://ogdch.dev/?post_type=ckan-local-group&#038;p=220',0,'ckan-local-group','',0);
 INSERT INTO `ogdch_posts` VALUES (221,1,'2015-08-25 14:16:25','2015-08-25 14:16:25','','National economy','','publish','closed','closed','','volkswirtschaft','','','2015-09-21 13:37:01','2015-09-21 13:37:01','',0,'http://ogdch.dev/?post_type=ckan-local-group&#038;p=221',0,'ckan-local-group','',0);
 INSERT INTO `ogdch_posts` VALUES (222,1,'2015-08-25 14:24:32','0000-00-00 00:00:00','','Menu Item','','draft','open','open','','','','','2015-08-25 14:24:32','0000-00-00 00:00:00','',0,'http://ogdch.dev/?p=222',1,'nav_menu_item','',0);
-INSERT INTO `ogdch_posts` VALUES (233,1,'2015-08-25 15:56:06','2015-08-25 15:56:06','','Datensätze','','publish','open','closed','','datensatze','','','2015-09-23 15:58:14','2015-09-23 13:58:14','',0,'http://ogdch.dev/?p=233',1,'nav_menu_item','',0);
-INSERT INTO `ogdch_posts` VALUES (234,1,'2015-08-25 16:00:54','2015-08-25 16:00:54','','Publisher','','publish','open','closed','','gruppen','','','2015-09-23 15:58:14','2015-09-23 13:58:14','',0,'http://ogdch.dev/?p=234',2,'nav_menu_item','',0);
+INSERT INTO `ogdch_posts` VALUES (233,1,'2015-08-25 15:56:06','2015-08-25 15:56:06','','Datensätze','','publish','open','closed','','datensatze','','','2015-09-23 18:02:09','2015-09-23 16:02:09','',0,'http://ogdch.dev/?p=233',1,'nav_menu_item','',0);
+INSERT INTO `ogdch_posts` VALUES (234,1,'2015-08-25 16:00:54','2015-08-25 16:00:54','','Organisationen','','publish','open','closed','','gruppen','','','2015-09-23 18:02:09','2015-09-23 16:02:09','',0,'http://ogdch.dev/?p=234',2,'nav_menu_item','',0);
 INSERT INTO `ogdch_posts` VALUES (235,1,'2015-08-25 16:00:32','0000-00-00 00:00:00','','Menu Item','','draft','open','open','','','','','2015-08-25 16:00:32','0000-00-00 00:00:00','',0,'http://ogdch.dev/?p=235',1,'nav_menu_item','',0);
-INSERT INTO `ogdch_posts` VALUES (236,1,'2015-08-25 16:00:54','2015-08-25 16:00:54','','Apps','','publish','open','closed','','apps','','','2015-09-23 15:58:14','2015-09-23 13:58:14','',0,'http://ogdch.dev/?p=236',3,'nav_menu_item','',0);
-INSERT INTO `ogdch_posts` VALUES (237,1,'2015-08-25 16:02:12','2015-08-25 16:02:12','','Datasets','','publish','open','closed','','datasets','','','2015-09-23 15:58:28','2015-09-23 13:58:28','',0,'http://ogdch.dev/?p=237',1,'nav_menu_item','',0);
-INSERT INTO `ogdch_posts` VALUES (238,1,'2015-08-25 16:02:13','2015-08-25 16:02:13','','Publishers','','publish','open','closed','','groups','','','2015-09-23 15:58:28','2015-09-23 13:58:28','',0,'http://ogdch.dev/?p=238',2,'nav_menu_item','',0);
-INSERT INTO `ogdch_posts` VALUES (239,1,'2015-08-25 16:02:13','2015-08-25 16:02:13','','Apps','','publish','open','closed','','apps-2','','','2015-09-23 15:58:28','2015-09-23 13:58:28','',0,'http://ogdch.dev/?p=239',3,'nav_menu_item','',0);
-INSERT INTO `ogdch_posts` VALUES (240,1,'2015-08-25 16:03:13','2015-08-25 16:03:13','','Jeux de données','','publish','open','closed','','jeux-de-donnees','','','2015-09-23 15:59:12','2015-09-23 13:59:12','',0,'http://ogdch.dev/?p=240',1,'nav_menu_item','',0);
-INSERT INTO `ogdch_posts` VALUES (241,1,'2015-08-25 16:03:13','2015-08-25 16:03:13','','Éditeur','','publish','open','closed','','groupes','','','2015-09-23 15:59:13','2015-09-23 13:59:13','',0,'http://ogdch.dev/?p=241',2,'nav_menu_item','',0);
-INSERT INTO `ogdch_posts` VALUES (242,1,'2015-08-25 16:03:13','2015-08-25 16:03:13','','Apps','','publish','open','closed','','apps-3','','','2015-09-23 15:59:13','2015-09-23 13:59:13','',0,'http://ogdch.dev/?p=242',3,'nav_menu_item','',0);
-INSERT INTO `ogdch_posts` VALUES (243,1,'2015-08-25 16:04:07','2015-08-25 16:04:07','','Dataset','','publish','open','closed','','dataset','','','2015-09-23 15:59:34','2015-09-23 13:59:34','',0,'http://ogdch.dev/?p=243',1,'nav_menu_item','',0);
-INSERT INTO `ogdch_posts` VALUES (244,1,'2015-08-25 16:04:07','2015-08-25 16:04:07','','Editore','','publish','open','closed','','gruppi','','','2015-09-23 15:59:34','2015-09-23 13:59:34','',0,'http://ogdch.dev/?p=244',2,'nav_menu_item','',0);
-INSERT INTO `ogdch_posts` VALUES (245,1,'2015-08-25 16:04:07','2015-08-25 16:04:07','','Apps','','publish','open','closed','','apps-4','','','2015-09-23 15:59:34','2015-09-23 13:59:34','',0,'http://ogdch.dev/?p=245',3,'nav_menu_item','',0);
+INSERT INTO `ogdch_posts` VALUES (236,1,'2015-08-25 16:00:54','2015-08-25 16:00:54','','Apps','','publish','open','closed','','apps','','','2015-09-23 18:02:09','2015-09-23 16:02:09','',0,'http://ogdch.dev/?p=236',3,'nav_menu_item','',0);
+INSERT INTO `ogdch_posts` VALUES (237,1,'2015-08-25 16:02:12','2015-08-25 16:02:12','','Datasets','','publish','open','closed','','datasets','','','2015-09-23 18:02:42','2015-09-23 16:02:42','',0,'http://ogdch.dev/?p=237',1,'nav_menu_item','',0);
+INSERT INTO `ogdch_posts` VALUES (238,1,'2015-08-25 16:02:13','2015-08-25 16:02:13','','Organizations','','publish','open','closed','','groups','','','2015-09-23 18:02:42','2015-09-23 16:02:42','',0,'http://ogdch.dev/?p=238',2,'nav_menu_item','',0);
+INSERT INTO `ogdch_posts` VALUES (239,1,'2015-08-25 16:02:13','2015-08-25 16:02:13','','Apps','','publish','open','closed','','apps-2','','','2015-09-23 18:02:42','2015-09-23 16:02:42','',0,'http://ogdch.dev/?p=239',3,'nav_menu_item','',0);
+INSERT INTO `ogdch_posts` VALUES (240,1,'2015-08-25 16:03:13','2015-08-25 16:03:13','','Jeux de données','','publish','open','closed','','jeux-de-donnees','','','2015-09-23 18:03:18','2015-09-23 16:03:18','',0,'http://ogdch.dev/?p=240',1,'nav_menu_item','',0);
+INSERT INTO `ogdch_posts` VALUES (241,1,'2015-08-25 16:03:13','2015-08-25 16:03:13','','Organisations','','publish','open','closed','','groupes','','','2015-09-23 18:03:18','2015-09-23 16:03:18','',0,'http://ogdch.dev/?p=241',2,'nav_menu_item','',0);
+INSERT INTO `ogdch_posts` VALUES (242,1,'2015-08-25 16:03:13','2015-08-25 16:03:13','','Apps','','publish','open','closed','','apps-3','','','2015-09-23 18:03:18','2015-09-23 16:03:18','',0,'http://ogdch.dev/?p=242',3,'nav_menu_item','',0);
+INSERT INTO `ogdch_posts` VALUES (243,1,'2015-08-25 16:04:07','2015-08-25 16:04:07','','Dataset','','publish','open','closed','','dataset','','','2015-09-23 18:03:51','2015-09-23 16:03:51','',0,'http://ogdch.dev/?p=243',1,'nav_menu_item','',0);
+INSERT INTO `ogdch_posts` VALUES (244,1,'2015-08-25 16:04:07','2015-08-25 16:04:07','','Organizzazioni','','publish','open','closed','','gruppi','','','2015-09-23 18:03:51','2015-09-23 16:03:51','',0,'http://ogdch.dev/?p=244',2,'nav_menu_item','',0);
+INSERT INTO `ogdch_posts` VALUES (245,1,'2015-08-25 16:04:07','2015-08-25 16:04:07','','Apps','','publish','open','closed','','apps-4','','','2015-09-23 18:03:51','2015-09-23 16:03:51','',0,'http://ogdch.dev/?p=245',3,'nav_menu_item','',0);
 INSERT INTO `ogdch_posts` VALUES (246,1,'2015-09-14 11:36:04','2015-09-14 11:36:04','','Bundesarchiv','','publish','closed','closed','','bundesarchiv','','','2015-09-14 11:36:04','2015-09-14 11:36:04','',0,'http://ogdch.dev/?post_type=ckan-local-org&#038;p=246',0,'ckan-local-org','',0);
 INSERT INTO `ogdch_posts` VALUES (247,1,'2015-09-21 21:17:55','2015-09-21 21:17:00','','Kontakt','','publish','closed','closed','','contact','','','2015-09-21 21:17:08','2015-09-21 21:17:08','',0,'http://ogdch.dev/?page_id=247',0,'page','',0);
 INSERT INTO `ogdch_posts` VALUES (248,1,'2015-09-21 21:17:55','2015-09-21 21:17:15','','Contact','','publish','closed','closed','','contact','','','2015-09-21 21:17:15','2015-09-21 21:17:15','',0,'http://ogdch.dev/?page_id=248',0,'page','',0);
@@ -1274,18 +1306,18 @@ INSERT INTO `ogdch_posts` VALUES (259,1,'2015-09-21 21:19:30','2015-09-21 21:19:
 INSERT INTO `ogdch_posts` VALUES (260,1,'2015-09-21 21:19:48','2015-09-21 21:19:48',' ','','','publish','closed','closed','','260','','','2015-09-21 21:19:48','2015-09-21 21:19:48','',0,'http://ogdch.dev/?p=260',1,'nav_menu_item','',0);
 INSERT INTO `ogdch_posts` VALUES (261,1,'2015-09-21 21:19:48','2015-09-21 21:19:48',' ','','','publish','closed','closed','','261','','','2015-09-21 21:19:48','2015-09-21 21:19:48','',0,'http://ogdch.dev/?p=261',2,'nav_menu_item','',0);
 INSERT INTO `ogdch_posts` VALUES (262,1,'2015-09-21 21:19:48','2015-09-21 21:19:48',' ','','','publish','closed','closed','','262','','','2015-09-21 21:19:48','2015-09-21 21:19:48','',0,'http://ogdch.dev/?p=262',3,'nav_menu_item','',0);
-INSERT INTO `ogdch_posts` VALUES (263,1,'2015-09-21 21:24:14','2015-09-21 21:24:14','','Datensätze','','publish','closed','closed','','datensatze-2','','','2015-09-21 21:24:14','2015-09-21 21:24:14','',0,'http://ogdch.dev/?p=263',1,'nav_menu_item','',0);
-INSERT INTO `ogdch_posts` VALUES (264,1,'2015-09-21 21:24:14','2015-09-21 21:24:14','','Publisher','','publish','closed','closed','','publisher','','','2015-09-21 21:24:14','2015-09-21 21:24:14','',0,'http://ogdch.dev/?p=264',2,'nav_menu_item','',0);
-INSERT INTO `ogdch_posts` VALUES (265,1,'2015-09-21 21:24:14','2015-09-21 21:24:14','','Apps','','publish','closed','closed','','apps-5','','','2015-09-21 21:24:14','2015-09-21 21:24:14','',0,'http://ogdch.dev/?p=265',3,'nav_menu_item','',0);
-INSERT INTO `ogdch_posts` VALUES (266,1,'2015-09-21 21:25:41','2015-09-21 21:25:41','','Datasets','','publish','closed','closed','','datasets-2','','','2015-09-21 21:25:41','2015-09-21 21:25:41','',0,'http://ogdch.dev/?p=266',1,'nav_menu_item','',0);
-INSERT INTO `ogdch_posts` VALUES (267,1,'2015-09-21 21:25:41','2015-09-21 21:25:41','','Publishers','','publish','closed','closed','','publishers','','','2015-09-21 21:25:41','2015-09-21 21:25:41','',0,'http://ogdch.dev/?p=267',2,'nav_menu_item','',0);
-INSERT INTO `ogdch_posts` VALUES (268,1,'2015-09-21 21:25:41','2015-09-21 21:25:41','','Apps','','publish','closed','closed','','apps-6','','','2015-09-21 21:25:41','2015-09-21 21:25:41','',0,'http://ogdch.dev/?p=268',3,'nav_menu_item','',0);
-INSERT INTO `ogdch_posts` VALUES (269,1,'2015-09-21 21:28:38','2015-09-21 21:28:38','','Dataset','','publish','closed','closed','','dataseti','','','2015-09-21 21:30:04','2015-09-21 21:30:04','',0,'http://ogdch.dev/?p=269',1,'nav_menu_item','',0);
-INSERT INTO `ogdch_posts` VALUES (270,1,'2015-09-21 21:30:04','2015-09-21 21:30:04','','Editore','','publish','closed','closed','','editore','','','2015-09-21 21:30:04','2015-09-21 21:30:04','',0,'http://ogdch.dev/?p=270',2,'nav_menu_item','',0);
-INSERT INTO `ogdch_posts` VALUES (271,1,'2015-09-21 21:30:04','2015-09-21 21:30:04','','Apps','','publish','closed','closed','','apps-7','','','2015-09-21 21:30:04','2015-09-21 21:30:04','',0,'http://ogdch.dev/?p=271',3,'nav_menu_item','',0);
-INSERT INTO `ogdch_posts` VALUES (272,1,'2015-09-21 21:32:25','2015-09-21 21:32:25','','Jeux de données','','publish','closed','closed','','jeux-de-donnees-2','','','2015-09-21 21:32:25','2015-09-21 21:32:25','',0,'http://ogdch.dev/?p=272',1,'nav_menu_item','',0);
-INSERT INTO `ogdch_posts` VALUES (273,1,'2015-09-21 21:32:25','2015-09-21 21:32:25','','Éditeur','','publish','closed','closed','','editeur','','','2015-09-21 21:32:25','2015-09-21 21:32:25','',0,'http://ogdch.dev/?p=273',2,'nav_menu_item','',0);
-INSERT INTO `ogdch_posts` VALUES (274,1,'2015-09-21 21:32:25','2015-09-21 21:32:25','','Apps','','publish','closed','closed','','apps-8','','','2015-09-21 21:32:25','2015-09-21 21:32:25','',0,'http://ogdch.dev/?p=274',3,'nav_menu_item','',0);
+INSERT INTO `ogdch_posts` VALUES (263,1,'2015-09-21 21:24:14','2015-09-21 21:24:14','','Datensätze','','publish','closed','closed','','datensatze-2','','','2015-09-23 18:07:18','2015-09-23 16:07:18','',0,'http://ogdch.dev/?p=263',1,'nav_menu_item','',0);
+INSERT INTO `ogdch_posts` VALUES (264,1,'2015-09-21 21:24:14','2015-09-21 21:24:14','','Organisationen','','publish','closed','closed','','publisher','','','2015-09-23 18:07:18','2015-09-23 16:07:18','',0,'http://ogdch.dev/?p=264',2,'nav_menu_item','',0);
+INSERT INTO `ogdch_posts` VALUES (265,1,'2015-09-21 21:24:14','2015-09-21 21:24:14','','Apps','','publish','closed','closed','','apps-5','','','2015-09-23 18:07:18','2015-09-23 16:07:18','',0,'http://ogdch.dev/?p=265',3,'nav_menu_item','',0);
+INSERT INTO `ogdch_posts` VALUES (266,1,'2015-09-21 21:25:41','2015-09-21 21:25:41','','Datasets','','publish','closed','closed','','datasets-2','','','2015-09-23 18:07:38','2015-09-23 16:07:38','',0,'http://ogdch.dev/?p=266',1,'nav_menu_item','',0);
+INSERT INTO `ogdch_posts` VALUES (267,1,'2015-09-21 21:25:41','2015-09-21 21:25:41','','Organizations','','publish','closed','closed','','publishers','','','2015-09-23 18:07:38','2015-09-23 16:07:38','',0,'http://ogdch.dev/?p=267',2,'nav_menu_item','',0);
+INSERT INTO `ogdch_posts` VALUES (268,1,'2015-09-21 21:25:41','2015-09-21 21:25:41','','Apps','','publish','closed','closed','','apps-6','','','2015-09-23 18:07:38','2015-09-23 16:07:38','',0,'http://ogdch.dev/?p=268',3,'nav_menu_item','',0);
+INSERT INTO `ogdch_posts` VALUES (269,1,'2015-09-21 21:28:38','2015-09-21 21:28:38','','Dataset','','publish','closed','closed','','dataseti','','','2015-09-23 18:08:10','2015-09-23 16:08:10','',0,'http://ogdch.dev/?p=269',1,'nav_menu_item','',0);
+INSERT INTO `ogdch_posts` VALUES (270,1,'2015-09-21 21:30:04','2015-09-21 21:30:04','','Organizzazioni','','publish','closed','closed','','editore','','','2015-09-23 18:08:10','2015-09-23 16:08:10','',0,'http://ogdch.dev/?p=270',2,'nav_menu_item','',0);
+INSERT INTO `ogdch_posts` VALUES (271,1,'2015-09-21 21:30:04','2015-09-21 21:30:04','','Apps','','publish','closed','closed','','apps-7','','','2015-09-23 18:08:10','2015-09-23 16:08:10','',0,'http://ogdch.dev/?p=271',3,'nav_menu_item','',0);
+INSERT INTO `ogdch_posts` VALUES (272,1,'2015-09-21 21:32:25','2015-09-21 21:32:25','','Jeux de données','','publish','closed','closed','','jeux-de-donnees-2','','','2015-09-23 18:08:28','2015-09-23 16:08:28','',0,'http://ogdch.dev/?p=272',1,'nav_menu_item','',0);
+INSERT INTO `ogdch_posts` VALUES (273,1,'2015-09-21 21:32:25','2015-09-21 21:32:25','','Organisations','','publish','closed','closed','','editeur','','','2015-09-23 18:08:28','2015-09-23 16:08:28','',0,'http://ogdch.dev/?p=273',2,'nav_menu_item','',0);
+INSERT INTO `ogdch_posts` VALUES (274,1,'2015-09-21 21:32:25','2015-09-21 21:32:25','','Apps','','publish','closed','closed','','apps-8','','','2015-09-23 18:08:28','2015-09-23 16:08:28','',0,'http://ogdch.dev/?p=274',3,'nav_menu_item','',0);
 INSERT INTO `ogdch_posts` VALUES (275,1,'2015-09-21 21:37:46','2015-09-21 21:37:46','','API','','publish','closed','closed','','api','','','2015-09-21 21:37:46','2015-09-21 21:37:46','',0,'http://ogdch.dev/?p=275',1,'nav_menu_item','',0);
 INSERT INTO `ogdch_posts` VALUES (276,1,'2015-09-21 21:37:46','2015-09-21 21:37:46','','Quellcode','','publish','closed','closed','','quellcode','','','2015-09-21 21:37:46','2015-09-21 21:37:46','',0,'http://ogdch.dev/?p=276',2,'nav_menu_item','',0);
 INSERT INTO `ogdch_posts` VALUES (277,1,'2015-09-22 06:40:19','2015-09-22 06:40:19','','API','','publish','closed','closed','','api-2','','','2015-09-22 06:40:19','2015-09-22 06:40:19','',0,'http://ogdch.dev/?p=277',1,'nav_menu_item','',0);
@@ -1297,6 +1329,10 @@ INSERT INTO `ogdch_posts` VALUES (282,1,'2015-09-22 06:41:47','2015-09-22 06:41:
 INSERT INTO `ogdch_posts` VALUES (283,1,'2015-09-22 15:11:34','2015-09-22 13:11:34','','appIcon','','inherit','open','closed','','appicon','','','2015-09-22 15:11:34','2015-09-22 13:11:34','',0,'http://ogdch.dev/content/uploads/2015/09/appIcon.png',0,'attachment','image/png',0);
 INSERT INTO `ogdch_posts` VALUES (284,1,'2015-09-22 15:16:35','2015-09-22 13:16:35','','Railway noise night','','publish','closed','closed','','railway-noise-night','','','2015-09-22 15:16:35','2015-09-22 13:16:35','',0,'http://ogdch.dev/?post_type=ckan-local-dataset&#038;p=284',0,'ckan-local-dataset','',0);
 INSERT INTO `ogdch_posts` VALUES (285,1,'2015-09-22 15:20:00','2015-09-22 13:20:00','','Baustellen','','publish','closed','closed','','baustellen','','','2015-09-22 15:20:00','2015-09-22 13:20:00','',0,'http://ogdch.dev/?post_type=ckan-local-dataset&#038;p=285',0,'ckan-local-dataset','',0);
+INSERT INTO `ogdch_posts` VALUES (286,1,'2015-09-23 18:02:09','2015-09-23 16:02:09',' ','','','publish','closed','closed','','286','','','2015-09-23 18:02:09','2015-09-23 16:02:09','',0,'http://ogdch.dev/?p=286',4,'nav_menu_item','',0);
+INSERT INTO `ogdch_posts` VALUES (287,1,'2015-09-23 18:02:42','2015-09-23 16:02:42',' ','','','publish','closed','closed','','287','','','2015-09-23 18:02:42','2015-09-23 16:02:42','',0,'http://ogdch.dev/?p=287',4,'nav_menu_item','',0);
+INSERT INTO `ogdch_posts` VALUES (288,1,'2015-09-23 18:03:18','2015-09-23 16:03:18',' ','','','publish','closed','closed','','288','','','2015-09-23 18:03:18','2015-09-23 16:03:18','',0,'http://ogdch.dev/?p=288',4,'nav_menu_item','',0);
+INSERT INTO `ogdch_posts` VALUES (289,1,'2015-09-23 18:03:51','2015-09-23 16:03:51',' ','','','publish','closed','closed','','289','','','2015-09-23 18:03:51','2015-09-23 16:03:51','',0,'http://ogdch.dev/?p=289',4,'nav_menu_item','',0);
 /*!40000 ALTER TABLE `ogdch_posts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1519,6 +1555,10 @@ INSERT INTO `ogdch_term_relationships` VALUES (284,164,0);
 INSERT INTO `ogdch_term_relationships` VALUES (284,166,0);
 INSERT INTO `ogdch_term_relationships` VALUES (284,168,0);
 INSERT INTO `ogdch_term_relationships` VALUES (285,170,0);
+INSERT INTO `ogdch_term_relationships` VALUES (286,135,0);
+INSERT INTO `ogdch_term_relationships` VALUES (287,136,0);
+INSERT INTO `ogdch_term_relationships` VALUES (288,138,0);
+INSERT INTO `ogdch_term_relationships` VALUES (289,137,0);
 /*!40000 ALTER TABLE `ogdch_term_relationships` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1600,10 +1640,10 @@ INSERT INTO `ogdch_term_taxonomy` VALUES (127,127,'term_translations','a:1:{s:2:
 INSERT INTO `ogdch_term_taxonomy` VALUES (130,130,'post_translations','a:4:{s:2:\"de\";i:149;s:2:\"en\";i:150;s:2:\"it\";i:151;s:2:\"fr\";i:152;}',0,4);
 INSERT INTO `ogdch_term_taxonomy` VALUES (131,131,'post_translations','a:2:{s:2:\"it\";i:154;s:2:\"de\";i:144;}',0,2);
 INSERT INTO `ogdch_term_taxonomy` VALUES (134,134,'post_translations','a:4:{s:2:\"en\";i:165;s:2:\"de\";i:164;s:2:\"it\";i:166;s:2:\"fr\";i:167;}',0,4);
-INSERT INTO `ogdch_term_taxonomy` VALUES (135,135,'nav_menu','',0,4);
-INSERT INTO `ogdch_term_taxonomy` VALUES (136,136,'nav_menu','',0,4);
-INSERT INTO `ogdch_term_taxonomy` VALUES (137,137,'nav_menu','',0,4);
-INSERT INTO `ogdch_term_taxonomy` VALUES (138,138,'nav_menu','',0,4);
+INSERT INTO `ogdch_term_taxonomy` VALUES (135,135,'nav_menu','',0,5);
+INSERT INTO `ogdch_term_taxonomy` VALUES (136,136,'nav_menu','',0,5);
+INSERT INTO `ogdch_term_taxonomy` VALUES (137,137,'nav_menu','',0,5);
+INSERT INTO `ogdch_term_taxonomy` VALUES (138,138,'nav_menu','',0,5);
 INSERT INTO `ogdch_term_taxonomy` VALUES (139,139,'post_translations','a:4:{s:2:\"fr\";i:198;s:2:\"de\";i:195;s:2:\"en\";i:196;s:2:\"it\";i:197;}',0,4);
 INSERT INTO `ogdch_term_taxonomy` VALUES (141,141,'nav_menu','',0,3);
 INSERT INTO `ogdch_term_taxonomy` VALUES (142,142,'post_translations','a:4:{s:2:\"it\";i:249;s:2:\"de\";i:247;s:2:\"en\";i:248;s:2:\"fr\";i:250;}',0,4);
@@ -1793,12 +1833,12 @@ INSERT INTO `ogdch_usermeta` VALUES (12,1,'dismissed_wp_pointers','wp360_locks,w
 INSERT INTO `ogdch_usermeta` VALUES (13,1,'show_welcome_panel','0');
 INSERT INTO `ogdch_usermeta` VALUES (14,1,'session_tokens','a:2:{s:64:\"c5e31b03c9edd1bd5f5ec8476f459f466abfe3e6120f52f49199f98ee998cb8c\";a:4:{s:10:\"expiration\";i:1443013155;s:2:\"ip\";s:12:\"192.168.56.1\";s:2:\"ua\";s:120:\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.93 Safari/537.36\";s:5:\"login\";i:1442840355;}s:64:\"d84fde3220ca5fef9f002646eb892d1badf6bd00c71324ad33c780ab5a1c8231\";a:4:{s:10:\"expiration\";i:1443100270;s:2:\"ip\";s:12:\"192.168.56.1\";s:2:\"ua\";s:120:\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.99 Safari/537.36\";s:5:\"login\";i:1442927470;}}');
 INSERT INTO `ogdch_usermeta` VALUES (15,1,'ogdch_dashboard_quick_press_last_post_id','3');
-INSERT INTO `ogdch_usermeta` VALUES (16,1,'pll_filter_content','');
+INSERT INTO `ogdch_usermeta` VALUES (16,1,'pll_filter_content','it');
 INSERT INTO `ogdch_usermeta` VALUES (17,1,'ogdch_user-settings','posts_list_mode=list&libraryContent=browse&mfold=o&advImgDetails=hide&uploader=1');
 INSERT INTO `ogdch_usermeta` VALUES (18,1,'ogdch_user-settings-time','1443016641');
 INSERT INTO `ogdch_usermeta` VALUES (19,1,'managenav-menuscolumnshidden','a:4:{i:0;s:11:\"link-target\";i:1;s:11:\"css-classes\";i:2;s:3:\"xfn\";i:3;s:11:\"description\";}');
 INSERT INTO `ogdch_usermeta` VALUES (20,1,'metaboxhidden_nav-menus','a:7:{i:0;s:19:\"pll_lang_switch_box\";i:1;s:8:\"add-post\";i:2;s:7:\"add-app\";i:3;s:22:\"add-ckan-local-dataset\";i:4;s:20:\"add-ckan-local-group\";i:5;s:18:\"add-ckan-local-org\";i:6;s:12:\"add-post_tag\";}');
-INSERT INTO `ogdch_usermeta` VALUES (21,1,'nav_menu_recently_edited','137');
+INSERT INTO `ogdch_usermeta` VALUES (21,1,'nav_menu_recently_edited','149');
 INSERT INTO `ogdch_usermeta` VALUES (22,1,'closedpostboxes_ckan-dataset','a:1:{i:0;s:16:\"ckan-dataset-box\";}');
 INSERT INTO `ogdch_usermeta` VALUES (23,1,'metaboxhidden_ckan-dataset','a:1:{i:0;s:7:\"slugdiv\";}');
 INSERT INTO `ogdch_usermeta` VALUES (24,1,'closedpostboxes_post','a:0:{}');
@@ -1951,4 +1991,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-09-23 14:00:13
+-- Dump completed on 2015-09-23 16:10:51
