@@ -1,8 +1,6 @@
 import os
-from pprint import pprint
 from fabric.api import (
-    cd, env, execute, get, local, put, require, run, settings, shell_env,
-    task, roles, sudo
+    cd, env, execute, local, put, run, settings, task, roles, sudo, parallel, serial
 )
 
 
@@ -47,32 +45,32 @@ ENVIRONMENTS = {
 
 env.project_name = 'ogd-ch'
 env.use_ssh_config = True
+env.remote_interrupt = True
 
 
-def get_virtualenv_root():
+def _get_virtualenv_root():
     """
     Return the path to the virtual environment on the remote server.
     """
     return os.path.join(env.home, 'pyenv')
 
 
-def run_in_virtualenv(cmd, args):
+def _run_in_virtualenv(cmd, args):
     """
     Run the given command from the remote virtualenv.
     """
-    return run('%s %s' % (os.path.join(get_virtualenv_root(), 'bin', cmd),
+    return run('%s %s' % (os.path.join(_get_virtualenv_root(), 'bin', cmd),
                           args))
 
-def run_paster(args):
-    return run_in_virtualenv('paster', args)
+def _run_paster(args):
+    return _run_in_virtualenv('paster', args)
 
-def rev_parse(rev):
+def _rev_parse(rev):
     with cd(env.root):
         run('git fetch')
         return run("git rev-parse %s" % rev)
 
 @roles('wordpress', 'wordpress_db', 'ckan', 'ckan_db')
-@task
 def update_repo(commit):
     """
     Update the remote repository to the specified commit.
@@ -84,7 +82,6 @@ def update_repo(commit):
         run('git submodule update --recursive')
 
 @roles('wordpress', 'ckan')
-@task
 def restart_apache():
     """
     Restore apache webserver
@@ -92,7 +89,6 @@ def restart_apache():
     sudo('systemctl restart httpd')
 
 @roles('wordpress')
-@task
 def flush_cache():
     """
     Flush the cache (redis)
@@ -100,7 +96,6 @@ def flush_cache():
     sudo('redis-cli flushall')
 
 @roles('ckan')
-@task
 def restart_tomcat():
     """
     Restart tomcat server (Solr)
@@ -108,15 +103,13 @@ def restart_tomcat():
     sudo("systemctl restart tomcat")
 
 @roles('ckan')
-@task()
 def rebuild_search_index():
     """
     Rebuild the solr search index of CKAN
     """
-    run_paster("--plugin=ckan search-index rebuild -c /var/www/ckan/development.ini") 
+    _run_paster("--plugin=ckan search-index rebuild -c /var/www/ckan/development.ini") 
 
 @roles('ckan_db')
-@task
 def restore_ckan_db():
     """
     Restore the CKAN database based on the checked-in db dump
@@ -137,7 +130,6 @@ def restore_ckan_db():
         run("rm /tmp/ckan_default.sql")
 
 @roles('wordpress_db')
-@task
 def restore_wp_db():
     """
     Restore the WordPress databased based on the checked-in db dump
@@ -154,17 +146,15 @@ def restore_wp_db():
     run("mysql -u root %s -e'CREATE DATABASE cms;'" % pass_option)
     run("mysql -u root %s cms < %s/sql/cms.sql" % (pass_option, env.root))
 
-@task
 def deploy(rev='origin/master'):
     """
     Deploy the whole application
     """
-    commit = rev_parse(rev)
+    commit = _rev_parse(rev)
     execute(update_repo, commit=commit)
     execute(restore)
     execute(restart)
 
-@task
 def restore():
     """
     Restore the CKAN and WordPress database
@@ -175,7 +165,6 @@ def restore():
     execute(rebuild_search_index)
     execute(restart)
 
-@task
 def restart():
     """
     Restart all services
@@ -183,10 +172,31 @@ def restart():
     execute(restart_tomcat)
     execute(restart_apache)
 
+@roles('wordpress', 'ckan')
+@serial
+def log():
+    """
+    Show logs of server
+    """
+    sudo("ls /var/log/httpd")
+    execute(tail_log)
+
+@roles('wordpress', 'ckan')
+@parallel
+def tail_log():
+    """
+    Tail logs of several servers
+    """
+    assert(env.remote_interrupt == True)
+    with settings(warn_only=True):
+        sudo("bash -c 'find /var/log/httpd | xargs tail -f'", shell=False)
+
+
+
 # Environment handling stuff
 ############################
 
-def get_environment_func(key, value):
+def _get_environment_func(key, value):
     def load_environment():
         env.update(value)
         env.environment = key
@@ -200,9 +210,9 @@ def get_environment_func(key, value):
     return load_environment
 
 
-def load_environments(environments):
+def _load_environments(environments):
     for (key, values) in environments.items():
-        globals()[key] = task(get_environment_func(key, values))
+        globals()[key] = _get_environment_func(key, values)
 
 
-load_environments(ENVIRONMENTS)
+_load_environments(ENVIRONMENTS)
