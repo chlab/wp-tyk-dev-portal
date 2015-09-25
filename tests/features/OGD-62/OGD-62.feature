@@ -6,5 +6,3 @@ Szenario: Pierre kann einem Benutzer eine Rolle zuweisen
 Szenario: Pierre kann die Rolle eines Benutzers ändern
 
 Szenario: Der Benutzer kann keine Aktionen durchführen, für die er die entsprechenden Berechtigungen nicht hat
-
-Szenario: Pierre kann einen Benutzer einer Organisation zuordnen

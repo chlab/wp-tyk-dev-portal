@@ -2,6 +2,10 @@
 @finished
 Funktionalität: Als Datenlieferant (technisch) möchte Schreib-Zugriff auf die Datensätze meiner Organisation haben, damit ich Änderungen vornehmen kann.
 
+Hintergrund:
+  Angenommen eine Datenlieferantin namens Priska
+  Und ein Admin-Bereich existiert
+
 Szenario: Priska hat die Rechte um die Datensätze ihrer Organisation zu ändern
   Angenommen Alain hat einen Datensatz "Geodaten XY" erfasst
   Und dieser befindet sich im Status "in Bearbeitung"

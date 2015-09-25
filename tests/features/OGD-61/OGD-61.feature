@@ -6,14 +6,18 @@ Hintergrund:
   Und ein registrierter Benutzer Namens Paul
   Und das opendata.swiss Portal
 
+Szenario: Pierre kann sich die Liste der registrierten Benutzer anzeigen
+
+Szenario: Pierre kann nach einem Benutzer suchen
+
 Szenario: Pierre kann einen neuen Benutzer Paul anlegen und bearbeiten
+
+Szenario: Pierre kann einen Benutzer einer Organisation zuordnen
 
 Szenario: Pierre kann eine Liste der registrierten Benutzer abrufen
 
 Szenario: Pierre kann einen Benutzer suchen und auswählen zur Bearbeitung
 
-Szenario: Pierre kann einen Benutzer löschen
-
 Szenario: Paul kann sich im Portal einloggen
 
-Szenario: Paul kann ein neues Passwort selber anfragen/ zurücksetzen
+Szenario: Pierre kann einen Benutzer löschen
