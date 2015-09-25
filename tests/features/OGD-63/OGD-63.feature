@@ -3,15 +3,15 @@ Funktionalität: Als Application-Manager möchte ich gewisse Berechtigungen in e
 
 Hintergrund: 
 Angenommen ein Application-Manager namens Pierre
-Und ein Admin-Bereich existiert
-Und eine Liste mit Berechtigungen
+  Und ein Admin-Bereich existiert
+  Und eine Liste mit Berechtigungen
 
-Szenario: Pierre ruft im Admin-Bereich eine Liste von Rollen ab
+Szenario: Pierre kann im Admin-Bereich eine Liste von Rollen abrufen
 
-Szenario: Pierre bearbeitet im Admin-Bereich einzelne Rollen
+Szenario: Pierre kann im Admin-Bereich einzelne Rollen bearbeiten
 
-Szenario: Pierre erstellt im Admin-Bereich eine neue Rolle
+Szenario: Pierre kann im Admin-Bereich eine neue Rolle erstellen
 
-Szenario: Pierre löscht im Admin-Bereich eine Rolle
+Szenario: Pierre kann die Rechte von Rollen im Admin-Bereich anpassen
 
-Szenario: Pierre passt die Rechte von Rollen im Admin-Bereich an (hinzufügen und löschen)
+Szenario: Pierre kann im Admin-Bereich eine Rolle löschen
