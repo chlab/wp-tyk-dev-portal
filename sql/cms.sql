@@ -295,7 +295,7 @@ CREATE TABLE `ogdch_postmeta` (
   PRIMARY KEY (`meta_id`),
   KEY `post_id` (`post_id`),
   KEY `meta_key` (`meta_key`(191))
-) ENGINE=InnoDB AUTO_INCREMENT=1920 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1935 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -304,14 +304,14 @@ CREATE TABLE `ogdch_postmeta` (
 
 LOCK TABLES `ogdch_postmeta` WRITE;
 /*!40000 ALTER TABLE `ogdch_postmeta` DISABLE KEYS */;
-INSERT INTO `ogdch_postmeta` VALUES (431,2,'_edit_lock','1442869939:1');
-INSERT INTO `ogdch_postmeta` VALUES (433,97,'_edit_last','1');
-INSERT INTO `ogdch_postmeta` VALUES (435,97,'_edit_lock','1442869951:1');
-INSERT INTO `ogdch_postmeta` VALUES (464,2,'_edit_last','1');
-INSERT INTO `ogdch_postmeta` VALUES (533,118,'_edit_last','1');
-INSERT INTO `ogdch_postmeta` VALUES (536,118,'_edit_lock','1442870058:1');
-INSERT INTO `ogdch_postmeta` VALUES (537,119,'_edit_last','1');
-INSERT INTO `ogdch_postmeta` VALUES (540,119,'_edit_lock','1442870020:1');
+INSERT INTO `ogdch_postmeta` VALUES (431,2,'_edit_lock','1443028078:4');
+INSERT INTO `ogdch_postmeta` VALUES (433,97,'_edit_last','4');
+INSERT INTO `ogdch_postmeta` VALUES (435,97,'_edit_lock','1443028099:4');
+INSERT INTO `ogdch_postmeta` VALUES (464,2,'_edit_last','4');
+INSERT INTO `ogdch_postmeta` VALUES (533,118,'_edit_last','4');
+INSERT INTO `ogdch_postmeta` VALUES (536,118,'_edit_lock','1443028110:4');
+INSERT INTO `ogdch_postmeta` VALUES (537,119,'_edit_last','4');
+INSERT INTO `ogdch_postmeta` VALUES (540,119,'_edit_lock','1443028311:4');
 INSERT INTO `ogdch_postmeta` VALUES (577,126,'_edit_last','1');
 INSERT INTO `ogdch_postmeta` VALUES (578,126,'_edit_lock','1433314247:1');
 INSERT INTO `ogdch_postmeta` VALUES (580,128,'_edit_last','1');
@@ -469,7 +469,7 @@ INSERT INTO `ogdch_postmeta` VALUES (1011,197,'_app-showcase-app_url','http://to
 INSERT INTO `ogdch_postmeta` VALUES (1012,197,'_app-showcase-app_author_name','Swisstopo');
 INSERT INTO `ogdch_postmeta` VALUES (1013,197,'_app-showcase-app_author_email','swiss@to.po');
 INSERT INTO `ogdch_postmeta` VALUES (1014,197,'_app-showcase-app_version','1.0.0');
-INSERT INTO `ogdch_postmeta` VALUES (1015,198,'_edit_lock','1443026421:1');
+INSERT INTO `ogdch_postmeta` VALUES (1015,198,'_edit_lock','1443028009:1');
 INSERT INTO `ogdch_postmeta` VALUES (1016,198,'_edit_last','1');
 INSERT INTO `ogdch_postmeta` VALUES (1017,198,'_app-showcase-app_url','http://topoapp.io');
 INSERT INTO `ogdch_postmeta` VALUES (1018,198,'_app-showcase-app_author_name','Swisstopo');
@@ -795,10 +795,6 @@ INSERT INTO `ogdch_postmeta` VALUES (1490,204,'_ckan_local_group_title_fr','Géo
 INSERT INTO `ogdch_postmeta` VALUES (1491,204,'_ckan_local_group_title_it','Geografia');
 INSERT INTO `ogdch_postmeta` VALUES (1492,200,'_ckan_local_group_title_en','Construction and housing');
 INSERT INTO `ogdch_postmeta` VALUES (1493,200,'_ckan_local_group_title_it','Costruzione e abitazione');
-INSERT INTO `ogdch_postmeta` VALUES (1511,118,'_wp_page_template','default');
-INSERT INTO `ogdch_postmeta` VALUES (1512,2,'_wp_page_template','default');
-INSERT INTO `ogdch_postmeta` VALUES (1513,97,'_wp_page_template','default');
-INSERT INTO `ogdch_postmeta` VALUES (1514,119,'_wp_page_template','default');
 INSERT INTO `ogdch_postmeta` VALUES (1515,247,'_edit_last','1');
 INSERT INTO `ogdch_postmeta` VALUES (1517,247,'_edit_lock','1442870086:1');
 INSERT INTO `ogdch_postmeta` VALUES (1519,248,'_edit_last','1');
@@ -1158,6 +1154,10 @@ INSERT INTO `ogdch_postmeta` VALUES (1916,195,'_app-showcase-app_relations','a:1
 INSERT INTO `ogdch_postmeta` VALUES (1917,196,'_app-showcase-app_relations','a:1:{i:0;a:1:{s:10:\"dataset_id\";s:19:\"railway-noise-night\";}}');
 INSERT INTO `ogdch_postmeta` VALUES (1918,197,'_app-showcase-app_relations','a:1:{i:0;a:1:{s:10:\"dataset_id\";s:19:\"railway-noise-night\";}}');
 INSERT INTO `ogdch_postmeta` VALUES (1919,198,'_app-showcase-app_relations','a:1:{i:0;a:1:{s:10:\"dataset_id\";s:19:\"railway-noise-night\";}}');
+INSERT INTO `ogdch_postmeta` VALUES (1931,119,'_wp_page_template','default');
+INSERT INTO `ogdch_postmeta` VALUES (1932,2,'_wp_page_template','default');
+INSERT INTO `ogdch_postmeta` VALUES (1933,97,'_wp_page_template','default');
+INSERT INTO `ogdch_postmeta` VALUES (1934,118,'_wp_page_template','default');
 /*!40000 ALTER TABLE `ogdch_postmeta` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1206,16 +1206,16 @@ CREATE TABLE `ogdch_posts` (
 
 LOCK TABLES `ogdch_posts` WRITE;
 /*!40000 ALTER TABLE `ogdch_posts` DISABLE KEYS */;
-INSERT INTO `ogdch_posts` VALUES (2,1,'2015-06-03 06:50:11','2015-05-21 13:32:37','This is an example page. It\'s different from a blog post because it will stay in one place and will show up in your site navigation (in most themes). Most people start with an About page that introduces them to potential site visitors. It might say something like this:\r\n<blockquote>Hi there! I\'m a bike messenger by day, aspiring actor by night, and this is my blog. I live in Los Angeles, have a great dog named Jack, and I like piña coladas. (And gettin\' caught in the rain.)</blockquote>\r\n...or something like this:\r\n<blockquote>The XYZ Doohickey Company was founded in 1971, and has been providing quality doohickeys to the public ever since. Located in Gotham City, XYZ employs over 2,000 people and does all kinds of awesome things for the Gotham community.</blockquote>\r\nAs a new WordPress user, you should go to <a href=\"http://ogdch.dev/cms/wp-admin/\">your dashboard</a> to delete this page and create new pages for your content. Have fun!','Über das Portal','','publish','open','open','','about','','','2015-09-21 21:14:41','2015-09-21 21:14:41','',0,'http://ogdch.dev/?page_id=2',0,'page','',0);
+INSERT INTO `ogdch_posts` VALUES (2,1,'2015-06-03 06:50:11','2015-05-21 13:32:37','Inhalt Deutsch','Über das Portal','','publish','open','open','','about','','','2015-09-23 19:09:29','2015-09-23 17:09:29','',0,'http://ogdch.dev/?page_id=2',0,'page','',0);
 INSERT INTO `ogdch_posts` VALUES (17,1,'2015-05-26 12:29:35','2015-05-26 12:29:35','a:1:{i:0;a:2:{i:0;s:0:\"\";i:1;s:0:\"\";}}','polylang_mo_2','','publish','open','open','','polylang_mo_2','','','2015-05-26 12:29:35','2015-05-26 12:29:35','',0,'http://ogdch.dev/?post_type=polylang_mo&p=17',0,'polylang_mo','',0);
 INSERT INTO `ogdch_posts` VALUES (18,1,'2015-05-26 12:29:45','2015-05-26 12:29:45','a:1:{i:0;a:2:{i:0;s:0:\"\";i:1;s:0:\"\";}}','polylang_mo_5','','publish','open','open','','polylang_mo_5','','','2015-05-26 12:29:45','2015-05-26 12:29:45','',0,'http://ogdch.dev/?post_type=polylang_mo&p=18',0,'polylang_mo','',0);
 INSERT INTO `ogdch_posts` VALUES (19,1,'2015-05-26 12:29:50','2015-05-26 12:29:50','a:1:{i:0;a:2:{i:0;s:0:\"\";i:1;s:0:\"\";}}','polylang_mo_9','','publish','open','open','','polylang_mo_9','','','2015-05-26 12:29:50','2015-05-26 12:29:50','',0,'http://ogdch.dev/?post_type=polylang_mo&p=19',0,'polylang_mo','',0);
 INSERT INTO `ogdch_posts` VALUES (20,1,'2015-05-26 12:29:54','2015-05-26 12:29:54','a:1:{i:0;a:2:{i:0;s:0:\"\";i:1;s:0:\"\";}}','polylang_mo_13','','publish','open','open','','polylang_mo_13','','','2015-05-26 12:29:54','2015-05-26 12:29:54','',0,'http://ogdch.dev/?post_type=polylang_mo&p=20',0,'polylang_mo','',0);
-INSERT INTO `ogdch_posts` VALUES (97,1,'2015-06-03 06:50:11','2015-06-02 13:01:41','YEAH USA','About','','publish','open','open','','about','','','2015-09-21 21:14:53','2015-09-21 21:14:53','',0,'http://ogdch.dev/?page_id=97',0,'page','',0);
+INSERT INTO `ogdch_posts` VALUES (97,1,'2015-06-03 06:50:11','2015-06-02 13:01:41','Content EN','About','','publish','open','open','','about','','','2015-09-23 19:10:37','2015-09-23 17:10:37','',0,'http://ogdch.dev/?page_id=97',0,'page','',0);
 INSERT INTO `ogdch_posts` VALUES (98,1,'2015-06-02 13:01:41','2015-06-02 13:01:41','YEAH USA','Sample US','','inherit','open','open','','97-revision-v1','','','2015-06-02 13:01:41','2015-06-02 13:01:41','',97,'http://ogdch.dev/2015/06/02/97-revision-v1/',0,'revision','',0);
 INSERT INTO `ogdch_posts` VALUES (102,1,'2015-06-02 13:05:39','2015-06-02 13:05:39','This is an example page. It\'s different from a blog post because it will stay in one place and will show up in your site navigation (in most themes). Most people start with an About page that introduces them to potential site visitors. It might say something like this:\r\n<blockquote>Hi there! I\'m a bike messenger by day, aspiring actor by night, and this is my blog. I live in Los Angeles, have a great dog named Jack, and I like piña coladas. (And gettin\' caught in the rain.)</blockquote>\r\n...or something like this:\r\n<blockquote>The XYZ Doohickey Company was founded in 1971, and has been providing quality doohickeys to the public ever since. Located in Gotham City, XYZ employs over 2,000 people and does all kinds of awesome things for the Gotham community.</blockquote>\r\nAs a new WordPress user, you should go to <a href=\"http://ogdch.dev/cms/wp-admin/\">your dashboard</a> to delete this page and create new pages for your content. Have fun!','Eine Seite','','inherit','open','open','','2-revision-v1','','','2015-06-02 13:05:39','2015-06-02 13:05:39','',2,'http://ogdch.dev/2015/06/02/2-revision-v1/',0,'revision','',0);
-INSERT INTO `ogdch_posts` VALUES (118,1,'2015-06-03 06:50:11','2015-06-03 06:50:03','','Informazioni','','publish','open','open','','about','','','2015-09-21 21:16:32','2015-09-21 21:16:32','',0,'http://ogdch.dev/?page_id=118',0,'page','',0);
-INSERT INTO `ogdch_posts` VALUES (119,1,'2015-06-03 06:50:11','2015-06-03 06:50:11','','À propos','','publish','open','open','','about','','','2015-09-21 21:16:03','2015-09-21 21:16:03','',0,'http://ogdch.dev/?page_id=119',0,'page','',0);
+INSERT INTO `ogdch_posts` VALUES (118,1,'2015-06-03 06:50:11','2015-06-03 06:50:03','Content IT','Informazioni','','publish','open','open','','about','','','2015-09-23 19:10:52','2015-09-23 17:10:52','',0,'http://ogdch.dev/?page_id=118',0,'page','',0);
+INSERT INTO `ogdch_posts` VALUES (119,1,'2015-06-03 06:50:11','2015-06-03 06:50:11','Content FR','À propos','','publish','open','open','','about','','','2015-09-23 19:11:02','2015-09-23 17:11:02','',0,'http://ogdch.dev/?page_id=119',0,'page','',0);
 INSERT INTO `ogdch_posts` VALUES (120,1,'2015-06-03 06:50:03','2015-06-03 06:50:03','','Seite it','','inherit','open','open','','118-revision-v1','','','2015-06-03 06:50:03','2015-06-03 06:50:03','',118,'http://ogdch.dev/2015/06/03/118-revision-v1/',0,'revision','',0);
 INSERT INTO `ogdch_posts` VALUES (121,1,'2015-06-03 06:50:11','2015-06-03 06:50:11','','Seite FR','','inherit','open','open','','119-revision-v1','','','2015-06-03 06:50:11','2015-06-03 06:50:11','',119,'http://ogdch.dev/2015/06/03/119-revision-v1/',0,'revision','',0);
 INSERT INTO `ogdch_posts` VALUES (126,1,'2015-06-03 06:53:46','2015-06-03 06:53:11','<p><strong>Pellentesque habitant morbi tristique</strong> senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. <em>Aenean ultricies mi vitae est.</em> Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, <code>commodo vitae</code>, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. <a href=\"#\">Donec non enim</a> in turpis pulvinar facilisis. Ut felis.</p>\r\n\r\n<h2>Header Level 2</h2>\r\n	       \r\n<ol>\r\n   <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>\r\n   <li>Aliquam tincidunt mauris eu risus.</li>\r\n</ol>\r\n\r\n<blockquote><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus magna. Cras in mi at felis aliquet congue. Ut a est eget ligula molestie gravida. Curabitur massa. Donec eleifend, libero at sagittis mollis, tellus est malesuada tellus, at luctus turpis elit sit amet quam. Vivamus pretium ornare est.</p></blockquote>\r\n\r\n<h3>Header Level 3</h3>\r\n\r\n<ul>\r\n   <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>\r\n   <li>Aliquam tincidunt mauris eu risus.</li>\r\n</ul>','Blog Beitrag FR','','publish','open','open','','blog-beitrag-fr','','','2015-06-03 06:53:11','2015-06-03 06:53:11','',0,'http://ogdch.dev/?p=126',0,'post','',0);
@@ -1610,7 +1610,7 @@ INSERT INTO `ogdch_term_taxonomy` VALUES (29,29,'post_translations','a:4:{s:2:\"
 INSERT INTO `ogdch_term_taxonomy` VALUES (32,32,'post_translations','a:4:{s:2:\"de\";i:87;s:2:\"fr\";i:88;s:2:\"en\";i:89;s:2:\"it\";i:90;}',0,0);
 INSERT INTO `ogdch_term_taxonomy` VALUES (42,42,'term_translations','a:1:{s:2:\"de\";i:37;}',0,1);
 INSERT INTO `ogdch_term_taxonomy` VALUES (43,43,'term_translations','a:1:{s:2:\"de\";i:38;}',0,1);
-INSERT INTO `ogdch_term_taxonomy` VALUES (71,71,'post_translations','a:4:{s:2:\"it\";i:118;s:2:\"de\";i:2;s:2:\"en\";i:97;s:2:\"fr\";i:119;}',0,4);
+INSERT INTO `ogdch_term_taxonomy` VALUES (71,71,'post_translations','a:4:{s:2:\"fr\";i:119;s:2:\"de\";i:2;s:2:\"en\";i:97;s:2:\"it\";i:118;}',0,4);
 INSERT INTO `ogdch_term_taxonomy` VALUES (91,91,'post_translations','a:4:{s:2:\"de\";i:128;s:2:\"en\";i:130;s:2:\"it\";i:132;s:2:\"fr\";i:126;}',0,4);
 INSERT INTO `ogdch_term_taxonomy` VALUES (97,97,'ckan_groups','',0,0);
 INSERT INTO `ogdch_term_taxonomy` VALUES (98,98,'term_translations','a:1:{s:2:\"de\";i:97;}',0,1);
@@ -1813,7 +1813,7 @@ CREATE TABLE `ogdch_usermeta` (
   PRIMARY KEY (`umeta_id`),
   KEY `user_id` (`user_id`),
   KEY `meta_key` (`meta_key`(191))
-) ENGINE=InnoDB AUTO_INCREMENT=127 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=130 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1835,7 +1835,6 @@ INSERT INTO `ogdch_usermeta` VALUES (10,1,'ogdch_capabilities','a:1:{s:13:\"admi
 INSERT INTO `ogdch_usermeta` VALUES (11,1,'ogdch_user_level','10');
 INSERT INTO `ogdch_usermeta` VALUES (12,1,'dismissed_wp_pointers','wp360_locks,wp390_widgets,wp410_dfw,pll_lgt');
 INSERT INTO `ogdch_usermeta` VALUES (13,1,'show_welcome_panel','0');
-INSERT INTO `ogdch_usermeta` VALUES (14,1,'session_tokens','a:2:{s:64:\"c5e31b03c9edd1bd5f5ec8476f459f466abfe3e6120f52f49199f98ee998cb8c\";a:4:{s:10:\"expiration\";i:1443013155;s:2:\"ip\";s:12:\"192.168.56.1\";s:2:\"ua\";s:120:\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.93 Safari/537.36\";s:5:\"login\";i:1442840355;}s:64:\"d84fde3220ca5fef9f002646eb892d1badf6bd00c71324ad33c780ab5a1c8231\";a:4:{s:10:\"expiration\";i:1443100270;s:2:\"ip\";s:12:\"192.168.56.1\";s:2:\"ua\";s:120:\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.99 Safari/537.36\";s:5:\"login\";i:1442927470;}}');
 INSERT INTO `ogdch_usermeta` VALUES (15,1,'ogdch_dashboard_quick_press_last_post_id','3');
 INSERT INTO `ogdch_usermeta` VALUES (16,1,'pll_filter_content','it');
 INSERT INTO `ogdch_usermeta` VALUES (17,1,'ogdch_user-settings','posts_list_mode=list&libraryContent=browse&mfold=o&advImgDetails=hide&uploader=1');
@@ -1938,12 +1937,14 @@ INSERT INTO `ogdch_usermeta` VALUES (117,6,'use_ssl','0');
 INSERT INTO `ogdch_usermeta` VALUES (118,6,'show_admin_bar_front','true');
 INSERT INTO `ogdch_usermeta` VALUES (119,6,'ogdch_capabilities','a:1:{s:15:\"content-manager\";b:1;}');
 INSERT INTO `ogdch_usermeta` VALUES (120,6,'ogdch_user_level','0');
-INSERT INTO `ogdch_usermeta` VALUES (121,6,'ckan-backend_organisation','bundesarchiv');
+INSERT INTO `ogdch_usermeta` VALUES (121,6,'ckan-backend_organisation','swisstopo');
 INSERT INTO `ogdch_usermeta` VALUES (122,6,'dismissed_wp_pointers','');
 INSERT INTO `ogdch_usermeta` VALUES (123,6,'user_lang','0');
 INSERT INTO `ogdch_usermeta` VALUES (124,6,'description_en','');
 INSERT INTO `ogdch_usermeta` VALUES (125,6,'description_it','');
 INSERT INTO `ogdch_usermeta` VALUES (126,6,'description_fr','');
+INSERT INTO `ogdch_usermeta` VALUES (128,4,'pll_filter_content','en');
+INSERT INTO `ogdch_usermeta` VALUES (129,5,'session_tokens','a:1:{s:64:\"d23c2e842128c81c94f9baa4b1e4756ad5a2946262864b1fe779b10ae9aa10ee\";a:4:{s:10:\"expiration\";i:1443201631;s:2:\"ip\";s:12:\"192.168.56.1\";s:2:\"ua\";s:120:\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.99 Safari/537.36\";s:5:\"login\";i:1443028831;}}');
 /*!40000 ALTER TABLE `ogdch_usermeta` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1995,4 +1996,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-09-23 16:41:31
+-- Dump completed on 2015-09-23 17:23:45
