@@ -72,8 +72,7 @@ define( 'WPMU_PLUGIN_URL', WP_HOME . '/content/mu-plugins' );
 // CKAN
 // ===================================================
 
-define( 'CKAN_API_ENDPOINT', 'http://ogdch-test.clients.liip.ch/api/3/' );
-define( 'CKAN_SEARCH_API_ENDPOINT', 'http://ogdch-test.clients.liip.ch/api/3/action/package_search' );
+define( 'CKAN_API_ENDPOINT', 'http://ogdch-test.clients.liip.ch/api/3/action/' );
 define( 'CKAN_API_KEY', '' ); // adminsuer key
 
 $language_priority = array(
