@@ -134,7 +134,7 @@ CREATE TABLE `ogdch_options` (
   `autoload` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'yes',
   PRIMARY KEY (`option_id`),
   UNIQUE KEY `option_name` (`option_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=774 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=775 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -237,7 +237,7 @@ INSERT INTO `ogdch_options` VALUES (92,'widget_recent-comments','a:2:{i:2;a:2:{s
 INSERT INTO `ogdch_options` VALUES (93,'widget_archives','a:2:{i:2;a:3:{s:5:\"title\";s:0:\"\";s:5:\"count\";i:0;s:8:\"dropdown\";i:0;}s:12:\"_multiwidget\";i:1;}','yes');
 INSERT INTO `ogdch_options` VALUES (94,'widget_meta','a:2:{i:2;a:1:{s:5:\"title\";s:0:\"\";}s:12:\"_multiwidget\";i:1;}','yes');
 INSERT INTO `ogdch_options` VALUES (95,'sidebars_widgets','a:3:{s:19:\"wp_inactive_widgets\";a:0:{}s:18:\"orphaned_widgets_1\";a:1:{i:0;s:17:\"recent-comments-2\";}s:13:\"array_version\";i:3;}','yes');
-INSERT INTO `ogdch_options` VALUES (97,'cron','a:6:{i:1443512940;a:1:{s:20:\"wp_maybe_auto_update\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1443513212;a:1:{s:25:\"wpseo_ping_search_engines\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:2:{s:8:\"schedule\";b:0;s:4:\"args\";a:0:{}}}}i:1443530581;a:1:{s:30:\"wp_scheduled_auto_draft_delete\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1443533557;a:3:{s:16:\"wp_version_check\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}s:17:\"wp_update_plugins\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}s:16:\"wp_update_themes\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1443533881;a:1:{s:19:\"wp_scheduled_delete\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}s:7:\"version\";i:2;}','yes');
+INSERT INTO `ogdch_options` VALUES (97,'cron','a:6:{i:1443529857;a:1:{s:25:\"wpseo_ping_search_engines\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:2:{s:8:\"schedule\";b:0;s:4:\"args\";a:0:{}}}}i:1443530581;a:1:{s:30:\"wp_scheduled_auto_draft_delete\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1443533557;a:3:{s:16:\"wp_version_check\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}s:17:\"wp_update_plugins\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}s:16:\"wp_update_themes\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1443533881;a:1:{s:19:\"wp_scheduled_delete\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1443556140;a:1:{s:20:\"wp_maybe_auto_update\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}s:7:\"version\";i:2;}','yes');
 INSERT INTO `ogdch_options` VALUES (134,'db_upgraded','','yes');
 INSERT INTO `ogdch_options` VALUES (142,'recently_activated','a:0:{}','yes');
 INSERT INTO `ogdch_options` VALUES (147,'members_db_version','2','yes');
@@ -295,7 +295,7 @@ CREATE TABLE `ogdch_postmeta` (
   PRIMARY KEY (`meta_id`),
   KEY `post_id` (`post_id`),
   KEY `meta_key` (`meta_key`(191))
-) ENGINE=InnoDB AUTO_INCREMENT=1959 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1964 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -304,7 +304,7 @@ CREATE TABLE `ogdch_postmeta` (
 
 LOCK TABLES `ogdch_postmeta` WRITE;
 /*!40000 ALTER TABLE `ogdch_postmeta` DISABLE KEYS */;
-INSERT INTO `ogdch_postmeta` VALUES (431,2,'_edit_lock','1443512915:1');
+INSERT INTO `ogdch_postmeta` VALUES (431,2,'_edit_lock','1443529576:1');
 INSERT INTO `ogdch_postmeta` VALUES (433,97,'_edit_last','4');
 INSERT INTO `ogdch_postmeta` VALUES (435,97,'_edit_lock','1443028099:4');
 INSERT INTO `ogdch_postmeta` VALUES (464,2,'_edit_last','1');
@@ -1155,9 +1155,11 @@ INSERT INTO `ogdch_postmeta` VALUES (1917,196,'_app-showcase-app_relations','a:1
 INSERT INTO `ogdch_postmeta` VALUES (1918,197,'_app-showcase-app_relations','a:1:{i:0;a:1:{s:10:\"dataset_id\";s:19:\"railway-noise-night\";}}');
 INSERT INTO `ogdch_postmeta` VALUES (1919,198,'_app-showcase-app_relations','a:1:{i:0;a:1:{s:10:\"dataset_id\";s:19:\"railway-noise-night\";}}');
 INSERT INTO `ogdch_postmeta` VALUES (1932,2,'_wp_page_template','default');
-INSERT INTO `ogdch_postmeta` VALUES (1956,97,'_wp_page_template','default');
-INSERT INTO `ogdch_postmeta` VALUES (1957,118,'_wp_page_template','default');
-INSERT INTO `ogdch_postmeta` VALUES (1958,119,'_wp_page_template','default');
+INSERT INTO `ogdch_postmeta` VALUES (1959,290,'_wp_attached_file','2015/09/liip.png');
+INSERT INTO `ogdch_postmeta` VALUES (1960,290,'_wp_attachment_metadata','a:4:{s:5:\"width\";i:360;s:6:\"height\";i:360;s:4:\"file\";s:16:\"2015/09/liip.png\";s:10:\"image_meta\";a:11:{s:8:\"aperture\";i:0;s:6:\"credit\";s:0:\"\";s:6:\"camera\";s:0:\"\";s:7:\"caption\";s:0:\"\";s:17:\"created_timestamp\";i:0;s:9:\"copyright\";s:0:\"\";s:12:\"focal_length\";i:0;s:3:\"iso\";i:0;s:13:\"shutter_speed\";i:0;s:5:\"title\";s:0:\"\";s:11:\"orientation\";i:0;}}');
+INSERT INTO `ogdch_postmeta` VALUES (1961,97,'_wp_page_template','default');
+INSERT INTO `ogdch_postmeta` VALUES (1962,118,'_wp_page_template','default');
+INSERT INTO `ogdch_postmeta` VALUES (1963,119,'_wp_page_template','default');
 /*!40000 ALTER TABLE `ogdch_postmeta` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1197,7 +1199,7 @@ CREATE TABLE `ogdch_posts` (
   KEY `type_status_date` (`post_type`,`post_status`,`post_date`,`ID`),
   KEY `post_parent` (`post_parent`),
   KEY `post_author` (`post_author`)
-) ENGINE=InnoDB AUTO_INCREMENT=290 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=291 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1206,7 +1208,7 @@ CREATE TABLE `ogdch_posts` (
 
 LOCK TABLES `ogdch_posts` WRITE;
 /*!40000 ALTER TABLE `ogdch_posts` DISABLE KEYS */;
-INSERT INTO `ogdch_posts` VALUES (2,1,'2015-06-03 06:50:11','2015-05-21 13:32:37','Inhalt Deutsch Inhalt Deutsch Inhalt Deutsch Inhalt Deutsch Inhalt Deutsch Inhalt Deutsch Inhalt Deutsch Inhalt Deutsch Inhalt Deutsch Inhalt Deutsch Inhalt Deutsch Inhalt Deutsch Inhalt Deutsch Inhalt Deutsch Inhalt Deutsch Inhalt Deutsch Inhalt Deutsch Inhalt Deutsch Inhalt Deutsch Inhalt Deutsch Inhalt Deutsch Inhalt Deutsch Inhalt Deutsch Inhalt Deutsch Inhalt Deutsch Inhalt Deutsch Inhalt Deutsch Inhalt Deutsch Inhalt Deutsch Inhalt Deutsch Inhalt Deutsch\r\n\r\n<strong>Bold Text</strong>\r\n\r\n<em>Italic text</em>\r\n\r\n<del>strikethrough</del>\r\n\r\n<span style=\"text-decoration: underline;\">underlined</span>\r\n<ul>\r\n	<li>list1</li>\r\n	<li>list2</li>\r\n</ul>\r\n<ol>\r\n	<li>numbered1</li>\r\n	<li>numbered2</li>\r\n</ol>\r\n<blockquote>quote\r\n\r\nquote</blockquote>\r\n\r\n<hr />\r\n\r\n&nbsp;\r\n<p style=\"text-align: left;\">left aligned</p>\r\n<p style=\"text-align: center;\">centered</p>\r\n<p style=\"text-align: right;\">right aligned</p>\r\n<p style=\"text-align: justify;\">justified bla bla bla justified bla bla bla justified bla bla bla <span style=\"line-height: 1.5;\">justified bla bla bla justified bla bla bla </span><span style=\"line-height: 1.5;\">justified bla bla bla justified bla bla bla </span><span style=\"line-height: 1.5;\">justified bla bla bla justified bla bla bla </span><span style=\"line-height: 1.5;\">justified bla bla bla justified bla bla bla </span><span style=\"line-height: 1.5;\">justified bla bla bla justified bla bla bla </span><span style=\"line-height: 1.5;\">justified bla bla bla justified bla bla bla </span><span style=\"line-height: 1.5;\">justified bla bla bla </span><span style=\"line-height: 1.5;\">justified bla bla bla justified bla bla bla justified bla bla bla justified bla bla bla </span></p>\r\n<a href=\"http://google.ch\">Link</a>\r\n\r\n<span style=\"color: #00ff00;\">colored</span>\r\n<p style=\"padding-left: 30px;\">asdfasdfasf</p>\r\n<p style=\"padding-left: 60px;\">asdfasdfasfa</p>\r\n\r\n<h1>Centered Image h1</h1>\r\n[caption id=\"attachment_283\" align=\"aligncenter\" width=\"151\"]<a href=\"http://ogdch.dev/content/uploads/2015/09/appIcon.png\"><img class=\"wp-image-283\" src=\"http://ogdch.dev/content/uploads/2015/09/appIcon.png\" alt=\"appIcon\" width=\"151\" height=\"151\" /></a> caption[/caption]\r\n<h2>Left aligned Image h2</h2>\r\n[caption id=\"attachment_283\" align=\"alignleft\" width=\"141\"]<a href=\"http://ogdch.dev/content/uploads/2015/09/appIcon.png\"><img class=\"wp-image-283\" src=\"http://ogdch.dev/content/uploads/2015/09/appIcon.png\" alt=\"appIcon\" width=\"141\" height=\"141\" /></a> caption[/caption]\r\n\r\nText zum bild\r\n\r\nText zum bild\r\n\r\nasdfasdfasdf\r\n\r\nhello\r\n\r\nagain\r\n<h3>Right aligned image h3</h3>\r\n[caption id=\"attachment_283\" align=\"alignright\" width=\"153\"]<a href=\"http://ogdch.dev/content/uploads/2015/09/appIcon.png\"><img class=\"wp-image-283\" src=\"http://ogdch.dev/content/uploads/2015/09/appIcon.png\" alt=\"appIcon\" width=\"153\" height=\"153\" /></a> caption caption[/caption]\r\n<p style=\"text-align: right;\">Text zum bild</p>\r\n<p style=\"text-align: right;\">text zum bild</p>\r\n<p style=\"text-align: right;\">bla bla</p>\r\n<p style=\"text-align: right;\">asdfadsfas</p>\r\n<p style=\"text-align: right;\">asdfasdfadsfs</p>\r\n&nbsp;\r\n<h4>Preformatted Text h4</h4>\r\n<pre>&lt;a href=\"test\"&gt;i\'m a link&lt;/a&gt;</pre>\r\n<!--more-->\r\n\r\nmehr text','Über das Portal','','publish','open','open','','about','','','2015-09-29 09:48:32','2015-09-29 07:48:32','',0,'http://ogdch.dev/?page_id=2',0,'page','',0);
+INSERT INTO `ogdch_posts` VALUES (2,1,'2015-06-03 06:50:11','2015-05-21 13:32:37','<h2>Text Styles</h2>\r\n<h1>heading 1</h1>\r\n<h2>heading 2</h2>\r\n<h3>heading 3</h3>\r\n<h4>heading 4</h4>\r\n<pre>&lt;a href=\"test\"&gt;Preformatted text&lt;/a&gt;</pre>\r\n<h2>Text Formatting</h2>\r\nInhalt Deutsch Inhalt Deutsch Inhalt Deutsch Inhalt Deutsch Inhalt Deutsch Inhalt Deutsch Inhalt Deutsch Inhalt Deutsch Inhalt Deutsch Inhalt Deutsch Inhalt Deutsch Inhalt Deutsch Inhalt Deutsch Inhalt Deutsch Inhalt Deutsch Inhalt Deutsch Inhalt Deutsch Inhalt Deutsch Inhalt Deutsch Inhalt Deutsch Inhalt Deutsch Inhalt Deutsch Inhalt Deutsch Inhalt Deutsch Inhalt Deutsch Inhalt Deutsch Inhalt Deutsch Inhalt Deutsch Inhalt Deutsch Inhalt Deutsch Inhalt Deutsch\r\n\r\n<strong>Bold Text</strong>\r\n\r\n<em>Italic text</em>\r\n\r\n<del>strikethrough</del>\r\n\r\n<span style=\"text-decoration: underline;\">underlined</span>\r\n<p style=\"text-align: left;\">left aligned</p>\r\n<p style=\"text-align: center;\">centered</p>\r\n<p style=\"text-align: right;\">right aligned</p>\r\n<p style=\"text-align: justify;\">justified bla bla bla justified bla bla bla justified bla bla bla justified bla bla bla justified bla bla bla justified bla bla bla justified bla bla bla justified bla bla bla justified bla bla bla justified bla bla bla justified bla bla bla justified bla bla bla justified bla bla bla justified bla bla bla justified bla bla bla justified bla bla bla justified bla bla bla justified bla bla bla justified bla bla bla justified bla bla bla</p>\r\n<a href=\"http://google.ch\">Link</a>\r\n\r\n<span style=\"color: #00ff00;\">colored</span>\r\n<p style=\"padding-left: 30px;\">Indented Text</p>\r\n<p style=\"padding-left: 60px;\">More indented Text</p>\r\n\r\n<h2>Lists</h2>\r\n<ul>\r\n	<li>list1</li>\r\n	<li>list2</li>\r\n</ul>\r\n<ol>\r\n	<li>numbered1</li>\r\n	<li>numbered2</li>\r\n</ol>\r\n<blockquote>quote\r\n\r\nquote</blockquote>\r\n<h2>Horizontal Line</h2>\r\n\r\n<hr />\r\n\r\n<h2>Images</h2>\r\n&nbsp;\r\n\r\n[caption id=\"attachment_291\" align=\"aligncenter\" width=\"134\"]<a href=\"http://ogdch.dev/content/uploads/2015/09/liip.png\"><img class=\"wp-image-291\" src=\"http://ogdch.dev/content/uploads/2015/09/liip.png\" alt=\"liip\" width=\"134\" height=\"134\" /></a> Centered Image[/caption]\r\n\r\n<a href=\"http://ogdch.dev/content/uploads/2015/09/liip.png\"><img class=\"alignleft wp-image-291\" src=\"http://ogdch.dev/content/uploads/2015/09/liip.png\" alt=\"liip\" width=\"146\" height=\"146\" /></a>\r\n\r\nLeft aligned Image\r\n\r\nwithout caption\r\n\r\nText zum bild\r\n\r\nmore text\r\n\r\n[caption id=\"attachment_291\" align=\"alignright\" width=\"149\"]<a href=\"http://ogdch.dev/content/uploads/2015/09/liip.png\"><img class=\"wp-image-291\" src=\"http://ogdch.dev/content/uploads/2015/09/liip.png\" alt=\"liip\" width=\"149\" height=\"149\" /></a> Right aligned image[/caption]\r\n<p style=\"text-align: right;\">Text zum bild</p>\r\n<p style=\"text-align: right;\">text zum bild</p>\r\n<p style=\"text-align: right;\">more text</p>\r\n<p style=\"text-align: right;\">more text</p>','Über das Portal','','publish','open','open','','about','','','2015-09-29 14:25:57','2015-09-29 12:25:57','',0,'http://ogdch.dev/?page_id=2',0,'page','',0);
 INSERT INTO `ogdch_posts` VALUES (17,1,'2015-05-26 12:29:35','2015-05-26 12:29:35','a:1:{i:0;a:2:{i:0;s:0:\"\";i:1;s:0:\"\";}}','polylang_mo_2','','publish','open','open','','polylang_mo_2','','','2015-05-26 12:29:35','2015-05-26 12:29:35','',0,'http://ogdch.dev/?post_type=polylang_mo&p=17',0,'polylang_mo','',0);
 INSERT INTO `ogdch_posts` VALUES (18,1,'2015-05-26 12:29:45','2015-05-26 12:29:45','a:1:{i:0;a:2:{i:0;s:0:\"\";i:1;s:0:\"\";}}','polylang_mo_5','','publish','open','open','','polylang_mo_5','','','2015-05-26 12:29:45','2015-05-26 12:29:45','',0,'http://ogdch.dev/?post_type=polylang_mo&p=18',0,'polylang_mo','',0);
 INSERT INTO `ogdch_posts` VALUES (19,1,'2015-05-26 12:29:50','2015-05-26 12:29:50','a:1:{i:0;a:2:{i:0;s:0:\"\";i:1;s:0:\"\";}}','polylang_mo_9','','publish','open','open','','polylang_mo_9','','','2015-05-26 12:29:50','2015-05-26 12:29:50','',0,'http://ogdch.dev/?post_type=polylang_mo&p=19',0,'polylang_mo','',0);
@@ -1337,6 +1339,7 @@ INSERT INTO `ogdch_posts` VALUES (286,1,'2015-09-23 18:02:09','2015-09-23 16:02:
 INSERT INTO `ogdch_posts` VALUES (287,1,'2015-09-23 18:02:42','2015-09-23 16:02:42',' ','','','publish','closed','closed','','287','','','2015-09-23 18:02:42','2015-09-23 16:02:42','',0,'http://ogdch.dev/?p=287',4,'nav_menu_item','',0);
 INSERT INTO `ogdch_posts` VALUES (288,1,'2015-09-23 18:03:18','2015-09-23 16:03:18',' ','','','publish','closed','closed','','288','','','2015-09-23 18:03:18','2015-09-23 16:03:18','',0,'http://ogdch.dev/?p=288',4,'nav_menu_item','',0);
 INSERT INTO `ogdch_posts` VALUES (289,1,'2015-09-23 18:03:51','2015-09-23 16:03:51',' ','','','publish','closed','closed','','289','','','2015-09-23 18:03:51','2015-09-23 16:03:51','',0,'http://ogdch.dev/?p=289',4,'nav_menu_item','',0);
+INSERT INTO `ogdch_posts` VALUES (290,1,'2015-09-29 14:25:33','2015-09-29 12:25:33','','liip','','inherit','open','closed','','liip','','','2015-09-29 14:25:33','2015-09-29 12:25:33','',0,'http://ogdch.dev/content/uploads/2015/09/liip.png',0,'attachment','image/png',0);
 /*!40000 ALTER TABLE `ogdch_posts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1998,4 +2001,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-09-29  7:48:53
+-- Dump completed on 2015-09-29 12:27:11
