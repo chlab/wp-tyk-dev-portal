@@ -2,9 +2,9 @@
 /*
     Plugin Name: MU-Plugins
     Plugin URI:
-    Description: Contains: HM-Rewrites, App Post-Type
+    Description: Includes required plugins
     Author: Bartosz Podlewski
     Author URI: http://liip.ch/
 */
 
-require WPMU_PLUGIN_DIR.'/hm-rewrite/hm-rewrites.php';
+//require WPMU_PLUGIN_DIR.'/my-plugin/my-plugin.php';
