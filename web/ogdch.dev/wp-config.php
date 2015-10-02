@@ -59,6 +59,7 @@ define( 'DB_COLLATE', '' );
 define( 'WP_ALLOW_REPAIR', true );
 define( 'DISALLOW_FILE_EDIT', true );
 
+define( 'AUTOMATIC_UPDATER_DISABLED', true );
 
 // ===================================================
 // Authentication Unique Keys and Salts.
