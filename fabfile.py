@@ -16,6 +16,7 @@ ENVIRONMENTS = {
         'vagrant': False,
         'ckan_config': 'live.ini',
         'wp_config': 'wp-live-config.php',
+        'htaccess': 'live.htaccess',
         'roledefs': {
            'wordpress': ['ogdprodwp1'],
            'wordpress_db': ['ogdproddbwp'],
@@ -29,6 +30,7 @@ ENVIRONMENTS = {
         'vagrant': False,
         'ckan_config': 'test.ini',
         'wp_config': 'wp-test-config.php',
+        'htaccess': 'test.htaccess',
         'roledefs': {
             'wordpress': ['ogdentwwp1'],
             'wordpress_db': ['ogdentwwp1'],
@@ -42,6 +44,7 @@ ENVIRONMENTS = {
         'vagrant': True,
         'ckan_config': 'development.ini',
         'wp_config': 'wp-local-config.php',
+        'htaccess': 'dev.htaccess',
         'roledefs': {
             'wordpress': ['vagrant@127.0.0.1:2222'],
             'wordpress_db': ['vagrant@127.0.0.1:2222'],
@@ -137,6 +140,7 @@ def update_ckan_config():
 @roles('wordpress')
 def update_wp_config():
     run('cp %s/cookbooks/vagrant/templates/default/%s /var/www/ogdch.dev/%s' % (env.root, env.wp_config, env.wp_config))
+    run('cp %s/cookbooks/vagrant/templates/default/%s /var/www/ogdch.dev/.htaccess' % (env.root, env.htaccess))
 
 @roles('wordpress', 'ckan')
 def restart_apache():

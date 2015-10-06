@@ -1,0 +1,15 @@
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+RewriteRule    ^((de/|en/|it/|fr/)?(packages|organization|package|dataset|group|resource|related|revision|licenses|rating|ckan-admin|user|login_generic|util|harvest|activity|dashboard|api|search|storage|feeds|fanstatic|images|base|wp-assets)(.*))$  http://10.0.119.20:80/$0  [P]
+#Header edit Location ^http(\:\/\/127.0.0.1:8080.*)$ http$1
+
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+
+# END WordPress
