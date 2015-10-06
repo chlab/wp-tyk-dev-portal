@@ -3,6 +3,7 @@ import pipes
 from fabric.api import (
     cd, env, execute, local, put, run, settings, task, roles, sudo, parallel, serial
 )
+from fabric.contrib.files import exists
 
 
 # This is the definition of your environments. Every item of the ENVIRONMENTS
@@ -72,12 +73,50 @@ def _run_in_virtualenv(cmd, args):
 def _run_paster(args):
     return _run_in_virtualenv('paster', args)
 
-@roles('wordpress', 'wordpress_db', 'ckan', 'ckan_db')
+def _run_python(args):
+    return _run_in_virtualenv('python', args)
+
+def _run_pip(args):
+    return _run_in_virtualenv('pip', args)
+
 def _rev_parse(rev):
     with cd(env.root):
         run('git fetch')
         return run("git rev-parse %s" % rev)
 
+@roles('ckan', 'wordpress')
+def update_dependencies():
+    execute(update_ckan_dependencies)
+    execute(update_wp_dependencies)
+
+@roles('ckan')
+def update_ckan_dependencies():
+    with cd(os.path.join(env.root, 'web', 'ckan')):
+        _run_pip('install -r requirements.txt') 
+        _run_python('setup.py develop')
+    
+    ckan_extensions = [
+        'ckanext-harvest',
+        'ckanext-scheming',
+        'ckanext-fluent',
+        'ckanext-hierarchy',
+        'ckanext-dcat',
+        'ckanext-switzerland',
+    ]
+
+    for ext in ckan_extensions:
+        with cd(os.path.join(env.root, 'web', 'ckanext', ext)):
+            if exists('requirements.txt'):
+                _run_pip('install -r requirements.txt') 
+            if exists('pip-requirements.txt'):
+                _run_pip('install -r pip-requirements.txt') 
+            _run_python('setup.py develop')
+
+@roles('wordpress')
+def update_wp_dependencies():
+    with cd(os.path.join(env.root, 'web', 'ogdch.dev/content/themes/wp-ogdch-theme')):
+        sudo('php composer.phar install')
+    
 @roles('wordpress', 'wordpress_db', 'ckan', 'ckan_db')
 def update_repo(commit):
     """
@@ -179,6 +218,7 @@ def deploy(rev='origin/master'):
     commit = _rev_parse(rev)
     execute(update_repo, commit=commit)
     execute(update_config)
+    execute(update_dependencies)
     execute(restore)
     execute(restart)
 
