@@ -65,7 +65,7 @@
 
 # Deployment
 
-To deploy this application, we use [Fabric](http://docs.fabfile.org) (make sure it is installed, see above).
+To deploy this application, we use [Fabric](http://docs.fabfile.org) (make sure it is installed via pip, see above: `pip install -r dev-requirements.txt`).
 There are a bunch of tasks defined, which can be used to execute certain tasks on the deployment environment:
 
 ```
@@ -86,7 +86,6 @@ Make sure to always specify an environment task (`dev`, `test` or `stage`) and c
 
 * `restart` to restart all services
 * `restore` to restore the checked-in DB dumps for WP and CKAN
-* `
 
 # Testing
 
