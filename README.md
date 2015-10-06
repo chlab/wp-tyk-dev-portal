@@ -86,7 +86,6 @@ Make sure to always specify an environment task (`dev`, `test` or `stage`) and c
 
 * `restart` to restart all services
 * `restore` to restore the checked-in DB dumps for WP and CKAN
-* `
 
 # Testing
 
