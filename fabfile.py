@@ -118,6 +118,7 @@ def update_ckan_dependencies():
 @roles('wordpress')
 def update_wp_dependencies():
     with cd(os.path.join(env.root, 'web', 'ogdch.dev/content/themes/wp-ogdch-theme')):
+        sudo('php composer.phar self-update')
         sudo('php composer.phar install')
     
 @roles('wordpress', 'wordpress_db', 'ckan', 'ckan_db')
