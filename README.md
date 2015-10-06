@@ -65,7 +65,7 @@
 
 # Deployment
 
-To deploy this application, we use [Fabric](http://docs.fabfile.org) (make sure it is installed, see above).
+To deploy this application, we use [Fabric](http://docs.fabfile.org) (make sure it is installed via pip, see above: `pip install -r dev-requirements.txt`).
 There are a bunch of tasks defined, which can be used to execute certain tasks on the deployment environment:
 
 ```
