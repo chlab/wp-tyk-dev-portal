@@ -13,6 +13,8 @@ ENVIRONMENTS = {
         'home': '/home/liipadmin',
         'root': '/home/liipadmin/ogd-ch',
         'vagrant': False,
+        'ckan_config': 'live.ini',
+        'wp_config': 'wp-live-config.php',
         'roledefs': {
            'wordpress': ['ogdprodwp1'],
            'wordpress_db': ['ogdproddbwp'],
@@ -24,6 +26,8 @@ ENVIRONMENTS = {
         'home': '/home/liipadmin',
         'root': '/home/liipadmin/ogd-ch',
         'vagrant': False,
+        'ckan_config': 'test.ini',
+        'wp_config': 'wp-test-config.php',
         'roledefs': {
             'wordpress': ['ogdentwwp1'],
             'wordpress_db': ['ogdentwwp1'],
@@ -35,6 +39,8 @@ ENVIRONMENTS = {
         'home': '/home/vagrant',
         'root': '/vagrant',
         'vagrant': True,
+        'ckan_config': 'development.ini',
+        'wp_config': 'wp-local-config.php',
         'roledefs': {
             'wordpress': ['vagrant@127.0.0.1:2222'],
             'wordpress_db': ['vagrant@127.0.0.1:2222'],
@@ -83,6 +89,15 @@ def update_repo(commit):
         run('git submodule init')
         run("git submodule foreach --recursive 'git fetch --tags'")
         run('git submodule update --recursive')
+
+@roles('ckan')
+def update_ckan_config():
+    run('cp %s/cookbooks/vagrant/templates/default/%s /var/www/ckan/%s' % (env.root, env.ckan_config, env.ckan_config))
+    run('cp %s/cookbooks/vagrant/templates/default/%s /var/www/ckan/development.ini' % (env.root, env.ckan_config))
+
+@roles('wordpress')
+def update_wp_config():
+    run('cp %s/cookbooks/vagrant/templates/default/%s /var/www/ogdch.dev/%s' % (env.root, env.wp_config, env.wp_config))
 
 @roles('wordpress', 'ckan')
 def restart_apache():
@@ -151,6 +166,11 @@ def restore_wp_db():
     run("mysql -u root %s -e'CREATE DATABASE cms;'" % pass_option)
     run("mysql -u root %s cms < %s/sql/cms.sql" % (pass_option, env.root))
 
+@roles('wordpress', 'ckan')
+def update_config():
+    execute(update_ckan_config)
+    execute(update_wp_config)
+
 @roles('wordpress', 'wordpress_db', 'ckan', 'ckan_db')
 def deploy(rev='origin/master'):
     """
@@ -158,6 +178,7 @@ def deploy(rev='origin/master'):
     """
     commit = _rev_parse(rev)
     execute(update_repo, commit=commit)
+    execute(update_config)
     execute(restore)
     execute(restart)
 
