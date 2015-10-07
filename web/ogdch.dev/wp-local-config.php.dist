@@ -81,7 +81,7 @@ define( 'TWITTER_OAUTH_ACCESS_TOKEN_SECRET', '' );
 // ===================================================
 
 define( 'CKAN_API_ENDPOINT', 'http://ogdch.dev/api/3/action/' );
-define( 'CKAN_API_KEY', 'c4c33823-02ec-401b-b7b2-7ab3271f7021' ); // adminsuer key
+define( 'CKAN_API_KEY', '' ); // adminsuer key
 
 $language_priority = array(
 	1 => 'en',
