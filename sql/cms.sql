@@ -295,7 +295,7 @@ CREATE TABLE `ogdch_postmeta` (
   PRIMARY KEY (`meta_id`),
   KEY `post_id` (`post_id`),
   KEY `meta_key` (`meta_key`(191))
-) ENGINE=InnoDB AUTO_INCREMENT=1993 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2002 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1182,6 +1182,15 @@ INSERT INTO `ogdch_postmeta` VALUES (1989,193,'_wp_old_slug','raum');
 INSERT INTO `ogdch_postmeta` VALUES (1990,192,'_wp_old_slug','bevoelkerung');
 INSERT INTO `ogdch_postmeta` VALUES (1991,285,'_ckan_local_dataset_themes','a:2:{i:0;s:10:\"population\";i:1;s:9:\"territory\";}');
 INSERT INTO `ogdch_postmeta` VALUES (1992,284,'_ckan_local_dataset_themes','a:2:{i:0;s:10:\"population\";i:1;s:8:\"mobility\";}');
+INSERT INTO `ogdch_postmeta` VALUES (1993,291,'_edit_lock','1444643436:1');
+INSERT INTO `ogdch_postmeta` VALUES (1994,291,'_edit_last','1');
+INSERT INTO `ogdch_postmeta` VALUES (1995,291,'_ckan_local_org_ckan_id','091dde3d-99db-4da3-a2c5-b41741c18502');
+INSERT INTO `ogdch_postmeta` VALUES (1996,291,'_ckan_local_org_ckan_name','sub-organization');
+INSERT INTO `ogdch_postmeta` VALUES (1997,291,'_ckan_local_org_title_en','Sub-Organization');
+INSERT INTO `ogdch_postmeta` VALUES (1998,291,'_ckan_local_org_title_de','Sub-Organization');
+INSERT INTO `ogdch_postmeta` VALUES (1999,291,'_ckan_local_org_title_fr','Sub-Organization');
+INSERT INTO `ogdch_postmeta` VALUES (2000,291,'_ckan_local_org_title_it','Sub-Organization');
+INSERT INTO `ogdch_postmeta` VALUES (2001,291,'_ckan_local_org_parent','swisstopo');
 /*!40000 ALTER TABLE `ogdch_postmeta` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1221,7 +1230,7 @@ CREATE TABLE `ogdch_posts` (
   KEY `type_status_date` (`post_type`,`post_status`,`post_date`,`ID`),
   KEY `post_parent` (`post_parent`),
   KEY `post_author` (`post_author`)
-) ENGINE=InnoDB AUTO_INCREMENT=291 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=292 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1361,6 +1370,7 @@ INSERT INTO `ogdch_posts` VALUES (287,1,'2015-09-23 18:02:42','2015-09-23 16:02:
 INSERT INTO `ogdch_posts` VALUES (288,1,'2015-09-23 18:03:18','2015-09-23 16:03:18',' ','','','publish','closed','closed','','288','','','2015-09-23 18:03:18','2015-09-23 16:03:18','',0,'http://ogdch.dev/?p=288',4,'nav_menu_item','',0);
 INSERT INTO `ogdch_posts` VALUES (289,1,'2015-09-23 18:03:51','2015-09-23 16:03:51',' ','','','publish','closed','closed','','289','','','2015-09-23 18:03:51','2015-09-23 16:03:51','',0,'http://ogdch.dev/?p=289',4,'nav_menu_item','',0);
 INSERT INTO `ogdch_posts` VALUES (290,1,'2015-09-29 14:25:33','2015-09-29 12:25:33','','liip','','inherit','open','closed','','liip','','','2015-09-29 14:25:33','2015-09-29 12:25:33','',0,'http://ogdch.dev/content/uploads/2015/09/liip.png',0,'attachment','image/png',0);
+INSERT INTO `ogdch_posts` VALUES (291,1,'2015-10-12 11:50:14','2015-10-12 09:50:14','','Sub-Organization','','publish','closed','closed','','sub-organization','','','2015-10-12 11:50:14','2015-10-12 09:50:14','',0,'http://ogdch.dev/?post_type=ckan-local-org&#038;p=291',0,'ckan-local-org','',0);
 /*!40000 ALTER TABLE `ogdch_posts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2022,4 +2032,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-10-12  9:48:24
+-- Dump completed on 2015-10-12  9:50:38

@@ -1119,6 +1119,7 @@ d076c3d8-67e0-4afd-9252-f568dfd9927e	2015-10-12 09:40:41.797653	082dec4d-1b01-44
 07d4add6-fbea-438f-999e-c11b37592f60	2015-10-12 09:41:09.335918	082dec4d-1b01-4463-886e-6bb9e5b3a69a	52368b85-350c-450e-a18e-f2fb6fa7ae7a	a42509bf-1950-41b7-8834-c906c680d4f6	changed package	{"package": {"owner_org": "7dbaad15-597f-499c-9a72-95de38b95cad", "maintainer": null, "name": "baustellen", "metadata_modified": "2015-10-12T09:41:08.094946", "author": null, "url": "", "notes": "{\\"fr\\": \\"Description FR\\", \\"de\\": \\"Beschreibung DE\\", \\"en\\": \\"Description EN\\", \\"it\\": \\"Description IT\\"}", "title": "{\\"fr\\": \\"Baustellen\\", \\"de\\": \\"Baustellen\\", \\"en\\": \\"Building Sites\\", \\"it\\": \\"Chantiers\\"}", "private": false, "maintainer_email": null, "author_email": null, "state": "active", "version": null, "creator_user_id": "082dec4d-1b01-4463-886e-6bb9e5b3a69a", "license_id": null, "revision_id": "b8325dae-ab2a-4154-93bc-55207ba1d8a7", "type": "dataset", "id": "52368b85-350c-450e-a18e-f2fb6fa7ae7a"}}
 95645c30-02cd-40dd-9d65-767e2380fdc9	2015-10-12 09:41:38.801885	082dec4d-1b01-4463-886e-6bb9e5b3a69a	64d3b89b-ff79-477e-8fb4-9cfc388b0f58	1216ef34-c1cc-43c2-8055-fa25676ef5ef	changed group	{"group": {"description": "{\\"fr\\": \\"\\", \\"de\\": \\"\\", \\"en\\": \\"\\", \\"it\\": \\"\\"}", "title": "{\\"fr\\": \\"Population\\", \\"de\\": \\"Bev\\\\u00f6lkerung\\", \\"en\\": \\"Population\\", \\"it\\": \\"Popolazione\\"}", "created": "2015-08-25T13:47:23.668582", "approval_status": "approved", "is_organization": false, "state": "active", "image_url": "", "revision_id": "2286e79a-45a4-4f7e-83cb-731258f6104c", "type": "group", "id": "64d3b89b-ff79-477e-8fb4-9cfc388b0f58", "name": "population"}}
 94741784-3c25-458b-82fc-d4f4cb893338	2015-10-12 09:41:27.183238	082dec4d-1b01-4463-886e-6bb9e5b3a69a	ac9396cd-09a8-41d6-9d9a-acbd5a2f15e0	1169d12c-30f1-41d4-8f42-1faf19f0f10a	changed package	{"package": {"owner_org": "73124d1e-c2aa-4d20-a42d-fa71b8946e93", "maintainer": null, "name": "railway-noise-night", "metadata_modified": "2015-10-12T09:41:25.823013", "author": null, "url": "http://www.bafu.admin.ch/laerm/index.html?lang=de", "notes": "{\\"fr\\": \\"La carte montre que la pollution sonore est suspendu par le syst\\\\u00e8me de rail, la population.\\", \\"de\\": \\"Die Karte zeigt, welcher L\\\\u00e4rmbelastung die Bev\\\\u00f6lkerung durch den Schienenverkehr ausgesetzt ist.\\", \\"en\\": \\"The map shows how the population is exposed by the noise pollution of the rail system.\\", \\"it\\": \\"La mappa mostra che l\\\\\\\\'inquinamento acustico \\\\u00e8 sospeso dal sistema ferroviario, la popolazione.\\"}", "title": "{\\"fr\\": \\"Bruit ferroviaire nuit\\", \\"de\\": \\"Eisenbahnl\\\\u00e4rm Nacht\\", \\"en\\": \\"Railway noise night\\", \\"it\\": \\"Rumore ferroviario notte\\"}", "private": false, "maintainer_email": null, "author_email": null, "state": "active", "version": null, "creator_user_id": "082dec4d-1b01-4463-886e-6bb9e5b3a69a", "license_id": null, "revision_id": "67686d69-d368-44b3-912f-22718aba45ef", "type": "dataset", "id": "ac9396cd-09a8-41d6-9d9a-acbd5a2f15e0"}}
+0bc27b08-0dc9-40d0-b969-0abd56ec4a94	2015-10-12 09:50:16.392135	082dec4d-1b01-4463-886e-6bb9e5b3a69a	091dde3d-99db-4da3-a2c5-b41741c18502	7c99d8d8-1c8c-4298-9aa9-f38b2546d820	new organization	{"group": {"description": "{\\"fr\\": \\"\\", \\"de\\": \\"\\", \\"en\\": \\"\\", \\"it\\": \\"\\"}", "title": "{\\"fr\\": \\"Sub-Organization\\", \\"de\\": \\"Sub-Organization\\", \\"en\\": \\"Sub-Organization\\", \\"it\\": \\"Sub-Organization\\"}", "created": "2015-10-12T09:50:16.212956", "approval_status": "approved", "is_organization": true, "state": "active", "image_url": "", "revision_id": "7c99d8d8-1c8c-4298-9aa9-f38b2546d820", "type": "organization", "id": "091dde3d-99db-4da3-a2c5-b41741c18502", "name": "sub-organization"}}
 \.
 
 
@@ -1238,6 +1239,7 @@ afcb4a2a-b4b0-4d7c-984a-9078e964be49	education	{"fr": "Education, science", "de"
 27b314a5-57b6-4c4e-9c9f-6923365eaecc	territory	{"fr": "Territoire et environnement", "de": "Raum und Umwelt", "en": "Territory and environment", "it": "Territorio e ambiente"}	{"fr": "", "de": "", "en": "", "it": ""}	2015-08-25 13:48:07.986487	active	daba6131-a32d-439a-918b-68ebd3c49ba6	group	approved		f
 64d3b89b-ff79-477e-8fb4-9cfc388b0f58	population	{"fr": "Population", "de": "Bev\\u00f6lkerung", "en": "Population", "it": "Popolazione"}	{"fr": "", "de": "", "en": "", "it": ""}	2015-08-25 13:47:23.668582	active	2286e79a-45a4-4f7e-83cb-731258f6104c	group	approved		f
 7d52132f-7119-41ab-b2b8-e62d69a834ce	construction	{"fr": "Construction, logement", "de": "Bau- und Wohnungswesen", "en": "Construction and housing", "it": "Costruzione e abitazione"}	{"fr": "", "de": "", "en": "", "it": ""}	2015-08-25 13:58:14.424398	active	106fcf37-93ce-4c99-b621-4f9c9e94a232	group	approved		f
+091dde3d-99db-4da3-a2c5-b41741c18502	sub-organization	{"fr": "Sub-Organization", "de": "Sub-Organization", "en": "Sub-Organization", "it": "Sub-Organization"}	{"fr": "", "de": "", "en": "", "it": ""}	2015-10-12 09:50:16.212956	active	7c99d8d8-1c8c-4298-9aa9-f38b2546d820	organization	approved		t
 \.
 
 
@@ -1370,6 +1372,7 @@ afcb4a2a-b4b0-4d7c-984a-9078e964be49	education	{"fr": "Education, science", "de"
 7d52132f-7119-41ab-b2b8-e62d69a834ce	construction	{"fr": "Construction, logement", "de": "Bau- und Wohnungswesen", "en": "Construction and housing", "it": "Costruzione e abitazione"}	{"fr": "", "de": "", "en": "", "it": ""}	2015-08-25 13:58:14.424398	active	106fcf37-93ce-4c99-b621-4f9c9e94a232	7d52132f-7119-41ab-b2b8-e62d69a834ce	\N	2015-10-12 09:40:03.943343	9999-12-31 00:00:00	\N	group	approved		f
 27b314a5-57b6-4c4e-9c9f-6923365eaecc	territory	{"fr": "Territoire et environnement", "de": "Raum und Umwelt", "en": "Territory and environment", "it": "Territorio e ambiente"}	{"fr": "", "de": "", "en": "", "it": ""}	2015-08-25 13:48:07.986487	active	daba6131-a32d-439a-918b-68ebd3c49ba6	27b314a5-57b6-4c4e-9c9f-6923365eaecc	\N	2015-10-12 09:40:28.681318	9999-12-31 00:00:00	\N	group	approved		f
 64d3b89b-ff79-477e-8fb4-9cfc388b0f58	population	{"fr": "Population", "de": "Bev\\u00f6lkerung", "en": "Population", "it": "Popolazione"}	{"fr": "", "de": "", "en": "", "it": ""}	2015-08-25 13:47:23.668582	active	2286e79a-45a4-4f7e-83cb-731258f6104c	64d3b89b-ff79-477e-8fb4-9cfc388b0f58	\N	2015-10-12 09:40:41.760608	9999-12-31 00:00:00	\N	group	approved		f
+091dde3d-99db-4da3-a2c5-b41741c18502	sub-organization	{"fr": "Sub-Organization", "de": "Sub-Organization", "en": "Sub-Organization", "it": "Sub-Organization"}	{"fr": "", "de": "", "en": "", "it": ""}	2015-10-12 09:50:16.212956	active	7c99d8d8-1c8c-4298-9aa9-f38b2546d820	091dde3d-99db-4da3-a2c5-b41741c18502	\N	2015-10-12 09:50:15.540775	9999-12-31 00:00:00	\N	organization	approved		t
 \.
 
 
@@ -1456,6 +1459,9 @@ c6345f8a-656e-432b-b61c-fe231071bdf6	5389c3f2-2f64-436b-9fac-2d1fc342f7b5
 c0c4dd1d-5dff-401c-8aeb-65213da5a064	7dbaad15-597f-499c-9a72-95de38b95cad
 a602842f-85fd-44d6-9676-366c92e9d06c	7dbaad15-597f-499c-9a72-95de38b95cad
 33473081-0708-4fec-bbe1-113172458b76	7dbaad15-597f-499c-9a72-95de38b95cad
+54132956-1fca-4556-9ec3-050a733a4973	091dde3d-99db-4da3-a2c5-b41741c18502
+c8948c8a-b959-478b-b95f-50a947affb31	091dde3d-99db-4da3-a2c5-b41741c18502
+1ed6ce6b-c5a6-4568-87bb-bf7fb5ad1a8e	091dde3d-99db-4da3-a2c5-b41741c18502
 \.
 
 
@@ -1541,11 +1547,13 @@ d6ac9b5c-28ed-42eb-a860-8bc2847d73b5	082dec4d-1b01-4463-886e-6bb9e5b3a69a	e5d8e8
 6bde9c50-0d48-4843-bf83-6ce575146166	ac9396cd-09a8-41d6-9d9a-acbd5a2f15e0	73124d1e-c2aa-4d20-a42d-fa71b8946e93	active	f9ede606-2272-46ba-8c7b-6d85a571f049	package	organization
 33341e7d-bd14-4644-aed0-a58495403a25	52368b85-350c-450e-a18e-f2fb6fa7ae7a	7dbaad15-597f-499c-9a72-95de38b95cad	active	b8325dae-ab2a-4154-93bc-55207ba1d8a7	package	organization
 8e9adf75-4ca6-4b94-8d5f-853060d2af06	ac9396cd-09a8-41d6-9d9a-acbd5a2f15e0	27b314a5-57b6-4c4e-9c9f-6923365eaecc	deleted	8ee70676-f972-40ea-980a-d75cc67bbd0e	package	public
+43784dd3-a687-45a8-bf99-9954d1bc8bd4	082dec4d-1b01-4463-886e-6bb9e5b3a69a	091dde3d-99db-4da3-a2c5-b41741c18502	active	a710066e-127c-40f7-9716-719bfa2a88b3	user	admin
 e6f12290-50de-4e44-8024-32a59a9d0792	52368b85-350c-450e-a18e-f2fb6fa7ae7a	7d52132f-7119-41ab-b2b8-e62d69a834ce	deleted	42c3e7e1-377b-4063-b97c-912e4aa2ea2f	package	public
 8d67e3f6-dd59-4372-850b-a1cc1baa2eba	52368b85-350c-450e-a18e-f2fb6fa7ae7a	27b314a5-57b6-4c4e-9c9f-6923365eaecc	active	a42509bf-1950-41b7-8834-c906c680d4f6	package	public
 0b7ab5e7-ac22-4cfe-91f5-0ae407f86bae	52368b85-350c-450e-a18e-f2fb6fa7ae7a	64d3b89b-ff79-477e-8fb4-9cfc388b0f58	active	a42509bf-1950-41b7-8834-c906c680d4f6	package	public
 d6abb8dc-498a-445c-bab6-41828aefce77	ac9396cd-09a8-41d6-9d9a-acbd5a2f15e0	64d3b89b-ff79-477e-8fb4-9cfc388b0f58	active	1169d12c-30f1-41d4-8f42-1faf19f0f10a	package	public
 902105cc-bf76-4f85-ba97-37f0cf59e2f2	ac9396cd-09a8-41d6-9d9a-acbd5a2f15e0	8c2a33d5-475d-48dd-87b6-7ce5eb2033fa	active	1169d12c-30f1-41d4-8f42-1faf19f0f10a	package	public
+c3c02d93-74ea-444c-9b74-424dc88a4b48	73124d1e-c2aa-4d20-a42d-fa71b8946e93	091dde3d-99db-4da3-a2c5-b41741c18502	active	7c99d8d8-1c8c-4298-9aa9-f38b2546d820	group	public
 \.
 
 
@@ -1594,6 +1602,8 @@ e6f12290-50de-4e44-8024-32a59a9d0792	52368b85-350c-450e-a18e-f2fb6fa7ae7a	7d5213
 902105cc-bf76-4f85-ba97-37f0cf59e2f2	ac9396cd-09a8-41d6-9d9a-acbd5a2f15e0	8c2a33d5-475d-48dd-87b6-7ce5eb2033fa	active	1169d12c-30f1-41d4-8f42-1faf19f0f10a	902105cc-bf76-4f85-ba97-37f0cf59e2f2	\N	2015-10-12 09:41:25.676259	9999-12-31 00:00:00	\N	package	public
 d6abb8dc-498a-445c-bab6-41828aefce77	ac9396cd-09a8-41d6-9d9a-acbd5a2f15e0	64d3b89b-ff79-477e-8fb4-9cfc388b0f58	deleted	8ee70676-f972-40ea-980a-d75cc67bbd0e	d6abb8dc-498a-445c-bab6-41828aefce77	\N	2015-10-12 09:39:11.547563	2015-10-12 09:41:25.676259	\N	package	public
 d6abb8dc-498a-445c-bab6-41828aefce77	ac9396cd-09a8-41d6-9d9a-acbd5a2f15e0	64d3b89b-ff79-477e-8fb4-9cfc388b0f58	active	1169d12c-30f1-41d4-8f42-1faf19f0f10a	d6abb8dc-498a-445c-bab6-41828aefce77	\N	2015-10-12 09:41:25.676259	9999-12-31 00:00:00	\N	package	public
+c3c02d93-74ea-444c-9b74-424dc88a4b48	73124d1e-c2aa-4d20-a42d-fa71b8946e93	091dde3d-99db-4da3-a2c5-b41741c18502	active	7c99d8d8-1c8c-4298-9aa9-f38b2546d820	c3c02d93-74ea-444c-9b74-424dc88a4b48	\N	2015-10-12 09:50:15.540775	9999-12-31 00:00:00	\N	group	public
+43784dd3-a687-45a8-bf99-9954d1bc8bd4	082dec4d-1b01-4463-886e-6bb9e5b3a69a	091dde3d-99db-4da3-a2c5-b41741c18502	active	a710066e-127c-40f7-9716-719bfa2a88b3	43784dd3-a687-45a8-bf99-9954d1bc8bd4	\N	2015-10-12 09:50:16.61648	9999-12-31 00:00:00	\N	user	admin
 \.
 
 
@@ -2008,6 +2018,8 @@ daba6131-a32d-439a-918b-68ebd3c49ba6	2015-10-12 09:40:28.681318	admin	REST API: 
 a42509bf-1950-41b7-8834-c906c680d4f6	2015-10-12 09:41:08.07337	admin	REST API: Update Objekt baustellen	active	\N
 1169d12c-30f1-41d4-8f42-1faf19f0f10a	2015-10-12 09:41:25.676259	admin	REST API: Update Objekt railway-noise-night	active	\N
 1216ef34-c1cc-43c2-8055-fa25676ef5ef	2015-10-12 09:41:38.743049	admin	REST API: Update Objekt population	active	\N
+7c99d8d8-1c8c-4298-9aa9-f38b2546d820	2015-10-12 09:50:15.540775	admin	REST API: Objekt sub-organization anlegen	active	\N
+a710066e-127c-40f7-9716-719bfa2a88b3	2015-10-12 09:50:16.61648	admin	REST API: Erstelle Mitgliedsobjekt 	active	\N
 \.
 
 
@@ -2255,6 +2267,9 @@ e5d7d4ec-6469-4a63-b01b-4fc081c5886f	082dec4d-1b01-4463-886e-6bb9e5b3a69a	Packag
 2d7a45aa-3d57-4989-b64a-05dfc9169b9f	e970bf27-483c-4c55-a381-c42e09881c9f	Package	reader	\N
 c549c519-9fe0-4e77-be0f-35ac8edca9bc	1bf67eeb-5723-4736-bcaa-7905fd0039ce	Package	reader	\N
 bba446c1-368f-4ba5-be3b-fa3729fca0ea	082dec4d-1b01-4463-886e-6bb9e5b3a69a	Package	admin	\N
+54132956-1fca-4556-9ec3-050a733a4973	e970bf27-483c-4c55-a381-c42e09881c9f	Group	reader	\N
+c8948c8a-b959-478b-b95f-50a947affb31	1bf67eeb-5723-4736-bcaa-7905fd0039ce	Group	reader	\N
+1ed6ce6b-c5a6-4568-87bb-bf7fb5ad1a8e	082dec4d-1b01-4463-886e-6bb9e5b3a69a	Group	admin	\N
 \.
 
 
