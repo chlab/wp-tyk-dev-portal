@@ -34,7 +34,8 @@ Vagrant.configure("2") do |config|
   # END WORKAROUND
 
   config.vm.provider :virtualbox do |provider, config|
-    config.vm.box = "chef/centos-7.0"
+    config.vm.box = "centos7"
+    config.vm.box_url = "https://github.com/holms/vagrant-centos7-box/releases/download/7.1.1503.001/CentOS-7.1.1503-x86_64-netboot.box"
     
     config.nfs.map_uid = 0
     config.nfs.map_gid = 0

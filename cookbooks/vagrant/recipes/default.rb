@@ -262,6 +262,14 @@ template "#{CKAN_DIR}/development.ini" do
   source "development.ini"
 end
 
+bash "update the pip package itself" do
+  user USER
+  code <<-EOH
+  source #{HOME}/pyenv/bin/activate
+  pip install --upgrade pip
+EOH
+end
+
 bash "install the ckan pip package" do
   user USER
   code <<-EOH
@@ -525,7 +533,7 @@ end
 bash "Rebuild the vbox kernel module after upgrade" do
   user "root"
   code <<-EOH
-  yum install kernel-devel-`uname -r`
-  /etc/init.d/vboxadd setup
+  yum install -y kernel-devel-`uname -r`
+  # /etc/init.d/vboxadd setup
   EOH
 end
