@@ -14,8 +14,6 @@ DIR=`dirname $0`
 
 cd $DIR/..
 
-
-
 # Re-create vagrant box
 if  [ "$DESTROY_BOX" = true ] ; then
     vagrant destroy --force
@@ -29,6 +27,7 @@ ssh-keyscan -H $GITLAB_HOST >> ~gitlab_ci_runner/.ssh/known_hosts
 GITHUB_HOST='github.com'
 ssh-keyscan -H $GITHUB_HOST >> ~gitlab_ci_runner/.ssh/known_hosts
 
+git reset --hard HEAD
 git submodule init
 git submodule foreach --recursive 'git fetch --tags'
 git submodule update --recursive
