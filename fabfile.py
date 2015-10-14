@@ -3,7 +3,7 @@ import pipes
 from fabric.api import (
     cd, env, execute, local, put, run, settings, task, roles, sudo, parallel, serial
 )
-from fabric.contrib.files import exists
+from fabric.contrib.files import exists, sed
 
 
 # This is the definition of your environments. Every item of the ENVIRONMENTS
@@ -13,6 +13,7 @@ ENVIRONMENTS = {
     'stage': {
         'home': '/home/liipadmin',
         'root': '/home/liipadmin/ogd-ch',
+        'url': 'http://ogdch.begasoft.ch',
         'vagrant': False,
         'ckan_config': 'live.ini',
         'wp_config': 'wp-live-config.php',
@@ -27,6 +28,7 @@ ENVIRONMENTS = {
     'test': {
         'home': '/home/liipadmin',
         'root': '/home/liipadmin/ogd-ch',
+        'url': 'http://ogdch-test.clients.liip.ch',
         'vagrant': False,
         'ckan_config': 'test.ini',
         'wp_config': 'wp-test-config.php',
@@ -41,6 +43,7 @@ ENVIRONMENTS = {
     'dev': {
         'home': '/home/vagrant',
         'root': '/vagrant',
+        'url': 'http://ogdch.dev',
         'vagrant': True,
         'ckan_config': 'development.ini',
         'wp_config': 'wp-local-config.php',
@@ -210,7 +213,10 @@ def restore_wp_db():
     if 'cms' in db_list:
         run("mysql -u root %s -e'DROP DATABASE cms;'" % pass_option)
     run("mysql -u root %s -e'CREATE DATABASE cms;'" % pass_option)
-    run("mysql -u root %s cms < %s/sql/cms.sql" % (pass_option, env.root))
+
+    run("cp %s/sql/cms.sql /tmp/cms.sql" % env.root)
+    sed('/tmp/cms.sql', before='http://ogdch.dev', after=env.url, backup='')
+    run("mysql -u root %s cms < /tmp/cms.sql" % pass_option)
 
 @roles('wordpress', 'ckan')
 def update_config():
