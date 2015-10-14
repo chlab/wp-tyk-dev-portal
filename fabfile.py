@@ -137,6 +137,7 @@ def update_repo(commit):
 def update_ckan_config():
     run('cp %s/cookbooks/vagrant/templates/default/%s /var/www/ckan/%s' % (env.root, env.ckan_config, env.ckan_config))
     run('cp %s/cookbooks/vagrant/templates/default/%s /var/www/ckan/development.ini' % (env.root, env.ckan_config))
+    run('cp %s/cookbooks/vagrant/templates/default/schema.xml /etc/solr/conf/schema.xml' % (env.root))
 
 @roles('wordpress')
 def update_wp_config():
