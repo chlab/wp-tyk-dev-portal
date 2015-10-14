@@ -138,14 +138,14 @@ def update_repo(commit):
 
 @roles('ckan')
 def update_ckan_config():
-    run('cp %s/cookbooks/vagrant/templates/default/%s /var/www/ckan/%s' % (env.root, env.ckan_config, env.ckan_config))
-    run('cp %s/cookbooks/vagrant/templates/default/%s /var/www/ckan/development.ini' % (env.root, env.ckan_config))
+    sudo('cp %s/cookbooks/vagrant/templates/default/%s /var/www/ckan/%s' % (env.root, env.ckan_config, env.ckan_config))
+    sudo('cp %s/cookbooks/vagrant/templates/default/%s /var/www/ckan/development.ini' % (env.root, env.ckan_config))
     sudo('cp %s/cookbooks/vagrant/templates/default/schema.xml /etc/solr/conf/schema.xml' % (env.root))
 
 @roles('wordpress')
 def update_wp_config():
-    run('cp %s/cookbooks/vagrant/templates/default/%s /var/www/ogdch.dev/%s' % (env.root, env.wp_config, env.wp_config))
-    run('cp %s/cookbooks/vagrant/templates/default/%s /var/www/ogdch.dev/.htaccess' % (env.root, env.htaccess))
+    sudo('cp %s/cookbooks/vagrant/templates/default/%s /var/www/ogdch.dev/%s' % (env.root, env.wp_config, env.wp_config))
+    sudo('cp %s/cookbooks/vagrant/templates/default/%s /var/www/ogdch.dev/.htaccess' % (env.root, env.htaccess))
 
 @roles('wordpress', 'ckan')
 def restart_apache():
