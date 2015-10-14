@@ -170,6 +170,7 @@ def rebuild_search_index():
     """
     Rebuild the solr search index of CKAN
     """
+    execute(restart_tomcat)
     _run_paster("--plugin=ckan search-index rebuild -c /var/www/ckan/development.ini") 
 
 @roles('ckan_db')
