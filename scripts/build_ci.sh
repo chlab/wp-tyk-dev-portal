@@ -29,6 +29,7 @@ ssh-keyscan -H $GITHUB_HOST >> ~gitlab_ci_runner/.ssh/known_hosts
 
 git reset --hard HEAD
 git submodule init
+git submodule foreach --recursive 'git reset --hard HEAD'
 git submodule foreach --recursive 'git fetch --tags'
 git submodule update --recursive
 
