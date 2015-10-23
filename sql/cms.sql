@@ -121,6 +121,242 @@ LOCK TABLES `ogdch_links` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `ogdch_nf_objectmeta`
+--
+
+DROP TABLE IF EXISTS `ogdch_nf_objectmeta`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ogdch_nf_objectmeta` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `object_id` bigint(20) NOT NULL,
+  `meta_key` varchar(255) NOT NULL,
+  `meta_value` longtext NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ogdch_nf_objectmeta`
+--
+
+LOCK TABLES `ogdch_nf_objectmeta` WRITE;
+/*!40000 ALTER TABLE `ogdch_nf_objectmeta` DISABLE KEYS */;
+INSERT INTO `ogdch_nf_objectmeta` VALUES (1,1,'date_updated','2015-10-23 06:47:15');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (2,1,'form_title','Contact form');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (3,1,'show_title','0');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (4,1,'save_subs','1');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (5,1,'logged_in','0');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (6,1,'append_page','');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (7,1,'ajax','0');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (8,1,'clear_complete','1');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (9,1,'hide_complete','1');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (10,1,'success_msg','Your form has been successfully submitted.');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (11,1,'email_from','');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (12,1,'email_type','html');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (13,1,'user_email_msg','Thank you so much for contacting us. We will get back to you shortly.');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (14,1,'user_email_fields','0');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (15,1,'admin_email_msg','');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (16,1,'admin_email_fields','1');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (17,1,'admin_attach_csv','0');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (18,1,'email_from_name','');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (19,2,'date_updated','2014-09-09');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (20,2,'active','1');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (21,2,'name','Email User');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (22,2,'type','email');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (23,2,'email_format','html');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (24,2,'attach_csv','1');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (25,2,'from_name','');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (26,2,'from_address','');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (27,2,'reply_to','');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (28,2,'to','field_2');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (29,2,'cc','');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (30,2,'bcc','');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (31,2,'email_subject','Thank you for contacting us!');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (32,2,'email_message','Thank you so much for contacting us. We will get back to you shortly.');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (33,2,'redirect_url','');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (34,2,'success_message_loc','ninja_forms_display_before_fields');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (35,2,'success_msg','');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (36,3,'date_updated','2014-09-09');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (37,3,'active','1');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (38,3,'name','Success Message');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (39,3,'type','success_message');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (40,3,'email_format','html');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (41,3,'attach_csv','0');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (42,3,'from_name','');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (43,3,'from_address','');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (44,3,'reply_to','');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (45,3,'to','');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (46,3,'cc','');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (47,3,'bcc','');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (48,3,'email_subject','');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (49,3,'email_message','');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (50,3,'redirect_url','');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (51,3,'success_message_loc','ninja_forms_display_after_fields');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (52,3,'success_msg','Your form has been successfully submitted.');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (53,3,'text_message_number','');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (54,3,'text_message_carrier','0');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (55,3,'text_message_message','');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (56,4,'date_updated','2014-09-09');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (57,4,'active','1');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (58,4,'name','Email Admin');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (59,4,'type','email');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (60,4,'email_format','html');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (61,4,'attach_csv','1');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (62,4,'from_name','field_1');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (63,4,'from_address','field_2');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (64,4,'reply_to','field_2');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (65,4,'to','');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (66,4,'cc','');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (67,4,'bcc','');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (68,4,'email_subject','opendata.swiss Kontaktformular');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (69,4,'email_message','[ninja_forms_all_fields]');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (70,4,'redirect_url','');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (71,4,'success_message_loc','ninja_forms_display_before_fields');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (72,4,'success_msg','');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (73,4,'text_message_number','');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (74,4,'text_message_carrier','0');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (75,4,'text_message_message','');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (76,1,'not_logged_in_msg','');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (77,1,'sub_limit_number','');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (78,1,'sub_limit_msg','');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (79,1,'status','');
+/*!40000 ALTER TABLE `ogdch_nf_objectmeta` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ogdch_nf_objects`
+--
+
+DROP TABLE IF EXISTS `ogdch_nf_objects`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ogdch_nf_objects` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `type` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ogdch_nf_objects`
+--
+
+LOCK TABLES `ogdch_nf_objects` WRITE;
+/*!40000 ALTER TABLE `ogdch_nf_objects` DISABLE KEYS */;
+INSERT INTO `ogdch_nf_objects` VALUES (1,'form');
+INSERT INTO `ogdch_nf_objects` VALUES (2,'notification');
+INSERT INTO `ogdch_nf_objects` VALUES (3,'notification');
+INSERT INTO `ogdch_nf_objects` VALUES (4,'notification');
+/*!40000 ALTER TABLE `ogdch_nf_objects` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ogdch_nf_relationships`
+--
+
+DROP TABLE IF EXISTS `ogdch_nf_relationships`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ogdch_nf_relationships` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `child_id` bigint(20) NOT NULL,
+  `parent_id` bigint(20) NOT NULL,
+  `child_type` varchar(255) NOT NULL,
+  `parent_type` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ogdch_nf_relationships`
+--
+
+LOCK TABLES `ogdch_nf_relationships` WRITE;
+/*!40000 ALTER TABLE `ogdch_nf_relationships` DISABLE KEYS */;
+INSERT INTO `ogdch_nf_relationships` VALUES (1,2,1,'notification','form');
+INSERT INTO `ogdch_nf_relationships` VALUES (2,3,1,'notification','form');
+INSERT INTO `ogdch_nf_relationships` VALUES (3,4,1,'notification','form');
+/*!40000 ALTER TABLE `ogdch_nf_relationships` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ogdch_ninja_forms_fav_fields`
+--
+
+DROP TABLE IF EXISTS `ogdch_ninja_forms_fav_fields`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ogdch_ninja_forms_fav_fields` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `row_type` int(11) NOT NULL,
+  `type` varchar(255) NOT NULL,
+  `order` int(11) NOT NULL,
+  `data` longtext NOT NULL,
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=93 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ogdch_ninja_forms_fav_fields`
+--
+
+LOCK TABLES `ogdch_ninja_forms_fav_fields` WRITE;
+/*!40000 ALTER TABLE `ogdch_ninja_forms_fav_fields` DISABLE KEYS */;
+INSERT INTO `ogdch_ninja_forms_fav_fields` VALUES (2,0,'_list',0,'a:10:{s:5:\"label\";s:14:\"State Dropdown\";s:9:\"label_pos\";s:4:\"left\";s:9:\"list_type\";s:8:\"dropdown\";s:10:\"multi_size\";s:1:\"5\";s:15:\"list_show_value\";s:1:\"1\";s:4:\"list\";a:1:{s:7:\"options\";a:51:{i:0;a:3:{s:5:\"label\";s:7:\"Alabama\";s:5:\"value\";s:2:\"AL\";s:8:\"selected\";s:1:\"0\";}i:1;a:3:{s:5:\"label\";s:6:\"Alaska\";s:5:\"value\";s:2:\"AK\";s:8:\"selected\";s:1:\"0\";}i:2;a:3:{s:5:\"label\";s:7:\"Arizona\";s:5:\"value\";s:2:\"AZ\";s:8:\"selected\";s:1:\"0\";}i:3;a:3:{s:5:\"label\";s:8:\"Arkansas\";s:5:\"value\";s:2:\"AR\";s:8:\"selected\";s:1:\"0\";}i:4;a:3:{s:5:\"label\";s:10:\"California\";s:5:\"value\";s:2:\"CA\";s:8:\"selected\";s:1:\"0\";}i:5;a:3:{s:5:\"label\";s:8:\"Colorado\";s:5:\"value\";s:2:\"CO\";s:8:\"selected\";s:1:\"0\";}i:6;a:3:{s:5:\"label\";s:11:\"Connecticut\";s:5:\"value\";s:2:\"CT\";s:8:\"selected\";s:1:\"0\";}i:7;a:3:{s:5:\"label\";s:8:\"Delaware\";s:5:\"value\";s:2:\"DE\";s:8:\"selected\";s:1:\"0\";}i:8;a:3:{s:5:\"label\";s:20:\"District of Columbia\";s:5:\"value\";s:2:\"DC\";s:8:\"selected\";s:1:\"0\";}i:9;a:3:{s:5:\"label\";s:7:\"Florida\";s:5:\"value\";s:2:\"FL\";s:8:\"selected\";s:1:\"0\";}i:10;a:3:{s:5:\"label\";s:7:\"Georgia\";s:5:\"value\";s:2:\"GA\";s:8:\"selected\";s:1:\"0\";}i:11;a:3:{s:5:\"label\";s:6:\"Hawaii\";s:5:\"value\";s:2:\"HI\";s:8:\"selected\";s:1:\"0\";}i:12;a:3:{s:5:\"label\";s:5:\"Idaho\";s:5:\"value\";s:2:\"ID\";s:8:\"selected\";s:1:\"0\";}i:13;a:3:{s:5:\"label\";s:8:\"Illinois\";s:5:\"value\";s:2:\"IL\";s:8:\"selected\";s:1:\"0\";}i:14;a:3:{s:5:\"label\";s:7:\"Indiana\";s:5:\"value\";s:2:\"IN\";s:8:\"selected\";s:1:\"0\";}i:15;a:3:{s:5:\"label\";s:4:\"Iowa\";s:5:\"value\";s:2:\"IA\";s:8:\"selected\";s:1:\"0\";}i:16;a:3:{s:5:\"label\";s:6:\"Kansas\";s:5:\"value\";s:2:\"KS\";s:8:\"selected\";s:1:\"0\";}i:17;a:3:{s:5:\"label\";s:8:\"Kentucky\";s:5:\"value\";s:2:\"KY\";s:8:\"selected\";s:1:\"0\";}i:18;a:3:{s:5:\"label\";s:9:\"Louisiana\";s:5:\"value\";s:2:\"LA\";s:8:\"selected\";s:1:\"0\";}i:19;a:3:{s:5:\"label\";s:5:\"Maine\";s:5:\"value\";s:2:\"ME\";s:8:\"selected\";s:1:\"0\";}i:20;a:3:{s:5:\"label\";s:8:\"Maryland\";s:5:\"value\";s:2:\"MD\";s:8:\"selected\";s:1:\"0\";}i:21;a:3:{s:5:\"label\";s:13:\"Massachusetts\";s:5:\"value\";s:2:\"MA\";s:8:\"selected\";s:1:\"0\";}i:22;a:3:{s:5:\"label\";s:8:\"Michigan\";s:5:\"value\";s:2:\"MI\";s:8:\"selected\";s:1:\"0\";}i:23;a:3:{s:5:\"label\";s:9:\"Minnesota\";s:5:\"value\";s:2:\"MN\";s:8:\"selected\";s:1:\"0\";}i:24;a:3:{s:5:\"label\";s:11:\"Mississippi\";s:5:\"value\";s:2:\"MS\";s:8:\"selected\";s:1:\"0\";}i:25;a:3:{s:5:\"label\";s:8:\"Missouri\";s:5:\"value\";s:2:\"MO\";s:8:\"selected\";s:1:\"0\";}i:26;a:3:{s:5:\"label\";s:7:\"Montana\";s:5:\"value\";s:2:\"MT\";s:8:\"selected\";s:1:\"0\";}i:27;a:3:{s:5:\"label\";s:8:\"Nebraska\";s:5:\"value\";s:2:\"NE\";s:8:\"selected\";s:1:\"0\";}i:28;a:3:{s:5:\"label\";s:6:\"Nevada\";s:5:\"value\";s:2:\"NV\";s:8:\"selected\";s:1:\"0\";}i:29;a:3:{s:5:\"label\"3s:13:\"New Hampshire\";s:5:\"value\";s:2:\"NH\";s:8:\"selected\";s:1:\"0\";}i:30;a:3:{s:5:\"label\";s:10:\"New Jersey\";s:5:\"value\";s:2:\"NJ\";s:8:\"selected\";s:1:\"0\";}i:31;a:3:{s:5:\"label\";s:10:\"New Mexico\";s:5:\"value\";s:2:\"NM\";s:8:\"selected\";s:1:\"0\";}i:32;a:3:{s:5:\"label\";s:8:\"New York\";s:5:\"value\";s:2:\"NY\";s:8:\"selected\";s:1:\"0\";}i:33;a:3:{s:5:\"label\";s:14:\"North Carolina\";s:5:\"value\";s:2:\"NC\";s:8:\"selected\";s:1:\"0\";}i:34;a:3:{s:5:\"label\";s:12:\"North Dakota\";s:5:\"value\";s:2:\"ND\";s:8:\"selected\";s:1:\"0\";}i:35;a:3:{s:5:\"label\";s:4:\"Ohio\";s:5:\"value\";s:2:\"OH\";s:8:\"selected\";s:1:\"0\";}i:36;a:3:{s:5:\"label\";s:8:\"Oklahoma\";s:5:\"value\";s:2:\"OK\";s:8:\"selected\";s:1:\"0\";}i:37;a:3:{s:5:\"label\";s:6:\"Oregon\";s:5:\"value\";s:2:\"OR\";s:8:\"selected\";s:1:\"0\";}i:38;a:3:{s:5:\"label\";s:12:\"Pennsylvania\";s:5:\"value\";s:2:\"PA\";s:8:\"selected\";s:1:\"0\";}i:39;a:3:{s:5:\"label\";s:12:\"Rhode Island\";s:5:\"value\";s:2:\"RI\";s:8:\"selected\";s:1:\"0\";}i:40;a:3:{s:5:\"label\";s:14:\"South Carolina\";s:5:\"value\";s:2:\"SC\";s:8:\"selected\";s:1:\"0\";}i:41;a:3:{s:5:\"label\";s:12:\"South Dakota\";s:5:\"value\";s:2:\"SD\";s:8:\"selected\";s:1:\"0\";}i:42;a:3:{s:5:\"label\";s:9:\"Tennessee\";s:5:\"value\";s:2:\"TN\";s:8:\"selected\";s:1:\"0\";}i:43;a:3:{s:5:\"label\";s:5:\"Texas\";s:5:\"value\";s:2:\"TX\";s:8:\"selected\";s:1:\"0\";}i:44;a:3:{s:5:\"label\";s:4:\"Utah\";s:5:\"value\";s:2:\"UT\";s:8:\"selected\";s:1:\"0\";}i:45;a:3:{s:5:\"label\";s:7:\"Vermont\";s:5:\"value\";s:2:\"VT\";s:8:\"selected\";s:1:\"0\";}i:46;a:3:{s:5:\"label\";s:8:\"Virginia\";s:5:\"value\";s:2:\"VA\";s:8:\"selected\";s:1:\"0\";}i:47;a:3:{s:5:\"label\";s:10:\"Washington\";s:5:\"value\";s:2:\"WA\";s:8:\"selected\";s:1:\"0\";}i:48;a:3:{s:5:\"label\";s:13:\"West Virginia\";s:5:\"value\";s:2:\"WV\";s:8:\"selected\";s:1:\"0\";}i:49;a:3:{s:5:\"label\";s:9:\"Wisconsin\";s:5:\"value\";s:2:\"WI\";s:8:\"selected\";s:1:\"0\";}i:50;a:3:{s:5:\"label\";s:7:\"Wyoming\";s:5:\"value\";s:2:\"WY\";s:8:\"selected\";s:1:\"0\";}}}s:3:\"req\";s:1:\"0\";s:5:\"class\";s:0:\"\";s:9:\"show_help\";s:1:\"0\";s:9:\"help_text\";s:0:\"\";}','State Dropdown');
+INSERT INTO `ogdch_ninja_forms_fav_fields` VALUES (3,0,'_spam',0,'a:6:{s:9:\"label_pos\";s:4:\"left\";s:5:\"label\";s:18:\"Anti-Spam Question\";s:6:\"answer\";s:16:\"Anti-Spam Answer\";s:5:\"class\";s:0:\"\";s:9:\"show_help\";s:1:\"0\";s:9:\"help_text\";s:0:\"\";}','Anti-Spam');
+INSERT INTO `ogdch_ninja_forms_fav_fields` VALUES (4,0,'_submit',0,'a:4:{s:5:\"label\";s:6:\"Submit\";s:5:\"class\";s:0:\"\";s:9:\"show_help\";s:1:\"0\";s:9:\"help_text\";s:0:\"\";}','Submit');
+INSERT INTO `ogdch_ninja_forms_fav_fields` VALUES (5,0,'_tax',0,'a:11:{s:5:\"label\";s:3:\"Tax\";s:9:\"label_pos\";s:5:\"above\";s:13:\"default_value\";s:0:\"\";s:19:\"payment_field_group\";s:1:\"1\";s:11:\"payment_tax\";s:1:\"1\";s:5:\"class\";s:0:\"\";s:9:\"show_help\";s:1:\"0\";s:9:\"help_text\";s:0:\"\";s:11:\"conditional\";s:0:\"\";s:11:\"calc_option\";s:1:\"0\";s:4:\"calc\";s:0:\"\";}','Tax');
+INSERT INTO `ogdch_ninja_forms_fav_fields` VALUES (6,0,'_text',0,'a:19:{s:5:\"label\";s:10:\"First Name\";s:9:\"label_pos\";s:5:\"above\";s:13:\"default_value\";s:0:\"\";s:4:\"mask\";s:0:\"\";s:10:\"datepicker\";s:1:\"0\";s:5:\"email\";s:1:\"0\";s:10:\"send_email\";s:1:\"0\";s:10:\"from_email\";s:1:\"0\";s:10:\"first_name\";s:1:\"1\";s:9:\"last_name\";s:1:\"0\";s:9:\"from_name\";s:1:\"0\";s:21:\"user_info_field_group\";s:1:\"1\";s:3:\"req\";s:1:\"0\";s:5:\"class\";s:0:\"\";s:9:\"show_help\";s:1:\"0\";s:9:\"help_text\";s:0:\"\";s:17:\"calc_auto_include\";s:1:\"0\";s:11:\"calc_option\";s:1:\"0\";s:11:\"conditional\";s:0:\"\";}','First Name');
+INSERT INTO `ogdch_ninja_forms_fav_fields` VALUES (7,0,'_text',0,'a:19:{s:5:\"label\";s:9:\"Last Name\";s:9:\"label_pos\";s:5:\"above\";s:13:\"default_value\";s:0:\"\";s:4:\"mask\";s:0:\"\";s:10:\"datepicker\";s:1:\"0\";s:5:\"email\";s:1:\"0\";s:10:\"send_email\";s:1:\"0\";s:10:\"from_email\";s:1:\"0\";s:10:\"first_name\";s:1:\"0\";s:9:\"last_name\";s:1:\"1\";s:9:\"from_name\";s:1:\"0\";s:21:\"user_info_field_group\";s:1:\"1\";s:3:\"req\";s:1:\"0\";s:5:\"class\";s:0:\"\";s:9:\"show_help\";s:1:\"0\";s:9:\"help_text\";s:0:\"\";s:17:\"calc_auto_include\";s:1:\"0\";s:11:\"calc_option\";s:1:\"0\";s:11:\"conditional\";s:0:\"\";}','Last Name');
+INSERT INTO `ogdch_ninja_forms_fav_fields` VALUES (8,0,'_text',0,'a:23:{s:5:\"label\";s:9:\"Address 1\";s:9:\"label_pos\";s:5:\"above\";s:13:\"default_value\";s:0:\"\";s:4:\"mask\";s:0:\"\";s:10:\"datepicker\";s:1:\"0\";s:5:\"email\";s:1:\"0\";s:10:\"send_email\";s:1:\"0\";s:10:\"from_email\";s:1:\"0\";s:10:\"first_name\";s:1:\"0\";s:9:\"last_name\";s:1:\"0\";s:9:\"from_name\";s:1:\"0\";s:14:\"user_address_1\";s:1:\"1\";s:14:\"user_address_2\";s:1:\"0\";s:9:\"user_city\";s:1:\"0\";s:8:\"user_zip\";s:1:\"0\";s:21:\"user_info_field_group\";s:1:\"1\";s:3:\"req\";s:1:\"0\";s:5:\"class\";s:0:\"\";s:9:\"show_help\";s:1:\"0\";s:9:\"help_text\";s:0:\"\";s:17:\"calc_auto_include\";s:1:\"0\";s:11:\"calc_option\";s:1:\"0\";s:11:\"conditional\";s:0:\"\";}','Address 1');
+INSERT INTO `ogdch_ninja_forms_fav_fields` VALUES (9,0,'_text',0,'a:23:{s:5:\"label\";s:9:\"Address 2\";s:9:\"label_pos\";s:5:\"above\";s:13:\"default_value\";s:0:\"\";s:4:\"mask\";s:0:\"\";s:10:\"datepicker\";s:1:\"0\";s:5:\"email\";s:1:\"0\";s:10:\"send_email\";s:1:\"0\";s:10:\"from_email\";s:1:\"0\";s:10:\"first_name\";s:1:\"0\";s:9:\"last_name\";s:1:\"0\";s:9:\"from_name\";s:1:\"0\";s:14:\"user_address_1\";s:1:\"0\";s:14:\"user_address_2\";s:1:\"1\";s:9:\"user_city\";s:1:\"0\";s:8:\"user_zip\";s:1:\"0\";s:21:\"user_info_field_group\";s:1:\"1\";s:3:\"req\";s:1:\"0\";s:5:\"class\";s:0:\"\";s:9:\"show_help\";s:1:\"0\";s:9:\"help_text\";s:0:\"\";s:17:\"calc_auto_include\";s:1:\"0\";s:11:\"calc_option\";s:1:\"0\";s:11:\"conditional\";s:0:\"\";}','Address 2');
+INSERT INTO `ogdch_ninja_forms_fav_fields` VALUES (10,0,'_text',0,'a:23:{s:5:\"label\";s:4:\"City\";s:9:\"label_pos\";s:5:\"above\";s:13:\"default_value\";s:0:\"\";s:4:\"mask\";s:0:\"\";s:10:\"datepicker\";s:1:\"0\";s:5:\"email\";s:1:\"0\";s:10:\"send_email\";s:1:\"0\";s:10:\"from_email\";s:1:\"0\";s:10:\"first_name\";s:1:\"0\";s:9:\"last_name\";s:1:\"0\";s:9:\"from_name\";s:1:\"0\";s:14:\"user_address_1\";s:1:\"0\";s:14:\"user_address_2\";s:1:\"0\";s:9:\"user_city\";s:1:\"1\";s:8:\"user_zip\";s:1:\"0\";s:21:\"user_info_field_group\";s:1:\"1\";s:3:\"req\";s:1:\"0\";s:5:\"class\";s:0:\"\";s:9:\"show_help\";s:1:\"0\";s:9:\"help_text\";s:0:\"\";s:17:\"calc_auto_include\";s:1:\"0\";s:11:\"calc_option\";s:1:\"0\";s:11:\"conditional\";s:0:\"\";}','City');
+INSERT INTO `ogdch_ninja_forms_fav_fields` VALUES (11,0,'_list',0,'a:16:{s:5:\"label\";s:5:\"State\";s:9:\"label_pos\";s:5:\"above\";s:10:\"multi_size\";s:1:\"5\";s:15:\"list_show_value\";s:1:\"1\";s:4:\"list\";a:1:{s:7:\"options\";a:51:{i:0;a:4:{s:5:\"label\";s:7:\"Alabama\";s:5:\"value\";s:2:\"AL\";s:4:\"calc\";s:0:\"\";s:8:\"selected\";s:1:\"0\";}i:1;a:4:{s:5:\"label\";s:6:\"Alaska\";s:5:\"value\";s:2:\"AK\";s:4:\"calc\";s:0:\"\";s:8:\"selected\";s:1:\"0\";}i:2;a:4:{s:5:\"label\";s:7:\"Arizona\";s:5:\"value\";s:2:\"AZ\";s:4:\"calc\";s:0:\"\";s:8:\"selected\";s:1:\"0\";}i:3;a:4:{s:5:\"label\";s:8:\"Arkansas\";s:5:\"value\";s:2:\"AR\";s:4:\"calc\";s:0:\"\";s:8:\"selected\";s:1:\"0\";}i:4;a:4:{s:5:\"label\";s:10:\"California\";s:5:\"value\";s:2:\"CA\";s:4:\"calc\";s:0:\"\";s:8:\"selected\";s:1:\"0\";}i:5;a:4:{s:5:\"label\";s:8:\"Colorado\";s:5:\"value\";s:2:\"CO\";s:4:\"calc\";s:0:\"\";s:8:\"selected\";s:1:\"0\";}i:6;a:4:{s:5:\"label\";s:11:\"Connecticut\";s:5:\"value\";s:2:\"CT\";s:4:\"calc\";s:0:\"\";s:8:\"selected\";s:1:\"0\";}i:7;a:4:{s:5:\"label\";s:8:\"Delaware\";s:5:\"value\";s:2:\"DE\";s:4:\"calc\";s:0:\"\";s:8:\"selected\";s:1:\"0\";}i:8;a:4:{s:5:\"label\";s:20:\"District of Columbia\";s:5:\"value\";s:2:\"DC\";s:4:\"calc\";s:0:\"\";s:8:\"selected\";s:1:\"0\";}i:9;a:4:{s:5:\"label\";s:7:\"Florida\";s:5:\"value\";s:2:\"FL\";s:4:\"calc\";s:0:\"\";s:8:\"selected\";s:1:\"0\";}i:10;a:4:{s:5:\"label\";s:7:\"Georgia\";s:5:\"value\";s:2:\"GA\";s:4:\"calc\";s:0:\"\";s:8:\"selected\";s:1:\"0\";}i:11;a:4:{s:5:\"label\";s:6:\"Hawaii\";s:5:\"value\";s:2:\"HI\";s:4:\"calc\";s:0:\"\";s:8:\"selected\";s:1:\"0\";}i:12;a:4:{s:5:\"label\";s:5:\"Idaho\";s:5:\"value\";s:2:\"ID\";s:4:\"calc\";s:0:\"\";s:8:\"selected\";s:1:\"0\";}i:13;a:4:{s:5:\"label\";s:8:\"Illinois\";s:5:\"value\";s:2:\"IL\";s:4:\"calc\";s:0:\"\";s:8:\"selected\";s:1:\"0\";}i:14;a:4:{s:5:\"label\";s:7:\"Indiana\";s:5:\"value\";s:2:\"IN\";s:4:\"calc\";s:0:\"\";s:8:\"selected\";s:1:\"0\";}i:15;a:4:{s:5:\"label\";s:4:\"Iowa\";s:5:\"value\";s:2:\"IA\";s:4:\"calc\";s:0:\"\";s:8:\"selected\";s:1:\"0\";}i:16;a:4:{s:5:\"label\";s:6:\"Kansas\";s:5:\"value\";s:2:\"KS\";s:4:\"calc\";s:0:\"\";s:8:\"selected\";s:1:\"0\";}i:17;a:4:{s:5:\"label\";s:8:\"Kentucky\";s:5:\"value\";s:2:\"KY\";s:4:\"calc\";s:0:\"\";s:8:\"selected\";s:1:\"0\";}i:18;a:4:{s:5:\"label\";s:9:\"Louisiana\";s:5:\"value\";s:2:\"LA\";s:4:\"calc\";s:0:\"\";s:8:\"selected\";s:1:\"0\";}i:19;a:4:{s:5:\"label\";s:5:\"Maine\";s:5:\"value\";s:2:\"ME\";s:4:\"calc\";s:0:\"\";s:8:\"selected\";s:1:\"0\";}i:20;a:4:{s:5:\"label\";s:8:\"Maryland\";s:5:\"value\";s:2:\"MD\";s:4:\"calc\";s:0:\"\";s:8:\"selected\";s:1:\"0\";}i:21;a:4:{s:5:\"label\";s:13:\"Massachusetts\";s:5:\"value\";s:2:\"MA\";s:4:\"calc\";s:0:\"\";s:8:\"selected\";s:1:\"0\";}i:22;a:4:{s:5:\"label\";s:8:\"Michigan\";s:5:\"value\";s:2:\"MI\";s:4:\"calc\";s:0:\"\";s:8:\"selected\";s:1:\"0\";}i:23;a:4:{s:5:\"label\";s:9:\"Minnesota\";s:5:\"value\";s:2:\"MN\";s:4:\"calc\";s:0:\"\";s:8:\"selected\";s:1:\"0\";}i:24;a:4:{s:5:\"label\";s:11:\"Mississippi\";s:5:\"value\";s:2:\"MS\";s:4:\"calc\";s:0:\"\";s:8:\"selected\";s:1:\"0\";}i:25;a:4:{s:5:\"label\";s:8:\"Missouri\";s:5:\"value\";s:2:\"MO\";s:4:\"calc\";s:0:\"\";s:8:\"selected\";s:1:\"0\";}i:26;a:4:{s:5:\"label\";s:7:\"Montana\";s:5:\"value\";s:2:\"MT\";s:4:\"calc\";s:0:\"\";s:8:\"selected\";s:1:\"0\";}i:27;a:4:{s:5:\"label\";s:8:\"Nebraska\";s:5:\"value\";s:2:\"NE\";s:4:\"calc\";s:0:\"\";s:8:\"selected\";s:1:\"0\";}i:28;a:4:{s:5:\"label\";s:6:\"Nevada\";s:5:\"value\";s:2:\"NV\";s:4:\"calc\";s:0:\"\";s:8:\"selected\";s:1:\"0\";}i:29;a:4:{s:5:\"label\";s:13:\"New Hampshire\";s:5:\"value\";s:2:\"NH\";s:4:\"calc\";s:0:\"\";s:8:\"selected\";s:1:\"0\";}i:30;a:4:{s:5:\"label\";s:10:\"New Jersey\";s:5:\"value\";s:2:\"NJ\";s:4:\"calc\";s:0:\"\";s:8:\"selected\";s:1:\"0\";}i:31;a:4:{s:5:\"label\";s:10:\"New Mexico\";s:5:\"value\";s:2:\"NM\";s:4:\"calc\";s:0:\"\";s:8:\"selected\";s:1:\"0\";}i:32;a:4:{s:5:\"label\";s:8:\"New York\";s:5:\"value\";s:2:\"NY\";s:4:\"calc\";s:0:\"\";s:8:\"selected\";s:1:\"0\";}i:33;a:4:{s:5:\"label\";s:14:\"North Carolina\";s:5:\"value\";s:2:\"NC\";s:4:\"calc\";s:0:\"\";s:8:\"selected\";s:1:\"0\";}i:34;a:4:{s:5:\"label\";s:12:\"North Dakota\";s:5:\"value\";s:2:\"ND\";s:4:\"calc\";s:0:\"\";s:8:\"selected\";s:1:\"0\";}i:35;a:4:{s:5:\"label\";s:4:\"Ohio\";s:5:\"value\";s:2:\"OH\";s:4:\"calc\";s:0:\"\";s:8:\"selected\";s:1:\"0\";}i:36;a:4:{s:5:\"label\";s:8:\"Oklahoma\";s:5:\"value\";s:2:\"OK\";s:4:\"calc\";s:0:\"\";s:8:\"selected\";s:1:\"0\";}i:37;a:4:{s:5:\"label\";s:6:\"Oregon\";s:5:\"value\";s:2:\"OR\";s:4:\"calc\";s:0:\"\";s:8:\"selected\";s:1:\"0\";}i:38;a:4:{s:5:\"label\";s:12:\"Pennsylvania\";s:5:\"value\";s:2:\"PA\";s:4:\"calc\";s:0:\"\";s:8:\"selected\";s:1:\"0\";}i:39;a:4:{s:5:\"label\";s:12:\"Rhode Island\";s:5:\"value\";s:2:\"RI\";s:4:\"calc\";s:0:\"\";s:8:\"selected\";s:1:\"0\";}i:40;a:4:{s:5:\"label\";s:14:\"South Carolina\";s:5:\"value\";s:2:\"SC\";s:4:\"calc\";s:0:\"\";s:8:\"selected\";s:1:\"0\";}i:41;a:4:{s:5:\"label\";s:12:\"South Dakota\";s:5:\"value\";s:2:\"SD\";s:4:\"calc\";s:0:\"\";s:8:\"selected\";s:1:\"0\";}i:42;a:4:{s:5:\"label\";s:9:\"Tennessee\";s:5:\"value\";s:2:\"TN\";s:4:\"calc\";s:0:\"\";s:8:\"selected\";s:1:\"0\";}i:43;a:4:{s:5:\"label\";s:5:\"Texas\";s:5:\"value\";s:2:\"TX\";s:4:\"calc\";s:0:\"\";s:8:\"selected\";s:1:\"0\";}i:44;a:4:{s:5:\"label\";s:4:\"Utah\";s:5:\"value\";s:2:\"UT\";s:4:\"calc\";s:0:\"\";s:8:\"selected\";s:1:\"0\";}i:45;a:4:{s:5:\"label\";s:7:\"Vermont\";s:5:\"value\";s:2:\"VT\";s:4:\"calc\";s:0:\"\";s:8:\"selected\";s:1:\"0\";}i:46;a:4:{s:5:\"label\";s:8:\"Virginia\";s:5:\"value\";s:2:\"VA\";s:4:\"calc\";s:0:\"\";s:8:\"selected\";s:1:\"0\";}i:47;a:4:{s:5:\"label\";s:10:\"Washington\";s:5:\"value\";s:2:\"WA\";s:4:\"calc\";s:0:\"\";s:8:\"selected\";s:1:\"0\";}i:48;a:4:{s:5:\"label\";s:13:\"West Virginia\";s:5:\"value\";s:2:\"WV\";s:4:\"calc\";s:0:\"\";s:8:\"selected\";s:1:\"0\";}i:49;a:4:{s:5:\"label\";s:9:\"Wisconsin\";s:5:\"value\";s:2:\"WI\";s:4:\"calc\";s:0:\"\";s:8:\"selected\";s:1:\"0\";}i:50;a:4:{s:5:\"label\";s:7:\"Wyoming\";s:5:\"value\";s:2:\"WY\";s:4:\"calc\";s:0:\"\";s:8:\"selected\";s:1:\"0\";}}}s:9:\"list_type\";s:8:\"dropdown\";s:10:\"user_state\";s:1:\"1\";s:21:\"user_info_field_group\";s:1:\"1\";s:13:\"populate_term\";s:0:\"\";s:3:\"req\";s:1:\"0\";s:5:\"class\";s:0:\"\";s:9:\"show_help\";s:1:\"0\";s:9:\"help_text\";s:0:\"\";s:17:\"calc_auto_include\";s:1:\"0\";s:11:\"calc_option\";s:1:\"0\";s:11:\"conditional\";s:0:\"\";}','State');
+INSERT INTO `ogdch_ninja_forms_fav_fields` VALUES (12,0,'_text',0,'a:23:{s:5:\"label\";s:15:\"Zip / Post Code\";s:9:\"label_pos\";s:5:\"above\";s:13:\"default_value\";s:0:\"\";s:4:\"mask\";s:0:\"\";s:10:\"datepicker\";s:1:\"0\";s:5:\"email\";s:1:\"0\";s:10:\"send_email\";s:1:\"0\";s:10:\"from_email\";s:1:\"0\";s:10:\"first_name\";s:1:\"0\";s:9:\"last_name\";s:1:\"0\";s:9:\"from_name\";s:1:\"0\";s:14:\"user_address_1\";s:1:\"0\";s:14:\"user_address_2\";s:1:\"0\";s:9:\"user_city\";s:1:\"0\";s:8:\"user_zip\";s:1:\"1\";s:21:\"user_info_field_group\";s:1:\"1\";s:3:\"req\";s:1:\"0\";s:5:\"class\";s:0:\"\";s:9:\"show_help\";s:1:\"0\";s:9:\"help_text\";s:0:\"\";s:17:\"calc_auto_include\";s:1:\"0\";s:11:\"calc_option\";s:1:\"0\";s:11:\"conditional\";s:0:\"\";}','Zip / Post Code');
+INSERT INTO `ogdch_ninja_forms_fav_fields` VALUES (13,0,'_country',0,'a:10:{s:5:\"label\";s:7:\"Country\";s:9:\"label_pos\";s:5:\"above\";s:13:\"default_value\";s:2:\"US\";s:21:\"user_info_field_group\";s:1:\"1\";s:5:\"class\";s:0:\"\";s:9:\"show_help\";s:1:\"0\";s:9:\"help_text\";s:0:\"\";s:17:\"calc_auto_include\";s:1:\"0\";s:11:\"calc_option\";s:1:\"0\";s:11:\"conditional\";s:0:\"\";}','Country');
+INSERT INTO `ogdch_ninja_forms_fav_fields` VALUES (14,0,'_text',0,'a:25:{s:5:\"label\";s:5:\"Email\";s:9:\"label_pos\";s:5:\"above\";s:13:\"default_value\";s:0:\"\";s:4:\"mask\";s:0:\"\";s:10:\"datepicker\";s:1:\"0\";s:5:\"email\";s:1:\"1\";s:10:\"send_email\";s:1:\"0\";s:10:\"from_email\";s:1:\"0\";s:10:\"first_name\";s:1:\"0\";s:9:\"last_name\";s:1:\"0\";s:9:\"from_name\";s:1:\"0\";s:14:\"user_address_1\";s:1:\"0\";s:14:\"user_address_2\";s:1:\"0\";s:9:\"user_city\";s:1:\"0\";s:8:\"user_zip\";s:1:\"0\";s:10:\"user_phone\";s:1:\"0\";s:10:\"user_email\";s:1:\"1\";s:21:\"user_info_field_group\";s:1:\"1\";s:3:\"req\";s:1:\"0\";s:5:\"class\";s:0:\"\";s:9:\"show_help\";s:1:\"0\";s:9:\"help_text\";s:0:\"\";s:17:\"calc_auto_include\";s:1:\"0\";s:11:\"calc_option\";s:1:\"0\";s:11:\"conditional\";s:0:\"\";}','Email');
+INSERT INTO `ogdch_ninja_forms_fav_fields` VALUES (15,0,'_text',0,'a:25:{s:5:\"label\";s:5:\"Phone\";s:9:\"label_pos\";s:5:\"above\";s:13:\"default_value\";s:0:\"\";s:4:\"mask\";s:14:\"(999) 999-9999\";s:10:\"datepicker\";s:1:\"0\";s:5:\"email\";s:1:\"0\";s:10:\"send_email\";s:1:\"0\";s:10:\"from_email\";s:1:\"0\";s:10:\"first_name\";s:1:\"0\";s:9:\"last_name\";s:1:\"0\";s:9:\"from_name\";s:1:\"0\";s:14:\"user_address_1\";s:1:\"0\";s:14:\"user_address_2\";s:1:\"0\";s:9:\"user_city\";s:1:\"0\";s:8:\"user_zip\";s:1:\"0\";s:10:\"user_phone\";s:1:\"1\";s:10:\"user_email\";s:1:\"0\";s:21:\"user_info_field_group\";s:1:\"1\";s:3:\"req\";s:1:\"0\";s:5:\"class\";s:0:\"\";s:9:\"show_help\";s:1:\"0\";s:9:\"help_text\";s:0:\"\";s:17:\"calc_auto_include\";s:1:\"0\";s:11:\"calc_option\";s:1:\"0\";s:11:\"conditional\";s:0:\"\";}','Phone');
+INSERT INTO `ogdch_ninja_forms_fav_fields` VALUES (16,0,'_calc',0,'a:20:{s:9:\"calc_name\";s:9:\"sub_total\";s:13:\"default_value\";s:0:\"\";s:17:\"calc_display_type\";s:4:\"text\";s:5:\"label\";s:9:\"Sub Total\";s:9:\"label_pos\";s:5:\"above\";s:26:\"calc_display_text_disabled\";s:1:\"1\";s:17:\"calc_display_html\";s:26:\"<p>[ninja_forms_calc]</p>\n\";s:5:\"class\";s:0:\"\";s:9:\"show_help\";s:1:\"0\";s:9:\"help_text\";s:0:\"\";s:11:\"calc_method\";s:4:\"auto\";s:4:\"calc\";s:0:\"\";s:7:\"calc_eq\";s:0:\"\";s:19:\"payment_field_group\";s:1:\"1\";s:13:\"payment_total\";s:1:\"0\";s:17:\"payment_sub_total\";s:1:\"1\";s:11:\"calc_places\";s:1:\"2\";s:17:\"calc_auto_include\";s:1:\"0\";s:11:\"calc_option\";s:1:\"0\";s:11:\"conditional\";s:0:\"\";}','Sub Total');
+INSERT INTO `ogdch_ninja_forms_fav_fields` VALUES (17,0,'_calc',0,'a:20:{s:9:\"calc_name\";s:5:\"total\";s:13:\"default_value\";s:0:\"\";s:17:\"calc_display_type\";s:4:\"text\";s:5:\"label\";s:5:\"Total\";s:9:\"label_pos\";s:5:\"above\";s:26:\"calc_display_text_disabled\";s:1:\"1\";s:17:\"calc_display_html\";s:26:\"<p>[ninja_forms_calc]</p>\n\";s:5:\"class\";s:0:\"\";s:9:\"show_help\";s:1:\"0\";s:9:\"help_text\";s:0:\"\";s:11:\"calc_method\";s:4:\"auto\";s:4:\"calc\";a:5:{i:0;a:2:{s:2:\"op\";s:3:\"add\";s:5:\"field\";s:2:\"70\";}i:1;a:2:{s:2:\"op\";s:3:\"add\";s:5:\"field\";s:2:\"69\";}i:2;a:2:{s:2:\"op\";s:3:\"add\";s:5:\"field\";s:2:\"15\";}i:3;a:2:{s:2:\"op\";s:3:\"add\";s:5:\"field\";s:2:\"61\";}i:4;a:2:{s:2:\"op\";s:3:\"add\";s:5:\"field\";s:2:\"70\";}}s:7:\"calc_eq\";s:5:\"5 + 5\";s:19:\"payment_field_group\";s:1:\"1\";s:13:\"payment_total\";s:1:\"1\";s:17:\"payment_sub_total\";s:1:\"0\";s:11:\"calc_places\";s:1:\"2\";s:17:\"calc_auto_include\";s:1:\"0\";s:11:\"calc_option\";s:1:\"0\";s:11:\"conditional\";s:0:\"\";}','Total');
+INSERT INTO `ogdch_ninja_forms_fav_fields` VALUES (92,0,'_credit_card',0,'a:6:{s:5:\"label\";s:11:\"Credit Card\";s:19:\"payment_field_group\";s:1:\"1\";s:3:\"req\";s:1:\"0\";s:9:\"show_help\";s:1:\"0\";s:9:\"help_text\";s:0:\"\";s:11:\"conditional\";s:0:\"\";}','Credit Card');
+/*!40000 ALTER TABLE `ogdch_ninja_forms_fav_fields` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ogdch_ninja_forms_fields`
+--
+
+DROP TABLE IF EXISTS `ogdch_ninja_forms_fields`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ogdch_ninja_forms_fields` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `form_id` int(11) NOT NULL,
+  `type` varchar(255) NOT NULL,
+  `order` int(11) NOT NULL,
+  `data` longtext NOT NULL,
+  `fav_id` int(11) DEFAULT NULL,
+  `def_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ogdch_ninja_forms_fields`
+--
+
+LOCK TABLES `ogdch_ninja_forms_fields` WRITE;
+/*!40000 ALTER TABLE `ogdch_ninja_forms_fields` DISABLE KEYS */;
+INSERT INTO `ogdch_ninja_forms_fields` VALUES (1,1,'_text',0,'a:36:{s:5:\"label\";s:4:\"Name\";s:9:\"label_pos\";s:5:\"above\";s:13:\"default_value\";s:0:\"\";s:4:\"mask\";s:0:\"\";s:10:\"datepicker\";s:1:\"0\";s:5:\"email\";s:1:\"0\";s:10:\"first_name\";s:0:\"\";s:9:\"last_name\";s:0:\"\";s:9:\"from_name\";s:1:\"0\";s:14:\"user_address_1\";s:0:\"\";s:14:\"user_address_2\";s:0:\"\";s:9:\"user_city\";s:0:\"\";s:8:\"user_zip\";s:0:\"\";s:10:\"user_phone\";s:0:\"\";s:10:\"user_email\";s:0:\"\";s:21:\"user_info_field_group\";s:0:\"\";s:3:\"req\";s:1:\"1\";s:5:\"class\";s:0:\"\";s:9:\"show_help\";s:1:\"0\";s:9:\"help_text\";s:0:\"\";s:9:\"show_desc\";s:1:\"0\";s:8:\"desc_pos\";s:4:\"none\";s:9:\"desc_text\";s:0:\"\";s:17:\"calc_auto_include\";s:1:\"0\";s:11:\"placeholder\";s:0:\"\";s:13:\"disable_input\";s:1:\"0\";s:11:\"input_limit\";s:0:\"\";s:16:\"input_limit_type\";s:4:\"char\";s:15:\"input_limit_msg\";s:0:\"\";s:10:\"user_state\";s:1:\"0\";s:16:\"autocomplete_off\";s:1:\"0\";s:8:\"num_sort\";s:1:\"0\";s:18:\"default_value_type\";s:0:\"\";s:11:\"admin_label\";s:0:\"\";s:26:\"user_info_field_group_name\";s:0:\"\";s:28:\"user_info_field_group_custom\";s:0:\"\";}',0,0);
+INSERT INTO `ogdch_ninja_forms_fields` VALUES (2,1,'_text',1,'a:38:{s:5:\"label\";s:5:\"Email\";s:9:\"label_pos\";s:5:\"above\";s:13:\"default_value\";s:0:\"\";s:4:\"mask\";s:0:\"\";s:10:\"datepicker\";s:1:\"0\";s:5:\"email\";s:1:\"1\";s:10:\"first_name\";s:1:\"0\";s:9:\"last_name\";s:1:\"0\";s:9:\"from_name\";s:1:\"0\";s:14:\"user_address_1\";s:1:\"0\";s:14:\"user_address_2\";s:1:\"0\";s:9:\"user_city\";s:1:\"0\";s:8:\"user_zip\";s:1:\"0\";s:10:\"user_phone\";s:1:\"0\";s:10:\"user_email\";s:1:\"1\";s:21:\"user_info_field_group\";s:1:\"1\";s:3:\"req\";s:1:\"1\";s:5:\"class\";s:0:\"\";s:9:\"show_help\";s:1:\"0\";s:9:\"help_text\";s:0:\"\";s:17:\"calc_auto_include\";s:1:\"0\";s:11:\"calc_option\";s:1:\"0\";s:11:\"conditional\";s:0:\"\";s:26:\"user_info_field_group_name\";s:0:\"\";s:28:\"user_info_field_group_custom\";s:0:\"\";s:9:\"show_desc\";s:1:\"0\";s:8:\"desc_pos\";s:4:\"none\";s:9:\"desc_text\";s:0:\"\";s:11:\"placeholder\";s:0:\"\";s:13:\"disable_input\";s:1:\"0\";s:11:\"input_limit\";s:0:\"\";s:16:\"input_limit_type\";s:4:\"char\";s:15:\"input_limit_msg\";s:0:\"\";s:10:\"user_state\";s:1:\"0\";s:16:\"autocomplete_off\";s:1:\"0\";s:8:\"num_sort\";s:1:\"0\";s:18:\"default_value_type\";s:0:\"\";s:11:\"admin_label\";s:0:\"\";}',0,14);
+INSERT INTO `ogdch_ninja_forms_fields` VALUES (3,1,'_textarea',2,'a:19:{s:5:\"label\";s:7:\"Message\";s:9:\"label_pos\";s:5:\"above\";s:13:\"default_value\";s:0:\"\";s:12:\"textarea_rte\";s:1:\"0\";s:14:\"textarea_media\";s:1:\"0\";s:18:\"disable_rte_mobile\";s:1:\"0\";s:3:\"req\";s:1:\"1\";s:5:\"class\";s:0:\"\";s:9:\"show_help\";s:1:\"0\";s:9:\"help_text\";s:0:\"\";s:9:\"show_desc\";s:1:\"0\";s:8:\"desc_pos\";s:4:\"none\";s:9:\"desc_text\";s:0:\"\";s:17:\"calc_auto_include\";s:1:\"0\";s:11:\"input_limit\";s:0:\"\";s:16:\"input_limit_type\";s:4:\"char\";s:15:\"input_limit_msg\";s:0:\"\";s:8:\"num_sort\";s:1:\"0\";s:11:\"admin_label\";s:0:\"\";}',0,0);
+INSERT INTO `ogdch_ninja_forms_fields` VALUES (5,1,'_submit',3,'a:7:{s:5:\"label\";s:4:\"Send\";s:5:\"class\";s:0:\"\";s:9:\"show_help\";s:1:\"0\";s:9:\"help_text\";s:0:\"\";s:9:\"show_desc\";s:1:\"0\";s:8:\"desc_pos\";s:4:\"none\";s:9:\"desc_text\";s:0:\"\";}',0,0);
+/*!40000 ALTER TABLE `ogdch_ninja_forms_fields` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `ogdch_options`
 --
 
@@ -134,7 +370,7 @@ CREATE TABLE `ogdch_options` (
   `autoload` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'yes',
   PRIMARY KEY (`option_id`),
   UNIQUE KEY `option_name` (`option_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=783 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=792 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -175,7 +411,7 @@ INSERT INTO `ogdch_options` VALUES (29,'gzipcompression','0','yes');
 INSERT INTO `ogdch_options` VALUES (30,'hack_file','0','yes');
 INSERT INTO `ogdch_options` VALUES (31,'blog_charset','UTF-8','yes');
 INSERT INTO `ogdch_options` VALUES (32,'moderation_keys','','no');
-INSERT INTO `ogdch_options` VALUES (33,'active_plugins','a:10:{i:0;s:31:\"query-monitor/query-monitor.php\";i:1;s:21:\"polylang/polylang.php\";i:2;s:13:\"cmb2/init.php\";i:3;s:19:\"members/members.php\";i:4;s:17:\"polylang-slug.php\";i:5;s:47:\"regenerate-thumbnails/regenerate-thumbnails.php\";i:6;s:51:\"rewrite-rules-inspector/rewrite-rules-inspector.php\";i:7;s:24:\"wordpress-seo/wp-seo.php\";i:8;s:32:\"wp-app-showcase/app-showcase.php\";i:9;s:32:\"wp-ckan-backend/ckan-backend.php\";}','yes');
+INSERT INTO `ogdch_options` VALUES (33,'active_plugins','a:12:{i:0;s:31:\"query-monitor/query-monitor.php\";i:1;s:21:\"polylang/polylang.php\";i:2;s:47:\"bootstrap-ninja-forms/bootstrap-ninja-forms.php\";i:3;s:13:\"cmb2/init.php\";i:4;s:19:\"members/members.php\";i:5;s:27:\"ninja-forms/ninja-forms.php\";i:6;s:17:\"polylang-slug.php\";i:7;s:47:\"regenerate-thumbnails/regenerate-thumbnails.php\";i:8;s:51:\"rewrite-rules-inspector/rewrite-rules-inspector.php\";i:9;s:24:\"wordpress-seo/wp-seo.php\";i:10;s:32:\"wp-app-showcase/app-showcase.php\";i:11;s:32:\"wp-ckan-backend/ckan-backend.php\";}','yes');
 INSERT INTO `ogdch_options` VALUES (34,'category_base','','yes');
 INSERT INTO `ogdch_options` VALUES (35,'ping_sites','http://rpc.pingomatic.com/','yes');
 INSERT INTO `ogdch_options` VALUES (36,'advanced_edit','0','yes');
@@ -237,7 +473,7 @@ INSERT INTO `ogdch_options` VALUES (92,'widget_recent-comments','a:2:{i:2;a:2:{s
 INSERT INTO `ogdch_options` VALUES (93,'widget_archives','a:2:{i:2;a:3:{s:5:\"title\";s:0:\"\";s:5:\"count\";i:0;s:8:\"dropdown\";i:0;}s:12:\"_multiwidget\";i:1;}','yes');
 INSERT INTO `ogdch_options` VALUES (94,'widget_meta','a:2:{i:2;a:1:{s:5:\"title\";s:0:\"\";}s:12:\"_multiwidget\";i:1;}','yes');
 INSERT INTO `ogdch_options` VALUES (95,'sidebars_widgets','a:3:{s:19:\"wp_inactive_widgets\";a:0:{}s:18:\"orphaned_widgets_1\";a:1:{i:0;s:17:\"recent-comments-2\";}s:13:\"array_version\";i:3;}','yes');
-INSERT INTO `ogdch_options` VALUES (97,'cron','a:5:{i:1445327340;a:1:{s:20:\"wp_maybe_auto_update\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1445344981;a:1:{s:30:\"wp_scheduled_auto_draft_delete\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1445347957;a:3:{s:16:\"wp_version_check\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}s:17:\"wp_update_plugins\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}s:16:\"wp_update_themes\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1445348281;a:1:{s:19:\"wp_scheduled_delete\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}s:7:\"version\";i:2;}','yes');
+INSERT INTO `ogdch_options` VALUES (97,'cron','a:7:{i:1445586540;a:1:{s:20:\"wp_maybe_auto_update\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1445602126;a:2:{s:20:\"nf_maybe_delete_form\";a:1:{s:32:\"fe0b93ca214a68210e7bc5a7b10fd4b9\";a:2:{s:8:\"schedule\";b:0;s:4:\"args\";a:1:{s:7:\"form_id\";i:1;}}}s:24:\"ninja_forms_daily_action\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1445604181;a:1:{s:30:\"wp_scheduled_auto_draft_delete\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1445607157;a:3:{s:16:\"wp_version_check\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}s:17:\"wp_update_plugins\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}s:16:\"wp_update_themes\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1445607481;a:1:{s:19:\"wp_scheduled_delete\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1445609352;a:1:{s:29:\"wp_session_garbage_collection\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}s:7:\"version\";i:2;}','yes');
 INSERT INTO `ogdch_options` VALUES (134,'db_upgraded','','yes');
 INSERT INTO `ogdch_options` VALUES (142,'recently_activated','a:0:{}','yes');
 INSERT INTO `ogdch_options` VALUES (147,'members_db_version','2','yes');
@@ -277,6 +513,15 @@ INSERT INTO `ogdch_options` VALUES (544,'can_compress_scripts','1','yes');
 INSERT INTO `ogdch_options` VALUES (760,'WPLANG','de_CH','yes');
 INSERT INTO `ogdch_options` VALUES (769,'theme_mods_twentyfifteen','a:1:{s:16:\"sidebars_widgets\";a:2:{s:4:\"time\";i:1443442535;s:4:\"data\";a:2:{s:19:\"wp_inactive_widgets\";a:0:{}s:9:\"sidebar-1\";a:6:{i:0;s:8:\"search-2\";i:1;s:14:\"recent-posts-2\";i:2;s:17:\"recent-comments-2\";i:3;s:10:\"archives-2\";i:4;s:12:\"categories-2\";i:5;s:6:\"meta-2\";}}}}','yes');
 INSERT INTO `ogdch_options` VALUES (782,'rewrite_rules','a:185:{s:20:\"(de|en|it|fr)/app/?$\";s:40:\"index.php?lang=$matches[1]&post_type=app\";s:50:\"(de|en|it|fr)/app/feed/(feed|rdf|rss|rss2|atom)/?$\";s:57:\"index.php?lang=$matches[1]&post_type=app&feed=$matches[2]\";s:45:\"(de|en|it|fr)/app/(feed|rdf|rss|rss2|atom)/?$\";s:57:\"index.php?lang=$matches[1]&post_type=app&feed=$matches[2]\";s:37:\"(de|en|it|fr)/app/page/([0-9]{1,})/?$\";s:58:\"index.php?lang=$matches[1]&post_type=app&paged=$matches[2]\";s:19:\"sitemap_index\\.xml$\";s:19:\"index.php?sitemap=1\";s:31:\"([^/]+?)-sitemap([0-9]+)?\\.xml$\";s:51:\"index.php?sitemap=$matches[1]&sitemap_n=$matches[2]\";s:24:\"([a-z]+)?-?sitemap\\.xsl$\";s:25:\"index.php?xsl=$matches[1]\";s:61:\"(de|en|it|fr)/category/(.+?)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:52:\"index.php?category_name=$matches[2]&feed=$matches[3]\";s:56:\"(de|en|it|fr)/category/(.+?)/(feed|rdf|rss|rss2|atom)/?$\";s:52:\"index.php?category_name=$matches[2]&feed=$matches[3]\";s:49:\"(de|en|it|fr)/category/(.+?)/page/?([0-9]{1,})/?$\";s:53:\"index.php?category_name=$matches[2]&paged=$matches[3]\";s:31:\"(de|en|it|fr)/category/(.+?)/?$\";s:35:\"index.php?category_name=$matches[2]\";s:47:\"category/(.+?)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:52:\"index.php?category_name=$matches[1]&feed=$matches[2]\";s:42:\"category/(.+?)/(feed|rdf|rss|rss2|atom)/?$\";s:52:\"index.php?category_name=$matches[1]&feed=$matches[2]\";s:35:\"category/(.+?)/page/?([0-9]{1,})/?$\";s:53:\"index.php?category_name=$matches[1]&paged=$matches[2]\";s:17:\"category/(.+?)/?$\";s:35:\"index.php?category_name=$matches[1]\";s:58:\"(de|en|it|fr)/tag/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:42:\"index.php?tag=$matches[2]&feed=$matches[3]\";s:53:\"(de|en|it|fr)/tag/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:42:\"index.php?tag=$matches[2]&feed=$matches[3]\";s:46:\"(de|en|it|fr)/tag/([^/]+)/page/?([0-9]{1,})/?$\";s:43:\"index.php?tag=$matches[2]&paged=$matches[3]\";s:28:\"(de|en|it|fr)/tag/([^/]+)/?$\";s:25:\"index.php?tag=$matches[2]\";s:44:\"tag/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:42:\"index.php?tag=$matches[1]&feed=$matches[2]\";s:39:\"tag/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:42:\"index.php?tag=$matches[1]&feed=$matches[2]\";s:32:\"tag/([^/]+)/page/?([0-9]{1,})/?$\";s:43:\"index.php?tag=$matches[1]&paged=$matches[2]\";s:14:\"tag/([^/]+)/?$\";s:25:\"index.php?tag=$matches[1]\";s:59:\"(de|en|it|fr)/type/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:67:\"index.php?lang=$matches[1]&post_format=$matches[2]&feed=$matches[3]\";s:54:\"(de|en|it|fr)/type/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:67:\"index.php?lang=$matches[1]&post_format=$matches[2]&feed=$matches[3]\";s:47:\"(de|en|it|fr)/type/([^/]+)/page/?([0-9]{1,})/?$\";s:68:\"index.php?lang=$matches[1]&post_format=$matches[2]&paged=$matches[3]\";s:29:\"(de|en|it|fr)/type/([^/]+)/?$\";s:50:\"index.php?lang=$matches[1]&post_format=$matches[2]\";s:45:\"(de|en|it|fr)/app/[^/]+/attachment/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[2]\";s:55:\"(de|en|it|fr)/app/[^/]+/attachment/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[2]&tb=1\";s:75:\"(de|en|it|fr)/app/[^/]+/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[2]&feed=$matches[3]\";s:70:\"(de|en|it|fr)/app/[^/]+/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[2]&feed=$matches[3]\";s:70:\"(de|en|it|fr)/app/[^/]+/attachment/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[2]&cpage=$matches[3]\";s:38:\"(de|en|it|fr)/app/([^/]+)/trackback/?$\";s:30:\"index.php?app=$matches[2]&tb=1\";s:58:\"(de|en|it|fr)/app/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:42:\"index.php?app=$matches[2]&feed=$matches[3]\";s:53:\"(de|en|it|fr)/app/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:42:\"index.php?app=$matches[2]&feed=$matches[3]\";s:46:\"(de|en|it|fr)/app/([^/]+)/page/?([0-9]{1,})/?$\";s:43:\"index.php?app=$matches[2]&paged=$matches[3]\";s:53:\"(de|en|it|fr)/app/([^/]+)/comment-page-([0-9]{1,})/?$\";s:43:\"index.php?app=$matches[2]&cpage=$matches[3]\";s:38:\"(de|en|it|fr)/app/([^/]+)(/[0-9]+)?/?$\";s:42:\"index.php?app=$matches[2]&page=$matches[3]\";s:34:\"(de|en|it|fr)/app/[^/]+/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[2]\";s:44:\"(de|en|it|fr)/app/[^/]+/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[2]&tb=1\";s:64:\"(de|en|it|fr)/app/[^/]+/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[2]&feed=$matches[3]\";s:59:\"(de|en|it|fr)/app/[^/]+/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[2]&feed=$matches[3]\";s:59:\"(de|en|it|fr)/app/[^/]+/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[2]&cpage=$matches[3]\";s:31:\"app/[^/]+/attachment/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:41:\"app/[^/]+/attachment/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:61:\"app/[^/]+/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:56:\"app/[^/]+/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:56:\"app/[^/]+/attachment/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:24:\"app/([^/]+)/trackback/?$\";s:30:\"index.php?app=$matches[1]&tb=1\";s:44:\"app/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:42:\"index.php?app=$matches[1]&feed=$matches[2]\";s:39:\"app/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:42:\"index.php?app=$matches[1]&feed=$matches[2]\";s:32:\"app/([^/]+)/page/?([0-9]{1,})/?$\";s:43:\"index.php?app=$matches[1]&paged=$matches[2]\";s:39:\"app/([^/]+)/comment-page-([0-9]{1,})/?$\";s:43:\"index.php?app=$matches[1]&cpage=$matches[2]\";s:24:\"app/([^/]+)(/[0-9]+)?/?$\";s:42:\"index.php?app=$matches[1]&page=$matches[2]\";s:20:\"app/[^/]+/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:30:\"app/[^/]+/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:50:\"app/[^/]+/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:45:\"app/[^/]+/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:45:\"app/[^/]+/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:35:\"dataset/[^/]+/attachment/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:45:\"dataset/[^/]+/attachment/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:65:\"dataset/[^/]+/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:60:\"dataset/[^/]+/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:60:\"dataset/[^/]+/attachment/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:28:\"dataset/([^/]+)/trackback/?$\";s:45:\"index.php?ckan-local-dataset=$matches[1]&tb=1\";s:36:\"dataset/([^/]+)/page/?([0-9]{1,})/?$\";s:58:\"index.php?ckan-local-dataset=$matches[1]&paged=$matches[2]\";s:43:\"dataset/([^/]+)/comment-page-([0-9]{1,})/?$\";s:58:\"index.php?ckan-local-dataset=$matches[1]&cpage=$matches[2]\";s:28:\"dataset/([^/]+)(/[0-9]+)?/?$\";s:57:\"index.php?ckan-local-dataset=$matches[1]&page=$matches[2]\";s:24:\"dataset/[^/]+/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:34:\"dataset/[^/]+/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:54:\"dataset/[^/]+/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:49:\"dataset/[^/]+/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:49:\"dataset/[^/]+/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:33:\"group/[^/]+/attachment/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:43:\"group/[^/]+/attachment/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:63:\"group/[^/]+/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:58:\"group/[^/]+/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:58:\"group/[^/]+/attachment/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:26:\"group/([^/]+)/trackback/?$\";s:43:\"index.php?ckan-local-group=$matches[1]&tb=1\";s:34:\"group/([^/]+)/page/?([0-9]{1,})/?$\";s:56:\"index.php?ckan-local-group=$matches[1]&paged=$matches[2]\";s:41:\"group/([^/]+)/comment-page-([0-9]{1,})/?$\";s:56:\"index.php?ckan-local-group=$matches[1]&cpage=$matches[2]\";s:26:\"group/([^/]+)(/[0-9]+)?/?$\";s:55:\"index.php?ckan-local-group=$matches[1]&page=$matches[2]\";s:22:\"group/[^/]+/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:32:\"group/[^/]+/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:52:\"group/[^/]+/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:47:\"group/[^/]+/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:47:\"group/[^/]+/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:40:\"organization/[^/]+/attachment/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:50:\"organization/[^/]+/attachment/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:70:\"organization/[^/]+/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:65:\"organization/[^/]+/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:65:\"organization/[^/]+/attachment/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:33:\"organization/([^/]+)/trackback/?$\";s:41:\"index.php?ckan-local-org=$matches[1]&tb=1\";s:41:\"organization/([^/]+)/page/?([0-9]{1,})/?$\";s:54:\"index.php?ckan-local-org=$matches[1]&paged=$matches[2]\";s:48:\"organization/([^/]+)/comment-page-([0-9]{1,})/?$\";s:54:\"index.php?ckan-local-org=$matches[1]&cpage=$matches[2]\";s:33:\"organization/([^/]+)(/[0-9]+)?/?$\";s:53:\"index.php?ckan-local-org=$matches[1]&page=$matches[2]\";s:29:\"organization/[^/]+/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:39:\"organization/[^/]+/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:59:\"organization/[^/]+/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:54:\"organization/[^/]+/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:54:\"organization/[^/]+/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:12:\"robots\\.txt$\";s:18:\"index.php?robots=1\";s:48:\".*wp-(atom|rdf|rss|rss2|feed|commentsrss2)\\.php$\";s:18:\"index.php?feed=old\";s:20:\".*wp-app\\.php(/.*)?$\";s:19:\"index.php?error=403\";s:18:\".*wp-register.php$\";s:23:\"index.php?register=true\";s:46:\"(de|en|it|fr)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:44:\"index.php?lang=$matches[1]&&feed=$matches[2]\";s:41:\"(de|en|it|fr)/(feed|rdf|rss|rss2|atom)/?$\";s:44:\"index.php?lang=$matches[1]&&feed=$matches[2]\";s:34:\"(de|en|it|fr)/page/?([0-9]{1,})/?$\";s:45:\"index.php?lang=$matches[1]&&paged=$matches[2]\";s:16:\"(de|en|it|fr)/?$\";s:26:\"index.php?lang=$matches[1]\";s:55:\"(de|en|it|fr)/comments/feed/(feed|rdf|rss|rss2|atom)/?$\";s:59:\"index.php?lang=$matches[1]&&feed=$matches[2]&withcomments=1\";s:50:\"(de|en|it|fr)/comments/(feed|rdf|rss|rss2|atom)/?$\";s:59:\"index.php?lang=$matches[1]&&feed=$matches[2]&withcomments=1\";s:58:\"(de|en|it|fr)/search/(.+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:57:\"index.php?lang=$matches[1]&s=$matches[2]&feed=$matches[3]\";s:53:\"(de|en|it|fr)/search/(.+)/(feed|rdf|rss|rss2|atom)/?$\";s:57:\"index.php?lang=$matches[1]&s=$matches[2]&feed=$matches[3]\";s:46:\"(de|en|it|fr)/search/(.+)/page/?([0-9]{1,})/?$\";s:58:\"index.php?lang=$matches[1]&s=$matches[2]&paged=$matches[3]\";s:28:\"(de|en|it|fr)/search/(.+)/?$\";s:40:\"index.php?lang=$matches[1]&s=$matches[2]\";s:61:\"(de|en|it|fr)/author/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:67:\"index.php?lang=$matches[1]&author_name=$matches[2]&feed=$matches[3]\";s:56:\"(de|en|it|fr)/author/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:67:\"index.php?lang=$matches[1]&author_name=$matches[2]&feed=$matches[3]\";s:49:\"(de|en|it|fr)/author/([^/]+)/page/?([0-9]{1,})/?$\";s:68:\"index.php?lang=$matches[1]&author_name=$matches[2]&paged=$matches[3]\";s:31:\"(de|en|it|fr)/author/([^/]+)/?$\";s:50:\"index.php?lang=$matches[1]&author_name=$matches[2]\";s:83:\"(de|en|it|fr)/([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/feed/(feed|rdf|rss|rss2|atom)/?$\";s:97:\"index.php?lang=$matches[1]&year=$matches[2]&monthnum=$matches[3]&day=$matches[4]&feed=$matches[5]\";s:78:\"(de|en|it|fr)/([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/(feed|rdf|rss|rss2|atom)/?$\";s:97:\"index.php?lang=$matches[1]&year=$matches[2]&monthnum=$matches[3]&day=$matches[4]&feed=$matches[5]\";s:71:\"(de|en|it|fr)/([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/page/?([0-9]{1,})/?$\";s:98:\"index.php?lang=$matches[1]&year=$matches[2]&monthnum=$matches[3]&day=$matches[4]&paged=$matches[5]\";s:53:\"(de|en|it|fr)/([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/?$\";s:80:\"index.php?lang=$matches[1]&year=$matches[2]&monthnum=$matches[3]&day=$matches[4]\";s:70:\"(de|en|it|fr)/([0-9]{4})/([0-9]{1,2})/feed/(feed|rdf|rss|rss2|atom)/?$\";s:81:\"index.php?lang=$matches[1]&year=$matches[2]&monthnum=$matches[3]&feed=$matches[4]\";s:65:\"(de|en|it|fr)/([0-9]{4})/([0-9]{1,2})/(feed|rdf|rss|rss2|atom)/?$\";s:81:\"index.php?lang=$matches[1]&year=$matches[2]&monthnum=$matches[3]&feed=$matches[4]\";s:58:\"(de|en|it|fr)/([0-9]{4})/([0-9]{1,2})/page/?([0-9]{1,})/?$\";s:82:\"index.php?lang=$matches[1]&year=$matches[2]&monthnum=$matches[3]&paged=$matches[4]\";s:40:\"(de|en|it|fr)/([0-9]{4})/([0-9]{1,2})/?$\";s:64:\"index.php?lang=$matches[1]&year=$matches[2]&monthnum=$matches[3]\";s:57:\"(de|en|it|fr)/([0-9]{4})/feed/(feed|rdf|rss|rss2|atom)/?$\";s:60:\"index.php?lang=$matches[1]&year=$matches[2]&feed=$matches[3]\";s:52:\"(de|en|it|fr)/([0-9]{4})/(feed|rdf|rss|rss2|atom)/?$\";s:60:\"index.php?lang=$matches[1]&year=$matches[2]&feed=$matches[3]\";s:45:\"(de|en|it|fr)/([0-9]{4})/page/?([0-9]{1,})/?$\";s:61:\"index.php?lang=$matches[1]&year=$matches[2]&paged=$matches[3]\";s:27:\"(de|en|it|fr)/([0-9]{4})/?$\";s:43:\"index.php?lang=$matches[1]&year=$matches[2]\";s:41:\"(de|en|it|fr)/.?.+?/attachment/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[2]\";s:51:\"(de|en|it|fr)/.?.+?/attachment/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[2]&tb=1\";s:71:\"(de|en|it|fr)/.?.+?/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[2]&feed=$matches[3]\";s:66:\"(de|en|it|fr)/.?.+?/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[2]&feed=$matches[3]\";s:66:\"(de|en|it|fr)/.?.+?/attachment/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[2]&cpage=$matches[3]\";s:34:\"(de|en|it|fr)/(.?.+?)/trackback/?$\";s:35:\"index.php?pagename=$matches[2]&tb=1\";s:54:\"(de|en|it|fr)/(.?.+?)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:47:\"index.php?pagename=$matches[2]&feed=$matches[3]\";s:49:\"(de|en|it|fr)/(.?.+?)/(feed|rdf|rss|rss2|atom)/?$\";s:47:\"index.php?pagename=$matches[2]&feed=$matches[3]\";s:42:\"(de|en|it|fr)/(.?.+?)/page/?([0-9]{1,})/?$\";s:48:\"index.php?pagename=$matches[2]&paged=$matches[3]\";s:49:\"(de|en|it|fr)/(.?.+?)/comment-page-([0-9]{1,})/?$\";s:48:\"index.php?pagename=$matches[2]&cpage=$matches[3]\";s:34:\"(de|en|it|fr)/(.?.+?)(/[0-9]+)?/?$\";s:47:\"index.php?pagename=$matches[2]&page=$matches[3]\";s:27:\".?.+?/attachment/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:37:\".?.+?/attachment/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:57:\".?.+?/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:52:\".?.+?/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:52:\".?.+?/attachment/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:20:\"(.?.+?)/trackback/?$\";s:35:\"index.php?pagename=$matches[1]&tb=1\";s:40:\"(.?.+?)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:47:\"index.php?pagename=$matches[1]&feed=$matches[2]\";s:35:\"(.?.+?)/(feed|rdf|rss|rss2|atom)/?$\";s:47:\"index.php?pagename=$matches[1]&feed=$matches[2]\";s:28:\"(.?.+?)/page/?([0-9]{1,})/?$\";s:48:\"index.php?pagename=$matches[1]&paged=$matches[2]\";s:35:\"(.?.+?)/comment-page-([0-9]{1,})/?$\";s:48:\"index.php?pagename=$matches[1]&cpage=$matches[2]\";s:20:\"(.?.+?)(/[0-9]+)?/?$\";s:47:\"index.php?pagename=$matches[1]&page=$matches[2]\";s:41:\"(de|en|it|fr)/[^/]+/attachment/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[2]\";s:51:\"(de|en|it|fr)/[^/]+/attachment/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[2]&tb=1\";s:71:\"(de|en|it|fr)/[^/]+/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[2]&feed=$matches[3]\";s:66:\"(de|en|it|fr)/[^/]+/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[2]&feed=$matches[3]\";s:66:\"(de|en|it|fr)/[^/]+/attachment/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[2]&cpage=$matches[3]\";s:34:\"(de|en|it|fr)/([^/]+)/trackback/?$\";s:31:\"index.php?name=$matches[2]&tb=1\";s:54:\"(de|en|it|fr)/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:43:\"index.php?name=$matches[2]&feed=$matches[3]\";s:49:\"(de|en|it|fr)/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:43:\"index.php?name=$matches[2]&feed=$matches[3]\";s:42:\"(de|en|it|fr)/([^/]+)/page/?([0-9]{1,})/?$\";s:44:\"index.php?name=$matches[2]&paged=$matches[3]\";s:49:\"(de|en|it|fr)/([^/]+)/comment-page-([0-9]{1,})/?$\";s:44:\"index.php?name=$matches[2]&cpage=$matches[3]\";s:34:\"(de|en|it|fr)/([^/]+)(/[0-9]+)?/?$\";s:43:\"index.php?name=$matches[2]&page=$matches[3]\";s:30:\"(de|en|it|fr)/[^/]+/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[2]\";s:40:\"(de|en|it|fr)/[^/]+/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[2]&tb=1\";s:60:\"(de|en|it|fr)/[^/]+/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[2]&feed=$matches[3]\";s:55:\"(de|en|it|fr)/[^/]+/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[2]&feed=$matches[3]\";s:55:\"(de|en|it|fr)/[^/]+/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[2]&cpage=$matches[3]\";s:27:\"[^/]+/attachment/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:37:\"[^/]+/attachment/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:57:\"[^/]+/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:52:\"[^/]+/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:52:\"[^/]+/attachment/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:20:\"([^/]+)/trackback/?$\";s:31:\"index.php?name=$matches[1]&tb=1\";s:40:\"([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:43:\"index.php?name=$matches[1]&feed=$matches[2]\";s:35:\"([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:43:\"index.php?name=$matches[1]&feed=$matches[2]\";s:28:\"([^/]+)/page/?([0-9]{1,})/?$\";s:44:\"index.php?name=$matches[1]&paged=$matches[2]\";s:35:\"([^/]+)/comment-page-([0-9]{1,})/?$\";s:44:\"index.php?name=$matches[1]&cpage=$matches[2]\";s:20:\"([^/]+)(/[0-9]+)?/?$\";s:43:\"index.php?name=$matches[1]&page=$matches[2]\";s:16:\"[^/]+/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:26:\"[^/]+/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:46:\"[^/]+/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:41:\"[^/]+/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:41:\"[^/]+/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";}','yes');
+INSERT INTO `ogdch_options` VALUES (783,'nf_convert_notifications_complete','1','yes');
+INSERT INTO `ogdch_options` VALUES (784,'nf_convert_subs_step','complete','yes');
+INSERT INTO `ogdch_options` VALUES (785,'nf_upgrade_notice','closed','yes');
+INSERT INTO `ogdch_options` VALUES (786,'nf_update_email_settings_complete','1','yes');
+INSERT INTO `ogdch_options` VALUES (787,'nf_email_fav_updated','1','yes');
+INSERT INTO `ogdch_options` VALUES (788,'nf_convert_forms_complete','1','yes');
+INSERT INTO `ogdch_options` VALUES (789,'nf_database_migrations','1','yes');
+INSERT INTO `ogdch_options` VALUES (790,'ninja_forms_settings','a:23:{s:11:\"date_format\";s:5:\"d.m.Y\";s:15:\"currency_symbol\";s:3:\"CHF\";s:14:\"recaptcha_lang\";s:2:\"en\";s:13:\"req_div_label\";s:0:\"\";s:16:\"req_field_symbol\";s:18:\"<strong>*</strong>\";s:15:\"req_error_label\";s:48:\"Please ensure all required fields are completed.\";s:15:\"req_field_error\";s:24:\"This is a required field\";s:10:\"spam_error\";s:47:\"Please answer the anti-spam question correctly.\";s:14:\"honeypot_error\";s:34:\"Please leave the spam field blank.\";s:18:\"timed_submit_error\";s:31:\"Please wait to submit the form.\";s:16:\"javascript_error\";s:54:\"You cannot submit the form without Javascript enabled.\";s:13:\"invalid_email\";s:35:\"Please enter a valid email address.\";s:13:\"process_label\";s:10:\"Processing\";s:17:\"password_mismatch\";s:36:\"The passwords provided do not match.\";s:10:\"preview_id\";i:292;s:7:\"version\";s:6:\"2.9.28\";s:19:\"fix_form_email_from\";i:1;s:18:\"fix_field_reply_to\";i:1;s:18:\"recaptcha_site_key\";s:0:\"\";s:20:\"recaptcha_secret_key\";s:0:\"\";s:19:\"delete_on_uninstall\";s:1:\"0\";s:21:\"disable_admin_notices\";s:1:\"0\";s:22:\"version_2_2_25_rte_fix\";i:1;}','yes');
+INSERT INTO `ogdch_options` VALUES (791,'nf_admin_notice','a:2:{s:16:\"one_week_support\";a:2:{s:5:\"start\";s:10:\"10/29/2015\";s:3:\"int\";i:7;}s:15:\"two_week_review\";a:2:{s:5:\"start\";s:9:\"11/5/2015\";s:3:\"int\";i:14;}}','yes');
 /*!40000 ALTER TABLE `ogdch_options` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -295,7 +540,7 @@ CREATE TABLE `ogdch_postmeta` (
   PRIMARY KEY (`meta_id`),
   KEY `post_id` (`post_id`),
   KEY `meta_key` (`meta_key`(191))
-) ENGINE=InnoDB AUTO_INCREMENT=2004 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2009 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -796,16 +1041,13 @@ INSERT INTO `ogdch_postmeta` VALUES (1491,204,'_ckan_local_group_title_it','Geog
 INSERT INTO `ogdch_postmeta` VALUES (1492,200,'_ckan_local_group_title_en','Construction and housing');
 INSERT INTO `ogdch_postmeta` VALUES (1493,200,'_ckan_local_group_title_it','Costruzione e abitazione');
 INSERT INTO `ogdch_postmeta` VALUES (1515,247,'_edit_last','1');
-INSERT INTO `ogdch_postmeta` VALUES (1517,247,'_edit_lock','1442870086:1');
+INSERT INTO `ogdch_postmeta` VALUES (1517,247,'_edit_lock','1445517272:1');
 INSERT INTO `ogdch_postmeta` VALUES (1519,248,'_edit_last','1');
 INSERT INTO `ogdch_postmeta` VALUES (1521,248,'_edit_lock','1442870093:1');
 INSERT INTO `ogdch_postmeta` VALUES (1523,249,'_edit_last','1');
 INSERT INTO `ogdch_postmeta` VALUES (1526,249,'_edit_lock','1442870126:1');
-INSERT INTO `ogdch_postmeta` VALUES (1529,250,'_wp_page_template','default');
 INSERT INTO `ogdch_postmeta` VALUES (1530,250,'_edit_last','1');
 INSERT INTO `ogdch_postmeta` VALUES (1531,247,'_wp_page_template','default');
-INSERT INTO `ogdch_postmeta` VALUES (1532,248,'_wp_page_template','default');
-INSERT INTO `ogdch_postmeta` VALUES (1533,249,'_wp_page_template','default');
 INSERT INTO `ogdch_postmeta` VALUES (1534,250,'_edit_lock','1442870135:1');
 INSERT INTO `ogdch_postmeta` VALUES (1535,251,'_menu_item_type','post_type');
 INSERT INTO `ogdch_postmeta` VALUES (1536,251,'_menu_item_menu_item_parent','0');
@@ -1093,7 +1335,7 @@ INSERT INTO `ogdch_postmeta` VALUES (1854,284,'_ckan_local_dataset_relations','a
 INSERT INTO `ogdch_postmeta` VALUES (1855,284,'_ckan_local_dataset_temporals','a:2:{i:0;a:2:{s:10:\"start_date\";i:-2046124800;s:8:\"end_date\";i:1357344000;}i:1;a:2:{s:10:\"start_date\";i:1362096000;s:8:\"end_date\";i:1420416000;}}');
 INSERT INTO `ogdch_postmeta` VALUES (1856,284,'_ckan_local_dataset_see_alsos','a:1:{i:0;a:1:{s:18:\"dataset_identifier\";s:16:\"123@bundesarchiv\";}}');
 INSERT INTO `ogdch_postmeta` VALUES (1857,284,'_ckan_local_dataset_distributions','a:1:{i:0;a:13:{s:8:\"title_en\";s:35:\"WMS (ch.bafu.laerm-bahnlaerm_nacht)\";s:14:\"description_en\";s:61:\"The information is based on comprehensive model calculations.\";s:8:\"title_de\";s:35:\"WMS (ch.bafu.laerm-bahnlaerm_nacht)\";s:14:\"description_de\";s:62:\"Die Angaben basieren auf flächendeckenden Modellberechnungen.\";s:9:\"languages\";a:2:{i:0;s:2:\"en\";i:1;s:2:\"de\";}s:6:\"issued\";i:1368230400;s:8:\"modified\";i:1430006400;s:6:\"rights\";s:56:\"NonCommercialAllowed-CommercialAllowed-ReferenceRequired\";s:10:\"access_url\";s:24:\"http://wms.geo.admin.ch/\";s:12:\"download_url\";s:99:\"http://data.geo.admin.ch.s3.amazonaws.com/ch.swisstopo.swissboundaries3d-land-flaeche.fill/data.zip\";s:9:\"byte_size\";s:4:\"1024\";s:10:\"media_type\";s:9:\"text/html\";s:10:\"identifier\";s:29:\"ch.bafu.laerm-bahnlaerm_nacht\";}}');
-INSERT INTO `ogdch_postmeta` VALUES (1858,284,'_edit_lock','1444816957:1');
+INSERT INTO `ogdch_postmeta` VALUES (1858,284,'_edit_lock','1445517053:1');
 INSERT INTO `ogdch_postmeta` VALUES (1859,284,'_edit_last','1');
 INSERT INTO `ogdch_postmeta` VALUES (1860,285,'_edit_lock','1444816696:1');
 INSERT INTO `ogdch_postmeta` VALUES (1861,285,'_edit_last','1');
@@ -1193,6 +1435,11 @@ INSERT INTO `ogdch_postmeta` VALUES (2000,291,'_ckan_local_org_title_it','Sub-Or
 INSERT INTO `ogdch_postmeta` VALUES (2001,291,'_ckan_local_org_parent','swisstopo');
 INSERT INTO `ogdch_postmeta` VALUES (2002,291,'_ckan_local_org_image_id','290');
 INSERT INTO `ogdch_postmeta` VALUES (2003,291,'_ckan_local_org_image','http://ogdch.dev/content/uploads/2015/09/liip.png');
+INSERT INTO `ogdch_postmeta` VALUES (2004,292,'_edit_lock','1445515634:1');
+INSERT INTO `ogdch_postmeta` VALUES (2005,292,'_edit_last','1');
+INSERT INTO `ogdch_postmeta` VALUES (2006,248,'_wp_page_template','default');
+INSERT INTO `ogdch_postmeta` VALUES (2007,249,'_wp_page_template','default');
+INSERT INTO `ogdch_postmeta` VALUES (2008,250,'_wp_page_template','default');
 /*!40000 ALTER TABLE `ogdch_postmeta` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1232,7 +1479,7 @@ CREATE TABLE `ogdch_posts` (
   KEY `type_status_date` (`post_type`,`post_status`,`post_date`,`ID`),
   KEY `post_parent` (`post_parent`),
   KEY `post_author` (`post_author`)
-) ENGINE=InnoDB AUTO_INCREMENT=292 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=293 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1329,7 +1576,7 @@ INSERT INTO `ogdch_posts` VALUES (243,1,'2015-08-25 16:04:07','2015-08-25 16:04:
 INSERT INTO `ogdch_posts` VALUES (244,1,'2015-08-25 16:04:07','2015-08-25 16:04:07','','Organizzazioni','','publish','open','closed','','gruppi','','','2015-09-23 18:03:51','2015-09-23 16:03:51','',0,'http://ogdch.dev/?p=244',2,'nav_menu_item','',0);
 INSERT INTO `ogdch_posts` VALUES (245,1,'2015-08-25 16:04:07','2015-08-25 16:04:07','','Apps','','publish','open','closed','','apps-4','','','2015-09-23 18:03:51','2015-09-23 16:03:51','',0,'http://ogdch.dev/?p=245',3,'nav_menu_item','',0);
 INSERT INTO `ogdch_posts` VALUES (246,1,'2015-09-14 11:36:04','2015-09-14 11:36:04','','Bundesarchiv','','publish','closed','closed','','bundesarchiv','','','2015-10-14 11:51:05','2015-10-14 09:51:05','',0,'http://ogdch.dev/?post_type=ckan-local-org&#038;p=246',0,'ckan-local-org','',0);
-INSERT INTO `ogdch_posts` VALUES (247,1,'2015-09-21 21:17:55','2015-09-21 21:17:00','','Kontakt','','publish','closed','closed','','contact','','','2015-09-21 21:17:08','2015-09-21 21:17:08','',0,'http://ogdch.dev/?page_id=247',0,'page','',0);
+INSERT INTO `ogdch_posts` VALUES (247,1,'2015-09-21 21:17:55','2015-09-21 21:17:00','[ninja_forms id=1]','Kontakt','','publish','closed','closed','','contact','','','2015-10-22 14:35:39','2015-10-22 12:35:39','',0,'http://ogdch.dev/?page_id=247',0,'page','',0);
 INSERT INTO `ogdch_posts` VALUES (248,1,'2015-09-21 21:17:55','2015-09-21 21:17:15','','Contact','','publish','closed','closed','','contact','','','2015-09-21 21:17:15','2015-09-21 21:17:15','',0,'http://ogdch.dev/?page_id=248',0,'page','',0);
 INSERT INTO `ogdch_posts` VALUES (249,1,'2015-09-21 21:17:55','2015-09-21 21:17:33','','Contatto','','publish','closed','closed','','contact','','','2015-09-21 21:17:39','2015-09-21 21:17:39','',0,'http://ogdch.dev/?page_id=249',0,'page','',0);
 INSERT INTO `ogdch_posts` VALUES (250,1,'2015-09-21 21:17:55','2015-09-21 21:17:55','','Contact','','publish','closed','closed','','contact','','','2015-09-21 21:17:55','2015-09-21 21:17:55','',0,'http://ogdch.dev/?page_id=250',0,'page','',0);
@@ -1373,6 +1620,7 @@ INSERT INTO `ogdch_posts` VALUES (288,1,'2015-09-23 18:03:18','2015-09-23 16:03:
 INSERT INTO `ogdch_posts` VALUES (289,1,'2015-09-23 18:03:51','2015-09-23 16:03:51',' ','','','publish','closed','closed','','289','','','2015-09-23 18:03:51','2015-09-23 16:03:51','',0,'http://ogdch.dev/?p=289',4,'nav_menu_item','',0);
 INSERT INTO `ogdch_posts` VALUES (290,1,'2015-09-29 14:25:33','2015-09-29 12:25:33','','liip','','inherit','open','closed','','liip','','','2015-09-29 14:25:33','2015-09-29 12:25:33','',0,'http://ogdch.dev/content/uploads/2015/09/liip.png',0,'attachment','image/png',0);
 INSERT INTO `ogdch_posts` VALUES (291,1,'2015-10-12 11:50:14','2015-10-12 09:50:14','','Sub-Organization','','publish','closed','closed','','sub-organization','','','2015-10-14 11:51:24','2015-10-14 09:51:24','',0,'http://ogdch.dev/?post_type=ckan-local-org&#038;p=291',0,'ckan-local-org','',0);
+INSERT INTO `ogdch_posts` VALUES (292,1,'2015-10-22 14:09:32','0000-00-00 00:00:00','This is a preview of how this form will appear on your website','Form Preview Page','','draft','closed','closed','','','','','2015-10-22 14:09:32','2015-10-22 12:09:32','',0,'http://ogdch.dev/?page_id=292',0,'page','',0);
 /*!40000 ALTER TABLE `ogdch_posts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1599,6 +1847,7 @@ INSERT INTO `ogdch_term_relationships` VALUES (286,135,0);
 INSERT INTO `ogdch_term_relationships` VALUES (287,136,0);
 INSERT INTO `ogdch_term_relationships` VALUES (288,138,0);
 INSERT INTO `ogdch_term_relationships` VALUES (289,137,0);
+INSERT INTO `ogdch_term_relationships` VALUES (292,2,0);
 /*!40000 ALTER TABLE `ogdch_term_relationships` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1686,7 +1935,7 @@ INSERT INTO `ogdch_term_taxonomy` VALUES (137,137,'nav_menu','',0,5);
 INSERT INTO `ogdch_term_taxonomy` VALUES (138,138,'nav_menu','',0,5);
 INSERT INTO `ogdch_term_taxonomy` VALUES (139,139,'post_translations','a:4:{s:2:\"fr\";i:198;s:2:\"de\";i:195;s:2:\"en\";i:196;s:2:\"it\";i:197;}',0,4);
 INSERT INTO `ogdch_term_taxonomy` VALUES (141,141,'nav_menu','',0,3);
-INSERT INTO `ogdch_term_taxonomy` VALUES (142,142,'post_translations','a:4:{s:2:\"it\";i:249;s:2:\"de\";i:247;s:2:\"en\";i:248;s:2:\"fr\";i:250;}',0,4);
+INSERT INTO `ogdch_term_taxonomy` VALUES (142,142,'post_translations','a:4:{s:2:\"de\";i:247;s:2:\"en\";i:248;s:2:\"it\";i:249;s:2:\"fr\";i:250;}',0,4);
 INSERT INTO `ogdch_term_taxonomy` VALUES (143,143,'nav_menu','',0,3);
 INSERT INTO `ogdch_term_taxonomy` VALUES (144,144,'nav_menu','',0,3);
 INSERT INTO `ogdch_term_taxonomy` VALUES (145,145,'nav_menu','',0,3);
@@ -1981,7 +2230,7 @@ INSERT INTO `ogdch_usermeta` VALUES (125,6,'description_it','');
 INSERT INTO `ogdch_usermeta` VALUES (126,6,'description_fr','');
 INSERT INTO `ogdch_usermeta` VALUES (128,4,'pll_filter_content','en');
 INSERT INTO `ogdch_usermeta` VALUES (129,5,'session_tokens','a:1:{s:64:\"d23c2e842128c81c94f9baa4b1e4756ad5a2946262864b1fe779b10ae9aa10ee\";a:4:{s:10:\"expiration\";i:1443201631;s:2:\"ip\";s:12:\"192.168.56.1\";s:2:\"ua\";s:120:\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.99 Safari/537.36\";s:5:\"login\";i:1443028831;}}');
-INSERT INTO `ogdch_usermeta` VALUES (130,1,'session_tokens','a:1:{s:64:\"2c0210fbf4983abdab766bc26c8c684d08f7f50c591ada6361fb4be58ee1bba7\";a:4:{s:10:\"expiration\";i:1445496956;s:2:\"ip\";s:12:\"192.168.56.1\";s:2:\"ua\";s:120:\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.71 Safari/537.36\";s:5:\"login\";i:1445324156;}}');
+INSERT INTO `ogdch_usermeta` VALUES (130,1,'session_tokens','a:1:{s:64:\"37e2a31aaccaed4f405ec9a953945c39c4751546fa8407ade606fecb6c4d621b\";a:4:{s:10:\"expiration\";i:1445688434;s:2:\"ip\";s:12:\"192.168.56.1\";s:2:\"ua\";s:120:\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.71 Safari/537.36\";s:5:\"login\";i:1445515634;}}');
 INSERT INTO `ogdch_usermeta` VALUES (131,1,'wpseo_dismissed_gsc_notice','1');
 /*!40000 ALTER TABLE `ogdch_usermeta` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -2034,4 +2283,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-10-20  6:59:40
+-- Dump completed on 2015-10-23  6:48:34
