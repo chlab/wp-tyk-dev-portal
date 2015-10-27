@@ -416,7 +416,7 @@ end
 # EXTENSION BLOCK
 #
 
-# Put one custom extension on each line like this: { "name-of-ckanext" => "repository-url", ... }
+# Put one custom extension on each line 
 %w(
 ckanext-harvest
 ckanext-fluent
@@ -424,6 +424,7 @@ ckanext-scheming
 ckanext-hierarchy
 ckanext-dcat
 ckanext-switzerland
+ckanext-geocat
 ).each do | ckan_ext |
   bash "Install #{ckan_ext}" do
     user USER
