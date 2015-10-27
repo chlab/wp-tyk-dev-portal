@@ -31,3 +31,6 @@
 [submodule "web/ogdch.dev/content/plugins/wp-app-showcase"]
 	path = web/ogdch.dev/content/plugins/wp-app-showcase
 	url = git@gitlab.liip.ch:jazz/wp-app-showcase.git
+[submodule "web/ckanext/ckanext-geocat"]
+	path = web/ckanext/ckanext-geocat
+	url = git@github.com:ogdch/ckanext-geocat.git
