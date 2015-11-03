@@ -206,7 +206,7 @@ INSERT INTO `ogdch_nf_objectmeta` VALUES (61,4,'attach_csv','1');
 INSERT INTO `ogdch_nf_objectmeta` VALUES (62,4,'from_name','field_1');
 INSERT INTO `ogdch_nf_objectmeta` VALUES (63,4,'from_address','field_2');
 INSERT INTO `ogdch_nf_objectmeta` VALUES (64,4,'reply_to','field_2');
-INSERT INTO `ogdch_nf_objectmeta` VALUES (65,4,'to','');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (65,4,'to','juerg.hunziker@liip.ch');
 INSERT INTO `ogdch_nf_objectmeta` VALUES (66,4,'cc','');
 INSERT INTO `ogdch_nf_objectmeta` VALUES (67,4,'bcc','');
 INSERT INTO `ogdch_nf_objectmeta` VALUES (68,4,'email_subject','opendata.swiss Kontaktformular');
@@ -473,7 +473,7 @@ INSERT INTO `ogdch_options` VALUES (92,'widget_recent-comments','a:2:{i:2;a:2:{s
 INSERT INTO `ogdch_options` VALUES (93,'widget_archives','a:2:{i:2;a:3:{s:5:\"title\";s:0:\"\";s:5:\"count\";i:0;s:8:\"dropdown\";i:0;}s:12:\"_multiwidget\";i:1;}','yes');
 INSERT INTO `ogdch_options` VALUES (94,'widget_meta','a:2:{i:2;a:1:{s:5:\"title\";s:0:\"\";}s:12:\"_multiwidget\";i:1;}','yes');
 INSERT INTO `ogdch_options` VALUES (95,'sidebars_widgets','a:3:{s:19:\"wp_inactive_widgets\";a:0:{}s:18:\"orphaned_widgets_1\";a:1:{i:0;s:17:\"recent-comments-2\";}s:13:\"array_version\";i:3;}','yes');
-INSERT INTO `ogdch_options` VALUES (97,'cron','a:8:{i:1446208798;a:1:{s:25:\"wpseo_ping_search_engines\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:2:{s:8:\"schedule\";b:0;s:4:\"args\";a:0:{}}}}i:1446208981;a:1:{s:30:\"wp_scheduled_auto_draft_delete\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1446211957;a:3:{s:16:\"wp_version_check\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}s:17:\"wp_update_plugins\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}s:16:\"wp_update_themes\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1446212281;a:1:{s:19:\"wp_scheduled_delete\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1446214152;a:1:{s:29:\"wp_session_garbage_collection\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1446234540;a:1:{s:20:\"wp_maybe_auto_update\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1446293326;a:1:{s:24:\"ninja_forms_daily_action\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}s:7:\"version\";i:2;}','yes');
+INSERT INTO `ogdch_options` VALUES (97,'cron','a:8:{i:1446539439;a:1:{s:25:\"wpseo_ping_search_engines\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:2:{s:8:\"schedule\";b:0;s:4:\"args\";a:0:{}}}}i:1446552526;a:1:{s:24:\"ninja_forms_daily_action\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1446554581;a:1:{s:30:\"wp_scheduled_auto_draft_delete\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1446557557;a:3:{s:16:\"wp_version_check\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}s:17:\"wp_update_plugins\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}s:16:\"wp_update_themes\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1446557881;a:1:{s:19:\"wp_scheduled_delete\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1446559752;a:1:{s:29:\"wp_session_garbage_collection\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1446580140;a:1:{s:20:\"wp_maybe_auto_update\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}s:7:\"version\";i:2;}','yes');
 INSERT INTO `ogdch_options` VALUES (134,'db_upgraded','','yes');
 INSERT INTO `ogdch_options` VALUES (142,'recently_activated','a:0:{}','yes');
 INSERT INTO `ogdch_options` VALUES (147,'members_db_version','2','yes');
@@ -521,7 +521,6 @@ INSERT INTO `ogdch_options` VALUES (788,'nf_convert_forms_complete','1','yes');
 INSERT INTO `ogdch_options` VALUES (789,'nf_database_migrations','1','yes');
 INSERT INTO `ogdch_options` VALUES (790,'ninja_forms_settings','a:23:{s:11:\"date_format\";s:5:\"d.m.Y\";s:15:\"currency_symbol\";s:3:\"CHF\";s:14:\"recaptcha_lang\";s:2:\"en\";s:13:\"req_div_label\";s:0:\"\";s:16:\"req_field_symbol\";s:18:\"<strong>*</strong>\";s:15:\"req_error_label\";s:48:\"Please ensure all required fields are completed.\";s:15:\"req_field_error\";s:24:\"This is a required field\";s:10:\"spam_error\";s:47:\"Please answer the anti-spam question correctly.\";s:14:\"honeypot_error\";s:34:\"Please leave the spam field blank.\";s:18:\"timed_submit_error\";s:31:\"Please wait to submit the form.\";s:16:\"javascript_error\";s:54:\"You cannot submit the form without Javascript enabled.\";s:13:\"invalid_email\";s:35:\"Please enter a valid email address.\";s:13:\"process_label\";s:10:\"Processing\";s:17:\"password_mismatch\";s:36:\"The passwords provided do not match.\";s:10:\"preview_id\";i:292;s:7:\"version\";s:6:\"2.9.28\";s:19:\"fix_form_email_from\";i:1;s:18:\"fix_field_reply_to\";i:1;s:18:\"recaptcha_site_key\";s:0:\"\";s:20:\"recaptcha_secret_key\";s:0:\"\";s:19:\"delete_on_uninstall\";s:1:\"0\";s:21:\"disable_admin_notices\";s:1:\"0\";s:22:\"version_2_2_25_rte_fix\";i:1;}','yes');
 INSERT INTO `ogdch_options` VALUES (791,'nf_admin_notice','a:2:{s:16:\"one_week_support\";a:3:{s:5:\"start\";s:10:\"10/29/2015\";s:3:\"int\";i:7;s:9:\"dismissed\";i:1;}s:15:\"two_week_review\";a:2:{s:5:\"start\";s:9:\"11/5/2015\";s:3:\"int\";i:14;}}','yes');
-INSERT INTO `ogdch_options` VALUES (799,'_wp_session_expires_e96368b6d40c887cef334031e0567dfe','1446199239','no');
 INSERT INTO `ogdch_options` VALUES (800,'theme_mods_twentyfifteen','a:1:{s:16:\"sidebars_widgets\";a:2:{s:4:\"time\";i:1446201947;s:4:\"data\";a:2:{s:19:\"wp_inactive_widgets\";a:0:{}s:9:\"sidebar-1\";a:6:{i:0;s:8:\"search-2\";i:1;s:14:\"recent-posts-2\";i:2;s:17:\"recent-comments-2\";i:3;s:10:\"archives-2\";i:4;s:12:\"categories-2\";i:5;s:6:\"meta-2\";}}}}','yes');
 /*!40000 ALTER TABLE `ogdch_options` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -541,7 +540,7 @@ CREATE TABLE `ogdch_postmeta` (
   PRIMARY KEY (`meta_id`),
   KEY `post_id` (`post_id`),
   KEY `meta_key` (`meta_key`(191))
-) ENGINE=InnoDB AUTO_INCREMENT=2045 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2074 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1263,9 +1262,9 @@ INSERT INTO `ogdch_postmeta` VALUES (1832,198,'_app-showcase-app_icon','http://o
 INSERT INTO `ogdch_postmeta` VALUES (1833,284,'_ckan_local_dataset_ckan_id','ac9396cd-09a8-41d6-9d9a-acbd5a2f15e0');
 INSERT INTO `ogdch_postmeta` VALUES (1834,284,'_ckan_local_dataset_ckan_name','railway-noise-night');
 INSERT INTO `ogdch_postmeta` VALUES (1835,284,'_ckan_local_dataset_identifier','a:2:{s:19:\"original_identifier\";s:3:\"325\";s:12:\"organisation\";s:9:\"swisstopo\";}');
-INSERT INTO `ogdch_postmeta` VALUES (1836,284,'_ckan_local_dataset_issued','1366934400');
+INSERT INTO `ogdch_postmeta` VALUES (1836,284,'_ckan_local_dataset_issued','1366938000');
 INSERT INTO `ogdch_postmeta` VALUES (1837,284,'_ckan_local_dataset_modified','1430006400');
-INSERT INTO `ogdch_postmeta` VALUES (1839,284,'_ckan_local_dataset_keywords','a:8:{i:0;s:9:\"Eisenbahn\";i:1;s:13:\"Chemin-de-fer\";i:2;s:8:\"Ferrovia\";i:3;s:8:\"Railroad\";i:4;s:5:\"Nacht\";i:5;s:4:\"Nuit\";i:6;s:5:\"Noche\";i:7;s:5:\"Night\";}');
+INSERT INTO `ogdch_postmeta` VALUES (1839,284,'_ckan_local_dataset_keywords','a:4:{s:2:\"de\";a:2:{i:0;s:9:\"Eisenbahn\";i:1;s:5:\"Nacht\";}s:2:\"fr\";a:2:{i:0;s:13:\"Chemin-de-fer\";i:1;s:4:\"Nuit\";}s:2:\"it\";a:2:{i:0;s:8:\"Ferrovia\";i:1;s:5:\"Noche\";}s:2:\"en\";a:2:{i:0;s:8:\"Railroad\";i:1;s:5:\"Night\";}}');
 INSERT INTO `ogdch_postmeta` VALUES (1840,284,'_ckan_local_dataset_landing_page','http://www.bafu.admin.ch/laerm/index.html?lang=de');
 INSERT INTO `ogdch_postmeta` VALUES (1843,284,'_ckan_local_dataset_accrual_periodicity','http://purl.org/cld/freq/daily');
 INSERT INTO `ogdch_postmeta` VALUES (1844,284,'_ckan_local_dataset_title_en','Railway noise night');
@@ -1276,15 +1275,15 @@ INSERT INTO `ogdch_postmeta` VALUES (1848,284,'_ckan_local_dataset_title_fr','Br
 INSERT INTO `ogdch_postmeta` VALUES (1849,284,'_ckan_local_dataset_description_fr','La carte montre que la pollution sonore est suspendu par le système de rail, la population.');
 INSERT INTO `ogdch_postmeta` VALUES (1850,284,'_ckan_local_dataset_title_it','Rumore ferroviario notte');
 INSERT INTO `ogdch_postmeta` VALUES (1851,284,'_ckan_local_dataset_description_it','La mappa mostra che l\'inquinamento acustico è sospeso dal sistema ferroviario, la popolazione.');
-INSERT INTO `ogdch_postmeta` VALUES (1852,284,'_ckan_local_dataset_publishers','a:2:{i:0;a:2:{s:5:\"label\";s:41:\"Bundesamt für Landestopografie swisstopo\";s:17:\"termdat_reference\";s:27:\"Verweis auf TERMDAT-Eintrag\";}i:1;a:1:{s:5:\"label\";s:21:\"Bundesamt für Umwelt\";}}');
+INSERT INTO `ogdch_postmeta` VALUES (1852,284,'_ckan_local_dataset_publishers','a:2:{i:0;a:2:{s:17:\"termdat_reference\";s:27:\"Verweis auf TERMDAT-Eintrag\";s:5:\"label\";s:41:\"Bundesamt für Landestopografie swisstopo\";}i:1;a:2:{s:17:\"termdat_reference\";s:0:\"\";s:5:\"label\";s:21:\"Bundesamt für Umwelt\";}}');
 INSERT INTO `ogdch_postmeta` VALUES (1853,284,'_ckan_local_dataset_contact_points','a:2:{i:0;a:2:{s:4:\"name\";s:20:\"Abteilung Lärm BAFU\";s:5:\"email\";s:19:\"noise@bafu.admin.ch\";}i:1;a:2:{s:4:\"name\";s:13:\"Heinz Müller\";s:5:\"email\";s:19:\"heinz@bafu.admin.ch\";}}');
 INSERT INTO `ogdch_postmeta` VALUES (1854,284,'_ckan_local_dataset_relations','a:1:{i:0;a:2:{s:3:\"url\";s:49:\"http://www.bafu.admin.ch/laerm/index.html?lang=de\";s:5:\"label\";s:17:\"Webseite des BAFU\";}}');
 INSERT INTO `ogdch_postmeta` VALUES (1855,284,'_ckan_local_dataset_temporals','a:2:{i:0;a:2:{s:10:\"start_date\";i:-2046124800;s:8:\"end_date\";i:1357344000;}i:1;a:2:{s:10:\"start_date\";i:1362096000;s:8:\"end_date\";i:1420416000;}}');
-INSERT INTO `ogdch_postmeta` VALUES (1856,284,'_ckan_local_dataset_see_alsos','a:1:{i:0;a:1:{s:18:\"dataset_identifier\";s:16:\"123@bundesarchiv\";}}');
-INSERT INTO `ogdch_postmeta` VALUES (1857,284,'_ckan_local_dataset_distributions','a:1:{i:0;a:13:{s:8:\"title_en\";s:35:\"WMS (ch.bafu.laerm-bahnlaerm_nacht)\";s:14:\"description_en\";s:61:\"The information is based on comprehensive model calculations.\";s:8:\"title_de\";s:35:\"WMS (ch.bafu.laerm-bahnlaerm_nacht)\";s:14:\"description_de\";s:62:\"Die Angaben basieren auf flächendeckenden Modellberechnungen.\";s:9:\"languages\";a:2:{i:0;s:2:\"en\";i:1;s:2:\"de\";}s:6:\"issued\";i:1368230400;s:8:\"modified\";i:1430006400;s:6:\"rights\";s:56:\"NonCommercialAllowed-CommercialAllowed-ReferenceRequired\";s:10:\"access_url\";s:24:\"http://wms.geo.admin.ch/\";s:12:\"download_url\";s:99:\"http://data.geo.admin.ch.s3.amazonaws.com/ch.swisstopo.swissboundaries3d-land-flaeche.fill/data.zip\";s:9:\"byte_size\";s:4:\"1024\";s:10:\"media_type\";s:9:\"text/html\";s:10:\"identifier\";s:29:\"ch.bafu.laerm-bahnlaerm_nacht\";}}');
-INSERT INTO `ogdch_postmeta` VALUES (1858,284,'_edit_lock','1446208391:1');
+INSERT INTO `ogdch_postmeta` VALUES (1856,284,'_ckan_local_dataset_see_alsos','a:1:{i:0;a:1:{s:18:\"dataset_identifier\";s:13:\"326@swisstopo\";}}');
+INSERT INTO `ogdch_postmeta` VALUES (1857,284,'_ckan_local_dataset_distributions','a:1:{i:0;a:22:{s:10:\"identifier\";s:29:\"ch.bafu.laerm-bahnlaerm_nacht\";s:9:\"languages\";a:2:{i:0;s:2:\"de\";i:1;s:2:\"en\";}s:6:\"issued\";i:1368230400;s:8:\"modified\";i:1430006400;s:11:\"access_urls\";a:1:{i:0;s:24:\"http://wms.geo.admin.ch/\";}s:13:\"download_urls\";a:0:{}s:6:\"rights\";s:59:\"NonCommercialAllowed-CommercialAllowed-ReferenceNotRequired\";s:7:\"license\";s:0:\"\";s:9:\"byte_size\";s:4:\"1024\";s:10:\"media_type\";s:9:\"text/html\";s:6:\"format\";s:0:\"\";s:8:\"coverage\";s:0:\"\";s:8:\"title_en\";s:35:\"WMS (ch.bafu.laerm-bahnlaerm_nacht)\";s:14:\"description_en\";s:61:\"The information is based on comprehensive model calculations.\";s:8:\"title_de\";s:35:\"WMS (ch.bafu.laerm-bahnlaerm_nacht)\";s:14:\"description_de\";s:62:\"Die Angaben basieren auf flächendeckenden Modellberechnungen.\";s:8:\"title_fr\";s:0:\"\";s:14:\"description_fr\";s:0:\"\";s:8:\"title_it\";s:0:\"\";s:14:\"description_it\";s:0:\"\";s:10:\"access_url\";s:24:\"http://wms.geo.admin.ch/\";s:12:\"download_url\";b:0;}}');
+INSERT INTO `ogdch_postmeta` VALUES (1858,284,'_edit_lock','1446539136:1');
 INSERT INTO `ogdch_postmeta` VALUES (1859,284,'_edit_last','1');
-INSERT INTO `ogdch_postmeta` VALUES (1860,285,'_edit_lock','1446208620:1');
+INSERT INTO `ogdch_postmeta` VALUES (1860,285,'_edit_lock','1446538970:1');
 INSERT INTO `ogdch_postmeta` VALUES (1861,285,'_edit_last','1');
 INSERT INTO `ogdch_postmeta` VALUES (1862,285,'_ckan_local_dataset_ckan_id','52368b85-350c-450e-a18e-f2fb6fa7ae7a');
 INSERT INTO `ogdch_postmeta` VALUES (1863,285,'_ckan_local_dataset_ckan_name','baustellen');
@@ -1370,7 +1369,7 @@ INSERT INTO `ogdch_postmeta` VALUES (1988,199,'_wp_old_slug','arbeit');
 INSERT INTO `ogdch_postmeta` VALUES (1989,193,'_wp_old_slug','raum');
 INSERT INTO `ogdch_postmeta` VALUES (1990,192,'_wp_old_slug','bevoelkerung');
 INSERT INTO `ogdch_postmeta` VALUES (1991,285,'_ckan_local_dataset_themes','a:2:{i:0;s:10:\"population\";i:1;s:9:\"territory\";}');
-INSERT INTO `ogdch_postmeta` VALUES (1992,284,'_ckan_local_dataset_themes','a:2:{i:0;s:10:\"population\";i:1;s:8:\"mobility\";}');
+INSERT INTO `ogdch_postmeta` VALUES (1992,284,'_ckan_local_dataset_themes','a:2:{i:0;s:10:\"population\";i:1;s:9:\"territory\";}');
 INSERT INTO `ogdch_postmeta` VALUES (1993,291,'_edit_lock','1446198433:1');
 INSERT INTO `ogdch_postmeta` VALUES (1994,291,'_edit_last','1');
 INSERT INTO `ogdch_postmeta` VALUES (1995,291,'_ckan_local_org_ckan_id','091dde3d-99db-4da3-a2c5-b41741c18502');
@@ -1419,6 +1418,35 @@ INSERT INTO `ogdch_postmeta` VALUES (2040,296,'_menu_item_target','');
 INSERT INTO `ogdch_postmeta` VALUES (2041,296,'_menu_item_classes','a:1:{i:0;s:0:\"\";}');
 INSERT INTO `ogdch_postmeta` VALUES (2042,296,'_menu_item_xfn','');
 INSERT INTO `ogdch_postmeta` VALUES (2043,296,'_menu_item_url','/it/app');
+INSERT INTO `ogdch_postmeta` VALUES (2045,284,'_ckan_local_dataset_spatial','');
+INSERT INTO `ogdch_postmeta` VALUES (2046,284,'_ckan_local_dataset_coverage','');
+INSERT INTO `ogdch_postmeta` VALUES (2047,297,'_ckan_local_dataset_ckan_id','2d6dadf3-b6f6-4df4-8a6f-06dd43f284e4');
+INSERT INTO `ogdch_postmeta` VALUES (2048,297,'_ckan_local_dataset_ckan_name','national-boundaries');
+INSERT INTO `ogdch_postmeta` VALUES (2049,297,'_ckan_local_dataset_identifier','a:2:{s:19:\"original_identifier\";s:15:\"swissBOUNDARIES\";s:12:\"organisation\";s:9:\"swisstopo\";}');
+INSERT INTO `ogdch_postmeta` VALUES (2050,297,'_ckan_local_dataset_issued','1366934400');
+INSERT INTO `ogdch_postmeta` VALUES (2051,297,'_ckan_local_dataset_modified','1430006400');
+INSERT INTO `ogdch_postmeta` VALUES (2052,297,'_ckan_local_dataset_themes','a:1:{i:0;s:9:\"territory\";}');
+INSERT INTO `ogdch_postmeta` VALUES (2053,297,'_ckan_local_dataset_keywords','a:4:{s:2:\"de\";a:2:{i:0;s:12:\"Landesgrenze\";i:1;s:20:\"Verwaltungseinheiten\";}s:2:\"fr\";a:2:{i:0;s:22:\"Frontières nationales\";i:1;s:23:\"Unités administratives\";}s:2:\"it\";a:2:{i:0;s:19:\"Frontiere nazionali\";i:1;s:20:\"Unita amministrative\";}s:2:\"en\";a:2:{i:0;s:19:\"National boundaries\";i:1;s:20:\"Administrative units\";}}');
+INSERT INTO `ogdch_postmeta` VALUES (2054,297,'_ckan_local_dataset_landing_page','http://www.swisstopo.admin.ch/internet/swisstopo/de/home/products/landscape/swissBOUNDARIES3D.html');
+INSERT INTO `ogdch_postmeta` VALUES (2055,297,'_ckan_local_dataset_spatial','');
+INSERT INTO `ogdch_postmeta` VALUES (2056,297,'_ckan_local_dataset_coverage','');
+INSERT INTO `ogdch_postmeta` VALUES (2057,297,'_ckan_local_dataset_accrual_periodicity','http://purl.org/cld/freq/annual');
+INSERT INTO `ogdch_postmeta` VALUES (2058,297,'_ckan_local_dataset_title_en','National boundaries');
+INSERT INTO `ogdch_postmeta` VALUES (2059,297,'_ckan_local_dataset_description_en','swissBOUNDARIES national boundaries constitute the borders of Switzerland and the principality of Liechtenstein.');
+INSERT INTO `ogdch_postmeta` VALUES (2060,297,'_ckan_local_dataset_title_de','Landesgrenzen');
+INSERT INTO `ogdch_postmeta` VALUES (2061,297,'_ckan_local_dataset_description_de','swissBOUNDARIES3D Landesgrenzen umfasst die Landesgrenzen der Schweiz und des Fürstentums Liechtenstein.');
+INSERT INTO `ogdch_postmeta` VALUES (2062,297,'_ckan_local_dataset_title_fr','Frontières nationales');
+INSERT INTO `ogdch_postmeta` VALUES (2063,297,'_ckan_local_dataset_description_fr','swissBOUNDARIES3D frontières nationales comprend la frontière de la Suisse et de la Principauté de Liechtenstein.');
+INSERT INTO `ogdch_postmeta` VALUES (2064,297,'_ckan_local_dataset_title_it','Frontiere nazionali');
+INSERT INTO `ogdch_postmeta` VALUES (2065,297,'_ckan_local_dataset_description_it','swissBOUNDARIES3D frontiere nazionali contiene la frontiera della Svizzera e del Principato del Liechtenstein.');
+INSERT INTO `ogdch_postmeta` VALUES (2066,297,'_ckan_local_dataset_publishers','a:1:{i:0;a:1:{s:5:\"label\";s:41:\"Bundesamt für Landestopografie swisstopo\";}}');
+INSERT INTO `ogdch_postmeta` VALUES (2067,297,'_ckan_local_dataset_contact_points','a:1:{i:0;a:2:{s:4:\"name\";s:39:\"geodata Bundesamt für Landestopografie\";s:5:\"email\";s:20:\"geodata@swisstopo.ch\";}}');
+INSERT INTO `ogdch_postmeta` VALUES (2068,297,'_ckan_local_dataset_relations','a:1:{i:0;a:2:{s:5:\"label\";s:24:\"Webseite swissBOUNDARIES\";s:3:\"url\";s:98:\"http://www.swisstopo.admin.ch/internet/swisstopo/de/home/products/landscape/swissBOUNDARIES3D.html\";}}');
+INSERT INTO `ogdch_postmeta` VALUES (2069,297,'_ckan_local_dataset_temporals','a:1:{i:0;a:2:{s:10:\"start_date\";i:1420070400;s:8:\"end_date\";i:1451520000;}}');
+INSERT INTO `ogdch_postmeta` VALUES (2070,297,'_ckan_local_dataset_see_alsos','a:1:{i:0;a:1:{s:18:\"dataset_identifier\";s:15:\"87986@swisstopo\";}}');
+INSERT INTO `ogdch_postmeta` VALUES (2071,297,'_ckan_local_dataset_distributions','a:2:{i:0;a:17:{s:10:\"identifier\";s:30:\"swissboundaries3d-land-flaeche\";s:8:\"title_en\";s:0:\"\";s:14:\"description_en\";s:0:\"\";s:8:\"title_de\";s:0:\"\";s:14:\"description_de\";s:0:\"\";s:8:\"title_fr\";s:0:\"\";s:14:\"description_fr\";s:0:\"\";s:8:\"title_it\";s:0:\"\";s:14:\"description_it\";s:0:\"\";s:9:\"languages\";b:0;s:6:\"issued\";i:1419984000;s:8:\"modified\";b:0;s:6:\"rights\";s:59:\"NonCommercialAllowed-CommercialAllowed-ReferenceNotRequired\";s:10:\"access_url\";s:99:\"http://data.geo.admin.ch.s3.amazonaws.com/ch.swisstopo.swissboundaries3d-land-flaeche.fill/data.zip\";s:12:\"download_url\";s:99:\"http://data.geo.admin.ch.s3.amazonaws.com/ch.swisstopo.swissboundaries3d-land-flaeche.fill/data.zip\";s:9:\"byte_size\";s:6:\"209870\";s:10:\"media_type\";s:15:\"application/zip\";}i:1;a:10:{s:8:\"title_en\";s:6:\"ReadMe\";s:8:\"title_de\";s:6:\"ReadMe\";s:8:\"title_fr\";s:6:\"ReadMe\";s:8:\"title_it\";s:6:\"ReadMe\";s:6:\"issued\";i:1419984000;s:6:\"rights\";s:59:\"NonCommercialAllowed-CommercialAllowed-ReferenceNotRequired\";s:10:\"access_url\";s:101:\"http://data.geo.admin.ch.s3.amazonaws.com/ch.swisstopo.swissboundaries3d-land-flaeche.fill/readme.txt\";s:12:\"download_url\";s:101:\"http://data.geo.admin.ch.s3.amazonaws.com/ch.swisstopo.swissboundaries3d-land-flaeche.fill/readme.txt\";s:9:\"byte_size\";s:4:\"1389\";s:10:\"media_type\";s:10:\"text/plain\";}}');
+INSERT INTO `ogdch_postmeta` VALUES (2072,297,'_edit_lock','1446539181:1');
+INSERT INTO `ogdch_postmeta` VALUES (2073,297,'_edit_last','1');
 /*!40000 ALTER TABLE `ogdch_postmeta` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1458,7 +1486,7 @@ CREATE TABLE `ogdch_posts` (
   KEY `type_status_date` (`post_type`,`post_status`,`post_date`,`ID`),
   KEY `post_parent` (`post_parent`),
   KEY `post_author` (`post_author`)
-) ENGINE=InnoDB AUTO_INCREMENT=297 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=298 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1585,7 +1613,7 @@ INSERT INTO `ogdch_posts` VALUES (279,1,'2015-09-22 06:41:20','2015-09-22 06:41:
 INSERT INTO `ogdch_posts` VALUES (280,1,'2015-09-22 06:41:20','2015-09-22 06:41:20','','Fonte','','publish','closed','closed','','fonte','','','2015-10-27 16:17:01','2015-10-27 15:17:01','',0,'http://ogdch.dev/?p=280',3,'nav_menu_item','',0);
 INSERT INTO `ogdch_posts` VALUES (281,1,'2015-09-22 06:41:47','2015-09-22 06:41:47','','API','','publish','closed','closed','','api-4','','','2015-10-27 16:16:37','2015-10-27 15:16:37','',0,'http://ogdch.dev/?p=281',2,'nav_menu_item','',0);
 INSERT INTO `ogdch_posts` VALUES (282,1,'2015-09-22 06:41:47','2015-09-22 06:41:47','','Source','','publish','closed','closed','','source-2','','','2015-10-27 16:16:37','2015-10-27 15:16:37','',0,'http://ogdch.dev/?p=282',3,'nav_menu_item','',0);
-INSERT INTO `ogdch_posts` VALUES (284,1,'2015-09-22 15:16:35','2015-09-22 13:16:35','','Railway noise night','','publish','closed','closed','','railway-noise-night','','','2015-10-30 13:34:58','2015-10-30 12:34:58','',0,'http://ogdch.dev/?post_type=ckan-local-dataset&#038;p=284',0,'ckan-local-dataset','',0);
+INSERT INTO `ogdch_posts` VALUES (284,1,'2013-04-26 01:00:00','2013-04-26 01:00:00','','Railway noise night','','publish','closed','closed','','railway-noise-night','','','2015-11-03 09:25:39','2015-11-03 08:25:39','',0,'http://ogdch.dev/?post_type=ckan-local-dataset&#038;p=284',0,'ckan-local-dataset','',0);
 INSERT INTO `ogdch_posts` VALUES (285,1,'2015-09-22 15:20:00','2015-09-22 13:20:00','','Baustellen','','publish','closed','closed','','baustellen','','','2015-10-30 13:36:20','2015-10-30 12:36:20','',0,'http://ogdch.dev/?post_type=ckan-local-dataset&#038;p=285',0,'ckan-local-dataset','',0);
 INSERT INTO `ogdch_posts` VALUES (286,1,'2015-09-23 18:02:09','2015-09-23 16:02:09',' ','','','publish','closed','closed','','286','','','2015-10-27 16:11:48','2015-10-27 15:11:48','',0,'http://ogdch.dev/?p=286',4,'nav_menu_item','',0);
 INSERT INTO `ogdch_posts` VALUES (287,1,'2015-09-23 18:02:42','2015-09-23 16:02:42',' ','','','publish','closed','closed','','287','','','2015-10-27 16:09:03','2015-10-27 15:09:03','',0,'http://ogdch.dev/?p=287',4,'nav_menu_item','',0);
@@ -1598,6 +1626,7 @@ INSERT INTO `ogdch_posts` VALUES (293,1,'2015-10-27 16:15:16','2015-10-27 15:15:
 INSERT INTO `ogdch_posts` VALUES (294,1,'2015-10-27 16:15:39','2015-10-27 15:15:39','','Applications','','publish','closed','closed','','applications','','','2015-10-27 16:15:39','2015-10-27 15:15:39','',0,'http://ogdch.dev/?p=294',1,'nav_menu_item','',0);
 INSERT INTO `ogdch_posts` VALUES (295,1,'2015-10-27 16:16:37','2015-10-27 15:16:37','','Applications','','publish','closed','closed','','applications-2','','','2015-10-27 16:16:37','2015-10-27 15:16:37','',0,'http://ogdch.dev/?p=295',1,'nav_menu_item','',0);
 INSERT INTO `ogdch_posts` VALUES (296,1,'2015-10-27 16:17:01','2015-10-27 15:17:01','','Applicazioni','','publish','closed','closed','','applicazioni','','','2015-10-27 16:17:01','2015-10-27 15:17:01','',0,'http://ogdch.dev/?p=296',1,'nav_menu_item','',0);
+INSERT INTO `ogdch_posts` VALUES (297,1,'2015-11-03 09:28:12','2015-11-03 08:28:12','','National boundaries','','publish','closed','closed','','national-boundaries','','','2015-11-03 09:28:12','2015-11-03 08:28:12','',0,'http://ogdch.dev/?post_type=ckan-local-dataset&#038;p=297',0,'ckan-local-dataset','',0);
 /*!40000 ALTER TABLE `ogdch_posts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1819,6 +1848,14 @@ INSERT INTO `ogdch_term_relationships` VALUES (284,162,0);
 INSERT INTO `ogdch_term_relationships` VALUES (284,164,0);
 INSERT INTO `ogdch_term_relationships` VALUES (284,166,0);
 INSERT INTO `ogdch_term_relationships` VALUES (284,168,0);
+INSERT INTO `ogdch_term_relationships` VALUES (284,172,0);
+INSERT INTO `ogdch_term_relationships` VALUES (284,173,0);
+INSERT INTO `ogdch_term_relationships` VALUES (284,174,0);
+INSERT INTO `ogdch_term_relationships` VALUES (284,175,0);
+INSERT INTO `ogdch_term_relationships` VALUES (284,176,0);
+INSERT INTO `ogdch_term_relationships` VALUES (284,177,0);
+INSERT INTO `ogdch_term_relationships` VALUES (284,178,0);
+INSERT INTO `ogdch_term_relationships` VALUES (284,179,0);
 INSERT INTO `ogdch_term_relationships` VALUES (285,170,0);
 INSERT INTO `ogdch_term_relationships` VALUES (286,135,0);
 INSERT INTO `ogdch_term_relationships` VALUES (287,136,0);
@@ -1829,6 +1866,14 @@ INSERT INTO `ogdch_term_relationships` VALUES (293,150,0);
 INSERT INTO `ogdch_term_relationships` VALUES (294,151,0);
 INSERT INTO `ogdch_term_relationships` VALUES (295,153,0);
 INSERT INTO `ogdch_term_relationships` VALUES (296,152,0);
+INSERT INTO `ogdch_term_relationships` VALUES (297,180,0);
+INSERT INTO `ogdch_term_relationships` VALUES (297,181,0);
+INSERT INTO `ogdch_term_relationships` VALUES (297,182,0);
+INSERT INTO `ogdch_term_relationships` VALUES (297,183,0);
+INSERT INTO `ogdch_term_relationships` VALUES (297,184,0);
+INSERT INTO `ogdch_term_relationships` VALUES (297,185,0);
+INSERT INTO `ogdch_term_relationships` VALUES (297,186,0);
+INSERT INTO `ogdch_term_relationships` VALUES (297,187,0);
 /*!40000 ALTER TABLE `ogdch_term_relationships` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1849,7 +1894,7 @@ CREATE TABLE `ogdch_term_taxonomy` (
   PRIMARY KEY (`term_taxonomy_id`),
   UNIQUE KEY `term_id_taxonomy` (`term_id`,`taxonomy`),
   KEY `taxonomy` (`taxonomy`)
-) ENGINE=InnoDB AUTO_INCREMENT=172 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=188 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1946,6 +1991,22 @@ INSERT INTO `ogdch_term_taxonomy` VALUES (168,168,'post_tag','',0,1);
 INSERT INTO `ogdch_term_taxonomy` VALUES (169,169,'term_translations','a:1:{s:2:\"de\";i:168;}',0,1);
 INSERT INTO `ogdch_term_taxonomy` VALUES (170,170,'post_tag','',0,1);
 INSERT INTO `ogdch_term_taxonomy` VALUES (171,171,'term_translations','a:1:{s:2:\"de\";i:170;}',0,1);
+INSERT INTO `ogdch_term_taxonomy` VALUES (172,172,'ckan-keyword-de','',0,1);
+INSERT INTO `ogdch_term_taxonomy` VALUES (173,173,'ckan-keyword-de','',0,1);
+INSERT INTO `ogdch_term_taxonomy` VALUES (174,174,'ckan-keyword-fr','',0,1);
+INSERT INTO `ogdch_term_taxonomy` VALUES (175,175,'ckan-keyword-fr','',0,1);
+INSERT INTO `ogdch_term_taxonomy` VALUES (176,176,'ckan-keyword-it','',0,1);
+INSERT INTO `ogdch_term_taxonomy` VALUES (177,177,'ckan-keyword-it','',0,1);
+INSERT INTO `ogdch_term_taxonomy` VALUES (178,178,'ckan-keyword-en','',0,1);
+INSERT INTO `ogdch_term_taxonomy` VALUES (179,179,'ckan-keyword-en','',0,1);
+INSERT INTO `ogdch_term_taxonomy` VALUES (180,180,'ckan-keyword-de','',0,1);
+INSERT INTO `ogdch_term_taxonomy` VALUES (181,181,'ckan-keyword-de','',0,1);
+INSERT INTO `ogdch_term_taxonomy` VALUES (182,182,'ckan-keyword-fr','',0,1);
+INSERT INTO `ogdch_term_taxonomy` VALUES (183,183,'ckan-keyword-fr','',0,1);
+INSERT INTO `ogdch_term_taxonomy` VALUES (184,184,'ckan-keyword-it','',0,1);
+INSERT INTO `ogdch_term_taxonomy` VALUES (185,185,'ckan-keyword-it','',0,1);
+INSERT INTO `ogdch_term_taxonomy` VALUES (186,186,'ckan-keyword-en','',0,1);
+INSERT INTO `ogdch_term_taxonomy` VALUES (187,187,'ckan-keyword-en','',0,1);
 /*!40000 ALTER TABLE `ogdch_term_taxonomy` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1964,7 +2025,7 @@ CREATE TABLE `ogdch_terms` (
   PRIMARY KEY (`term_id`),
   KEY `slug` (`slug`(191)),
   KEY `name` (`name`(191))
-) ENGINE=InnoDB AUTO_INCREMENT=172 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=188 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2061,6 +2122,22 @@ INSERT INTO `ogdch_terms` VALUES (168,'Night','night',0);
 INSERT INTO `ogdch_terms` VALUES (169,'pll_560154a888a11','pll_560154a888a11',0);
 INSERT INTO `ogdch_terms` VALUES (170,'bau','bau',0);
 INSERT INTO `ogdch_terms` VALUES (171,'pll_56015580a284e','pll_56015580a284e',0);
+INSERT INTO `ogdch_terms` VALUES (172,'Eisenbahn','eisenbahn',0);
+INSERT INTO `ogdch_terms` VALUES (173,'Nacht','nacht',0);
+INSERT INTO `ogdch_terms` VALUES (174,'Chemin-de-fer','chemin-de-fer',0);
+INSERT INTO `ogdch_terms` VALUES (175,'Nuit','nuit',0);
+INSERT INTO `ogdch_terms` VALUES (176,'Ferrovia','ferrovia',0);
+INSERT INTO `ogdch_terms` VALUES (177,'Noche','noche',0);
+INSERT INTO `ogdch_terms` VALUES (178,'Railroad','railroad',0);
+INSERT INTO `ogdch_terms` VALUES (179,'Night','night',0);
+INSERT INTO `ogdch_terms` VALUES (180,'Landesgrenze','landesgrenze',0);
+INSERT INTO `ogdch_terms` VALUES (181,'Verwaltungseinheiten','verwaltungseinheiten',0);
+INSERT INTO `ogdch_terms` VALUES (182,'Frontières nationales','frontieres-nationales',0);
+INSERT INTO `ogdch_terms` VALUES (183,'Unités administratives','unites-administratives',0);
+INSERT INTO `ogdch_terms` VALUES (184,'Frontiere nazionali','frontiere-nazionali',0);
+INSERT INTO `ogdch_terms` VALUES (185,'Unita amministrative','unita-amministrative',0);
+INSERT INTO `ogdch_terms` VALUES (186,'National boundaries','national-boundaries',0);
+INSERT INTO `ogdch_terms` VALUES (187,'Administrative units','administrative-units',0);
 /*!40000 ALTER TABLE `ogdch_terms` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2211,7 +2288,7 @@ INSERT INTO `ogdch_usermeta` VALUES (125,6,'description_it','');
 INSERT INTO `ogdch_usermeta` VALUES (126,6,'description_fr','');
 INSERT INTO `ogdch_usermeta` VALUES (128,4,'pll_filter_content','en');
 INSERT INTO `ogdch_usermeta` VALUES (129,5,'session_tokens','a:1:{s:64:\"d23c2e842128c81c94f9baa4b1e4756ad5a2946262864b1fe779b10ae9aa10ee\";a:4:{s:10:\"expiration\";i:1443201631;s:2:\"ip\";s:12:\"192.168.56.1\";s:2:\"ua\";s:120:\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.99 Safari/537.36\";s:5:\"login\";i:1443028831;}}');
-INSERT INTO `ogdch_usermeta` VALUES (130,1,'session_tokens','a:4:{s:64:\"99b3a7474e2b1c91a2779b0e5e1b3b4187c5bf8f43f0ea95af349254c2722f07\";a:4:{s:10:\"expiration\";i:1446322688;s:2:\"ip\";s:12:\"192.168.56.1\";s:2:\"ua\";s:120:\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36\";s:5:\"login\";i:1446149888;}s:64:\"5c0582aaa43db319ad996c4458dfdc385432544da36f9a077a940e1b5c9bd1b5\";a:4:{s:10:\"expiration\";i:1446327096;s:2:\"ip\";s:12:\"192.168.56.1\";s:2:\"ua\";s:120:\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36\";s:5:\"login\";i:1446154296;}s:64:\"6c234ab7956e1315307cb90ebb85edb90f1186d3507edf966cb3d0dd6622e900\";a:4:{s:10:\"expiration\";i:1446363609;s:2:\"ip\";s:12:\"192.168.56.1\";s:2:\"ua\";s:120:\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36\";s:5:\"login\";i:1446190809;}s:64:\"1e83f1b5d6d957ed36bb6e21aa9e1c91f7974b027e7a80332351b5ae1bdb83e6\";a:4:{s:10:\"expiration\";i:1446370414;s:2:\"ip\";s:12:\"192.168.56.1\";s:2:\"ua\";s:120:\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36\";s:5:\"login\";i:1446197614;}}');
+INSERT INTO `ogdch_usermeta` VALUES (130,1,'session_tokens','a:1:{s:64:\"788ad98b9e02873f8f02565ba9493a1a53e26916d7e95c471f69648d5f6d2495\";a:4:{s:10:\"expiration\";i:1446711899;s:2:\"ip\";s:12:\"192.168.56.1\";s:2:\"ua\";s:120:\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36\";s:5:\"login\";i:1446539099;}}');
 INSERT INTO `ogdch_usermeta` VALUES (131,1,'wpseo_dismissed_gsc_notice','1');
 INSERT INTO `ogdch_usermeta` VALUES (133,5,'_yoast_wpseo_profile_updated','1446201947');
 /*!40000 ALTER TABLE `ogdch_usermeta` ENABLE KEYS */;
@@ -2265,4 +2342,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-10-30 12:37:10
+-- Dump completed on 2015-11-03  8:29:17
