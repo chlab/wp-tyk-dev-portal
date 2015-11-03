@@ -77,7 +77,8 @@ def _run_in_virtualenv(cmd, args):
                           args))
 
 def _run_paster(args):
-    return _run_in_virtualenv('paster', args)
+    args_with_config = "%s -c /var/www/ckan/development.ini" % args
+    return _run_in_virtualenv('paster', args_with_config)
 
 def _run_python(args):
     return _run_in_virtualenv('python', args)
@@ -182,7 +183,7 @@ def rebuild_search_index():
     Rebuild the solr search index of CKAN
     """
     execute(restart_tomcat)
-    _run_paster("--plugin=ckan search-index rebuild -c /var/www/ckan/development.ini") 
+    _run_paster("--plugin=ckan search-index rebuild") 
 
 @roles('ckan_db')
 def restore_ckan_db():
@@ -281,6 +282,12 @@ def log():
     """
     sudo("ls /var/log/httpd")
     execute(tail_log)
+
+@roles('ckan')
+def paster(cmd='', plugin=None):
+    if plugin is not None:
+        cmd = "--plugin='%s' %s" % (plugin, cmd)
+    _run_paster(cmd)
 
 @roles('wordpress', 'ckan')
 @parallel
