@@ -1,7 +1,7 @@
 import os
 import pipes
 from fabric.api import (
-    cd, env, execute, local, put, run, settings, task, roles, sudo, parallel, serial
+    cd, env, execute, local, run, settings, roles, sudo, parallel, serial, runs_once
 )
 from fabric.contrib.files import exists, sed
 
@@ -232,6 +232,7 @@ def update_config():
     execute(update_wp_config)
 
 @roles('wordpress', 'wordpress_db', 'ckan', 'ckan_db')
+@runs_once
 def deploy(rev='origin/master'):
     """
     Deploy the whole application
