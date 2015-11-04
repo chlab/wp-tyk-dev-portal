@@ -118,6 +118,13 @@ def update_ckan_dependencies():
                 _run_pip('install -r pip-requirements.txt') 
             _run_python('setup.py develop')
 
+    # merge translations
+    execute(update_ckan_translations)
+
+@roles('ckan')
+def update_ckan_translations():
+    run('%s/web/ckanext/ckanext-switzerland/bin/build-combined-ckan-mo.sh' % env.root)
+
 @roles('wordpress')
 def update_wp_dependencies():
     with cd(os.path.join(env.root, 'web', 'ogdch.dev/content/themes/wp-ogdch-theme')):
@@ -133,6 +140,7 @@ def update_repo(commit):
         run('git fetch')
         run('git checkout %s' % commit)
         run('git submodule init')
+        run("git submodule foreach --recursive 'git reset --hard HEAD'")
         run("git submodule foreach --recursive 'git fetch --tags'")
         run('git submodule update --recursive')
 
