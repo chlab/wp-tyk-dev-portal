@@ -473,7 +473,7 @@ INSERT INTO `ogdch_options` VALUES (92,'widget_recent-comments','a:2:{i:2;a:2:{s
 INSERT INTO `ogdch_options` VALUES (93,'widget_archives','a:2:{i:2;a:3:{s:5:\"title\";s:0:\"\";s:5:\"count\";i:0;s:8:\"dropdown\";i:0;}s:12:\"_multiwidget\";i:1;}','yes');
 INSERT INTO `ogdch_options` VALUES (94,'widget_meta','a:2:{i:2;a:1:{s:5:\"title\";s:0:\"\";}s:12:\"_multiwidget\";i:1;}','yes');
 INSERT INTO `ogdch_options` VALUES (95,'sidebars_widgets','a:3:{s:19:\"wp_inactive_widgets\";a:0:{}s:18:\"orphaned_widgets_1\";a:1:{i:0;s:17:\"recent-comments-2\";}s:13:\"array_version\";i:3;}','yes');
-INSERT INTO `ogdch_options` VALUES (97,'cron','a:8:{i:1446588337;a:1:{s:25:\"wpseo_ping_search_engines\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:2:{s:8:\"schedule\";b:0;s:4:\"args\";a:0:{}}}}i:1446600757;a:3:{s:16:\"wp_version_check\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}s:17:\"wp_update_plugins\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}s:16:\"wp_update_themes\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1446602952;a:1:{s:29:\"wp_session_garbage_collection\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1446623340;a:1:{s:20:\"wp_maybe_auto_update\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1446638926;a:1:{s:24:\"ninja_forms_daily_action\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1446640981;a:1:{s:30:\"wp_scheduled_auto_draft_delete\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1446644281;a:1:{s:19:\"wp_scheduled_delete\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}s:7:\"version\";i:2;}','yes');
+INSERT INTO `ogdch_options` VALUES (97,'cron','a:8:{i:1446623158;a:1:{s:25:\"wpseo_ping_search_engines\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:2:{s:8:\"schedule\";b:0;s:4:\"args\";a:0:{}}}}i:1446623340;a:1:{s:20:\"wp_maybe_auto_update\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1446638926;a:1:{s:24:\"ninja_forms_daily_action\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1446640981;a:1:{s:30:\"wp_scheduled_auto_draft_delete\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1446643957;a:3:{s:16:\"wp_version_check\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}s:17:\"wp_update_plugins\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}s:16:\"wp_update_themes\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1446644281;a:1:{s:19:\"wp_scheduled_delete\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1446646152;a:1:{s:29:\"wp_session_garbage_collection\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}s:7:\"version\";i:2;}','yes');
 INSERT INTO `ogdch_options` VALUES (134,'db_upgraded','','yes');
 INSERT INTO `ogdch_options` VALUES (142,'recently_activated','a:0:{}','yes');
 INSERT INTO `ogdch_options` VALUES (147,'members_db_version','2','yes');
@@ -540,7 +540,7 @@ CREATE TABLE `ogdch_postmeta` (
   PRIMARY KEY (`meta_id`),
   KEY `post_id` (`post_id`),
   KEY `meta_key` (`meta_key`(191))
-) ENGINE=InnoDB AUTO_INCREMENT=2074 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2078 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -660,7 +660,7 @@ INSERT INTO `ogdch_postmeta` VALUES (991,194,'_ckan_local_org_title_en','Swissto
 INSERT INTO `ogdch_postmeta` VALUES (992,194,'_ckan_local_org_title_de','Swisstopo DE');
 INSERT INTO `ogdch_postmeta` VALUES (993,194,'_ckan_local_org_title_fr','Swisstopo FR');
 INSERT INTO `ogdch_postmeta` VALUES (994,194,'_ckan_local_org_title_it','Swisstopo IT');
-INSERT INTO `ogdch_postmeta` VALUES (997,195,'_edit_lock','1446207493:1');
+INSERT INTO `ogdch_postmeta` VALUES (997,195,'_edit_lock','1446622859:1');
 INSERT INTO `ogdch_postmeta` VALUES (998,195,'_edit_last','1');
 INSERT INTO `ogdch_postmeta` VALUES (999,195,'_app-showcase-app_url','http://topoapp.io');
 INSERT INTO `ogdch_postmeta` VALUES (1000,195,'_app-showcase-app_author_name','Liip');
@@ -1447,6 +1447,10 @@ INSERT INTO `ogdch_postmeta` VALUES (2070,297,'_ckan_local_dataset_see_alsos','a
 INSERT INTO `ogdch_postmeta` VALUES (2071,297,'_ckan_local_dataset_distributions','a:2:{i:0;a:17:{s:10:\"identifier\";s:30:\"swissboundaries3d-land-flaeche\";s:8:\"title_en\";s:0:\"\";s:14:\"description_en\";s:0:\"\";s:8:\"title_de\";s:0:\"\";s:14:\"description_de\";s:0:\"\";s:8:\"title_fr\";s:0:\"\";s:14:\"description_fr\";s:0:\"\";s:8:\"title_it\";s:0:\"\";s:14:\"description_it\";s:0:\"\";s:9:\"languages\";b:0;s:6:\"issued\";i:1419984000;s:8:\"modified\";b:0;s:6:\"rights\";s:59:\"NonCommercialAllowed-CommercialAllowed-ReferenceNotRequired\";s:10:\"access_url\";s:99:\"http://data.geo.admin.ch.s3.amazonaws.com/ch.swisstopo.swissboundaries3d-land-flaeche.fill/data.zip\";s:12:\"download_url\";s:99:\"http://data.geo.admin.ch.s3.amazonaws.com/ch.swisstopo.swissboundaries3d-land-flaeche.fill/data.zip\";s:9:\"byte_size\";s:6:\"209870\";s:10:\"media_type\";s:15:\"application/zip\";}i:1;a:10:{s:8:\"title_en\";s:6:\"ReadMe\";s:8:\"title_de\";s:6:\"ReadMe\";s:8:\"title_fr\";s:6:\"ReadMe\";s:8:\"title_it\";s:6:\"ReadMe\";s:6:\"issued\";i:1419984000;s:6:\"rights\";s:59:\"NonCommercialAllowed-CommercialAllowed-ReferenceNotRequired\";s:10:\"access_url\";s:101:\"http://data.geo.admin.ch.s3.amazonaws.com/ch.swisstopo.swissboundaries3d-land-flaeche.fill/readme.txt\";s:12:\"download_url\";s:101:\"http://data.geo.admin.ch.s3.amazonaws.com/ch.swisstopo.swissboundaries3d-land-flaeche.fill/readme.txt\";s:9:\"byte_size\";s:4:\"1389\";s:10:\"media_type\";s:10:\"text/plain\";}}');
 INSERT INTO `ogdch_postmeta` VALUES (2072,297,'_edit_lock','1446556244:1');
 INSERT INTO `ogdch_postmeta` VALUES (2073,297,'_edit_last','1');
+INSERT INTO `ogdch_postmeta` VALUES (2074,195,'_thumbnail_id','290');
+INSERT INTO `ogdch_postmeta` VALUES (2075,196,'_thumbnail_id','290');
+INSERT INTO `ogdch_postmeta` VALUES (2076,197,'_thumbnail_id','290');
+INSERT INTO `ogdch_postmeta` VALUES (2077,198,'_thumbnail_id','290');
 /*!40000 ALTER TABLE `ogdch_postmeta` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1538,7 +1542,7 @@ INSERT INTO `ogdch_posts` VALUES (188,1,'2015-08-25 13:30:42','2015-08-25 13:30:
 INSERT INTO `ogdch_posts` VALUES (192,1,'2015-08-25 13:46:47','2015-08-25 13:46:47','','Population','','publish','closed','closed','','population','','','2015-10-14 11:55:00','2015-10-14 09:55:00','',0,'http://ogdch.dev/?post_type=ckan-local-group&#038;p=192',0,'ckan-local-group','',0);
 INSERT INTO `ogdch_posts` VALUES (193,1,'2015-08-25 13:48:07','2015-08-25 13:48:07','','Territory','','publish','closed','closed','','territory','','','2015-10-14 11:54:51','2015-10-14 09:54:51','',0,'http://ogdch.dev/?post_type=ckan-local-group&#038;p=193',0,'ckan-local-group','',0);
 INSERT INTO `ogdch_posts` VALUES (194,1,'2015-08-25 13:48:42','2015-08-25 13:48:42','','Swisstopo','','publish','closed','closed','','swisstopo','','','2015-10-14 11:51:33','2015-10-14 09:51:33','',0,'http://ogdch.dev/?post_type=ckan-local-org&#038;p=194',0,'ckan-local-org','',0);
-INSERT INTO `ogdch_posts` VALUES (195,1,'2015-08-25 13:54:54','2015-08-25 13:53:35','Beschreibung DE','TopoApp','','publish','closed','closed','','topoapp','','','2015-10-30 13:20:33','2015-10-30 12:20:33','',0,'http://ogdch.dev/?post_type=app&#038;p=195',0,'app','',0);
+INSERT INTO `ogdch_posts` VALUES (195,1,'2015-08-25 13:54:54','2015-08-25 13:53:35','Beschreibung DE','TopoApp','','publish','closed','closed','','topoapp','','','2015-11-04 08:40:58','2015-11-04 07:40:58','',0,'http://ogdch.dev/?post_type=app&#038;p=195',0,'app','',0);
 INSERT INTO `ogdch_posts` VALUES (196,1,'2015-08-25 13:54:54','2015-08-25 13:54:05','Description EN','TopoApp','','publish','closed','closed','','topoapp','','','2015-10-30 13:20:48','2015-10-30 12:20:48','',0,'http://ogdch.dev/?post_type=app&#038;p=196',0,'app','',0);
 INSERT INTO `ogdch_posts` VALUES (197,1,'2015-08-25 13:54:54','2015-08-25 13:54:31','Description IT','TopoApp','','publish','closed','closed','','topoapp','','','2015-10-30 13:21:08','2015-10-30 12:21:08','',0,'http://ogdch.dev/?post_type=app&#038;p=197',0,'app','',0);
 INSERT INTO `ogdch_posts` VALUES (198,1,'2015-08-25 13:54:54','2015-08-25 13:54:54','Description FR','TopoApp','','publish','closed','closed','','topoapp','','','2015-10-30 13:21:23','2015-10-30 12:21:23','',0,'http://ogdch.dev/?post_type=app&#038;p=198',0,'app','',0);
@@ -1959,7 +1963,7 @@ INSERT INTO `ogdch_term_taxonomy` VALUES (135,135,'nav_menu','',0,5);
 INSERT INTO `ogdch_term_taxonomy` VALUES (136,136,'nav_menu','',0,5);
 INSERT INTO `ogdch_term_taxonomy` VALUES (137,137,'nav_menu','',0,5);
 INSERT INTO `ogdch_term_taxonomy` VALUES (138,138,'nav_menu','',0,5);
-INSERT INTO `ogdch_term_taxonomy` VALUES (139,139,'post_translations','a:4:{s:2:\"fr\";i:198;s:2:\"de\";i:195;s:2:\"en\";i:196;s:2:\"it\";i:197;}',0,4);
+INSERT INTO `ogdch_term_taxonomy` VALUES (139,139,'post_translations','a:4:{s:2:\"de\";i:195;s:2:\"en\";i:196;s:2:\"it\";i:197;s:2:\"fr\";i:198;}',0,4);
 INSERT INTO `ogdch_term_taxonomy` VALUES (141,141,'nav_menu','',0,3);
 INSERT INTO `ogdch_term_taxonomy` VALUES (142,142,'post_translations','a:4:{s:2:\"de\";i:247;s:2:\"en\";i:248;s:2:\"it\";i:249;s:2:\"fr\";i:250;}',0,4);
 INSERT INTO `ogdch_term_taxonomy` VALUES (143,143,'nav_menu','',0,3);
@@ -2342,4 +2346,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-11-03 22:04:02
+-- Dump completed on 2015-11-04  7:41:09
