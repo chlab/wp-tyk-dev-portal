@@ -133,7 +133,7 @@ CREATE TABLE `ogdch_nf_objectmeta` (
   `meta_key` varchar(255) NOT NULL,
   `meta_value` longtext NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=81 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -221,6 +221,7 @@ INSERT INTO `ogdch_nf_objectmeta` VALUES (76,1,'not_logged_in_msg','');
 INSERT INTO `ogdch_nf_objectmeta` VALUES (77,1,'sub_limit_number','');
 INSERT INTO `ogdch_nf_objectmeta` VALUES (78,1,'sub_limit_msg','');
 INSERT INTO `ogdch_nf_objectmeta` VALUES (79,1,'status','');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (80,1,'last_sub','2');
 /*!40000 ALTER TABLE `ogdch_nf_objectmeta` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -370,7 +371,7 @@ CREATE TABLE `ogdch_options` (
   `autoload` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'yes',
   PRIMARY KEY (`option_id`),
   UNIQUE KEY `option_name` (`option_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=806 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=807 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -523,6 +524,7 @@ INSERT INTO `ogdch_options` VALUES (790,'ninja_forms_settings','a:23:{s:11:\"dat
 INSERT INTO `ogdch_options` VALUES (791,'nf_admin_notice','a:2:{s:16:\"one_week_support\";a:3:{s:5:\"start\";s:10:\"10/29/2015\";s:3:\"int\";i:7;s:9:\"dismissed\";i:1;}s:15:\"two_week_review\";a:2:{s:5:\"start\";s:9:\"11/5/2015\";s:3:\"int\";i:14;}}','yes');
 INSERT INTO `ogdch_options` VALUES (800,'theme_mods_twentyfifteen','a:1:{s:16:\"sidebars_widgets\";a:2:{s:4:\"time\";i:1446201947;s:4:\"data\";a:2:{s:19:\"wp_inactive_widgets\";a:0:{}s:9:\"sidebar-1\";a:6:{i:0;s:8:\"search-2\";i:1;s:14:\"recent-posts-2\";i:2;s:17:\"recent-comments-2\";i:3;s:10:\"archives-2\";i:4;s:12:\"categories-2\";i:5;s:6:\"meta-2\";}}}}','yes');
 INSERT INTO `ogdch_options` VALUES (805,'_wp_session_expires_359b9e9e1131789d942bf74eb7c6bc60','1446649215','no');
+INSERT INTO `ogdch_options` VALUES (806,'_wp_session_expires_eda309525d6f6aedd22d8c68b71f2bab','1446652080','no');
 /*!40000 ALTER TABLE `ogdch_options` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -541,7 +543,7 @@ CREATE TABLE `ogdch_postmeta` (
   PRIMARY KEY (`meta_id`),
   KEY `post_id` (`post_id`),
   KEY `meta_key` (`meta_key`(191))
-) ENGINE=InnoDB AUTO_INCREMENT=2087 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2156 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -965,7 +967,7 @@ INSERT INTO `ogdch_postmeta` VALUES (1395,245,'_menu_item_target','');
 INSERT INTO `ogdch_postmeta` VALUES (1396,245,'_menu_item_classes','a:1:{i:0;s:0:\"\";}');
 INSERT INTO `ogdch_postmeta` VALUES (1397,245,'_menu_item_xfn','');
 INSERT INTO `ogdch_postmeta` VALUES (1398,245,'_menu_item_url','/it/app/');
-INSERT INTO `ogdch_postmeta` VALUES (1472,246,'_edit_lock','1444816131:1');
+INSERT INTO `ogdch_postmeta` VALUES (1472,246,'_edit_lock','1446650048:1');
 INSERT INTO `ogdch_postmeta` VALUES (1473,246,'_edit_last','1');
 INSERT INTO `ogdch_postmeta` VALUES (1474,246,'_ckan_local_org_ckan_id','7dbaad15-597f-499c-9a72-95de38b95cad');
 INSERT INTO `ogdch_postmeta` VALUES (1475,246,'_ckan_local_org_ckan_name','bundesarchiv');
@@ -1451,6 +1453,75 @@ INSERT INTO `ogdch_postmeta` VALUES (2083,250,'_wp_page_template','default');
 INSERT INTO `ogdch_postmeta` VALUES (2084,247,'_wp_page_template','default');
 INSERT INTO `ogdch_postmeta` VALUES (2085,248,'_wp_page_template','default');
 INSERT INTO `ogdch_postmeta` VALUES (2086,249,'_wp_page_template','default');
+INSERT INTO `ogdch_postmeta` VALUES (2087,298,'_form_id','1');
+INSERT INTO `ogdch_postmeta` VALUES (2088,298,'_seq_num','1');
+INSERT INTO `ogdch_postmeta` VALUES (2089,298,'_action','submit');
+INSERT INTO `ogdch_postmeta` VALUES (2090,298,'_field_1','Hans');
+INSERT INTO `ogdch_postmeta` VALUES (2091,298,'_field_2','hans@test.user');
+INSERT INTO `ogdch_postmeta` VALUES (2092,298,'_field_3','asdfasdf\r\nasdfasdfas');
+INSERT INTO `ogdch_postmeta` VALUES (2093,298,'_field_5','');
+INSERT INTO `ogdch_postmeta` VALUES (2094,298,'_sub_id','298');
+INSERT INTO `ogdch_postmeta` VALUES (2095,299,'_form_id','1');
+INSERT INTO `ogdch_postmeta` VALUES (2096,299,'_seq_num','2');
+INSERT INTO `ogdch_postmeta` VALUES (2097,299,'_action','submit');
+INSERT INTO `ogdch_postmeta` VALUES (2098,299,'_field_1','Hans');
+INSERT INTO `ogdch_postmeta` VALUES (2099,299,'_field_2','hans@test.user');
+INSERT INTO `ogdch_postmeta` VALUES (2100,299,'_field_3','asdfasdf\r\nasdfasdfas');
+INSERT INTO `ogdch_postmeta` VALUES (2101,299,'_field_5','');
+INSERT INTO `ogdch_postmeta` VALUES (2102,299,'_sub_id','299');
+INSERT INTO `ogdch_postmeta` VALUES (2103,300,'_edit_lock','1446649620:1');
+INSERT INTO `ogdch_postmeta` VALUES (2104,300,'_edit_last','1');
+INSERT INTO `ogdch_postmeta` VALUES (2105,300,'_ckan_local_org_ckan_id','244099c1-a313-48cb-861b-55f2d42ccb7d');
+INSERT INTO `ogdch_postmeta` VALUES (2106,300,'_ckan_local_org_ckan_name','bibliothek-am-guisanplatz');
+INSERT INTO `ogdch_postmeta` VALUES (2107,300,'_ckan_local_org_title_en','The Library Am Guisanplatz');
+INSERT INTO `ogdch_postmeta` VALUES (2108,300,'_ckan_local_org_title_de','Bibliothek am Guisanplatz');
+INSERT INTO `ogdch_postmeta` VALUES (2109,300,'_ckan_local_org_title_fr','Bibliothèque Am Guisanplatz');
+INSERT INTO `ogdch_postmeta` VALUES (2110,300,'_ckan_local_org_title_it','Biblioteca Am Guisanplatz');
+INSERT INTO `ogdch_postmeta` VALUES (2111,301,'_edit_lock','1446649748:1');
+INSERT INTO `ogdch_postmeta` VALUES (2112,301,'_edit_last','1');
+INSERT INTO `ogdch_postmeta` VALUES (2113,301,'_ckan_local_org_ckan_id','51941490-5ade-4d06-b708-ff04279ce550');
+INSERT INTO `ogdch_postmeta` VALUES (2114,301,'_ckan_local_org_ckan_name','schweizerische-nationalbibliothek');
+INSERT INTO `ogdch_postmeta` VALUES (2115,301,'_ckan_local_org_title_en','Swiss National Library');
+INSERT INTO `ogdch_postmeta` VALUES (2116,301,'_ckan_local_org_description_en','Collects all Swiss publications since 1848. The Swiss Literary Archives, the Cabinet of Prints and Drawings and the Centre Dürrenmatt also belong to the National Library.');
+INSERT INTO `ogdch_postmeta` VALUES (2117,301,'_ckan_local_org_title_de','Schweizerische Nationalbibliothek');
+INSERT INTO `ogdch_postmeta` VALUES (2118,301,'_ckan_local_org_description_de','Sammelt alle Schweizer Publikationen seit 1848. Ebenfalls zur Nationalbibliothek gehören das Schweizerische Literaturarchiv, die Graphische Sammlung und das Centre Dürrenmatt.');
+INSERT INTO `ogdch_postmeta` VALUES (2119,301,'_ckan_local_org_title_fr','Bibliothèque nationale suisse');
+INSERT INTO `ogdch_postmeta` VALUES (2120,301,'_ckan_local_org_description_fr','Collecte l’ensemble des publications suisses depuis 1848. Les Archives littéraires suisses, le Cabinet des estampes et le Centre Dürrenmatt font également partie de la Bibliothèque nationale.');
+INSERT INTO `ogdch_postmeta` VALUES (2121,301,'_ckan_local_org_title_it','Biblioteca nazionale svizzera');
+INSERT INTO `ogdch_postmeta` VALUES (2122,301,'_ckan_local_org_description_it','Colleziona tutte le pubblicazioni a partire dal 1848. Alla Biblioteca nazionale sono accorpati l\'Archivio svizzero di letteratura, il Gabinetto delle stampe e il Centre Dürrenmatt.');
+INSERT INTO `ogdch_postmeta` VALUES (2123,302,'_edit_lock','1446649865:1');
+INSERT INTO `ogdch_postmeta` VALUES (2124,302,'_edit_last','1');
+INSERT INTO `ogdch_postmeta` VALUES (2125,302,'_ckan_local_org_ckan_id','1caae51a-0ab6-4bee-8104-5716bbbf43ba');
+INSERT INTO `ogdch_postmeta` VALUES (2126,302,'_ckan_local_org_ckan_name','bundesamt-fur-gesundheit');
+INSERT INTO `ogdch_postmeta` VALUES (2127,302,'_ckan_local_org_title_en','Bundesamt für Gesundheit');
+INSERT INTO `ogdch_postmeta` VALUES (2128,302,'_ckan_local_org_title_de','Bundesamt für Gesundheit');
+INSERT INTO `ogdch_postmeta` VALUES (2129,302,'_ckan_local_org_title_fr','Bundesamt für Gesundheit');
+INSERT INTO `ogdch_postmeta` VALUES (2130,302,'_ckan_local_org_title_it','Bundesamt für Gesundheit');
+INSERT INTO `ogdch_postmeta` VALUES (2131,303,'_edit_lock','1446649921:1');
+INSERT INTO `ogdch_postmeta` VALUES (2132,303,'_edit_last','1');
+INSERT INTO `ogdch_postmeta` VALUES (2133,303,'_ckan_local_org_ckan_id','07bf374b-0883-4b03-9f40-25d1048a1611');
+INSERT INTO `ogdch_postmeta` VALUES (2134,303,'_ckan_local_org_ckan_name','schweizerische-bundesbahnen-sbb');
+INSERT INTO `ogdch_postmeta` VALUES (2135,303,'_ckan_local_org_title_en','Swiss Federal Railways');
+INSERT INTO `ogdch_postmeta` VALUES (2136,303,'_ckan_local_org_title_de','Schweizerische Bundesbahnen (SBB)');
+INSERT INTO `ogdch_postmeta` VALUES (2137,303,'_ckan_local_org_title_fr','Chemins de fer fédéraux suisses (CFF)');
+INSERT INTO `ogdch_postmeta` VALUES (2138,303,'_ckan_local_org_title_it','Ferrovie federali svizzere (FFS)');
+INSERT INTO `ogdch_postmeta` VALUES (2139,304,'_edit_lock','1446649981:1');
+INSERT INTO `ogdch_postmeta` VALUES (2140,304,'_edit_last','1');
+INSERT INTO `ogdch_postmeta` VALUES (2141,304,'_ckan_local_org_ckan_id','47bc53e3-f6b2-46c9-a4eb-4889fc1d3105');
+INSERT INTO `ogdch_postmeta` VALUES (2142,304,'_ckan_local_org_ckan_name','bundesamt-fur-statistik');
+INSERT INTO `ogdch_postmeta` VALUES (2143,304,'_ckan_local_org_title_en','Swiss Federal Statistical Office');
+INSERT INTO `ogdch_postmeta` VALUES (2144,304,'_ckan_local_org_description_en','Publishes information on the situation and trends in Switzerland in many different areas of life. It provides the quantitative information needed to understand the present and to plan for the future.');
+INSERT INTO `ogdch_postmeta` VALUES (2145,304,'_ckan_local_org_title_de','Bundesamt für Statistik');
+INSERT INTO `ogdch_postmeta` VALUES (2146,304,'_ckan_local_org_description_de','Orientiert über den Stand und die Entwicklung der Schweiz in zahlreichen Lebensbereichen. Es liefert die quantitativen Informationen, um die Gegenwart zu verstehen und die Zukunft zu planen.');
+INSERT INTO `ogdch_postmeta` VALUES (2147,304,'_ckan_local_org_title_fr','Office fédéral de la statistique');
+INSERT INTO `ogdch_postmeta` VALUES (2148,304,'_ckan_local_org_description_fr','Fournit des informations sur l’état et l’évolution de la Suisse dans de nombreux domaines. Les informations qu’il produit servent à comprendre le présent et à planifier l’avenir.');
+INSERT INTO `ogdch_postmeta` VALUES (2149,304,'_ckan_local_org_title_it','Ufficio federale di statistica');
+INSERT INTO `ogdch_postmeta` VALUES (2150,304,'_ckan_local_org_description_it','Fornisce informazioni sullo stato e sull’evoluzione della Svizzera nei più svariati settori che permettono di capire il presente e pianificare il futuro.');
+INSERT INTO `ogdch_postmeta` VALUES (2151,246,'_ckan_local_org_description_en','The Swiss Federal Archives (SFA) are the Confederation\'s service and competence centre for lasting information management. They appraise, secure, describe and provide access to archive-worthy records of the Swiss Confederation.');
+INSERT INTO `ogdch_postmeta` VALUES (2152,246,'_ckan_local_org_description_de','Das Schweizerische Bundesarchiv ist das Dienstleistungs- und Kompetenzzentrum des Bundes für nachhaltiges Informationsmanagement. Es bewertet, sichert, erschliesst und vermittelt archivwürdige Unterlagen der Schweizerischen Eidgenossenschaft.');
+INSERT INTO `ogdch_postmeta` VALUES (2153,246,'_ckan_local_org_description_fr','En tant que centre de prestations et de compétences de la Confédération pour une gestion durable de l’information, les Archives fédérales suisses évaluent, prennent en charge, mettent en valeur et communiquent tous les documents de la Confédération suisse qui ont une valeur archivistique. ');
+INSERT INTO `ogdch_postmeta` VALUES (2154,246,'_ckan_local_org_description_it','L\'Archivio federale svizzero è il centro di servizio e competenza della Confederazione per la gestione a lungo termine delle informazioni. In questa funzione è incaricato di valutare, salvaguardare, catalogare e rendere accessibili i documenti di valore archivistico della Confederazione Svizzera.');
+INSERT INTO `ogdch_postmeta` VALUES (2155,246,'_ckan_local_org_image','http://www.bar.admin.ch/org/index.html?lang=fr&image=NHzLpZeg7t,lnp6I0NTU042l2Z6ln1ae2IZn4Z2qZpnO2Yuq2Z6gpJCDdHx3fmym162bpYbqjKbXpJ6eiKidoIyf4w--');
 /*!40000 ALTER TABLE `ogdch_postmeta` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1490,7 +1561,7 @@ CREATE TABLE `ogdch_posts` (
   KEY `type_status_date` (`post_type`,`post_status`,`post_date`,`ID`),
   KEY `post_parent` (`post_parent`),
   KEY `post_author` (`post_author`)
-) ENGINE=InnoDB AUTO_INCREMENT=298 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=305 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1580,7 +1651,7 @@ INSERT INTO `ogdch_posts` VALUES (242,1,'2015-08-25 16:03:13','2015-08-25 16:03:
 INSERT INTO `ogdch_posts` VALUES (243,1,'2015-08-25 16:04:07','2015-08-25 16:04:07','','Dati','','publish','open','closed','','dataset','','','2015-10-27 16:10:52','2015-10-27 15:10:52','',0,'http://ogdch.dev/?p=243',1,'nav_menu_item','',0);
 INSERT INTO `ogdch_posts` VALUES (244,1,'2015-08-25 16:04:07','2015-08-25 16:04:07','','Organizzazioni','','publish','open','closed','','gruppi','','','2015-10-27 16:10:52','2015-10-27 15:10:52','',0,'http://ogdch.dev/?p=244',2,'nav_menu_item','',0);
 INSERT INTO `ogdch_posts` VALUES (245,1,'2015-08-25 16:04:07','2015-08-25 16:04:07','','Applicazioni','','publish','open','closed','','apps-4','','','2015-10-27 16:10:52','2015-10-27 15:10:52','',0,'http://ogdch.dev/?p=245',3,'nav_menu_item','',0);
-INSERT INTO `ogdch_posts` VALUES (246,1,'2015-09-14 11:36:04','2015-09-14 11:36:04','','Bundesarchiv','','publish','closed','closed','','bundesarchiv','','','2015-10-14 11:51:05','2015-10-14 09:51:05','',0,'http://ogdch.dev/?post_type=ckan-local-org&#038;p=246',0,'ckan-local-org','',0);
+INSERT INTO `ogdch_posts` VALUES (246,1,'2015-09-14 11:36:04','2015-09-14 11:36:04','','Bundesarchiv','','publish','closed','closed','','bundesarchiv','','','2015-11-04 16:16:11','2015-11-04 15:16:11','',0,'http://ogdch.dev/?post_type=ckan-local-org&#038;p=246',0,'ckan-local-org','',0);
 INSERT INTO `ogdch_posts` VALUES (247,1,'2015-09-21 21:17:55','2015-09-21 21:17:00','[ninja_forms id=1]','Kontakt','','publish','closed','closed','','contact','','','2015-10-22 14:35:39','2015-10-22 12:35:39','',0,'http://ogdch.dev/?page_id=247',0,'page','',0);
 INSERT INTO `ogdch_posts` VALUES (248,1,'2015-09-21 21:17:55','2015-09-21 21:17:15','[ninja_forms id=1]','Contact','','publish','closed','closed','','contact','','','2015-11-04 15:06:19','2015-11-04 14:06:19','',0,'http://ogdch.dev/?page_id=248',0,'page','',0);
 INSERT INTO `ogdch_posts` VALUES (249,1,'2015-09-21 21:17:55','2015-09-21 21:17:33','[ninja_forms id=1]','Contatto','','publish','closed','closed','','contact','','','2015-11-04 15:06:26','2015-11-04 14:06:26','',0,'http://ogdch.dev/?page_id=249',0,'page','',0);
@@ -1631,6 +1702,13 @@ INSERT INTO `ogdch_posts` VALUES (294,1,'2015-10-27 16:15:39','2015-10-27 15:15:
 INSERT INTO `ogdch_posts` VALUES (295,1,'2015-10-27 16:16:37','2015-10-27 15:16:37','','Applications','','publish','closed','closed','','applications-2','','','2015-10-27 16:16:37','2015-10-27 15:16:37','',0,'http://ogdch.dev/?p=295',1,'nav_menu_item','',0);
 INSERT INTO `ogdch_posts` VALUES (296,1,'2015-10-27 16:17:01','2015-10-27 15:17:01','','Applicazioni','','publish','closed','closed','','applicazioni','','','2015-10-27 16:17:01','2015-10-27 15:17:01','',0,'http://ogdch.dev/?p=296',1,'nav_menu_item','',0);
 INSERT INTO `ogdch_posts` VALUES (297,1,'2015-11-03 09:28:12','2015-11-03 08:28:12','','National boundaries','','publish','closed','closed','','national-boundaries','','','2015-11-04 13:30:23','2015-11-04 12:30:23','',0,'http://ogdch.dev/?post_type=ckan-local-dataset&#038;p=297',0,'ckan-local-dataset','',0);
+INSERT INTO `ogdch_posts` VALUES (298,1,'2015-11-04 15:43:32','2015-11-04 14:43:32','','','','publish','closed','closed','','298','','','2015-11-04 15:43:32','2015-11-04 14:43:32','',0,'http://ogdch.dev/nf_sub/298/',0,'nf_sub','',0);
+INSERT INTO `ogdch_posts` VALUES (299,1,'2015-11-04 15:54:09','2015-11-04 14:54:09','','','','publish','closed','closed','','299','','','2015-11-04 15:54:09','2015-11-04 14:54:09','',0,'http://ogdch.dev/nf_sub/299/',0,'nf_sub','',0);
+INSERT INTO `ogdch_posts` VALUES (300,1,'2015-11-04 16:09:08','2015-11-04 15:09:08','','Bibliothek am Guisanplatz','','publish','closed','closed','','bibliothek-am-guisanplatz','','','2015-11-04 16:09:17','2015-11-04 15:09:17','',0,'http://ogdch.dev/?post_type=ckan-local-org&#038;p=300',0,'ckan-local-org','',0);
+INSERT INTO `ogdch_posts` VALUES (301,1,'2015-11-04 16:10:59','2015-11-04 15:10:59','','Schweizerische Nationalbibliothek','','publish','closed','closed','','schweizerische-nationalbibliothek','','','2015-11-04 16:11:14','2015-11-04 15:11:14','',0,'http://ogdch.dev/?post_type=ckan-local-org&#038;p=301',0,'ckan-local-org','',0);
+INSERT INTO `ogdch_posts` VALUES (302,1,'2015-11-04 16:13:09','2015-11-04 15:13:09','','Bundesamt für Gesundheit','','publish','closed','closed','','bundesamt-fur-gesundheit','','','2015-11-04 16:13:15','2015-11-04 15:13:15','',0,'http://ogdch.dev/?post_type=ckan-local-org&#038;p=302',0,'ckan-local-org','',0);
+INSERT INTO `ogdch_posts` VALUES (303,1,'2015-11-04 16:14:00','2015-11-04 15:14:00','','Schweizerische Bundesbahnen (SBB)','','publish','closed','closed','','schweizerische-bundesbahnen-sbb','','','2015-11-04 16:14:06','2015-11-04 15:14:06','',0,'http://ogdch.dev/?post_type=ckan-local-org&#038;p=303',0,'ckan-local-org','',0);
+INSERT INTO `ogdch_posts` VALUES (304,1,'2015-11-04 16:15:08','2015-11-04 15:15:08','','Bundesamt für Statistik','','publish','closed','closed','','bundesamt-fur-statistik','','','2015-11-04 16:15:15','2015-11-04 15:15:15','',0,'http://ogdch.dev/?post_type=ckan-local-org&#038;p=304',0,'ckan-local-org','',0);
 /*!40000 ALTER TABLE `ogdch_posts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2160,7 +2238,7 @@ CREATE TABLE `ogdch_usermeta` (
   PRIMARY KEY (`umeta_id`),
   KEY `user_id` (`user_id`),
   KEY `meta_key` (`meta_key`(191))
-) ENGINE=InnoDB AUTO_INCREMENT=134 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=237 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2295,6 +2373,109 @@ INSERT INTO `ogdch_usermeta` VALUES (129,5,'session_tokens','a:1:{s:64:\"d23c2e8
 INSERT INTO `ogdch_usermeta` VALUES (130,1,'session_tokens','a:5:{s:64:\"788ad98b9e02873f8f02565ba9493a1a53e26916d7e95c471f69648d5f6d2495\";a:4:{s:10:\"expiration\";i:1446711899;s:2:\"ip\";s:12:\"192.168.56.1\";s:2:\"ua\";s:120:\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36\";s:5:\"login\";i:1446539099;}s:64:\"b4aff82fa3ec7de5860578e5f77c9bb8721d8412cbd2d8d47827f347244ea7fb\";a:4:{s:10:\"expiration\";i:1446728940;s:2:\"ip\";s:12:\"192.168.56.1\";s:2:\"ua\";s:133:\"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/44.0.2403.89 Chrome/44.0.2403.89 Safari/537.36\";s:5:\"login\";i:1446556140;}s:64:\"30dffd45f9bc7ace9bbb87b1d8e9b81132e6b714df5b4853729cc41073e7cf5c\";a:4:{s:10:\"expiration\";i:1446802860;s:2:\"ip\";s:12:\"192.168.56.1\";s:2:\"ua\";s:120:\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36\";s:5:\"login\";i:1446630060;}s:64:\"0b541ad87151ad4265b60fb97c71dda0d2bd32432669da2104e6a71e2d6737c4\";a:4:{s:10:\"expiration\";i:1446812961;s:2:\"ip\";s:12:\"192.168.56.1\";s:2:\"ua\";s:133:\"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/44.0.2403.89 Chrome/44.0.2403.89 Safari/537.36\";s:5:\"login\";i:1446640161;}s:64:\"08fa1bc80a9b16b6ee429a9a1e97fbcc3842a59c41632596d566d046261263cd\";a:4:{s:10:\"expiration\";i:1446818767;s:2:\"ip\";s:12:\"192.168.56.1\";s:2:\"ua\";s:120:\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36\";s:5:\"login\";i:1446645967;}}');
 INSERT INTO `ogdch_usermeta` VALUES (131,1,'wpseo_dismissed_gsc_notice','1');
 INSERT INTO `ogdch_usermeta` VALUES (133,5,'_yoast_wpseo_profile_updated','1446201947');
+INSERT INTO `ogdch_usermeta` VALUES (134,7,'nickname','alexandria@gs-vbs.admin.ch');
+INSERT INTO `ogdch_usermeta` VALUES (135,7,'first_name','Stefan');
+INSERT INTO `ogdch_usermeta` VALUES (136,7,'last_name','Kandera');
+INSERT INTO `ogdch_usermeta` VALUES (137,7,'description','');
+INSERT INTO `ogdch_usermeta` VALUES (138,7,'rich_editing','true');
+INSERT INTO `ogdch_usermeta` VALUES (139,7,'comment_shortcuts','false');
+INSERT INTO `ogdch_usermeta` VALUES (140,7,'admin_color','fresh');
+INSERT INTO `ogdch_usermeta` VALUES (141,7,'use_ssl','0');
+INSERT INTO `ogdch_usermeta` VALUES (142,7,'show_admin_bar_front','true');
+INSERT INTO `ogdch_usermeta` VALUES (143,7,'ogdch_capabilities','a:1:{s:10:\"data_owner\";b:1;}');
+INSERT INTO `ogdch_usermeta` VALUES (144,7,'ogdch_user_level','0');
+INSERT INTO `ogdch_usermeta` VALUES (145,7,'ckan-backend_organisation','bibliothek-am-guisanplatz');
+INSERT INTO `ogdch_usermeta` VALUES (146,7,'dismissed_wp_pointers','');
+INSERT INTO `ogdch_usermeta` VALUES (147,8,'nickname','christian.trachsel@sbb.ch');
+INSERT INTO `ogdch_usermeta` VALUES (148,8,'first_name','Christian');
+INSERT INTO `ogdch_usermeta` VALUES (149,8,'last_name','Trachsel');
+INSERT INTO `ogdch_usermeta` VALUES (150,8,'description','');
+INSERT INTO `ogdch_usermeta` VALUES (151,8,'rich_editing','true');
+INSERT INTO `ogdch_usermeta` VALUES (152,8,'comment_shortcuts','false');
+INSERT INTO `ogdch_usermeta` VALUES (153,8,'admin_color','fresh');
+INSERT INTO `ogdch_usermeta` VALUES (154,8,'use_ssl','0');
+INSERT INTO `ogdch_usermeta` VALUES (155,8,'show_admin_bar_front','true');
+INSERT INTO `ogdch_usermeta` VALUES (156,8,'ogdch_capabilities','a:1:{s:10:\"data_owner\";b:1;}');
+INSERT INTO `ogdch_usermeta` VALUES (157,8,'ogdch_user_level','0');
+INSERT INTO `ogdch_usermeta` VALUES (158,8,'ckan-backend_organisation','schweizerische-bundesbahnen-sbb');
+INSERT INTO `ogdch_usermeta` VALUES (159,8,'dismissed_wp_pointers','');
+INSERT INTO `ogdch_usermeta` VALUES (160,8,'_yoast_wpseo_profile_updated','1446650413');
+INSERT INTO `ogdch_usermeta` VALUES (161,8,'wpseo_title','');
+INSERT INTO `ogdch_usermeta` VALUES (162,8,'wpseo_metadesc','');
+INSERT INTO `ogdch_usermeta` VALUES (163,8,'wpseo_metakey','');
+INSERT INTO `ogdch_usermeta` VALUES (164,8,'wpseo_excludeauthorsitemap','');
+INSERT INTO `ogdch_usermeta` VALUES (165,8,'user_lang','0');
+INSERT INTO `ogdch_usermeta` VALUES (166,8,'description_en','');
+INSERT INTO `ogdch_usermeta` VALUES (167,8,'description_it','');
+INSERT INTO `ogdch_usermeta` VALUES (168,8,'description_fr','');
+INSERT INTO `ogdch_usermeta` VALUES (169,8,'googleplus','');
+INSERT INTO `ogdch_usermeta` VALUES (170,8,'twitter','');
+INSERT INTO `ogdch_usermeta` VALUES (171,8,'facebook','');
+INSERT INTO `ogdch_usermeta` VALUES (172,9,'nickname','daniela.althaus@bag.admin.ch');
+INSERT INTO `ogdch_usermeta` VALUES (173,9,'first_name','Daniela');
+INSERT INTO `ogdch_usermeta` VALUES (174,9,'last_name','Althaus');
+INSERT INTO `ogdch_usermeta` VALUES (175,9,'description','');
+INSERT INTO `ogdch_usermeta` VALUES (176,9,'rich_editing','true');
+INSERT INTO `ogdch_usermeta` VALUES (177,9,'comment_shortcuts','false');
+INSERT INTO `ogdch_usermeta` VALUES (178,9,'admin_color','fresh');
+INSERT INTO `ogdch_usermeta` VALUES (179,9,'use_ssl','0');
+INSERT INTO `ogdch_usermeta` VALUES (180,9,'show_admin_bar_front','true');
+INSERT INTO `ogdch_usermeta` VALUES (181,9,'ogdch_capabilities','a:1:{s:10:\"data_owner\";b:1;}');
+INSERT INTO `ogdch_usermeta` VALUES (182,9,'ogdch_user_level','0');
+INSERT INTO `ogdch_usermeta` VALUES (183,9,'ckan-backend_organisation','bundesamt-fur-gesundheit');
+INSERT INTO `ogdch_usermeta` VALUES (184,9,'dismissed_wp_pointers','');
+INSERT INTO `ogdch_usermeta` VALUES (185,10,'nickname','edy.juillerat@bfs.admin.ch');
+INSERT INTO `ogdch_usermeta` VALUES (186,10,'first_name','Edy');
+INSERT INTO `ogdch_usermeta` VALUES (187,10,'last_name','Juillerat');
+INSERT INTO `ogdch_usermeta` VALUES (188,10,'description','');
+INSERT INTO `ogdch_usermeta` VALUES (189,10,'rich_editing','true');
+INSERT INTO `ogdch_usermeta` VALUES (190,10,'comment_shortcuts','false');
+INSERT INTO `ogdch_usermeta` VALUES (191,10,'admin_color','fresh');
+INSERT INTO `ogdch_usermeta` VALUES (192,10,'use_ssl','0');
+INSERT INTO `ogdch_usermeta` VALUES (193,10,'show_admin_bar_front','true');
+INSERT INTO `ogdch_usermeta` VALUES (194,10,'ogdch_capabilities','a:1:{s:10:\"data_owner\";b:1;}');
+INSERT INTO `ogdch_usermeta` VALUES (195,10,'ogdch_user_level','0');
+INSERT INTO `ogdch_usermeta` VALUES (196,10,'ckan-backend_organisation','bundesamt-fur-statistik');
+INSERT INTO `ogdch_usermeta` VALUES (197,10,'dismissed_wp_pointers','');
+INSERT INTO `ogdch_usermeta` VALUES (198,11,'nickname','hansueli.locher@nb.admin.ch');
+INSERT INTO `ogdch_usermeta` VALUES (199,11,'first_name','Hansueli');
+INSERT INTO `ogdch_usermeta` VALUES (200,11,'last_name','Locher');
+INSERT INTO `ogdch_usermeta` VALUES (201,11,'description','');
+INSERT INTO `ogdch_usermeta` VALUES (202,11,'rich_editing','true');
+INSERT INTO `ogdch_usermeta` VALUES (203,11,'comment_shortcuts','false');
+INSERT INTO `ogdch_usermeta` VALUES (204,11,'admin_color','fresh');
+INSERT INTO `ogdch_usermeta` VALUES (205,11,'use_ssl','0');
+INSERT INTO `ogdch_usermeta` VALUES (206,11,'show_admin_bar_front','true');
+INSERT INTO `ogdch_usermeta` VALUES (207,11,'ogdch_capabilities','a:1:{s:10:\"data_owner\";b:1;}');
+INSERT INTO `ogdch_usermeta` VALUES (208,11,'ogdch_user_level','0');
+INSERT INTO `ogdch_usermeta` VALUES (209,11,'ckan-backend_organisation','schweizerische-nationalbibliothek');
+INSERT INTO `ogdch_usermeta` VALUES (210,11,'dismissed_wp_pointers','');
+INSERT INTO `ogdch_usermeta` VALUES (211,12,'nickname','theres.schneider@bag.admin.ch');
+INSERT INTO `ogdch_usermeta` VALUES (212,12,'first_name','Theres');
+INSERT INTO `ogdch_usermeta` VALUES (213,12,'last_name','Schneider');
+INSERT INTO `ogdch_usermeta` VALUES (214,12,'description','');
+INSERT INTO `ogdch_usermeta` VALUES (215,12,'rich_editing','true');
+INSERT INTO `ogdch_usermeta` VALUES (216,12,'comment_shortcuts','false');
+INSERT INTO `ogdch_usermeta` VALUES (217,12,'admin_color','fresh');
+INSERT INTO `ogdch_usermeta` VALUES (218,12,'use_ssl','0');
+INSERT INTO `ogdch_usermeta` VALUES (219,12,'show_admin_bar_front','true');
+INSERT INTO `ogdch_usermeta` VALUES (220,12,'ogdch_capabilities','a:1:{s:10:\"data_owner\";b:1;}');
+INSERT INTO `ogdch_usermeta` VALUES (221,12,'ogdch_user_level','0');
+INSERT INTO `ogdch_usermeta` VALUES (222,12,'ckan-backend_organisation','bundesamt-fur-gesundheit');
+INSERT INTO `ogdch_usermeta` VALUES (223,12,'dismissed_wp_pointers','');
+INSERT INTO `ogdch_usermeta` VALUES (224,13,'nickname','thomas.schulz@bfs.admin.ch');
+INSERT INTO `ogdch_usermeta` VALUES (225,13,'first_name','Thomas');
+INSERT INTO `ogdch_usermeta` VALUES (226,13,'last_name','Schulz');
+INSERT INTO `ogdch_usermeta` VALUES (227,13,'description','');
+INSERT INTO `ogdch_usermeta` VALUES (228,13,'rich_editing','true');
+INSERT INTO `ogdch_usermeta` VALUES (229,13,'comment_shortcuts','false');
+INSERT INTO `ogdch_usermeta` VALUES (230,13,'admin_color','fresh');
+INSERT INTO `ogdch_usermeta` VALUES (231,13,'use_ssl','0');
+INSERT INTO `ogdch_usermeta` VALUES (232,13,'show_admin_bar_front','true');
+INSERT INTO `ogdch_usermeta` VALUES (233,13,'ogdch_capabilities','a:1:{s:10:\"data_owner\";b:1;}');
+INSERT INTO `ogdch_usermeta` VALUES (234,13,'ogdch_user_level','0');
+INSERT INTO `ogdch_usermeta` VALUES (235,13,'ckan-backend_organisation','bundesamt-fur-statistik');
+INSERT INTO `ogdch_usermeta` VALUES (236,13,'dismissed_wp_pointers','');
 /*!40000 ALTER TABLE `ogdch_usermeta` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2319,7 +2500,7 @@ CREATE TABLE `ogdch_users` (
   PRIMARY KEY (`ID`),
   KEY `user_login_key` (`user_login`),
   KEY `user_nicename` (`user_nicename`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2334,6 +2515,13 @@ INSERT INTO `ogdch_users` VALUES (3,'priska','$P$BUdW0xnDRa1ayH6/qXlFsFinisgaeC0
 INSERT INTO `ogdch_users` VALUES (4,'simon','$P$BGwXQNQnCPIGRynfedzR3TNgcDDYop/','simon','simon@contentmanag.er','','2015-08-25 13:51:54','',0,'Simon Content Manager');
 INSERT INTO `ogdch_users` VALUES (5,'pierre','$P$B22FA1NHm26kPKhqb4gD2Ktejq66LZ/','pierre','pierre@applicationmanag.er','','2015-09-14 11:34:28','',0,'Pierre Application Manager');
 INSERT INTO `ogdch_users` VALUES (6,'laura','$P$BBSZ0RgCY3KghLfbn6.waoeCCBP5gy/','laura','laura@demouser.in','','2015-09-22 13:15:07','',0,'Laura Demo Userin');
+INSERT INTO `ogdch_users` VALUES (7,'alexandria@gs-vbs.admin.ch','$P$BzH6dOzJbivmyf.I/KTe0EMDY1OHwD.','alexandriags-vbs-admin-ch','alexandria@gs-vbs.admin.ch','','2015-11-04 15:18:27','1446650308:$P$BzR26mKrXpNxo.UKt9dFQepMlCULP30',0,'Stefan Kandera');
+INSERT INTO `ogdch_users` VALUES (8,'christian.trachsel@sbb.ch','$P$Bg7ytXGItGvnp3gDBOkFZtzRKWRPrp.','christian-trachselsbb-ch','christian.trachsel@sbb.ch','','2015-11-04 15:19:17','1446650357:$P$BQMyrDV/bZ8WOpX9rZvlUaQyixZiOO.',0,'Christian Trachsel');
+INSERT INTO `ogdch_users` VALUES (9,'daniela.althaus@bag.admin.ch','$P$BFjZezBBTTW/neYlxO3adg954cEQXk/','daniela-althausbag-admin-ch','daniela.althaus@bag.admin.ch','','2015-11-04 15:21:02','1446650462:$P$BPoKoh1mpV6OQ6l0yI4q0HcXQUPXRR0',0,'Daniela Althaus');
+INSERT INTO `ogdch_users` VALUES (10,'edy.juillerat@bfs.admin.ch','$P$BUJTihp7BM/xHRHsXmrhAvUoF9jBKZ1','edy-juilleratbfs-admin-ch','edy.juillerat@bfs.admin.ch','','2015-11-04 15:22:06','1446650526:$P$B.wlj62Ml0fCCHwnY2mTVbTFeyCf1X0',0,'Edy Juillerat');
+INSERT INTO `ogdch_users` VALUES (11,'hansueli.locher@nb.admin.ch','$P$Bgu96VdjJ468gjdk3TQcfHjBhSQ9NR0','hansueli-lochernb-admin-ch','hansueli.locher@nb.admin.ch','','2015-11-04 15:23:07','1446650588:$P$BH/h.ghHKEnJYpqmdTpN4bYgl3VeSg0',0,'Hansueli Locher');
+INSERT INTO `ogdch_users` VALUES (12,'theres.schneider@bag.admin.ch','$P$B8.L23JQOVhTk28fRZ.0U/piaq0qMh0','theres-schneiderbag-admin-ch','theres.schneider@bag.admin.ch','','2015-11-04 15:24:02','1446650642:$P$B24UwGPdyMqC1DZtwapZSVqsM4G75u0',0,'Theres Schneider');
+INSERT INTO `ogdch_users` VALUES (13,'thomas.schulz@bfs.admin.ch','$P$Bk2z6l8XQT6HcHFUt7ahhcT6rHMnNB1','thomas-schulzbfs-admin-ch','thomas.schulz@bfs.admin.ch','','2015-11-04 15:24:54','1446650695:$P$BlAL7WsIAAyPL0Vb5ePc2MwVhU9sof0',0,'Thomas Schulz');
 /*!40000 ALTER TABLE `ogdch_users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -2346,4 +2534,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-11-04 14:38:06
+-- Dump completed on 2015-11-04 15:27:11
