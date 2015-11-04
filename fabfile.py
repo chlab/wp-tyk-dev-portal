@@ -109,6 +109,7 @@ def update_ckan_dependencies():
         'ckanext-hierarchy',
         'ckanext-dcat',
         'ckanext-switzerland',
+        'ckanext-geocat',
     ]
 
     for ext in ckan_extensions:
