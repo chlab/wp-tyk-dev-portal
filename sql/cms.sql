@@ -473,7 +473,7 @@ INSERT INTO `ogdch_options` VALUES (92,'widget_recent-comments','a:2:{i:2;a:2:{s
 INSERT INTO `ogdch_options` VALUES (93,'widget_archives','a:2:{i:2;a:3:{s:5:\"title\";s:0:\"\";s:5:\"count\";i:0;s:8:\"dropdown\";i:0;}s:12:\"_multiwidget\";i:1;}','yes');
 INSERT INTO `ogdch_options` VALUES (94,'widget_meta','a:2:{i:2;a:1:{s:5:\"title\";s:0:\"\";}s:12:\"_multiwidget\";i:1;}','yes');
 INSERT INTO `ogdch_options` VALUES (95,'sidebars_widgets','a:3:{s:19:\"wp_inactive_widgets\";a:0:{}s:18:\"orphaned_widgets_1\";a:1:{i:0;s:17:\"recent-comments-2\";}s:13:\"array_version\";i:3;}','yes');
-INSERT INTO `ogdch_options` VALUES (97,'cron','a:8:{i:1446640480;a:1:{s:25:\"wpseo_ping_search_engines\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:2:{s:8:\"schedule\";b:0;s:4:\"args\";a:0:{}}}}i:1446640981;a:1:{s:30:\"wp_scheduled_auto_draft_delete\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1446643957;a:3:{s:16:\"wp_version_check\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}s:17:\"wp_update_plugins\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}s:16:\"wp_update_themes\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1446644281;a:1:{s:19:\"wp_scheduled_delete\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1446646152;a:1:{s:29:\"wp_session_garbage_collection\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1446666540;a:1:{s:20:\"wp_maybe_auto_update\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1446725326;a:1:{s:24:\"ninja_forms_daily_action\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}s:7:\"version\";i:2;}','yes');
+INSERT INTO `ogdch_options` VALUES (97,'cron','a:8:{i:1446646152;a:1:{s:29:\"wp_session_garbage_collection\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1446646279;a:1:{s:25:\"wpseo_ping_search_engines\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:2:{s:8:\"schedule\";b:0;s:4:\"args\";a:0:{}}}}i:1446666540;a:1:{s:20:\"wp_maybe_auto_update\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1446687157;a:3:{s:16:\"wp_version_check\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}s:17:\"wp_update_plugins\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}s:16:\"wp_update_themes\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1446725326;a:1:{s:24:\"ninja_forms_daily_action\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1446727381;a:1:{s:30:\"wp_scheduled_auto_draft_delete\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1446730681;a:1:{s:19:\"wp_scheduled_delete\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}s:7:\"version\";i:2;}','yes');
 INSERT INTO `ogdch_options` VALUES (134,'db_upgraded','','yes');
 INSERT INTO `ogdch_options` VALUES (142,'recently_activated','a:0:{}','yes');
 INSERT INTO `ogdch_options` VALUES (147,'members_db_version','2','yes');
@@ -540,7 +540,7 @@ CREATE TABLE `ogdch_postmeta` (
   PRIMARY KEY (`meta_id`),
   KEY `post_id` (`post_id`),
   KEY `meta_key` (`meta_key`(191))
-) ENGINE=InnoDB AUTO_INCREMENT=2078 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2087 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -987,14 +987,13 @@ INSERT INTO `ogdch_postmeta` VALUES (1491,204,'_ckan_local_group_title_it','Geog
 INSERT INTO `ogdch_postmeta` VALUES (1492,200,'_ckan_local_group_title_en','Construction and housing');
 INSERT INTO `ogdch_postmeta` VALUES (1493,200,'_ckan_local_group_title_it','Costruzione e abitazione');
 INSERT INTO `ogdch_postmeta` VALUES (1515,247,'_edit_last','1');
-INSERT INTO `ogdch_postmeta` VALUES (1517,247,'_edit_lock','1445517272:1');
+INSERT INTO `ogdch_postmeta` VALUES (1517,247,'_edit_lock','1446645830:1');
 INSERT INTO `ogdch_postmeta` VALUES (1519,248,'_edit_last','1');
-INSERT INTO `ogdch_postmeta` VALUES (1521,248,'_edit_lock','1442870093:1');
+INSERT INTO `ogdch_postmeta` VALUES (1521,248,'_edit_lock','1446645837:1');
 INSERT INTO `ogdch_postmeta` VALUES (1523,249,'_edit_last','1');
-INSERT INTO `ogdch_postmeta` VALUES (1526,249,'_edit_lock','1442870126:1');
+INSERT INTO `ogdch_postmeta` VALUES (1526,249,'_edit_lock','1446645845:1');
 INSERT INTO `ogdch_postmeta` VALUES (1530,250,'_edit_last','1');
-INSERT INTO `ogdch_postmeta` VALUES (1531,247,'_wp_page_template','default');
-INSERT INTO `ogdch_postmeta` VALUES (1534,250,'_edit_lock','1442870135:1');
+INSERT INTO `ogdch_postmeta` VALUES (1534,250,'_edit_lock','1446645857:1');
 INSERT INTO `ogdch_postmeta` VALUES (1535,251,'_menu_item_type','post_type');
 INSERT INTO `ogdch_postmeta` VALUES (1536,251,'_menu_item_menu_item_parent','0');
 INSERT INTO `ogdch_postmeta` VALUES (1537,251,'_menu_item_object_id','2');
@@ -1382,9 +1381,6 @@ INSERT INTO `ogdch_postmeta` VALUES (2002,291,'_ckan_local_org_image_id','290');
 INSERT INTO `ogdch_postmeta` VALUES (2003,291,'_ckan_local_org_image','http://ogdch.dev/content/uploads/2015/09/liip.png');
 INSERT INTO `ogdch_postmeta` VALUES (2004,292,'_edit_lock','1445515634:1');
 INSERT INTO `ogdch_postmeta` VALUES (2005,292,'_edit_last','1');
-INSERT INTO `ogdch_postmeta` VALUES (2006,248,'_wp_page_template','default');
-INSERT INTO `ogdch_postmeta` VALUES (2007,249,'_wp_page_template','default');
-INSERT INTO `ogdch_postmeta` VALUES (2008,250,'_wp_page_template','default');
 INSERT INTO `ogdch_postmeta` VALUES (2009,293,'_menu_item_type','custom');
 INSERT INTO `ogdch_postmeta` VALUES (2010,293,'_menu_item_menu_item_parent','0');
 INSERT INTO `ogdch_postmeta` VALUES (2011,293,'_menu_item_object_id','293');
@@ -1450,6 +1446,10 @@ INSERT INTO `ogdch_postmeta` VALUES (2074,195,'_thumbnail_id','290');
 INSERT INTO `ogdch_postmeta` VALUES (2075,196,'_thumbnail_id','290');
 INSERT INTO `ogdch_postmeta` VALUES (2076,197,'_thumbnail_id','290');
 INSERT INTO `ogdch_postmeta` VALUES (2077,198,'_thumbnail_id','290');
+INSERT INTO `ogdch_postmeta` VALUES (2083,250,'_wp_page_template','default');
+INSERT INTO `ogdch_postmeta` VALUES (2084,247,'_wp_page_template','default');
+INSERT INTO `ogdch_postmeta` VALUES (2085,248,'_wp_page_template','default');
+INSERT INTO `ogdch_postmeta` VALUES (2086,249,'_wp_page_template','default');
 /*!40000 ALTER TABLE `ogdch_postmeta` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1581,9 +1581,9 @@ INSERT INTO `ogdch_posts` VALUES (244,1,'2015-08-25 16:04:07','2015-08-25 16:04:
 INSERT INTO `ogdch_posts` VALUES (245,1,'2015-08-25 16:04:07','2015-08-25 16:04:07','','Applicazioni','','publish','open','closed','','apps-4','','','2015-10-27 16:10:52','2015-10-27 15:10:52','',0,'http://ogdch.dev/?p=245',3,'nav_menu_item','',0);
 INSERT INTO `ogdch_posts` VALUES (246,1,'2015-09-14 11:36:04','2015-09-14 11:36:04','','Bundesarchiv','','publish','closed','closed','','bundesarchiv','','','2015-10-14 11:51:05','2015-10-14 09:51:05','',0,'http://ogdch.dev/?post_type=ckan-local-org&#038;p=246',0,'ckan-local-org','',0);
 INSERT INTO `ogdch_posts` VALUES (247,1,'2015-09-21 21:17:55','2015-09-21 21:17:00','[ninja_forms id=1]','Kontakt','','publish','closed','closed','','contact','','','2015-10-22 14:35:39','2015-10-22 12:35:39','',0,'http://ogdch.dev/?page_id=247',0,'page','',0);
-INSERT INTO `ogdch_posts` VALUES (248,1,'2015-09-21 21:17:55','2015-09-21 21:17:15','','Contact','','publish','closed','closed','','contact','','','2015-09-21 21:17:15','2015-09-21 21:17:15','',0,'http://ogdch.dev/?page_id=248',0,'page','',0);
-INSERT INTO `ogdch_posts` VALUES (249,1,'2015-09-21 21:17:55','2015-09-21 21:17:33','','Contatto','','publish','closed','closed','','contact','','','2015-09-21 21:17:39','2015-09-21 21:17:39','',0,'http://ogdch.dev/?page_id=249',0,'page','',0);
-INSERT INTO `ogdch_posts` VALUES (250,1,'2015-09-21 21:17:55','2015-09-21 21:17:55','','Contact','','publish','closed','closed','','contact','','','2015-09-21 21:17:55','2015-09-21 21:17:55','',0,'http://ogdch.dev/?page_id=250',0,'page','',0);
+INSERT INTO `ogdch_posts` VALUES (248,1,'2015-09-21 21:17:55','2015-09-21 21:17:15','[ninja_forms id=1]','Contact','','publish','closed','closed','','contact','','','2015-11-04 15:06:19','2015-11-04 14:06:19','',0,'http://ogdch.dev/?page_id=248',0,'page','',0);
+INSERT INTO `ogdch_posts` VALUES (249,1,'2015-09-21 21:17:55','2015-09-21 21:17:33','[ninja_forms id=1]','Contatto','','publish','closed','closed','','contact','','','2015-11-04 15:06:26','2015-11-04 14:06:26','',0,'http://ogdch.dev/?page_id=249',0,'page','',0);
+INSERT INTO `ogdch_posts` VALUES (250,1,'2015-09-21 21:17:55','2015-09-21 21:17:55','[ninja_forms id=1]','Contact','','publish','closed','closed','','contact','','','2015-11-04 15:06:34','2015-11-04 14:06:34','',0,'http://ogdch.dev/?page_id=250',0,'page','',0);
 INSERT INTO `ogdch_posts` VALUES (251,1,'2015-09-21 21:18:21','2015-09-21 21:18:21',' ','','','publish','closed','closed','','251','','','2015-09-21 21:18:21','2015-09-21 21:18:21','',0,'http://ogdch.dev/?p=251',1,'nav_menu_item','',0);
 INSERT INTO `ogdch_posts` VALUES (252,1,'2015-09-21 21:18:21','2015-09-21 21:18:21',' ','','','publish','closed','closed','','252','','','2015-09-21 21:18:21','2015-09-21 21:18:21','',0,'http://ogdch.dev/?p=252',2,'nav_menu_item','',0);
 INSERT INTO `ogdch_posts` VALUES (253,1,'2015-09-21 21:18:21','2015-09-21 21:18:21',' ','','','publish','closed','closed','','253','','','2015-09-21 21:18:21','2015-09-21 21:18:21','',0,'http://ogdch.dev/?p=253',3,'nav_menu_item','',0);
@@ -1964,7 +1964,7 @@ INSERT INTO `ogdch_term_taxonomy` VALUES (137,137,'nav_menu','',0,5);
 INSERT INTO `ogdch_term_taxonomy` VALUES (138,138,'nav_menu','',0,5);
 INSERT INTO `ogdch_term_taxonomy` VALUES (139,139,'post_translations','a:4:{s:2:\"de\";i:195;s:2:\"en\";i:196;s:2:\"it\";i:197;s:2:\"fr\";i:198;}',0,4);
 INSERT INTO `ogdch_term_taxonomy` VALUES (141,141,'nav_menu','',0,3);
-INSERT INTO `ogdch_term_taxonomy` VALUES (142,142,'post_translations','a:4:{s:2:\"de\";i:247;s:2:\"en\";i:248;s:2:\"it\";i:249;s:2:\"fr\";i:250;}',0,4);
+INSERT INTO `ogdch_term_taxonomy` VALUES (142,142,'post_translations','a:4:{s:2:\"fr\";i:250;s:2:\"de\";i:247;s:2:\"en\";i:248;s:2:\"it\";i:249;}',0,4);
 INSERT INTO `ogdch_term_taxonomy` VALUES (143,143,'nav_menu','',0,3);
 INSERT INTO `ogdch_term_taxonomy` VALUES (144,144,'nav_menu','',0,3);
 INSERT INTO `ogdch_term_taxonomy` VALUES (145,145,'nav_menu','',0,3);
@@ -2291,7 +2291,7 @@ INSERT INTO `ogdch_usermeta` VALUES (125,6,'description_it','');
 INSERT INTO `ogdch_usermeta` VALUES (126,6,'description_fr','');
 INSERT INTO `ogdch_usermeta` VALUES (128,4,'pll_filter_content','en');
 INSERT INTO `ogdch_usermeta` VALUES (129,5,'session_tokens','a:1:{s:64:\"d23c2e842128c81c94f9baa4b1e4756ad5a2946262864b1fe779b10ae9aa10ee\";a:4:{s:10:\"expiration\";i:1443201631;s:2:\"ip\";s:12:\"192.168.56.1\";s:2:\"ua\";s:120:\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.99 Safari/537.36\";s:5:\"login\";i:1443028831;}}');
-INSERT INTO `ogdch_usermeta` VALUES (130,1,'session_tokens','a:4:{s:64:\"788ad98b9e02873f8f02565ba9493a1a53e26916d7e95c471f69648d5f6d2495\";a:4:{s:10:\"expiration\";i:1446711899;s:2:\"ip\";s:12:\"192.168.56.1\";s:2:\"ua\";s:120:\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36\";s:5:\"login\";i:1446539099;}s:64:\"b4aff82fa3ec7de5860578e5f77c9bb8721d8412cbd2d8d47827f347244ea7fb\";a:4:{s:10:\"expiration\";i:1446728940;s:2:\"ip\";s:12:\"192.168.56.1\";s:2:\"ua\";s:133:\"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/44.0.2403.89 Chrome/44.0.2403.89 Safari/537.36\";s:5:\"login\";i:1446556140;}s:64:\"30dffd45f9bc7ace9bbb87b1d8e9b81132e6b714df5b4853729cc41073e7cf5c\";a:4:{s:10:\"expiration\";i:1446802860;s:2:\"ip\";s:12:\"192.168.56.1\";s:2:\"ua\";s:120:\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36\";s:5:\"login\";i:1446630060;}s:64:\"0b541ad87151ad4265b60fb97c71dda0d2bd32432669da2104e6a71e2d6737c4\";a:4:{s:10:\"expiration\";i:1446812961;s:2:\"ip\";s:12:\"192.168.56.1\";s:2:\"ua\";s:133:\"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/44.0.2403.89 Chrome/44.0.2403.89 Safari/537.36\";s:5:\"login\";i:1446640161;}}');
+INSERT INTO `ogdch_usermeta` VALUES (130,1,'session_tokens','a:5:{s:64:\"788ad98b9e02873f8f02565ba9493a1a53e26916d7e95c471f69648d5f6d2495\";a:4:{s:10:\"expiration\";i:1446711899;s:2:\"ip\";s:12:\"192.168.56.1\";s:2:\"ua\";s:120:\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36\";s:5:\"login\";i:1446539099;}s:64:\"b4aff82fa3ec7de5860578e5f77c9bb8721d8412cbd2d8d47827f347244ea7fb\";a:4:{s:10:\"expiration\";i:1446728940;s:2:\"ip\";s:12:\"192.168.56.1\";s:2:\"ua\";s:133:\"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/44.0.2403.89 Chrome/44.0.2403.89 Safari/537.36\";s:5:\"login\";i:1446556140;}s:64:\"30dffd45f9bc7ace9bbb87b1d8e9b81132e6b714df5b4853729cc41073e7cf5c\";a:4:{s:10:\"expiration\";i:1446802860;s:2:\"ip\";s:12:\"192.168.56.1\";s:2:\"ua\";s:120:\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36\";s:5:\"login\";i:1446630060;}s:64:\"0b541ad87151ad4265b60fb97c71dda0d2bd32432669da2104e6a71e2d6737c4\";a:4:{s:10:\"expiration\";i:1446812961;s:2:\"ip\";s:12:\"192.168.56.1\";s:2:\"ua\";s:133:\"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/44.0.2403.89 Chrome/44.0.2403.89 Safari/537.36\";s:5:\"login\";i:1446640161;}s:64:\"08fa1bc80a9b16b6ee429a9a1e97fbcc3842a59c41632596d566d046261263cd\";a:4:{s:10:\"expiration\";i:1446818767;s:2:\"ip\";s:12:\"192.168.56.1\";s:2:\"ua\";s:120:\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36\";s:5:\"login\";i:1446645967;}}');
 INSERT INTO `ogdch_usermeta` VALUES (131,1,'wpseo_dismissed_gsc_notice','1');
 INSERT INTO `ogdch_usermeta` VALUES (133,5,'_yoast_wpseo_profile_updated','1446201947');
 /*!40000 ALTER TABLE `ogdch_usermeta` ENABLE KEYS */;
@@ -2345,4 +2345,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-11-04 12:30:43
+-- Dump completed on 2015-11-04 14:07:01
