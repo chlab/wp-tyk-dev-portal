@@ -11,7 +11,6 @@ web/ogdch.dev/content/backups/
 web/ogdch.dev/content/blogs.dir/
 web/ogdch.dev/content/cache/
 web/ogdch.dev/content/upgrade/
-web/ogdch.dev/content/languages
 web/ogdch.dev/content/uploads/**
 !web/ogdch.dev/content/uploads/2015/09/appIcon.png
 web/ogdch.dev/content/wp-cache-config.php
