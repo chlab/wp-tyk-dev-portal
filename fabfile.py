@@ -233,6 +233,18 @@ def update_config():
 
 @roles('wordpress', 'wordpress_db', 'ckan', 'ckan_db')
 @runs_once
+def deploy_without_db(rev='origin/master'):
+    """
+    Deploy the whole application, without a DB restore
+    """
+    commit = _rev_parse(rev)
+    execute(update_repo, commit=commit)
+    execute(update_config)
+    execute(update_dependencies)
+    execute(restart)
+
+@roles('wordpress', 'wordpress_db', 'ckan', 'ckan_db')
+@runs_once
 def deploy(rev='origin/master'):
     """
     Deploy the whole application
