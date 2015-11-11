@@ -534,6 +534,6 @@ bash "Rebuild the vbox kernel module after upgrade" do
   user "root"
   code <<-EOH
   yum install -y kernel-devel-`uname -r`
-  # /etc/init.d/vboxadd setup
+  /etc/init.d/vboxadd setup
   EOH
 end

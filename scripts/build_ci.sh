@@ -28,7 +28,9 @@ GITHUB_HOST='github.com'
 ssh-keyscan -H $GITHUB_HOST >> ~gitlab_ci_runner/.ssh/known_hosts
 
 git reset --hard HEAD
+
 git submodule init
+git submodule sync
 git submodule foreach --recursive 'git reset --hard HEAD'
 git submodule foreach --recursive 'git fetch --tags'
 git submodule update --recursive
@@ -36,7 +38,7 @@ git submodule update --recursive
 # install the vagrant plugins
 vagrant plugin install vagrant-omnibus
 vagrant plugin install vagrant-triggers
-vagrant plugin install vagrant-vbguest
+# vagrant plugin install vagrant-vbguest
 
 # check if there is already a vagrant box
 vtext=`vagrant status 2>/dev/null | awk '{$1=""; print $0}' | sed 's/^ //g' | grep virtualbox` 
