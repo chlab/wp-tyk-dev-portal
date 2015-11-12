@@ -77,11 +77,18 @@ module.exports = {
                     console.log("Add new dataset");
                     me.browser
                         .fill("#title", title)
-                        .fill("#_ckan_local_dataset_identifier_original_identifier", '123')
+                        .fill('#_ckan_local_dataset_identifier_original_identifier', '123')
+                        .fill('#_ckan_local_dataset_identifier_organisation', 'swisstopo')
                         .fill('#_ckan_local_dataset_description_en', title + ' EN')
                         .fill('#_ckan_local_dataset_description_fr', title + ' FR')
                         .fill('#_ckan_local_dataset_description_de', title + ' DE')
                         .fill('#_ckan_local_dataset_description_it', title + ' IT')
+                        .fill('#_ckan_local_dataset_issued', '01.01.2015')
+                        .fill('#_ckan_local_dataset_publishers_0_label', 'Test Publisher')
+                        .fill('#_ckan_local_dataset_contact_points_0_name', 'Sekretariat')
+                        .fill('#_ckan_local_dataset_contact_points_0_email', 'sekretariat@example.com')
+                        .fill('#_ckan_local_dataset_distributions_0_issued', '02.02.2015')
+                        .fill('#_ckan_local_dataset_distributions_0_access_url', 'http://access.url')
                     return me.browser.pressButton("#save-post");
                 })
                 .then(function() {
