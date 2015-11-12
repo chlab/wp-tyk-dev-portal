@@ -8,7 +8,8 @@ var exec = require('child_process').exec;
 Browser.localhost('ogdch.dev', 80);
 Browser.localhost('opendata.swiss', 80);
 Browser.waitDuration = '60s';
-function World(callback) {
+
+function World() {
     this.browser = new Browser(
         {
             maxWait: 100000,
@@ -23,26 +24,22 @@ function World(callback) {
 
     load(path.join(__dirname, './helpers'), this.helpers);
 
-    this.restore_db = function(callback)  {
+    this.restore_db = function()  {
         if (process.env.RESET_DB) {
             console.log("Restoring DBs...");
             exec("/vagrant/scripts/restore_dumps.sh", function (error, stdout, stderr) {
                 if (error) {
-                    callback.fail(error);
+                    console.log("Error: " + error)
                 }
                 console.log('stdout: ' + stdout);
                 console.log('stderr: ' + stderr);
                 
                 console.log("Finished restoring DBs.");
-                callback();
             });
         } else {
             console.log("Skip restoring DBs...");
-            callback();
         }
     };
-
-    callback(); // tell Cucumber we're finished and to use 'this' as the world instance
 };
 
 function load(helperPath, dest) {
