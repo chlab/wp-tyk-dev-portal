@@ -62,6 +62,7 @@ php-tidy
 php-xmlrpc
 php-xml
 ntp
+net-tools
 policycoreutils-python
 postgresql-devel
 postgresql-server
@@ -107,7 +108,14 @@ bash "Install node 0.12.x" do
   EOH
 end
 
-# set permissions to php session.save_path
+bash "Disable firewall" do
+  user "root"
+  code <<-EOH
+  systemctl mask firewalld
+  systemctl stop firewalld
+EOH
+end
+
 bash "set permissions to php session.save_path" do
   user "root"
   code <<-EOH
