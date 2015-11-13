@@ -171,6 +171,34 @@ def flush_cache():
     """
     sudo('redis-cli flushall')
 
+@roles('ckan_db')
+def restart_postgresql():
+    """
+    Restart PostgreSQL
+    """
+    sudo("systemctl restart postgresql")
+
+@roles('wordpress')
+def restart_redis():
+    """
+    Restart Redis
+    """
+    sudo("systemctl restart redis")
+
+@roles('wordpress_db')
+def restart_mariadb():
+    """
+    Restart MariaDB
+    """
+    sudo("systemctl restart mariadb")
+
+@roles('ckan')
+def restart_rabbitmq():
+    """
+    Restart RabbitMQ
+    """
+    sudo("systemctl restart rabbitmq-server")
+
 @roles('ckan')
 def restart_tomcat():
     """
@@ -272,6 +300,10 @@ def restart():
     """
     Restart all services
     """
+    execute(restart_rabbitmq)
+    execute(restart_mariadb)
+    execute(restart_redis)
+    execute(restart_postgresql)
     execute(restart_tomcat)
     execute(restart_apache)
 
