@@ -38,21 +38,14 @@ git submodule update --recursive
 # install the vagrant plugins
 vagrant plugin install vagrant-omnibus
 vagrant plugin install vagrant-triggers
-# vagrant plugin install vagrant-vbguest
 
 # check if there is already a vagrant box
 vtext=`vagrant status 2>/dev/null | awk '{$1=""; print $0}' | sed 's/^ //g' | grep virtualbox` 
 if [[ $vtext =~ .*(running).* ]]
 then
     vagrant reload --provision
-# elif [[ $vtext =~ .*(poweroff).* ]]
-# then
 else
     vagrant up --provision
-# else
-#     vagrant up
-#     vagrant halt
-#     vagrant up || vagrant ssh -c "sudo /etc/init.d/vboxadd setup" && vagrant reload
 fi
 
 # Run build script in the vagrant box
