@@ -25,8 +25,7 @@ echo "Exit Code: $phpcs_exit"
 cp /vagrant/web/ogdch.dev/wp-functest-config.php.dist /vagrant/web/ogdch.dev/wp-functest-config.php
 
 # run cucumber tests
-#RESET_DB=true cucumber.js --tags @finished $DIR/../tests/features --require $DIR/../tests/features
-cucumber.js --tags @finished $DIR/../tests/features --require $DIR/../tests/features
+RESET_DB=true cucumber.js --tags @finished $DIR/../tests/features --require $DIR/../tests/features
 func_exit=$?
 echo "Exit Code: $func_exit"
 
