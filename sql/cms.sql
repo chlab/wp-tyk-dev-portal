@@ -142,7 +142,7 @@ CREATE TABLE `ogdch_nf_objectmeta` (
 
 LOCK TABLES `ogdch_nf_objectmeta` WRITE;
 /*!40000 ALTER TABLE `ogdch_nf_objectmeta` DISABLE KEYS */;
-INSERT INTO `ogdch_nf_objectmeta` VALUES (1,1,'date_updated','2015-10-23 06:47:15');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (1,1,'date_updated','2015-11-13 14:39:10');
 INSERT INTO `ogdch_nf_objectmeta` VALUES (2,1,'form_title','Contact form');
 INSERT INTO `ogdch_nf_objectmeta` VALUES (3,1,'show_title','0');
 INSERT INTO `ogdch_nf_objectmeta` VALUES (4,1,'save_subs','1');
@@ -165,15 +165,15 @@ INSERT INTO `ogdch_nf_objectmeta` VALUES (20,2,'active','1');
 INSERT INTO `ogdch_nf_objectmeta` VALUES (21,2,'name','Email User');
 INSERT INTO `ogdch_nf_objectmeta` VALUES (22,2,'type','email');
 INSERT INTO `ogdch_nf_objectmeta` VALUES (23,2,'email_format','html');
-INSERT INTO `ogdch_nf_objectmeta` VALUES (24,2,'attach_csv','1');
-INSERT INTO `ogdch_nf_objectmeta` VALUES (25,2,'from_name','');
-INSERT INTO `ogdch_nf_objectmeta` VALUES (26,2,'from_address','');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (24,2,'attach_csv','0');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (25,2,'from_name','opendata.swiss');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (26,2,'from_address','opendata@bar.admin.ch');
 INSERT INTO `ogdch_nf_objectmeta` VALUES (27,2,'reply_to','');
 INSERT INTO `ogdch_nf_objectmeta` VALUES (28,2,'to','field_2');
 INSERT INTO `ogdch_nf_objectmeta` VALUES (29,2,'cc','');
 INSERT INTO `ogdch_nf_objectmeta` VALUES (30,2,'bcc','');
 INSERT INTO `ogdch_nf_objectmeta` VALUES (31,2,'email_subject','Thank you for contacting us!');
-INSERT INTO `ogdch_nf_objectmeta` VALUES (32,2,'email_message','Thank you so much for contacting us. We will get back to you shortly.');
+INSERT INTO `ogdch_nf_objectmeta` VALUES (32,2,'email_message','Thank you very much for your message. We will contact you as soon as possible.\r\n\r\nHere is a copy of your message:\r\n\r\n[ninja_forms_all_fields]\r\n\r\nKind regards,\r\nSwiss Federal Archives');
 INSERT INTO `ogdch_nf_objectmeta` VALUES (33,2,'redirect_url','');
 INSERT INTO `ogdch_nf_objectmeta` VALUES (34,2,'success_message_loc','ninja_forms_display_before_fields');
 INSERT INTO `ogdch_nf_objectmeta` VALUES (35,2,'success_msg','');
@@ -341,7 +341,7 @@ CREATE TABLE `ogdch_ninja_forms_fields` (
   `fav_id` int(11) DEFAULT NULL,
   `def_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -350,10 +350,13 @@ CREATE TABLE `ogdch_ninja_forms_fields` (
 
 LOCK TABLES `ogdch_ninja_forms_fields` WRITE;
 /*!40000 ALTER TABLE `ogdch_ninja_forms_fields` DISABLE KEYS */;
-INSERT INTO `ogdch_ninja_forms_fields` VALUES (1,1,'_text',0,'a:36:{s:5:\"label\";s:4:\"Name\";s:9:\"label_pos\";s:5:\"above\";s:13:\"default_value\";s:0:\"\";s:4:\"mask\";s:0:\"\";s:10:\"datepicker\";s:1:\"0\";s:5:\"email\";s:1:\"0\";s:10:\"first_name\";s:0:\"\";s:9:\"last_name\";s:0:\"\";s:9:\"from_name\";s:1:\"0\";s:14:\"user_address_1\";s:0:\"\";s:14:\"user_address_2\";s:0:\"\";s:9:\"user_city\";s:0:\"\";s:8:\"user_zip\";s:0:\"\";s:10:\"user_phone\";s:0:\"\";s:10:\"user_email\";s:0:\"\";s:21:\"user_info_field_group\";s:0:\"\";s:3:\"req\";s:1:\"1\";s:5:\"class\";s:0:\"\";s:9:\"show_help\";s:1:\"0\";s:9:\"help_text\";s:0:\"\";s:9:\"show_desc\";s:1:\"0\";s:8:\"desc_pos\";s:4:\"none\";s:9:\"desc_text\";s:0:\"\";s:17:\"calc_auto_include\";s:1:\"0\";s:11:\"placeholder\";s:0:\"\";s:13:\"disable_input\";s:1:\"0\";s:11:\"input_limit\";s:0:\"\";s:16:\"input_limit_type\";s:4:\"char\";s:15:\"input_limit_msg\";s:0:\"\";s:10:\"user_state\";s:1:\"0\";s:16:\"autocomplete_off\";s:1:\"0\";s:8:\"num_sort\";s:1:\"0\";s:18:\"default_value_type\";s:0:\"\";s:11:\"admin_label\";s:0:\"\";s:26:\"user_info_field_group_name\";s:0:\"\";s:28:\"user_info_field_group_custom\";s:0:\"\";}',0,0);
-INSERT INTO `ogdch_ninja_forms_fields` VALUES (2,1,'_text',1,'a:38:{s:5:\"label\";s:5:\"Email\";s:9:\"label_pos\";s:5:\"above\";s:13:\"default_value\";s:0:\"\";s:4:\"mask\";s:0:\"\";s:10:\"datepicker\";s:1:\"0\";s:5:\"email\";s:1:\"1\";s:10:\"first_name\";s:1:\"0\";s:9:\"last_name\";s:1:\"0\";s:9:\"from_name\";s:1:\"0\";s:14:\"user_address_1\";s:1:\"0\";s:14:\"user_address_2\";s:1:\"0\";s:9:\"user_city\";s:1:\"0\";s:8:\"user_zip\";s:1:\"0\";s:10:\"user_phone\";s:1:\"0\";s:10:\"user_email\";s:1:\"1\";s:21:\"user_info_field_group\";s:1:\"1\";s:3:\"req\";s:1:\"1\";s:5:\"class\";s:0:\"\";s:9:\"show_help\";s:1:\"0\";s:9:\"help_text\";s:0:\"\";s:17:\"calc_auto_include\";s:1:\"0\";s:11:\"calc_option\";s:1:\"0\";s:11:\"conditional\";s:0:\"\";s:26:\"user_info_field_group_name\";s:0:\"\";s:28:\"user_info_field_group_custom\";s:0:\"\";s:9:\"show_desc\";s:1:\"0\";s:8:\"desc_pos\";s:4:\"none\";s:9:\"desc_text\";s:0:\"\";s:11:\"placeholder\";s:0:\"\";s:13:\"disable_input\";s:1:\"0\";s:11:\"input_limit\";s:0:\"\";s:16:\"input_limit_type\";s:4:\"char\";s:15:\"input_limit_msg\";s:0:\"\";s:10:\"user_state\";s:1:\"0\";s:16:\"autocomplete_off\";s:1:\"0\";s:8:\"num_sort\";s:1:\"0\";s:18:\"default_value_type\";s:0:\"\";s:11:\"admin_label\";s:0:\"\";}',0,14);
-INSERT INTO `ogdch_ninja_forms_fields` VALUES (3,1,'_textarea',2,'a:19:{s:5:\"label\";s:7:\"Message\";s:9:\"label_pos\";s:5:\"above\";s:13:\"default_value\";s:0:\"\";s:12:\"textarea_rte\";s:1:\"0\";s:14:\"textarea_media\";s:1:\"0\";s:18:\"disable_rte_mobile\";s:1:\"0\";s:3:\"req\";s:1:\"1\";s:5:\"class\";s:0:\"\";s:9:\"show_help\";s:1:\"0\";s:9:\"help_text\";s:0:\"\";s:9:\"show_desc\";s:1:\"0\";s:8:\"desc_pos\";s:4:\"none\";s:9:\"desc_text\";s:0:\"\";s:17:\"calc_auto_include\";s:1:\"0\";s:11:\"input_limit\";s:0:\"\";s:16:\"input_limit_type\";s:4:\"char\";s:15:\"input_limit_msg\";s:0:\"\";s:8:\"num_sort\";s:1:\"0\";s:11:\"admin_label\";s:0:\"\";}',0,0);
-INSERT INTO `ogdch_ninja_forms_fields` VALUES (5,1,'_submit',3,'a:7:{s:5:\"label\";s:4:\"Send\";s:5:\"class\";s:0:\"\";s:9:\"show_help\";s:1:\"0\";s:9:\"help_text\";s:0:\"\";s:9:\"show_desc\";s:1:\"0\";s:8:\"desc_pos\";s:4:\"none\";s:9:\"desc_text\";s:0:\"\";}',0,0);
+INSERT INTO `ogdch_ninja_forms_fields` VALUES (1,1,'_text',1,'a:36:{s:5:\"label\";s:4:\"Name\";s:9:\"label_pos\";s:5:\"above\";s:13:\"default_value\";s:0:\"\";s:4:\"mask\";s:0:\"\";s:10:\"datepicker\";s:1:\"0\";s:5:\"email\";s:1:\"0\";s:10:\"first_name\";s:0:\"\";s:9:\"last_name\";s:0:\"\";s:9:\"from_name\";s:1:\"0\";s:14:\"user_address_1\";s:0:\"\";s:14:\"user_address_2\";s:0:\"\";s:9:\"user_city\";s:0:\"\";s:8:\"user_zip\";s:0:\"\";s:10:\"user_phone\";s:0:\"\";s:10:\"user_email\";s:0:\"\";s:21:\"user_info_field_group\";s:0:\"\";s:3:\"req\";s:1:\"1\";s:5:\"class\";s:0:\"\";s:9:\"show_help\";s:1:\"0\";s:9:\"help_text\";s:0:\"\";s:9:\"show_desc\";s:1:\"0\";s:8:\"desc_pos\";s:4:\"none\";s:9:\"desc_text\";s:0:\"\";s:17:\"calc_auto_include\";s:1:\"0\";s:11:\"placeholder\";s:0:\"\";s:13:\"disable_input\";s:1:\"0\";s:11:\"input_limit\";s:0:\"\";s:16:\"input_limit_type\";s:4:\"char\";s:15:\"input_limit_msg\";s:0:\"\";s:10:\"user_state\";s:1:\"0\";s:16:\"autocomplete_off\";s:1:\"0\";s:8:\"num_sort\";s:1:\"0\";s:18:\"default_value_type\";s:0:\"\";s:11:\"admin_label\";s:0:\"\";s:26:\"user_info_field_group_name\";s:0:\"\";s:28:\"user_info_field_group_custom\";s:0:\"\";}',0,0);
+INSERT INTO `ogdch_ninja_forms_fields` VALUES (2,1,'_text',3,'a:38:{s:5:\"label\";s:5:\"Email\";s:9:\"label_pos\";s:5:\"above\";s:13:\"default_value\";s:0:\"\";s:4:\"mask\";s:0:\"\";s:10:\"datepicker\";s:1:\"0\";s:5:\"email\";s:1:\"1\";s:10:\"first_name\";s:1:\"0\";s:9:\"last_name\";s:1:\"0\";s:9:\"from_name\";s:1:\"0\";s:14:\"user_address_1\";s:1:\"0\";s:14:\"user_address_2\";s:1:\"0\";s:9:\"user_city\";s:1:\"0\";s:8:\"user_zip\";s:1:\"0\";s:10:\"user_phone\";s:1:\"0\";s:10:\"user_email\";s:1:\"1\";s:21:\"user_info_field_group\";s:1:\"1\";s:3:\"req\";s:1:\"1\";s:5:\"class\";s:0:\"\";s:9:\"show_help\";s:1:\"0\";s:9:\"help_text\";s:0:\"\";s:17:\"calc_auto_include\";s:1:\"0\";s:11:\"calc_option\";s:1:\"0\";s:11:\"conditional\";s:0:\"\";s:26:\"user_info_field_group_name\";s:0:\"\";s:28:\"user_info_field_group_custom\";s:0:\"\";s:9:\"show_desc\";s:1:\"0\";s:8:\"desc_pos\";s:4:\"none\";s:9:\"desc_text\";s:0:\"\";s:11:\"placeholder\";s:0:\"\";s:13:\"disable_input\";s:1:\"0\";s:11:\"input_limit\";s:0:\"\";s:16:\"input_limit_type\";s:4:\"char\";s:15:\"input_limit_msg\";s:0:\"\";s:10:\"user_state\";s:1:\"0\";s:16:\"autocomplete_off\";s:1:\"0\";s:8:\"num_sort\";s:1:\"0\";s:18:\"default_value_type\";s:0:\"\";s:11:\"admin_label\";s:0:\"\";}',0,14);
+INSERT INTO `ogdch_ninja_forms_fields` VALUES (3,1,'_textarea',5,'a:19:{s:5:\"label\";s:7:\"Message\";s:9:\"label_pos\";s:5:\"above\";s:13:\"default_value\";s:0:\"\";s:12:\"textarea_rte\";s:1:\"0\";s:14:\"textarea_media\";s:1:\"0\";s:18:\"disable_rte_mobile\";s:1:\"0\";s:3:\"req\";s:1:\"1\";s:5:\"class\";s:0:\"\";s:9:\"show_help\";s:1:\"0\";s:9:\"help_text\";s:0:\"\";s:9:\"show_desc\";s:1:\"0\";s:8:\"desc_pos\";s:4:\"none\";s:9:\"desc_text\";s:0:\"\";s:17:\"calc_auto_include\";s:1:\"0\";s:11:\"input_limit\";s:0:\"\";s:16:\"input_limit_type\";s:4:\"char\";s:15:\"input_limit_msg\";s:0:\"\";s:8:\"num_sort\";s:1:\"0\";s:11:\"admin_label\";s:0:\"\";}',0,0);
+INSERT INTO `ogdch_ninja_forms_fields` VALUES (5,1,'_submit',6,'a:7:{s:5:\"label\";s:4:\"Send\";s:5:\"class\";s:0:\"\";s:9:\"show_help\";s:1:\"0\";s:9:\"help_text\";s:0:\"\";s:9:\"show_desc\";s:1:\"0\";s:8:\"desc_pos\";s:4:\"none\";s:9:\"desc_text\";s:0:\"\";}',0,0);
+INSERT INTO `ogdch_ninja_forms_fields` VALUES (6,1,'_text',0,'a:35:{s:5:\"label\";s:10:\"First Name\";s:15:\"input_limit_msg\";s:17:\"character(s) left\";s:9:\"label_pos\";s:5:\"above\";s:11:\"placeholder\";s:0:\"\";s:10:\"first_name\";s:0:\"\";s:9:\"last_name\";s:0:\"\";s:14:\"user_address_1\";s:0:\"\";s:14:\"user_address_2\";s:0:\"\";s:9:\"user_city\";s:0:\"\";s:8:\"user_zip\";s:0:\"\";s:10:\"user_phone\";s:0:\"\";s:10:\"user_email\";s:0:\"\";s:21:\"user_info_field_group\";s:1:\"1\";s:5:\"email\";s:1:\"0\";s:13:\"disable_input\";s:1:\"0\";s:3:\"req\";s:1:\"1\";s:4:\"mask\";s:0:\"\";s:11:\"input_limit\";s:0:\"\";s:16:\"input_limit_type\";s:4:\"char\";s:17:\"calc_auto_include\";s:1:\"0\";s:10:\"datepicker\";s:1:\"0\";s:10:\"user_state\";s:1:\"0\";s:16:\"autocomplete_off\";s:1:\"0\";s:8:\"num_sort\";s:1:\"0\";s:18:\"default_value_type\";s:0:\"\";s:13:\"default_value\";s:0:\"\";s:11:\"admin_label\";s:0:\"\";s:26:\"user_info_field_group_name\";s:0:\"\";s:28:\"user_info_field_group_custom\";s:0:\"\";s:5:\"class\";s:0:\"\";s:9:\"show_help\";s:1:\"0\";s:9:\"help_text\";s:0:\"\";s:9:\"show_desc\";s:1:\"0\";s:8:\"desc_pos\";s:4:\"none\";s:9:\"desc_text\";s:0:\"\";}',NULL,NULL);
+INSERT INTO `ogdch_ninja_forms_fields` VALUES (7,1,'_text',2,'a:35:{s:5:\"label\";s:12:\"Organization\";s:15:\"input_limit_msg\";s:17:\"character(s) left\";s:9:\"label_pos\";s:5:\"above\";s:11:\"placeholder\";s:0:\"\";s:10:\"first_name\";s:0:\"\";s:9:\"last_name\";s:0:\"\";s:14:\"user_address_1\";s:0:\"\";s:14:\"user_address_2\";s:0:\"\";s:9:\"user_city\";s:0:\"\";s:8:\"user_zip\";s:0:\"\";s:10:\"user_phone\";s:0:\"\";s:10:\"user_email\";s:0:\"\";s:21:\"user_info_field_group\";s:1:\"1\";s:5:\"email\";s:1:\"0\";s:13:\"disable_input\";s:1:\"0\";s:3:\"req\";s:1:\"0\";s:4:\"mask\";s:0:\"\";s:11:\"input_limit\";s:0:\"\";s:16:\"input_limit_type\";s:4:\"char\";s:17:\"calc_auto_include\";s:1:\"0\";s:10:\"datepicker\";s:1:\"0\";s:10:\"user_state\";s:1:\"0\";s:16:\"autocomplete_off\";s:1:\"0\";s:8:\"num_sort\";s:1:\"0\";s:18:\"default_value_type\";s:0:\"\";s:13:\"default_value\";s:0:\"\";s:11:\"admin_label\";s:0:\"\";s:26:\"user_info_field_group_name\";s:0:\"\";s:28:\"user_info_field_group_custom\";s:0:\"\";s:5:\"class\";s:0:\"\";s:9:\"show_help\";s:1:\"0\";s:9:\"help_text\";s:0:\"\";s:9:\"show_desc\";s:1:\"0\";s:8:\"desc_pos\";s:4:\"none\";s:9:\"desc_text\";s:0:\"\";}',NULL,NULL);
+INSERT INTO `ogdch_ninja_forms_fields` VALUES (8,1,'_list',4,'a:19:{s:5:\"label\";s:7:\"Subject\";s:15:\"input_limit_msg\";s:17:\"character(s) left\";s:9:\"label_pos\";s:5:\"above\";s:9:\"list_type\";s:8:\"dropdown\";s:10:\"multi_size\";s:1:\"5\";s:15:\"list_show_value\";s:1:\"0\";s:4:\"list\";a:1:{s:7:\"options\";a:3:{i:0;a:4:{s:5:\"label\";s:25:\"I have a general question\";s:5:\"value\";s:0:\"\";s:4:\"calc\";s:0:\"\";s:8:\"selected\";s:1:\"1\";}i:1;a:4:{s:5:\"label\";s:31:\"I have developed an application\";s:5:\"value\";s:0:\"\";s:4:\"calc\";s:0:\"\";s:8:\"selected\";s:1:\"0\";}i:2;a:4:{s:5:\"label\";s:22:\"I want to publish data\";s:5:\"value\";s:0:\"\";s:4:\"calc\";s:0:\"\";s:8:\"selected\";s:1:\"0\";}}}s:21:\"user_info_field_group\";s:0:\"\";s:3:\"req\";s:1:\"1\";s:17:\"calc_auto_include\";s:1:\"0\";s:10:\"user_state\";s:1:\"0\";s:8:\"num_sort\";s:1:\"0\";s:11:\"admin_label\";s:0:\"\";s:5:\"class\";s:0:\"\";s:9:\"show_help\";s:1:\"0\";s:9:\"help_text\";s:0:\"\";s:9:\"show_desc\";s:1:\"0\";s:8:\"desc_pos\";s:4:\"none\";s:9:\"desc_text\";s:0:\"\";}',NULL,NULL);
 /*!40000 ALTER TABLE `ogdch_ninja_forms_fields` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -371,7 +374,7 @@ CREATE TABLE `ogdch_options` (
   `autoload` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'yes',
   PRIMARY KEY (`option_id`),
   UNIQUE KEY `option_name` (`option_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=811 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=812 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -523,6 +526,7 @@ INSERT INTO `ogdch_options` VALUES (789,'nf_database_migrations','1','yes');
 INSERT INTO `ogdch_options` VALUES (790,'ninja_forms_settings','a:23:{s:11:\"date_format\";s:5:\"d.m.Y\";s:15:\"currency_symbol\";s:3:\"CHF\";s:14:\"recaptcha_lang\";s:2:\"en\";s:13:\"req_div_label\";s:80:\"Fields marked with an <span class=\"ninja-forms-req-symbol\">*</span> are required\";s:16:\"req_field_symbol\";s:18:\"<strong>*</strong>\";s:15:\"req_error_label\";s:48:\"Please ensure all required fields are completed.\";s:15:\"req_field_error\";s:24:\"This is a required field\";s:10:\"spam_error\";s:47:\"Please answer the anti-spam question correctly.\";s:14:\"honeypot_error\";s:34:\"Please leave the spam field blank.\";s:18:\"timed_submit_error\";s:31:\"Please wait to submit the form.\";s:16:\"javascript_error\";s:54:\"You cannot submit the form without Javascript enabled.\";s:13:\"invalid_email\";s:35:\"Please enter a valid email address.\";s:13:\"process_label\";s:10:\"Processing\";s:17:\"password_mismatch\";s:36:\"The passwords provided do not match.\";s:10:\"preview_id\";i:292;s:7:\"version\";s:6:\"2.9.28\";s:19:\"fix_form_email_from\";i:1;s:18:\"fix_field_reply_to\";i:1;s:18:\"recaptcha_site_key\";s:0:\"\";s:20:\"recaptcha_secret_key\";s:0:\"\";s:19:\"delete_on_uninstall\";s:1:\"0\";s:21:\"disable_admin_notices\";s:1:\"0\";s:22:\"version_2_2_25_rte_fix\";i:1;}','yes');
 INSERT INTO `ogdch_options` VALUES (791,'nf_admin_notice','a:2:{s:16:\"one_week_support\";a:3:{s:5:\"start\";s:10:\"10/29/2015\";s:3:\"int\";i:7;s:9:\"dismissed\";i:1;}s:15:\"two_week_review\";a:3:{s:5:\"start\";s:9:\"11/5/2015\";s:3:\"int\";i:14;s:9:\"dismissed\";i:1;}}','yes');
 INSERT INTO `ogdch_options` VALUES (808,'theme_mods_twentyfifteen','a:1:{s:16:\"sidebars_widgets\";a:2:{s:4:\"time\";i:1447418305;s:4:\"data\";a:2:{s:19:\"wp_inactive_widgets\";a:0:{}s:9:\"sidebar-1\";a:6:{i:0;s:8:\"search-2\";i:1;s:14:\"recent-posts-2\";i:2;s:17:\"recent-comments-2\";i:3;s:10:\"archives-2\";i:4;s:12:\"categories-2\";i:5;s:6:\"meta-2\";}}}}','yes');
+INSERT INTO `ogdch_options` VALUES (811,'_wp_session_expires_266f935ca8e6fc0dd191b009a65ad3cb','1447427765','no');
 /*!40000 ALTER TABLE `ogdch_options` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -541,7 +545,7 @@ CREATE TABLE `ogdch_postmeta` (
   PRIMARY KEY (`meta_id`),
   KEY `post_id` (`post_id`),
   KEY `meta_key` (`meta_key`(191))
-) ENGINE=InnoDB AUTO_INCREMENT=2156 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2160 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1163,22 +1167,6 @@ INSERT INTO `ogdch_postmeta` VALUES (2083,250,'_wp_page_template','default');
 INSERT INTO `ogdch_postmeta` VALUES (2084,247,'_wp_page_template','default');
 INSERT INTO `ogdch_postmeta` VALUES (2085,248,'_wp_page_template','default');
 INSERT INTO `ogdch_postmeta` VALUES (2086,249,'_wp_page_template','default');
-INSERT INTO `ogdch_postmeta` VALUES (2087,298,'_form_id','1');
-INSERT INTO `ogdch_postmeta` VALUES (2088,298,'_seq_num','1');
-INSERT INTO `ogdch_postmeta` VALUES (2089,298,'_action','submit');
-INSERT INTO `ogdch_postmeta` VALUES (2090,298,'_field_1','Hans');
-INSERT INTO `ogdch_postmeta` VALUES (2091,298,'_field_2','hans@test.user');
-INSERT INTO `ogdch_postmeta` VALUES (2092,298,'_field_3','asdfasdf\r\nasdfasdfas');
-INSERT INTO `ogdch_postmeta` VALUES (2093,298,'_field_5','');
-INSERT INTO `ogdch_postmeta` VALUES (2094,298,'_sub_id','298');
-INSERT INTO `ogdch_postmeta` VALUES (2095,299,'_form_id','1');
-INSERT INTO `ogdch_postmeta` VALUES (2096,299,'_seq_num','2');
-INSERT INTO `ogdch_postmeta` VALUES (2097,299,'_action','submit');
-INSERT INTO `ogdch_postmeta` VALUES (2098,299,'_field_1','Hans');
-INSERT INTO `ogdch_postmeta` VALUES (2099,299,'_field_2','hans@test.user');
-INSERT INTO `ogdch_postmeta` VALUES (2100,299,'_field_3','asdfasdf\r\nasdfasdfas');
-INSERT INTO `ogdch_postmeta` VALUES (2101,299,'_field_5','');
-INSERT INTO `ogdch_postmeta` VALUES (2102,299,'_sub_id','299');
 INSERT INTO `ogdch_postmeta` VALUES (2103,300,'_edit_lock','1446649620:1');
 INSERT INTO `ogdch_postmeta` VALUES (2104,300,'_edit_last','1');
 INSERT INTO `ogdch_postmeta` VALUES (2105,300,'_ckan_local_org_ckan_id','244099c1-a313-48cb-861b-55f2d42ccb7d');
@@ -1376,8 +1364,6 @@ INSERT INTO `ogdch_posts` VALUES (290,1,'2015-09-29 14:25:33','2015-09-29 12:25:
 INSERT INTO `ogdch_posts` VALUES (291,1,'2015-10-12 11:50:14','2015-10-12 09:50:14','','Sub-Organization','','publish','closed','closed','','sub-organization','','','2015-10-14 11:51:24','2015-10-14 09:51:24','',0,'http://ogdch.dev/?post_type=ckan-local-org&#038;p=291',0,'ckan-local-org','',0);
 INSERT INTO `ogdch_posts` VALUES (292,1,'2015-10-22 14:09:32','0000-00-00 00:00:00','This is a preview of how this form will appear on your website','Form Preview Page','','draft','closed','closed','','','','','2015-10-22 14:09:32','2015-10-22 12:09:32','',0,'http://ogdch.dev/?page_id=292',0,'page','',0);
 INSERT INTO `ogdch_posts` VALUES (297,1,'2015-11-03 09:28:12','2015-11-03 08:28:12','','National boundaries','','publish','closed','closed','','national-boundaries','','','2015-11-06 09:13:27','2015-11-06 08:13:27','',0,'http://ogdch.dev/?post_type=ckan-local-dataset&#038;p=297',0,'ckan-local-dataset','',0);
-INSERT INTO `ogdch_posts` VALUES (298,1,'2015-11-04 15:43:32','2015-11-04 14:43:32','','','','publish','closed','closed','','298','','','2015-11-04 15:43:32','2015-11-04 14:43:32','',0,'http://ogdch.dev/nf_sub/298/',0,'nf_sub','',0);
-INSERT INTO `ogdch_posts` VALUES (299,1,'2015-11-04 15:54:09','2015-11-04 14:54:09','','','','publish','closed','closed','','299','','','2015-11-04 15:54:09','2015-11-04 14:54:09','',0,'http://ogdch.dev/nf_sub/299/',0,'nf_sub','',0);
 INSERT INTO `ogdch_posts` VALUES (300,1,'2015-11-04 16:09:08','2015-11-04 15:09:08','','Bibliothek am Guisanplatz','','publish','closed','closed','','bibliothek-am-guisanplatz','','','2015-11-04 16:09:17','2015-11-04 15:09:17','',0,'http://ogdch.dev/?post_type=ckan-local-org&#038;p=300',0,'ckan-local-org','',0);
 INSERT INTO `ogdch_posts` VALUES (301,1,'2015-11-04 16:10:59','2015-11-04 15:10:59','','Schweizerische Nationalbibliothek','','publish','closed','closed','','schweizerische-nationalbibliothek','','','2015-11-04 16:11:14','2015-11-04 15:11:14','',0,'http://ogdch.dev/?post_type=ckan-local-org&#038;p=301',0,'ckan-local-org','',0);
 INSERT INTO `ogdch_posts` VALUES (302,1,'2015-11-04 16:13:09','2015-11-04 15:13:09','','Bundesamt für Gesundheit','','publish','closed','closed','','bundesamt-fur-gesundheit','','','2015-11-04 16:13:15','2015-11-04 15:13:15','',0,'http://ogdch.dev/?post_type=ckan-local-org&#038;p=302',0,'ckan-local-org','',0);
@@ -1852,7 +1838,7 @@ CREATE TABLE `ogdch_usermeta` (
   PRIMARY KEY (`umeta_id`),
   KEY `user_id` (`user_id`),
   KEY `meta_key` (`meta_key`(191))
-) ENGINE=InnoDB AUTO_INCREMENT=237 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=238 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1877,7 +1863,7 @@ INSERT INTO `ogdch_usermeta` VALUES (13,1,'show_welcome_panel','0');
 INSERT INTO `ogdch_usermeta` VALUES (15,1,'ogdch_dashboard_quick_press_last_post_id','3');
 INSERT INTO `ogdch_usermeta` VALUES (16,1,'pll_filter_content','');
 INSERT INTO `ogdch_usermeta` VALUES (17,1,'ogdch_user-settings','posts_list_mode=list&libraryContent=browse&mfold=o&advImgDetails=show&uploader=1&hidetb=1&editor=tinymce');
-INSERT INTO `ogdch_usermeta` VALUES (18,1,'ogdch_user-settings-time','1444982352');
+INSERT INTO `ogdch_usermeta` VALUES (18,1,'ogdch_user-settings-time','1447426167');
 INSERT INTO `ogdch_usermeta` VALUES (19,1,'managenav-menuscolumnshidden','a:4:{i:0;s:11:\"link-target\";i:1;s:11:\"css-classes\";i:2;s:3:\"xfn\";i:3;s:11:\"description\";}');
 INSERT INTO `ogdch_usermeta` VALUES (20,1,'metaboxhidden_nav-menus','a:7:{i:0;s:19:\"pll_lang_switch_box\";i:1;s:8:\"add-post\";i:2;s:7:\"add-app\";i:3;s:22:\"add-ckan-local-dataset\";i:4;s:20:\"add-ckan-local-group\";i:5;s:18:\"add-ckan-local-org\";i:6;s:12:\"add-post_tag\";}');
 INSERT INTO `ogdch_usermeta` VALUES (21,1,'nav_menu_recently_edited','135');
@@ -2090,6 +2076,7 @@ INSERT INTO `ogdch_usermeta` VALUES (233,13,'ogdch_capabilities','a:1:{s:10:\"da
 INSERT INTO `ogdch_usermeta` VALUES (234,13,'ogdch_user_level','0');
 INSERT INTO `ogdch_usermeta` VALUES (235,13,'ckan-backend_organisation','bundesamt-fur-statistik');
 INSERT INTO `ogdch_usermeta` VALUES (236,13,'dismissed_wp_pointers','');
+INSERT INTO `ogdch_usermeta` VALUES (237,1,'manageedit-nf_subcolumnshidden','a:2:{i:0;s:14:\"form_1_field_8\";i:1;s:14:\"form_1_field_3\";}');
 /*!40000 ALTER TABLE `ogdch_usermeta` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2148,4 +2135,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-11-13 14:16:09
+-- Dump completed on 2015-11-13 14:52:25
