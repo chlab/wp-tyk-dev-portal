@@ -4,7 +4,7 @@ var Promise = require('promise');
 var availableStatus = {
     'draft': 'Entwurf',
     'pending': 'Ausstehender Review',
-    'published': 'Veröffentlich'
+    'published': 'Veröffentlicht'
 };
 
 
