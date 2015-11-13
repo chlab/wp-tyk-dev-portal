@@ -14,8 +14,6 @@ DIR=`dirname $0`
 
 cd $DIR/..
 
-
-
 # Re-create vagrant box
 if  [ "$DESTROY_BOX" = true ] ; then
     vagrant destroy --force
@@ -29,12 +27,13 @@ ssh-keyscan -H $GITLAB_HOST >> ~gitlab_ci_runner/.ssh/known_hosts
 GITHUB_HOST='github.com'
 ssh-keyscan -H $GITHUB_HOST >> ~gitlab_ci_runner/.ssh/known_hosts
 
+git reset --hard HEAD
+
 git submodule init
+git submodule sync
+git submodule foreach --recursive 'git reset --hard HEAD'
 git submodule foreach --recursive 'git fetch --tags'
 git submodule update --recursive
-
-# remove *.pyc files after checking out everything
-find $DIR/.. -name "*.pyc" | xargs rm
 
 # install the vagrant plugins
 vagrant plugin install vagrant-omnibus
@@ -45,13 +44,8 @@ vtext=`vagrant status 2>/dev/null | awk '{$1=""; print $0}' | sed 's/^ //g' | gr
 if [[ $vtext =~ .*(running).* ]]
 then
     vagrant reload --provision
-elif [[ $vtext =~ .*(poweroff).* ]]
-then
-    vagrant up --provision
 else
-    vagrant up
-    vagrant halt
-    vagrant up || vagrant ssh -c "sudo /etc/init.d/vboxadd setup" && vagrant reload
+    vagrant up --provision
 fi
 
 # Run build script in the vagrant box

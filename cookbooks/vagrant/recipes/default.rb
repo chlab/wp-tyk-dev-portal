@@ -62,6 +62,7 @@ php-tidy
 php-xmlrpc
 php-xml
 ntp
+net-tools
 policycoreutils-python
 postgresql-devel
 postgresql-server
@@ -107,7 +108,14 @@ bash "Install node 0.12.x" do
   EOH
 end
 
-# set permissions to php session.save_path
+bash "Disable firewall" do
+  user "root"
+  code <<-EOH
+  systemctl mask firewalld
+  systemctl stop firewalld
+EOH
+end
+
 bash "set permissions to php session.save_path" do
   user "root"
   code <<-EOH
@@ -260,6 +268,14 @@ template "#{CKAN_DIR}/development.ini" do
   user USER
   mode 0644
   source "development.ini"
+end
+
+bash "update the pip package itself" do
+  user USER
+  code <<-EOH
+  source #{HOME}/pyenv/bin/activate
+  pip install --upgrade pip
+EOH
 end
 
 bash "install the ckan pip package" do
@@ -525,7 +541,7 @@ end
 bash "Rebuild the vbox kernel module after upgrade" do
   user "root"
   code <<-EOH
-  yum install kernel-devel-`uname -r`
+  yum install -y kernel-devel-`uname -r`
   /etc/init.d/vboxadd setup
   EOH
 end

@@ -2,9 +2,9 @@ var expect = require('chai').expect;
 var Promise = require('promise');
 
 var availableStatus = {
-    'draft': 'Draft',
-    'pending': 'Pending Review',
-    'published': 'Published'
+    'draft': 'Entwurf',
+    'pending': 'Ausstehender Review',
+    'published': 'Veröffentlicht'
 };
 
 
@@ -77,11 +77,17 @@ module.exports = {
                     console.log("Add new dataset");
                     me.browser
                         .fill("#title", title)
-                        .fill("#_ckan_local_dataset_identifier_original_identifier", '123')
+                        .fill('#_ckan_local_dataset_identifier_original_identifier', '123')
                         .fill('#_ckan_local_dataset_description_en', title + ' EN')
                         .fill('#_ckan_local_dataset_description_fr', title + ' FR')
                         .fill('#_ckan_local_dataset_description_de', title + ' DE')
                         .fill('#_ckan_local_dataset_description_it', title + ' IT')
+                        .fill('#_ckan_local_dataset_issued', '01.01.2015')
+                        .fill('#_ckan_local_dataset_publishers_0_label', 'Test Publisher')
+                        .fill('#_ckan_local_dataset_contact_points_0_name', 'Sekretariat')
+                        .fill('#_ckan_local_dataset_contact_points_0_email', 'sekretariat@example.com')
+                        .fill('#_ckan_local_dataset_distributions_0_issued', '02.02.2015')
+                        .fill('#_ckan_local_dataset_distributions_0_access_url', 'http://access.url')
                     return me.browser.pressButton("#save-post");
                 })
                 .then(function() {
@@ -89,7 +95,7 @@ module.exports = {
                 })
                 .then(function() {
                     console.log("Added dataset");
-                    expect(me.browser.text('#message p')).to.match(/^Post draft updated/);
+                    expect(me.browser.text('#message p')).to.match(/^Datensatz.*aktualisiert/);
                     expect(me.browser.query("div[class='error']")).not.to.exist;
                     var datasetUrl = me.browser.location.href;
                     var datasetSlug = me.browser.query("#_ckan_local_dataset_ckan_name").value;
@@ -187,7 +193,7 @@ module.exports = {
                 })
                 .then(function() {
                     console.log("Updated post");
-                    expect(me.browser.text('#message p')).to.match(/^Post published/);
+                    expect(me.browser.text('#message p')).to.match(/^Datensatz publiziert/);
                     expect(me.browser.query('#title').value).to.equal(title);
                     resolve();
                 })

@@ -41,8 +41,9 @@ module.exports = {
                         console.log("Got a 404 page, dataset is not available");
                         resolve();
                         return;
-                    }
-                    expect(me.browser.query('div.flash-messages .alert')).to.exist;
+                    } 
+                    // check if we got redirected to the login page
+                    expect(me.browser.text('h1.page-heading')).to.equal('Anmeldung');
                     resolve();
                 })
                 .catch(function(err) {
@@ -68,7 +69,7 @@ module.exports = {
                 .then(function () {
                     console.log("Opened organization page in CKAN");
                     expect(me.browser.status).to.equal(200);
-                    var org_image = me.browser.querySelector('.secondary div.image img').src;
+                    var org_image = me.browser.querySelector('section.description img').src;
                     resolve(org_image);
                 })
                 .catch(reject);
@@ -84,7 +85,7 @@ module.exports = {
                 .then(function () {
                     console.log("Opened organization page in CKAN");
                     expect(me.browser.status).to.equal(200);
-                    var org_descr = me.browser.querySelector('.secondary .module-content p').innerHTML;
+                    var org_descr = me.browser.querySelector('p.lead').innerHTML;
                     resolve(org_descr);
                 })
                 .catch(reject);

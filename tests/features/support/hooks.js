@@ -1,5 +1,5 @@
 var ogdchHooks = function () {
-    this.After(function (callback) {
+    this.After(function (scenario, callback) {
         console.log("Cleanup after scenario...");
         this.restore_db(callback);
     });

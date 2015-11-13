@@ -16,6 +16,8 @@
         <severity>0</severity>
     </rule>
     <rule ref="Generic.WhiteSpace.DisallowSpaceIndent">
+        <exclude-pattern>*/themes/wp-ogdch-theme/404.php</exclude-pattern>
+        <exclude-pattern>*/themes/wp-ogdch-theme/_missing_translations.php</exclude-pattern>
         <exclude-pattern>*/themes/wp-ogdch-theme/archive*.php</exclude-pattern>
         <exclude-pattern>*/themes/wp-ogdch-theme/index.php</exclude-pattern>
         <exclude-pattern>*/themes/wp-ogdch-theme/front-page.php</exclude-pattern>
@@ -28,6 +30,8 @@
         <exclude-pattern>*/themes/wp-ogdch-theme/templates/*</exclude-pattern>
     </rule>
     <rule ref="Squiz.Commenting.FileComment">
+        <exclude-pattern>*/themes/wp-ogdch-theme/404.php</exclude-pattern>
+        <exclude-pattern>*/themes/wp-ogdch-theme/_missing_translations.php</exclude-pattern>
         <exclude-pattern>*/themes/wp-ogdch-theme/functions.php</exclude-pattern>
         <exclude-pattern>*/themes/wp-ogdch-theme/archive*.php</exclude-pattern>
         <exclude-pattern>*/themes/wp-ogdch-theme/index.php</exclude-pattern>
@@ -42,6 +46,8 @@
         <exclude-pattern>*/themes/wp-ogdch-theme/assets/php/*</exclude-pattern>
     </rule>
     <rule ref="Generic.WhiteSpace.ScopeIndent">
+        <exclude-pattern>*/themes/wp-ogdch-theme/404.php</exclude-pattern>
+        <exclude-pattern>*/themes/wp-ogdch-theme/_missing_translations.php</exclude-pattern>
         <exclude-pattern>*/themes/wp-ogdch-theme/archive*.php</exclude-pattern>
         <exclude-pattern>*/themes/wp-ogdch-theme/index.php</exclude-pattern>
         <exclude-pattern>*/themes/wp-ogdch-theme/front-page.php</exclude-pattern>

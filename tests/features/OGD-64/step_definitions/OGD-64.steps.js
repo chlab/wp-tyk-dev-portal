@@ -31,7 +31,7 @@ module.exports = function () {
             })
             .catch(function(err) {
                 expect(err.cause).to.match(/Server returned status code 500/);
-                expect(me.browser.text('body p')).to.match(/^You are not allowed to edit this item/);
+                expect(me.browser.text('body p')).to.match(/^Sie haben nicht die nötigen Rechte, um dieses Element zu bearbeiten/);
             })
             .then(function() {
                 return me.helpers.logout();
