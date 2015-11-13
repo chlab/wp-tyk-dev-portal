@@ -2,9 +2,9 @@ var expect = require('chai').expect;
 var Promise = require('promise');
 
 var availableStatus = {
-    'draft': 'Draft',
-    'pending': 'Pending Review',
-    'published': 'Published'
+    'draft': 'Entwurf',
+    'pending': 'Ausstehender Review',
+    'published': 'Veröffentlich'
 };
 
 
@@ -95,7 +95,7 @@ module.exports = {
                 })
                 .then(function() {
                     console.log("Added dataset");
-                    expect(me.browser.text('#message p')).to.match(/^Post draft updated/);
+                    expect(me.browser.text('#message p')).to.match(/^Datensatz.*aktualisiert/);
                     expect(me.browser.query("div[class='error']")).not.to.exist;
                     var datasetUrl = me.browser.location.href;
                     var datasetSlug = me.browser.query("#_ckan_local_dataset_ckan_name").value;
@@ -193,7 +193,7 @@ module.exports = {
                 })
                 .then(function() {
                     console.log("Updated post");
-                    expect(me.browser.text('#message p')).to.match(/^Post published/);
+                    expect(me.browser.text('#message p')).to.match(/^Datensatz publiziert/);
                     expect(me.browser.query('#title').value).to.equal(title);
                     resolve();
                 })
