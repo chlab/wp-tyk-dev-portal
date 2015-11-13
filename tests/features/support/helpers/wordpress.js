@@ -78,7 +78,6 @@ module.exports = {
                     me.browser
                         .fill("#title", title)
                         .fill('#_ckan_local_dataset_identifier_original_identifier', '123')
-                        .fill('#_ckan_local_dataset_identifier_organisation', 'swisstopo')
                         .fill('#_ckan_local_dataset_description_en', title + ' EN')
                         .fill('#_ckan_local_dataset_description_fr', title + ' FR')
                         .fill('#_ckan_local_dataset_description_de', title + ' DE')
