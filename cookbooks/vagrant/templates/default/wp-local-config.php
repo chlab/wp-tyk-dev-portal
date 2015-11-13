@@ -29,6 +29,7 @@ define( 'FS_METHOD', 'direct' );
 
 define( 'WP_CACHE', false );
 
+
 // ===================================================
 // Object-Cache
 // ===================================================
@@ -67,14 +68,6 @@ define( 'WP_PLUGIN_URL', WP_HOME . '/content/plugins' );
 define( 'WPMU_PLUGIN_DIR', dirname( __FILE__ ) . '/content/mu-plugins' );
 define( 'WPMU_PLUGIN_URL', WP_HOME . '/content/mu-plugins' );
 
-// ===================================================
-// Twitter
-// ===================================================
-
-define( 'TWITTER_CONSUMER_KEY', 'azoAPMSiArNEoGVHaWCnwDzC3' );
-define( 'TWITTER_CONSUMER_SECRET', 'j8t6MZUgLUJIzX0vVJO8eaqA3XwTuuUzoHrDn5hGGl4xLfkLka' );
-define( 'TWITTER_OAUTH_ACCESS_TOKEN', '36353406-DNRA5h95NMVSj9ch6kEU797ZVJKAWmK0gj3AnikNY' );
-define( 'TWITTER_OAUTH_ACCESS_TOKEN_SECRET', 'wZ3efba9OBiWSjH6pMq988BiXssohog8G3pVrHZt3jwv6' );
 
 // ===================================================
 // CKAN
@@ -89,6 +82,7 @@ $language_priority = array(
 	3 => 'fr',
 	4 => 'it'
 );
+
 
 // ===================================================
 // WP Behavior

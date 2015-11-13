@@ -14,12 +14,12 @@ define( 'DB_HOST', 'localhost' );
 // Various Dev Settings
 // ===================================================
 
-define( 'WP_LOCAL_DEV', true );
-define( 'WP_DEBUG', true );
-define( 'WP_DEBUG_LOG', true );
-define( 'WP_DEBUG_DISPLAY', true );
-define( 'SCRIPT_DEBUG', true );
-define( 'SAVEQUERIES', true );
+define( 'WP_LOCAL_DEV', false );
+define( 'WP_DEBUG', false );
+define( 'WP_DEBUG_LOG', false );
+define( 'WP_DEBUG_DISPLAY', false );
+define( 'SCRIPT_DEBUG', false );
+define( 'SAVEQUERIES', false );
 define( 'FS_METHOD', 'direct' );
 
 
@@ -28,6 +28,7 @@ define( 'FS_METHOD', 'direct' );
 // ===================================================
 
 define( 'WP_CACHE', false );
+
 
 // ===================================================
 // Object-Cache
@@ -68,15 +69,6 @@ define( 'WPMU_PLUGIN_DIR', dirname( __FILE__ ) . '/content/mu-plugins' );
 define( 'WPMU_PLUGIN_URL', WP_HOME . '/content/mu-plugins' );
 
 
-
-// ===================================================
-// Twitter
-// ===================================================
-define( 'TWITTER_CONSUMER_KEY', 'azoAPMSiArNEoGVHaWCnwDzC3' );
-define( 'TWITTER_CONSUMER_SECRET', 'j8t6MZUgLUJIzX0vVJO8eaqA3XwTuuUzoHrDn5hGGl4xLfkLka' );
-define( 'TWITTER_OAUTH_ACCESS_TOKEN', '36353406-DNRA5h95NMVSj9ch6kEU797ZVJKAWmK0gj3AnikNY' );
-define( 'TWITTER_OAUTH_ACCESS_TOKEN_SECRET', 'wZ3efba9OBiWSjH6pMq988BiXssohog8G3pVrHZt3jwv6' );
-
 // ===================================================
 // CKAN
 // ===================================================
@@ -90,6 +82,7 @@ $language_priority = array(
 	3 => 'fr',
 	4 => 'it'
 );
+
 
 // ===================================================
 // WP Behavior
