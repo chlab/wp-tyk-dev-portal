@@ -1,7 +1,7 @@
 var ogdchHooks = function () {
-    this.After(function (scenario) {
+    this.After(function (scenario, callback) {
         console.log("Cleanup after scenario...");
-        this.restore_db();
+        this.restore_db(callback);
     });
 
     this.registerHandler('BeforeStep', function (event, callback) {

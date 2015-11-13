@@ -24,20 +24,23 @@ function World() {
 
     load(path.join(__dirname, './helpers'), this.helpers);
 
-    this.restore_db = function()  {
+    this.restore_db = function(callback)  {
         if (process.env.RESET_DB) {
             console.log("Restoring DBs...");
             exec("/vagrant/scripts/restore_dumps.sh", function (error, stdout, stderr) {
                 if (error) {
+                    callback.fail(error);
                     console.log("Error: " + error)
                 }
                 console.log('stdout: ' + stdout);
                 console.log('stderr: ' + stderr);
                 
                 console.log("Finished restoring DBs.");
+                callback();
             });
         } else {
             console.log("Skip restoring DBs...");
+            callback();
         }
     };
 };
