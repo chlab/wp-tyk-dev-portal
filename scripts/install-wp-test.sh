@@ -13,6 +13,7 @@ WP_VERSION=${5-latest}
 
 WP_TESTS_DIR=${WP_TESTS_DIR-/tmp/wordpress-tests-lib}
 WP_CORE_DIR=${WP_CORE_DIR-/tmp/wordpress/}
+DIR=`dirname $0`
 
 download() {
     if [ `which curl` ]; then
@@ -43,8 +44,10 @@ set -ex
 install_wp() {
 
     if [ -d $WP_CORE_DIR ]; then
-        return;
+        # OGDCH: remove core dir in any case
+        rm -rf $WP_TESTS_DIR
     fi
+
 
     mkdir -p $WP_CORE_DIR
 
@@ -63,6 +66,12 @@ install_wp() {
         tar --strip-components=1 -zxmf /tmp/wordpress.tar.gz -C $WP_CORE_DIR
     fi
 
+    # OGDCH: copy plugins and themes to test dir
+    mkdir -p $WP_CORE_DIR/wp-content/mu-plugins
+    yes | cp -r $DIR/../web/ogdch.dev/content/mu-plugins/* $WP_CORE_DIR/wp-content/mu-plugins
+    yes | cp -r $DIR/../web/ogdch.dev/content/plugins/* $WP_CORE_DIR/wp-content/plugins
+    yes | cp -r $DIR/../web/ogdch.dev/content/themes/* $WP_CORE_DIR/wp-content/themes
+
     download https://raw.github.com/markoheijnen/wp-mysqli/master/db.php $WP_CORE_DIR/wp-content/db.php
 }
 
@@ -75,7 +84,9 @@ install_test_suite() {
     fi
     
     # OGDCH: remove test dir in any case
-    rm -rf $WP_TESTS_DIR
+    if [ -d $WP_TESTS_DIR ]; then
+        rm -rf $WP_TESTS_DIR
+    fi
 
     # set up testing suite if it doesn't yet exist
     if [ ! -d $WP_TESTS_DIR ]; then
