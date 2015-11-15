@@ -29,8 +29,8 @@ function World() {
             console.log("Restoring DBs...");
             exec("/vagrant/scripts/restore_dumps.sh", function (error, stdout, stderr) {
                 if (error) {
-                    callback.fail(error);
                     console.log("Error: " + error)
+                    callback(error);
                 }
                 console.log('stdout: ' + stdout);
                 console.log('stderr: ' + stderr);
