@@ -14,9 +14,15 @@ module.exports = function () {
                 return me.browser.clickLink("Swisstopo");
             })
             .then(function() {
+                return me.browser.wait();
+            })
+            .then(function() {
                 console.log("Edit Swisstopo organisation");
                 me.browser.fill('#_ckan_local_org_image', 'http://example.com/' + me.logoFilename);
                 return me.browser.pressButton('#publish');
+            })
+            .then(function() {
+                return me.browser.wait();
             })
             .then(function() {
                 console.log("Updated organization");
@@ -50,9 +56,15 @@ module.exports = function () {
                 return me.browser.clickLink("Swisstopo");
             })
             .then(function() {
+                return me.browser.wait();
+            })
+            .then(function() {
                 console.log("Edit Swisstopo organisation");
                 me.browser.fill('#_ckan_local_org_image', 'http://example.com/' + me.logoFilename);
                 return me.browser.pressButton('#publish');
+            })
+            .then(function() {
+                return me.browser.wait();
             })
             .then(function() {
                 console.log("Updated organization");
@@ -86,9 +98,15 @@ module.exports = function () {
                 return me.browser.clickLink("Swisstopo");
             })
             .then(function() {
+                return me.browser.wait();
+            })
+            .then(function() {
                 console.log("Edit Swisstopo organisation");
                 me.browser.fill('#_ckan_local_org_description_de', me.orgDescription);
                 return me.browser.pressButton('#publish');
+            })
+            .then(function() {
+                return me.browser.wait();
             })
             .then(function() {
                 console.log("Updated organization");
@@ -123,9 +141,15 @@ module.exports = function () {
                 return me.browser.clickLink("Swisstopo");
             })
             .then(function() {
+                return me.browser.wait();
+            })
+            .then(function() {
                 console.log("Edit Swisstopo organisation");
                 me.browser.fill('#_ckan_local_org_description_de', me.orgDescription);
                 return me.browser.pressButton('#publish');
+            })
+            .then(function() {
+                return me.browser.wait();
             })
             .then(function() {
                 console.log("Updated organization");
@@ -148,6 +172,4 @@ module.exports = function () {
                 callback.fail(err);
             });
     });
-
-
 };
