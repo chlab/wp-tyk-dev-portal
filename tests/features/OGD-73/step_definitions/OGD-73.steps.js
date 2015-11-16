@@ -18,7 +18,7 @@ module.exports = function () {
             })
             .then(function() {
                 console.log("Edit Swisstopo organisation");
-                me.browser.fill('#_ckan_local_org_image', 'http://example.com/' + me.logoFilename);
+                me.browser.fill('#_ckan_local_org_image', 'http://ogdch.dev/content/themes/wp-ogdch-theme/assets/images/' + me.logoFilename);
                 return me.browser.pressButton('#publish');
             })
             .then(function() {
@@ -37,7 +37,7 @@ module.exports = function () {
         var me = this;
         me.helpers.get_org_image('swisstopo')
             .then(function(orgImage) {
-                expect(orgImage).to.equal('http://example.com/' + me.logoFilename)
+                expect(orgImage).to.equal('http://ogdch.dev/content/themes/wp-ogdch-theme/assets/images/' + me.logoFilename)
             })
             .then(callback)
             .catch(function(err) {
@@ -60,7 +60,7 @@ module.exports = function () {
             })
             .then(function() {
                 console.log("Edit Swisstopo organisation");
-                me.browser.fill('#_ckan_local_org_image', 'http://example.com/' + me.logoFilename);
+                me.browser.fill('#_ckan_local_org_image', 'http://ogdch.dev/content/themes/wp-ogdch-theme/assets/images/' + me.logoFilename);
                 return me.browser.pressButton('#publish');
             })
             .then(function() {
@@ -79,7 +79,7 @@ module.exports = function () {
         var me = this;
         me.helpers.get_org_image('swisstopo')
             .then(function(orgImage) {
-                expect(orgImage).to.equal('http://example.com/' + me.logoFilename)
+                expect(orgImage).to.equal('http://ogdch.dev/content/themes/wp-ogdch-theme/assets/images/' + me.logoFilename)
             })
             .then(callback)
             .catch(function(err) {
