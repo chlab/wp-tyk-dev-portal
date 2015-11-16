@@ -7,12 +7,13 @@ var exec = require('child_process').exec;
 
 Browser.localhost('ogdch.dev', 80);
 Browser.localhost('opendata.swiss', 80);
-Browser.waitDuration = '60s';
+Browser.waitDuration = '300s';
 
 function World() {
     this.browser = new Browser(
         {
             maxWait: 300000,
+            waitDuration: 300000,
             debug: true,
             loadCSS: false,
             runScripts: false
