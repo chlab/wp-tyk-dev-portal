@@ -25,9 +25,9 @@ module.exports = function () {
                 return me.browser.wait();
             })
             .then(function() {
-                console.log("Updated organization");
-                callback();
+                return me.helpers.logout();
             })
+            .then(callback)
             .catch(function(err) {
                 callback(err);
             });
@@ -38,8 +38,8 @@ module.exports = function () {
         me.helpers.get_org_image('swisstopo')
             .then(function(orgImage) {
                 expect(orgImage).to.equal('http://example.com/' + me.logoFilename)
-                callback();
             })
+            .then(callback)
             .catch(function(err) {
                 callback(err);
             });
@@ -67,9 +67,9 @@ module.exports = function () {
                 return me.browser.wait();
             })
             .then(function() {
-                console.log("Updated organization");
-                callback();
+                return me.helpers.logout();
             })
+            .then(callback)
             .catch(function(err) {
                 callback(err);
             });
@@ -80,8 +80,8 @@ module.exports = function () {
         me.helpers.get_org_image('swisstopo')
             .then(function(orgImage) {
                 expect(orgImage).to.equal('http://example.com/' + me.logoFilename)
-                callback();
             })
+            .then(callback)
             .catch(function(err) {
                 callback(err);
             });
@@ -109,9 +109,9 @@ module.exports = function () {
                 return me.browser.wait();
             })
             .then(function() {
-                console.log("Updated organization");
-                callback();
+                return me.helpers.logout();
             })
+            .then(callback)
             .catch(function(err) {
                 callback(err);
             });
@@ -123,8 +123,8 @@ module.exports = function () {
             .then(function(orgDescr) {
                 var re = new RegExp(me.orgDescription);
                 expect(orgDescr).to.match(re);
-                callback();
             })
+            .then(callback)
             .catch(function(err) {
                 callback(err);
             });
@@ -152,9 +152,9 @@ module.exports = function () {
                 return me.browser.wait();
             })
             .then(function() {
-                console.log("Updated organization");
-                callback();
+                return me.helpers.logout();
             })
+            .then(callback)
             .catch(function(err) {
                 callback(err);
             });
@@ -166,8 +166,8 @@ module.exports = function () {
             .then(function(orgDescr) {
                 var re = new RegExp(me.orgDescription);
                 expect(orgDescr).to.match(re);
-                callback();
             })
+            .then(callback)
             .catch(function(err) {
                 callback(err);
             });
