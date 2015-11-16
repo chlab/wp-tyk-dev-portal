@@ -18,11 +18,11 @@ msgid "Features"
 msgstr ""
 
 #. Found in description header.
-msgid "Translators"
+msgid "Credits"
 msgstr ""
 
 #. Found in description header.
-msgid "Credits"
+msgid "Translators"
 msgstr ""
 
 #. Found in description header.
@@ -214,7 +214,7 @@ msgid "Galician by <a href=\"http://fedellar.wordpress.com/\">Toño Calo</a>"
 msgstr ""
 
 #. Found in description list item.
-msgid "Romanian by uskro"
+msgid "Romanian by <a href=\"http://www.pandemicdesign.no/\">Philippe C. Focsaneanu</a>"
 msgstr ""
 
 #. Found in description list item.
@@ -230,11 +230,14 @@ msgid "Polylang allows you to create a bilingual or multilingual WordPress site.
 msgstr ""
 
 #. Found in description paragraph.
-msgid "The plugin admin interface is currently available in 41 languages:"
+msgid ""
+"Thanks a lot to <a href=\"http://www.alexlopez.rocks/\">Alex Lopez</a> for the design of the banner and the logo.\n"
+"Most of the flags included with Polylang are coming from <a href=\"http://famfamfam.com/\">famfamfam</a> and are public domain.\n"
+"Wherever third party code has been used, credit has been given in the code’s comments."
 msgstr ""
 
 #. Found in description paragraph.
-msgid "Most of the flags included with Polylang are coming from <a href=\"http://famfamfam.com/\">famfamfam</a> and are public domain. Wherever third party code has been used, credit has been given in the code’s comments."
+msgid "The plugin admin interface is currently available in 41 languages:"
 msgstr ""
 
 #. Found in description paragraph.
@@ -279,6 +282,26 @@ msgstr ""
 
 #. Found in installation list item.
 msgid "Take care that your theme must come with the corresponding .mo files (Polylang downloads them for themes and plugins bundled with WordPress). If your theme is not internationalized yet, please refer to the <a href=\"http://codex.wordpress.org/I18n_for_WordPress_Developers#I18n_for_theme_and_plugin_developers\">codex</a> or ask the theme author to internationalize it."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "The language taxonomy is now public for compatibility with WP 4.4"
+msgstr ""
+
+#. Found in changelog list item.
+msgid "fix: nav menus locations are not correctly populated in customizer in WP 4.4"
+msgstr ""
+
+#. Found in changelog list item.
+msgid "fix: the termmeta table was still deleted at upgrade"
+msgstr ""
+
+#. Found in changelog list item.
+msgid "fix: fatal error when using the argument 'post_id' in 'pll_the_languages()' (introduced in 1.7.11) <a href=\"https://wordpress.org/support/topic/bug-on\">props EKesty</a>"
+msgstr ""
+
+#. Found in changelog list item.
+msgid "fix: potential notice in 'pll_the_languages()' <a href=\"https://wordpress.org/support/topic/bug-on\">props mattkeys</a>"
 msgstr ""
 
 #. Found in changelog list item.
