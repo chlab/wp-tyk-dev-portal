@@ -14,16 +14,22 @@ module.exports = function () {
                 return me.browser.clickLink("Swisstopo");
             })
             .then(function() {
+                return me.browser.wait();
+            })
+            .then(function() {
                 console.log("Edit Swisstopo organisation");
-                me.browser.fill('#_ckan_local_org_image', 'http://example.com/' + me.logoFilename);
+                me.browser.fill('#_ckan_local_org_image', 'http://ogdch.dev/content/themes/wp-ogdch-theme/assets/images/' + me.logoFilename);
                 return me.browser.pressButton('#publish');
             })
             .then(function() {
-                console.log("Updated organization");
-                callback();
+                return me.browser.wait();
             })
+            .then(function() {
+                return me.helpers.logout();
+            })
+            .then(callback)
             .catch(function(err) {
-                callback.fail(err);
+                callback(err);
             });
     });
 
@@ -31,11 +37,11 @@ module.exports = function () {
         var me = this;
         me.helpers.get_org_image('swisstopo')
             .then(function(orgImage) {
-                expect(orgImage).to.equal('http://example.com/' + me.logoFilename)
-                callback();
+                expect(orgImage).to.equal('http://ogdch.dev/content/themes/wp-ogdch-theme/assets/images/' + me.logoFilename)
             })
+            .then(callback)
             .catch(function(err) {
-                callback.fail(err);
+                callback(err);
             });
     });
 
@@ -50,16 +56,22 @@ module.exports = function () {
                 return me.browser.clickLink("Swisstopo");
             })
             .then(function() {
+                return me.browser.wait();
+            })
+            .then(function() {
                 console.log("Edit Swisstopo organisation");
-                me.browser.fill('#_ckan_local_org_image', 'http://example.com/' + me.logoFilename);
+                me.browser.fill('#_ckan_local_org_image', 'http://ogdch.dev/content/themes/wp-ogdch-theme/assets/images/' + me.logoFilename);
                 return me.browser.pressButton('#publish');
             })
             .then(function() {
-                console.log("Updated organization");
-                callback();
+                return me.browser.wait();
             })
+            .then(function() {
+                return me.helpers.logout();
+            })
+            .then(callback)
             .catch(function(err) {
-                callback.fail(err);
+                callback(err);
             });
     });
 
@@ -67,11 +79,11 @@ module.exports = function () {
         var me = this;
         me.helpers.get_org_image('swisstopo')
             .then(function(orgImage) {
-                expect(orgImage).to.equal('http://example.com/' + me.logoFilename)
-                callback();
+                expect(orgImage).to.equal('http://ogdch.dev/content/themes/wp-ogdch-theme/assets/images/' + me.logoFilename)
             })
+            .then(callback)
             .catch(function(err) {
-                callback.fail(err);
+                callback(err);
             });
     });
 
@@ -86,16 +98,22 @@ module.exports = function () {
                 return me.browser.clickLink("Swisstopo");
             })
             .then(function() {
+                return me.browser.wait();
+            })
+            .then(function() {
                 console.log("Edit Swisstopo organisation");
                 me.browser.fill('#_ckan_local_org_description_de', me.orgDescription);
                 return me.browser.pressButton('#publish');
             })
             .then(function() {
-                console.log("Updated organization");
-                callback();
+                return me.browser.wait();
             })
+            .then(function() {
+                return me.helpers.logout();
+            })
+            .then(callback)
             .catch(function(err) {
-                callback.fail(err);
+                callback(err);
             });
     });
 
@@ -105,10 +123,10 @@ module.exports = function () {
             .then(function(orgDescr) {
                 var re = new RegExp(me.orgDescription);
                 expect(orgDescr).to.match(re);
-                callback();
             })
+            .then(callback)
             .catch(function(err) {
-                callback.fail(err);
+                callback(err);
             });
     });
 
@@ -123,16 +141,22 @@ module.exports = function () {
                 return me.browser.clickLink("Swisstopo");
             })
             .then(function() {
+                return me.browser.wait();
+            })
+            .then(function() {
                 console.log("Edit Swisstopo organisation");
                 me.browser.fill('#_ckan_local_org_description_de', me.orgDescription);
                 return me.browser.pressButton('#publish');
             })
             .then(function() {
-                console.log("Updated organization");
-                callback();
+                return me.browser.wait();
             })
+            .then(function() {
+                return me.helpers.logout();
+            })
+            .then(callback)
             .catch(function(err) {
-                callback.fail(err);
+                callback(err);
             });
     });
 
@@ -142,12 +166,10 @@ module.exports = function () {
             .then(function(orgDescr) {
                 var re = new RegExp(me.orgDescription);
                 expect(orgDescr).to.match(re);
-                callback();
             })
+            .then(callback)
             .catch(function(err) {
-                callback.fail(err);
+                callback(err);
             });
     });
-
-
 };

@@ -7,12 +7,13 @@ var exec = require('child_process').exec;
 
 Browser.localhost('ogdch.dev', 80);
 Browser.localhost('opendata.swiss', 80);
-Browser.waitDuration = '60s';
+Browser.waitDuration = '300s';
 
 function World() {
     this.browser = new Browser(
         {
-            maxWait: 100000,
+            maxWait: 300000,
+            waitDuration: 300000,
             debug: true,
             loadCSS: false,
             runScripts: false
@@ -29,8 +30,8 @@ function World() {
             console.log("Restoring DBs...");
             exec("/vagrant/scripts/restore_dumps.sh", function (error, stdout, stderr) {
                 if (error) {
-                    callback.fail(error);
                     console.log("Error: " + error)
+                    callback(error);
                 }
                 console.log('stdout: ' + stdout);
                 console.log('stderr: ' + stderr);

@@ -16,7 +16,7 @@ module.exports = function () {
             })
             .then(callback)
             .catch(function(err) {
-                callback.fail(err);
+                callback(err);
             });
     });
 
@@ -33,7 +33,7 @@ module.exports = function () {
             })
             .then(callback)
             .catch(function(err) {
-                callback.fail(err);
+                callback(err);
             });
     });
 
@@ -49,7 +49,7 @@ module.exports = function () {
             })
             .then(callback)
             .catch(function(err) {
-                callback.fail(err);
+                callback(err);
             });
     });
 
@@ -58,7 +58,7 @@ module.exports = function () {
         me.helpers.dataset_is_unavailable(me.datasetSlug)
             .then(callback)
             .catch(function(err) {
-                callback.fail(err);
+                callback(err);
             });
     });
 
@@ -67,7 +67,7 @@ module.exports = function () {
         me.helpers.dataset_is_available(me.datasetSlug)
             .then(callback)
             .catch(function(err) {
-                callback.fail(err);
+                callback(err);
             });
     });
 };

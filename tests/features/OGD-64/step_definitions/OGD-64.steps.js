@@ -15,7 +15,7 @@ module.exports = function () {
             })
             .then(callback)
             .catch(function(err) {
-                callback.fail(err);
+                callback(err);
             });
     });
 
@@ -38,7 +38,7 @@ module.exports = function () {
             })
             .then(callback)
             .catch(function(err) {
-                callback.fail(err);
+                callback(err);
             });
     });
 
