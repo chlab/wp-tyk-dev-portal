@@ -12,7 +12,7 @@ Browser.waitDuration = '60s';
 function World() {
     this.browser = new Browser(
         {
-            maxWait: 100000,
+            maxWait: 300000,
             debug: true,
             loadCSS: false,
             runScripts: false
