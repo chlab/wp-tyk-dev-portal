@@ -570,7 +570,7 @@ INSERT INTO `ogdch_options` VALUES (92,'widget_recent-comments','a:2:{i:2;a:2:{s
 INSERT INTO `ogdch_options` VALUES (93,'widget_archives','a:2:{i:2;a:3:{s:5:\"title\";s:0:\"\";s:5:\"count\";i:0;s:8:\"dropdown\";i:0;}s:12:\"_multiwidget\";i:1;}','yes');
 INSERT INTO `ogdch_options` VALUES (94,'widget_meta','a:2:{i:2;a:1:{s:5:\"title\";s:0:\"\";}s:12:\"_multiwidget\";i:1;}','yes');
 INSERT INTO `ogdch_options` VALUES (95,'sidebars_widgets','a:3:{s:19:\"wp_inactive_widgets\";a:0:{}s:18:\"orphaned_widgets_1\";a:1:{i:0;s:17:\"recent-comments-2\";}s:13:\"array_version\";i:3;}','yes');
-INSERT INTO `ogdch_options` VALUES (97,'cron','a:7:{i:1447675726;a:1:{s:24:\"ninja_forms_daily_action\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1447677781;a:1:{s:30:\"wp_scheduled_auto_draft_delete\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1447680757;a:3:{s:16:\"wp_version_check\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}s:17:\"wp_update_plugins\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}s:16:\"wp_update_themes\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1447681081;a:1:{s:19:\"wp_scheduled_delete\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1447682952;a:1:{s:29:\"wp_session_garbage_collection\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1447703340;a:1:{s:20:\"wp_maybe_auto_update\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}s:7:\"version\";i:2;}','yes');
+INSERT INTO `ogdch_options` VALUES (97,'cron','a:7:{i:1447848526;a:1:{s:24:\"ninja_forms_daily_action\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1447850581;a:1:{s:30:\"wp_scheduled_auto_draft_delete\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1447853557;a:3:{s:16:\"wp_version_check\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}s:17:\"wp_update_plugins\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}s:16:\"wp_update_themes\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1447853881;a:1:{s:19:\"wp_scheduled_delete\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1447855752;a:1:{s:29:\"wp_session_garbage_collection\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1447876140;a:1:{s:20:\"wp_maybe_auto_update\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}s:7:\"version\";i:2;}','yes');
 INSERT INTO `ogdch_options` VALUES (134,'db_upgraded','','yes');
 INSERT INTO `ogdch_options` VALUES (142,'recently_activated','a:1:{s:31:\"query-monitor/query-monitor.php\";i:1447418030;}','yes');
 INSERT INTO `ogdch_options` VALUES (147,'members_db_version','2','yes');
@@ -637,7 +637,7 @@ CREATE TABLE `ogdch_postmeta` (
   PRIMARY KEY (`meta_id`),
   KEY `post_id` (`post_id`),
   KEY `meta_key` (`meta_key`(191))
-) ENGINE=InnoDB AUTO_INCREMENT=2163 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2171 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1312,6 +1312,14 @@ INSERT INTO `ogdch_postmeta` VALUES (2155,246,'_ckan_local_org_image','http://ww
 INSERT INTO `ogdch_postmeta` VALUES (2160,248,'_wp_page_template','default');
 INSERT INTO `ogdch_postmeta` VALUES (2161,249,'_wp_page_template','default');
 INSERT INTO `ogdch_postmeta` VALUES (2162,250,'_wp_page_template','default');
+INSERT INTO `ogdch_postmeta` VALUES (2163,305,'_edit_lock','1447840369:1');
+INSERT INTO `ogdch_postmeta` VALUES (2164,305,'_edit_last','1');
+INSERT INTO `ogdch_postmeta` VALUES (2165,306,'_edit_lock','1447839954:1');
+INSERT INTO `ogdch_postmeta` VALUES (2166,306,'_edit_last','1');
+INSERT INTO `ogdch_postmeta` VALUES (2167,307,'_edit_lock','1447840081:1');
+INSERT INTO `ogdch_postmeta` VALUES (2168,307,'_edit_last','1');
+INSERT INTO `ogdch_postmeta` VALUES (2169,308,'_edit_lock','1447840064:1');
+INSERT INTO `ogdch_postmeta` VALUES (2170,308,'_edit_last','1');
 /*!40000 ALTER TABLE `ogdch_postmeta` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1351,7 +1359,7 @@ CREATE TABLE `ogdch_posts` (
   KEY `type_status_date` (`post_type`,`post_status`,`post_date`,`ID`),
   KEY `post_parent` (`post_parent`),
   KEY `post_author` (`post_author`)
-) ENGINE=InnoDB AUTO_INCREMENT=305 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=309 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1461,6 +1469,10 @@ INSERT INTO `ogdch_posts` VALUES (301,1,'2015-11-04 16:10:59','2015-11-04 15:10:
 INSERT INTO `ogdch_posts` VALUES (302,1,'2015-11-04 16:13:09','2015-11-04 15:13:09','','Bundesamt für Gesundheit','','publish','closed','closed','','bundesamt-fur-gesundheit','','','2015-11-04 16:13:15','2015-11-04 15:13:15','',0,'http://ogdch.dev/?post_type=ckan-local-org&#038;p=302',0,'ckan-local-org','',0);
 INSERT INTO `ogdch_posts` VALUES (303,1,'2015-11-04 16:14:00','2015-11-04 15:14:00','','Schweizerische Bundesbahnen (SBB)','','publish','closed','closed','','schweizerische-bundesbahnen-sbb','','','2015-11-04 16:14:06','2015-11-04 15:14:06','',0,'http://ogdch.dev/?post_type=ckan-local-org&#038;p=303',0,'ckan-local-org','',0);
 INSERT INTO `ogdch_posts` VALUES (304,1,'2015-11-04 16:15:08','2015-11-04 15:15:08','','Bundesamt für Statistik','','publish','closed','closed','','bundesamt-fur-statistik','','','2015-11-04 16:15:15','2015-11-04 15:15:15','',0,'http://ogdch.dev/?post_type=ckan-local-org&#038;p=304',0,'ckan-local-org','',0);
+INSERT INTO `ogdch_posts` VALUES (305,1,'2015-11-18 10:47:58','2015-11-18 09:47:58','','Nutzungsbedigungen','','publish','closed','closed','','terms-of-use','','','2015-11-18 10:50:34','2015-11-18 09:50:34','',0,'http://ogdch.dev/?page_id=305',0,'page','',0);
+INSERT INTO `ogdch_posts` VALUES (306,1,'2015-11-18 10:47:58','2015-11-18 09:48:15','','Terms of use','','publish','closed','closed','','terms-of-use','','','2015-11-18 10:48:15','2015-11-18 09:48:15','',0,'http://ogdch.dev/?page_id=306',0,'page','',0);
+INSERT INTO `ogdch_posts` VALUES (307,1,'2015-11-18 10:47:58','2015-11-18 09:49:09','','Condizioni d\'uso','','publish','closed','closed','','terms-of-use','','','2015-11-18 10:50:21','2015-11-18 09:50:21','',0,'http://ogdch.dev/?page_id=307',0,'page','',0);
+INSERT INTO `ogdch_posts` VALUES (308,1,'2015-11-18 10:47:58','2015-11-18 09:49:53','','Conditions d\'utilisation','','publish','closed','closed','','terms-of-use','','','2015-11-18 10:50:04','2015-11-18 09:50:04','',0,'http://ogdch.dev/?page_id=308',0,'page','',0);
 /*!40000 ALTER TABLE `ogdch_posts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1672,6 +1684,14 @@ INSERT INTO `ogdch_term_relationships` VALUES (297,184,0);
 INSERT INTO `ogdch_term_relationships` VALUES (297,185,0);
 INSERT INTO `ogdch_term_relationships` VALUES (297,186,0);
 INSERT INTO `ogdch_term_relationships` VALUES (297,187,0);
+INSERT INTO `ogdch_term_relationships` VALUES (305,2,0);
+INSERT INTO `ogdch_term_relationships` VALUES (305,188,0);
+INSERT INTO `ogdch_term_relationships` VALUES (306,5,0);
+INSERT INTO `ogdch_term_relationships` VALUES (306,188,0);
+INSERT INTO `ogdch_term_relationships` VALUES (307,9,0);
+INSERT INTO `ogdch_term_relationships` VALUES (307,188,0);
+INSERT INTO `ogdch_term_relationships` VALUES (308,13,0);
+INSERT INTO `ogdch_term_relationships` VALUES (308,188,0);
 /*!40000 ALTER TABLE `ogdch_term_relationships` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1692,7 +1712,7 @@ CREATE TABLE `ogdch_term_taxonomy` (
   PRIMARY KEY (`term_taxonomy_id`),
   UNIQUE KEY `term_id_taxonomy` (`term_id`,`taxonomy`),
   KEY `taxonomy` (`taxonomy`)
-) ENGINE=InnoDB AUTO_INCREMENT=188 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=189 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1702,16 +1722,16 @@ CREATE TABLE `ogdch_term_taxonomy` (
 LOCK TABLES `ogdch_term_taxonomy` WRITE;
 /*!40000 ALTER TABLE `ogdch_term_taxonomy` DISABLE KEYS */;
 INSERT INTO `ogdch_term_taxonomy` VALUES (1,1,'category','',0,3);
-INSERT INTO `ogdch_term_taxonomy` VALUES (2,2,'language','a:2:{s:6:\"locale\";s:5:\"de_CH\";s:3:\"rtl\";i:0;}',0,7);
+INSERT INTO `ogdch_term_taxonomy` VALUES (2,2,'language','a:2:{s:6:\"locale\";s:5:\"de_CH\";s:3:\"rtl\";i:0;}',0,8);
 INSERT INTO `ogdch_term_taxonomy` VALUES (3,3,'term_language','',0,24);
 INSERT INTO `ogdch_term_taxonomy` VALUES (4,4,'term_translations','a:4:{s:2:\"de\";i:1;s:2:\"en\";i:7;s:2:\"it\";i:11;s:2:\"fr\";i:15;}',0,4);
-INSERT INTO `ogdch_term_taxonomy` VALUES (5,5,'language','a:2:{s:6:\"locale\";s:5:\"en_US\";s:3:\"rtl\";i:0;}',0,7);
+INSERT INTO `ogdch_term_taxonomy` VALUES (5,5,'language','a:2:{s:6:\"locale\";s:5:\"en_US\";s:3:\"rtl\";i:0;}',0,8);
 INSERT INTO `ogdch_term_taxonomy` VALUES (6,6,'term_language','',0,1);
 INSERT INTO `ogdch_term_taxonomy` VALUES (7,7,'category','',0,3);
-INSERT INTO `ogdch_term_taxonomy` VALUES (9,9,'language','a:2:{s:6:\"locale\";s:5:\"it_IT\";s:3:\"rtl\";i:0;}',0,7);
+INSERT INTO `ogdch_term_taxonomy` VALUES (9,9,'language','a:2:{s:6:\"locale\";s:5:\"it_IT\";s:3:\"rtl\";i:0;}',0,8);
 INSERT INTO `ogdch_term_taxonomy` VALUES (10,10,'term_language','',0,1);
 INSERT INTO `ogdch_term_taxonomy` VALUES (11,11,'category','',0,3);
-INSERT INTO `ogdch_term_taxonomy` VALUES (13,13,'language','a:2:{s:6:\"locale\";s:5:\"fr_FR\";s:3:\"rtl\";i:0;}',0,7);
+INSERT INTO `ogdch_term_taxonomy` VALUES (13,13,'language','a:2:{s:6:\"locale\";s:5:\"fr_FR\";s:3:\"rtl\";i:0;}',0,8);
 INSERT INTO `ogdch_term_taxonomy` VALUES (14,14,'term_language','',0,1);
 INSERT INTO `ogdch_term_taxonomy` VALUES (15,15,'category','',0,3);
 INSERT INTO `ogdch_term_taxonomy` VALUES (28,28,'post_translations','a:4:{s:2:\"en\";i:73;s:2:\"de\";i:71;s:2:\"it\";i:74;s:2:\"fr\";i:72;}',0,0);
@@ -1793,6 +1813,7 @@ INSERT INTO `ogdch_term_taxonomy` VALUES (184,184,'ckan-keyword-it','',0,1);
 INSERT INTO `ogdch_term_taxonomy` VALUES (185,185,'ckan-keyword-it','',0,1);
 INSERT INTO `ogdch_term_taxonomy` VALUES (186,186,'ckan-keyword-en','',0,1);
 INSERT INTO `ogdch_term_taxonomy` VALUES (187,187,'ckan-keyword-en','',0,1);
+INSERT INTO `ogdch_term_taxonomy` VALUES (188,188,'post_translations','a:4:{s:2:\"de\";i:305;s:2:\"en\";i:306;s:2:\"it\";i:307;s:2:\"fr\";i:308;}',0,4);
 /*!40000 ALTER TABLE `ogdch_term_taxonomy` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1811,7 +1832,7 @@ CREATE TABLE `ogdch_terms` (
   PRIMARY KEY (`term_id`),
   KEY `slug` (`slug`(191)),
   KEY `name` (`name`(191))
-) ENGINE=InnoDB AUTO_INCREMENT=188 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=189 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1912,6 +1933,7 @@ INSERT INTO `ogdch_terms` VALUES (184,'Frontiere nazionali','frontiere-nazionali
 INSERT INTO `ogdch_terms` VALUES (185,'Unita amministrative','unita-amministrative',0);
 INSERT INTO `ogdch_terms` VALUES (186,'National boundaries','national-boundaries',0);
 INSERT INTO `ogdch_terms` VALUES (187,'Administrative units','administrative-units',0);
+INSERT INTO `ogdch_terms` VALUES (188,'pll_564c495fa37c2','pll_564c495fa37c2',0);
 /*!40000 ALTER TABLE `ogdch_terms` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2062,7 +2084,7 @@ INSERT INTO `ogdch_usermeta` VALUES (125,6,'description_it','');
 INSERT INTO `ogdch_usermeta` VALUES (126,6,'description_fr','');
 INSERT INTO `ogdch_usermeta` VALUES (128,4,'pll_filter_content','en');
 INSERT INTO `ogdch_usermeta` VALUES (129,5,'session_tokens','a:1:{s:64:\"d23c2e842128c81c94f9baa4b1e4756ad5a2946262864b1fe779b10ae9aa10ee\";a:4:{s:10:\"expiration\";i:1443201631;s:2:\"ip\";s:12:\"192.168.56.1\";s:2:\"ua\";s:120:\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.99 Safari/537.36\";s:5:\"login\";i:1443028831;}}');
-INSERT INTO `ogdch_usermeta` VALUES (130,1,'session_tokens','a:1:{s:64:\"129890421ed15a53baf002dc51c2ae7e7e8ea30c600d3a9d486e814d4d579766\";a:4:{s:10:\"expiration\";i:1447839433;s:2:\"ip\";s:12:\"192.168.56.1\";s:2:\"ua\";s:120:\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.86 Safari/537.36\";s:5:\"login\";i:1447666633;}}');
+INSERT INTO `ogdch_usermeta` VALUES (130,1,'session_tokens','a:1:{s:64:\"b1bd570096584ac3d03d0bc14a7f78770a4e944db0cb15348a0fc264dc77dd4f\";a:4:{s:10:\"expiration\";i:1449049611;s:2:\"ip\";s:12:\"192.168.56.1\";s:2:\"ua\";s:120:\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.86 Safari/537.36\";s:5:\"login\";i:1447840011;}}');
 INSERT INTO `ogdch_usermeta` VALUES (131,1,'wpseo_dismissed_gsc_notice','1');
 INSERT INTO `ogdch_usermeta` VALUES (133,5,'_yoast_wpseo_profile_updated','1447418306');
 INSERT INTO `ogdch_usermeta` VALUES (134,7,'nickname','alexandria@gs-vbs.admin.ch');
@@ -2227,4 +2249,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-11-16  9:42:08
+-- Dump completed on 2015-11-18  9:53:21
