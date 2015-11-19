@@ -40,3 +40,6 @@
 [submodule "web/ogdch.dev/content/plugins/bootstrap-ninja-forms"]
 	path = web/ogdch.dev/content/plugins/bootstrap-ninja-forms
 	url = git@github.com:bostondv/bootstrap-ninja-forms.git
+[submodule "web/ogdch.dev/content/plugins/members"]
+	path = web/ogdch.dev/content/plugins/members
+	url = git@github.com:justintadlock/members.git
