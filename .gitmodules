@@ -43,3 +43,6 @@
 [submodule "web/ogdch.dev/content/plugins/members"]
 	path = web/ogdch.dev/content/plugins/members
 	url = git@github.com:justintadlock/members.git
+[submodule "web/ogdch.dev/content/plugins/ninja-forms"]
+	path = web/ogdch.dev/content/plugins/ninja-forms
+	url = git@github.com:wpninjas/ninja-forms.git
