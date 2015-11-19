@@ -37,3 +37,6 @@
 [submodule "web/ogdch.dev/content/plugins/cmb2"]
 	path = web/ogdch.dev/content/plugins/cmb2
 	url = git@github.com:WebDevStudios/CMB2.git
+[submodule "web/ogdch.dev/content/plugins/bootstrap-ninja-forms"]
+	path = web/ogdch.dev/content/plugins/bootstrap-ninja-forms
+	url = git@github.com:bostondv/bootstrap-ninja-forms.git
