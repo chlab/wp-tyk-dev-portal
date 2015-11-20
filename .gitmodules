@@ -34,3 +34,18 @@
 [submodule "web/ckanext/ckanext-geocat"]
 	path = web/ckanext/ckanext-geocat
 	url = https://github.com/ogdch/ckanext-geocat.git
+[submodule "web/ogdch.dev/content/plugins/cmb2"]
+	path = web/ogdch.dev/content/plugins/cmb2
+	url = git@github.com:WebDevStudios/CMB2.git
+[submodule "web/ogdch.dev/content/plugins/bootstrap-ninja-forms"]
+	path = web/ogdch.dev/content/plugins/bootstrap-ninja-forms
+	url = git@github.com:bostondv/bootstrap-ninja-forms.git
+[submodule "web/ogdch.dev/content/plugins/members"]
+	path = web/ogdch.dev/content/plugins/members
+	url = git@github.com:justintadlock/members.git
+[submodule "web/ogdch.dev/content/plugins/ninja-forms"]
+	path = web/ogdch.dev/content/plugins/ninja-forms
+	url = git@github.com:wpninjas/ninja-forms.git
+[submodule "web/ogdch.dev/content/plugins/query-monitor"]
+	path = web/ogdch.dev/content/plugins/query-monitor
+	url = git@github.com:johnbillion/query-monitor.git
