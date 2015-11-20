@@ -51,6 +51,7 @@ libxslt-devel
 make
 mod_wsgi
 mariadb-server
+psmisc
 php
 php-cli
 php-mysqlnd
