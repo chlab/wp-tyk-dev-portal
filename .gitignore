@@ -26,3 +26,6 @@ web/ogdch.dev/content/themes/twentyfifteen/
 vendor/
 composer.phar
 node_modules/
+
+/web/piwik/config/config.ini.php
+/web/piwik/tmp/*
