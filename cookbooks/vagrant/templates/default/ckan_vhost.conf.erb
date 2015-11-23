@@ -20,6 +20,24 @@ ProxyPreserveHost on
   SetEnv APP_ENV dev
 </VirtualHost>
 
+<VirtualHost *:80>
+  ServerName piwik.ogdch.dev
+
+  ## Vhost docroot
+  DocumentRoot "/var/www/piwik"
+
+  <Directory "/var/www/piwik">
+    Options +Indexes +FollowSymLinks
+    AllowOverride All
+    Require all granted
+  </Directory>
+
+  ## Logging
+  ErrorLog "/var/log/httpd/piwik_error.log"
+  ServerSignature Off
+  CustomLog "/var/log/httpd/piwik_access.log" combined
+</VirtualHost>
+
 User vagrant
 Group vagrant
 
