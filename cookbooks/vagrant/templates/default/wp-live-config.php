@@ -68,6 +68,7 @@ define( 'WP_PLUGIN_URL', WP_HOME . '/content/plugins' );
 define( 'WPMU_PLUGIN_DIR', dirname( __FILE__ ) . '/content/mu-plugins' );
 define( 'WPMU_PLUGIN_URL', WP_HOME . '/content/mu-plugins' );
 
+
 // ===================================================
 // CKAN
 // ===================================================
@@ -81,6 +82,14 @@ $language_priority = array(
 	3 => 'fr',
 	4 => 'it'
 );
+
+
+// ===================================================
+// Piwik
+// ===================================================
+
+define( 'PIWIK_URL', 'piwik.ogdch.begasoft.ch' );
+define( 'PIWIK_SITEID', 1 );
 
 
 // ===================================================
