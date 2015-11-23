@@ -3,6 +3,7 @@ HOME = "/home/#{USER}"
 SOURCE_DIR = "#{HOME}/pyenv/src"
 CKAN_DIR = "/var/www/ckan"
 INSTALL_DIR = "/var/www/ckanext"
+PIWIK_DIR = "/var/www/piwik"
 VAGRANT_DIR = "/vagrant"
 CI = node[:ci] == "yes" ? true : false
 CACHE = Chef::Config[:file_cache_path]
@@ -268,6 +269,13 @@ template "#{CKAN_DIR}/development.ini" do
   user USER
   mode 0644
   source "development.ini"
+end
+
+# copy the piwik-local-config.ini.php
+template "#{PIWIK_DIR}/piwik-local-config.ini.php" do
+  user USER
+  mode 0644
+  source "config.ini.php"
 end
 
 bash "update the pip package itself" do
