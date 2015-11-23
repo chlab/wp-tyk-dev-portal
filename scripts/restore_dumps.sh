@@ -21,6 +21,12 @@ mysql -u root -e"show databases;" | grep cms && mysql -u root -e"DROP DATABASE c
 mysql -u root -e"CREATE DATABASE cms;"
 mysql -u root cms < /vagrant/sql/cms.sql
 
+# MySQL (Piwik DB)
+echo "Restore piwik database..."
+mysql -u root -e"show databases;" | grep piwik && mysql -u root -e"DROP DATABASE piwik;"
+mysql -u root -e"CREATE DATABASE piwik;"
+mysql -u root piwik < /vagrant/sql/piwik.sql
+
 # Flush Redis cache
 sudo redis-cli flushall
 

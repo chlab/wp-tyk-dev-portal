@@ -14,3 +14,7 @@ sudo -i -u postgres pg_dump ckan_default > /vagrant/sql/ckan_default.sql
 # MySQL (WordPress DB)
 echo "Create dump of cms..."
 mysqldump -u cms -p123 --skip-extended-insert --skip-quick cms > /vagrant/sql/cms.sql
+
+# Piwik (Piwik DB)
+echo "Create dump of piwik..."
+mysqldump -u piwik -p123 --skip-extended-insert --skip-quick piwik > /vagrant/sql/piwik.sql
