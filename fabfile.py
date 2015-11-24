@@ -14,9 +14,11 @@ ENVIRONMENTS = {
         'home': '/home/liipadmin',
         'root': '/home/liipadmin/ogd-ch',
         'url': 'http://ogdch.begasoft.ch',
+        'piwik_url': 'http://ogdch-piwik.clients.liip.ch',
         'vagrant': False,
         'ckan_config': 'live.ini',
         'wp_config': 'wp-live-config.php',
+        'piwik_config': 'piwik-live-config.ini.php',
         'htaccess': 'live.htaccess',
         'roledefs': {
            'wordpress': ['ogdprodwp1'],
@@ -29,9 +31,11 @@ ENVIRONMENTS = {
         'home': '/home/liipadmin',
         'root': '/home/liipadmin/ogd-ch',
         'url': 'http://ogdch-test.clients.liip.ch',
+        'piwik_url': 'http://ogdch-piwik-test.clients.liip.ch',
         'vagrant': False,
         'ckan_config': 'test.ini',
         'wp_config': 'wp-test-config.php',
+        'piwik_config': 'piwik-test-config.ini.php',
         'htaccess': 'test.htaccess',
         'roledefs': {
             'wordpress': ['ogdentwwp1'],
@@ -44,9 +48,11 @@ ENVIRONMENTS = {
         'home': '/home/vagrant',
         'root': '/vagrant',
         'url': 'http://ogdch.dev',
+        'piwik_url': 'http://piwik.ogdch.dev',
         'vagrant': True,
         'ckan_config': 'development.ini',
         'wp_config': 'wp-local-config.php',
+        'piwik_config': 'piwik-local-config.ini.php',
         'htaccess': 'dev.htaccess',
         'roledefs': {
             'wordpress': ['vagrant@127.0.0.1:2222'],
@@ -157,6 +163,10 @@ def update_wp_config():
     sudo('cp %s/cookbooks/vagrant/templates/default/%s /var/www/ogdch.dev/%s' % (env.root, env.wp_config, env.wp_config))
     sudo('cp %s/cookbooks/vagrant/templates/default/%s /var/www/ogdch.dev/.htaccess' % (env.root, env.htaccess))
 
+@roles('wordpress')
+def update_piwik_config():
+    sudo('cp %s/cookbooks/vagrant/templates/default/%s /var/www/piwik/config/config.ini.php' % (env.root, env.piwik_config))
+
 @roles('wordpress', 'ckan')
 def restart_apache():
     """
@@ -239,7 +249,7 @@ def restore_ckan_db():
 @roles('wordpress_db')
 def restore_wp_db():
     """
-    Restore the WordPress databased based on the checked-in db dump
+    Restore the WordPress database based on the checked-in db dump
     """
     if env.vagrant:
         pass_option = ''
@@ -256,10 +266,31 @@ def restore_wp_db():
     sed('/tmp/cms.sql', before='http://ogdch.dev', after=env.url, backup='')
     run("mysql -u root %s cms < /tmp/cms.sql" % pass_option)
 
+@roles('wordpress_db')
+def restore_piwik_db():
+    """
+    Restore the Piwik database based on the checked-in db dump
+    """
+    if env.vagrant:
+        pass_option = ''
+    else:
+        root_password = run("awk '{print $2}' %s/mariadb.txt" % env.home)
+        pass_option = '-p%s' % root_password
+
+    db_list = run("mysql -u root %s -e'show databases;'" % pass_option)
+    if 'piwik' in db_list:
+        run("mysql -u root %s -e'DROP DATABASE piwik;'" % pass_option)
+    run("mysql -u root %s -e'CREATE DATABASE piwik;'" % pass_option)
+
+    run("cp %s/sql/piwik.sql /tmp/piwik.sql" % env.root)
+    sed('/tmp/piwik.sql', before='http://piwik.ogdch.dev/', after=env.url, backup='')
+    run("mysql -u root %s piwik < /tmp/piwik.sql" % pass_option)
+
 @roles('wordpress', 'ckan')
 def update_config():
     execute(update_ckan_config)
     execute(update_wp_config)
+    execute(update_piwik_config)
 
 @roles('wordpress', 'wordpress_db', 'ckan', 'ckan_db')
 @runs_once
@@ -288,10 +319,11 @@ def deploy(rev='origin/master'):
 
 def restore():
     """
-    Restore the CKAN and WordPress database
+    Restore the CKAN, WordPress and Piwik database
     """
     execute(restore_ckan_db)
     execute(restore_wp_db)
+    execute(restore_piwik_db)
     execute(flush_cache)
     execute(rebuild_search_index)
     execute(restart)
