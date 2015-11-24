@@ -62,6 +62,7 @@ php-curl
 php-tidy
 php-xmlrpc
 php-xml
+php-gd
 ntp
 net-tools
 policycoreutils-python
@@ -272,10 +273,10 @@ template "#{CKAN_DIR}/development.ini" do
 end
 
 # copy the piwik-local-config.ini.php
-template "#{PIWIK_DIR}/piwik-local-config.ini.php" do
+template "#{PIWIK_DIR}/config/config.ini.php" do
   user USER
   mode 0644
-  source "config.ini.php"
+  source "piwik-local-config.ini.php"
 end
 
 bash "update the pip package itself" do
