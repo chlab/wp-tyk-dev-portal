@@ -29,3 +29,4 @@ node_modules/
 
 /web/piwik/config/config.ini.php
 /web/piwik/tmp/*
+/web/piwik/misc/user/*
