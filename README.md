@@ -23,6 +23,7 @@
     ```
     192.168.56.101 ogdch.dev
     192.168.56.101 ckan.ogdch.dev
+    192.168.56.101 piwik.ogdch.dev
     ```
     
 1. Open http://ogdch.dev to access the WordPress installation and http://ckan.ogdch.dev to access the CKAN installation
@@ -114,7 +115,7 @@ Password: liip
 
 ### WordPress MySQL Database
 
-URL: http://ogdch.dev/adminer/adminer-4.2.1-de.php?username=cms
+URL: http://ogdch.dev/adminer/adminer-4.2.2-de.php?username=cms
 Username: cms
 Password: 123
 
@@ -128,6 +129,18 @@ Password: pass
 
 Username: admin
 Password: pass
+
+### Piwik Admin-User
+
+URL: http://ogdch.dev/cms/wp-login.php
+Username: liip
+Password: liip123
+
+### Piwik MySQL Database
+
+URL: http://ogdch.dev/adminer/adminer-4.2.2-de.php?username=piwik
+Username: piwik
+Password: 123
 
 ## Redis
     $ vagrant ssh

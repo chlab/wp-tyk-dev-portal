@@ -3,6 +3,7 @@ HOME = "/home/#{USER}"
 SOURCE_DIR = "#{HOME}/pyenv/src"
 CKAN_DIR = "/var/www/ckan"
 INSTALL_DIR = "/var/www/ckanext"
+PIWIK_DIR = "/var/www/piwik"
 VAGRANT_DIR = "/vagrant"
 CI = node[:ci] == "yes" ? true : false
 CACHE = Chef::Config[:file_cache_path]
@@ -61,6 +62,7 @@ php-curl
 php-tidy
 php-xmlrpc
 php-xml
+php-gd
 ntp
 net-tools
 policycoreutils-python
@@ -270,6 +272,13 @@ template "#{CKAN_DIR}/development.ini" do
   source "development.ini"
 end
 
+# copy the piwik-local-config.ini.php
+template "#{PIWIK_DIR}/config/config.ini.php" do
+  user USER
+  mode 0644
+  source "piwik-local-config.ini.php"
+end
+
 bash "update the pip package itself" do
   user USER
   code <<-EOH
@@ -297,6 +306,15 @@ bash "install the ckan pip dependencies" do
 end
 
 # Setup MySQL
+bash "setup mysql db for wordpress" do
+  user "root"
+  not_if "mysql -u root -e\"show databases;\" | grep cms"
+  code <<-EOH
+  mysql -u root -e"CREATE DATABASE cms;"
+  mysql -u root cms < /vagrant/sql/cms.sql
+EOH
+end
+
 bash "setup mysql user for wordpress" do
   user "root"
   not_if "mysql -u root -e\"SELECT user FROM mysql.user;\" | grep cms"
@@ -307,12 +325,22 @@ bash "setup mysql user for wordpress" do
 EOH
 end
 
-bash "setup mysql db for wordpress" do
+bash "setup mysql db for piwik" do
   user "root"
-  not_if "mysql -u root -e\"show databases;\" | grep cms"
+  not_if "mysql -u root -e\"show databases;\" | grep piwik"
   code <<-EOH
-  mysql -u root -e"CREATE DATABASE cms;"
-  mysql -u root cms < /vagrant/sql/cms.sql
+  mysql -u root -e"CREATE DATABASE piwik;"
+  mysql -u root piwik < /vagrant/sql/piwik.sql
+EOH
+end
+
+bash "setup mysql user for piwik" do
+  user "root"
+  not_if "mysql -u root -e\"SELECT user FROM mysql.user;\" | grep piwik"
+  code <<-EOH
+  mysql -u root -e"CREATE USER 'piwik'@'localhost' IDENTIFIED BY '123';"
+  mysql -u root -e"GRANT ALL PRIVILEGES ON * . * TO 'piwik'@'localhost';"
+  mysql -u root -e"FLUSH PRIVILEGES;"
 EOH
 end
 
