@@ -166,6 +166,8 @@ def update_wp_config():
 @roles('wordpress')
 def update_piwik_config():
     sudo('cp %s/cookbooks/vagrant/templates/default/%s /var/www/piwik/config/config.ini.php' % (env.root, env.piwik_config))
+    sudo('chown liipadmin:liipadmin /var/www/piwik/config/config.ini.php')
+    sudo('chmod 664 /var/www/piwik/config/config.ini.php')
 
 @roles('wordpress', 'ckan')
 def restart_apache():
