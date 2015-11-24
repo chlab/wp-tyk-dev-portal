@@ -3,7 +3,7 @@
 [database]
 host = "localhost"
 username = "piwik"
-password = 123
+password = "123"
 dbname = "piwik"
 tables_prefix = "piwik_"
 
