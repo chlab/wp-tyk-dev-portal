@@ -10,7 +10,7 @@ tables_prefix = "piwik_"
 [General]
 session_save_handler = "dbtable"
 salt = "22b01c857ec3eaf7ab36b2cc3135f183"
-trusted_hosts[] = "piwik.ogdch-test.clients.liip.ch"
+trusted_hosts[] = "ogdch-piwik-test.clients.liip.ch"
 trusted_hosts[] = "opendata.swiss"
 
 [PluginsInstalled]
