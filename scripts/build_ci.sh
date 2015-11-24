@@ -31,9 +31,10 @@ git reset --hard HEAD
 
 git submodule init
 git submodule sync
+git submodule foreach --recursive 'git submodule sync'
 git submodule foreach --recursive 'git reset --hard HEAD'
 git submodule foreach --recursive 'git fetch --tags'
-git submodule update --recursive
+git submodule update --init --recursive
 
 # install the vagrant plugins
 vagrant plugin install vagrant-omnibus

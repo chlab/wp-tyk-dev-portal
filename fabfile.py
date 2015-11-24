@@ -148,6 +148,8 @@ def update_repo(commit):
         run('git fetch')
         run('git checkout %s' % commit)
         run('git submodule init')
+        run('git submodule sync')
+        run("git submodule foreach --recursive 'git submodule sync'")
         run("git submodule foreach --recursive 'git reset --hard HEAD'")
         run("git submodule foreach --recursive 'git fetch --tags'")
         run('git submodule update --init --recursive')
