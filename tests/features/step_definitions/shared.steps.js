@@ -7,7 +7,7 @@ module.exports = function () {
         me.helpers.login(me.username)
             .then(function() {
                 var now = new Date();
-                return me.helpers.create_dataset(title + " " + now.getTime());
+                return me.helpers.create_dataset(title + " " + now.getTime(), now.getTime());
             })
             .then(function(post_data) {
                 me.datasetUrl = post_data['url'];
