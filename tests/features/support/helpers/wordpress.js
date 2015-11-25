@@ -66,7 +66,7 @@ module.exports = {
         var wpStatus = this.status_id(text);
         return availableStatus[wpStatus];
     },
-    create_dataset: function(title) {
+    create_dataset: function(title, identifier) {
         var me = this;
         return new Promise(function(resolve, reject) {
             me.browser.visit('/cms/wp-admin/post-new.php?post_type=ckan-local-dataset')
@@ -77,7 +77,7 @@ module.exports = {
                     console.log("Add new dataset");
                     me.browser
                         .fill("#title", title)
-                        .fill('#_ckan_local_dataset_identifier_original_identifier', '123')
+                        .fill('#_ckan_local_dataset_identifier_original_identifier', identifier)
                         .fill('#_ckan_local_dataset_description_en', title + ' EN')
                         .fill('#_ckan_local_dataset_description_fr', title + ' FR')
                         .fill('#_ckan_local_dataset_description_de', title + ' DE')
