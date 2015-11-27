@@ -24,11 +24,15 @@
  * Text Domain:       polylang-slug
  * Domain Path:       /languages
  */
+
+
 // Built using code from: https://wordpress.org/support/topic/plugin-polylang-identical-page-names-in-different-languages?replies=8#post-2669927
+
 // Check if Polylang_Base exists and if $polylang is the right object
 if ( ! class_exists( 'PLL_Model' ) && version_compare( $GLOBALS[ 'wp_version' ], '3.9', '<' ) ) {
 	return;
 }
+
 /**
  * Checks if the slug is unique within language.
  *
@@ -45,45 +49,60 @@ if ( ! class_exists( 'PLL_Model' ) && version_compare( $GLOBALS[ 'wp_version' ],
  * @return string Unique slug for the post within language, based on $post_name (with a -1, -2, etc. suffix)
  */
 function polylang_slug_unique_slug_in_language( $slug, $post_ID, $post_status, $post_type, $post_parent, $original_slug ){
+
 	// Return slug if it was not changed
 	if ( $original_slug === $slug ) {
 		return $slug;
 	}
+
 	global $wpdb, $polylang;
+
 	// Get language of a post
 	$lang = $polylang->model->get_post_language( $post_ID );
 	$options = get_option( 'polylang' );
+
 	// return the slug if Polylang does not return post language or has incompatable redirect setting or is not translated post type
 	if ( empty( $lang ) || 0 === $options['force_lang'] || ! $polylang->model->is_translated_post_type( $post_type ) ) {
 		return $slug;
 	}
+
 	// " INNER JOIN $wpdb->term_relationships AS pll_tr ON pll_tr.object_id = " . ('term' == $type ? "t.term_id" : "ID");
 	$join_clause  = $polylang->model->join_clause( 'post' );
 	// " AND pll_tr.term_taxonomy_id IN (" . implode(',', $languages) . ")"
 	$where_clause = $polylang->model->where_clause( $lang, 'post' );
+
 	// Polylang does not translate attachements - skip if it is one
 	// @TODO Recheck this with the Polylang settings
 	if ( 'attachment' == $post_type ) {
+
 		// Attachment slugs must be unique across all types.
 		$check_sql = "SELECT post_name FROM $wpdb->posts $join_clause WHERE post_name = %s AND ID != %d $where_clause LIMIT 1";
 		$post_name_check = $wpdb->get_var( $wpdb->prepare( $check_sql, $original_slug, $post_ID ) );
+
 	} elseif ( is_post_type_hierarchical( $post_type ) ) {
+
 		// Page slugs must be unique within their own trees. Pages are in a separate
 		// namespace than posts so page slugs are allowed to overlap post slugs.
 		$check_sql = "SELECT ID FROM $wpdb->posts $join_clause WHERE post_name = %s AND post_type IN ( %s, 'attachment' ) AND ID != %d AND post_parent = %d $where_clause LIMIT 1";
 		$post_name_check = $wpdb->get_var( $wpdb->prepare( $check_sql, $original_slug, $post_type, $post_ID, $post_parent ) );
+
 	} else {
+
 		// Post slugs must be unique across all posts.
 		$check_sql = "SELECT post_name FROM $wpdb->posts $join_clause WHERE post_name = %s AND post_type = %s AND ID != %d $where_clause LIMIT 1";
 		$post_name_check = $wpdb->get_var( $wpdb->prepare( $check_sql, $original_slug, $post_type, $post_ID ) );
+
 	}
+
 	if ( ! $post_name_check ) {
 		return $original_slug;
 	} else {
 		return $slug;
 	}
+
 }
 add_filter( 'wp_unique_post_slug', 'polylang_slug_unique_slug_in_language', 10, 6 );
+
 /**
  * Modify the sql query to include checks for the current language
  *
@@ -100,16 +119,24 @@ function polylang_slug_filter_queries( $query ) {
 	global $wpdb, $polylang;
 	// keep a record of the queries
 	$queries[] = $query;
+
 	$is_main_sql = preg_match(
 		"#SELECT ID, post_name, post_parent, post_type FROM {$wpdb->posts} WHERE post_name IN \(([^)]+)\) AND post_type IN \(([^)]+)\)#",
 		trim(str_replace(array("\t", "\n"), array( '', ' ' ), $query)),
 		$matches );
+
 	if ( $is_main_sql ) {
+
 		$lang = pll_current_language();
+
 		// " INNER JOIN $wpdb->term_relationships AS pll_tr ON pll_tr.object_id = " . ('term' == $type ? "t.term_id" : "ID");
 		$join_clause  = $polylang->model->join_clause( 'post' );
 		// " AND pll_tr.term_taxonomy_id IN (" . implode(',', $languages) . ")"
-		$where_clause = $polylang->model->where_clause( $lang, 'post' );
+		$where_clause = '';
+		if ( $lang ) {
+			$where_clause = $polylang->model->where_clause( $lang, 'post' );
+		}
+
 		$query = "SELECT ID, post_name, post_parent, post_type
 				FROM {$wpdb->posts}
 				$join_clause
@@ -117,9 +144,11 @@ function polylang_slug_filter_queries( $query ) {
 				AND post_type IN ({$matches[2]})
 				$where_clause";
 	}
+
 	return $query;
 }
 add_filter( 'query', 'polylang_slug_filter_queries' );
+
 /**
  * Extend the WHERE clause of the query
  *
@@ -135,15 +164,20 @@ add_filter( 'query', 'polylang_slug_filter_queries' );
  */
 function polylang_slug_posts_where_filter( $where, $query ) {
 	global $polylang;
-	if ( is_admin() || ! empty( $query->query['post_type'] ) && ! $polylang->model->is_translated_post_type( $query->query['post_type'] ) ) {
+
+	if ( is_admin() || ! empty( $query->query['lang'] ) || ! empty( $query->query['post_type'] ) && ! $polylang->model->is_translated_post_type( $query->query['post_type'] ) ) {
 		return $where;
 	}
+
 	$lang = pll_current_language();
+
 	// " AND pll_tr.term_taxonomy_id IN (" . implode(',', $languages) . ")"
 	$where .= $polylang->model->where_clause( $lang, 'post' );
+
 	return $where;
 }
 add_filter( 'posts_where', 'polylang_slug_posts_where_filter', 10, 2 );
+
 /**
  * Extend the JOIN clause of the query
  *
@@ -159,11 +193,36 @@ add_filter( 'posts_where', 'polylang_slug_posts_where_filter', 10, 2 );
  */
 function polylang_slug_posts_join_filter( $join, $query ) {
 	global $polylang;
-	if ( is_admin() || ! empty( $query->query['post_type'] ) && ! $polylang->model->is_translated_post_type( $query->query['post_type'] ) ) {
+
+	if ( is_admin() || ! empty( $query->query['lang'] ) || ! empty( $query->query['post_type'] ) && ! $polylang->model->is_translated_post_type( $query->query['post_type'] ) ) {
 		return $join;
 	}
+
 	// " INNER JOIN $wpdb->term_relationships AS pll_tr ON pll_tr.object_id = " . ('term' == $type ? "t.term_id" : "ID");
 	$join .= $polylang->model->join_clause( 'post' );
+
 	return $join;
 }
 add_filter( 'posts_join', 'polylang_slug_posts_join_filter', 10, 2 );
+
+add_filter('pre_get_posts', 'get_default_language_posts');
+
+function get_default_language_posts($query) {
+	if ($query->is_main_query() && function_exists('pll_default_language') && !is_admin()) {
+		$terms = get_terms('post_translations'); //polylang stores translated post IDs in a serialized array in the description field of this custom taxonomy
+		$defLang = pll_default_language(); //default lanuage of the blog
+		$curLang = pll_current_language(); //current selected language requested on the broswer
+		$filterPostIDs = array();
+		foreach ($terms as $translation) {
+			$transPost = unserialize($translation->description);
+			//if the current language is not the default, lets pick up the default language post
+			if ($defLang != $curLang)
+				$filterPostIDs[] = $transPost[$defLang];
+		}
+		if ($defLang != $curLang) {
+			$query->set('lang', $defLang . ',' . $curLang);  //select both default and current language post
+			$query->set('post__not_in', $filterPostIDs); // remove the duplicate post in the default language
+		}
+	}
+	return $query;
+}
