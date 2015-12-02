@@ -14,6 +14,7 @@ web/ogdch.dev/content/upgrade/
 web/ogdch.dev/content/uploads/**
 web/ogdch.dev/content/wp-cache-config.php
 web/ogdch.dev/content/themes/twentyfifteen/
+web/ogdch.dev/.htaccess
 
 .vagrant
 /web/html
