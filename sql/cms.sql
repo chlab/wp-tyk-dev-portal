@@ -465,7 +465,7 @@ CREATE TABLE `ogdch_options` (
   `autoload` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'yes',
   PRIMARY KEY (`option_id`),
   UNIQUE KEY `option_name` (`option_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=819 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=820 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -568,7 +568,7 @@ INSERT INTO `ogdch_options` VALUES (92,'widget_recent-comments','a:2:{i:2;a:2:{s
 INSERT INTO `ogdch_options` VALUES (93,'widget_archives','a:2:{i:2;a:3:{s:5:\"title\";s:0:\"\";s:5:\"count\";i:0;s:8:\"dropdown\";i:0;}s:12:\"_multiwidget\";i:1;}','yes');
 INSERT INTO `ogdch_options` VALUES (94,'widget_meta','a:2:{i:2;a:1:{s:5:\"title\";s:0:\"\";}s:12:\"_multiwidget\";i:1;}','yes');
 INSERT INTO `ogdch_options` VALUES (95,'sidebars_widgets','a:3:{s:19:\"wp_inactive_widgets\";a:0:{}s:18:\"orphaned_widgets_1\";a:1:{i:0;s:17:\"recent-comments-2\";}s:13:\"array_version\";i:3;}','yes');
-INSERT INTO `ogdch_options` VALUES (97,'cron','a:7:{i:1449144526;a:1:{s:24:\"ninja_forms_daily_action\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1449146581;a:1:{s:30:\"wp_scheduled_auto_draft_delete\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1449149557;a:3:{s:16:\"wp_version_check\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}s:17:\"wp_update_plugins\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}s:16:\"wp_update_themes\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1449149881;a:1:{s:19:\"wp_scheduled_delete\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1449151752;a:1:{s:29:\"wp_session_garbage_collection\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1449172140;a:1:{s:20:\"wp_maybe_auto_update\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}s:7:\"version\";i:2;}','yes');
+INSERT INTO `ogdch_options` VALUES (97,'cron','a:7:{i:1449232981;a:1:{s:30:\"wp_scheduled_auto_draft_delete\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1449235957;a:3:{s:16:\"wp_version_check\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}s:17:\"wp_update_plugins\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}s:16:\"wp_update_themes\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1449236281;a:1:{s:19:\"wp_scheduled_delete\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1449238152;a:1:{s:29:\"wp_session_garbage_collection\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1449258540;a:1:{s:20:\"wp_maybe_auto_update\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1449317326;a:1:{s:24:\"ninja_forms_daily_action\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}s:7:\"version\";i:2;}','yes');
 INSERT INTO `ogdch_options` VALUES (134,'db_upgraded','','yes');
 INSERT INTO `ogdch_options` VALUES (142,'recently_activated','a:1:{s:24:\"wordpress-seo/wp-seo.php\";i:1447947013;}','yes');
 INSERT INTO `ogdch_options` VALUES (147,'members_db_version','2','yes');
@@ -635,7 +635,7 @@ CREATE TABLE `ogdch_postmeta` (
   PRIMARY KEY (`meta_id`),
   KEY `post_id` (`post_id`),
   KEY `meta_key` (`meta_key`(191))
-) ENGINE=InnoDB AUTO_INCREMENT=2237 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2258 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -721,7 +721,7 @@ INSERT INTO `ogdch_postmeta` VALUES (984,193,'_ckan_local_group_title_fr','Terri
 INSERT INTO `ogdch_postmeta` VALUES (985,193,'_ckan_local_group_title_it','Territorio e ambiente');
 INSERT INTO `ogdch_postmeta` VALUES (986,193,'_ckan_local_group_rdf_uri','http://opendata.swiss/themes/territory');
 INSERT INTO `ogdch_postmeta` VALUES (987,194,'_edit_last','1');
-INSERT INTO `ogdch_postmeta` VALUES (988,194,'_edit_lock','1444816153:1');
+INSERT INTO `ogdch_postmeta` VALUES (988,194,'_edit_lock','1449231920:1');
 INSERT INTO `ogdch_postmeta` VALUES (989,194,'_ckan_local_org_ckan_id','73124d1e-c2aa-4d20-a42d-fa71b8946e93');
 INSERT INTO `ogdch_postmeta` VALUES (990,194,'_ckan_local_org_ckan_name','swisstopo');
 INSERT INTO `ogdch_postmeta` VALUES (991,194,'_ckan_local_org_title_en','Swisstopo EN');
@@ -1032,7 +1032,7 @@ INSERT INTO `ogdch_postmeta` VALUES (1395,245,'_menu_item_target','');
 INSERT INTO `ogdch_postmeta` VALUES (1396,245,'_menu_item_classes','a:1:{i:0;s:0:\"\";}');
 INSERT INTO `ogdch_postmeta` VALUES (1397,245,'_menu_item_xfn','');
 INSERT INTO `ogdch_postmeta` VALUES (1398,245,'_menu_item_url','/it/app/');
-INSERT INTO `ogdch_postmeta` VALUES (1472,246,'_edit_lock','1446797803:1');
+INSERT INTO `ogdch_postmeta` VALUES (1472,246,'_edit_lock','1449231868:1');
 INSERT INTO `ogdch_postmeta` VALUES (1473,246,'_edit_last','1');
 INSERT INTO `ogdch_postmeta` VALUES (1474,246,'_ckan_local_org_ckan_id','7dbaad15-597f-499c-9a72-95de38b95cad');
 INSERT INTO `ogdch_postmeta` VALUES (1475,246,'_ckan_local_org_ckan_name','bundesarchiv');
@@ -1090,10 +1090,10 @@ INSERT INTO `ogdch_postmeta` VALUES (1853,284,'_ckan_local_dataset_contact_point
 INSERT INTO `ogdch_postmeta` VALUES (1854,284,'_ckan_local_dataset_relations','a:1:{i:0;a:2:{s:5:\"label\";s:17:\"Webseite des BAFU\";s:3:\"url\";s:49:\"http://www.bafu.admin.ch/laerm/index.html?lang=de\";}}');
 INSERT INTO `ogdch_postmeta` VALUES (1855,284,'_ckan_local_dataset_temporals','a:2:{i:0;a:2:{s:10:\"start_date\";i:-2046124800;s:8:\"end_date\";i:1357344000;}i:1;a:2:{s:10:\"start_date\";i:1362096000;s:8:\"end_date\";i:1420416000;}}');
 INSERT INTO `ogdch_postmeta` VALUES (1856,284,'_ckan_local_dataset_see_alsos','a:1:{i:0;a:1:{s:18:\"dataset_identifier\";s:13:\"326@swisstopo\";}}');
-INSERT INTO `ogdch_postmeta` VALUES (1857,284,'_ckan_local_dataset_distributions','a:1:{i:0;a:12:{s:10:\"identifier\";s:29:\"ch.bafu.laerm-bahnlaerm_nacht\";s:8:\"title_en\";s:35:\"WMS (ch.bafu.laerm-bahnlaerm_nacht)\";s:14:\"description_en\";s:61:\"The information is based on comprehensive model calculations.\";s:8:\"title_de\";s:35:\"WMS (ch.bafu.laerm-bahnlaerm_nacht)\";s:14:\"description_de\";s:62:\"Die Angaben basieren auf flächendeckenden Modellberechnungen.\";s:9:\"languages\";a:2:{i:0;s:2:\"en\";i:1;s:2:\"de\";}s:6:\"issued\";i:1368230400;s:8:\"modified\";i:1430006400;s:6:\"rights\";s:59:\"NonCommercialAllowed-CommercialAllowed-ReferenceNotRequired\";s:10:\"access_url\";s:24:\"http://wms.geo.admin.ch/\";s:9:\"byte_size\";s:4:\"1024\";s:10:\"media_type\";s:9:\"text/html\";}}');
-INSERT INTO `ogdch_postmeta` VALUES (1858,284,'_edit_lock','1446797534:1');
+INSERT INTO `ogdch_postmeta` VALUES (1857,284,'_ckan_local_dataset_distributions','a:1:{i:0;a:11:{s:10:\"identifier\";s:29:\"ch.bafu.laerm-bahnlaerm_nacht\";s:8:\"title_en\";s:35:\"WMS (ch.bafu.laerm-bahnlaerm_nacht)\";s:14:\"description_en\";s:61:\"The information is based on comprehensive model calculations.\";s:8:\"title_de\";s:35:\"WMS (ch.bafu.laerm-bahnlaerm_nacht)\";s:14:\"description_de\";s:62:\"Die Angaben basieren auf flächendeckenden Modellberechnungen.\";s:9:\"languages\";a:2:{i:0;s:2:\"en\";i:1;s:2:\"de\";}s:6:\"issued\";i:1368230400;s:8:\"modified\";i:1430006400;s:6:\"rights\";s:59:\"NonCommercialAllowed-CommercialAllowed-ReferenceNotRequired\";s:10:\"access_url\";s:24:\"http://wms.geo.admin.ch/\";s:9:\"byte_size\";s:4:\"1024\";}}');
+INSERT INTO `ogdch_postmeta` VALUES (1858,284,'_edit_lock','1449231812:1');
 INSERT INTO `ogdch_postmeta` VALUES (1859,284,'_edit_last','1');
-INSERT INTO `ogdch_postmeta` VALUES (1860,285,'_edit_lock','1446797484:1');
+INSERT INTO `ogdch_postmeta` VALUES (1860,285,'_edit_lock','1449231792:1');
 INSERT INTO `ogdch_postmeta` VALUES (1861,285,'_edit_last','1');
 INSERT INTO `ogdch_postmeta` VALUES (1862,285,'_ckan_local_dataset_ckan_id','52368b85-350c-450e-a18e-f2fb6fa7ae7a');
 INSERT INTO `ogdch_postmeta` VALUES (1863,285,'_ckan_local_dataset_ckan_name','baustellen');
@@ -1180,7 +1180,7 @@ INSERT INTO `ogdch_postmeta` VALUES (1989,193,'_wp_old_slug','raum');
 INSERT INTO `ogdch_postmeta` VALUES (1990,192,'_wp_old_slug','bevoelkerung');
 INSERT INTO `ogdch_postmeta` VALUES (1991,285,'_ckan_local_dataset_themes','a:2:{i:0;s:10:\"population\";i:1;s:9:\"territory\";}');
 INSERT INTO `ogdch_postmeta` VALUES (1992,284,'_ckan_local_dataset_themes','a:2:{i:0;s:10:\"population\";i:1;s:9:\"territory\";}');
-INSERT INTO `ogdch_postmeta` VALUES (1993,291,'_edit_lock','1446198433:1');
+INSERT INTO `ogdch_postmeta` VALUES (1993,291,'_edit_lock','1449231903:1');
 INSERT INTO `ogdch_postmeta` VALUES (1994,291,'_edit_last','1');
 INSERT INTO `ogdch_postmeta` VALUES (1995,291,'_ckan_local_org_ckan_id','091dde3d-99db-4da3-a2c5-b41741c18502');
 INSERT INTO `ogdch_postmeta` VALUES (1996,291,'_ckan_local_org_ckan_name','sub-organization');
@@ -1202,7 +1202,6 @@ INSERT INTO `ogdch_postmeta` VALUES (2050,297,'_ckan_local_dataset_issued','1366
 INSERT INTO `ogdch_postmeta` VALUES (2051,297,'_ckan_local_dataset_modified','1430006400');
 INSERT INTO `ogdch_postmeta` VALUES (2052,297,'_ckan_local_dataset_themes','a:1:{i:0;s:9:\"territory\";}');
 INSERT INTO `ogdch_postmeta` VALUES (2053,297,'_ckan_local_dataset_keywords','a:4:{s:2:\"de\";a:2:{i:0;s:12:\"Landesgrenze\";i:1;s:20:\"Verwaltungseinheiten\";}s:2:\"fr\";a:2:{i:0;s:22:\"Frontières nationales\";i:1;s:23:\"Unités administratives\";}s:2:\"it\";a:2:{i:0;s:19:\"Frontiere nazionali\";i:1;s:20:\"Unita amministrative\";}s:2:\"en\";a:2:{i:0;s:19:\"National boundaries\";i:1;s:20:\"Administrative units\";}}');
-INSERT INTO `ogdch_postmeta` VALUES (2054,297,'_ckan_local_dataset_landing_page','http://www.swisstopo.admin.ch/internet/swisstopo/de/home/products/landscape/swissBOUNDARIES3D.html');
 INSERT INTO `ogdch_postmeta` VALUES (2055,297,'_ckan_local_dataset_spatial','');
 INSERT INTO `ogdch_postmeta` VALUES (2056,297,'_ckan_local_dataset_coverage','');
 INSERT INTO `ogdch_postmeta` VALUES (2057,297,'_ckan_local_dataset_accrual_periodicity','http://purl.org/cld/freq/annual');
@@ -1218,16 +1217,16 @@ INSERT INTO `ogdch_postmeta` VALUES (2066,297,'_ckan_local_dataset_publishers','
 INSERT INTO `ogdch_postmeta` VALUES (2067,297,'_ckan_local_dataset_contact_points','a:1:{i:0;a:2:{s:4:\"name\";s:39:\"geodata Bundesamt für Landestopografie\";s:5:\"email\";s:20:\"geodata@swisstopo.ch\";}}');
 INSERT INTO `ogdch_postmeta` VALUES (2068,297,'_ckan_local_dataset_relations','a:1:{i:0;a:2:{s:5:\"label\";s:24:\"Webseite swissBOUNDARIES\";s:3:\"url\";s:98:\"http://www.swisstopo.admin.ch/internet/swisstopo/de/home/products/landscape/swissBOUNDARIES3D.html\";}}');
 INSERT INTO `ogdch_postmeta` VALUES (2069,297,'_ckan_local_dataset_temporals','a:1:{i:0;a:2:{s:10:\"start_date\";i:1420070400;s:8:\"end_date\";i:1451520000;}}');
-INSERT INTO `ogdch_postmeta` VALUES (2070,297,'_ckan_local_dataset_see_alsos','a:1:{i:0;a:1:{s:18:\"dataset_identifier\";s:15:\"87986@swisstopo\";}}');
-INSERT INTO `ogdch_postmeta` VALUES (2071,297,'_ckan_local_dataset_distributions','a:2:{i:0;a:17:{s:10:\"identifier\";s:30:\"swissboundaries3d-land-flaeche\";s:8:\"title_en\";s:0:\"\";s:14:\"description_en\";s:0:\"\";s:8:\"title_de\";s:0:\"\";s:14:\"description_de\";s:0:\"\";s:8:\"title_fr\";s:0:\"\";s:14:\"description_fr\";s:0:\"\";s:8:\"title_it\";s:0:\"\";s:14:\"description_it\";s:0:\"\";s:9:\"languages\";b:0;s:6:\"issued\";i:1419984000;s:8:\"modified\";b:0;s:6:\"rights\";s:59:\"NonCommercialAllowed-CommercialAllowed-ReferenceNotRequired\";s:10:\"access_url\";s:99:\"http://data.geo.admin.ch.s3.amazonaws.com/ch.swisstopo.swissboundaries3d-land-flaeche.fill/data.zip\";s:12:\"download_url\";s:99:\"http://data.geo.admin.ch.s3.amazonaws.com/ch.swisstopo.swissboundaries3d-land-flaeche.fill/data.zip\";s:9:\"byte_size\";s:6:\"209870\";s:10:\"media_type\";s:15:\"application/zip\";}i:1;a:10:{s:8:\"title_en\";s:6:\"ReadMe\";s:8:\"title_de\";s:6:\"ReadMe\";s:8:\"title_fr\";s:6:\"ReadMe\";s:8:\"title_it\";s:6:\"ReadMe\";s:6:\"issued\";i:1419984000;s:6:\"rights\";s:59:\"NonCommercialAllowed-CommercialAllowed-ReferenceNotRequired\";s:10:\"access_url\";s:101:\"http://data.geo.admin.ch.s3.amazonaws.com/ch.swisstopo.swissboundaries3d-land-flaeche.fill/readme.txt\";s:12:\"download_url\";s:101:\"http://data.geo.admin.ch.s3.amazonaws.com/ch.swisstopo.swissboundaries3d-land-flaeche.fill/readme.txt\";s:9:\"byte_size\";s:4:\"1389\";s:10:\"media_type\";s:10:\"text/plain\";}}');
-INSERT INTO `ogdch_postmeta` VALUES (2072,297,'_edit_lock','1446797473:1');
+INSERT INTO `ogdch_postmeta` VALUES (2070,297,'_ckan_local_dataset_see_alsos','a:1:{i:0;a:1:{s:18:\"dataset_identifier\";s:16:\"123@bundesarchiv\";}}');
+INSERT INTO `ogdch_postmeta` VALUES (2071,297,'_ckan_local_dataset_distributions','a:2:{i:0;a:17:{s:10:\"identifier\";s:30:\"swissboundaries3d-land-flaeche\";s:8:\"title_en\";s:0:\"\";s:14:\"description_en\";s:0:\"\";s:8:\"title_de\";s:0:\"\";s:14:\"description_de\";s:0:\"\";s:8:\"title_fr\";s:0:\"\";s:14:\"description_fr\";s:0:\"\";s:8:\"title_it\";s:0:\"\";s:14:\"description_it\";s:0:\"\";s:9:\"languages\";b:0;s:6:\"issued\";i:1419984000;s:8:\"modified\";b:0;s:6:\"rights\";s:59:\"NonCommercialAllowed-CommercialAllowed-ReferenceNotRequired\";s:10:\"access_url\";s:99:\"http://data.geo.admin.ch.s3.amazonaws.com/ch.swisstopo.swissboundaries3d-land-flaeche.fill/data.zip\";s:12:\"download_url\";s:99:\"http://data.geo.admin.ch.s3.amazonaws.com/ch.swisstopo.swissboundaries3d-land-flaeche.fill/data.zip\";s:9:\"byte_size\";s:6:\"209870\";s:10:\"media_type\";s:15:\"application/zip\";}i:1;a:9:{s:8:\"title_en\";s:6:\"ReadMe\";s:8:\"title_de\";s:6:\"ReadMe\";s:8:\"title_fr\";s:6:\"ReadMe\";s:8:\"title_it\";s:6:\"ReadMe\";s:6:\"issued\";i:1419984000;s:6:\"rights\";s:59:\"NonCommercialAllowed-CommercialAllowed-ReferenceNotRequired\";s:10:\"access_url\";s:101:\"http://data.geo.admin.ch.s3.amazonaws.com/ch.swisstopo.swissboundaries3d-land-flaeche.fill/readme.txt\";s:12:\"download_url\";s:101:\"http://data.geo.admin.ch.s3.amazonaws.com/ch.swisstopo.swissboundaries3d-land-flaeche.fill/readme.txt\";s:9:\"byte_size\";s:4:\"1389\";}}');
+INSERT INTO `ogdch_postmeta` VALUES (2072,297,'_edit_lock','1449231773:1');
 INSERT INTO `ogdch_postmeta` VALUES (2073,297,'_edit_last','1');
 INSERT INTO `ogdch_postmeta` VALUES (2074,195,'_thumbnail_id','290');
 INSERT INTO `ogdch_postmeta` VALUES (2075,196,'_thumbnail_id','290');
 INSERT INTO `ogdch_postmeta` VALUES (2076,197,'_thumbnail_id','290');
 INSERT INTO `ogdch_postmeta` VALUES (2077,198,'_thumbnail_id','290');
 INSERT INTO `ogdch_postmeta` VALUES (2084,247,'_wp_page_template','default');
-INSERT INTO `ogdch_postmeta` VALUES (2103,300,'_edit_lock','1446649620:1');
+INSERT INTO `ogdch_postmeta` VALUES (2103,300,'_edit_lock','1449231832:1');
 INSERT INTO `ogdch_postmeta` VALUES (2104,300,'_edit_last','1');
 INSERT INTO `ogdch_postmeta` VALUES (2105,300,'_ckan_local_org_ckan_id','244099c1-a313-48cb-861b-55f2d42ccb7d');
 INSERT INTO `ogdch_postmeta` VALUES (2106,300,'_ckan_local_org_ckan_name','bibliothek-am-guisanplatz');
@@ -1235,7 +1234,7 @@ INSERT INTO `ogdch_postmeta` VALUES (2107,300,'_ckan_local_org_title_en','The Li
 INSERT INTO `ogdch_postmeta` VALUES (2108,300,'_ckan_local_org_title_de','Bibliothek am Guisanplatz');
 INSERT INTO `ogdch_postmeta` VALUES (2109,300,'_ckan_local_org_title_fr','Bibliothèque Am Guisanplatz');
 INSERT INTO `ogdch_postmeta` VALUES (2110,300,'_ckan_local_org_title_it','Biblioteca Am Guisanplatz');
-INSERT INTO `ogdch_postmeta` VALUES (2111,301,'_edit_lock','1446649748:1');
+INSERT INTO `ogdch_postmeta` VALUES (2111,301,'_edit_lock','1449231887:1');
 INSERT INTO `ogdch_postmeta` VALUES (2112,301,'_edit_last','1');
 INSERT INTO `ogdch_postmeta` VALUES (2113,301,'_ckan_local_org_ckan_id','51941490-5ade-4d06-b708-ff04279ce550');
 INSERT INTO `ogdch_postmeta` VALUES (2114,301,'_ckan_local_org_ckan_name','schweizerische-nationalbibliothek');
@@ -1247,7 +1246,7 @@ INSERT INTO `ogdch_postmeta` VALUES (2119,301,'_ckan_local_org_title_fr','Biblio
 INSERT INTO `ogdch_postmeta` VALUES (2120,301,'_ckan_local_org_description_fr','Collecte l’ensemble des publications suisses depuis 1848. Les Archives littéraires suisses, le Cabinet des estampes et le Centre Dürrenmatt font également partie de la Bibliothèque nationale.');
 INSERT INTO `ogdch_postmeta` VALUES (2121,301,'_ckan_local_org_title_it','Biblioteca nazionale svizzera');
 INSERT INTO `ogdch_postmeta` VALUES (2122,301,'_ckan_local_org_description_it','Colleziona tutte le pubblicazioni a partire dal 1848. Alla Biblioteca nazionale sono accorpati l\'Archivio svizzero di letteratura, il Gabinetto delle stampe e il Centre Dürrenmatt.');
-INSERT INTO `ogdch_postmeta` VALUES (2123,302,'_edit_lock','1446649865:1');
+INSERT INTO `ogdch_postmeta` VALUES (2123,302,'_edit_lock','1449231844:1');
 INSERT INTO `ogdch_postmeta` VALUES (2124,302,'_edit_last','1');
 INSERT INTO `ogdch_postmeta` VALUES (2125,302,'_ckan_local_org_ckan_id','1caae51a-0ab6-4bee-8104-5716bbbf43ba');
 INSERT INTO `ogdch_postmeta` VALUES (2126,302,'_ckan_local_org_ckan_name','bundesamt-fur-gesundheit');
@@ -1255,7 +1254,7 @@ INSERT INTO `ogdch_postmeta` VALUES (2127,302,'_ckan_local_org_title_en','Bundes
 INSERT INTO `ogdch_postmeta` VALUES (2128,302,'_ckan_local_org_title_de','Bundesamt für Gesundheit');
 INSERT INTO `ogdch_postmeta` VALUES (2129,302,'_ckan_local_org_title_fr','Bundesamt für Gesundheit');
 INSERT INTO `ogdch_postmeta` VALUES (2130,302,'_ckan_local_org_title_it','Bundesamt für Gesundheit');
-INSERT INTO `ogdch_postmeta` VALUES (2131,303,'_edit_lock','1446649921:1');
+INSERT INTO `ogdch_postmeta` VALUES (2131,303,'_edit_lock','1449231875:1');
 INSERT INTO `ogdch_postmeta` VALUES (2132,303,'_edit_last','1');
 INSERT INTO `ogdch_postmeta` VALUES (2133,303,'_ckan_local_org_ckan_id','07bf374b-0883-4b03-9f40-25d1048a1611');
 INSERT INTO `ogdch_postmeta` VALUES (2134,303,'_ckan_local_org_ckan_name','schweizerische-bundesbahnen-sbb');
@@ -1263,7 +1262,7 @@ INSERT INTO `ogdch_postmeta` VALUES (2135,303,'_ckan_local_org_title_en','Swiss 
 INSERT INTO `ogdch_postmeta` VALUES (2136,303,'_ckan_local_org_title_de','Schweizerische Bundesbahnen (SBB)');
 INSERT INTO `ogdch_postmeta` VALUES (2137,303,'_ckan_local_org_title_fr','Chemins de fer fédéraux suisses (CFF)');
 INSERT INTO `ogdch_postmeta` VALUES (2138,303,'_ckan_local_org_title_it','Ferrovie federali svizzere (FFS)');
-INSERT INTO `ogdch_postmeta` VALUES (2139,304,'_edit_lock','1446649981:1');
+INSERT INTO `ogdch_postmeta` VALUES (2139,304,'_edit_lock','1449231860:1');
 INSERT INTO `ogdch_postmeta` VALUES (2140,304,'_edit_last','1');
 INSERT INTO `ogdch_postmeta` VALUES (2141,304,'_ckan_local_org_ckan_id','47bc53e3-f6b2-46c9-a4eb-4889fc1d3105');
 INSERT INTO `ogdch_postmeta` VALUES (2142,304,'_ckan_local_org_ckan_name','bundesamt-fur-statistik');
@@ -1291,7 +1290,7 @@ INSERT INTO `ogdch_postmeta` VALUES (2167,307,'_edit_lock','1447840081:1');
 INSERT INTO `ogdch_postmeta` VALUES (2168,307,'_edit_last','1');
 INSERT INTO `ogdch_postmeta` VALUES (2169,308,'_edit_lock','1447840064:1');
 INSERT INTO `ogdch_postmeta` VALUES (2170,308,'_edit_last','1');
-INSERT INTO `ogdch_postmeta` VALUES (2171,309,'_edit_lock','1448396139:1');
+INSERT INTO `ogdch_postmeta` VALUES (2171,309,'_edit_lock','1449232067:1');
 INSERT INTO `ogdch_postmeta` VALUES (2172,309,'_edit_last','1');
 INSERT INTO `ogdch_postmeta` VALUES (2173,309,'_ckan_local_harvester_ckan_id','ffd3c0ce-1f16-4254-aea4-664029574fa8');
 INSERT INTO `ogdch_postmeta` VALUES (2174,309,'_ckan_local_harvester_ckan_name','geocat-harvester');
@@ -1333,6 +1332,26 @@ INSERT INTO `ogdch_postmeta` VALUES (2233,193,'_ckan_local_group_ckan_synced','1
 INSERT INTO `ogdch_postmeta` VALUES (2234,219,'_ckan_local_group_ckan_synced','1');
 INSERT INTO `ogdch_postmeta` VALUES (2235,207,'_ckan_local_group_ckan_synced','1');
 INSERT INTO `ogdch_postmeta` VALUES (2236,199,'_ckan_local_group_ckan_synced','1');
+INSERT INTO `ogdch_postmeta` VALUES (2237,314,'_edit_lock','1449231679:1');
+INSERT INTO `ogdch_postmeta` VALUES (2238,314,'_edit_last','1');
+INSERT INTO `ogdch_postmeta` VALUES (2239,314,'_ckan_local_org_ckan_id','04cc43a8-d075-4f7d-911b-e48a95b404b5');
+INSERT INTO `ogdch_postmeta` VALUES (2240,314,'_ckan_local_org_ckan_name','bundesamt-fur-chungelihaltig-bfhupf');
+INSERT INTO `ogdch_postmeta` VALUES (2241,314,'_ckan_local_org_ckan_synced','1');
+INSERT INTO `ogdch_postmeta` VALUES (2242,314,'_ckan_local_org_title_en','Bundesamt für Chüngelihaltig (BfHüpf)');
+INSERT INTO `ogdch_postmeta` VALUES (2243,314,'_ckan_local_org_title_de','Bundesamt für Chüngelihaltig (BfHüpf)');
+INSERT INTO `ogdch_postmeta` VALUES (2244,314,'_ckan_local_org_title_fr','Bundesamt für Chüngelihaltig (BfHüpf)');
+INSERT INTO `ogdch_postmeta` VALUES (2245,314,'_ckan_local_org_title_it','Bundesamt für Chüngelihaltig (BfHüpf)');
+INSERT INTO `ogdch_postmeta` VALUES (2247,297,'_ckan_local_dataset_ckan_synced','1');
+INSERT INTO `ogdch_postmeta` VALUES (2248,285,'_ckan_local_dataset_ckan_synced','1');
+INSERT INTO `ogdch_postmeta` VALUES (2249,284,'_ckan_local_dataset_ckan_synced','1');
+INSERT INTO `ogdch_postmeta` VALUES (2250,300,'_ckan_local_org_ckan_synced','1');
+INSERT INTO `ogdch_postmeta` VALUES (2251,302,'_ckan_local_org_ckan_synced','1');
+INSERT INTO `ogdch_postmeta` VALUES (2252,304,'_ckan_local_org_ckan_synced','1');
+INSERT INTO `ogdch_postmeta` VALUES (2253,246,'_ckan_local_org_ckan_synced','1');
+INSERT INTO `ogdch_postmeta` VALUES (2254,303,'_ckan_local_org_ckan_synced','1');
+INSERT INTO `ogdch_postmeta` VALUES (2255,301,'_ckan_local_org_ckan_synced','1');
+INSERT INTO `ogdch_postmeta` VALUES (2256,291,'_ckan_local_org_ckan_synced','1');
+INSERT INTO `ogdch_postmeta` VALUES (2257,194,'_ckan_local_org_ckan_synced','1');
 /*!40000 ALTER TABLE `ogdch_postmeta` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1372,7 +1391,7 @@ CREATE TABLE `ogdch_posts` (
   KEY `type_status_date` (`post_type`,`post_status`,`post_date`,`ID`),
   KEY `post_parent` (`post_parent`),
   KEY `post_author` (`post_author`)
-) ENGINE=InnoDB AUTO_INCREMENT=314 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=315 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1405,7 +1424,7 @@ INSERT INTO `ogdch_posts` VALUES (184,1,'2015-08-25 13:30:05','2015-08-25 13:30:
 INSERT INTO `ogdch_posts` VALUES (188,1,'2015-08-25 13:30:42','2015-08-25 13:30:42',' ','','','publish','open','closed','','188','','','2015-10-27 16:10:06','2015-10-27 15:10:06','',0,'http://ogdch.dev/?p=188',5,'nav_menu_item','',0);
 INSERT INTO `ogdch_posts` VALUES (192,1,'2015-08-25 13:46:47','2015-08-25 13:46:47','','Population','','publish','closed','closed','','population','','','2015-12-03 09:29:16','2015-12-03 08:29:16','',0,'http://ogdch.dev/?post_type=ckan-local-group&#038;p=192',0,'ckan-local-group','',0);
 INSERT INTO `ogdch_posts` VALUES (193,1,'2015-08-25 13:48:07','2015-08-25 13:48:07','','Territory','','publish','closed','closed','','territory','','','2015-12-03 09:30:32','2015-12-03 08:30:32','',0,'http://ogdch.dev/?post_type=ckan-local-group&#038;p=193',0,'ckan-local-group','',0);
-INSERT INTO `ogdch_posts` VALUES (194,1,'2015-08-25 13:48:42','2015-08-25 13:48:42','','Swisstopo','','publish','closed','closed','','swisstopo','','','2015-10-14 11:51:33','2015-10-14 09:51:33','',0,'http://ogdch.dev/?post_type=ckan-local-org&#038;p=194',0,'ckan-local-org','',0);
+INSERT INTO `ogdch_posts` VALUES (194,1,'2015-08-25 13:48:42','2015-08-25 13:48:42','','Swisstopo','','publish','closed','closed','','swisstopo','','','2015-12-04 13:27:36','2015-12-04 12:27:36','',0,'http://ogdch.dev/?post_type=ckan-local-org&#038;p=194',0,'ckan-local-org','',0);
 INSERT INTO `ogdch_posts` VALUES (195,1,'2015-08-25 13:54:54','2015-08-25 13:53:35','Beschreibung DE','TopoApp','','publish','closed','closed','','topoapp','','','2015-11-04 08:40:58','2015-11-04 07:40:58','',0,'http://ogdch.dev/?post_type=app&#038;p=195',0,'app','',0);
 INSERT INTO `ogdch_posts` VALUES (196,1,'2015-08-25 13:54:54','2015-08-25 13:54:05','Description EN','TopoApp','','publish','closed','closed','','topoapp','','','2015-10-30 13:20:48','2015-10-30 12:20:48','',0,'http://ogdch.dev/?post_type=app&#038;p=196',0,'app','',0);
 INSERT INTO `ogdch_posts` VALUES (197,1,'2015-08-25 13:54:54','2015-08-25 13:54:31','Description IT','TopoApp','','publish','closed','closed','','topoapp','','','2015-10-30 13:21:08','2015-10-30 12:21:08','',0,'http://ogdch.dev/?post_type=app&#038;p=197',0,'app','',0);
@@ -1444,26 +1463,26 @@ INSERT INTO `ogdch_posts` VALUES (242,1,'2015-08-25 16:03:13','2015-08-25 16:03:
 INSERT INTO `ogdch_posts` VALUES (243,1,'2015-08-25 16:04:07','2015-08-25 16:04:07','','Dati','','publish','open','closed','','dataset','','','2015-10-27 16:10:52','2015-10-27 15:10:52','',0,'http://ogdch.dev/?p=243',1,'nav_menu_item','',0);
 INSERT INTO `ogdch_posts` VALUES (244,1,'2015-08-25 16:04:07','2015-08-25 16:04:07','','Organizzazioni','','publish','open','closed','','gruppi','','','2015-10-27 16:10:52','2015-10-27 15:10:52','',0,'http://ogdch.dev/?p=244',2,'nav_menu_item','',0);
 INSERT INTO `ogdch_posts` VALUES (245,1,'2015-08-25 16:04:07','2015-08-25 16:04:07','','Applicazioni','','publish','open','closed','','apps-4','','','2015-10-27 16:10:52','2015-10-27 15:10:52','',0,'http://ogdch.dev/?p=245',3,'nav_menu_item','',0);
-INSERT INTO `ogdch_posts` VALUES (246,1,'2015-09-14 11:36:04','2015-09-14 11:36:04','','Bundesarchiv','','publish','closed','closed','','bundesarchiv','','','2015-11-06 09:16:39','2015-11-06 08:16:39','',0,'http://ogdch.dev/?post_type=ckan-local-org&#038;p=246',0,'ckan-local-org','',0);
+INSERT INTO `ogdch_posts` VALUES (246,1,'2015-09-14 11:36:04','2015-09-14 11:36:04','','Bundesarchiv','','publish','closed','closed','','bundesarchiv','','','2015-12-04 13:26:49','2015-12-04 12:26:49','',0,'http://ogdch.dev/?post_type=ckan-local-org&#038;p=246',0,'ckan-local-org','',0);
 INSERT INTO `ogdch_posts` VALUES (247,1,'2015-09-21 21:17:55','2015-09-21 21:17:00','[ninja_forms id=5]','Kontakt','','publish','closed','closed','','contact','','','2015-11-13 16:13:27','2015-11-13 15:13:27','',0,'http://ogdch.dev/?page_id=247',0,'page','',0);
 INSERT INTO `ogdch_posts` VALUES (248,1,'2015-09-21 21:17:55','2015-09-21 21:17:15','[ninja_forms id=1]','Contact','','publish','closed','closed','','contact','','','2015-11-04 15:06:19','2015-11-04 14:06:19','',0,'http://ogdch.dev/?page_id=248',0,'page','',0);
 INSERT INTO `ogdch_posts` VALUES (249,1,'2015-09-21 21:17:55','2015-09-21 21:17:33','[ninja_forms id=1]','Contatto','','publish','closed','closed','','contact','','','2015-11-04 15:06:26','2015-11-04 14:06:26','',0,'http://ogdch.dev/?page_id=249',0,'page','',0);
 INSERT INTO `ogdch_posts` VALUES (250,1,'2015-09-21 21:17:55','2015-09-21 21:17:55','[ninja_forms id=1]','Contact','','publish','closed','closed','','contact','','','2015-11-04 15:06:34','2015-11-04 14:06:34','',0,'http://ogdch.dev/?page_id=250',0,'page','',0);
-INSERT INTO `ogdch_posts` VALUES (284,1,'2013-04-26 01:00:00','2013-04-26 01:00:00','','Railway noise night','','publish','closed','closed','','railway-noise-night','','','2015-11-06 09:13:55','2015-11-06 08:13:55','',0,'http://ogdch.dev/?post_type=ckan-local-dataset&#038;p=284',0,'ckan-local-dataset','',0);
-INSERT INTO `ogdch_posts` VALUES (285,1,'2015-09-22 15:20:00','2015-09-22 13:20:00','','Baustellen','','publish','closed','closed','','baustellen','','','2015-11-06 09:13:43','2015-11-06 08:13:43','',0,'http://ogdch.dev/?post_type=ckan-local-dataset&#038;p=285',0,'ckan-local-dataset','',0);
+INSERT INTO `ogdch_posts` VALUES (284,1,'2013-04-26 01:00:00','2013-04-26 01:00:00','','Railway noise night','','publish','closed','closed','','railway-noise-night','','','2015-12-04 13:25:46','2015-12-04 12:25:46','',0,'http://ogdch.dev/?post_type=ckan-local-dataset&#038;p=284',0,'ckan-local-dataset','',0);
+INSERT INTO `ogdch_posts` VALUES (285,1,'2015-09-22 15:20:00','2015-09-22 13:20:00','','Baustellen','','publish','closed','closed','','baustellen','','','2015-12-04 13:25:30','2015-12-04 12:25:30','',0,'http://ogdch.dev/?post_type=ckan-local-dataset&#038;p=285',0,'ckan-local-dataset','',0);
 INSERT INTO `ogdch_posts` VALUES (286,1,'2015-09-23 18:02:09','2015-09-23 16:02:09',' ','','','publish','closed','closed','','286','','','2015-11-03 23:00:37','2015-11-03 22:00:37','',0,'http://ogdch.dev/?p=286',4,'nav_menu_item','',0);
 INSERT INTO `ogdch_posts` VALUES (287,1,'2015-09-23 18:02:42','2015-09-23 16:02:42',' ','','','publish','closed','closed','','287','','','2015-10-27 16:09:03','2015-10-27 15:09:03','',0,'http://ogdch.dev/?p=287',4,'nav_menu_item','',0);
 INSERT INTO `ogdch_posts` VALUES (288,1,'2015-09-23 18:03:18','2015-09-23 16:03:18',' ','','','publish','closed','closed','','288','','','2015-10-27 16:10:06','2015-10-27 15:10:06','',0,'http://ogdch.dev/?p=288',4,'nav_menu_item','',0);
 INSERT INTO `ogdch_posts` VALUES (289,1,'2015-09-23 18:03:51','2015-09-23 16:03:51',' ','','','publish','closed','closed','','289','','','2015-10-27 16:10:52','2015-10-27 15:10:52','',0,'http://ogdch.dev/?p=289',4,'nav_menu_item','',0);
 INSERT INTO `ogdch_posts` VALUES (290,1,'2015-09-29 14:25:33','2015-09-29 12:25:33','','liip','','inherit','open','closed','','liip','','','2015-09-29 14:25:33','2015-09-29 12:25:33','',0,'http://ogdch.dev/content/uploads/2015/09/liip.png',0,'attachment','image/png',0);
-INSERT INTO `ogdch_posts` VALUES (291,1,'2015-10-12 11:50:14','2015-10-12 09:50:14','','Sub-Organization','','publish','closed','closed','','sub-organization','','','2015-10-14 11:51:24','2015-10-14 09:51:24','',0,'http://ogdch.dev/?post_type=ckan-local-org&#038;p=291',0,'ckan-local-org','',0);
+INSERT INTO `ogdch_posts` VALUES (291,1,'2015-10-12 11:50:14','2015-10-12 09:50:14','','Sub-Organization','','publish','closed','closed','','sub-organization','','','2015-12-04 13:27:17','2015-12-04 12:27:17','',0,'http://ogdch.dev/?post_type=ckan-local-org&#038;p=291',0,'ckan-local-org','',0);
 INSERT INTO `ogdch_posts` VALUES (292,1,'2015-10-22 14:09:32','0000-00-00 00:00:00','This is a preview of how this form will appear on your website','Form Preview Page','','draft','closed','closed','','','','','2015-10-22 14:09:32','2015-10-22 12:09:32','',0,'http://ogdch.dev/?page_id=292',0,'page','',0);
-INSERT INTO `ogdch_posts` VALUES (297,1,'2015-11-03 09:28:12','2015-11-03 08:28:12','','National boundaries','','publish','closed','closed','','national-boundaries','','','2015-11-06 09:13:27','2015-11-06 08:13:27','',0,'http://ogdch.dev/?post_type=ckan-local-dataset&#038;p=297',0,'ckan-local-dataset','',0);
-INSERT INTO `ogdch_posts` VALUES (300,1,'2015-11-04 16:09:08','2015-11-04 15:09:08','','Bibliothek am Guisanplatz','','publish','closed','closed','','bibliothek-am-guisanplatz','','','2015-11-04 16:09:17','2015-11-04 15:09:17','',0,'http://ogdch.dev/?post_type=ckan-local-org&#038;p=300',0,'ckan-local-org','',0);
-INSERT INTO `ogdch_posts` VALUES (301,1,'2015-11-04 16:10:59','2015-11-04 15:10:59','','Schweizerische Nationalbibliothek','','publish','closed','closed','','schweizerische-nationalbibliothek','','','2015-11-04 16:11:14','2015-11-04 15:11:14','',0,'http://ogdch.dev/?post_type=ckan-local-org&#038;p=301',0,'ckan-local-org','',0);
-INSERT INTO `ogdch_posts` VALUES (302,1,'2015-11-04 16:13:09','2015-11-04 15:13:09','','Bundesamt für Gesundheit','','publish','closed','closed','','bundesamt-fur-gesundheit','','','2015-11-04 16:13:15','2015-11-04 15:13:15','',0,'http://ogdch.dev/?post_type=ckan-local-org&#038;p=302',0,'ckan-local-org','',0);
-INSERT INTO `ogdch_posts` VALUES (303,1,'2015-11-04 16:14:00','2015-11-04 15:14:00','','Schweizerische Bundesbahnen (SBB)','','publish','closed','closed','','schweizerische-bundesbahnen-sbb','','','2015-11-04 16:14:06','2015-11-04 15:14:06','',0,'http://ogdch.dev/?post_type=ckan-local-org&#038;p=303',0,'ckan-local-org','',0);
-INSERT INTO `ogdch_posts` VALUES (304,1,'2015-11-04 16:15:08','2015-11-04 15:15:08','','Bundesamt für Statistik','','publish','closed','closed','','bundesamt-fur-statistik','','','2015-11-04 16:15:15','2015-11-04 15:15:15','',0,'http://ogdch.dev/?post_type=ckan-local-org&#038;p=304',0,'ckan-local-org','',0);
+INSERT INTO `ogdch_posts` VALUES (297,1,'2015-11-03 09:28:12','2015-11-03 08:28:12','','National boundaries','','publish','closed','closed','','national-boundaries','','','2015-12-04 13:24:55','2015-12-04 12:24:55','',0,'http://ogdch.dev/?post_type=ckan-local-dataset&#038;p=297',0,'ckan-local-dataset','',0);
+INSERT INTO `ogdch_posts` VALUES (300,1,'2015-11-04 16:09:08','2015-11-04 15:09:08','','Bibliothek am Guisanplatz','','publish','closed','closed','','bibliothek-am-guisanplatz','','','2015-12-04 13:26:11','2015-12-04 12:26:11','',0,'http://ogdch.dev/?post_type=ckan-local-org&#038;p=300',0,'ckan-local-org','',0);
+INSERT INTO `ogdch_posts` VALUES (301,1,'2015-11-04 16:10:59','2015-11-04 15:10:59','','Schweizerische Nationalbibliothek','','publish','closed','closed','','schweizerische-nationalbibliothek','','','2015-12-04 13:27:07','2015-12-04 12:27:07','',0,'http://ogdch.dev/?post_type=ckan-local-org&#038;p=301',0,'ckan-local-org','',0);
+INSERT INTO `ogdch_posts` VALUES (302,1,'2015-11-04 16:13:09','2015-11-04 15:13:09','','Bundesamt für Gesundheit','','publish','closed','closed','','bundesamt-fur-gesundheit','','','2015-12-04 13:26:21','2015-12-04 12:26:21','',0,'http://ogdch.dev/?post_type=ckan-local-org&#038;p=302',0,'ckan-local-org','',0);
+INSERT INTO `ogdch_posts` VALUES (303,1,'2015-11-04 16:14:00','2015-11-04 15:14:00','','Schweizerische Bundesbahnen (SBB)','','publish','closed','closed','','schweizerische-bundesbahnen-sbb','','','2015-12-04 13:26:56','2015-12-04 12:26:56','',0,'http://ogdch.dev/?post_type=ckan-local-org&#038;p=303',0,'ckan-local-org','',0);
+INSERT INTO `ogdch_posts` VALUES (304,1,'2015-11-04 16:15:08','2015-11-04 15:15:08','','Bundesamt für Statistik','','publish','closed','closed','','bundesamt-fur-statistik','','','2015-12-04 13:26:34','2015-12-04 12:26:34','',0,'http://ogdch.dev/?post_type=ckan-local-org&#038;p=304',0,'ckan-local-org','',0);
 INSERT INTO `ogdch_posts` VALUES (305,1,'2015-11-18 10:47:58','2015-11-18 09:47:58','','Nutzungsbedigungen','','publish','closed','closed','','terms-of-use','','','2015-11-18 10:50:34','2015-11-18 09:50:34','',0,'http://ogdch.dev/?page_id=305',0,'page','',0);
 INSERT INTO `ogdch_posts` VALUES (306,1,'2015-11-18 10:47:58','2015-11-18 09:48:15','','Terms of use','','publish','closed','closed','','terms-of-use','','','2015-11-18 10:48:15','2015-11-18 09:48:15','',0,'http://ogdch.dev/?page_id=306',0,'page','',0);
 INSERT INTO `ogdch_posts` VALUES (307,1,'2015-11-18 10:47:58','2015-11-18 09:49:09','','Condizioni d\'uso','','publish','closed','closed','','terms-of-use','','','2015-11-18 10:50:21','2015-11-18 09:50:21','',0,'http://ogdch.dev/?page_id=307',0,'page','',0);
@@ -1473,6 +1492,7 @@ INSERT INTO `ogdch_posts` VALUES (310,1,'2015-12-02 17:34:06','2015-12-02 16:31:
 INSERT INTO `ogdch_posts` VALUES (311,1,'2015-12-02 17:34:06','2015-12-02 16:31:58','','Legal framework','','publish','closed','closed','','legal-framework','','','2015-12-02 17:31:58','2015-12-02 16:31:58','',0,'http://ogdch.dev/?page_id=311',0,'page','',0);
 INSERT INTO `ogdch_posts` VALUES (312,1,'2015-12-02 17:34:06','2015-12-02 16:33:22','','Quadro giuridico','','publish','closed','closed','','legal-framework','','','2015-12-02 17:33:51','2015-12-02 16:33:51','',0,'http://ogdch.dev/?page_id=312',0,'page','',0);
 INSERT INTO `ogdch_posts` VALUES (313,1,'2015-12-02 17:34:06','2015-12-02 16:34:06','','Cadre juridique','','publish','closed','closed','','legal-framework','','','2015-12-02 17:34:17','2015-12-02 16:34:17','',0,'http://ogdch.dev/?page_id=313',0,'page','',0);
+INSERT INTO `ogdch_posts` VALUES (314,1,'2015-12-04 13:23:26','2015-12-04 12:23:26','','Bundesamt für Chüngelihaltig (BfHüpf)','','publish','closed','closed','','bundesamt-fur-chungelihaltig-bfhupf','','','2015-12-04 13:23:26','2015-12-04 12:23:26','',0,'http://ogdch.dev/?post_type=ckan-local-org&#038;p=314',0,'ckan-local-org','',0);
 /*!40000 ALTER TABLE `ogdch_posts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2117,4 +2137,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-12-03  8:31:22
+-- Dump completed on 2015-12-04 12:27:56
