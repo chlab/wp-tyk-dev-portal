@@ -20,6 +20,12 @@ template "/home/vagrant/.bash_aliases" do
   source ".bash_aliases.erb"
 end
 
+template "/var/www/ogdch.dev/.htaccess" do
+  user "vagrant"
+  mode "0644"
+  source "dev.htaccess"
+end
+
 remote_file "#{CACHE}/epel-release-7-5.noarch.rpm" do
   source "http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm"
   not_if "rpm -qa | egrep -qx 'epel-release-7-5(|.noarch)'"
