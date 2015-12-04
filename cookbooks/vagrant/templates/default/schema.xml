@@ -414,14 +414,17 @@
     <!-- Multilingual -->
     <field name="text_en" type="text_en" indexed="true" stored="true"/>
     <field name="title_en" type="text_en" indexed="true" stored="true"/>
+    <field name="description_en" type="text_en" indexed="true" stored="true"/>
     <field name="keywords_en" type="string" indexed="true" stored="true" multiValued="true"/>
 
     <field name="text_fr" type="text_fr" indexed="true" stored="true"/>
     <field name="title_fr" type="text_fr" indexed="true" stored="true"/>
+    <field name="description_fr" type="text_fr" indexed="true" stored="true"/>
     <field name="keywords_fr" type="string" indexed="true" stored="true" multiValued="true"/>
 
     <field name="text_de" type="text_de" indexed="true" stored="true"/>
     <field name="title_de" type="text_de" indexed="true" stored="true"/>
+    <field name="description_de" type="text_de" indexed="true" stored="true"/>
     <field name="keywords_de" type="string" indexed="true" stored="true" multiValued="true"/>
 
     <field name="text_es" type="text_es" indexed="true" stored="true"/>
@@ -429,6 +432,7 @@
 
     <field name="text_it" type="text_it" indexed="true" stored="true"/>
     <field name="title_it" type="text_it" indexed="true" stored="true"/>
+    <field name="description_it" type="text_it" indexed="true" stored="true"/>
     <field name="keywords_it" type="string" indexed="true" stored="true" multiValued="true"/>
 
     <field name="text_nl" type="text_nl" indexed="true" stored="true"/>
