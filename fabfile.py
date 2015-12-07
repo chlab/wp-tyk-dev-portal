@@ -214,6 +214,14 @@ def restart_rabbitmq():
     sudo("systemctl restart rabbitmq-server")
 
 @roles('ckan')
+def restart_harvester():
+    """
+    Restart CKAN gather/fetch daemons
+    """
+    sudo("systemctl restart ckangather")
+    sudo("systemctl restart ckanfetch")
+
+@roles('ckan')
 def restart_tomcat():
     """
     Restart tomcat server (Solr)
@@ -298,7 +306,7 @@ def update_config():
 
 @roles('wordpress', 'wordpress_db', 'ckan', 'ckan_db')
 @runs_once
-def deploy_without_db(rev='origin/master'):
+def deploy(rev='origin/master'):
     """
     Deploy the whole application, without a DB restore
     """
@@ -310,9 +318,9 @@ def deploy_without_db(rev='origin/master'):
 
 @roles('wordpress', 'wordpress_db', 'ckan', 'ckan_db')
 @runs_once
-def deploy(rev='origin/master'):
+def deploy_with_db_reset(rev='origin/master'):
     """
-    Deploy the whole application
+    Deploy the whole application and reset the DB
     """
     commit = _rev_parse(rev)
     execute(update_repo, commit=commit)
@@ -341,6 +349,7 @@ def restart():
     execute(restart_redis)
     execute(restart_postgresql)
     execute(restart_tomcat)
+    execute(restart_harvester)
     execute(restart_apache)
 
 @roles('wordpress', 'ckan')
