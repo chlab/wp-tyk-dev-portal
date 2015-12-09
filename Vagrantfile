@@ -47,6 +47,7 @@ Vagrant.configure("2") do |config|
     end
 
     provider.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/v-root", "1"]
+    provider.memory = 1024
 
     config.vm.network :private_network, ip: local_ip
     config.vm.hostname = local_host_name
