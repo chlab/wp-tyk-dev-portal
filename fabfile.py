@@ -314,6 +314,7 @@ def deploy(rev='origin/master'):
     execute(update_repo, commit=commit)
     execute(update_config)
     execute(update_dependencies)
+    execute(rebuild_search_index)
     execute(restart)
 
 @roles('wordpress', 'wordpress_db', 'ckan', 'ckan_db')
