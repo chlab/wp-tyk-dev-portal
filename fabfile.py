@@ -359,7 +359,15 @@ def log():
     Show logs of server
     """
     sudo("ls /var/log/httpd")
-    execute(tail_log)
+    execute(tail_log, path="/var/log/httpd")
+
+@roles('ckan')
+@serial
+def log_ckan():
+    """
+    Show logs of server
+    """
+    execute(tail_log, path="/var/log/httpd/ckan_default.error.log")
 
 @roles('ckan')
 def paster(cmd='', plugin=None):
@@ -369,13 +377,16 @@ def paster(cmd='', plugin=None):
 
 @roles('wordpress', 'ckan')
 @parallel
-def tail_log():
+def tail_log(path):
     """
     Tail logs of several servers
     """
     assert(env.remote_interrupt == True)
     with settings(warn_only=True):
-        sudo("bash -c 'find /var/log/httpd | xargs tail -f'", shell=False)
+        sudo(
+            "bash -c 'find %s | xargs tail -f'" % (path),
+            shell=False
+        )
 
 
 
