@@ -10,7 +10,7 @@ from fabric.contrib.files import exists, sed
 # dict will be made available as a fabric task and the properties you put in a
 # particular environment will be made available in the `env` variable.
 ENVIRONMENTS = {
-    'stage': {
+    'live': {
         'home': '/home/liipadmin',
         'root': '/home/liipadmin/ogd-ch',
         'url': 'http://ogdch.begasoft.ch',
