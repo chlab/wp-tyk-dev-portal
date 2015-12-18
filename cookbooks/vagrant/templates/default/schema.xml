@@ -410,6 +410,10 @@
     <!-- Copy the title field into titleString, and treat as a string
          (rather than text type).  This allows us to sort on the titleString -->
     <field name="title_string" type="string" indexed="true" stored="true" />
+    <field name="title_string_de" type="string" indexed="true" stored="true" />
+    <field name="title_string_fr" type="string" indexed="true" stored="true" />
+    <field name="title_string_it" type="string" indexed="true" stored="true" />
+    <field name="title_string_en" type="string" indexed="true" stored="true" />
      
     <!-- Multilingual -->
     <field name="text_en" type="text_en" indexed="true" stored="true"/>

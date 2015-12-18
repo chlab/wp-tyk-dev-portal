@@ -18,7 +18,7 @@
 	url = https://github.com/open-data/ckanext-fluent.git
 [submodule "ckanext/ckanext-scheming"]
 	path = web/ckanext/ckanext-scheming
-	url = https://github.com/open-data/ckanext-scheming.git
+	url = https://github.com/ogdch/ckanext-scheming.git
 [submodule "ckanext/ckanext-hierarchy"]
 	path = web/ckanext/ckanext-hierarchy
 	url = https://github.com/datagovuk/ckanext-hierarchy.git

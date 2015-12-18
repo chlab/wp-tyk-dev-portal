@@ -92,7 +92,7 @@ Make sure to always specify an environment task (`dev`, `test` or `stage`) and c
 
 ## Run tests
 
-1. To run the cucumber tests type `cucumber-js --tags @finished test/features --require test/features` in the command line
+1. To run the cucumber tests type `cucumber-js --tags @finished /vagrant/tests/features --require /vagrant/tests/features` in the command line
 
 1. To run unit tests type `bin/phpunit`
 
