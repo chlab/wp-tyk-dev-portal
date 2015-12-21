@@ -359,6 +359,7 @@ def log():
     """
     Show logs of server
     """
+    # make sure sudo requests is done in serial part
     sudo("ls /var/log/httpd")
     execute(tail_log, path="/var/log/httpd")
 
@@ -368,6 +369,8 @@ def log_ckan():
     """
     Show logs of server
     """
+    # make sure sudo requests is done in serial part
+    sudo("ls /var/log/httpd/ckan_default.error.log")
     execute(tail_log, path="/var/log/httpd/ckan_default.error.log")
 
 @roles('ckan')
@@ -376,7 +379,6 @@ def paster(cmd='', plugin=None):
         cmd = "--plugin='%s' %s" % (plugin, cmd)
     _run_paster(cmd)
 
-@roles('wordpress', 'ckan')
 @parallel
 def tail_log(path):
     """
