@@ -13,8 +13,8 @@ ENVIRONMENTS = {
     'live': {
         'home': '/home/liipadmin',
         'root': '/home/liipadmin/ogd-ch',
-        'url': 'http://ogdch.begasoft.ch',
-        'piwik_url': 'http://ogdch-piwik.clients.liip.ch',
+        'url': 'https://opendata.swiss',
+        'piwik_url': 'https://piwik.opendata.swiss',
         'vagrant': False,
         'ckan_config': 'live.ini',
         'wp_config': 'wp-live-config.php',
