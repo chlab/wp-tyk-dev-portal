@@ -1,8 +1,13 @@
 # Password protection
+SetEnvIf Request_URI ^/api/ noauth=1
 AuthType Basic
 AuthName "opendata.swiss goes live on 2 February 2016!"
 AuthUserFile /var/www/.htpasswd
 Require valid-user
+<RequireAny>
+  Require env noauth
+  Require valid-user
+</RequireAny>
 
 ErrorDocument 401 "<html><meta http-equiv=\"refresh\" content=\"0;url=http://opendata.admin.ch\"></html>"
 
