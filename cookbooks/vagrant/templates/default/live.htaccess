@@ -1,5 +1,6 @@
 # Password protection
 SetEnvIf Request_URI ^/api/ noauth=1
+SetEnvIf Request_URI ^/cms/wp-admin/admin-ajax.php noauth=1
 AuthType Basic
 AuthName "opendata.swiss goes live on 2 February 2016!"
 AuthUserFile /var/www/.htpasswd
