@@ -171,12 +171,56 @@ def update_piwik_config():
     sudo('chown liipadmin:liipadmin /var/www/piwik/config/config.ini.php')
     sudo('chmod 664 /var/www/piwik/config/config.ini.php')
 
-@roles('wordpress', 'ckan')
-def restart_apache():
+@roles('wordpress')
+def wp_daemon(daemon, action="restart"):
     """
-    Restore apache webserver
+    Run an action on a daemon on the WP server
     """
-    sudo('systemctl restart httpd')
+    sudo('systemctl %s %s' % (action, daemon))
+
+@roles('wordpress_db')
+def wpdb_daemon(daemon, action="restart"):
+    """
+    Run an action on a daemon on the WP DB server
+    """
+    sudo('systemctl %s %s' % (action, daemon))
+
+@roles('ckan')
+def ckan_daemon(daemon, action="restart"):
+    """
+    Run an action on a daemon on the CKAN server
+    """
+    sudo('systemctl %s %s' % (action, daemon))
+
+@roles('ckan_db')
+def ckandb_daemon(daemon, action="restart"):
+    """
+    Run an action on a daemon on the CKAN DB server
+    """
+    sudo('systemctl %s %s' % (action, daemon))
+
+def restart_apache(action='restart'):
+    """
+    Restart Apache
+    """
+    execute(wp_daemon, daemon='httpd', action=action)
+    execute(ckan_daemon, daemon='httpd', action=action)
+
+@roles('ckan')
+def restart_harvester(action="restart"):
+    """
+    Restart CKAN gather/fetch daemons
+    """
+    execute(ckan_daemon, daemon="ckangather", action=action)
+    execute(ckan_daemon, daemon="ckanfetch", action=action)
+
+@roles('ckan')
+def rebuild_search_index():
+    """
+    Rebuild the solr search index of CKAN
+    """
+    execute(ckan_daemon, daemon='tomcat', action='restart')
+    _run_paster("--plugin=ckan search-index rebuild") 
 
 @roles('wordpress')
 def flush_cache():
@@ -185,56 +229,6 @@ def flush_cache():
     """
     sudo('redis-cli flushall')
 
-@roles('ckan_db')
-def restart_postgresql():
-    """
-    Restart PostgreSQL
-    """
-    sudo("systemctl restart postgresql")
-
-@roles('wordpress')
-def restart_redis():
-    """
-    Restart Redis
-    """
-    sudo("systemctl restart redis")
-
-@roles('wordpress_db')
-def restart_mariadb():
-    """
-    Restart MariaDB
-    """
-    sudo("systemctl restart mariadb")
-
-@roles('ckan')
-def restart_rabbitmq():
-    """
-    Restart RabbitMQ
-    """
-    sudo("systemctl restart rabbitmq-server")
-
-@roles('ckan')
-def restart_harvester():
-    """
-    Restart CKAN gather/fetch daemons
-    """
-    sudo("systemctl restart ckangather")
-    sudo("systemctl restart ckanfetch")
-
-@roles('ckan')
-def restart_tomcat():
-    """
-    Restart tomcat server (Solr)
-    """
-    sudo("systemctl restart tomcat")
-
-@roles('ckan')
-def rebuild_search_index():
-    """
-    Rebuild the solr search index of CKAN
-    """
-    execute(restart_tomcat)
-    _run_paster("--plugin=ckan search-index rebuild") 
 
 @roles('ckan_db')
 def restore_ckan_db():
@@ -345,13 +339,23 @@ def restart():
     """
     Restart all services
     """
-    execute(restart_rabbitmq)
-    execute(restart_mariadb)
-    execute(restart_redis)
-    execute(restart_postgresql)
-    execute(restart_tomcat)
-    execute(restart_harvester)
-    execute(restart_apache)
+    # stop all daemons
+    execute(ckan_daemon, daemon='rabbitmq-server', action='stop')
+    execute(wpdb_daemon, daemon='mariadb', action='stop')
+    execute(wp_daemon, daemon='redis', action='stop')
+    execute(ckandb_daemon, daemon='postgresql', action='stop')
+    execute(ckan_daemon, daemon='tomcat', action='stop')
+    execute(restart_harvester, action='stop')
+    execute(restart_apache, action='stop')
+
+    # start all daemon
+    execute(ckan_daemon, daemon='rabbitmq-server', action='start')
+    execute(wpdb_daemon, daemon='mariadb', action='start')
+    execute(wp_daemon, daemon='redis', action='start')
+    execute(ckandb_daemon, daemon='postgresql', action='start')
+    execute(ckan_daemon, daemon='tomcat', action='start')
+    execute(restart_harvester, action='start')
+    execute(restart_apache, action='start')
 
 @roles('wordpress', 'ckan')
 @serial
