@@ -157,11 +157,16 @@ end
 
 # register and start httpd
 execute "killall -9 httpd || true"
+template "/etc/httpd/conf/httpd.conf" do
+  owner "root"
+  group "root"
+  mode "0644"
+  source "httpd.conf"
+end
 service "httpd" do
   supports :restart => true, :reload => true, :status => true
   action [ :enable, :start ]
 end
-
 
 # setup postgresql
 execute "service postgresql initdb en_US.UTF8" do
@@ -357,15 +362,6 @@ template "/etc/httpd/conf.d/ckan_vhost.conf" do
   mode "0644"
   source "ckan_vhost.conf.erb"
   notifies :reload, "service[httpd]", :immediately
-end
-
-execute "killall -9 httpd || true"
-template "/etc/httpd/conf/httpd.conf" do
-  owner "root"
-  group "root"
-  mode "0644"
-  source "httpd.conf"
-  notifies :restart, "service[httpd]", :immediately
 end
 
 execute "killall -9 httpd || true"
