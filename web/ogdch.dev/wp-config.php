@@ -3,11 +3,6 @@
 // Load database info and local development parameters
 // ===================================================
 
-if ( ! defined( 'WP_HOME' ) ) {
-	define( 'WP_HOME', 'http://' . $_SERVER['HTTP_HOST'] );
-}
-
-
 if ( file_exists( dirname( __FILE__ ) . '/wp-local-config.php' ) ) {
 	// Local
 	include( dirname( __FILE__ ) . '/wp-local-config.php' );

@@ -64,6 +64,17 @@
 
 1. install the `pre-commit.sh` script as a pre-commit hook in your local repositories: `ln -s ../../pre-commit.sh .git/hooks/pre-commit`
 
+# Update translations
+
+All translations of static texts are handled with [Transifex](https://www.transifex.com/opendataswiss/).
+They consist of two parts:
+
+1. WordPress part in the [wp-ogdch-theme](https://gitlab.liip.ch/jazz/wp-ogdch-theme) plugin. Download the new translations from transifex and put them in the `languages` folder of the theme
+2. CKAN part in [ckanext-switzerland](https://github.com/ogdch/ckanext-switzerland) extension. Download the new translations from Transifex and put them in the the corresponding subfolder in `i18n`
+
+The WordPress translations are automatically loaded from all plugins.
+For CKAN there is a script to combine all translations and copy them to the correct path. This script is part of the `deploy` task in the fabfile. 
+
 # Deployment
 
 To deploy this application, we use [Fabric](http://docs.fabfile.org) (make sure it is installed via pip, see above: `pip install -r dev-requirements.txt`).

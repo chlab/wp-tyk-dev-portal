@@ -41,8 +41,8 @@ $redis_server = array( 'host' => '127.0.0.1', 'port' => 6379 );
 // Define Siteurl
 // ===================================================
 
-define( 'WP_HOME', 'http://ogdch.begasoft.ch' );
-define( 'WP_SITEURL', 'http://ogdch.begasoft.ch/cms' );
+define( 'WP_HOME', 'https://opendata.swiss' );
+define( 'WP_SITEURL', 'https://opendata.swiss/cms' );
 
 
 // ===================================================
@@ -73,7 +73,7 @@ define( 'WPMU_PLUGIN_URL', WP_HOME . '/content/mu-plugins' );
 // CKAN
 // ===================================================
 
-define( 'CKAN_API_ENDPOINT', 'http://ogdch.begasoft.ch/api/3/action/' );
+define( 'CKAN_API_ENDPOINT', 'https://opendata.swiss/api/3/action/' );
 define( 'CKAN_API_KEY', 'a3cdeb1f-6130-4a94-839e-f82393c1c393' ); // adminsuer key
 
 $language_priority = array(
@@ -88,7 +88,7 @@ $language_priority = array(
 // Piwik
 // ===================================================
 
-define( 'PIWIK_URL', 'ogdch-piwik.clients.liip.ch' );
+define( 'PIWIK_URL', 'piwik.opendata.swiss' );
 define( 'PIWIK_SITEID', 1 );
 
 
