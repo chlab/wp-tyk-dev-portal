@@ -407,6 +407,9 @@ def _get_environment_func(key, value):
         if env.vagrant:
             result = local('vagrant ssh-config | grep IdentityFile', capture=True)
             env.key_filename = result.split()[1]
+            # remove surrounding quotes
+            if env.key_filename.startswith('"') and env.key_filename.endswith('"'):
+                env.key_filename = env.key_filename[1:-1]
 
     load_environment.__name__ = key
     load_environment.__doc__ = "Definition of the %s environment." % key
