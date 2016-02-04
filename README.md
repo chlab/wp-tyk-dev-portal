@@ -51,7 +51,7 @@
 
 1. Install theme dependencies
    ```
-   $ cd web/ogdch.dev/content/themes/ogdch/
+   $ cd web/ogdch.dev/content/themes/wp-ogdch-theme/
    $ npm install
    ```
 
