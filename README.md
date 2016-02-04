@@ -12,7 +12,7 @@
 1. Install omnibus plugin for vagrant: `vagrant plugin install vagrant-omnibus`
 1. Install trigger plugin for vagrant: `vagrant plugin install vagrant-triggers`
 1. Run `vagrant up`
-1. Copy the `ogdch.dev/wp-local-config.php.dist` to `ogdch.dev/wp-local-config.php` and fill in the DB config values
+1. Copy the `web/ogdch.dev/wp-local-config.php.dist` to `web/ogdch.dev/wp-local-config.php` and fill in the DB config values
     ```
     define( 'DB_NAME', 'cms' );
     define( 'DB_USER', 'cms' );
