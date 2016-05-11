@@ -44,6 +44,23 @@ ENVIRONMENTS = {
             'ckan_db': ['ogdentwckan1'],
         }
     },
+    'abnahme': {
+        'home': '/home/liipadmin',
+        'root': '/home/liipadmin/ogd-ch',
+        'url': 'http://ogdch-abnahme.clients.liip.ch',
+        'piwik_url': 'http://ogdch-piwik-abnahme.clients.liip.ch',
+        'vagrant': False,
+        'ckan_config': 'abnahme.ini',
+        'wp_config': 'wp-abnahme-config.php',
+        'piwik_config': 'piwik-abnahme-config.ini.php',
+        'htaccess': 'abnahme.htaccess',
+        'roledefs': {
+            'wordpress': ['ogdabnawp1'],
+            'wordpress_db': ['ogdabnadbwp'],
+            'ckan': ['ogdabnaappckan1'],
+            'ckan_db': ['ogdabnadbckan'],
+        }
+    },
     'dev': {
         'home': '/home/vagrant',
         'root': '/vagrant',
