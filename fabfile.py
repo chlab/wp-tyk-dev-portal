@@ -1,9 +1,12 @@
 import os
 import pipes
+import re
 from fabric.api import (
     cd, env, execute, local, run, settings, roles, sudo, parallel, serial, runs_once
 )
 from fabric.contrib.files import exists, sed
+from fabric.contrib.console import confirm
+from fabric.utils import abort
 
 
 # This is the definition of your environments. Every item of the ENVIRONMENTS
@@ -16,6 +19,7 @@ ENVIRONMENTS = {
         'url': 'https://opendata.swiss',
         'piwik_url': 'https://piwik.opendata.swiss',
         'vagrant': False,
+        'allow_restore': False,
         'ckan_config': 'live.ini',
         'wp_config': 'wp-live-config.php',
         'piwik_config': 'piwik-live-config.ini.php',
@@ -24,7 +28,7 @@ ENVIRONMENTS = {
            'wordpress': ['ogdprodwp1'],
            'wordpress_db': ['ogdproddbwp'],
            'ckan': ['ogdprodappckan1'],
-           'ckan_db': ['ogdproddbckan'],
+           'ckan_db': ['ogdproddbckan']
         }
     },
     'test': {
@@ -33,6 +37,7 @@ ENVIRONMENTS = {
         'url': 'http://ogdch-test.clients.liip.ch',
         'piwik_url': 'http://ogdch-piwik-test.clients.liip.ch',
         'vagrant': False,
+        'allow_restore': False,
         'ckan_config': 'test.ini',
         'wp_config': 'wp-test-config.php',
         'piwik_config': 'piwik-test-config.ini.php',
@@ -41,7 +46,25 @@ ENVIRONMENTS = {
             'wordpress': ['ogdentwwp1'],
             'wordpress_db': ['ogdentwwp1'],
             'ckan': ['ogdentwckan1'],
-            'ckan_db': ['ogdentwckan1'],
+            'ckan_db': ['ogdentwckan1']
+        }
+    },
+    'abnahme': {
+        'home': '/home/liipadmin',
+        'root': '/home/liipadmin/ogd-ch',
+        'url': 'http://ogdch-abnahme.clients.liip.ch',
+        'piwik_url': 'http://ogdch-piwik-abnahme.clients.liip.ch',
+        'vagrant': False,
+        'allow_restore': True,
+        'ckan_config': 'abnahme.ini',
+        'wp_config': 'wp-abnahme-config.php',
+        'piwik_config': 'piwik-abnahme-config.ini.php',
+        'htaccess': 'abnahme.htaccess',
+        'roledefs': {
+            'wordpress': ['ogdabnawp1'],
+            'wordpress_db': ['ogdabnadbwp'],
+            'ckan': ['ogdabnaappckan1'],
+            'ckan_db': ['ogdabnadbckan']
         }
     },
     'dev': {
@@ -50,16 +73,12 @@ ENVIRONMENTS = {
         'url': 'http://ogdch.dev',
         'piwik_url': 'http://piwik.ogdch.dev',
         'vagrant': True,
+        'allow_restore': True,
         'ckan_config': 'development.ini',
         'wp_config': 'wp-local-config.php',
         'piwik_config': 'piwik-local-config.ini.php',
         'htaccess': 'dev.htaccess',
-        'roledefs': {
-            'wordpress': ['vagrant@127.0.0.1:2222'],
-            'wordpress_db': ['vagrant@127.0.0.1:2222'],
-            'ckan': ['vagrant@127.0.0.1:2222'],
-            'ckan_db': ['vagrant@127.0.0.1:2222'],
-        }
+        # roledefs will be defined dynamically below (see _get_environment_func())
     }
 }
 
@@ -235,6 +254,12 @@ def restore_ckan_db():
     """
     Restore the CKAN database based on the checked-in db dump
     """
+    if not env.allow_restore:
+        abort('Restore not allowed on this environment!')
+
+    if not confirm('Do you really want to restore the CKAN database?', default=False):
+        abort('Restore aborted.')
+
     with cd('/tmp'):
         with settings(sudo_user='postgres'):
             db_list = sudo("psql -c '\l'")
@@ -257,6 +282,12 @@ def restore_wp_db():
     """
     Restore the WordPress database based on the checked-in db dump
     """
+    if not env.allow_restore:
+        abort('Restore not allowed on this environment!')
+
+    if not confirm('Do you really want to restore the WordPress database?', default=False):
+        abort('Restore aborted.')
+
     if env.vagrant:
         pass_option = ''
     else:
@@ -277,6 +308,12 @@ def restore_piwik_db():
     """
     Restore the Piwik database based on the checked-in db dump
     """
+    if not env.allow_restore:
+        abort('Restore not allowed on this environment!')
+
+    if not confirm('Do you really want to restore the Piwik database?', default=False):
+        abort('Restore aborted.')
+
     if env.vagrant:
         pass_option = ''
     else:
@@ -317,6 +354,9 @@ def deploy_with_db_reset(rev='origin/master'):
     """
     Deploy the whole application and reset the DB
     """
+    if not env.allow_restore:
+        abort('DB reset not allowed on this environment!')
+
     commit = _rev_parse(rev)
     execute(update_repo, commit=commit)
     execute(update_config)
@@ -328,6 +368,9 @@ def restore():
     """
     Restore the CKAN, WordPress and Piwik database
     """
+    if not env.allow_restore:
+        abort('Restore not allowed on this environment!')
+
     execute(restore_ckan_db)
     execute(restore_wp_db)
     execute(restore_piwik_db)
@@ -405,8 +448,19 @@ def _get_environment_func(key, value):
         env.update(value)
         env.environment = key
         if env.vagrant:
-            result = local('vagrant ssh-config | grep IdentityFile', capture=True)
-            env.key_filename = result.split()[1]
+            result = local('vagrant ssh-config', capture=True)
+            hostname = re.findall(r'HostName\s+([^\n]+)', result)[0]
+            port = re.findall(r'Port\s+([^\n]+)', result)[0]
+            user = re.findall(r'User\s+([^\n]+)', result)[0]
+
+            env.roledefs = {
+                'wordpress': ['%s@%s:%s'%(user, hostname, port)],
+                'wordpress_db': ['%s@%s:%s'%(user, hostname, port)],
+                'ckan': ['%s@%s:%s'%(user, hostname, port)],
+                'ckan_db': ['%s@%s:%s'%(user, hostname, port)]
+            }
+            env.forward_agent = True  # use SSH keys from host
+            env.key_filename = re.findall(r'IdentityFile\s+([^\n]+)', result)[0]
             # remove surrounding quotes
             if env.key_filename.startswith('"') and env.key_filename.endswith('"'):
                 env.key_filename = env.key_filename[1:-1]

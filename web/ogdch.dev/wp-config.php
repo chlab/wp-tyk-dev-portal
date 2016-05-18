@@ -6,6 +6,9 @@
 if ( file_exists( dirname( __FILE__ ) . '/wp-local-config.php' ) ) {
 	// Local
 	include( dirname( __FILE__ ) . '/wp-local-config.php' );
+} elseif ( file_exists( dirname( __FILE__ ) . '/wp-abnahme-config.php' ) ) {
+	// Abnahme
+	include( dirname( __FILE__ ) . '/wp-abnahme-config.php' );
 } elseif ( file_exists( dirname( __FILE__ ) . '/wp-test-config.php' ) ) {
 	// Test
 	include( dirname( __FILE__ ) . '/wp-test-config.php' );
