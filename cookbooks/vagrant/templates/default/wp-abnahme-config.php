@@ -7,7 +7,7 @@
 define( 'DB_NAME', 'cms' );
 define( 'DB_USER', 'cms' );
 define( 'DB_PASSWORD', 'kcnsh72g' );
-define( 'DB_HOST', 'localhost' );
+define( 'DB_HOST', '10.0.119.45' );
 
 
 // ===================================================
