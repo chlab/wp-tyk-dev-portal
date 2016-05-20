@@ -46,6 +46,3 @@
 [submodule "web/ogdch.dev/content/plugins/ninja-forms"]
 	path = web/ogdch.dev/content/plugins/ninja-forms
 	url = https://github.com/wpninjas/ninja-forms.git
-[submodule "web/ogdch.dev/content/plugins/query-monitor"]
-	path = web/ogdch.dev/content/plugins/query-monitor
-	url = https://github.com/johnbillion/query-monitor.git
