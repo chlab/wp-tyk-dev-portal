@@ -30,7 +30,7 @@ from docopt import docopt
 from pprint import pprint
 from email.mime.text import MIMEText
 from ConfigParser import ConfigParser
-
+from requests.packages.urllib3.exceptions import InsecureRequestWarning
 
 
 FROM_MAIL = 'error_email_from'
@@ -135,7 +135,9 @@ if __name__ == '__main__':
     ### Fetch Data
     pkgs = ogdremote.action.package_list()
 
-    for id in pkgs: #for id in pkgs[300:400]:
+    requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+
+    for id in pkgs:
         check_package(id)
 
     if not arguments['--dry']:
