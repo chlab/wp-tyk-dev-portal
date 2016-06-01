@@ -1,3 +1,23 @@
+"""
+Resource Testing.
+
+Test resource-links of all packages of the configured CKAN URL for the given environment-file.
+Generates a tmp-folder containing a log-file and a mail-folder if URLs of the resources were not accessible.
+
+Usage:
+    resource_test.py -c path-to-development.ini [--dry]
+    resource_test.py -h | --help
+
+Options:
+    -h, --help                    Show this help message and exit.
+    -c, --config <path-to-ini>    Path to configuration-file, e.g. /var/www/development.ini
+    -d, --dry                     a.k.a. Debug. Run Tests, generate Error-Mails without sending them.
+    --version                     Show the version and exit.
+
+Example:
+    resource_test.py -c ../web/ckan/development.ini
+"""
+
 import ckanapi
 import requests
 import tempfile
@@ -5,29 +25,19 @@ import shutil
 import os
 import smtplib
 import re
+from docopt import docopt
+
 from pprint import pprint
 from email.mime.text import MIMEText
+from ConfigParser import ConfigParser
 
-### Preferences
-remote_ckan_url_prod = 'https://opendata.swiss/'
-remote_ckan_url_abna = 'http://ogdch-abnahme.clients.liip.ch/'
 
-remote_ckan_url = remote_ckan_url_prod
-ogdremote = ckanapi.RemoteCKAN(remote_ckan_url)
 
-from_mail = 'no-reply@opendata.swiss'
+FROM_MAIL = 'error_email_from'
+SITE_URL = 'ckan.site_url'
+SMTP_SERVER = 'smtp.server' # = localhost
+SMTP_HOST = 'smtp.host' # = 1025
 
-### Setup
-tmp_dir = tempfile.mkdtemp()
-mail_dir = tmp_dir + '/mails/'
-os.makedirs(mail_dir)
-pprint(tmp_dir)
-log = open(tmp_dir + '/log.txt', 'w')
-log.write('Checking Resource-Links of ' + remote_ckan_url + '\n\n')
-url_pattern = re.compile('^(http://)?(-)?$')
-
-### Fetch Data
-pkgs = ogdremote.action.package_list()
 
 ### Functions
 def check_status(url, pkg):
@@ -48,7 +58,7 @@ def check_status(url, pkg):
         log.write('\n EXCEPTION OCCURED: \n' + str(e) + '\n')
         # prepare_mail(pkg, url, str(e))
 
-def prepare_mail(contact_points, url, error_msg):
+def prepare_mail(pkg, url, error_msg):
     for contact in pkg['contact_points']:
         receiver_mail = 'test'+contact['email']+'1234' #contact['email']
         receiver_name = contact['name']
@@ -59,9 +69,6 @@ def prepare_mail(contact_points, url, error_msg):
             msg+= 'Hello ' + receiver_name + '!\n\n'
             msg+= 'While accessing the following resources, we found some unexpected behaviour.\n'
             msg+= 'Please check if those resources are still available.\n\n'
-        #else:
-        #    mailbody = open(fname, 'r')
-        #    if url in mailbody:
         msg+= 'Dataset [' + pkg['name'] + ']: \n'
         msg+= error_msg + '\n\n'
         mail = open(fname, 'a')
@@ -90,21 +97,49 @@ def send_mails():
 
         msg['Subject'] = 'Information'
         msg['From'] = from_mail
-        msg['To'] = 'stefanie.taepke@liip.ch' #filename
+        msg['To'] = filename
 
-        s = smtplib.SMTP('localhost', 1025)
-        s.sendmail(filename, 'stefanie.taepke@liip.ch', msg.as_string())
+        smtp_host = config.get('app:main', SMTP_SERVER)
+        smtp_port = config.get('app:main', SMTP_HOST)
+
+        s = smtplib.SMTP(smtp_host, smtp_port)
+        s.sendmail(filename, filename, msg.as_string())
         s.quit()
 
 ### Execution
-for id in pkgs[300:400]: # for id in pkgs:
-    check_package(id)
+if __name__ == '__main__':
 
-### Testing
-#check_package('adresses-georeferencees-a-lentree-du-batiment')
-#check_package('larmbelastung-durch-eisenbahnverkehr-nacht')
-#check_package('677')
-send_mails()
+    # Parse the configuration
+    arguments = docopt(__doc__)
 
-### Tear Down
-#shutil.rmtree(tmp_dir)
+    config = ConfigParser()
+    config.read(arguments['--config'])
+
+    remote_ckan_url = config.get('app:main', SITE_URL, '')
+    ogdremote = ckanapi.RemoteCKAN(remote_ckan_url)
+
+    from_mail = config.get('app:main', FROM_MAIL, '')
+
+    ### Setup
+    tmp_dir = tempfile.mkdtemp()
+    mail_dir = tmp_dir + '/mails/'
+    os.makedirs(mail_dir)
+    pprint(tmp_dir)
+    log = open(tmp_dir + '/log.txt', 'w')
+    log.write('Checking Resource-Links of ' + remote_ckan_url + '\n\n')
+    url_pattern = re.compile('^(http://)?(-)?$')
+
+    ### Fetch Data
+    pkgs = ogdremote.action.package_list()
+
+    for id in pkgs: #for id in pkgs[300:400]:
+        check_package(id)
+
+    if not arguments['--dry']:
+        send_mails()
+
+        ### Tear Down
+        shutil.rmtree(tmp_dir)
+        log.write('DONE. Tmp-Folder deleted.')
+    else:
+        log.write('DONE. No mails sent.')
