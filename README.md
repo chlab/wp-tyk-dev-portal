@@ -201,7 +201,7 @@ To restore the databases, you can use the following script:
 
     $ /vagrant/scripts/restore_dumps.sh
 
-## Testing Resources for availability
+## Testing URL-Resources of CKAN-Instance
 
 To test the availability of all URLs of all available Packages for the current Host, first fire up a fake mail-server, that logs incoming mails. For that you need to configure the SMTP-Server accordingly, in the ini-File:
 	
