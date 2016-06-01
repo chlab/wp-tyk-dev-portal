@@ -122,10 +122,10 @@ if __name__ == '__main__':
 
     ### Setup
     tmp_dir = tempfile.mkdtemp()
-    mail_dir = tmp_dir + '/mails/'
+    mail_dir = os.path.join(tmp_dir, 'mails')
     os.makedirs(mail_dir)
     pprint(tmp_dir)
-    log = open(tmp_dir + '/log.txt', 'w')
+    log = open(os.path.join(tmp_dir, 'log.txt'), 'w')
     log.write('Checking Resource-Links of ' + remote_ckan_url + '\n\n')
     url_pattern = re.compile('^(http://)?(-)?$')
 
