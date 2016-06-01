@@ -43,10 +43,10 @@ ENVIRONMENTS = {
         'piwik_config': 'piwik-test-config.ini.php',
         'htaccess': 'test.htaccess',
         'roledefs': {
-            'wordpress': ['ogdentwwp1'],
-            'wordpress_db': ['ogdentwwp1'],
-            'ckan': ['ogdentwckan1'],
-            'ckan_db': ['ogdentwckan1']
+            'wordpress': ['ogdtestwp1'],
+            'wordpress_db': ['ogdtestwp1'],
+            'ckan': ['ogdtestckan1'],
+            'ckan_db': ['ogdtestckan1']
         }
     },
     'abnahme': {
