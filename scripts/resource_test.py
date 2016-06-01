@@ -47,7 +47,7 @@ def check_status(url, pkg):
         log.write('Harvester URL ignored.\n')
         return
     try:
-        req = requests.head(url)
+        req = requests.head(url, verify=False)
         req.raise_for_status()
         log.write('sent response ' + str(req.status_code) + '\n')
     except requests.exceptions.HTTPError as e:
@@ -56,11 +56,11 @@ def check_status(url, pkg):
             prepare_mail(pkg, url, str(e))
     except (ValueError, requests.exceptions.RequestException, requests.exceptions.ConnectionError) as e:
         log.write('\n EXCEPTION OCCURED: \n' + str(e) + '\n')
-        # prepare_mail(pkg, url, str(e))
+        prepare_mail(pkg, url, str(e))
 
 def prepare_mail(pkg, url, error_msg):
     for contact in pkg['contact_points']:
-        receiver_mail = 'test'+contact['email']+'1234' #contact['email']
+        receiver_mail = contact['email']
         receiver_name = contact['name']
 
         fname = mail_dir + '/' + receiver_mail
@@ -124,7 +124,10 @@ if __name__ == '__main__':
     tmp_dir = tempfile.mkdtemp()
     mail_dir = os.path.join(tmp_dir, 'mails')
     os.makedirs(mail_dir)
-    pprint(tmp_dir)
+
+    if arguments['--dry']:
+        pprint(tmp_dir)
+
     log = open(os.path.join(tmp_dir, 'log.txt'), 'w')
     log.write('Checking Resource-Links of ' + remote_ckan_url + '\n\n')
     url_pattern = re.compile('^(http://)?(-)?$')
