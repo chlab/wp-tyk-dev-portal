@@ -201,6 +201,28 @@ To restore the databases, you can use the following script:
 
     $ /vagrant/scripts/restore_dumps.sh
 
+## Testing URL-Resources of CKAN-Instance
+
+To test the availability of all URLs of all available Packages for the current Host, first fire up a fake mail-server, that logs incoming mails. For that you need to configure the SMTP-Server accordingly, in the ini-File:
+	
+	smtp.server = localhost
+	smtp.host = 1025
+
+Then fire the fake SMTP-Server up like so:
+
+	$ python -m smtpd -n -c DebuggingServer localhost:1025
+
+To run the script, in the Vagrant-Box, run this:
+
+	$ python /vagrant/scripts/resource_test.py -c /var/www/ckan/development.ini 
+
+You can also run the script in dry-mode. This will run the script, except the created tmp-folder (see the path in the log) won't be deleted when finished for debugging. In there you can find a log-file and, if there were any errors accessing the resources, a folder with all e-mails generated. 
+
+The cronjob for this task can be configured in crontab:
+
+	$ crontab -e
+	0 7 * * * . /home/vagrant/pyenv/bin/activate && python /vagrant/scripts/resource_test.py -c /var/www/ckan/development.ini 
+
 # Troubleshooting
 
 ## Problems with Guest Additions of VirtualBox
