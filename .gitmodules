@@ -27,7 +27,7 @@
 	url = https://github.com/ckan/ckanext-dcat.git
 [submodule "web/ckanext/ckanext-switzerland"]
 	path = web/ckanext/ckanext-switzerland
-	url = https://github.com/ogdch/ckanext-switzerland.git
+	url = git@gitlab.liip.ch:odp_oev_schweiz/ckanext-switzerland.git
 [submodule "web/ogdch.dev/content/plugins/wp-app-showcase"]
 	path = web/ogdch.dev/content/plugins/wp-app-showcase
 	url = git@gitlab.liip.ch:jazz/wp-app-showcase.git
