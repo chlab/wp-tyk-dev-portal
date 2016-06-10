@@ -468,6 +468,7 @@ ckanext-hierarchy
 ckanext-dcat
 ckanext-switzerland
 ckanext-geocat
+ckanext-oauth2
 ).each do | ckan_ext |
   bash "Install #{ckan_ext}" do
     user USER
