@@ -54,7 +54,9 @@ Vagrant.configure("2") do |config|
 
     config.ssh.forward_agent = true
 
-    config.omnibus.chef_version = :latest
+    # config.omnibus.chef_version = :latest
+    config.omnibus.chef_version = "12.10.24"
+    # config.omnibus.chef_version = :stable
     config.vm.provision :chef_solo do |chef|
   
       chef.cookbooks_path = "cookbooks"
@@ -64,7 +66,10 @@ Vagrant.configure("2") do |config|
   
       # chef recipes/roles
       chef.add_recipe("vagrant")
-  
+
+	chef.version = "12.10.24"  
+	# chef.version = :stable
+
       chef.json = {
         :host_name => local_host_name,
         :user => "vagrant",
