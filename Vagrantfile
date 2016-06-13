@@ -54,9 +54,10 @@ Vagrant.configure("2") do |config|
 
     config.ssh.forward_agent = true
 
-    config.omnibus.chef_version = :latest
+    config.omnibus.chef_version = "12.10.24"
     config.vm.provision :chef_solo do |chef|
-  
+      chef.version = "12.10.24"
+
       chef.cookbooks_path = "cookbooks"
       # chef debug level, start vagrant like this to debug:
       # $ CHEF_LOG_LEVEL=debug vagrant <provision or up>
