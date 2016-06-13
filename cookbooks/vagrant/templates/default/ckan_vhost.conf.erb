@@ -48,8 +48,7 @@ WSGISocketPrefix /var/run/wsgi
         Require all granted
     </Directory>
 
-    ServerName <%= node[:host_name]  %>
-    ServerAlias ckan.<%= node[:host_name]  %>
+    ServerName ogdch.dev
     UseCanonicalName Off
     
     WSGIScriptAlias / /etc/ckan/default/apache.wsgi
@@ -64,5 +63,30 @@ WSGISocketPrefix /var/run/wsgi
 
     ErrorLog /var/log/httpd/ckan_default.error.log
     CustomLog /var/log/httpd/ckan_default.custom.log combined
+
+</VirtualHost>
+
+
+<VirtualHost 0.0.0.0:8800>
+
+    ServerName ckan
+
+    # this is our app
+    WSGIScriptAlias / /etc/ckan/datapusher.wsgi
+
+    # pass authorization info on (needed for rest api)
+    WSGIPassAuthorization On
+
+    # Deploy as a daemon (avoids conflicts between CKAN instances)
+    WSGIDaemonProcess datapusher display-name=demo processes=1 threads=15
+
+    WSGIProcessGroup datapusher
+
+    ErrorLog /var/log/httpd/datapusher.error.log
+    CustomLog /var/log/httpd/datapusher.custom.log combined
+
+    <Directory "/" >
+        Require all granted
+    </Directory>
 
 </VirtualHost>

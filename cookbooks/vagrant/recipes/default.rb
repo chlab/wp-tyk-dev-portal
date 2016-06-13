@@ -457,6 +457,22 @@ bash "Install setuptools" do
   EOH
 end
 
+bash "Install datapusher" do
+  user "root"
+  code <<-EOH
+  virtualenv /usr/lib/ckan/datapusher
+  source /usr/lib/ckan/datapusher/bin/activate
+  mkdir /usr/lib/ckan/datapusher/src
+  cd /usr/lib/ckan/datapusher/src
+  git clone -b stable https://github.com/ckan/datapusher.git
+  cd datapusher
+  /usr/lib/ckan/datapusher/bin/pip install -r requirements.txt
+  /usr/lib/ckan/datapusher/bin/python setup.py develop
+  cp deployment/datapusher.wsgi /etc/ckan/
+  cp deployment/datapusher_settings.py /etc/ckan/
+  EOH
+end
+
 #################################################################
 #
 # EXTENSION BLOCK
