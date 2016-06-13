@@ -435,6 +435,9 @@ createuser -S -D -R ckan_default
 psql -c "ALTER USER ckan_default with password 'pass'"
 createdb -O ckan_default ckan_default -E utf-8
 psql ckan_default < /vagrant/sql/ckan_default.sql
+createuser -S -D -R -l datastore_default
+psql -c "ALTER USER datastore_default with password 'pass'"
+createdb -O ckan_default datastore_default -E utf-8
 EOH
 end
 
@@ -498,6 +501,7 @@ bash "create database tables" do
   code <<-EOH
 source #{HOME}/pyenv/bin/activate
 paster --plugin=ckan db init
+paster --plugin=ckan datastore set-permissions -c /var/www/ckan/development.ini | sudo -u postgres psql --set ON_ERROR_STOP=1
 EOH
 end
 
