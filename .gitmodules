@@ -52,3 +52,6 @@
 [submodule "web/ckanext/ckanext-discourse"]
 	path = web/ckanext/ckanext-discourse
 	url = https://github.com/ontodia/ckanext-discourse
+[submodule "web/ogdch.dev/content/plugins/wp-discourse"]
+	path = web/ogdch.dev/content/plugins/wp-discourse
+	url = https://github.com/discourse/wp-discourse.git
