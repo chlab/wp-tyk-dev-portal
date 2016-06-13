@@ -1,8 +1,8 @@
--- MySQL dump 10.14  Distrib 5.5.44-MariaDB, for Linux (x86_64)
+-- MySQL dump 10.14  Distrib 5.5.47-MariaDB, for Linux (x86_64)
 --
 -- Host: localhost    Database: cms
 -- ------------------------------------------------------
--- Server version	5.5.44-MariaDB
+-- Server version	5.5.47-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -30,7 +30,7 @@ CREATE TABLE `ogdch_commentmeta` (
   PRIMARY KEY (`meta_id`),
   KEY `comment_id` (`comment_id`),
   KEY `meta_key` (`meta_key`(191))
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -71,7 +71,7 @@ CREATE TABLE `ogdch_comments` (
   KEY `comment_date_gmt` (`comment_date_gmt`),
   KEY `comment_parent` (`comment_parent`),
   KEY `comment_author_email` (`comment_author_email`(10))
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -80,6 +80,7 @@ CREATE TABLE `ogdch_comments` (
 
 LOCK TABLES `ogdch_comments` WRITE;
 /*!40000 ALTER TABLE `ogdch_comments` DISABLE KEYS */;
+INSERT INTO `ogdch_comments` VALUES (1,164,'liip','jazz@liip.ch','','192.168.56.1','2016-06-13 11:56:13','2016-06-13 09:56:13','sdfgsdfg',0,'1','Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:47.0) Gecko/20100101 Firefox/47.0','',0,1);
 /*!40000 ALTER TABLE `ogdch_comments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -452,6 +453,288 @@ INSERT INTO `ogdch_ninja_forms_fields` VALUES (15,5,'_submit',6,'a:7:{s:5:\"labe
 UNLOCK TABLES;
 
 --
+-- Table structure for table `ogdch_oauth_access_tokens`
+--
+
+DROP TABLE IF EXISTS `ogdch_oauth_access_tokens`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ogdch_oauth_access_tokens` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `access_token` varchar(4000) NOT NULL,
+  `client_id` varchar(80) NOT NULL,
+  `user_id` varchar(80) DEFAULT NULL,
+  `expires` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `scope` varchar(4000) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ogdch_oauth_access_tokens`
+--
+
+LOCK TABLES `ogdch_oauth_access_tokens` WRITE;
+/*!40000 ALTER TABLE `ogdch_oauth_access_tokens` DISABLE KEYS */;
+INSERT INTO `ogdch_oauth_access_tokens` VALUES (1,'nz1ca3wps858dhq3k5f4oxzbqwxrhau6pp6dbdny','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-09 15:21:14','basic');
+INSERT INTO `ogdch_oauth_access_tokens` VALUES (2,'hch9k18q4ppkp3nipz2husqtyrzxk5nnxg30ctei','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-09 15:21:18','basic');
+INSERT INTO `ogdch_oauth_access_tokens` VALUES (3,'1spceplfjwbfqkp0itzdnsr0yw5na6znd1dhfgqq','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-09 15:21:21','basic');
+INSERT INTO `ogdch_oauth_access_tokens` VALUES (4,'41annicmy6vtzb6ubtpl48liroaklpgimfij8l4j','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-09 15:21:22','basic');
+INSERT INTO `ogdch_oauth_access_tokens` VALUES (5,'k8iqzxed7osqnjtvvxed0tol1bigrhyumedywnuy','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-09 15:21:23','basic');
+INSERT INTO `ogdch_oauth_access_tokens` VALUES (6,'lgyklnr4pajagvfi1qanavrbfdyowq9nyo1bycrm','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-09 15:21:23','basic');
+INSERT INTO `ogdch_oauth_access_tokens` VALUES (7,'japzyzlowtw7rehlcp1hesv73obykhwjez133kks','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-09 15:21:24','basic');
+INSERT INTO `ogdch_oauth_access_tokens` VALUES (8,'nmkxzpdadn1ahdn3llk4xvaywq71foffaobof2lv','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-09 15:21:41','basic');
+INSERT INTO `ogdch_oauth_access_tokens` VALUES (9,'tn7r4omalqiennbwsjybt4hlke7ryw6q0gi8sgzf','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-09 15:21:58','basic');
+INSERT INTO `ogdch_oauth_access_tokens` VALUES (10,'mgdnlccyqjqdydxgriqf0rpnplk4nij7xbkn1ror','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-09 15:22:32','basic');
+INSERT INTO `ogdch_oauth_access_tokens` VALUES (11,'lkpfmqfzxu8zcdzouhlfcovv69pwcjjtdajjpi8o','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-09 15:23:07','basic');
+INSERT INTO `ogdch_oauth_access_tokens` VALUES (12,'irnjesjmad3moi23p7uvfrczoo5easzmadjs77hd','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-09 15:23:59','basic');
+INSERT INTO `ogdch_oauth_access_tokens` VALUES (13,'1lmswbptarqni3c5yw8wajt7dvjppx89dawfnhip','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-09 15:24:07','basic');
+INSERT INTO `ogdch_oauth_access_tokens` VALUES (14,'ifi70lcof17xmwpguc4cu92zalcxjveklv4l6frf','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-09 15:24:47','basic');
+INSERT INTO `ogdch_oauth_access_tokens` VALUES (15,'h0bxuuk84cbztuklidbeizlwlwpjvf37hpav63ii','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-09 15:25:56','basic');
+INSERT INTO `ogdch_oauth_access_tokens` VALUES (16,'jcyayxtnsou6k60favl2q4dfenga0gqbgss5fs76','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-09 15:26:00','basic');
+INSERT INTO `ogdch_oauth_access_tokens` VALUES (17,'bfek5btlq0u41slnq9we8wlwh6ckwyep80orvleu','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-09 15:26:11','basic');
+INSERT INTO `ogdch_oauth_access_tokens` VALUES (18,'y9jpws9tjql2xjgvhy7ciw0tfpobdvxgmivvapwq','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-09 15:28:07','basic');
+INSERT INTO `ogdch_oauth_access_tokens` VALUES (19,'qcze83gfw1p4fqezpwfbgi1b1gezdu4voyiaexmv','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-10 07:42:17','basic');
+INSERT INTO `ogdch_oauth_access_tokens` VALUES (20,'dnxq7smlqoksfvxi8i6mscwqydtyb5dwmub9fa4r','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-10 07:48:33','basic');
+INSERT INTO `ogdch_oauth_access_tokens` VALUES (21,'qi8whz2weoyjcows0dyxrmsh8p6ctvcjnyl4a8zy','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-10 07:56:08','basic');
+INSERT INTO `ogdch_oauth_access_tokens` VALUES (22,'kcs601tslxsizfafn0qjf5aij01uuxpic1b8bi70','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-10 07:56:18','basic');
+INSERT INTO `ogdch_oauth_access_tokens` VALUES (23,'kpf6ekjtho5vbj9zouundk2rfjfvy0u0o3c2ooih','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-10 07:59:31','basic');
+INSERT INTO `ogdch_oauth_access_tokens` VALUES (24,'by1zofonq8vyry0zrpehofml4totrgskwv1wpxrv','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-10 07:59:47','basic');
+INSERT INTO `ogdch_oauth_access_tokens` VALUES (25,'50teg5032calijwpje4ftij0udtx6gvjl703day3','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-10 07:59:54','basic');
+INSERT INTO `ogdch_oauth_access_tokens` VALUES (26,'rlitwmhq3s62rzxs0jk7tj5vrueqvm9dizlhd64e','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-10 08:03:31','basic');
+INSERT INTO `ogdch_oauth_access_tokens` VALUES (27,'yhrqxozvkpuf5qptewjiojj0yjzi9dw0caldzdla','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-10 08:05:15','basic');
+INSERT INTO `ogdch_oauth_access_tokens` VALUES (28,'i9acsimnmnibpvkyg5cxb2isbmb6aefmb6perqf8','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-10 08:11:18','basic');
+INSERT INTO `ogdch_oauth_access_tokens` VALUES (29,'mthkuni6mnagwhtszenqephmdsdvybcbjshtibyf','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-10 08:14:33','basic');
+INSERT INTO `ogdch_oauth_access_tokens` VALUES (30,'hrcxkdkqqeaqh86917t4npqg6pafwek5tynha9hw','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-10 08:16:20','basic');
+INSERT INTO `ogdch_oauth_access_tokens` VALUES (31,'tq43dnvsgr4erdztil29p47ga57codyjxa8bor1f','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-10 08:17:35','basic');
+INSERT INTO `ogdch_oauth_access_tokens` VALUES (32,'w1fzpn55t0jxpseclgivbdr0olamtzdrjt0qmtwc','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-10 08:20:19','basic');
+INSERT INTO `ogdch_oauth_access_tokens` VALUES (33,'do1x1c4ld4lhzqd5gleqwfmcsfujottygapazjmk','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-10 08:25:12','basic');
+INSERT INTO `ogdch_oauth_access_tokens` VALUES (34,'u0oatojjfneaay9rpsdhysmc5eqkdzlyd5w9uxxr','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-10 08:29:18','basic');
+INSERT INTO `ogdch_oauth_access_tokens` VALUES (35,'8imaxpxpohkgwh91xpbcqnsrlhwrs8x1jfkph6pm','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-10 08:29:49','basic');
+INSERT INTO `ogdch_oauth_access_tokens` VALUES (36,'ehxl7f2eehcdks7kwnmj7lkx1mg0dcqirdeufcvz','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-10 08:38:42','basic');
+INSERT INTO `ogdch_oauth_access_tokens` VALUES (37,'5pyt9q68lgb0u7eurfujqq2pwzgito2qpjkmxfgh','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-10 08:39:12','basic');
+INSERT INTO `ogdch_oauth_access_tokens` VALUES (38,'eoftolaeunvmz3t2vuddvkuzzjzmw2nevo9jlfsf','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-10 08:42:15','basic');
+INSERT INTO `ogdch_oauth_access_tokens` VALUES (39,'qaolg7airmosy3bejb00i0lsvvwbuhkocovvzzgv','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-10 08:42:56','basic');
+INSERT INTO `ogdch_oauth_access_tokens` VALUES (40,'llpe0nbdhadrbfjfsjv3vxmlbqetzuxiryo0bdzv','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-10 08:48:28','basic');
+INSERT INTO `ogdch_oauth_access_tokens` VALUES (41,'qis6bn3xtwf4umndsqfqk8gliy8hfjvgpd85iinj','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-10 08:55:23','basic');
+INSERT INTO `ogdch_oauth_access_tokens` VALUES (42,'qfcdsugbf3i5lwejhedsvjitcyz3s4iotalut5r5','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-10 16:12:12','basic');
+INSERT INTO `ogdch_oauth_access_tokens` VALUES (43,'khfx1vv60oyec9b6pmllkranpvzxt91huh4winmj','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-10 16:12:35','basic');
+INSERT INTO `ogdch_oauth_access_tokens` VALUES (44,'jjqplnme1fvexlupz9lewo9toa8iqaubgo8ikbur','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-11 12:13:52','basic');
+INSERT INTO `ogdch_oauth_access_tokens` VALUES (45,'72mvpt8mvvu4niaszp8ukycylpasbi5frxuzdwzq','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-14 08:08:09','basic');
+INSERT INTO `ogdch_oauth_access_tokens` VALUES (46,'9jal5e8ab6jots8bhztmf4zwaz08j9k2jrbtlbc5','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-14 13:19:48','basic');
+INSERT INTO `ogdch_oauth_access_tokens` VALUES (47,'lhxbozzthyzzwu8efl3ilisy2cmkpm7sonanzdyg','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-14 13:20:41','basic');
+INSERT INTO `ogdch_oauth_access_tokens` VALUES (48,'d1grako81vkghnn9802immegwdtyoqlbtv4utoak','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-14 15:01:30','basic');
+/*!40000 ALTER TABLE `ogdch_oauth_access_tokens` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ogdch_oauth_authorization_codes`
+--
+
+DROP TABLE IF EXISTS `ogdch_oauth_authorization_codes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ogdch_oauth_authorization_codes` (
+  `authorization_code` varchar(40) NOT NULL,
+  `client_id` varchar(80) NOT NULL,
+  `user_id` varchar(80) DEFAULT NULL,
+  `redirect_uri` varchar(2000) DEFAULT NULL,
+  `expires` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `scope` varchar(4000) DEFAULT NULL,
+  `id_token` varchar(3000) DEFAULT NULL,
+  PRIMARY KEY (`authorization_code`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ogdch_oauth_authorization_codes`
+--
+
+LOCK TABLES `ogdch_oauth_authorization_codes` WRITE;
+/*!40000 ALTER TABLE `ogdch_oauth_authorization_codes` DISABLE KEYS */;
+INSERT INTO `ogdch_oauth_authorization_codes` VALUES ('eidwortb7puuxwzxon28huicwysqdi0z8qfxowi8','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','http://ogdch.dev/oauth2/callback','2016-06-09 08:36:36','basic',NULL);
+INSERT INTO `ogdch_oauth_authorization_codes` VALUES ('qznmmsydaqyoljmcjdigzk1mmc1kzj1m6emqqus4','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','http://ogdch.dev/oauth2/callback','2016-06-09 08:38:39','basic',NULL);
+INSERT INTO `ogdch_oauth_authorization_codes` VALUES ('ulht9irpx3jtchkjeqwypjhqmsokemqdfhcvr0gr','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','http://ogdch.dev/oauth2/callback','2016-06-08 15:19:16','basic',NULL);
+/*!40000 ALTER TABLE `ogdch_oauth_authorization_codes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ogdch_oauth_clients`
+--
+
+DROP TABLE IF EXISTS `ogdch_oauth_clients`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ogdch_oauth_clients` (
+  `client_id` varchar(80) NOT NULL,
+  `client_secret` varchar(80) NOT NULL,
+  `redirect_uri` varchar(2000) DEFAULT NULL,
+  `grant_types` varchar(80) DEFAULT NULL,
+  `scope` varchar(4000) DEFAULT NULL,
+  `user_id` varchar(80) DEFAULT NULL,
+  `name` varchar(80) DEFAULT NULL,
+  `description` longtext,
+  PRIMARY KEY (`client_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ogdch_oauth_clients`
+--
+
+LOCK TABLES `ogdch_oauth_clients` WRITE;
+/*!40000 ALTER TABLE `ogdch_oauth_clients` DISABLE KEYS */;
+INSERT INTO `ogdch_oauth_clients` VALUES ('L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','rMBKjvwAPrWCKsRQ0ObY8gSWepIW4K','http://ogdch.dev/oauth2/callback',NULL,NULL,NULL,'ckan','');
+/*!40000 ALTER TABLE `ogdch_oauth_clients` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ogdch_oauth_jwt`
+--
+
+DROP TABLE IF EXISTS `ogdch_oauth_jwt`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ogdch_oauth_jwt` (
+  `client_id` varchar(80) NOT NULL,
+  `subject` varchar(80) DEFAULT NULL,
+  `public_key` varchar(2000) NOT NULL,
+  PRIMARY KEY (`client_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ogdch_oauth_jwt`
+--
+
+LOCK TABLES `ogdch_oauth_jwt` WRITE;
+/*!40000 ALTER TABLE `ogdch_oauth_jwt` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ogdch_oauth_jwt` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ogdch_oauth_public_keys`
+--
+
+DROP TABLE IF EXISTS `ogdch_oauth_public_keys`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ogdch_oauth_public_keys` (
+  `client_id` varchar(80) NOT NULL DEFAULT '',
+  `public_key` varchar(2000) DEFAULT NULL,
+  `private_key` varchar(2000) DEFAULT NULL,
+  `encryption_algorithm` varchar(100) DEFAULT 'RS256',
+  PRIMARY KEY (`client_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ogdch_oauth_public_keys`
+--
+
+LOCK TABLES `ogdch_oauth_public_keys` WRITE;
+/*!40000 ALTER TABLE `ogdch_oauth_public_keys` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ogdch_oauth_public_keys` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ogdch_oauth_refresh_tokens`
+--
+
+DROP TABLE IF EXISTS `ogdch_oauth_refresh_tokens`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ogdch_oauth_refresh_tokens` (
+  `refresh_token` varchar(40) NOT NULL,
+  `client_id` varchar(80) NOT NULL,
+  `user_id` varchar(80) DEFAULT NULL,
+  `expires` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `scope` varchar(4000) DEFAULT NULL,
+  PRIMARY KEY (`refresh_token`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ogdch_oauth_refresh_tokens`
+--
+
+LOCK TABLES `ogdch_oauth_refresh_tokens` WRITE;
+/*!40000 ALTER TABLE `ogdch_oauth_refresh_tokens` DISABLE KEYS */;
+INSERT INTO `ogdch_oauth_refresh_tokens` VALUES ('03cdyuxamlvsfqo0pdv45gcmkjmxptkkljm3iika','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-19 08:42:15','basic');
+INSERT INTO `ogdch_oauth_refresh_tokens` VALUES ('27n6vayqwmscnqodxq9lfdbdhu5umdgz3ihbsd5e','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-19 07:59:31','basic');
+INSERT INTO `ogdch_oauth_refresh_tokens` VALUES ('29ztnoi00xnqq51tbrsxscuznyxvlrihtzqoesso','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-19 08:38:42','basic');
+INSERT INTO `ogdch_oauth_refresh_tokens` VALUES ('79mhrmzmu0ggjtwzsmjqnaf0xgf5z8kn5oarfqvb','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-18 15:25:56','basic');
+INSERT INTO `ogdch_oauth_refresh_tokens` VALUES ('8jtysf4zllajfneg0dan6dhf4dcukbhy2nwdbmms','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-23 15:01:30','basic');
+INSERT INTO `ogdch_oauth_refresh_tokens` VALUES ('9j2d7o80ltajryz8xjtxqre5qckp7a89yhir7bpj','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-19 08:48:28','basic');
+INSERT INTO `ogdch_oauth_refresh_tokens` VALUES ('9nswvqliyqvxkayheyblj6gqkb39gyxtoghdkwtr','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-19 07:59:54','basic');
+INSERT INTO `ogdch_oauth_refresh_tokens` VALUES ('9xxedkqmwj40tbu9ree9pddymag2pxnuehd2afsc','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-18 15:21:23','basic');
+INSERT INTO `ogdch_oauth_refresh_tokens` VALUES ('9zag6zmn1xrujo5eiadxtrxqdsrzdh5yeyfu0dsq','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-19 08:55:23','basic');
+INSERT INTO `ogdch_oauth_refresh_tokens` VALUES ('abu7p6sjbfqgojijhmlavujsdardpaur1r5a3jdp','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-18 15:26:11','basic');
+INSERT INTO `ogdch_oauth_refresh_tokens` VALUES ('avu0tnmuvjwd98jn9pj7uaqmdvuaqxw8kxbjd0em','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-20 12:13:52','basic');
+INSERT INTO `ogdch_oauth_refresh_tokens` VALUES ('bk1wzaugv2snveahpgnrqrkzkmmvmhos15jltlzu','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-18 15:23:59','basic');
+INSERT INTO `ogdch_oauth_refresh_tokens` VALUES ('cklabvw4izfzyfumhxss9c6xszmxha6dfbznlpep','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-18 15:21:41','basic');
+INSERT INTO `ogdch_oauth_refresh_tokens` VALUES ('cmv4dy7jimy6t6tuaislvzawoastnpk7ghlfjepl','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-18 15:21:14','basic');
+INSERT INTO `ogdch_oauth_refresh_tokens` VALUES ('cuezvzlb7ra83mcffvu3mi4mw1eziiksljfsuw4p','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-23 13:20:41','basic');
+INSERT INTO `ogdch_oauth_refresh_tokens` VALUES ('d3psg1jtqg8drq8yedpjwmglatt7tl7wq6dauvbr','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-18 15:21:24','basic');
+INSERT INTO `ogdch_oauth_refresh_tokens` VALUES ('dh1eajr5do5synzg7irt9gip3erswrfgsryzumiu','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-18 15:21:22','basic');
+INSERT INTO `ogdch_oauth_refresh_tokens` VALUES ('dl8rwe6luxkg3pdxtgsdisxkztobujl1bpj1djbj','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-19 07:48:33','basic');
+INSERT INTO `ogdch_oauth_refresh_tokens` VALUES ('dtbbohj8hydptrzmuy2lv5blzyzqkmrm62rir5qe','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-19 07:42:17','basic');
+INSERT INTO `ogdch_oauth_refresh_tokens` VALUES ('fgffbxtwwxqcody3kjub5jnlywpdono5pbe9z6vh','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-23 08:08:09','basic');
+INSERT INTO `ogdch_oauth_refresh_tokens` VALUES ('ftdivu2ml5xjq5dw7l9jwguoidbuhdjf4zhbbiqq','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-18 15:21:18','basic');
+INSERT INTO `ogdch_oauth_refresh_tokens` VALUES ('gnigdfjueivbemqkw5jijnze8x3kzblxk5uff5j6','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-19 08:16:20','basic');
+INSERT INTO `ogdch_oauth_refresh_tokens` VALUES ('hbqmbcodd9to9crk8s9gkca8v4otcugofnasvhvy','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-19 08:29:18','basic');
+INSERT INTO `ogdch_oauth_refresh_tokens` VALUES ('hksy29dt7mqnb6pm9lioqukfxbvci0profsy04r0','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-19 08:05:15','basic');
+INSERT INTO `ogdch_oauth_refresh_tokens` VALUES ('j6ufiz03sqirhs8iut12tyn76vm4r7kfnfxqfivm','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-18 15:24:47','basic');
+INSERT INTO `ogdch_oauth_refresh_tokens` VALUES ('jrsc5dbmmps3n9poayfm1gcn1vhvresrtpkiaunq','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-19 08:11:18','basic');
+INSERT INTO `ogdch_oauth_refresh_tokens` VALUES ('js6sndkuyztnrkvfa1jxjdaznms9raf4xoe9kpbj','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-19 07:59:47','basic');
+INSERT INTO `ogdch_oauth_refresh_tokens` VALUES ('k57cxvyuf326n3nal1igwmxtav4tmjh1y4xx1wbx','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-19 08:14:33','basic');
+INSERT INTO `ogdch_oauth_refresh_tokens` VALUES ('ktlqk1ervirkipdgeup1rjtpx9ybcythy27ojmcb','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-19 08:25:12','basic');
+INSERT INTO `ogdch_oauth_refresh_tokens` VALUES ('l4pj1bxdkziwqmhmyot23yhaqqc6xymrhzcm2r3o','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-18 15:21:21','basic');
+INSERT INTO `ogdch_oauth_refresh_tokens` VALUES ('ljcfpra4wjc6yoq1ah14l6rw6dnwjh72h1gjd64n','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-19 08:29:49','basic');
+INSERT INTO `ogdch_oauth_refresh_tokens` VALUES ('m3no8jgkfy2vrqznzt6n9dyxksixnjt6vayw7bgv','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-19 07:56:08','basic');
+INSERT INTO `ogdch_oauth_refresh_tokens` VALUES ('m9cii2mop4grmnd5yyzz3hytrd6u9zb7bf119ic6','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-23 13:19:48','basic');
+INSERT INTO `ogdch_oauth_refresh_tokens` VALUES ('nh8z8h05tzumgylrwkzn1ultjy6obi2upv0fias2','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-19 08:42:56','basic');
+INSERT INTO `ogdch_oauth_refresh_tokens` VALUES ('okr6agdqmwxlubgwwjcv4uogck2xd2ix1plc39jg','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-19 07:56:18','basic');
+INSERT INTO `ogdch_oauth_refresh_tokens` VALUES ('pss6qrt6hucqyii89wq5lkitnen1jsnjwojjer0j','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-18 15:21:23','basic');
+INSERT INTO `ogdch_oauth_refresh_tokens` VALUES ('t0pvuq8lqn0vne4upx7ccmf11hywsggiaqazsmom','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-19 08:17:35','basic');
+INSERT INTO `ogdch_oauth_refresh_tokens` VALUES ('tlxz7fdh3mtphijb10pkkcxjd5bastbcpwryvy7k','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-18 15:22:32','basic');
+INSERT INTO `ogdch_oauth_refresh_tokens` VALUES ('tqsl7zdu4z0yynqtvyen3xzyov3jbrwfuwy3ti6e','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-19 08:20:19','basic');
+INSERT INTO `ogdch_oauth_refresh_tokens` VALUES ('ttjf6yce8lpxzohwbioqvbf2jf2fivaegiq3zo0q','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-19 16:12:12','basic');
+INSERT INTO `ogdch_oauth_refresh_tokens` VALUES ('uemnby3hjcspmcgtmtags4uzqm1gw2jzrgsxsepx','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-18 15:21:58','basic');
+INSERT INTO `ogdch_oauth_refresh_tokens` VALUES ('v0whybbrvcuexgdqtru0fjr8kpfsee5dfardjrhj','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-18 15:28:07','basic');
+INSERT INTO `ogdch_oauth_refresh_tokens` VALUES ('va50fm4bkoqfeaeestszflaiur3izspvtmum9ns3','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-18 15:23:07','basic');
+INSERT INTO `ogdch_oauth_refresh_tokens` VALUES ('x0zmxksnvwqx75h8e3hkgf0lz8rqrtvi9yo7eqay','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-18 15:26:00','basic');
+INSERT INTO `ogdch_oauth_refresh_tokens` VALUES ('x1f6thqe1eregwtblaztxbqqguvt30eve0r4uh4q','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-19 16:12:35','basic');
+INSERT INTO `ogdch_oauth_refresh_tokens` VALUES ('xaboveim2ha1smpad5xqfaje1mo8ys2c36o5tzq0','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-19 08:39:12','basic');
+INSERT INTO `ogdch_oauth_refresh_tokens` VALUES ('xpugbaz4g3rkwyvs1kdadgmbnqjedo9kb4edqntr','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-19 08:03:31','basic');
+INSERT INTO `ogdch_oauth_refresh_tokens` VALUES ('yyryefchrifqqoomqpr0zas51k9wy6lr5yuihuhq','L9jxUMhjVlNivf6yWlXj4UNYwMHF1r','1','2016-06-18 15:24:07','basic');
+/*!40000 ALTER TABLE `ogdch_oauth_refresh_tokens` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ogdch_oauth_scopes`
+--
+
+DROP TABLE IF EXISTS `ogdch_oauth_scopes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ogdch_oauth_scopes` (
+  `scope` varchar(80) NOT NULL,
+  `is_default` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`scope`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ogdch_oauth_scopes`
+--
+
+LOCK TABLES `ogdch_oauth_scopes` WRITE;
+/*!40000 ALTER TABLE `ogdch_oauth_scopes` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ogdch_oauth_scopes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `ogdch_options`
 --
 
@@ -465,7 +748,7 @@ CREATE TABLE `ogdch_options` (
   `autoload` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'yes',
   PRIMARY KEY (`option_id`),
   UNIQUE KEY `option_name` (`option_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=836 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=845 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -506,7 +789,7 @@ INSERT INTO `ogdch_options` VALUES (29,'gzipcompression','0','yes');
 INSERT INTO `ogdch_options` VALUES (30,'hack_file','0','yes');
 INSERT INTO `ogdch_options` VALUES (31,'blog_charset','UTF-8','yes');
 INSERT INTO `ogdch_options` VALUES (32,'moderation_keys','','no');
-INSERT INTO `ogdch_options` VALUES (33,'active_plugins','a:11:{i:0;s:21:\"polylang/polylang.php\";i:1;s:47:\"bootstrap-ninja-forms/bootstrap-ninja-forms.php\";i:2;s:13:\"cmb2/init.php\";i:3;s:19:\"members/members.php\";i:4;s:27:\"ninja-forms/ninja-forms.php\";i:5;s:17:\"polylang-slug.php\";i:6;s:47:\"regenerate-thumbnails/regenerate-thumbnails.php\";i:7;s:51:\"rewrite-rules-inspector/rewrite-rules-inspector.php\";i:8;s:32:\"wp-app-showcase/app-showcase.php\";i:9;s:32:\"wp-ckan-backend/ckan-backend.php\";i:10;s:49:\"wp-custom-bulk-actions/wp-custom-bulk-actions.php\";}','yes');
+INSERT INTO `ogdch_options` VALUES (33,'active_plugins','a:11:{i:0;s:21:\"polylang/polylang.php\";i:1;s:47:\"bootstrap-ninja-forms/bootstrap-ninja-forms.php\";i:2;s:13:\"cmb2/init.php\";i:3;s:19:\"members/members.php\";i:4;s:27:\"ninja-forms/ninja-forms.php\";i:5;s:28:\"oauth2-provider/wp-oauth.php\";i:6;s:17:\"polylang-slug.php\";i:7;s:47:\"regenerate-thumbnails/regenerate-thumbnails.php\";i:8;s:51:\"rewrite-rules-inspector/rewrite-rules-inspector.php\";i:11;s:49:\"wp-custom-bulk-actions/wp-custom-bulk-actions.php\";i:12;s:29:\"wp-discourse/wp-discourse.php\";}','yes');
 INSERT INTO `ogdch_options` VALUES (34,'category_base','','yes');
 INSERT INTO `ogdch_options` VALUES (35,'ping_sites','http://rpc.pingomatic.com/','yes');
 INSERT INTO `ogdch_options` VALUES (36,'advanced_edit','0','yes');
@@ -514,8 +797,8 @@ INSERT INTO `ogdch_options` VALUES (37,'comment_max_links','2','yes');
 INSERT INTO `ogdch_options` VALUES (38,'gmt_offset','','yes');
 INSERT INTO `ogdch_options` VALUES (39,'default_email_category','15','yes');
 INSERT INTO `ogdch_options` VALUES (40,'recently_edited','','no');
-INSERT INTO `ogdch_options` VALUES (41,'template','wp-ogdch-theme','yes');
-INSERT INTO `ogdch_options` VALUES (42,'stylesheet','wp-ogdch-theme','yes');
+INSERT INTO `ogdch_options` VALUES (41,'template','twentyfifteen','yes');
+INSERT INTO `ogdch_options` VALUES (42,'stylesheet','twentyfifteen','yes');
 INSERT INTO `ogdch_options` VALUES (43,'comment_whitelist','','yes');
 INSERT INTO `ogdch_options` VALUES (44,'blacklist_keys','','no');
 INSERT INTO `ogdch_options` VALUES (45,'comment_registration','','yes');
@@ -555,7 +838,7 @@ INSERT INTO `ogdch_options` VALUES (78,'sticky_posts','a:0:{}','yes');
 INSERT INTO `ogdch_options` VALUES (79,'widget_categories','a:2:{i:2;a:4:{s:5:\"title\";s:0:\"\";s:5:\"count\";i:0;s:12:\"hierarchical\";i:0;s:8:\"dropdown\";i:0;}s:12:\"_multiwidget\";i:1;}','yes');
 INSERT INTO `ogdch_options` VALUES (80,'widget_text','a:2:{i:1;a:0:{}s:12:\"_multiwidget\";i:1;}','yes');
 INSERT INTO `ogdch_options` VALUES (81,'widget_rss','a:2:{i:1;a:0:{}s:12:\"_multiwidget\";i:1;}','yes');
-INSERT INTO `ogdch_options` VALUES (82,'uninstall_plugins','a:0:{}','no');
+INSERT INTO `ogdch_options` VALUES (82,'uninstall_plugins','a:1:{s:38:\"ninja-forms/deprecated/ninja-forms.php\";s:21:\"ninja_forms_uninstall\";}','no');
 INSERT INTO `ogdch_options` VALUES (83,'timezone_string','Europe/Zurich','yes');
 INSERT INTO `ogdch_options` VALUES (85,'page_on_front','0','yes');
 INSERT INTO `ogdch_options` VALUES (86,'default_post_format','0','yes');
@@ -567,13 +850,13 @@ INSERT INTO `ogdch_options` VALUES (91,'widget_recent-posts','a:2:{i:2;a:2:{s:5:
 INSERT INTO `ogdch_options` VALUES (92,'widget_recent-comments','a:2:{i:2;a:2:{s:5:\"title\";s:0:\"\";s:6:\"number\";i:5;}s:12:\"_multiwidget\";i:1;}','yes');
 INSERT INTO `ogdch_options` VALUES (93,'widget_archives','a:2:{i:2;a:3:{s:5:\"title\";s:0:\"\";s:5:\"count\";i:0;s:8:\"dropdown\";i:0;}s:12:\"_multiwidget\";i:1;}','yes');
 INSERT INTO `ogdch_options` VALUES (94,'widget_meta','a:2:{i:2;a:1:{s:5:\"title\";s:0:\"\";}s:12:\"_multiwidget\";i:1;}','yes');
-INSERT INTO `ogdch_options` VALUES (95,'sidebars_widgets','a:3:{s:19:\"wp_inactive_widgets\";a:0:{}s:18:\"orphaned_widgets_1\";a:1:{i:0;s:17:\"recent-comments-2\";}s:13:\"array_version\";i:3;}','yes');
-INSERT INTO `ogdch_options` VALUES (97,'cron','a:9:{i:1450445557;a:3:{s:16:\"wp_version_check\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}s:17:\"wp_update_plugins\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}s:16:\"wp_update_themes\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1450445881;a:1:{s:19:\"wp_scheduled_delete\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1450447752;a:1:{s:29:\"wp_session_garbage_collection\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1450453699;a:1:{s:24:\"ninja_forms_daily_action\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1450468140;a:1:{s:20:\"wp_maybe_auto_update\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1450526926;a:1:{s:24:\"ninja_forms_daily_action\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1450528981;a:1:{s:30:\"wp_scheduled_auto_draft_delete\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1450530882;a:1:{s:24:\"ninja_forms_daily_action\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}s:7:\"version\";i:2;}','yes');
+INSERT INTO `ogdch_options` VALUES (95,'sidebars_widgets','a:3:{s:19:\"wp_inactive_widgets\";a:0:{}s:9:\"sidebar-1\";a:6:{i:0;s:8:\"search-2\";i:1;s:14:\"recent-posts-2\";i:2;s:17:\"recent-comments-2\";i:3;s:10:\"archives-2\";i:4;s:12:\"categories-2\";i:5;s:6:\"meta-2\";}s:13:\"array_version\";i:3;}','yes');
+INSERT INTO `ogdch_options` VALUES (97,'cron','a:10:{i:1465831902;a:1:{s:19:\"wo_daily_tasks_hook\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:6:\"hourly\";s:4:\"args\";a:0:{}s:8:\"interval\";i:3600;}}}i:1465832899;a:1:{s:24:\"ninja_forms_daily_action\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1465847340;a:1:{s:20:\"wp_maybe_auto_update\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1465867957;a:3:{s:16:\"wp_version_check\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}s:17:\"wp_update_plugins\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}s:16:\"wp_update_themes\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1465870152;a:1:{s:29:\"wp_session_garbage_collection\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1465906126;a:1:{s:24:\"ninja_forms_daily_action\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1465908181;a:1:{s:30:\"wp_scheduled_auto_draft_delete\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1465910082;a:1:{s:24:\"ninja_forms_daily_action\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1465911481;a:1:{s:19:\"wp_scheduled_delete\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}s:7:\"version\";i:2;}','yes');
 INSERT INTO `ogdch_options` VALUES (134,'db_upgraded','','yes');
-INSERT INTO `ogdch_options` VALUES (142,'recently_activated','a:0:{}','yes');
+INSERT INTO `ogdch_options` VALUES (142,'recently_activated','a:3:{s:32:\"wp-ckan-backend/ckan-backend.php\";i:1465822547;s:43:\"pt-wp-discourse-sso/pt-wp-discourse-sso.php\";i:1465809892;s:19:\"adminer/adminer.php\";i:1465396736;}','yes');
 INSERT INTO `ogdch_options` VALUES (147,'members_db_version','2','yes');
 INSERT INTO `ogdch_options` VALUES (148,'members_settings','a:8:{s:12:\"role_manager\";i:1;s:19:\"content_permissions\";i:0;s:25:\"content_permissions_error\";s:85:\"<p class=\"restricted\">Sorry, but you do not have permission to view this content.</p>\";s:17:\"login_form_widget\";i:0;s:12:\"users_widget\";i:0;s:12:\"private_blog\";i:0;s:12:\"private_feed\";i:0;s:18:\"private_feed_error\";s:80:\"<p class=\"restricted\">You must be logged into the site to view this content.</p>\";}','yes');
-INSERT INTO `ogdch_options` VALUES (151,'polylang','a:14:{s:7:\"browser\";i:1;s:7:\"rewrite\";i:1;s:12:\"hide_default\";i:0;s:10:\"force_lang\";i:1;s:13:\"redirect_lang\";i:0;s:13:\"media_support\";i:0;s:4:\"sync\";a:11:{i:0;s:10:\"taxonomies\";i:1;s:9:\"post_meta\";i:2;s:14:\"comment_status\";i:3;s:11:\"ping_status\";i:4;s:12:\"sticky_posts\";i:5;s:9:\"post_date\";i:6;s:11:\"post_format\";i:7;s:11:\"post_parent\";i:8;s:17:\"_wp_page_template\";i:9;s:10:\"menu_order\";i:10;s:13:\"_thumbnail_id\";}s:10:\"post_types\";a:1:{i:0;s:3:\"app\";}s:10:\"taxonomies\";a:0:{}s:7:\"domains\";a:0:{}s:7:\"version\";s:6:\"1.7.12\";s:12:\"default_lang\";s:2:\"de\";s:9:\"nav_menus\";a:2:{s:5:\"ogdch\";a:1:{s:18:\"service_navigation\";a:0:{}}s:14:\"wp-ogdch-theme\";a:4:{s:15:\"main_navigation\";a:4:{s:2:\"de\";i:135;s:2:\"en\";i:136;s:2:\"it\";i:137;s:2:\"fr\";i:138;}s:16:\"about_navigation\";a:0:{}s:15:\"data_navigation\";a:0:{}s:20:\"developer_navigation\";a:0:{}}}s:16:\"previous_version\";s:6:\"1.7.11\";}','yes');
+INSERT INTO `ogdch_options` VALUES (151,'polylang','a:14:{s:7:\"browser\";i:1;s:7:\"rewrite\";i:1;s:12:\"hide_default\";i:0;s:10:\"force_lang\";i:1;s:13:\"redirect_lang\";i:0;s:13:\"media_support\";i:0;s:4:\"sync\";a:11:{i:0;s:10:\"taxonomies\";i:1;s:9:\"post_meta\";i:2;s:14:\"comment_status\";i:3;s:11:\"ping_status\";i:4;s:12:\"sticky_posts\";i:5;s:9:\"post_date\";i:6;s:11:\"post_format\";i:7;s:11:\"post_parent\";i:8;s:17:\"_wp_page_template\";i:9;s:10:\"menu_order\";i:10;s:13:\"_thumbnail_id\";}s:10:\"post_types\";a:1:{i:0;s:3:\"app\";}s:10:\"taxonomies\";a:0:{}s:7:\"domains\";a:0:{}s:7:\"version\";s:5:\"1.9.2\";s:12:\"default_lang\";s:2:\"de\";s:9:\"nav_menus\";a:2:{s:5:\"ogdch\";a:1:{s:18:\"service_navigation\";a:0:{}}s:14:\"wp-ogdch-theme\";a:4:{s:15:\"main_navigation\";a:4:{s:2:\"de\";i:135;s:2:\"en\";i:136;s:2:\"it\";i:137;s:2:\"fr\";i:138;}s:16:\"about_navigation\";a:0:{}s:15:\"data_navigation\";a:0:{}s:20:\"developer_navigation\";a:0:{}}}s:16:\"previous_version\";s:6:\"1.7.12\";}','yes');
 INSERT INTO `ogdch_options` VALUES (158,'category_children','a:0:{}','yes');
 INSERT INTO `ogdch_options` VALUES (162,'widget_nav_menu','a:2:{i:1;a:0:{}s:12:\"_multiwidget\";i:1;}','yes');
 INSERT INTO `ogdch_options` VALUES (163,'widget_calendar','a:2:{i:1;a:0:{}s:12:\"_multiwidget\";i:1;}','yes');
@@ -586,7 +869,7 @@ INSERT INTO `ogdch_options` VALUES (175,'_transient_twentyfifteen_categories','1
 INSERT INTO `ogdch_options` VALUES (181,'_site_transient_update_core','O:8:\"stdClass\":4:{s:7:\"updates\";a:1:{i:0;O:8:\"stdClass\":10:{s:8:\"response\";s:6:\"latest\";s:8:\"download\";s:65:\"https://downloads.wordpress.org/release/de_DE/wordpress-4.2.2.zip\";s:6:\"locale\";s:5:\"de_DE\";s:8:\"packages\";O:8:\"stdClass\":5:{s:4:\"full\";s:65:\"https://downloads.wordpress.org/release/de_DE/wordpress-4.2.2.zip\";s:10:\"no_content\";b:0;s:11:\"new_bundled\";b:0;s:7:\"partial\";b:0;s:8:\"rollback\";b:0;}s:7:\"current\";s:5:\"4.2.2\";s:7:\"version\";s:5:\"4.2.2\";s:11:\"php_version\";s:5:\"5.2.4\";s:13:\"mysql_version\";s:3:\"5.0\";s:11:\"new_bundled\";s:3:\"4.1\";s:15:\"partial_version\";s:0:\"\";}}s:12:\"last_checked\";i:1432884872;s:15:\"version_checked\";s:5:\"4.2.2\";s:12:\"translations\";a:2:{i:0;a:7:{s:4:\"type\";s:4:\"core\";s:4:\"slug\";s:7:\"default\";s:8:\"language\";s:5:\"de_DE\";s:7:\"version\";s:5:\"4.2.2\";s:7:\"updated\";s:19:\"2015-05-28 23:38:57\";s:7:\"package\";s:64:\"https://downloads.wordpress.org/translation/core/4.2.2/de_DE.zip\";s:10:\"autoupdate\";b:1;}i:1;a:7:{s:4:\"type\";s:4:\"core\";s:4:\"slug\";s:7:\"default\";s:8:\"language\";s:5:\"it_IT\";s:7:\"version\";s:5:\"4.2.2\";s:7:\"updated\";s:19:\"2015-05-23 17:17:36\";s:7:\"package\";s:64:\"https://downloads.wordpress.org/translation/core/4.2.2/it_IT.zip\";s:10:\"autoupdate\";b:1;}}}','yes');
 INSERT INTO `ogdch_options` VALUES (182,'_site_transient_update_themes','O:8:\"stdClass\":4:{s:12:\"last_checked\";i:1432884875;s:7:\"checked\";a:2:{s:5:\"ogdch\";s:3:\"1.0\";s:13:\"twentyfifteen\";s:3:\"1.2\";}s:8:\"response\";a:0:{}s:12:\"translations\";a:3:{i:0;a:7:{s:4:\"type\";s:5:\"theme\";s:4:\"slug\";s:13:\"twentyfifteen\";s:8:\"language\";s:5:\"de_CH\";s:7:\"version\";s:3:\"1.0\";s:7:\"updated\";s:19:\"2015-03-26 14:38:04\";s:7:\"package\";s:77:\"https://downloads.wordpress.org/translation/theme/twentyfifteen/1.0/de_CH.zip\";s:10:\"autoupdate\";b:1;}i:1;a:7:{s:4:\"type\";s:5:\"theme\";s:4:\"slug\";s:13:\"twentyfifteen\";s:8:\"language\";s:5:\"it_IT\";s:7:\"version\";s:3:\"1.1\";s:7:\"updated\";s:19:\"2015-03-27 13:21:51\";s:7:\"package\";s:77:\"https://downloads.wordpress.org/translation/theme/twentyfifteen/1.1/it_IT.zip\";s:10:\"autoupdate\";b:1;}i:2;a:7:{s:4:\"type\";s:5:\"theme\";s:4:\"slug\";s:13:\"twentyfifteen\";s:8:\"language\";s:5:\"fr_FR\";s:7:\"version\";s:3:\"1.1\";s:7:\"updated\";s:19:\"2015-05-06 15:54:09\";s:7:\"package\";s:77:\"https://downloads.wordpress.org/translation/theme/twentyfifteen/1.1/fr_FR.zip\";s:10:\"autoupdate\";b:1;}}}','yes');
 INSERT INTO `ogdch_options` VALUES (183,'_site_transient_update_plugins','O:8:\"stdClass\":4:{s:12:\"last_checked\";i:1432884873;s:8:\"response\";a:1:{s:13:\"cmb2/init.php\";O:8:\"stdClass\":6:{s:2:\"id\";s:5:\"53754\";s:4:\"slug\";s:4:\"cmb2\";s:6:\"plugin\";s:13:\"cmb2/init.php\";s:11:\"new_version\";s:5:\"2.0.7\";s:3:\"url\";s:35:\"https://wordpress.org/plugins/cmb2/\";s:7:\"package\";s:47:\"https://downloads.wordpress.org/plugin/cmb2.zip\";}}s:12:\"translations\";a:0:{}s:9:\"no_update\";a:5:{s:19:\"members/members.php\";O:8:\"stdClass\":6:{s:2:\"id\";s:5:\"10325\";s:4:\"slug\";s:7:\"members\";s:6:\"plugin\";s:19:\"members/members.php\";s:11:\"new_version\";s:5:\"0.2.4\";s:3:\"url\";s:38:\"https://wordpress.org/plugins/members/\";s:7:\"package\";s:56:\"https://downloads.wordpress.org/plugin/members.0.2.4.zip\";}s:21:\"polylang/polylang.php\";O:8:\"stdClass\":6:{s:2:\"id\";s:5:\"25780\";s:4:\"slug\";s:8:\"polylang\";s:6:\"plugin\";s:21:\"polylang/polylang.php\";s:11:\"new_version\";s:5:\"1.7.5\";s:3:\"url\";s:39:\"https://wordpress.org/plugins/polylang/\";s:7:\"package\";s:57:\"https://downloads.wordpress.org/plugin/polylang.1.7.5.zip\";}s:31:\"query-monitor/query-monitor.php\";O:8:\"stdClass\":6:{s:2:\"id\";s:5:\"10302\";s:4:\"slug\";s:13:\"query-monitor\";s:6:\"plugin\";s:31:\"query-monitor/query-monitor.php\";s:11:\"new_version\";s:5:\"2.7.4\";s:3:\"url\";s:44:\"https://wordpress.org/plugins/query-monitor/\";s:7:\"package\";s:62:\"https://downloads.wordpress.org/plugin/query-monitor.2.7.4.zip\";}s:51:\"rewrite-rules-inspector/rewrite-rules-inspector.php\";O:8:\"stdClass\":6:{s:2:\"id\";s:5:\"31263\";s:4:\"slug\";s:23:\"rewrite-rules-inspector\";s:6:\"plugin\";s:51:\"rewrite-rules-inspector/rewrite-rules-inspector.php\";s:11:\"new_version\";s:5:\"1.2.1\";s:3:\"url\";s:54:\"https://wordpress.org/plugins/rewrite-rules-inspector/\";s:7:\"package\";s:72:\"https://downloads.wordpress.org/plugin/rewrite-rules-inspector.1.2.1.zip\";}s:24:\"wordpress-seo/wp-seo.php\";O:8:\"stdClass\":6:{s:2:\"id\";s:4:\"5899\";s:4:\"slug\";s:13:\"wordpress-seo\";s:6:\"plugin\";s:24:\"wordpress-seo/wp-seo.php\";s:11:\"new_version\";s:5:\"2.1.1\";s:3:\"url\";s:44:\"https://wordpress.org/plugins/wordpress-seo/\";s:7:\"package\";s:62:\"https://downloads.wordpress.org/plugin/wordpress-seo.2.1.1.zip\";}}}','yes');
-INSERT INTO `ogdch_options` VALUES (186,'current_theme','OGD-CH','yes');
+INSERT INTO `ogdch_options` VALUES (186,'current_theme','Twenty Fifteen','yes');
 INSERT INTO `ogdch_options` VALUES (187,'theme_mods_ogdch','a:3:{i:0;b:0;s:18:\"nav_menu_locations\";a:1:{s:18:\"service_navigation\";i:70;}s:16:\"sidebars_widgets\";a:2:{s:4:\"time\";i:1436165571;s:4:\"data\";a:2:{s:19:\"wp_inactive_widgets\";a:0:{}s:18:\"orphaned_widgets_1\";a:1:{i:0;s:17:\"recent-comments-2\";}}}}','yes');
 INSERT INTO `ogdch_options` VALUES (188,'theme_switched','','yes');
 INSERT INTO `ogdch_options` VALUES (331,'nav_menu_options','a:2:{i:0;b:0;s:8:\"auto_add\";a:0:{}}','yes');
@@ -600,7 +883,7 @@ INSERT INTO `ogdch_options` VALUES (479,'wpseo_social','a:21:{s:9:\"fb_admins\";
 INSERT INTO `ogdch_options` VALUES (480,'wpseo_rss','a:2:{s:9:\"rssbefore\";s:0:\"\";s:8:\"rssafter\";s:58:\"Der Beitrag %%POSTLINK%% erschien zuerst auf %%BLOGLINK%%.\";}','yes');
 INSERT INTO `ogdch_options` VALUES (481,'wpseo_internallinks','a:16:{s:20:\"breadcrumbs-404crumb\";s:32:\"Fehler 404: Seite nicht gefunden\";s:23:\"breadcrumbs-blog-remove\";b:0;s:20:\"breadcrumbs-boldlast\";b:0;s:25:\"breadcrumbs-archiveprefix\";s:11:\"Archiv für\";s:18:\"breadcrumbs-enable\";b:0;s:16:\"breadcrumbs-home\";s:4:\"Home\";s:18:\"breadcrumbs-prefix\";s:0:\"\";s:24:\"breadcrumbs-searchprefix\";s:22:\"Sie haben gesucht nach\";s:15:\"breadcrumbs-sep\";s:7:\"&raquo;\";s:23:\"post_types-post-maintax\";i:0;s:23:\"post_types-page-maintax\";i:0;s:29:\"post_types-attachment-maintax\";i:0;s:22:\"post_types-app-maintax\";i:0;s:31:\"post_types-ckan-dataset-maintax\";i:0;s:35:\"taxonomy-ckan_organisation-ptparent\";i:0;s:28:\"taxonomy-ckan_group-ptparent\";i:0;}','yes');
 INSERT INTO `ogdch_options` VALUES (482,'wpseo_xml','a:19:{s:22:\"disable_author_sitemap\";b:0;s:22:\"disable_author_noposts\";b:0;s:16:\"enablexmlsitemap\";b:1;s:16:\"entries-per-page\";i:1000;s:38:\"user_role-administrator-not_in_sitemap\";b:0;s:31:\"user_role-editor-not_in_sitemap\";b:0;s:31:\"user_role-author-not_in_sitemap\";b:0;s:36:\"user_role-contributor-not_in_sitemap\";b:0;s:35:\"user_role-subscriber-not_in_sitemap\";b:0;s:30:\"post_types-post-not_in_sitemap\";b:0;s:30:\"post_types-page-not_in_sitemap\";b:0;s:36:\"post_types-attachment-not_in_sitemap\";b:1;s:34:\"taxonomies-category-not_in_sitemap\";b:0;s:34:\"taxonomies-post_tag-not_in_sitemap\";b:1;s:37:\"taxonomies-post_format-not_in_sitemap\";b:0;s:29:\"post_types-app-not_in_sitemap\";b:0;s:38:\"post_types-ckan-dataset-not_in_sitemap\";b:0;s:43:\"taxonomies-ckan_organisation-not_in_sitemap\";b:1;s:36:\"taxonomies-ckan_group-not_in_sitemap\";b:1;}','yes');
-INSERT INTO `ogdch_options` VALUES (488,'theme_mods_wp-ogdch-theme','a:2:{i:0;b:0;s:18:\"nav_menu_locations\";a:16:{s:15:\"main_navigation\";i:135;s:16:\"about_navigation\";i:0;s:15:\"data_navigation\";i:0;s:20:\"developer_navigation\";i:0;s:20:\"main_navigation___en\";i:136;s:20:\"main_navigation___it\";i:137;s:20:\"main_navigation___fr\";i:138;s:21:\"about_navigation___en\";i:0;s:21:\"about_navigation___it\";i:0;s:21:\"about_navigation___fr\";i:0;s:20:\"data_navigation___en\";i:0;s:20:\"data_navigation___it\";i:0;s:20:\"data_navigation___fr\";i:0;s:25:\"developer_navigation___en\";i:0;s:25:\"developer_navigation___it\";i:0;s:25:\"developer_navigation___fr\";i:0;}}','yes');
+INSERT INTO `ogdch_options` VALUES (488,'theme_mods_wp-ogdch-theme','a:3:{i:0;b:0;s:18:\"nav_menu_locations\";a:16:{s:15:\"main_navigation\";i:135;s:16:\"about_navigation\";i:0;s:15:\"data_navigation\";i:0;s:20:\"developer_navigation\";i:0;s:20:\"main_navigation___en\";i:136;s:20:\"main_navigation___it\";i:137;s:20:\"main_navigation___fr\";i:138;s:21:\"about_navigation___en\";i:0;s:21:\"about_navigation___it\";i:0;s:21:\"about_navigation___fr\";i:0;s:20:\"data_navigation___en\";i:0;s:20:\"data_navigation___it\";i:0;s:20:\"data_navigation___fr\";i:0;s:25:\"developer_navigation___en\";i:0;s:25:\"developer_navigation___it\";i:0;s:25:\"developer_navigation___fr\";i:0;}s:16:\"sidebars_widgets\";a:2:{s:4:\"time\";i:1465487926;s:4:\"data\";a:2:{s:19:\"wp_inactive_widgets\";a:5:{i:0;s:10:\"archives-2\";i:1;s:6:\"meta-2\";i:2;s:8:\"search-2\";i:3;s:12:\"categories-2\";i:4;s:14:\"recent-posts-2\";}s:18:\"orphaned_widgets_1\";a:1:{i:0;s:17:\"recent-comments-2\";}}}}','yes');
 INSERT INTO `ogdch_options` VALUES (490,'auto_core_update_notified','a:4:{s:4:\"type\";s:7:\"success\";s:5:\"email\";s:22:\"juerg.hunziker@liip.ch\";s:7:\"version\";s:5:\"4.2.3\";s:9:\"timestamp\";i:1438073767;}','yes');
 INSERT INTO `ogdch_options` VALUES (519,'page_for_posts','0','yes');
 INSERT INTO `ogdch_options` VALUES (520,'finished_splitting_shared_terms','1','yes');
@@ -613,12 +896,18 @@ INSERT INTO `ogdch_options` VALUES (786,'nf_update_email_settings_complete','1',
 INSERT INTO `ogdch_options` VALUES (787,'nf_email_fav_updated','1','yes');
 INSERT INTO `ogdch_options` VALUES (788,'nf_convert_forms_complete','1','yes');
 INSERT INTO `ogdch_options` VALUES (789,'nf_database_migrations','1','yes');
-INSERT INTO `ogdch_options` VALUES (790,'ninja_forms_settings','a:23:{s:11:\"date_format\";s:5:\"d.m.Y\";s:15:\"currency_symbol\";s:3:\"CHF\";s:14:\"recaptcha_lang\";s:2:\"en\";s:13:\"req_div_label\";s:80:\"Fields marked with an <span class=\"ninja-forms-req-symbol\">*</span> are required\";s:16:\"req_field_symbol\";s:18:\"<strong>*</strong>\";s:15:\"req_error_label\";s:48:\"Please ensure all required fields are completed.\";s:15:\"req_field_error\";s:24:\"This is a required field\";s:10:\"spam_error\";s:47:\"Please answer the anti-spam question correctly.\";s:14:\"honeypot_error\";s:34:\"Please leave the spam field blank.\";s:18:\"timed_submit_error\";s:31:\"Please wait to submit the form.\";s:16:\"javascript_error\";s:54:\"You cannot submit the form without Javascript enabled.\";s:13:\"invalid_email\";s:35:\"Please enter a valid email address.\";s:13:\"process_label\";s:10:\"Processing\";s:17:\"password_mismatch\";s:36:\"The passwords provided do not match.\";s:10:\"preview_id\";i:315;s:7:\"version\";s:6:\"2.9.31\";s:19:\"fix_form_email_from\";i:1;s:18:\"fix_field_reply_to\";i:1;s:18:\"recaptcha_site_key\";s:0:\"\";s:20:\"recaptcha_secret_key\";s:0:\"\";s:19:\"delete_on_uninstall\";s:1:\"0\";s:21:\"disable_admin_notices\";s:1:\"0\";s:22:\"version_2_2_25_rte_fix\";i:1;}','yes');
-INSERT INTO `ogdch_options` VALUES (791,'nf_admin_notice','a:2:{s:16:\"one_week_support\";a:3:{s:5:\"start\";s:10:\"10/29/2015\";s:3:\"int\";i:7;s:9:\"dismissed\";i:1;}s:15:\"two_week_review\";a:3:{s:5:\"start\";s:9:\"11/5/2015\";s:3:\"int\";i:14;s:9:\"dismissed\";i:1;}}','yes');
-INSERT INTO `ogdch_options` VALUES (808,'theme_mods_twentyfifteen','a:1:{s:16:\"sidebars_widgets\";a:2:{s:4:\"time\";i:1447418305;s:4:\"data\";a:2:{s:19:\"wp_inactive_widgets\";a:0:{}s:9:\"sidebar-1\";a:6:{i:0;s:8:\"search-2\";i:1;s:14:\"recent-posts-2\";i:2;s:17:\"recent-comments-2\";i:3;s:10:\"archives-2\";i:4;s:12:\"categories-2\";i:5;s:6:\"meta-2\";}}}}','yes');
-INSERT INTO `ogdch_options` VALUES (817,'rewrite_rules','a:233:{s:20:\"(de|en|it|fr)/app/?$\";s:40:\"index.php?lang=$matches[1]&post_type=app\";s:50:\"(de|en|it|fr)/app/feed/(feed|rdf|rss|rss2|atom)/?$\";s:57:\"index.php?lang=$matches[1]&post_type=app&feed=$matches[2]\";s:45:\"(de|en|it|fr)/app/(feed|rdf|rss|rss2|atom)/?$\";s:57:\"index.php?lang=$matches[1]&post_type=app&feed=$matches[2]\";s:37:\"(de|en|it|fr)/app/page/([0-9]{1,})/?$\";s:58:\"index.php?lang=$matches[1]&post_type=app&paged=$matches[2]\";s:19:\"sitemap_index\\.xml$\";s:19:\"index.php?sitemap=1\";s:31:\"([^/]+?)-sitemap([0-9]+)?\\.xml$\";s:51:\"index.php?sitemap=$matches[1]&sitemap_n=$matches[2]\";s:24:\"([a-z]+)?-?sitemap\\.xsl$\";s:25:\"index.php?xsl=$matches[1]\";s:61:\"(de|en|it|fr)/category/(.+?)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:52:\"index.php?category_name=$matches[2]&feed=$matches[3]\";s:56:\"(de|en|it|fr)/category/(.+?)/(feed|rdf|rss|rss2|atom)/?$\";s:52:\"index.php?category_name=$matches[2]&feed=$matches[3]\";s:49:\"(de|en|it|fr)/category/(.+?)/page/?([0-9]{1,})/?$\";s:53:\"index.php?category_name=$matches[2]&paged=$matches[3]\";s:31:\"(de|en|it|fr)/category/(.+?)/?$\";s:35:\"index.php?category_name=$matches[2]\";s:47:\"category/(.+?)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:52:\"index.php?category_name=$matches[1]&feed=$matches[2]\";s:42:\"category/(.+?)/(feed|rdf|rss|rss2|atom)/?$\";s:52:\"index.php?category_name=$matches[1]&feed=$matches[2]\";s:35:\"category/(.+?)/page/?([0-9]{1,})/?$\";s:53:\"index.php?category_name=$matches[1]&paged=$matches[2]\";s:17:\"category/(.+?)/?$\";s:35:\"index.php?category_name=$matches[1]\";s:58:\"(de|en|it|fr)/tag/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:42:\"index.php?tag=$matches[2]&feed=$matches[3]\";s:53:\"(de|en|it|fr)/tag/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:42:\"index.php?tag=$matches[2]&feed=$matches[3]\";s:46:\"(de|en|it|fr)/tag/([^/]+)/page/?([0-9]{1,})/?$\";s:43:\"index.php?tag=$matches[2]&paged=$matches[3]\";s:28:\"(de|en|it|fr)/tag/([^/]+)/?$\";s:25:\"index.php?tag=$matches[2]\";s:44:\"tag/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:42:\"index.php?tag=$matches[1]&feed=$matches[2]\";s:39:\"tag/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:42:\"index.php?tag=$matches[1]&feed=$matches[2]\";s:32:\"tag/([^/]+)/page/?([0-9]{1,})/?$\";s:43:\"index.php?tag=$matches[1]&paged=$matches[2]\";s:14:\"tag/([^/]+)/?$\";s:25:\"index.php?tag=$matches[1]\";s:59:\"(de|en|it|fr)/type/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:67:\"index.php?lang=$matches[1]&post_format=$matches[2]&feed=$matches[3]\";s:54:\"(de|en|it|fr)/type/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:67:\"index.php?lang=$matches[1]&post_format=$matches[2]&feed=$matches[3]\";s:47:\"(de|en|it|fr)/type/([^/]+)/page/?([0-9]{1,})/?$\";s:68:\"index.php?lang=$matches[1]&post_format=$matches[2]&paged=$matches[3]\";s:29:\"(de|en|it|fr)/type/([^/]+)/?$\";s:50:\"index.php?lang=$matches[1]&post_format=$matches[2]\";s:45:\"(de|en|it|fr)/app/[^/]+/attachment/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[2]\";s:55:\"(de|en|it|fr)/app/[^/]+/attachment/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[2]&tb=1\";s:75:\"(de|en|it|fr)/app/[^/]+/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[2]&feed=$matches[3]\";s:70:\"(de|en|it|fr)/app/[^/]+/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[2]&feed=$matches[3]\";s:70:\"(de|en|it|fr)/app/[^/]+/attachment/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[2]&cpage=$matches[3]\";s:38:\"(de|en|it|fr)/app/([^/]+)/trackback/?$\";s:30:\"index.php?app=$matches[2]&tb=1\";s:58:\"(de|en|it|fr)/app/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:42:\"index.php?app=$matches[2]&feed=$matches[3]\";s:53:\"(de|en|it|fr)/app/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:42:\"index.php?app=$matches[2]&feed=$matches[3]\";s:46:\"(de|en|it|fr)/app/([^/]+)/page/?([0-9]{1,})/?$\";s:43:\"index.php?app=$matches[2]&paged=$matches[3]\";s:53:\"(de|en|it|fr)/app/([^/]+)/comment-page-([0-9]{1,})/?$\";s:43:\"index.php?app=$matches[2]&cpage=$matches[3]\";s:38:\"(de|en|it|fr)/app/([^/]+)(/[0-9]+)?/?$\";s:42:\"index.php?app=$matches[2]&page=$matches[3]\";s:34:\"(de|en|it|fr)/app/[^/]+/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[2]\";s:44:\"(de|en|it|fr)/app/[^/]+/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[2]&tb=1\";s:64:\"(de|en|it|fr)/app/[^/]+/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[2]&feed=$matches[3]\";s:59:\"(de|en|it|fr)/app/[^/]+/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[2]&feed=$matches[3]\";s:59:\"(de|en|it|fr)/app/[^/]+/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[2]&cpage=$matches[3]\";s:31:\"app/[^/]+/attachment/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:41:\"app/[^/]+/attachment/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:61:\"app/[^/]+/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:56:\"app/[^/]+/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:56:\"app/[^/]+/attachment/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:24:\"app/([^/]+)/trackback/?$\";s:30:\"index.php?app=$matches[1]&tb=1\";s:44:\"app/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:42:\"index.php?app=$matches[1]&feed=$matches[2]\";s:39:\"app/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:42:\"index.php?app=$matches[1]&feed=$matches[2]\";s:32:\"app/([^/]+)/page/?([0-9]{1,})/?$\";s:43:\"index.php?app=$matches[1]&paged=$matches[2]\";s:39:\"app/([^/]+)/comment-page-([0-9]{1,})/?$\";s:43:\"index.php?app=$matches[1]&cpage=$matches[2]\";s:24:\"app/([^/]+)(/[0-9]+)?/?$\";s:42:\"index.php?app=$matches[1]&page=$matches[2]\";s:20:\"app/[^/]+/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:30:\"app/[^/]+/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:50:\"app/[^/]+/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:45:\"app/[^/]+/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:45:\"app/[^/]+/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:56:\"ckan-keyword-de/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:54:\"index.php?ckan-keyword-de=$matches[1]&feed=$matches[2]\";s:51:\"ckan-keyword-de/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:54:\"index.php?ckan-keyword-de=$matches[1]&feed=$matches[2]\";s:44:\"ckan-keyword-de/([^/]+)/page/?([0-9]{1,})/?$\";s:55:\"index.php?ckan-keyword-de=$matches[1]&paged=$matches[2]\";s:26:\"ckan-keyword-de/([^/]+)/?$\";s:37:\"index.php?ckan-keyword-de=$matches[1]\";s:56:\"ckan-keyword-en/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:54:\"index.php?ckan-keyword-en=$matches[1]&feed=$matches[2]\";s:51:\"ckan-keyword-en/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:54:\"index.php?ckan-keyword-en=$matches[1]&feed=$matches[2]\";s:44:\"ckan-keyword-en/([^/]+)/page/?([0-9]{1,})/?$\";s:55:\"index.php?ckan-keyword-en=$matches[1]&paged=$matches[2]\";s:26:\"ckan-keyword-en/([^/]+)/?$\";s:37:\"index.php?ckan-keyword-en=$matches[1]\";s:56:\"ckan-keyword-fr/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:54:\"index.php?ckan-keyword-fr=$matches[1]&feed=$matches[2]\";s:51:\"ckan-keyword-fr/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:54:\"index.php?ckan-keyword-fr=$matches[1]&feed=$matches[2]\";s:44:\"ckan-keyword-fr/([^/]+)/page/?([0-9]{1,})/?$\";s:55:\"index.php?ckan-keyword-fr=$matches[1]&paged=$matches[2]\";s:26:\"ckan-keyword-fr/([^/]+)/?$\";s:37:\"index.php?ckan-keyword-fr=$matches[1]\";s:56:\"ckan-keyword-it/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:54:\"index.php?ckan-keyword-it=$matches[1]&feed=$matches[2]\";s:51:\"ckan-keyword-it/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:54:\"index.php?ckan-keyword-it=$matches[1]&feed=$matches[2]\";s:44:\"ckan-keyword-it/([^/]+)/page/?([0-9]{1,})/?$\";s:55:\"index.php?ckan-keyword-it=$matches[1]&paged=$matches[2]\";s:26:\"ckan-keyword-it/([^/]+)/?$\";s:37:\"index.php?ckan-keyword-it=$matches[1]\";s:55:\"ckan-mediatype/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:53:\"index.php?ckan-mediatype=$matches[1]&feed=$matches[2]\";s:50:\"ckan-mediatype/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:53:\"index.php?ckan-mediatype=$matches[1]&feed=$matches[2]\";s:43:\"ckan-mediatype/([^/]+)/page/?([0-9]{1,})/?$\";s:54:\"index.php?ckan-mediatype=$matches[1]&paged=$matches[2]\";s:25:\"ckan-mediatype/([^/]+)/?$\";s:36:\"index.php?ckan-mediatype=$matches[1]\";s:35:\"dataset/[^/]+/attachment/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:45:\"dataset/[^/]+/attachment/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:65:\"dataset/[^/]+/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:60:\"dataset/[^/]+/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:60:\"dataset/[^/]+/attachment/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:28:\"dataset/([^/]+)/trackback/?$\";s:45:\"index.php?ckan-local-dataset=$matches[1]&tb=1\";s:36:\"dataset/([^/]+)/page/?([0-9]{1,})/?$\";s:58:\"index.php?ckan-local-dataset=$matches[1]&paged=$matches[2]\";s:43:\"dataset/([^/]+)/comment-page-([0-9]{1,})/?$\";s:58:\"index.php?ckan-local-dataset=$matches[1]&cpage=$matches[2]\";s:28:\"dataset/([^/]+)(/[0-9]+)?/?$\";s:57:\"index.php?ckan-local-dataset=$matches[1]&page=$matches[2]\";s:24:\"dataset/[^/]+/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:34:\"dataset/[^/]+/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:54:\"dataset/[^/]+/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:49:\"dataset/[^/]+/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:49:\"dataset/[^/]+/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:33:\"group/[^/]+/attachment/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:43:\"group/[^/]+/attachment/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:63:\"group/[^/]+/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:58:\"group/[^/]+/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:58:\"group/[^/]+/attachment/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:26:\"group/([^/]+)/trackback/?$\";s:43:\"index.php?ckan-local-group=$matches[1]&tb=1\";s:34:\"group/([^/]+)/page/?([0-9]{1,})/?$\";s:56:\"index.php?ckan-local-group=$matches[1]&paged=$matches[2]\";s:41:\"group/([^/]+)/comment-page-([0-9]{1,})/?$\";s:56:\"index.php?ckan-local-group=$matches[1]&cpage=$matches[2]\";s:26:\"group/([^/]+)(/[0-9]+)?/?$\";s:55:\"index.php?ckan-local-group=$matches[1]&page=$matches[2]\";s:22:\"group/[^/]+/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:32:\"group/[^/]+/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:52:\"group/[^/]+/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:47:\"group/[^/]+/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:47:\"group/[^/]+/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:40:\"organization/[^/]+/attachment/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:50:\"organization/[^/]+/attachment/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:70:\"organization/[^/]+/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:65:\"organization/[^/]+/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:65:\"organization/[^/]+/attachment/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:33:\"organization/([^/]+)/trackback/?$\";s:41:\"index.php?ckan-local-org=$matches[1]&tb=1\";s:41:\"organization/([^/]+)/page/?([0-9]{1,})/?$\";s:54:\"index.php?ckan-local-org=$matches[1]&paged=$matches[2]\";s:48:\"organization/([^/]+)/comment-page-([0-9]{1,})/?$\";s:54:\"index.php?ckan-local-org=$matches[1]&cpage=$matches[2]\";s:33:\"organization/([^/]+)(/[0-9]+)?/?$\";s:53:\"index.php?ckan-local-org=$matches[1]&page=$matches[2]\";s:29:\"organization/[^/]+/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:39:\"organization/[^/]+/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:59:\"organization/[^/]+/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:54:\"organization/[^/]+/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:54:\"organization/[^/]+/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:48:\"ckan-local-harvester/[^/]+/attachment/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:58:\"ckan-local-harvester/[^/]+/attachment/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:78:\"ckan-local-harvester/[^/]+/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:73:\"ckan-local-harvester/[^/]+/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:73:\"ckan-local-harvester/[^/]+/attachment/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:41:\"ckan-local-harvester/([^/]+)/trackback/?$\";s:47:\"index.php?ckan-local-harvester=$matches[1]&tb=1\";s:49:\"ckan-local-harvester/([^/]+)/page/?([0-9]{1,})/?$\";s:60:\"index.php?ckan-local-harvester=$matches[1]&paged=$matches[2]\";s:56:\"ckan-local-harvester/([^/]+)/comment-page-([0-9]{1,})/?$\";s:60:\"index.php?ckan-local-harvester=$matches[1]&cpage=$matches[2]\";s:41:\"ckan-local-harvester/([^/]+)(/[0-9]+)?/?$\";s:59:\"index.php?ckan-local-harvester=$matches[1]&page=$matches[2]\";s:37:\"ckan-local-harvester/[^/]+/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:47:\"ckan-local-harvester/[^/]+/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:67:\"ckan-local-harvester/[^/]+/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:62:\"ckan-local-harvester/[^/]+/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:62:\"ckan-local-harvester/[^/]+/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:34:\"nf_sub/[^/]+/attachment/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:44:\"nf_sub/[^/]+/attachment/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:64:\"nf_sub/[^/]+/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:59:\"nf_sub/[^/]+/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:59:\"nf_sub/[^/]+/attachment/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:27:\"nf_sub/([^/]+)/trackback/?$\";s:33:\"index.php?nf_sub=$matches[1]&tb=1\";s:35:\"nf_sub/([^/]+)/page/?([0-9]{1,})/?$\";s:46:\"index.php?nf_sub=$matches[1]&paged=$matches[2]\";s:42:\"nf_sub/([^/]+)/comment-page-([0-9]{1,})/?$\";s:46:\"index.php?nf_sub=$matches[1]&cpage=$matches[2]\";s:27:\"nf_sub/([^/]+)(/[0-9]+)?/?$\";s:45:\"index.php?nf_sub=$matches[1]&page=$matches[2]\";s:23:\"nf_sub/[^/]+/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:33:\"nf_sub/[^/]+/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:53:\"nf_sub/[^/]+/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:48:\"nf_sub/[^/]+/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:48:\"nf_sub/[^/]+/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:12:\"robots\\.txt$\";s:18:\"index.php?robots=1\";s:48:\".*wp-(atom|rdf|rss|rss2|feed|commentsrss2)\\.php$\";s:18:\"index.php?feed=old\";s:20:\".*wp-app\\.php(/.*)?$\";s:19:\"index.php?error=403\";s:18:\".*wp-register.php$\";s:23:\"index.php?register=true\";s:46:\"(de|en|it|fr)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:44:\"index.php?lang=$matches[1]&&feed=$matches[2]\";s:41:\"(de|en|it|fr)/(feed|rdf|rss|rss2|atom)/?$\";s:44:\"index.php?lang=$matches[1]&&feed=$matches[2]\";s:34:\"(de|en|it|fr)/page/?([0-9]{1,})/?$\";s:45:\"index.php?lang=$matches[1]&&paged=$matches[2]\";s:16:\"(de|en|it|fr)/?$\";s:26:\"index.php?lang=$matches[1]\";s:55:\"(de|en|it|fr)/comments/feed/(feed|rdf|rss|rss2|atom)/?$\";s:59:\"index.php?lang=$matches[1]&&feed=$matches[2]&withcomments=1\";s:50:\"(de|en|it|fr)/comments/(feed|rdf|rss|rss2|atom)/?$\";s:59:\"index.php?lang=$matches[1]&&feed=$matches[2]&withcomments=1\";s:58:\"(de|en|it|fr)/search/(.+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:57:\"index.php?lang=$matches[1]&s=$matches[2]&feed=$matches[3]\";s:53:\"(de|en|it|fr)/search/(.+)/(feed|rdf|rss|rss2|atom)/?$\";s:57:\"index.php?lang=$matches[1]&s=$matches[2]&feed=$matches[3]\";s:46:\"(de|en|it|fr)/search/(.+)/page/?([0-9]{1,})/?$\";s:58:\"index.php?lang=$matches[1]&s=$matches[2]&paged=$matches[3]\";s:28:\"(de|en|it|fr)/search/(.+)/?$\";s:40:\"index.php?lang=$matches[1]&s=$matches[2]\";s:61:\"(de|en|it|fr)/author/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:67:\"index.php?lang=$matches[1]&author_name=$matches[2]&feed=$matches[3]\";s:56:\"(de|en|it|fr)/author/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:67:\"index.php?lang=$matches[1]&author_name=$matches[2]&feed=$matches[3]\";s:49:\"(de|en|it|fr)/author/([^/]+)/page/?([0-9]{1,})/?$\";s:68:\"index.php?lang=$matches[1]&author_name=$matches[2]&paged=$matches[3]\";s:31:\"(de|en|it|fr)/author/([^/]+)/?$\";s:50:\"index.php?lang=$matches[1]&author_name=$matches[2]\";s:83:\"(de|en|it|fr)/([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/feed/(feed|rdf|rss|rss2|atom)/?$\";s:97:\"index.php?lang=$matches[1]&year=$matches[2]&monthnum=$matches[3]&day=$matches[4]&feed=$matches[5]\";s:78:\"(de|en|it|fr)/([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/(feed|rdf|rss|rss2|atom)/?$\";s:97:\"index.php?lang=$matches[1]&year=$matches[2]&monthnum=$matches[3]&day=$matches[4]&feed=$matches[5]\";s:71:\"(de|en|it|fr)/([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/page/?([0-9]{1,})/?$\";s:98:\"index.php?lang=$matches[1]&year=$matches[2]&monthnum=$matches[3]&day=$matches[4]&paged=$matches[5]\";s:53:\"(de|en|it|fr)/([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/?$\";s:80:\"index.php?lang=$matches[1]&year=$matches[2]&monthnum=$matches[3]&day=$matches[4]\";s:70:\"(de|en|it|fr)/([0-9]{4})/([0-9]{1,2})/feed/(feed|rdf|rss|rss2|atom)/?$\";s:81:\"index.php?lang=$matches[1]&year=$matches[2]&monthnum=$matches[3]&feed=$matches[4]\";s:65:\"(de|en|it|fr)/([0-9]{4})/([0-9]{1,2})/(feed|rdf|rss|rss2|atom)/?$\";s:81:\"index.php?lang=$matches[1]&year=$matches[2]&monthnum=$matches[3]&feed=$matches[4]\";s:58:\"(de|en|it|fr)/([0-9]{4})/([0-9]{1,2})/page/?([0-9]{1,})/?$\";s:82:\"index.php?lang=$matches[1]&year=$matches[2]&monthnum=$matches[3]&paged=$matches[4]\";s:40:\"(de|en|it|fr)/([0-9]{4})/([0-9]{1,2})/?$\";s:64:\"index.php?lang=$matches[1]&year=$matches[2]&monthnum=$matches[3]\";s:57:\"(de|en|it|fr)/([0-9]{4})/feed/(feed|rdf|rss|rss2|atom)/?$\";s:60:\"index.php?lang=$matches[1]&year=$matches[2]&feed=$matches[3]\";s:52:\"(de|en|it|fr)/([0-9]{4})/(feed|rdf|rss|rss2|atom)/?$\";s:60:\"index.php?lang=$matches[1]&year=$matches[2]&feed=$matches[3]\";s:45:\"(de|en|it|fr)/([0-9]{4})/page/?([0-9]{1,})/?$\";s:61:\"index.php?lang=$matches[1]&year=$matches[2]&paged=$matches[3]\";s:27:\"(de|en|it|fr)/([0-9]{4})/?$\";s:43:\"index.php?lang=$matches[1]&year=$matches[2]\";s:41:\"(de|en|it|fr)/.?.+?/attachment/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[2]\";s:51:\"(de|en|it|fr)/.?.+?/attachment/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[2]&tb=1\";s:71:\"(de|en|it|fr)/.?.+?/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[2]&feed=$matches[3]\";s:66:\"(de|en|it|fr)/.?.+?/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[2]&feed=$matches[3]\";s:66:\"(de|en|it|fr)/.?.+?/attachment/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[2]&cpage=$matches[3]\";s:34:\"(de|en|it|fr)/(.?.+?)/trackback/?$\";s:35:\"index.php?pagename=$matches[2]&tb=1\";s:54:\"(de|en|it|fr)/(.?.+?)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:47:\"index.php?pagename=$matches[2]&feed=$matches[3]\";s:49:\"(de|en|it|fr)/(.?.+?)/(feed|rdf|rss|rss2|atom)/?$\";s:47:\"index.php?pagename=$matches[2]&feed=$matches[3]\";s:42:\"(de|en|it|fr)/(.?.+?)/page/?([0-9]{1,})/?$\";s:48:\"index.php?pagename=$matches[2]&paged=$matches[3]\";s:49:\"(de|en|it|fr)/(.?.+?)/comment-page-([0-9]{1,})/?$\";s:48:\"index.php?pagename=$matches[2]&cpage=$matches[3]\";s:34:\"(de|en|it|fr)/(.?.+?)(/[0-9]+)?/?$\";s:47:\"index.php?pagename=$matches[2]&page=$matches[3]\";s:27:\".?.+?/attachment/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:37:\".?.+?/attachment/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:57:\".?.+?/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:52:\".?.+?/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:52:\".?.+?/attachment/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:20:\"(.?.+?)/trackback/?$\";s:35:\"index.php?pagename=$matches[1]&tb=1\";s:40:\"(.?.+?)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:47:\"index.php?pagename=$matches[1]&feed=$matches[2]\";s:35:\"(.?.+?)/(feed|rdf|rss|rss2|atom)/?$\";s:47:\"index.php?pagename=$matches[1]&feed=$matches[2]\";s:28:\"(.?.+?)/page/?([0-9]{1,})/?$\";s:48:\"index.php?pagename=$matches[1]&paged=$matches[2]\";s:35:\"(.?.+?)/comment-page-([0-9]{1,})/?$\";s:48:\"index.php?pagename=$matches[1]&cpage=$matches[2]\";s:20:\"(.?.+?)(/[0-9]+)?/?$\";s:47:\"index.php?pagename=$matches[1]&page=$matches[2]\";s:41:\"(de|en|it|fr)/[^/]+/attachment/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[2]\";s:51:\"(de|en|it|fr)/[^/]+/attachment/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[2]&tb=1\";s:71:\"(de|en|it|fr)/[^/]+/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[2]&feed=$matches[3]\";s:66:\"(de|en|it|fr)/[^/]+/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[2]&feed=$matches[3]\";s:66:\"(de|en|it|fr)/[^/]+/attachment/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[2]&cpage=$matches[3]\";s:34:\"(de|en|it|fr)/([^/]+)/trackback/?$\";s:31:\"index.php?name=$matches[2]&tb=1\";s:54:\"(de|en|it|fr)/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:43:\"index.php?name=$matches[2]&feed=$matches[3]\";s:49:\"(de|en|it|fr)/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:43:\"index.php?name=$matches[2]&feed=$matches[3]\";s:42:\"(de|en|it|fr)/([^/]+)/page/?([0-9]{1,})/?$\";s:44:\"index.php?name=$matches[2]&paged=$matches[3]\";s:49:\"(de|en|it|fr)/([^/]+)/comment-page-([0-9]{1,})/?$\";s:44:\"index.php?name=$matches[2]&cpage=$matches[3]\";s:34:\"(de|en|it|fr)/([^/]+)(/[0-9]+)?/?$\";s:43:\"index.php?name=$matches[2]&page=$matches[3]\";s:30:\"(de|en|it|fr)/[^/]+/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[2]\";s:40:\"(de|en|it|fr)/[^/]+/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[2]&tb=1\";s:60:\"(de|en|it|fr)/[^/]+/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[2]&feed=$matches[3]\";s:55:\"(de|en|it|fr)/[^/]+/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[2]&feed=$matches[3]\";s:55:\"(de|en|it|fr)/[^/]+/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[2]&cpage=$matches[3]\";s:27:\"[^/]+/attachment/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:37:\"[^/]+/attachment/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:57:\"[^/]+/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:52:\"[^/]+/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:52:\"[^/]+/attachment/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:20:\"([^/]+)/trackback/?$\";s:31:\"index.php?name=$matches[1]&tb=1\";s:40:\"([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:43:\"index.php?name=$matches[1]&feed=$matches[2]\";s:35:\"([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:43:\"index.php?name=$matches[1]&feed=$matches[2]\";s:28:\"([^/]+)/page/?([0-9]{1,})/?$\";s:44:\"index.php?name=$matches[1]&paged=$matches[2]\";s:35:\"([^/]+)/comment-page-([0-9]{1,})/?$\";s:44:\"index.php?name=$matches[1]&cpage=$matches[2]\";s:20:\"([^/]+)(/[0-9]+)?/?$\";s:43:\"index.php?name=$matches[1]&page=$matches[2]\";s:16:\"[^/]+/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:26:\"[^/]+/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:46:\"[^/]+/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:41:\"[^/]+/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:41:\"[^/]+/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";}','yes');
+INSERT INTO `ogdch_options` VALUES (790,'ninja_forms_settings','a:23:{s:11:\"date_format\";s:5:\"d.m.Y\";s:15:\"currency_symbol\";s:3:\"CHF\";s:14:\"recaptcha_lang\";s:2:\"en\";s:13:\"req_div_label\";s:102:\"Alle Felder, welche mit <span class=\"ninja-forms-req-symbol\">*</span> markiert sind, sind erforderlich\";s:16:\"req_field_symbol\";s:18:\"<strong>*</strong>\";s:15:\"req_error_label\";s:46:\"Bitte füllen Sie alle Felder mit einem * aus.\";s:15:\"req_field_error\";s:28:\"Dieses Feld ist erforderlich\";s:10:\"spam_error\";s:46:\"Bitte die Anti-Spam Frage korrekt beantworten.\";s:14:\"honeypot_error\";s:32:\"Bitte das Spam-Feld leer lassen.\";s:18:\"timed_submit_error\";s:58:\"Bitte kurz warten, bis Sie das Formular versenden können.\";s:16:\"javascript_error\";s:66:\"Bitte JavaScript aktivieren, um das Formular versenden zu können.\";s:13:\"invalid_email\";s:44:\"Bitte eine gültige E-Mail-Adresse eingeben.\";s:13:\"process_label\";s:14:\"Wird versendet\";s:17:\"password_mismatch\";s:39:\"Die Passwörter stimmen nicht überein.\";s:10:\"preview_id\";i:315;s:7:\"version\";s:6:\"2.9.47\";s:19:\"fix_form_email_from\";i:1;s:18:\"fix_field_reply_to\";i:1;s:18:\"recaptcha_site_key\";s:0:\"\";s:20:\"recaptcha_secret_key\";s:0:\"\";s:19:\"delete_on_uninstall\";s:1:\"0\";s:21:\"disable_admin_notices\";s:1:\"0\";s:22:\"version_2_2_25_rte_fix\";i:1;}','yes');
+INSERT INTO `ogdch_options` VALUES (791,'nf_admin_notice','a:3:{s:16:\"one_week_support\";a:3:{s:5:\"start\";s:10:\"10/29/2015\";s:3:\"int\";i:7;s:9:\"dismissed\";i:1;}s:15:\"two_week_review\";a:3:{s:5:\"start\";s:9:\"11/5/2015\";s:3:\"int\";i:14;s:9:\"dismissed\";i:1;}s:10:\"three_info\";a:3:{s:5:\"start\";s:8:\"6/8/2016\";s:3:\"int\";i:0;s:9:\"dismissed\";i:1;}}','yes');
 INSERT INTO `ogdch_options` VALUES (820,'nf_version_upgraded_from','2.9.31','yes');
 INSERT INTO `ogdch_options` VALUES (835,'_wp_session_expires_fecf609bb5c4713134062807bb9bc896','1449677665','no');
+INSERT INTO `ogdch_options` VALUES (836,'ninja_forms_load_deprecated','1','yes');
+INSERT INTO `ogdch_options` VALUES (837,'widget_ninja_forms_widget','a:2:{i:1;a:0:{}s:12:\"_multiwidget\";i:1;}','yes');
+INSERT INTO `ogdch_options` VALUES (839,'wo_options','a:14:{s:7:\"enabled\";i:1;s:16:\"client_id_length\";i:30;s:17:\"auth_code_enabled\";i:1;s:20:\"client_creds_enabled\";i:0;s:18:\"user_creds_enabled\";i:0;s:22:\"refresh_tokens_enabled\";i:0;s:16:\"implicit_enabled\";i:0;s:26:\"require_exact_redirect_uri\";i:0;s:13:\"enforce_state\";i:0;s:22:\"refresh_token_lifetime\";i:864000;s:21:\"access_token_lifetime\";i:86400;s:18:\"use_openid_connect\";i:0;s:11:\"id_lifetime\";i:3600;s:17:\"id_token_lifetime\";i:3600;}','yes');
+INSERT INTO `ogdch_options` VALUES (840,'wpoauth_version','3.1.97','yes');
+INSERT INTO `ogdch_options` VALUES (841,'rewrite_rules','a:233:{s:20:\"(de|en|it|fr)/app/?$\";s:40:\"index.php?lang=$matches[1]&post_type=app\";s:50:\"(de|en|it|fr)/app/feed/(feed|rdf|rss|rss2|atom)/?$\";s:57:\"index.php?lang=$matches[1]&post_type=app&feed=$matches[2]\";s:45:\"(de|en|it|fr)/app/(feed|rdf|rss|rss2|atom)/?$\";s:57:\"index.php?lang=$matches[1]&post_type=app&feed=$matches[2]\";s:37:\"(de|en|it|fr)/app/page/([0-9]{1,})/?$\";s:58:\"index.php?lang=$matches[1]&post_type=app&paged=$matches[2]\";s:11:\"^oauth/(.+)\";s:27:\"index.php?oauth=$matches[1]\";s:17:\"^.well-known/(.+)\";s:32:\"index.php?well-known=$matches[1]\";s:21:\"^wpoauthincludes/(.+)\";s:37:\"index.php?wpoauthincludes=$matches[1]\";s:61:\"(de|en|it|fr)/category/(.+?)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:52:\"index.php?category_name=$matches[2]&feed=$matches[3]\";s:56:\"(de|en|it|fr)/category/(.+?)/(feed|rdf|rss|rss2|atom)/?$\";s:52:\"index.php?category_name=$matches[2]&feed=$matches[3]\";s:49:\"(de|en|it|fr)/category/(.+?)/page/?([0-9]{1,})/?$\";s:53:\"index.php?category_name=$matches[2]&paged=$matches[3]\";s:31:\"(de|en|it|fr)/category/(.+?)/?$\";s:35:\"index.php?category_name=$matches[2]\";s:47:\"category/(.+?)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:52:\"index.php?category_name=$matches[1]&feed=$matches[2]\";s:42:\"category/(.+?)/(feed|rdf|rss|rss2|atom)/?$\";s:52:\"index.php?category_name=$matches[1]&feed=$matches[2]\";s:35:\"category/(.+?)/page/?([0-9]{1,})/?$\";s:53:\"index.php?category_name=$matches[1]&paged=$matches[2]\";s:17:\"category/(.+?)/?$\";s:35:\"index.php?category_name=$matches[1]\";s:58:\"(de|en|it|fr)/tag/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:42:\"index.php?tag=$matches[2]&feed=$matches[3]\";s:53:\"(de|en|it|fr)/tag/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:42:\"index.php?tag=$matches[2]&feed=$matches[3]\";s:46:\"(de|en|it|fr)/tag/([^/]+)/page/?([0-9]{1,})/?$\";s:43:\"index.php?tag=$matches[2]&paged=$matches[3]\";s:28:\"(de|en|it|fr)/tag/([^/]+)/?$\";s:25:\"index.php?tag=$matches[2]\";s:44:\"tag/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:42:\"index.php?tag=$matches[1]&feed=$matches[2]\";s:39:\"tag/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:42:\"index.php?tag=$matches[1]&feed=$matches[2]\";s:32:\"tag/([^/]+)/page/?([0-9]{1,})/?$\";s:43:\"index.php?tag=$matches[1]&paged=$matches[2]\";s:14:\"tag/([^/]+)/?$\";s:25:\"index.php?tag=$matches[1]\";s:59:\"(de|en|it|fr)/type/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:67:\"index.php?lang=$matches[1]&post_format=$matches[2]&feed=$matches[3]\";s:54:\"(de|en|it|fr)/type/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:67:\"index.php?lang=$matches[1]&post_format=$matches[2]&feed=$matches[3]\";s:47:\"(de|en|it|fr)/type/([^/]+)/page/?([0-9]{1,})/?$\";s:68:\"index.php?lang=$matches[1]&post_format=$matches[2]&paged=$matches[3]\";s:29:\"(de|en|it|fr)/type/([^/]+)/?$\";s:50:\"index.php?lang=$matches[1]&post_format=$matches[2]\";s:45:\"(de|en|it|fr)/app/[^/]+/attachment/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[2]\";s:55:\"(de|en|it|fr)/app/[^/]+/attachment/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[2]&tb=1\";s:75:\"(de|en|it|fr)/app/[^/]+/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[2]&feed=$matches[3]\";s:70:\"(de|en|it|fr)/app/[^/]+/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[2]&feed=$matches[3]\";s:70:\"(de|en|it|fr)/app/[^/]+/attachment/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[2]&cpage=$matches[3]\";s:38:\"(de|en|it|fr)/app/([^/]+)/trackback/?$\";s:30:\"index.php?app=$matches[2]&tb=1\";s:58:\"(de|en|it|fr)/app/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:42:\"index.php?app=$matches[2]&feed=$matches[3]\";s:53:\"(de|en|it|fr)/app/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:42:\"index.php?app=$matches[2]&feed=$matches[3]\";s:46:\"(de|en|it|fr)/app/([^/]+)/page/?([0-9]{1,})/?$\";s:43:\"index.php?app=$matches[2]&paged=$matches[3]\";s:53:\"(de|en|it|fr)/app/([^/]+)/comment-page-([0-9]{1,})/?$\";s:43:\"index.php?app=$matches[2]&cpage=$matches[3]\";s:38:\"(de|en|it|fr)/app/([^/]+)(/[0-9]+)?/?$\";s:42:\"index.php?app=$matches[2]&page=$matches[3]\";s:34:\"(de|en|it|fr)/app/[^/]+/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[2]\";s:44:\"(de|en|it|fr)/app/[^/]+/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[2]&tb=1\";s:64:\"(de|en|it|fr)/app/[^/]+/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[2]&feed=$matches[3]\";s:59:\"(de|en|it|fr)/app/[^/]+/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[2]&feed=$matches[3]\";s:59:\"(de|en|it|fr)/app/[^/]+/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[2]&cpage=$matches[3]\";s:31:\"app/[^/]+/attachment/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:41:\"app/[^/]+/attachment/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:61:\"app/[^/]+/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:56:\"app/[^/]+/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:56:\"app/[^/]+/attachment/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:24:\"app/([^/]+)/trackback/?$\";s:30:\"index.php?app=$matches[1]&tb=1\";s:44:\"app/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:42:\"index.php?app=$matches[1]&feed=$matches[2]\";s:39:\"app/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:42:\"index.php?app=$matches[1]&feed=$matches[2]\";s:32:\"app/([^/]+)/page/?([0-9]{1,})/?$\";s:43:\"index.php?app=$matches[1]&paged=$matches[2]\";s:39:\"app/([^/]+)/comment-page-([0-9]{1,})/?$\";s:43:\"index.php?app=$matches[1]&cpage=$matches[2]\";s:24:\"app/([^/]+)(/[0-9]+)?/?$\";s:42:\"index.php?app=$matches[1]&page=$matches[2]\";s:20:\"app/[^/]+/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:30:\"app/[^/]+/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:50:\"app/[^/]+/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:45:\"app/[^/]+/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:45:\"app/[^/]+/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:56:\"ckan-keyword-de/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:54:\"index.php?ckan-keyword-de=$matches[1]&feed=$matches[2]\";s:51:\"ckan-keyword-de/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:54:\"index.php?ckan-keyword-de=$matches[1]&feed=$matches[2]\";s:44:\"ckan-keyword-de/([^/]+)/page/?([0-9]{1,})/?$\";s:55:\"index.php?ckan-keyword-de=$matches[1]&paged=$matches[2]\";s:26:\"ckan-keyword-de/([^/]+)/?$\";s:37:\"index.php?ckan-keyword-de=$matches[1]\";s:56:\"ckan-keyword-en/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:54:\"index.php?ckan-keyword-en=$matches[1]&feed=$matches[2]\";s:51:\"ckan-keyword-en/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:54:\"index.php?ckan-keyword-en=$matches[1]&feed=$matches[2]\";s:44:\"ckan-keyword-en/([^/]+)/page/?([0-9]{1,})/?$\";s:55:\"index.php?ckan-keyword-en=$matches[1]&paged=$matches[2]\";s:26:\"ckan-keyword-en/([^/]+)/?$\";s:37:\"index.php?ckan-keyword-en=$matches[1]\";s:56:\"ckan-keyword-fr/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:54:\"index.php?ckan-keyword-fr=$matches[1]&feed=$matches[2]\";s:51:\"ckan-keyword-fr/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:54:\"index.php?ckan-keyword-fr=$matches[1]&feed=$matches[2]\";s:44:\"ckan-keyword-fr/([^/]+)/page/?([0-9]{1,})/?$\";s:55:\"index.php?ckan-keyword-fr=$matches[1]&paged=$matches[2]\";s:26:\"ckan-keyword-fr/([^/]+)/?$\";s:37:\"index.php?ckan-keyword-fr=$matches[1]\";s:56:\"ckan-keyword-it/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:54:\"index.php?ckan-keyword-it=$matches[1]&feed=$matches[2]\";s:51:\"ckan-keyword-it/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:54:\"index.php?ckan-keyword-it=$matches[1]&feed=$matches[2]\";s:44:\"ckan-keyword-it/([^/]+)/page/?([0-9]{1,})/?$\";s:55:\"index.php?ckan-keyword-it=$matches[1]&paged=$matches[2]\";s:26:\"ckan-keyword-it/([^/]+)/?$\";s:37:\"index.php?ckan-keyword-it=$matches[1]\";s:55:\"ckan-mediatype/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:53:\"index.php?ckan-mediatype=$matches[1]&feed=$matches[2]\";s:50:\"ckan-mediatype/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:53:\"index.php?ckan-mediatype=$matches[1]&feed=$matches[2]\";s:43:\"ckan-mediatype/([^/]+)/page/?([0-9]{1,})/?$\";s:54:\"index.php?ckan-mediatype=$matches[1]&paged=$matches[2]\";s:25:\"ckan-mediatype/([^/]+)/?$\";s:36:\"index.php?ckan-mediatype=$matches[1]\";s:35:\"dataset/[^/]+/attachment/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:45:\"dataset/[^/]+/attachment/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:65:\"dataset/[^/]+/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:60:\"dataset/[^/]+/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:60:\"dataset/[^/]+/attachment/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:28:\"dataset/([^/]+)/trackback/?$\";s:45:\"index.php?ckan-local-dataset=$matches[1]&tb=1\";s:36:\"dataset/([^/]+)/page/?([0-9]{1,})/?$\";s:58:\"index.php?ckan-local-dataset=$matches[1]&paged=$matches[2]\";s:43:\"dataset/([^/]+)/comment-page-([0-9]{1,})/?$\";s:58:\"index.php?ckan-local-dataset=$matches[1]&cpage=$matches[2]\";s:28:\"dataset/([^/]+)(/[0-9]+)?/?$\";s:57:\"index.php?ckan-local-dataset=$matches[1]&page=$matches[2]\";s:24:\"dataset/[^/]+/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:34:\"dataset/[^/]+/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:54:\"dataset/[^/]+/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:49:\"dataset/[^/]+/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:49:\"dataset/[^/]+/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:33:\"group/[^/]+/attachment/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:43:\"group/[^/]+/attachment/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:63:\"group/[^/]+/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:58:\"group/[^/]+/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:58:\"group/[^/]+/attachment/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:26:\"group/([^/]+)/trackback/?$\";s:43:\"index.php?ckan-local-group=$matches[1]&tb=1\";s:34:\"group/([^/]+)/page/?([0-9]{1,})/?$\";s:56:\"index.php?ckan-local-group=$matches[1]&paged=$matches[2]\";s:41:\"group/([^/]+)/comment-page-([0-9]{1,})/?$\";s:56:\"index.php?ckan-local-group=$matches[1]&cpage=$matches[2]\";s:26:\"group/([^/]+)(/[0-9]+)?/?$\";s:55:\"index.php?ckan-local-group=$matches[1]&page=$matches[2]\";s:22:\"group/[^/]+/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:32:\"group/[^/]+/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:52:\"group/[^/]+/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:47:\"group/[^/]+/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:47:\"group/[^/]+/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:40:\"organization/[^/]+/attachment/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:50:\"organization/[^/]+/attachment/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:70:\"organization/[^/]+/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:65:\"organization/[^/]+/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:65:\"organization/[^/]+/attachment/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:33:\"organization/([^/]+)/trackback/?$\";s:41:\"index.php?ckan-local-org=$matches[1]&tb=1\";s:41:\"organization/([^/]+)/page/?([0-9]{1,})/?$\";s:54:\"index.php?ckan-local-org=$matches[1]&paged=$matches[2]\";s:48:\"organization/([^/]+)/comment-page-([0-9]{1,})/?$\";s:54:\"index.php?ckan-local-org=$matches[1]&cpage=$matches[2]\";s:33:\"organization/([^/]+)(/[0-9]+)?/?$\";s:53:\"index.php?ckan-local-org=$matches[1]&page=$matches[2]\";s:29:\"organization/[^/]+/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:39:\"organization/[^/]+/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:59:\"organization/[^/]+/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:54:\"organization/[^/]+/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:54:\"organization/[^/]+/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:48:\"ckan-local-harvester/[^/]+/attachment/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:58:\"ckan-local-harvester/[^/]+/attachment/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:78:\"ckan-local-harvester/[^/]+/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:73:\"ckan-local-harvester/[^/]+/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:73:\"ckan-local-harvester/[^/]+/attachment/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:41:\"ckan-local-harvester/([^/]+)/trackback/?$\";s:47:\"index.php?ckan-local-harvester=$matches[1]&tb=1\";s:49:\"ckan-local-harvester/([^/]+)/page/?([0-9]{1,})/?$\";s:60:\"index.php?ckan-local-harvester=$matches[1]&paged=$matches[2]\";s:56:\"ckan-local-harvester/([^/]+)/comment-page-([0-9]{1,})/?$\";s:60:\"index.php?ckan-local-harvester=$matches[1]&cpage=$matches[2]\";s:41:\"ckan-local-harvester/([^/]+)(/[0-9]+)?/?$\";s:59:\"index.php?ckan-local-harvester=$matches[1]&page=$matches[2]\";s:37:\"ckan-local-harvester/[^/]+/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:47:\"ckan-local-harvester/[^/]+/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:67:\"ckan-local-harvester/[^/]+/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:62:\"ckan-local-harvester/[^/]+/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:62:\"ckan-local-harvester/[^/]+/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:34:\"nf_sub/[^/]+/attachment/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:44:\"nf_sub/[^/]+/attachment/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:64:\"nf_sub/[^/]+/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:59:\"nf_sub/[^/]+/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:59:\"nf_sub/[^/]+/attachment/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:27:\"nf_sub/([^/]+)/trackback/?$\";s:33:\"index.php?nf_sub=$matches[1]&tb=1\";s:35:\"nf_sub/([^/]+)/page/?([0-9]{1,})/?$\";s:46:\"index.php?nf_sub=$matches[1]&paged=$matches[2]\";s:42:\"nf_sub/([^/]+)/comment-page-([0-9]{1,})/?$\";s:46:\"index.php?nf_sub=$matches[1]&cpage=$matches[2]\";s:27:\"nf_sub/([^/]+)(/[0-9]+)?/?$\";s:45:\"index.php?nf_sub=$matches[1]&page=$matches[2]\";s:23:\"nf_sub/[^/]+/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:33:\"nf_sub/[^/]+/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:53:\"nf_sub/[^/]+/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:48:\"nf_sub/[^/]+/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:48:\"nf_sub/[^/]+/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:12:\"robots\\.txt$\";s:18:\"index.php?robots=1\";s:48:\".*wp-(atom|rdf|rss|rss2|feed|commentsrss2)\\.php$\";s:18:\"index.php?feed=old\";s:20:\".*wp-app\\.php(/.*)?$\";s:19:\"index.php?error=403\";s:18:\".*wp-register.php$\";s:23:\"index.php?register=true\";s:46:\"(de|en|it|fr)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:44:\"index.php?lang=$matches[1]&&feed=$matches[2]\";s:41:\"(de|en|it|fr)/(feed|rdf|rss|rss2|atom)/?$\";s:44:\"index.php?lang=$matches[1]&&feed=$matches[2]\";s:34:\"(de|en|it|fr)/page/?([0-9]{1,})/?$\";s:45:\"index.php?lang=$matches[1]&&paged=$matches[2]\";s:16:\"(de|en|it|fr)/?$\";s:26:\"index.php?lang=$matches[1]\";s:55:\"(de|en|it|fr)/comments/feed/(feed|rdf|rss|rss2|atom)/?$\";s:59:\"index.php?lang=$matches[1]&&feed=$matches[2]&withcomments=1\";s:50:\"(de|en|it|fr)/comments/(feed|rdf|rss|rss2|atom)/?$\";s:59:\"index.php?lang=$matches[1]&&feed=$matches[2]&withcomments=1\";s:58:\"(de|en|it|fr)/search/(.+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:57:\"index.php?lang=$matches[1]&s=$matches[2]&feed=$matches[3]\";s:53:\"(de|en|it|fr)/search/(.+)/(feed|rdf|rss|rss2|atom)/?$\";s:57:\"index.php?lang=$matches[1]&s=$matches[2]&feed=$matches[3]\";s:46:\"(de|en|it|fr)/search/(.+)/page/?([0-9]{1,})/?$\";s:58:\"index.php?lang=$matches[1]&s=$matches[2]&paged=$matches[3]\";s:28:\"(de|en|it|fr)/search/(.+)/?$\";s:40:\"index.php?lang=$matches[1]&s=$matches[2]\";s:61:\"(de|en|it|fr)/author/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:67:\"index.php?lang=$matches[1]&author_name=$matches[2]&feed=$matches[3]\";s:56:\"(de|en|it|fr)/author/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:67:\"index.php?lang=$matches[1]&author_name=$matches[2]&feed=$matches[3]\";s:49:\"(de|en|it|fr)/author/([^/]+)/page/?([0-9]{1,})/?$\";s:68:\"index.php?lang=$matches[1]&author_name=$matches[2]&paged=$matches[3]\";s:31:\"(de|en|it|fr)/author/([^/]+)/?$\";s:50:\"index.php?lang=$matches[1]&author_name=$matches[2]\";s:83:\"(de|en|it|fr)/([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/feed/(feed|rdf|rss|rss2|atom)/?$\";s:97:\"index.php?lang=$matches[1]&year=$matches[2]&monthnum=$matches[3]&day=$matches[4]&feed=$matches[5]\";s:78:\"(de|en|it|fr)/([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/(feed|rdf|rss|rss2|atom)/?$\";s:97:\"index.php?lang=$matches[1]&year=$matches[2]&monthnum=$matches[3]&day=$matches[4]&feed=$matches[5]\";s:71:\"(de|en|it|fr)/([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/page/?([0-9]{1,})/?$\";s:98:\"index.php?lang=$matches[1]&year=$matches[2]&monthnum=$matches[3]&day=$matches[4]&paged=$matches[5]\";s:53:\"(de|en|it|fr)/([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/?$\";s:80:\"index.php?lang=$matches[1]&year=$matches[2]&monthnum=$matches[3]&day=$matches[4]\";s:70:\"(de|en|it|fr)/([0-9]{4})/([0-9]{1,2})/feed/(feed|rdf|rss|rss2|atom)/?$\";s:81:\"index.php?lang=$matches[1]&year=$matches[2]&monthnum=$matches[3]&feed=$matches[4]\";s:65:\"(de|en|it|fr)/([0-9]{4})/([0-9]{1,2})/(feed|rdf|rss|rss2|atom)/?$\";s:81:\"index.php?lang=$matches[1]&year=$matches[2]&monthnum=$matches[3]&feed=$matches[4]\";s:58:\"(de|en|it|fr)/([0-9]{4})/([0-9]{1,2})/page/?([0-9]{1,})/?$\";s:82:\"index.php?lang=$matches[1]&year=$matches[2]&monthnum=$matches[3]&paged=$matches[4]\";s:40:\"(de|en|it|fr)/([0-9]{4})/([0-9]{1,2})/?$\";s:64:\"index.php?lang=$matches[1]&year=$matches[2]&monthnum=$matches[3]\";s:57:\"(de|en|it|fr)/([0-9]{4})/feed/(feed|rdf|rss|rss2|atom)/?$\";s:60:\"index.php?lang=$matches[1]&year=$matches[2]&feed=$matches[3]\";s:52:\"(de|en|it|fr)/([0-9]{4})/(feed|rdf|rss|rss2|atom)/?$\";s:60:\"index.php?lang=$matches[1]&year=$matches[2]&feed=$matches[3]\";s:45:\"(de|en|it|fr)/([0-9]{4})/page/?([0-9]{1,})/?$\";s:61:\"index.php?lang=$matches[1]&year=$matches[2]&paged=$matches[3]\";s:27:\"(de|en|it|fr)/([0-9]{4})/?$\";s:43:\"index.php?lang=$matches[1]&year=$matches[2]\";s:41:\"(de|en|it|fr)/.?.+?/attachment/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[2]\";s:51:\"(de|en|it|fr)/.?.+?/attachment/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[2]&tb=1\";s:71:\"(de|en|it|fr)/.?.+?/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[2]&feed=$matches[3]\";s:66:\"(de|en|it|fr)/.?.+?/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[2]&feed=$matches[3]\";s:66:\"(de|en|it|fr)/.?.+?/attachment/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[2]&cpage=$matches[3]\";s:34:\"(de|en|it|fr)/(.?.+?)/trackback/?$\";s:35:\"index.php?pagename=$matches[2]&tb=1\";s:54:\"(de|en|it|fr)/(.?.+?)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:47:\"index.php?pagename=$matches[2]&feed=$matches[3]\";s:49:\"(de|en|it|fr)/(.?.+?)/(feed|rdf|rss|rss2|atom)/?$\";s:47:\"index.php?pagename=$matches[2]&feed=$matches[3]\";s:42:\"(de|en|it|fr)/(.?.+?)/page/?([0-9]{1,})/?$\";s:48:\"index.php?pagename=$matches[2]&paged=$matches[3]\";s:49:\"(de|en|it|fr)/(.?.+?)/comment-page-([0-9]{1,})/?$\";s:48:\"index.php?pagename=$matches[2]&cpage=$matches[3]\";s:34:\"(de|en|it|fr)/(.?.+?)(/[0-9]+)?/?$\";s:47:\"index.php?pagename=$matches[2]&page=$matches[3]\";s:27:\".?.+?/attachment/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:37:\".?.+?/attachment/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:57:\".?.+?/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:52:\".?.+?/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:52:\".?.+?/attachment/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:20:\"(.?.+?)/trackback/?$\";s:35:\"index.php?pagename=$matches[1]&tb=1\";s:40:\"(.?.+?)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:47:\"index.php?pagename=$matches[1]&feed=$matches[2]\";s:35:\"(.?.+?)/(feed|rdf|rss|rss2|atom)/?$\";s:47:\"index.php?pagename=$matches[1]&feed=$matches[2]\";s:28:\"(.?.+?)/page/?([0-9]{1,})/?$\";s:48:\"index.php?pagename=$matches[1]&paged=$matches[2]\";s:35:\"(.?.+?)/comment-page-([0-9]{1,})/?$\";s:48:\"index.php?pagename=$matches[1]&cpage=$matches[2]\";s:20:\"(.?.+?)(/[0-9]+)?/?$\";s:47:\"index.php?pagename=$matches[1]&page=$matches[2]\";s:41:\"(de|en|it|fr)/[^/]+/attachment/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[2]\";s:51:\"(de|en|it|fr)/[^/]+/attachment/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[2]&tb=1\";s:71:\"(de|en|it|fr)/[^/]+/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[2]&feed=$matches[3]\";s:66:\"(de|en|it|fr)/[^/]+/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[2]&feed=$matches[3]\";s:66:\"(de|en|it|fr)/[^/]+/attachment/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[2]&cpage=$matches[3]\";s:34:\"(de|en|it|fr)/([^/]+)/trackback/?$\";s:31:\"index.php?name=$matches[2]&tb=1\";s:54:\"(de|en|it|fr)/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:43:\"index.php?name=$matches[2]&feed=$matches[3]\";s:49:\"(de|en|it|fr)/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:43:\"index.php?name=$matches[2]&feed=$matches[3]\";s:42:\"(de|en|it|fr)/([^/]+)/page/?([0-9]{1,})/?$\";s:44:\"index.php?name=$matches[2]&paged=$matches[3]\";s:49:\"(de|en|it|fr)/([^/]+)/comment-page-([0-9]{1,})/?$\";s:44:\"index.php?name=$matches[2]&cpage=$matches[3]\";s:34:\"(de|en|it|fr)/([^/]+)(/[0-9]+)?/?$\";s:43:\"index.php?name=$matches[2]&page=$matches[3]\";s:30:\"(de|en|it|fr)/[^/]+/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[2]\";s:40:\"(de|en|it|fr)/[^/]+/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[2]&tb=1\";s:60:\"(de|en|it|fr)/[^/]+/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[2]&feed=$matches[3]\";s:55:\"(de|en|it|fr)/[^/]+/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[2]&feed=$matches[3]\";s:55:\"(de|en|it|fr)/[^/]+/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[2]&cpage=$matches[3]\";s:27:\"[^/]+/attachment/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:37:\"[^/]+/attachment/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:57:\"[^/]+/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:52:\"[^/]+/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:52:\"[^/]+/attachment/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:20:\"([^/]+)/trackback/?$\";s:31:\"index.php?name=$matches[1]&tb=1\";s:40:\"([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:43:\"index.php?name=$matches[1]&feed=$matches[2]\";s:35:\"([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:43:\"index.php?name=$matches[1]&feed=$matches[2]\";s:28:\"([^/]+)/page/?([0-9]{1,})/?$\";s:44:\"index.php?name=$matches[1]&paged=$matches[2]\";s:35:\"([^/]+)/comment-page-([0-9]{1,})/?$\";s:44:\"index.php?name=$matches[1]&cpage=$matches[2]\";s:20:\"([^/]+)(/[0-9]+)?/?$\";s:43:\"index.php?name=$matches[1]&page=$matches[2]\";s:16:\"[^/]+/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:26:\"[^/]+/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:46:\"[^/]+/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:41:\"[^/]+/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:41:\"[^/]+/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";}','yes');
+INSERT INTO `ogdch_options` VALUES (842,'pt_wp_sso_settings','a:2:{s:10:\"secret_key\";s:17:\">/^w4[rhfGMkT{QfD\";s:13:\"discourse_url\";s:21:\"http://discourse.dev/\";}','yes');
+INSERT INTO `ogdch_options` VALUES (843,'discourse_version','0.7.0','yes');
+INSERT INTO `ogdch_options` VALUES (844,'discourse','a:17:{s:3:\"url\";s:20:\"http://discourse.dev\";s:7:\"api-key\";s:64:\"0a74b3e7be3adb8ef95444b9a26fac10e9560c46ed02f80f541d24164fc76129\";s:16:\"publish-username\";s:4:\"ckan\";s:16:\"publish-category\";s:1:\"1\";s:10:\"auto-track\";i:1;s:18:\"allowed_post_types\";a:1:{i:0;s:4:\"post\";}s:25:\"existing-comments-heading\";s:0:\"\";s:12:\"max-comments\";s:1:\"5\";s:11:\"min-replies\";s:1:\"1\";s:9:\"min-score\";s:2:\"30\";s:15:\"min-trust-level\";s:1:\"1\";s:24:\"bypass-trust-level-score\";s:2:\"50\";s:21:\"custom-excerpt-length\";s:2:\"55\";s:22:\"custom-datetime-format\";s:0:\"\";s:10:\"enable-sso\";i:1;s:10:\"login-path\";s:0:\"\";s:10:\"sso-secret\";s:17:\">/^w4[rhfGMkT{QfD\";}','yes');
 /*!40000 ALTER TABLE `ogdch_options` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -637,7 +926,7 @@ CREATE TABLE `ogdch_postmeta` (
   PRIMARY KEY (`meta_id`),
   KEY `post_id` (`post_id`),
   KEY `meta_key` (`meta_key`(191))
-) ENGINE=InnoDB AUTO_INCREMENT=2260 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2287 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -661,16 +950,12 @@ INSERT INTO `ogdch_postmeta` VALUES (617,142,'_edit_lock','1433340196:1');
 INSERT INTO `ogdch_postmeta` VALUES (627,146,'_edit_last','1');
 INSERT INTO `ogdch_postmeta` VALUES (628,146,'_edit_lock','1433341321:1');
 INSERT INTO `ogdch_postmeta` VALUES (735,164,'_edit_last','1');
-INSERT INTO `ogdch_postmeta` VALUES (737,164,'_edit_lock','1447666661:1');
+INSERT INTO `ogdch_postmeta` VALUES (737,164,'_edit_lock','1465810393:1');
 INSERT INTO `ogdch_postmeta` VALUES (739,165,'_edit_last','1');
-INSERT INTO `ogdch_postmeta` VALUES (741,165,'_edit_lock','1440509105:1');
+INSERT INTO `ogdch_postmeta` VALUES (741,165,'_edit_lock','1465823166:1');
 INSERT INTO `ogdch_postmeta` VALUES (743,166,'_edit_last','1');
 INSERT INTO `ogdch_postmeta` VALUES (746,166,'_edit_lock','1440509110:1');
-INSERT INTO `ogdch_postmeta` VALUES (747,167,'_wp_page_template','default');
 INSERT INTO `ogdch_postmeta` VALUES (748,167,'_edit_last','1');
-INSERT INTO `ogdch_postmeta` VALUES (749,164,'_wp_page_template','default');
-INSERT INTO `ogdch_postmeta` VALUES (750,165,'_wp_page_template','default');
-INSERT INTO `ogdch_postmeta` VALUES (751,166,'_wp_page_template','default');
 INSERT INTO `ogdch_postmeta` VALUES (752,167,'_edit_lock','1440509116:1');
 INSERT INTO `ogdch_postmeta` VALUES (789,172,'_menu_item_type','post_type');
 INSERT INTO `ogdch_postmeta` VALUES (790,172,'_menu_item_menu_item_parent','0');
@@ -1063,7 +1348,7 @@ INSERT INTO `ogdch_postmeta` VALUES (1521,248,'_edit_lock','1446645837:1');
 INSERT INTO `ogdch_postmeta` VALUES (1523,249,'_edit_last','1');
 INSERT INTO `ogdch_postmeta` VALUES (1526,249,'_edit_lock','1446645845:1');
 INSERT INTO `ogdch_postmeta` VALUES (1530,250,'_edit_last','1');
-INSERT INTO `ogdch_postmeta` VALUES (1534,250,'_edit_lock','1446645857:1');
+INSERT INTO `ogdch_postmeta` VALUES (1534,250,'_edit_lock','1465487844:1');
 INSERT INTO `ogdch_postmeta` VALUES (1825,195,'_app-showcase-app_icon_id','290');
 INSERT INTO `ogdch_postmeta` VALUES (1826,195,'_app-showcase-app_icon','http://ogdch.dev/content/uploads/2015/09/liip.png');
 INSERT INTO `ogdch_postmeta` VALUES (1827,196,'_app-showcase-app_icon_id','290');
@@ -1095,7 +1380,7 @@ INSERT INTO `ogdch_postmeta` VALUES (1856,284,'_ckan_local_dataset_see_alsos','a
 INSERT INTO `ogdch_postmeta` VALUES (1857,284,'_ckan_local_dataset_distributions','a:1:{i:0;a:11:{s:10:\"identifier\";s:29:\"ch.bafu.laerm-bahnlaerm_nacht\";s:8:\"title_en\";s:35:\"WMS (ch.bafu.laerm-bahnlaerm_nacht)\";s:14:\"description_en\";s:61:\"The information is based on comprehensive model calculations.\";s:8:\"title_de\";s:35:\"WMS (ch.bafu.laerm-bahnlaerm_nacht)\";s:14:\"description_de\";s:62:\"Die Angaben basieren auf flächendeckenden Modellberechnungen.\";s:9:\"languages\";a:2:{i:0;s:2:\"en\";i:1;s:2:\"de\";}s:6:\"issued\";i:1368230400;s:8:\"modified\";i:1430006400;s:6:\"rights\";s:59:\"NonCommercialAllowed-CommercialAllowed-ReferenceNotRequired\";s:10:\"access_url\";s:24:\"http://wms.geo.admin.ch/\";s:9:\"byte_size\";s:4:\"1024\";}}');
 INSERT INTO `ogdch_postmeta` VALUES (1858,284,'_edit_lock','1449231812:1');
 INSERT INTO `ogdch_postmeta` VALUES (1859,284,'_edit_last','1');
-INSERT INTO `ogdch_postmeta` VALUES (1860,285,'_edit_lock','1449231792:1');
+INSERT INTO `ogdch_postmeta` VALUES (1860,285,'_edit_lock','1465376291:1');
 INSERT INTO `ogdch_postmeta` VALUES (1861,285,'_edit_last','1');
 INSERT INTO `ogdch_postmeta` VALUES (1862,285,'_ckan_local_dataset_ckan_id','52368b85-350c-450e-a18e-f2fb6fa7ae7a');
 INSERT INTO `ogdch_postmeta` VALUES (1863,285,'_ckan_local_dataset_ckan_name','baustellen');
@@ -1290,7 +1575,7 @@ INSERT INTO `ogdch_postmeta` VALUES (2167,307,'_edit_lock','1447840081:1');
 INSERT INTO `ogdch_postmeta` VALUES (2168,307,'_edit_last','1');
 INSERT INTO `ogdch_postmeta` VALUES (2169,308,'_edit_lock','1447840064:1');
 INSERT INTO `ogdch_postmeta` VALUES (2170,308,'_edit_last','1');
-INSERT INTO `ogdch_postmeta` VALUES (2171,309,'_edit_lock','1449232067:1');
+INSERT INTO `ogdch_postmeta` VALUES (2171,309,'_edit_lock','1465376248:1');
 INSERT INTO `ogdch_postmeta` VALUES (2172,309,'_edit_last','1');
 INSERT INTO `ogdch_postmeta` VALUES (2173,309,'_ckan_local_harvester_ckan_id','ffd3c0ce-1f16-4254-aea4-664029574fa8');
 INSERT INTO `ogdch_postmeta` VALUES (2174,309,'_ckan_local_harvester_ckan_name','geocat-harvester');
@@ -1352,6 +1637,22 @@ INSERT INTO `ogdch_postmeta` VALUES (2254,303,'_ckan_local_org_ckan_synced','1')
 INSERT INTO `ogdch_postmeta` VALUES (2255,301,'_ckan_local_org_ckan_synced','1');
 INSERT INTO `ogdch_postmeta` VALUES (2256,291,'_ckan_local_org_ckan_synced','1');
 INSERT INTO `ogdch_postmeta` VALUES (2257,194,'_ckan_local_org_ckan_synced','1');
+INSERT INTO `ogdch_postmeta` VALUES (2258,317,'_edit_lock','1465823166:1');
+INSERT INTO `ogdch_postmeta` VALUES (2259,317,'_edit_last','1');
+INSERT INTO `ogdch_postmeta` VALUES (2266,165,'_wp_page_template','default');
+INSERT INTO `ogdch_postmeta` VALUES (2273,319,'_edit_lock','1465823061:1');
+INSERT INTO `ogdch_postmeta` VALUES (2274,319,'_edit_last','1');
+INSERT INTO `ogdch_postmeta` VALUES (2276,319,'publish_post_category','1');
+INSERT INTO `ogdch_postmeta` VALUES (2277,319,'publish_to_discourse','0');
+INSERT INTO `ogdch_postmeta` VALUES (2278,317,'publish_post_category','1');
+INSERT INTO `ogdch_postmeta` VALUES (2279,317,'publish_to_discourse','0');
+INSERT INTO `ogdch_postmeta` VALUES (2280,165,'publish_to_discourse','0');
+INSERT INTO `ogdch_postmeta` VALUES (2281,164,'publish_to_discourse','0');
+INSERT INTO `ogdch_postmeta` VALUES (2282,164,'_wp_page_template','default');
+INSERT INTO `ogdch_postmeta` VALUES (2283,166,'publish_to_discourse','0');
+INSERT INTO `ogdch_postmeta` VALUES (2284,166,'_wp_page_template','default');
+INSERT INTO `ogdch_postmeta` VALUES (2285,167,'publish_to_discourse','0');
+INSERT INTO `ogdch_postmeta` VALUES (2286,167,'_wp_page_template','default');
 /*!40000 ALTER TABLE `ogdch_postmeta` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1391,7 +1692,7 @@ CREATE TABLE `ogdch_posts` (
   KEY `type_status_date` (`post_type`,`post_status`,`post_date`,`ID`),
   KEY `post_parent` (`post_parent`),
   KEY `post_author` (`post_author`)
-) ENGINE=InnoDB AUTO_INCREMENT=316 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=320 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1414,8 +1715,8 @@ INSERT INTO `ogdch_posts` VALUES (120,1,'2015-06-03 06:50:03','2015-06-03 06:50:
 INSERT INTO `ogdch_posts` VALUES (121,1,'2015-06-03 06:50:11','2015-06-03 06:50:11','','Seite FR','','inherit','open','open','','119-revision-v1','','','2015-06-03 06:50:11','2015-06-03 06:50:11','',119,'http://ogdch.dev/2015/06/03/119-revision-v1/',0,'revision','',0);
 INSERT INTO `ogdch_posts` VALUES (142,1,'2015-06-03 12:51:07','2015-06-03 12:51:07','','Mein Datensatz','','publish','open','open','','mein-datensatz-2','','','2015-06-03 12:51:07','2015-06-03 12:51:07','',0,'http:/dataset/mein-datensatz-2/',0,'ckan-dataset','',1);
 INSERT INTO `ogdch_posts` VALUES (146,1,'2015-06-03 14:24:23','2015-06-03 14:24:23','','ewqfqfewfqw','','publish','open','open','','ewqfqfewfqw','','','2015-06-03 14:24:23','2015-06-03 14:24:23','',0,'http://ogdch.dev/?post_type=ckan-dataset&#038;p=146',0,'ckan-dataset','',0);
-INSERT INTO `ogdch_posts` VALUES (164,1,'2015-08-25 13:27:36','2015-08-25 13:27:23','','FAQ','','publish','open','open','','faq','','','2015-08-25 13:27:23','2015-08-25 13:27:23','',0,'http://ogdch.dev/?page_id=164',0,'page','',0);
-INSERT INTO `ogdch_posts` VALUES (165,1,'2015-08-25 13:27:36','2015-08-25 13:27:28','','FAQ','','publish','open','open','','faq','','','2015-08-25 13:27:28','2015-08-25 13:27:28','',0,'http://ogdch.dev/?page_id=165',0,'page','',0);
+INSERT INTO `ogdch_posts` VALUES (164,1,'2015-08-25 13:27:36','2015-08-25 13:27:23','<ul>\r\n	<li>Hello</li>\r\n	<li>World!</li>\r\n</ul>','FAQ','','publish','open','open','','faq','','','2016-06-13 11:35:33','2016-06-13 09:35:33','',0,'http://ogdch.dev/?page_id=164',0,'page','',1);
+INSERT INTO `ogdch_posts` VALUES (165,1,'2015-08-25 13:27:36','2015-08-25 13:27:28','English FAQ','FAQ','','publish','open','open','','faq','','','2016-06-13 15:08:16','2016-06-13 13:08:16','',0,'http://ogdch.dev/?page_id=165',0,'page','',0);
 INSERT INTO `ogdch_posts` VALUES (166,1,'2015-08-25 13:27:36','2015-08-25 13:27:32','','FAQ','','publish','open','open','','faq','','','2015-08-25 13:27:32','2015-08-25 13:27:32','',0,'http://ogdch.dev/?page_id=166',0,'page','',0);
 INSERT INTO `ogdch_posts` VALUES (167,1,'2015-08-25 13:27:36','2015-08-25 13:27:36','','FAQ','','publish','open','open','','faq','','','2015-08-25 13:27:36','2015-08-25 13:27:36','',0,'http://ogdch.dev/?page_id=167',0,'page','',0);
 INSERT INTO `ogdch_posts` VALUES (172,1,'2015-08-25 13:28:47','2015-08-25 13:28:47',' ','','','publish','open','closed','','172','','','2015-11-03 23:00:37','2015-11-03 22:00:37','',0,'http://ogdch.dev/?p=172',5,'nav_menu_item','',0);
@@ -1493,6 +1794,10 @@ INSERT INTO `ogdch_posts` VALUES (312,1,'2015-12-02 17:34:06','2015-12-02 16:33:
 INSERT INTO `ogdch_posts` VALUES (313,1,'2015-12-02 17:34:06','2015-12-02 16:34:06','','Cadre juridique','','publish','closed','closed','','legal-framework','','','2015-12-02 17:34:17','2015-12-02 16:34:17','',0,'http://ogdch.dev/?page_id=313',0,'page','',0);
 INSERT INTO `ogdch_posts` VALUES (314,1,'2015-12-04 13:23:26','2015-12-04 12:23:26','','Bundesamt für Chüngelihaltig (BfHüpf)','','publish','closed','closed','','bundesamt-fur-chungelihaltig-bfhupf','','','2015-12-04 13:23:26','2015-12-04 12:23:26','',0,'http://ogdch.dev/?post_type=ckan-local-org&#038;p=314',0,'ckan-local-org','',0);
 INSERT INTO `ogdch_posts` VALUES (315,1,'2015-12-09 16:48:19','0000-00-00 00:00:00','This is a preview of how this form will appear on your website','ninja_forms_preview_page','','draft','closed','closed','','','','','2015-12-09 16:48:19','0000-00-00 00:00:00','',0,'http://ogdch.dev/?page_id=315',0,'page','',0);
+INSERT INTO `ogdch_posts` VALUES (316,1,'2016-06-09 18:11:16','0000-00-00 00:00:00','','Automatisch gespeicherter Entwurf','','auto-draft','open','open','','','','','2016-06-09 18:11:16','0000-00-00 00:00:00','',0,'http://ogdch.dev/?p=316',0,'post','',0);
+INSERT INTO `ogdch_posts` VALUES (317,1,'2016-06-13 15:06:34','2016-06-13 13:06:34','<ul>\r\n	<li>What?</li>\r\n	<li>Yes!</li>\r\n</ul>','FAQ','','publish','open','open','','faq','','','2016-06-13 11:34:47','2016-06-13 09:34:47','',0,'http://ogdch.dev/?p=317',0,'post','',0);
+INSERT INTO `ogdch_posts` VALUES (318,1,'2016-06-13 11:35:28','2016-06-13 09:35:28','<ul>\r\n	<li>Hello</li>\r\n	<li>World!</li>\r\n</ul>','FAQ','','inherit','closed','closed','','164-autosave-v1','','','2016-06-13 11:35:28','2016-06-13 09:35:28','',164,'http://ogdch.dev/164-autosave-v1/',0,'revision','',0);
+INSERT INTO `ogdch_posts` VALUES (319,1,'2016-06-13 15:06:34','2016-06-13 13:06:34','English FAQ!','','','publish','open','open','','319','','','2016-06-13 15:06:34','2016-06-13 13:06:34','',0,'http://ogdch.dev/?p=319',0,'post','',0);
 /*!40000 ALTER TABLE `ogdch_posts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1686,6 +1991,13 @@ INSERT INTO `ogdch_term_relationships` VALUES (312,193,0);
 INSERT INTO `ogdch_term_relationships` VALUES (313,13,0);
 INSERT INTO `ogdch_term_relationships` VALUES (313,193,0);
 INSERT INTO `ogdch_term_relationships` VALUES (315,2,0);
+INSERT INTO `ogdch_term_relationships` VALUES (316,2,0);
+INSERT INTO `ogdch_term_relationships` VALUES (317,1,0);
+INSERT INTO `ogdch_term_relationships` VALUES (317,2,0);
+INSERT INTO `ogdch_term_relationships` VALUES (317,194,0);
+INSERT INTO `ogdch_term_relationships` VALUES (319,5,0);
+INSERT INTO `ogdch_term_relationships` VALUES (319,7,0);
+INSERT INTO `ogdch_term_relationships` VALUES (319,194,0);
 /*!40000 ALTER TABLE `ogdch_term_relationships` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1706,7 +2018,7 @@ CREATE TABLE `ogdch_term_taxonomy` (
   PRIMARY KEY (`term_taxonomy_id`),
   UNIQUE KEY `term_id_taxonomy` (`term_id`,`taxonomy`),
   KEY `taxonomy` (`taxonomy`)
-) ENGINE=InnoDB AUTO_INCREMENT=194 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=195 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1715,17 +2027,17 @@ CREATE TABLE `ogdch_term_taxonomy` (
 
 LOCK TABLES `ogdch_term_taxonomy` WRITE;
 /*!40000 ALTER TABLE `ogdch_term_taxonomy` DISABLE KEYS */;
-INSERT INTO `ogdch_term_taxonomy` VALUES (1,1,'category','',0,0);
-INSERT INTO `ogdch_term_taxonomy` VALUES (2,2,'language','a:2:{s:6:\"locale\";s:5:\"de_CH\";s:3:\"rtl\";i:0;}',0,6);
+INSERT INTO `ogdch_term_taxonomy` VALUES (1,1,'category','',0,1);
+INSERT INTO `ogdch_term_taxonomy` VALUES (2,2,'language','a:3:{s:6:\"locale\";s:5:\"de_CH\";s:3:\"rtl\";i:0;s:9:\"flag_code\";s:2:\"ch\";}',0,6);
 INSERT INTO `ogdch_term_taxonomy` VALUES (3,3,'term_language','',0,24);
 INSERT INTO `ogdch_term_taxonomy` VALUES (4,4,'term_translations','a:4:{s:2:\"de\";i:1;s:2:\"en\";i:7;s:2:\"it\";i:11;s:2:\"fr\";i:15;}',0,4);
-INSERT INTO `ogdch_term_taxonomy` VALUES (5,5,'language','a:2:{s:6:\"locale\";s:5:\"en_US\";s:3:\"rtl\";i:0;}',0,6);
+INSERT INTO `ogdch_term_taxonomy` VALUES (5,5,'language','a:3:{s:6:\"locale\";s:5:\"en_US\";s:3:\"rtl\";i:0;s:9:\"flag_code\";s:2:\"us\";}',0,6);
 INSERT INTO `ogdch_term_taxonomy` VALUES (6,6,'term_language','',0,1);
-INSERT INTO `ogdch_term_taxonomy` VALUES (7,7,'category','',0,0);
-INSERT INTO `ogdch_term_taxonomy` VALUES (9,9,'language','a:2:{s:6:\"locale\";s:5:\"it_IT\";s:3:\"rtl\";i:0;}',0,6);
+INSERT INTO `ogdch_term_taxonomy` VALUES (7,7,'category','',0,1);
+INSERT INTO `ogdch_term_taxonomy` VALUES (9,9,'language','a:3:{s:6:\"locale\";s:5:\"it_IT\";s:3:\"rtl\";i:0;s:9:\"flag_code\";s:2:\"it\";}',0,6);
 INSERT INTO `ogdch_term_taxonomy` VALUES (10,10,'term_language','',0,1);
 INSERT INTO `ogdch_term_taxonomy` VALUES (11,11,'category','',0,0);
-INSERT INTO `ogdch_term_taxonomy` VALUES (13,13,'language','a:2:{s:6:\"locale\";s:5:\"fr_FR\";s:3:\"rtl\";i:0;}',0,6);
+INSERT INTO `ogdch_term_taxonomy` VALUES (13,13,'language','a:3:{s:6:\"locale\";s:5:\"fr_FR\";s:3:\"rtl\";i:0;s:9:\"flag_code\";s:2:\"fr\";}',0,6);
 INSERT INTO `ogdch_term_taxonomy` VALUES (14,14,'term_language','',0,1);
 INSERT INTO `ogdch_term_taxonomy` VALUES (15,15,'category','',0,0);
 INSERT INTO `ogdch_term_taxonomy` VALUES (28,28,'post_translations','a:4:{s:2:\"en\";i:73;s:2:\"de\";i:71;s:2:\"it\";i:74;s:2:\"fr\";i:72;}',0,0);
@@ -1810,6 +2122,7 @@ INSERT INTO `ogdch_term_taxonomy` VALUES (190,190,'ckan-mediatype','',0,0);
 INSERT INTO `ogdch_term_taxonomy` VALUES (191,191,'ckan-mediatype','',0,0);
 INSERT INTO `ogdch_term_taxonomy` VALUES (192,192,'ckan-mediatype','',0,0);
 INSERT INTO `ogdch_term_taxonomy` VALUES (193,193,'post_translations','a:4:{s:2:\"fr\";i:313;s:2:\"de\";i:310;s:2:\"en\";i:311;s:2:\"it\";i:312;}',0,4);
+INSERT INTO `ogdch_term_taxonomy` VALUES (194,194,'post_translations','a:2:{s:2:\"en\";i:319;s:2:\"de\";i:317;}',0,2);
 /*!40000 ALTER TABLE `ogdch_term_taxonomy` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1828,7 +2141,7 @@ CREATE TABLE `ogdch_terms` (
   PRIMARY KEY (`term_id`),
   KEY `slug` (`slug`(191)),
   KEY `name` (`name`(191))
-) ENGINE=InnoDB AUTO_INCREMENT=194 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=195 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1932,6 +2245,7 @@ INSERT INTO `ogdch_terms` VALUES (190,'text/csv','textcsv',0);
 INSERT INTO `ogdch_terms` VALUES (191,'text/xml','textxml',0);
 INSERT INTO `ogdch_terms` VALUES (192,'application/pdf','applicationpdf',0);
 INSERT INTO `ogdch_terms` VALUES (193,'pll_565f1cfea1219','pll_565f1cfea1219',0);
+INSERT INTO `ogdch_terms` VALUES (194,'pll_575eafdac4f8c','pll_575eafdac4f8c',0);
 /*!40000 ALTER TABLE `ogdch_terms` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1950,7 +2264,7 @@ CREATE TABLE `ogdch_usermeta` (
   PRIMARY KEY (`umeta_id`),
   KEY `user_id` (`user_id`),
   KEY `meta_key` (`meta_key`(191))
-) ENGINE=InnoDB AUTO_INCREMENT=238 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=243 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1972,7 +2286,7 @@ INSERT INTO `ogdch_usermeta` VALUES (10,1,'ogdch_capabilities','a:1:{s:13:\"admi
 INSERT INTO `ogdch_usermeta` VALUES (11,1,'ogdch_user_level','10');
 INSERT INTO `ogdch_usermeta` VALUES (12,1,'dismissed_wp_pointers','wp360_locks,wp390_widgets,wp410_dfw,pll_lgt');
 INSERT INTO `ogdch_usermeta` VALUES (13,1,'show_welcome_panel','0');
-INSERT INTO `ogdch_usermeta` VALUES (15,1,'ogdch_dashboard_quick_press_last_post_id','3');
+INSERT INTO `ogdch_usermeta` VALUES (15,1,'ogdch_dashboard_quick_press_last_post_id','316');
 INSERT INTO `ogdch_usermeta` VALUES (16,1,'pll_filter_content','');
 INSERT INTO `ogdch_usermeta` VALUES (17,1,'ogdch_user-settings','posts_list_mode=list&libraryContent=browse&mfold=o&advImgDetails=show&uploader=1&hidetb=1&editor=tinymce');
 INSERT INTO `ogdch_usermeta` VALUES (18,1,'ogdch_user-settings-time','1449073784');
@@ -2082,10 +2396,10 @@ INSERT INTO `ogdch_usermeta` VALUES (125,6,'description_it','');
 INSERT INTO `ogdch_usermeta` VALUES (126,6,'description_fr','');
 INSERT INTO `ogdch_usermeta` VALUES (128,4,'pll_filter_content','en');
 INSERT INTO `ogdch_usermeta` VALUES (129,5,'session_tokens','a:1:{s:64:\"d23c2e842128c81c94f9baa4b1e4756ad5a2946262864b1fe779b10ae9aa10ee\";a:4:{s:10:\"expiration\";i:1443201631;s:2:\"ip\";s:12:\"192.168.56.1\";s:2:\"ua\";s:120:\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.99 Safari/537.36\";s:5:\"login\";i:1443028831;}}');
-INSERT INTO `ogdch_usermeta` VALUES (130,1,'session_tokens','a:1:{s:64:\"70a10b87c6203158c94479284e1f4e2c53fb3a3560417912f5765a0c06fead6a\";a:4:{s:10:\"expiration\";i:1450617259;s:2:\"ip\";s:12:\"192.168.56.1\";s:2:\"ua\";s:121:\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36\";s:5:\"login\";i:1450444459;}}');
 INSERT INTO `ogdch_usermeta` VALUES (131,1,'wpseo_dismissed_gsc_notice','1');
 INSERT INTO `ogdch_usermeta` VALUES (133,5,'_yoast_wpseo_profile_updated','1447418306');
 INSERT INTO `ogdch_usermeta` VALUES (237,1,'manageedit-nf_subcolumnshidden','a:2:{i:0;s:14:\"form_1_field_8\";i:1;s:14:\"form_1_field_3\";}');
+INSERT INTO `ogdch_usermeta` VALUES (242,1,'session_tokens','a:1:{s:64:\"521c8ff6bd0e8ca788cbab87a754a9bdf99e5ae767a2fc4016a015a3e9b664a9\";a:4:{s:10:\"expiration\";i:1465996841;s:2:\"ip\";s:12:\"192.168.56.1\";s:2:\"ua\";s:76:\"Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:47.0) Gecko/20100101 Firefox/47.0\";s:5:\"login\";i:1465824041;}}');
 /*!40000 ALTER TABLE `ogdch_usermeta` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2110,7 +2424,7 @@ CREATE TABLE `ogdch_users` (
   PRIMARY KEY (`ID`),
   KEY `user_login_key` (`user_login`),
   KEY `user_nicename` (`user_nicename`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2137,4 +2451,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-12-18 13:15:03
+-- Dump completed on 2016-06-13 15:20:29
