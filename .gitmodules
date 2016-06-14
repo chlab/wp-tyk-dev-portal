@@ -40,9 +40,6 @@
 [submodule "web/ogdch.dev/content/plugins/ninja-forms"]
 	path = web/ogdch.dev/content/plugins/ninja-forms
 	url = https://github.com/wpninjas/ninja-forms.git
-[submodule "web/ckanext/ckanext-oauth2"]
-	path = web/ckanext/ckanext-oauth2
-	url = https://github.com/conwetlab/ckanext-oauth2.git
 [submodule "web/ckanext/ckanext-discourse"]
 	path = web/ckanext/ckanext-discourse
 	url = https://github.com/ontodia/ckanext-discourse
