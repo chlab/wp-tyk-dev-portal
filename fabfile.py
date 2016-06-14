@@ -135,6 +135,8 @@ def update_ckan_dependencies():
         'ckanext-dcat',
         'ckanext-switzerland',
         'ckanext-geocat',
+        'ckanext-oauth2',
+        'ckanext-discourse',
     ]
 
     for ext in ckan_extensions:
