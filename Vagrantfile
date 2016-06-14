@@ -47,6 +47,7 @@ Vagrant.configure("2") do |config|
     end
 
     provider.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/v-root", "1"]
+    provider.customize ["modifyvm", :id, "--paravirtprovider", "default"]
 
     # Give VM 1/4 system memory
     host = RbConfig::CONFIG['host_os']
