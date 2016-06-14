@@ -103,7 +103,7 @@ end
 
 # install node 4.x
 bash "Install node 4.x" do
-  user "vagrant"
+  user "root"
   cwd HOME
   code <<-EOH
   curl --silent --location https://rpm.nodesource.com/setup_4.x | bash -
