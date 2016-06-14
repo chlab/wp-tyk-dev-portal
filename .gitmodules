@@ -42,7 +42,7 @@
 	url = https://github.com/wpninjas/ninja-forms.git
 [submodule "web/ckanext/ckanext-discourse"]
 	path = web/ckanext/ckanext-discourse
-	url = https://github.com/ontodia/ckanext-discourse
+	url = https://gitlab.liip.ch/odp_oev_schweiz/ckanext-discourse.git
 [submodule "web/ogdch.dev/content/plugins/wp-discourse"]
 	path = web/ogdch.dev/content/plugins/wp-discourse
 	url = https://github.com/discourse/wp-discourse.git
