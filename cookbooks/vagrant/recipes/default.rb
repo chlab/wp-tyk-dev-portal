@@ -101,19 +101,13 @@ bash "Symlink VBoxGuestAdditions" do
   EOH
 end
 
-# install node 0.12.x
-bash "Install node 0.12.x" do
+# install node 4.x
+bash "Install node 4.x" do
   user "vagrant"
   cwd HOME
-  not_if "test -d /home/#{USER}/node"
   code <<-EOH
-  git clone https://github.com/joyent/node.git
-  cd node
-  git fetch --tags
-  git checkout v0.12.7
-  ./configure
-  make
-  sudo make install
+  curl --silent --location https://rpm.nodesource.com/setup_4.x | bash -
+  yum -y install nodejs
   EOH
 end
 
