@@ -46,3 +46,6 @@
 [submodule "web/ogdch.dev/content/plugins/wp-discourse"]
 	path = web/ogdch.dev/content/plugins/wp-discourse
 	url = https://github.com/discourse/wp-discourse.git
+[submodule "web/ckanext/ckanext-oauth2"]
+	path = web/ckanext/ckanext-oauth2
+	url = https://github.com/conwetlab/ckanext-oauth2.git
