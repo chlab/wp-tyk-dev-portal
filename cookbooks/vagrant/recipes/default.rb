@@ -571,6 +571,11 @@ bash "Install discourse" do
   docker run -d -p 1025:1025 -p 8025:8025 mailhog/mailhog
   ./launcher bootstrap app
   ./launcher start app
+  docker exec app sv stop unicorn
+  docker exec app bash -c "sudo -i -u postgres psql -c 'DROP DATABASE discourse'"
+  docker exec app bash -c "sudo -i -u postgres psql -c 'CREATE DATABASE discourse;'"
+  docker exec -i app sudo -i -u postgres psql discourse < /vagrant/sql/discourse.sql
+  docker exec app sv start unicorn
   EOH
 end
 
