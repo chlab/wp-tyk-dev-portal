@@ -47,16 +47,32 @@ Vagrant.configure("2") do |config|
     end
 
     provider.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/v-root", "1"]
-    provider.memory = 1024
+    provider.customize ["modifyvm", :id, "--paravirtprovider", "default"]
+
+    # Give VM 1/4 system memory
+    host = RbConfig::CONFIG['host_os']
+    if host =~ /darwin/
+      # sysctl returns Bytes and we need to convert to MB
+      mem = `sysctl -n hw.memsize`.to_i / 1024
+    elsif host =~ /linux/
+      # meminfo shows KB and we need to convert to MB
+      mem = `grep 'MemTotal' /proc/meminfo | sed -e 's/MemTotal://' -e 's/ kB//'`.to_i
+    elsif host =~ /mswin|mingw|cygwin/
+      # Windows code via https://github.com/rdsubhas/vagrant-faster
+      mem = `wmic computersystem Get TotalPhysicalMemory`.split[1].to_i / 1024
+    end
+
+    provider.memory = mem / 1024 / 4
 
     config.vm.network :private_network, ip: local_ip
     config.vm.hostname = local_host_name
 
     config.ssh.forward_agent = true
 
-    config.omnibus.chef_version = :latest
+    config.omnibus.chef_version = "12.10.24"
     config.vm.provision :chef_solo do |chef|
-  
+      chef.version = "12.10.24"
+
       chef.cookbooks_path = "cookbooks"
       # chef debug level, start vagrant like this to debug:
       # $ CHEF_LOG_LEVEL=debug vagrant <provision or up>

@@ -40,12 +40,15 @@
 [submodule "web/ogdch.dev/content/plugins/ninja-forms"]
 	path = web/ogdch.dev/content/plugins/ninja-forms
 	url = https://github.com/wpninjas/ninja-forms.git
-[submodule "web/ckanext/ckanext-oauth2"]
-	path = web/ckanext/ckanext-oauth2
-	url = https://github.com/conwetlab/ckanext-oauth2.git
 [submodule "web/ckanext/ckanext-discourse"]
 	path = web/ckanext/ckanext-discourse
-	url = https://github.com/ontodia/ckanext-discourse
+	url = https://gitlab.liip.ch/odp_oev_schweiz/ckanext-discourse.git
 [submodule "web/ogdch.dev/content/plugins/wp-discourse"]
 	path = web/ogdch.dev/content/plugins/wp-discourse
 	url = https://github.com/discourse/wp-discourse.git
+[submodule "web/ckanext/ckanext-oauth2"]
+	path = web/ckanext/ckanext-oauth2
+	url = https://github.com/conwetlab/ckanext-oauth2.git
+[submodule "web/ckanext/reclineviewsbb"]
+	path = web/ckanext/reclineviewsbb
+	url = git@gitlab.liip.ch:odp_oev_schweiz/reclineview-sbb.git

@@ -54,6 +54,7 @@ java-1.6.0-openjdk
 java-1.6.0-openjdk-devel
 libxml2-devel
 libxslt-devel
+libffi-devel
 make
 mod_wsgi
 mariadb-server
@@ -101,19 +102,13 @@ bash "Symlink VBoxGuestAdditions" do
   EOH
 end
 
-# install node 0.12.x
-bash "Install node 0.12.x" do
-  user "vagrant"
+# install node 4.x
+bash "Install node 4.x" do
+  user "root"
   cwd HOME
-  not_if "test -d /home/#{USER}/node"
   code <<-EOH
-  git clone https://github.com/joyent/node.git
-  cd node
-  git fetch --tags
-  git checkout v0.12.7
-  ./configure
-  make
-  sudo make install
+  curl --silent --location https://rpm.nodesource.com/setup_4.x | bash -
+  yum -y install nodejs
   EOH
 end
 
@@ -435,6 +430,9 @@ createuser -S -D -R ckan_default
 psql -c "ALTER USER ckan_default with password 'pass'"
 createdb -O ckan_default ckan_default -E utf-8
 psql ckan_default < /vagrant/sql/ckan_default.sql
+createuser -S -D -R -l datastore_default
+psql -c "ALTER USER datastore_default with password 'pass'"
+createdb -O ckan_default datastore_default -E utf-8
 EOH
 end
 
@@ -451,6 +449,22 @@ bash "Install setuptools" do
   code <<-EOH
   source #{HOME}/pyenv/bin/activate
   pip install setuptools
+  EOH
+end
+
+bash "Install datapusher" do
+  user "root"
+  code <<-EOH
+  virtualenv /usr/lib/ckan/datapusher
+  source /usr/lib/ckan/datapusher/bin/activate
+  mkdir /usr/lib/ckan/datapusher/src
+  cd /usr/lib/ckan/datapusher/src
+  git clone -b stable https://github.com/ckan/datapusher.git
+  cd datapusher
+  /usr/lib/ckan/datapusher/bin/pip install -r requirements.txt
+  /usr/lib/ckan/datapusher/bin/python setup.py develop
+  cp deployment/datapusher.wsgi /etc/ckan/
+  cp deployment/datapusher_settings.py /etc/ckan/
   EOH
 end
 
@@ -498,6 +512,7 @@ bash "create database tables" do
   code <<-EOH
 source #{HOME}/pyenv/bin/activate
 paster --plugin=ckan db init
+paster --plugin=ckan datastore set-permissions -c /var/www/ckan/development.ini | sudo -u postgres psql --set ON_ERROR_STOP=1
 EOH
 end
 
