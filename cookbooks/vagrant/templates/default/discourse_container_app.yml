@@ -57,7 +57,7 @@ env:
   DISCOURSE_DEVELOPER_EMAILS: 'be-staff@liip.ch'
 
   ## TODO: The SMTP mail server used to validate new accounts and send notifications
-  DISCOURSE_SMTP_ADDRESS: localhost
+  DISCOURSE_SMTP_ADDRESS: ogdch.dev
   DISCOURSE_SMTP_PORT: 1025
   #DISCOURSE_SMTP_USER_NAME: postmaster@discourse.example.com
   #DISCOURSE_SMTP_PASSWORD: ""
@@ -91,6 +91,7 @@ hooks:
 ## Any custom commands to run after building
 run:
   - exec: echo "Beginning of custom commands"
+  - exec: bash -c "echo '192.168.56.101 ogdch.dev' >> /etc/hosts"
   ## If you want to set the 'From' email address for your first registration, uncomment and change:
   ## After getting the first signup email, re-comment the line. It only needs to run once.
   #- exec: rails r "SiteSetting.notification_email='info@unconfigured.discourse.org'"
