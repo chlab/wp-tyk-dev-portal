@@ -4,7 +4,7 @@ After=network.target auditd.service
 # ConditionPathExists=/home/liipadmin/pyenv/bin/paster
 
 [Service]
-ExecStart=/bin/su -c '/home/liipadmin/pyenv/bin/paster --plugin=ckanext-harvest harvester gather_consumer -c /var/www/ckan/development.ini' liipadmin
+ExecStart=/bin/su -c '/home/vagrant/pyenv/bin/paster --plugin=ckanext-harvest harvester gather_consumer -c /var/www/ckan/development.ini' vagrant
 ExecReload=/bin/kill -HUP $MAINPID
 Environment=LANG=en_US.UTF-8
 KillMode=process
