@@ -569,6 +569,7 @@ bash "Install discourse" do
   user "root"
   code <<-EOH
   docker run -d -p 1025:1025 -p 8025:8025 mailhog/mailhog
+  cd /var/discourse
   ./launcher bootstrap app
   ./launcher start app
 
