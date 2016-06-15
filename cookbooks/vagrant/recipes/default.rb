@@ -54,6 +54,7 @@ java-1.6.0-openjdk
 java-1.6.0-openjdk-devel
 libxml2-devel
 libxslt-devel
+libffi-devel
 make
 mod_wsgi
 mariadb-server
