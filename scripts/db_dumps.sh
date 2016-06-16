@@ -18,3 +18,7 @@ mysqldump -u cms -p123 --skip-extended-insert --skip-quick cms > /vagrant/sql/cm
 # Piwik (Piwik DB)
 echo "Create dump of piwik..."
 mysqldump -u piwik -p123 --skip-extended-insert --skip-quick piwik > /vagrant/sql/piwik.sql
+
+# PostgresSQL (Discourse DB)
+echo "Create dump of discourse"
+docker exec app bash -c "sudo -i -u postgres pg_dump discourse --exclude-table-data=stylesheet_cache" > /vagrant/sql/discourse.sql

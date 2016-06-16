@@ -17,6 +17,9 @@ web/ogdch.dev/content/themes/twentyfifteen/
 web/ogdch.dev/.htaccess
 web/.htpasswd
 
+.env
+venv
+
 .vagrant
 /web/html
 /web/error

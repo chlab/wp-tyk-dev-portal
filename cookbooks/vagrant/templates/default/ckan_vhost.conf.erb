@@ -90,3 +90,15 @@ WSGISocketPrefix /var/run/wsgi
     </Directory>
 
 </VirtualHost>
+
+
+<VirtualHost *:80>
+  ServerName discourse.ogdch.dev
+
+  ProxyPass / unix:/var/discourse/shared/standalone/nginx.http.sock|http://discourse.ogdch.dev/
+
+  ## Logging
+  ErrorLog "/var/log/httpd/discourse_error.log"
+  ServerSignature Off
+  CustomLog "/var/log/httpd/discourse_access.log" combined
+</VirtualHost>

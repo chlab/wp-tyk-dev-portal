@@ -550,6 +550,43 @@ bash "creating a harvest user" do
   EOH
 end
 
+# Discourse
+bash "Clone discourse docker git repo" do
+  user "root"
+  code <<-EOH
+  wget -qO- https://get.docker.com/ | sh
+  systemctl start docker
+  git clone https://github.com/discourse/discourse_docker.git /var/discourse
+  EOH
+end
+
+template "/var/discourse/containers/app.yml" do
+  user "vagrant"
+  mode "0644"
+  source "discourse_container_app.yml"
+end
+
+bash "Install discourse" do
+  user "root"
+  code <<-EOH
+  docker run -d -p 1025:1025 -p 8025:8025 mailhog/mailhog
+  cd /var/discourse
+  ./launcher bootstrap app
+  ./launcher start app
+
+  # restore database dump
+  docker exec app sv stop unicorn
+  docker exec app bash -c "sudo -i -u postgres psql -c 'DROP DATABASE discourse'"
+  docker exec app bash -c "sudo -i -u postgres psql -c 'CREATE DATABASE discourse;'"
+  docker exec -i app sudo -i -u postgres psql discourse < /vagrant/sql/discourse.sql
+  docker exec app sv start unicorn
+
+  # start docker on system startup
+  systemctl enable docker
+  EOH
+end
+
+
 bash "Install test dependencies" do
   user USER
   cwd VAGRANT_DIR
