@@ -1,0 +1,5 @@
+pika==0.9.8
+redis==2.10.1
+# new (for ftp harvesting)
+paramiko==2.0.0
+ckanapi==3.5
