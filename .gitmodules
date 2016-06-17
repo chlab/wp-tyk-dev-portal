@@ -49,6 +49,3 @@
 [submodule "web/ckanext/ckanext-oauth2"]
 	path = web/ckanext/ckanext-oauth2
 	url = https://github.com/conwetlab/ckanext-oauth2.git
-[submodule "web/ckanext/reclineviewsbb"]
-	path = web/ckanext/reclineviewsbb
-	url = git@gitlab.liip.ch:odp_oev_schweiz/reclineview-sbb.git
