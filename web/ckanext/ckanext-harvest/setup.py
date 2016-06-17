@@ -34,7 +34,6 @@ setup(
 	# Add plugins here, eg
 	harvest=ckanext.harvest.plugin:Harvest
 	ckan_harvester=ckanext.harvest.harvesters:CKANHarvester
-	ftp_harvester=ckanext.harvest.harvesters:FTPHarvester
 	[ckan.test_plugins]
 	test_harvester=ckanext.harvest.tests.test_queue:MockHarvester
 	test_action_harvester=ckanext.harvest.tests.test_action:MockHarvesterForActionTests
