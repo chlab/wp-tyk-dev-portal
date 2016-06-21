@@ -41,8 +41,8 @@ $redis_server = array( 'host' => '127.0.0.1', 'port' => 6379 );
 // Define Siteurl
 // ===================================================
 
-define( 'WP_HOME', 'http://ogdch-test.clients.liip.ch' );
-define( 'WP_SITEURL', 'http://ogdch-test.clients.liip.ch/cms' );
+define( 'WP_HOME', 'http://odpch.clients.liip.ch' );
+define( 'WP_SITEURL', 'http://odpch.clients.liip.ch/cms' );
 
 
 // ===================================================
@@ -73,7 +73,7 @@ define( 'WPMU_PLUGIN_URL', WP_HOME . '/content/mu-plugins' );
 // CKAN
 // ===================================================
 
-define( 'CKAN_API_ENDPOINT', 'http://ogdch-test.clients.liip.ch/api/3/action/' );
+define( 'CKAN_API_ENDPOINT', 'http://odpch.clients.liip.ch/api/3/action/' );
 define( 'CKAN_API_KEY', 'a3cdeb1f-6130-4a94-839e-f82393c1c393' ); // adminsuer key
 
 $language_priority = array(
@@ -88,8 +88,8 @@ $language_priority = array(
 // Piwik
 // ===================================================
 
-define( 'PIWIK_URL', 'ogdch-piwik-test.clients.liip.ch' );
-define( 'PIWIK_SITEID', 1 );
+//define( 'PIWIK_URL', 'ogdch-piwik-test.clients.liip.ch' );
+//define( 'PIWIK_SITEID', 1 );
 
 
 // ===================================================
