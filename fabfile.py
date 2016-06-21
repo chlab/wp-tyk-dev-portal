@@ -32,9 +32,9 @@ ENVIRONMENTS = {
         }
     },
     'test': {
-        'home': '/home/liipadmin',
-        'root': '/home/liipadmin/ogd-ch',
-        'url': 'http://ogdch-test.clients.liip.ch',
+        'home': '/home/manager',
+        'root': '/home/manager/odpch',
+        'url': 'http://odpch-web.begasoft.ch',
         'piwik_url': 'http://ogdch-piwik-test.clients.liip.ch',
         'vagrant': False,
         'allow_restore': False,
@@ -43,10 +43,10 @@ ENVIRONMENTS = {
         'piwik_config': 'piwik-test-config.ini.php',
         'htaccess': 'test.htaccess',
         'roledefs': {
-            'wordpress': ['ogdtestwp1'],
-            'wordpress_db': ['ogdtestwp1'],
-            'ckan': ['ogdtestckan1'],
-            'ckan_db': ['ogdtestckan1']
+            'wordpress': ['sbbodptstwp01.hse.begasoft.ch'],
+            'wordpress_db': ['sbbodptstwp01.hse.begasoft.ch'],
+            'ckan': ['sbbodptstckan01.hse.begasoft.ch'],
+            'ckan_db': ['sbbodptstckan01.hse.begasoft.ch']
         }
     },
     'abnahme': {
