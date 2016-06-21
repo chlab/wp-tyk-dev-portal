@@ -1,5 +1,6 @@
 *.log*
 *.pyc
+.phpintel
 web/sitemap.xml
 web/sitemap.xml.gz
 
