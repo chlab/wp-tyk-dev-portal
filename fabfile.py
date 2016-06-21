@@ -34,7 +34,7 @@ ENVIRONMENTS = {
     'test': {
         'home': '/home/manager',
         'root': '/home/manager/odpch',
-        'url': 'http://odpch.clients.liip.ch',
+        'url': 'http://odpch-web.begasoft.ch',
         'piwik_url': 'http://ogdch-piwik-test.clients.liip.ch',
         'vagrant': False,
         'allow_restore': False,

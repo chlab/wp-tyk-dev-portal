@@ -41,8 +41,8 @@ $redis_server = array( 'host' => '127.0.0.1', 'port' => 6379 );
 // Define Siteurl
 // ===================================================
 
-define( 'WP_HOME', 'http://odpch.clients.liip.ch' );
-define( 'WP_SITEURL', 'http://odpch.clients.liip.ch/cms' );
+define( 'WP_HOME', 'http://odpch-web.begasoft.ch' );
+define( 'WP_SITEURL', 'http://odpch-web.begasoft.ch/cms' );
 
 
 // ===================================================
@@ -73,7 +73,7 @@ define( 'WPMU_PLUGIN_URL', WP_HOME . '/content/mu-plugins' );
 // CKAN
 // ===================================================
 
-define( 'CKAN_API_ENDPOINT', 'http://odpch.clients.liip.ch/api/3/action/' );
+define( 'CKAN_API_ENDPOINT', 'http://odpch-web.begasoft.ch/api/3/action/' );
 define( 'CKAN_API_KEY', 'a3cdeb1f-6130-4a94-839e-f82393c1c393' ); // adminsuer key
 
 $language_priority = array(
