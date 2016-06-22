@@ -1,10 +1,10 @@
 [Unit]
 Description=CKAN Harvester Fetch Consumer
 After=network.target auditd.service
-# ConditionPathExists=/home/liipadmin/pyenv/bin/paster
+# ConditionPathExists=/home/manager/pyenv/bin/paster
 
 [Service]
-ExecStart=/bin/su -c '/home/liipadmin/pyenv/bin/paster --plugin=ckanext-harvest harvester fetch_consumer -c /var/www/ckan/development.ini' liipadmin
+ExecStart=/bin/su -c '/home/manager/pyenv/bin/paster --plugin=ckanext-harvest harvester fetch_consumer -c /var/www/ckan/development.ini' manager
 ExecReload=/bin/kill -HUP $MAINPID
 Environment=LANG=en_US.UTF-8
 KillMode=process
