@@ -89,3 +89,8 @@ $language_priority = array(
 // ===================================================
 
 define( 'MEDIA_TRASH', false );
+
+// ===========================================
+// Activate our JSON controllers automatically
+// ===========================================
+define( 'JSON_API_CONTROLLERS', 'me' );
