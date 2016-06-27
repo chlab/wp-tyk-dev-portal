@@ -596,18 +596,6 @@ bash "Install test dependencies" do
   EOH
 end
 
-bash "Enable CKAN daemons" do
-  user "root"
-  code <<-EOH
-  cp /vagrant/ckangather.service /etc/systemd/system/
-  cp /vagrant/ckanfetch.service /etc/systemd/system/
-  systemctl enable /etc/systemd/system/ckangather.service
-  systemctl enable /etc/systemd/system/ckanfetch.service
-  systemctl start ckanfetch.service
-  systemctl start ckangather.service
-  EOH
-end
-
 bash "Make sure daemons are started" do
   user "root"
   code <<-EOH
