@@ -26,16 +26,16 @@ template "/var/www/ogdch.dev/.htaccess" do
   source "dev.htaccess"
 end
 
-remote_file "#{CACHE}/epel-release-7-6.noarch.rpm" do
-  source "http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-6.noarch.rpm"
-  not_if "rpm -qa | egrep -qx 'epel-release-7-6(|.noarch)'"
+remote_file "#{CACHE}/epel-release-7-7.noarch.rpm" do
+  source "http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-7.noarch.rpm"
+  not_if "rpm -qa | egrep -qx 'epel-release-7-7(|.noarch)'"
   notifies :install, "rpm_package[epel-release]", :immediately
   retries 5 # We may be redirected to a FTP URL, CHEF-1031.
 end
 
 rpm_package "epel-release" do
-  source "#{CACHE}/epel-release-7-6.noarch.rpm"
-  only_if {::File.exists?("#{CACHE}/epel-release-7-6.noarch.rpm")}
+  source "#{CACHE}/epel-release-7-7.noarch.rpm"
+  only_if {::File.exists?("#{CACHE}/epel-release-7-7.noarch.rpm")}
   action :nothing
 end
 
