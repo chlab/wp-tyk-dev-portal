@@ -72,8 +72,6 @@ Vagrant.configure("2") do |config|
     # config.omnibus.chef_version = :latest
     config.omnibus.chef_version = "12.10.24"
 
-    config.vm.provision :shell, inline: "sudo systemctl restart tomcat", run: 'always'
-
     config.vm.provision :chef_solo do |chef|
       chef.version = "12.10.24"
 
@@ -96,5 +94,7 @@ Vagrant.configure("2") do |config|
         :ci => ENV['LIIP_DOCKER_CI']
       }
     end
+
+    config.vm.provision :shell, inline: "sudo systemctl restart tomcat", run: 'always'
   end
 end
