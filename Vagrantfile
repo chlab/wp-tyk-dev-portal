@@ -94,5 +94,7 @@ Vagrant.configure("2") do |config|
         :ci => ENV['LIIP_DOCKER_CI']
       }
     end
+
+    config.vm.provision :shell, inline: "sudo systemctl restart tomcat", run: 'always'
   end
 end

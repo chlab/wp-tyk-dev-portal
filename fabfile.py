@@ -43,10 +43,10 @@ ENVIRONMENTS = {
         'piwik_config': 'piwik-test-config.ini.php',
         'htaccess': 'test.htaccess',
         'roledefs': {
-            'wordpress': ['sbbodptstwp01.hse.begasoft.ch'],
-            'wordpress_db': ['sbbodptstwp01.hse.begasoft.ch'],
-            'ckan': ['sbbodptstckan01.hse.begasoft.ch'],
-            'ckan_db': ['sbbodptstckan01.hse.begasoft.ch']
+            'wordpress': ['manager@sbbodptstwp01.hse.begasoft.ch'],
+            'wordpress_db': ['manager@sbbodptstwp01.hse.begasoft.ch'],
+            'ckan': ['manager@sbbodptstckan01.hse.begasoft.ch'],
+            'ckan_db': ['manager@sbbodptstckan01.hse.begasoft.ch']
         }
     },
     'abnahme': {
@@ -119,7 +119,7 @@ def _rev_parse(rev):
 @roles('ckan', 'wordpress')
 def update_dependencies():
     execute(update_ckan_dependencies)
-    execute(update_wp_dependencies)
+    # execute(update_wp_dependencies)
 
 @roles('ckan')
 def update_ckan_dependencies():
@@ -335,7 +335,7 @@ def restore_piwik_db():
 def update_config():
     execute(update_ckan_config)
     execute(update_wp_config)
-    execute(update_piwik_config)
+    #execute(update_piwik_config)
 
 @roles('wordpress', 'wordpress_db', 'ckan', 'ckan_db')
 @runs_once

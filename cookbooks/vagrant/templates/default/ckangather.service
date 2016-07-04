@@ -1,10 +1,14 @@
 [Unit]
 Description=CKAN Harvester Gather Consumer
 After=network.target auditd.service
-# ConditionPathExists=/home/liipadmin/pyenv/bin/paster
+# ConditionPathExists=/home/manager/pyenv/bin/paster
 
 [Service]
+<<<<<<< HEAD:ckangather.service
 ExecStart=/bin/su -c '/home/vagrant/pyenv/bin/paster --plugin=ckanext-harvest harvester gather_consumer -c /var/www/ckan/development.ini' vagrant
+=======
+ExecStart=/bin/su -c '/home/manager/pyenv/bin/paster --plugin=ckanext-harvest harvester gather_consumer -c /var/www/ckan/development.ini' manager
+>>>>>>> development:cookbooks/vagrant/templates/default/ckangather.service
 ExecReload=/bin/kill -HUP $MAINPID
 Environment=LANG=en_US.UTF-8
 KillMode=process
