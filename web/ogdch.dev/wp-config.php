@@ -25,7 +25,7 @@ if ( file_exists( dirname( __FILE__ ) . '/wp-local-config.php' ) ) {
 // Table prefix
 // ===================================================
 
-$table_prefix = 'ogdch_';
+$table_prefix = 'odpch_';
 
 
 // ===================================================
