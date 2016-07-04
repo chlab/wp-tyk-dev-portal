@@ -18,7 +18,7 @@
 	url = https://github.com/ckan/ckanext-dcat.git
 [submodule "web/ckanext/ckanext-switzerland"]
 	path = web/ckanext/ckanext-switzerland
-	url = https://gitlab.liip.ch/odp_oev_schweiz/ckanext-switzerland.git
+	url = git@gitlab.liip.ch:odp_oev_schweiz/ckanext-switzerland.git
 [submodule "web/ckanext/ckanext-revisiontab"]
 	path = web/ckanext/ckanext-revisiontab
 	url = https://gitlab.liip.ch/odp_oev_schweiz/ckanext-revisiontab.git
