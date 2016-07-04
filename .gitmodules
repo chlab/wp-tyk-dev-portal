@@ -55,3 +55,6 @@
 [submodule "web/ckanext/ckanext-uploadbutton"]
 	path = web/ckanext/ckanext-uploadbutton
 	url = git@gitlab.liip.ch:odp_oev_schweiz/ckanext-uploadbutton.git
+[submodule "web/ogdch.dev/content/plugins/tyk-dev-portal"]
+	path = web/ogdch.dev/content/plugins/tyk-dev-portal
+	url = git@gitlab.liip.ch:odp_oev_schweiz/wp_tyk_dev_portal.git
