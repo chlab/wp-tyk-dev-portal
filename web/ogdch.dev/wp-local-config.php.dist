@@ -90,7 +90,10 @@ $language_priority = array(
 
 define( 'MEDIA_TRASH', false );
 
-// ===========================================
-// Activate our JSON controllers automatically
-// ===========================================
-define( 'JSON_API_CONTROLLERS', 'me' );
+// ===================================================
+// Tyk Developer Portal
+// ===================================================
+
+define( 'TYK_API_ENDPOINT', 'https://admin.cloud.tyk.io/api/' );
+define( 'TYK_API_KEY', '' );
+define( 'TYK_AUTO_APPROVE_KEY_REQUESTS', true );
