@@ -386,7 +386,6 @@ def restart():
     Restart all services
     """
     # stop all daemons
-    execute(ckan_daemon, daemon='rabbitmq-server', action='stop')
     execute(wpdb_daemon, daemon='mariadb', action='stop')
     execute(wp_daemon, daemon='redis', action='stop')
     execute(ckandb_daemon, daemon='postgresql', action='stop')
@@ -395,7 +394,6 @@ def restart():
     execute(restart_apache, action='stop')
 
     # start all daemon
-    execute(ckan_daemon, daemon='rabbitmq-server', action='start')
     execute(wpdb_daemon, daemon='mariadb', action='start')
     execute(wp_daemon, daemon='redis', action='start')
     execute(ckandb_daemon, daemon='postgresql', action='start')
