@@ -126,17 +126,20 @@ def update_ckan_dependencies():
     with cd(os.path.join(env.root, 'web', 'ckan')):
         _run_pip('install -r requirements.txt') 
         _run_python('setup.py develop')
-    
     ckan_extensions = [
-        'ckanext-harvest',
-        'ckanext-scheming',
-        'ckanext-fluent',
-        'ckanext-hierarchy',
         'ckanext-dcat',
-        'ckanext-switzerland',
-        'ckanext-geocat',
-        'ckanext-oauth2',
         'ckanext-discourse',
+        'ckanext-feeds',
+        'ckanext-fluent',
+        'ckanext-geocat',
+        'ckanext-harvest',
+        'ckanext-hierarchy',
+        'ckanext-oauth2',
+        'ckanext-resourcecsv',
+        'ckanext-revisiontab',
+        'ckanext-scheming',
+        'ckanext-switzerland',
+        'ckanext-uploadbutton',
     ]
 
     for ext in ckan_extensions:
