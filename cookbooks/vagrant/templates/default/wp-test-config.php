@@ -97,3 +97,11 @@ $language_priority = array(
 // ===================================================
 
 define( 'MEDIA_TRASH', false );
+
+// ===================================================
+// Tyk Developer Portal
+// ===================================================
+
+define( 'TYK_API_ENDPOINT', 'http://odpch-api.begasoft.ch:3000/api/' );
+define( 'TYK_API_KEY', 'd8b23f6192324a5b7b5be2d414392371' );
+define( 'TYK_AUTO_APPROVE_KEY_REQUESTS', true );
