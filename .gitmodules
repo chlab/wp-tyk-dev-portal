@@ -61,3 +61,6 @@
 [submodule "web/ckanext/ckanext-harvest"]
 	path = web/ckanext/ckanext-harvest
 	url = https://github.com/ckan/ckanext-harvest.git
+[submodule "web/ogdch.dev/content/plugins/syntaxhighlighter"]
+	path = web/ogdch.dev/content/plugins/syntaxhighlighter
+	url = https://github.com/Viper007Bond/syntaxhighlighter.git
