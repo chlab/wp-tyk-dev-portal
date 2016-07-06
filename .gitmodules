@@ -18,7 +18,7 @@
 	url = https://github.com/ckan/ckanext-dcat.git
 [submodule "web/ckanext/ckanext-switzerland"]
 	path = web/ckanext/ckanext-switzerland
-	url = git@gitlab.liip.ch:odp_oev_schweiz/ckanext-switzerland.git
+	url = https://gitlab.liip.ch.ch:odp_oev_schweiz/ckanext-switzerland.git
 [submodule "web/ckanext/ckanext-revisiontab"]
 	path = web/ckanext/ckanext-revisiontab
 	url = https://gitlab.liip.ch/odp_oev_schweiz/ckanext-revisiontab.git
@@ -48,16 +48,16 @@
 	url = https://github.com/conwetlab/ckanext-oauth2.git
 [submodule "web/ckanext/ckanext-feeds"]
 	path = web/ckanext/ckanext-feeds
-	url = git@gitlab.liip.ch:odp_oev_schweiz/ckanext-feeds.git
+	url = https://gitlab.liip.ch.ch:odp_oev_schweiz/ckanext-feeds.git
 [submodule "web/ckanext/ckanext-resourcecsv"]
 	path = web/ckanext/ckanext-resourcecsv
-	url = git@gitlab.liip.ch:odp_oev_schweiz/ckanext-resourcecsv.git
+	url = https://gitlab.liip.ch.ch:odp_oev_schweiz/ckanext-resourcecsv.git
 [submodule "web/ckanext/ckanext-uploadbutton"]
 	path = web/ckanext/ckanext-uploadbutton
-	url = git@gitlab.liip.ch:odp_oev_schweiz/ckanext-uploadbutton.git
+	url = https://gitlab.liip.ch.ch:odp_oev_schweiz/ckanext-uploadbutton.git
 [submodule "web/ogdch.dev/content/plugins/tyk-dev-portal"]
 	path = web/ogdch.dev/content/plugins/tyk-dev-portal
-	url = git@gitlab.liip.ch:odp_oev_schweiz/wp_tyk_dev_portal.git
+	url = https://gitlab.liip.ch.ch:odp_oev_schweiz/wp_tyk_dev_portal.git
 [submodule "web/ckanext/ckanext-harvest"]
 	path = web/ckanext/ckanext-harvest
 	url = https://github.com/ckan/ckanext-harvest.git
