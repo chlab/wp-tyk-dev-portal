@@ -232,8 +232,9 @@ def restart_harvester(action="restart"):
     """
     Restart CKAN gather/fetch daemons
     """
-    execute(ckan_daemon, daemon="ckangather", action=action)
-    execute(ckan_daemon, daemon="ckanfetch", action=action)
+    with settings(warn_only=True):
+        execute(ckan_daemon, daemon="ckangather", action=action)
+        execute(ckan_daemon, daemon="ckanfetch", action=action)
 
 @roles('ckan')
 def rebuild_search_index():
