@@ -10,5 +10,8 @@
         <testsuite>
             <directory prefix="test-" suffix=".php">./tests/</directory>
         </testsuite>
+        <testsuite>
+            <directory prefix="test-" suffix=".php">./web/ogdch.dev/content/plugins/tyk-dev-portal/tests</directory>
+        </testsuite>
     </testsuites>
 </phpunit>
