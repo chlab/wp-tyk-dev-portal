@@ -1,7 +1,7 @@
 <?php
 
-const ODPCH_PLUGIN_DIR = './web/ogdch.dev/content/plugins';
-const ODPCH_THEME = 'twentyfifteen-child';
+define('ODPCH_PLUGIN_DIR', './web/ogdch.dev/content/plugins');
+define('ODPCH_THEME', 'twentyfifteen-child');
 
 require_once dirname( __FILE__ ) . '/../web/ogdch.dev/wp-unittest-config.php';
 
