@@ -18,10 +18,10 @@
 	url = https://github.com/ckan/ckanext-dcat.git
 [submodule "web/ckanext/ckanext-switzerland"]
 	path = web/ckanext/ckanext-switzerland
-	url = https://gitlab.liip.ch/odp_oev_schweiz/ckanext-switzerland.git
+	url = git@gitlab.liip.ch:odp_oev_schweiz/ckanext-switzerland.git
 [submodule "web/ckanext/ckanext-revisiontab"]
 	path = web/ckanext/ckanext-revisiontab
-	url = https://gitlab.liip.ch/odp_oev_schweiz/ckanext-revisiontab.git
+	url = git@gitlab.liip.ch:odp_oev_schweiz/ckanext-revisiontab.git
 [submodule "web/ckanext/ckanext-geocat"]
 	path = web/ckanext/ckanext-geocat
 	url = https://github.com/ogdch/ckanext-geocat.git
@@ -39,7 +39,7 @@
 	url = https://github.com/wpninjas/ninja-forms.git
 [submodule "web/ckanext/ckanext-discourse"]
 	path = web/ckanext/ckanext-discourse
-	url = https://gitlab.liip.ch/odp_oev_schweiz/ckanext-discourse.git
+	url = git@gitlab.liip.ch:odp_oev_schweiz/ckanext-discourse.git
 [submodule "web/ogdch.dev/content/plugins/wp-discourse"]
 	path = web/ogdch.dev/content/plugins/wp-discourse
 	url = https://github.com/discourse/wp-discourse.git
@@ -48,16 +48,16 @@
 	url = https://github.com/conwetlab/ckanext-oauth2.git
 [submodule "web/ckanext/ckanext-feeds"]
 	path = web/ckanext/ckanext-feeds
-	url = https://gitlab.liip.ch/odp_oev_schweiz/ckanext-feeds.git
+	url = git@gitlab.liip.ch:odp_oev_schweiz/ckanext-feeds.git
 [submodule "web/ckanext/ckanext-resourcecsv"]
 	path = web/ckanext/ckanext-resourcecsv
-	url = https://gitlab.liip.ch/odp_oev_schweiz/ckanext-resourcecsv.git
+	url = git@gitlab.liip.ch:odp_oev_schweiz/ckanext-resourcecsv.git
 [submodule "web/ckanext/ckanext-uploadbutton"]
 	path = web/ckanext/ckanext-uploadbutton
-	url = https://gitlab.liip.ch/odp_oev_schweiz/ckanext-uploadbutton.git
+	url = git@gitlab.liip.ch:odp_oev_schweiz/ckanext-uploadbutton.git
 [submodule "web/ogdch.dev/content/plugins/tyk-dev-portal"]
 	path = web/ogdch.dev/content/plugins/tyk-dev-portal
-	url = https://gitlab.liip.ch/odp_oev_schweiz/wp_tyk_dev_portal.git
+	url = git@gitlab.liip.ch:odp_oev_schweiz/wp_tyk_dev_portal.git
 [submodule "web/ckanext/ckanext-harvest"]
 	path = web/ckanext/ckanext-harvest
 	url = https://github.com/ckan/ckanext-harvest.git
