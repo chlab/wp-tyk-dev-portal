@@ -22,6 +22,10 @@ function _manually_load_environment() {
 	);
 
 	update_option( 'active_plugins', $plugins_to_activate );
+	// include the file to activate plugin
+	foreach ($plugins_to_activate as $plugin) {
+		require_once $plugin;
+	}
 }
 
 tests_add_filter( 'muplugins_loaded', '_manually_load_environment' );
