@@ -2,12 +2,10 @@
 import requests
 import xml.dom.minidom
 
+DIRECT_URL = 'http://52.59.12.146:8889/sbb/trias'
+TYK_URL = 'http://odpch-api.begasoft.ch/trias/'
 TYK_API_KEY = '576a42fc17f89d0001000001cd8959a5f2254b824257edba585edfcd'
 
-# DIDOK Data:
-# 8502113 Aarau
-# 8507785 Bern Hauptbahnhof
-# 8503000 Zürich Hauptbahnhof
 
 STOP_EVENT_REQUEST = """<?xml version="1.0" encoding="UTF-8"?>
 <Trias version="1.1" xmlns="http://www.vdv.de/trias" xmlns:siri="http://www.siri.org.uk/siri" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -33,6 +31,27 @@ STOP_EVENT_REQUEST = """<?xml version="1.0" encoding="UTF-8"?>
 </Trias>
 """
 
+TRIP_REQUEST = """
+<Trias version="1.1" xmlns="http://www.vdv.de/trias" xmlns:siri="http://www.siri.org.uk/siri" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <ServiceRequest>
+        <siri:RequestTimestamp>2016-07-05T18:00:00</siri:RequestTimestamp>
+        <siri:RequestorRef>JS</siri:RequestorRef>
+        <RequestPayload>
+            <TripInfoRequest>
+                <JourneyRef>sbb:01012::H:j16:30441</JourneyRef>
+                <OperatingDayRef>2016-04-02T</OperatingDayRef>
+                <Params>
+                    <!-- <UseTimetabledDataOnly>false</UseTimetabledDataOnly> -->
+                    <IncludeCalls>true</IncludeCalls>
+                    <IncludePosition>false</IncludePosition>
+                    <IncludeService>true</IncludeService>
+                </Params>
+            </TripInfoRequest>
+        </RequestPayload>
+    </ServiceRequest>
+</Trias>
+"""
+
 
 def format_xml(xml_text):
     dom = xml.dom.minidom.parseString(xml_text)
@@ -46,17 +65,17 @@ def trias(url, auth=None):
     return requests.post(url, data=STOP_EVENT_REQUEST, headers=headers, timeout=10)
 
 
-# def test_trias1_direct():
-#    assert trias('http://52.59.12.146:8888/Middleware/Data/trias').status_code == 400
+def test_stop_event_direct():
+    assert trias(DIRECT_URL).status_code == 200
 
 
-def test_trias2_direct():
-    assert trias('http://52.59.12.146:8889/sbb/trias').status_code == 200
+def test_stop_event_tyk():
+     assert trias(TYK_URL, auth=TYK_API_KEY).status_code == 200
 
 
-# def test_trias1_tyk():
-#    assert trias('http://odpch-api.begasoft.ch/trias1/sbb/trias', auth=TYK_API_KEY).status_code == 400
+def test_trip_request_direct():
+    assert trias(DIRECT_URL).status_code == 200
 
 
-def test_trias2_tyk():
-     assert trias('http://odpch-api.begasoft.ch/trias/', auth=TYK_API_KEY).status_code == 200
+def test_trip_request_tyk():
+     assert trias(TYK_URL, auth=TYK_API_KEY).status_code == 200
