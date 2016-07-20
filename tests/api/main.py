@@ -59,4 +59,4 @@ def test_trias2_direct():
 
 
 def test_trias2_tyk():
-     assert trias('http://odpch-api.begasoft.ch/trias2/sbb/trias', auth=TYK_API_KEY).status_code == 200
+     assert trias('http://odpch-api.begasoft.ch/trias/', auth=TYK_API_KEY).status_code == 200
