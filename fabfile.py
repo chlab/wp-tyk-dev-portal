@@ -401,7 +401,7 @@ def restart():
     execute(wp_daemon, daemon='redis', action='start')
     execute(ckandb_daemon, daemon='postgresql', action='start')
     execute(ckan_daemon, daemon='tomcat', action='start')
-    execute(restart_harvester, action='start')
+    # execute(restart_harvester, action='start')
     execute(restart_apache, action='start')
 
 @roles('wordpress', 'ckan')
