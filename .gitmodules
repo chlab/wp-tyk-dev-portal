@@ -57,7 +57,7 @@
 	url = git@gitlab.liip.ch:odp_oev_schweiz/ckanext-uploadbutton.git
 [submodule "web/ogdch.dev/content/plugins/tyk-dev-portal"]
 	path = web/ogdch.dev/content/plugins/tyk-dev-portal
-	url = git@gitlab.liip.ch:odp_oev_schweiz/wp_tyk_dev_portal.git
+url=https://github.com/liip/wp-tyk-dev-portal.git
 [submodule "web/ckanext/ckanext-harvest"]
 	path = web/ckanext/ckanext-harvest
 	url = https://github.com/ckan/ckanext-harvest.git
