@@ -183,6 +183,7 @@ class API extends \Piwik\Plugin\API
         if ($patternType == 'exact'
             && substr($pattern, 0, 4) != 'http'
             && substr($matchAttribute, 0, 6) != 'event_'
+            && $matchAttribute != 'title'
         ) {
             throw new Exception(Piwik::translate('Goals_ExceptionInvalidMatchingString', array("http:// or https://", "http://www.yourwebsite.com/newsletter/subscribed.html")));
         }
@@ -365,7 +366,6 @@ class API extends \Piwik\Plugin\API
                 'date'    => $date,
                 'idGoal'  => $idGoal,
                 'columns' => $columns,
-                'serialize' => '0',
                 'format_metrics' => 'bc'
             ));
 

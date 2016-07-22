@@ -129,6 +129,12 @@ class CronArchive
     public $shouldStartProfiler = false;
 
     /**
+     * Given options will be forwarded to the PHP command if the archiver is executed via CLI.
+     * @var string
+     */
+    public $phpCliConfigurationOptions = '';
+
+    /**
      * If HTTP requests are used to initiate archiving, this controls whether invalid SSL certificates should
      * be accepted or not by each request.
      *
@@ -259,6 +265,7 @@ class CronArchive
      *
      * @param string|null $processNewSegmentsFrom When to archive new segments from. See [General] process_new_segments_from
      *                                            for possible values.
+     * @param LoggerInterface|null $logger
      */
     public function __construct($processNewSegmentsFrom = null, LoggerInterface $logger = null)
     {
@@ -367,7 +374,7 @@ class CronArchive
                 continue;
             }
 
-            $shouldCheckIfArchivingIsNeeded    = !$this->shouldArchiveSpecifiedSites && !$this->shouldArchiveAllSites;
+            $shouldCheckIfArchivingIsNeeded    = !$this->shouldArchiveSpecifiedSites && !$this->shouldArchiveAllSites && !$this->dateLastForced;
             $hasWebsiteDayFinishedSinceLastRun = in_array($idSite, $this->websiteDayHasFinishedSinceLastRun);
             $isOldReportInvalidatedForWebsite  = $this->isOldReportInvalidatedForWebsite($idSite);
 
@@ -708,6 +715,12 @@ class CronArchive
 
     /**
      * Returns base URL to process reports for the $idSite on a given $period
+     *
+     * @param string $idSite
+     * @param string $period
+     * @param string $date
+     * @param bool|false $segment
+     * @return string
      */
     private function getVisitsRequestUrl($idSite, $period, $date, $segment = false)
     {
@@ -833,7 +846,11 @@ class CronArchive
         return true;
     }
 
-    private function getSegmentsForSite($idSite, $period)
+    /**
+     * @param $idSite
+     * @return array
+     */
+    private function getSegmentsForSite($idSite)
     {
         $segmentsAllSites = $this->segments;
         $segmentsThisSite = SettingsPiwik::getKnownSegmentsToArchiveForSite($idSite);
@@ -896,9 +913,7 @@ class CronArchive
         $this->requests += count($urls);
 
         $cliMulti = $this->makeCliMulti();
-        $cliMulti->setAcceptInvalidSSLCertificate($this->acceptInvalidSSLCertificate);
         $cliMulti->setConcurrentProcessesLimit($this->getConcurrentRequestsPerWebsite());
-        $cliMulti->runAsSuperUser();
         $response = $cliMulti->request($urls);
 
         foreach ($urls as $index => $url) {
@@ -929,6 +944,8 @@ class CronArchive
 
     /**
      * Logs a section in the output
+     *
+     * @param string $title
      */
     private function logSection($title = "")
     {
@@ -964,23 +981,15 @@ class CronArchive
     /**
      * Issues a request to $url eg. "?module=API&method=API.getDefaultMetricTranslations&format=original&serialize=1"
      *
+     * @param string $url
+     * @return string
      */
     private function request($url)
     {
         $url = $this->makeRequestUrl($url);
 
-        if ($this->shouldStartProfiler) {
-            $url .= "&xhprof=2";
-        }
-
-        if ($this->testmode) {
-            $url .= "&testmode=1";
-        }
-
         try {
             $cliMulti  = $this->makeCliMulti();
-            $cliMulti->setAcceptInvalidSSLCertificate($this->acceptInvalidSSLCertificate);
-            $cliMulti->runAsSuperUser();
             $responses = $cliMulti->request(array($url));
 
             $response  = !empty($responses) ? array_shift($responses) : null;
@@ -1059,6 +1068,7 @@ class CronArchive
 
     /**
      * @internal
+     * @param $api
      */
     public function setApiToInvalidateArchivedReport($api)
     {
@@ -1142,6 +1152,7 @@ class CronArchive
     /**
      * Detects whether a site had visits since midnight in the websites timezone
      *
+     * @param $idSite
      * @return bool
      */
     private function hadWebsiteTrafficSinceMidnightInTimezone($idSite)
@@ -1155,19 +1166,23 @@ class CronArchive
 
         $secondsSinceLastArchive = $this->getSecondsSinceLastArchive();
         if ($secondsSinceLastArchive < $secondsSinceMidnight) {
-            $secondsSinceMidnight = $secondsSinceLastArchive;
+            $secondsBackToLookForVisits = $secondsSinceLastArchive;
+            $sinceInfo = "(since the last successful archiving)";
+        } else {
+            $secondsBackToLookForVisits = $secondsSinceMidnight;
+            $sinceInfo = "(since midnight)";
         }
 
-        $from = Date::now()->subSeconds($secondsSinceMidnight)->getDatetime();
+        $from = Date::now()->subSeconds($secondsBackToLookForVisits)->getDatetime();
         $to   = Date::now()->addHour(1)->getDatetime();
 
         $dao = new RawLogDao();
         $hasVisits = $dao->hasSiteVisitsBetweenTimeframe($from, $to, $idSite);
 
         if ($hasVisits) {
-            $this->logger->info("- tracking data found for website id $idSite (between $from and $to)");
+            $this->logger->info("- tracking data found for website id $idSite since $from UTC $sinceInfo");
         } else {
-            $this->logger->info("- no new tracking data for website id $idSite (between $from and $to)");
+            $this->logger->info("- no new tracking data for website id $idSite since $from UTC $sinceInfo");
         }
 
         return $hasVisits;
@@ -1179,7 +1194,7 @@ class CronArchive
      *
      * @return array
      */
-    private function getTimezonesHavingNewDay()
+    private function getTimezonesHavingNewDaySinceLastRun()
     {
         $timestamp = $this->lastSuccessRunTimestamp;
         $uniqueTimezones = APISitesManager::getInstance()->getUniqueSiteTimezones();
@@ -1220,9 +1235,9 @@ class CronArchive
      */
     private function findWebsiteIdsInTimezoneWithNewDay($websiteIds)
     {
-        $timezones = $this->getTimezonesHavingNewDay();
+        $timezones = $this->getTimezonesHavingNewDaySinceLastRun();
         $websiteDayHasFinishedSinceLastRun = APISitesManager::getInstance()->getSitesIdFromTimezones($timezones);
-        $websiteDayHasFinishedSinceLastRun = array_diff($websiteDayHasFinishedSinceLastRun, $websiteIds);
+        $websiteDayHasFinishedSinceLastRun = array_intersect($websiteDayHasFinishedSinceLastRun, $websiteIds);
         $this->websiteDayHasFinishedSinceLastRun = $websiteDayHasFinishedSinceLastRun;
 
         if (count($websiteDayHasFinishedSinceLastRun) > 0) {
@@ -1603,7 +1618,17 @@ class CronArchive
      */
     private function makeRequestUrl($url)
     {
-        return $url . self::APPEND_TO_API_REQUEST;
+        $url = $url . self::APPEND_TO_API_REQUEST;
+
+        if ($this->shouldStartProfiler) {
+            $url .= "&xhprof=2";
+        }
+
+        if ($this->testmode) {
+            $url .= "&testmode=1";
+        }
+
+        return $url;
     }
 
     /**
@@ -1615,7 +1640,7 @@ class CronArchive
     private function getUrlsWithSegment($idSite, $period, $date)
     {
         $urlsWithSegment = array();
-        $segmentsForSite = $this->getSegmentsForSite($idSite, $period);
+        $segmentsForSite = $this->getSegmentsForSite($idSite);
 
         $segments = array();
         foreach ($segmentsForSite as $segment) {
@@ -1672,6 +1697,7 @@ class CronArchive
     /**
      * @param $idSite
      * @param $period
+     * @param $date
      */
     private function logArchiveWebsite($idSite, $period, $date)
     {
@@ -1712,6 +1738,9 @@ class CronArchive
     {
         $cliMulti = StaticContainer::get('Piwik\CliMulti');
         $cliMulti->setUrlToPiwik($this->urlToPiwik);
+        $cliMulti->setPhpCliConfigurationOptions($this->phpCliConfigurationOptions);
+        $cliMulti->setAcceptInvalidSSLCertificate($this->acceptInvalidSSLCertificate);
+        $cliMulti->runAsSuperUser();
         return $cliMulti;
     }
 

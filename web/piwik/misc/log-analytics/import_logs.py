@@ -142,6 +142,11 @@ class JsonFormat(BaseFormat):
 
     def match(self, line):
         try:
+            # nginx outputs malformed JSON w/ hex escapes when confronted w/ non-UTF input. we have to
+            # workaround this by converting hex escapes in strings to unicode escapes. the conversion is naive,
+            # so it does not take into account the string's actual encoding (which we don't have access to).
+            line = line.replace('\\x', '\\u00')
+
             self.json = json.loads(line)
             return self
         except:
@@ -151,7 +156,7 @@ class JsonFormat(BaseFormat):
     def get(self, key):
         # Some ugly patchs ...
         if key == 'generation_time_milli':
-            self.json[key] =  int(self.json[key] * 1000)
+            self.json[key] =  int(float(self.json[key]) * 1000)
         # Patch date format ISO 8601
         elif key == 'date':
             tz = self.json[key][19:]
@@ -211,12 +216,12 @@ class W3cExtendedFormat(RegexFormat):
     FIELDS_LINE_PREFIX = '#Fields: '
 
     fields = {
-        'date': '(?P<date>^\d+[-\d+]+',
+        'date': '(?P<date>\d+[-\d+]+',
         'time': '[\d+:]+)[.\d]*?', # TODO should not assume date & time will be together not sure how to fix ATM.
         'cs-uri-stem': '(?P<path>/\S*)',
         'cs-uri-query': '(?P<query_string>\S*)',
-        'c-ip': '"?(?P<ip>[\d*.-]*)"?',
-        'cs(User-Agent)': '(?P<user_agent>".*?"|\S+)',
+        'c-ip': '"?(?P<ip>[\w*.:-]*)"?',
+        'cs(User-Agent)': '(?P<user_agent>".*?"|\S*)',
         'cs(Referer)': '(?P<referrer>\S+)',
         'sc-status': '(?P<status>\d+)',
         'sc-bytes': '(?P<length>\S+)',
@@ -328,6 +333,26 @@ class IisFormat(W3cExtendedFormat):
 
         self.name = 'iis'
 
+class ShoutcastFormat(W3cExtendedFormat):
+
+    fields = W3cExtendedFormat.fields.copy()
+    fields.update({
+        'c-status': '(?P<status>\d+)',
+        'x-duration': '(?P<generation_time_secs>[.\d]+)'
+    })
+
+    def __init__(self):
+        super(ShoutcastFormat, self).__init__()
+
+        self.name = 'shoutcast'
+
+    def get(self, key):
+        if key == 'user_agent':
+            user_agent = super(ShoutcastFormat, self).get(key)
+            return urllib2.unquote(user_agent)
+        else:
+            return super(ShoutcastFormat, self).get(key)
+
 class AmazonCloudFrontFormat(W3cExtendedFormat):
 
     fields = W3cExtendedFormat.fields.copy()
@@ -362,7 +387,7 @@ class AmazonCloudFrontFormat(W3cExtendedFormat):
 
 _HOST_PREFIX = '(?P<host>[\w\-\.]*)(?::\d+)?\s+'
 _COMMON_LOG_FORMAT = (
-    '(?P<ip>\S+)\s+\S+\s+\S+\s+\[(?P<date>.*?)\s+(?P<timezone>.*?)\]\s+'
+    '(?P<ip>\S+)\s+\S+\s+(?P<userid>\S+)\s+\[(?P<date>.*?)\s+(?P<timezone>.*?)\]\s+'
     '"\S+\s+(?P<path>.*?)\s+\S+"\s+(?P<status>\S+)\s+(?P<length>\S+)'
 )
 _NCSA_EXTENDED_LOG_FORMAT = (_COMMON_LOG_FORMAT +
@@ -385,6 +410,7 @@ FORMATS = {
     'w3c_extended': W3cExtendedFormat(),
     'amazon_cloudfront': AmazonCloudFrontFormat(),
     'iis': IisFormat(),
+    'shoutcast': ShoutcastFormat(),
     's3': RegexFormat('s3', _S3_LOG_FORMAT),
     'icecast2': RegexFormat('icecast2', _ICECAST2_LOG_FORMAT),
     'nginx_json': JsonFormat('nginx_json'),
@@ -419,6 +445,16 @@ class Configuration(object):
                    "              Please send your suggestions or successful user story to hello@piwik.org "
         )
 
+        # Basic auth user
+        option_parser.add_option(
+            '--auth-user', dest='auth_user',
+            help="Basic auth user",
+        )
+        # Basic auth password
+        option_parser.add_option(
+            '--auth-password', dest='auth_password',
+            help="Basic auth password",
+        )
         option_parser.add_option(
             '--debug', '-d', dest='debug', action='count', default=0,
             help="Enable debug output (specify multiple times for more verbose)",
@@ -1216,6 +1252,19 @@ class Piwik(object):
             timeout = None # the config global object may not be created at this point
 
         request = urllib2.Request(url + path, data, headers)
+
+        # Handle basic auth if auth_user set
+        try:
+            auth_user = config.options.auth_user
+            auth_password = config.options.auth_password
+        except:
+            auth_user = None
+            auth_password = None
+
+        if auth_user is not None:
+            base64string = base64.encodestring('%s:%s' % (auth_user, auth_password)).replace('\n', '')
+            request.add_header("Authorization", "Basic %s" % base64string)        
+
         opener = urllib2.build_opener(Piwik.RedirectHandlerWithLogging())
         response = opener.open(request, timeout = timeout)
         result = response.read()
@@ -1232,6 +1281,7 @@ class Piwik(object):
             'module' : 'API',
             'format' : 'json2',
             'method' : method,
+            'filter_limit' : '-1',
         }
         # token_auth, by default, is taken from config.
         token_auth = kwargs.pop('_token_auth', None)
@@ -2044,7 +2094,12 @@ class Parser(object):
         valid_lines_count = 0
 
         hits = []
-        for lineno, line in enumerate(file):
+        lineno = -1
+        while True:
+            line = file.readline()
+            if not line: break
+            lineno = lineno + 1
+
             try:
                 line = line.decode(config.options.encoding)
             except UnicodeDecodeError:

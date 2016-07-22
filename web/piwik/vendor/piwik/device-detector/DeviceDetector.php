@@ -11,6 +11,7 @@ namespace DeviceDetector;
 use DeviceDetector\Cache\StaticCache;
 use DeviceDetector\Cache\Cache;
 use DeviceDetector\Parser\Bot;
+use DeviceDetector\Parser\Client\Browser;
 use DeviceDetector\Parser\OperatingSystem;
 use DeviceDetector\Parser\Client\ClientParserAbstract;
 use DeviceDetector\Parser\Device\DeviceParserAbstract;
@@ -47,7 +48,7 @@ class DeviceDetector
     /**
      * Current version number of DeviceDetector
      */
-    const VERSION = '3.4.2';
+    const VERSION = '3.6.1';
 
     /**
      * Holds all registered client types
@@ -117,8 +118,14 @@ class DeviceDetector
      */
     protected $bot = null;
 
+    /**
+     * @var bool
+     */
     protected $discardBotInformation = false;
 
+    /**
+     * @var bool
+     */
     protected $skipBotDetection = false;
 
     /**
@@ -128,11 +135,26 @@ class DeviceDetector
     protected $cache = null;
 
     /**
+     * @var ClientParserAbstract[]
+     */
+    protected $clientParsers = array();
+
+    /**
+     * @var DeviceParserAbstract[]
+     */
+    protected $deviceParsers = array();
+
+    /**
+     * @var bool
+     */
+    private $parsed = false;
+
+    /**
      * Constructor
      *
-     * @param string $userAgent  UA to parse
+     * @param string $userAgent UA to parse
      */
-    public function __construct($userAgent='')
+    public function __construct($userAgent = '')
     {
         if ($userAgent != '') {
             $this->setUserAgent($userAgent);
@@ -156,13 +178,13 @@ class DeviceDetector
     public function __call($methodName, $arguments)
     {
         foreach (DeviceParserAbstract::getAvailableDeviceTypes() as $deviceName => $deviceType) {
-            if (strtolower($methodName) == 'is'.strtolower(str_replace(' ', '', $deviceName))) {
+            if (strtolower($methodName) == 'is' . strtolower(str_replace(' ', '', $deviceName))) {
                 return $this->getDevice() == $deviceType;
             }
         }
 
         foreach (self::$clientTypes as $client) {
-            if (strtolower($methodName) == 'is'.strtolower(str_replace(' ', '', $client))) {
+            if (strtolower($methodName) == 'is' . strtolower(str_replace(' ', '', $client))) {
                 return $this->getClient('type') == $client;
             }
         }
@@ -185,19 +207,14 @@ class DeviceDetector
 
     protected function reset()
     {
-        $this->bot    = null;
+        $this->bot = null;
         $this->client = null;
         $this->device = null;
-        $this->os     = null;
-        $this->brand  = '';
-        $this->model  = '';
+        $this->os = null;
+        $this->brand = '';
+        $this->model = '';
         $this->parsed = false;
     }
-
-    /**
-     * @var ClientParserAbstract[]
-     */
-    protected $clientParsers = array();
 
     /**
      * @param ClientParserAbstract|string $parser
@@ -205,8 +222,8 @@ class DeviceDetector
      */
     public function addClientParser($parser)
     {
-        if (is_string($parser) && class_exists('DeviceDetector\\Parser\\Client\\'.$parser)) {
-            $className = 'DeviceDetector\\Parser\\Client\\'.$parser;
+        if (is_string($parser) && class_exists('DeviceDetector\\Parser\\Client\\' . $parser)) {
+            $className = 'DeviceDetector\\Parser\\Client\\' . $parser;
             $parser = new $className();
         }
 
@@ -225,18 +242,13 @@ class DeviceDetector
     }
 
     /**
-     * @var DeviceParserAbstract[]
-     */
-    protected $deviceParsers = array();
-
-    /**
      * @param DeviceParserAbstract|string $parser
      * @throws \Exception
      */
     public function addDeviceParser($parser)
     {
-        if (is_string($parser) && class_exists('DeviceDetector\\Parser\\Device\\'.$parser)) {
-            $className = 'DeviceDetector\\Parser\\Device\\'.$parser;
+        if (is_string($parser) && class_exists('DeviceDetector\\Parser\\Device\\' . $parser)) {
+            $className = 'DeviceDetector\\Parser\\Device\\' . $parser;
             $parser = new $className();
         }
 
@@ -260,7 +272,7 @@ class DeviceDetector
      *
      * @param bool $discard
      */
-    public function discardBotInformation($discard=true)
+    public function discardBotInformation($discard = true)
     {
         $this->discardBotInformation = $discard;
     }
@@ -272,7 +284,7 @@ class DeviceDetector
      *
      * @param bool $skip
      */
-    public function skipBotDetection($skip=true)
+    public function skipBotDetection($skip = true)
     {
         $this->skipBotDetection = $skip;
     }
@@ -309,7 +321,7 @@ class DeviceDetector
      */
     protected function hasAndroidTableFragment()
     {
-        $regex = 'Android; Tablet;';
+        $regex = 'Android( [\.0-9]+)?; Tablet;';
         return $this->matchUserAgent($regex);
     }
 
@@ -320,8 +332,13 @@ class DeviceDetector
      */
     protected function hasAndroidMobileFragment()
     {
-        $regex = 'Android; Mobile;';
+        $regex = 'Android( [\.0-9]+)?; Mobile;';
         return $this->matchUserAgent($regex);
+    }
+
+    protected function usesMobileBrowser()
+    {
+        return $this->getClient('type') == 'browser' && Browser::isMobileOnlyBrowser($this->getClient('short_name'));
     }
 
     public function isMobile()
@@ -333,7 +350,13 @@ class DeviceDetector
                 DeviceParserAbstract::DEVICE_TYPE_PHABLET,
                 DeviceParserAbstract::DEVICE_TYPE_CAMERA,
                 DeviceParserAbstract::DEVICE_TYPE_PORTABLE_MEDIA_PAYER,
-            ))) {
+            ))
+        ) {
+            return true;
+        }
+
+        // Check for browsers available for mobile devices only
+        if ($this->usesMobileBrowser()) {
             return true;
         }
 
@@ -360,6 +383,11 @@ class DeviceDetector
             return false;
         }
 
+        // Check for browsers available for mobile devices only
+        if ($this->usesMobileBrowser()) {
+            return false;
+        }
+
         $decodedFamily = OperatingSystem::getOsFamily($osShort);
 
         return in_array($decodedFamily, self::$desktopOsArray);
@@ -370,7 +398,7 @@ class DeviceDetector
      *
      * If $attr is given only that property will be returned
      *
-     * @param string $attr  property to return(optional)
+     * @param string $attr property to return(optional)
      *
      * @return array|string
      */
@@ -392,7 +420,7 @@ class DeviceDetector
      *
      * If $attr is given only that property will be returned
      *
-     * @param string $attr  property to return(optional)
+     * @param string $attr property to return(optional)
      *
      * @return array|string
      */
@@ -491,21 +519,29 @@ class DeviceDetector
         return $this->bot;
     }
 
-    protected $parsed = false;
+    /**
+     * Returns true, if userAgent was already parsed with parse()
+     * 
+     * @return bool
+     */
+    public function isParsed()
+    {
+        return $this->parsed;
+    }
 
     /**
      * Triggers the parsing of the current user agent
      */
     public function parse()
     {
-        if ($this->parsed) {
+        if ($this->isParsed()) {
             return;
         }
 
         $this->parsed = true;
 
         // skip parsing for empty useragents or those not containing any letter
-        if (empty($this->userAgent) || preg_match('[a-z]', $this->userAgent)) {
+        if (empty($this->userAgent) || !preg_match('/([a-z])/i', $this->userAgent)) {
             return;
         }
 
@@ -570,8 +606,8 @@ class DeviceDetector
             $parser->setUserAgent($this->getUserAgent());
             if ($parser->parse()) {
                 $this->device = $parser->getDeviceType();
-                $this->model  = $parser->getModel();
-                $this->brand  = $parser->getBrand();
+                $this->model = $parser->getModel();
+                $this->brand = $parser->getBrand();
                 break;
             }
         }
@@ -584,10 +620,28 @@ class DeviceDetector
             $this->brand = $vendorParser->parse();
         }
 
+        $osShortName = $this->getOs('short_name');
+        $osFamily = OperatingSystem::getOsFamily($osShortName);
+        $osVersion = $this->getOs('version');
+        $clientName = $this->getClient('name');
+
         /**
-         * Some user agents simply contain the fragment 'Android; Tablet;', so we assume those devices as tablets
+         * Chrome on Android passes the device type based on the keyword 'Mobile'
+         * If it is present the device should be a smartphone, otherwise it's a tablet
+         * See https://developer.chrome.com/multidevice/user-agent#chrome_for_android_user_agent
          */
-        if (is_null($this->device) && $this->hasAndroidTableFragment()) {
+        if (is_null($this->device) && $osFamily == 'Android' && in_array($this->getClient('name'), array('Chrome', 'Chrome Mobile'))) {
+            if ($this->matchUserAgent('Chrome/[\.0-9]* Mobile')) {
+                $this->device = DeviceParserAbstract::DEVICE_TYPE_SMARTPHONE;
+            } else if ($this->matchUserAgent('Chrome/[\.0-9]* (?!Mobile)')) {
+                $this->device = DeviceParserAbstract::DEVICE_TYPE_TABLET;
+            }
+        }
+
+        /**
+         * Some user agents simply contain the fragment 'Android; Tablet;' or 'Opera Tablet', so we assume those devices as tablets
+         */
+        if (is_null($this->device) && ($this->hasAndroidTableFragment() || $this->matchUserAgent('Opera Tablet'))) {
             $this->device = DeviceParserAbstract::DEVICE_TYPE_TABLET;
         }
 
@@ -597,10 +651,6 @@ class DeviceDetector
         if (is_null($this->device) && $this->hasAndroidMobileFragment()) {
             $this->device = DeviceParserAbstract::DEVICE_TYPE_SMARTPHONE;
         }
-
-        $osShortName = $this->getOs('short_name');
-        $osFamily = OperatingSystem::getOsFamily($osShortName);
-        $osVersion = $this->getOs('version');
 
         /**
          * Android up to 3.0 was designed for smartphones only. But as 3.0, which was tablet only, was published
@@ -643,6 +693,13 @@ class DeviceDetector
          * All devices running Opera TV Store are assumed to be a tv
          */
         if ($this->matchUserAgent('Opera TV Store')) {
+            $this->device = DeviceParserAbstract::DEVICE_TYPE_TV;
+        }
+
+        /**
+         * Devices running Kylo or Espital TV Browsers are assumed to be a TV
+         */
+        if (is_null($this->device) && in_array($clientName, array('Kylo', 'Espial TV Browser'))) {
             $this->device = DeviceParserAbstract::DEVICE_TYPE_TV;
         }
 
@@ -693,7 +750,7 @@ class DeviceDetector
         if ($deviceDetector->isBot()) {
             return array(
                 'user_agent' => $deviceDetector->getUserAgent(),
-                'bot'        => $deviceDetector->getBot()
+                'bot' => $deviceDetector->getBot()
             );
         }
 
@@ -701,15 +758,15 @@ class DeviceDetector
         $browserFamily = \DeviceDetector\Parser\Client\Browser::getBrowserFamily($deviceDetector->getClient('short_name'));
 
         $processed = array(
-            'user_agent'     => $deviceDetector->getUserAgent(),
-            'os'             => $deviceDetector->getOs(),
-            'client'         => $deviceDetector->getClient(),
-            'device'         => array(
-                'type'       => $deviceDetector->getDeviceName(),
-                'brand'      => $deviceDetector->getBrand(),
-                'model'      => $deviceDetector->getModel(),
+            'user_agent' => $deviceDetector->getUserAgent(),
+            'os' => $deviceDetector->getOs(),
+            'client' => $deviceDetector->getClient(),
+            'device' => array(
+                'type' => $deviceDetector->getDeviceName(),
+                'brand' => $deviceDetector->getBrand(),
+                'model' => $deviceDetector->getModel(),
             ),
-            'os_family'      => $osFamily !== false ? $osFamily : 'Unknown',
+            'os_family' => $osFamily !== false ? $osFamily : 'Unknown',
             'browser_family' => $browserFamily !== false ? $browserFamily : 'Unknown',
         );
         return $processed;
@@ -724,7 +781,8 @@ class DeviceDetector
     public function setCache($cache)
     {
         if ($cache instanceof Cache ||
-            (class_exists('\Doctrine\Common\Cache\CacheProvider') && $cache instanceof \Doctrine\Common\Cache\CacheProvider)) {
+            (class_exists('\Doctrine\Common\Cache\CacheProvider') && $cache instanceof \Doctrine\Common\Cache\CacheProvider)
+        ) {
             $this->cache = $cache;
             return;
         }

@@ -140,8 +140,11 @@ GPS (lat/long): {{ visitor.getColumn('latitude') }},{{ visitor.getColumn('longit
                 {% if visitor.getColumn('provider') %}
                     <br/>
                     {{ 'Provider_ColumnProvider'|translate }}:
-                    <a href="{{ visitor.getColumn('providerUrl') }}" rel="noreferrer" target="_blank" class="visitorLogTooltip" title="{{ visitor.getColumn('providerName') }} {{ visitor.getColumn('providerUrl') }}" style="text-decoration:underline;">
-                        {{ visitor.getColumn('providerName') }}</a>
+                    {% if visitor.getColumn('providerUrl') %}
+                        <a href="{{ visitor.getColumn('providerUrl') }}" rel="noreferrer" target="_blank" class="visitorLogTooltip" title="{{ visitor.getColumn('providerName') }} {{ visitor.getColumn('providerUrl') }}" style="text-decoration:underline;">
+                    {% endif -%}
+                        {{ visitor.getColumn('providerName') }}
+                    {%- if visitor.getColumn('providerUrl') %}</a>{% endif %}
                 {% endif %}
                 {% if visitor.getColumn('visitorTypeIcon') or visitor.getColumn('countryFlag') %}
                     <br/>
@@ -190,6 +193,7 @@ GPS (lat/long): {{ visitor.getColumn('latitude') }},{{ visitor.getColumn('longit
             {% endif %}
 
             <div class="col-md-{% if displayVisitorsInOwnColumn %}7{% else %}8{% endif %} column {% if visitor.getColumn('visitConverted') and not isWidget %}highlightField{% endif %}">
+                {{ postEvent('Live.visitorLogViewBeforeActionsInfo', visitor) }}
                 <div class="visitor-log-page-list">
                     <strong>
                         {{ visitor.getColumn('actionDetails')|length }}
@@ -205,6 +209,7 @@ GPS (lat/long): {{ visitor.getColumn('latitude') }},{{ visitor.getColumn('longit
                         {% include "@Live/_actionsList.twig" with {'actionDetails': visitor.getColumn('actionDetails')} %}
                     </ol>
                 </div>
+                {{ postEvent('Live.visitorLogViewAfterActionsInfo', visitor) }}
             </div>
         </div>
     {% endset %}
