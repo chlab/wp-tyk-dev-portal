@@ -339,7 +339,7 @@ def restore_piwik_db():
 def update_config():
     execute(update_ckan_config)
     execute(update_wp_config)
-    #execute(update_piwik_config)
+    execute(update_piwik_config)
 
 @roles('wordpress', 'wordpress_db', 'ckan', 'ckan_db')
 @runs_once
