@@ -88,8 +88,8 @@ $language_priority = array(
 // Piwik
 // ===================================================
 
-//define( 'PIWIK_URL', 'ogdch-piwik-test.clients.liip.ch' );
-//define( 'PIWIK_SITEID', 1 );
+define( 'PIWIK_URL', 'odpch-web.begasoft.ch:443' );
+define( 'PIWIK_SITEID', 1 );
 
 
 // ===================================================
