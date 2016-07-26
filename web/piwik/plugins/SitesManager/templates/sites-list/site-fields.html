@@ -85,6 +85,7 @@
 
             <div class="form-help">
                 {{ 'SitesManager_OnlyMatchedUrlsAllowedHelp' | translate }}
+                {{ 'SitesManager_OnlyMatchedUrlsAllowedHelpExamples' | translate }}
             </div>
             <label class="checkbox">
                 <input type="checkbox" ng-model="site.exclude_unknown_urls" ng-true-value="1" ng-false-value="0"> {{ 'SitesManager_OnlyMatchedUrlsAllowed' | translate:'':'' }}
@@ -93,7 +94,7 @@
 
         <div class="form-group">
             <label>{{ 'SitesManager_KeepURLFragmentsLong'|translate }}</label>
-            <select ng-options="key as value for (key, value) in keepURLFragmentsOptions"
+            <select ng-options="option.key as option.value for option in keepURLFragmentsOptions"
                     ng-model="site.keep_url_fragment"></select>
         </div>
 

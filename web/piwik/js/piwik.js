@@ -28,7 +28,7 @@
 
 /*global JSON2:true */
 
-if (typeof JSON2 !== 'object' && window.JSON) {
+if (typeof JSON2 !== 'object' && typeof window.JSON === 'object' && window.JSON.stringify && window.JSON.parse) {
     JSON2 = window.JSON;
 } else {
     (function () {
@@ -956,8 +956,8 @@ if (typeof JSON2 !== 'object' && window.JSON) {
 /*global window */
 /*global unescape */
 /*global ActiveXObject */
-/*members encodeURIComponent, decodeURIComponent, getElementsByTagName,
-    shift, unshift, piwikAsyncInit,
+/*members Piwik, encodeURIComponent, decodeURIComponent, getElementsByTagName,
+    shift, unshift, piwikAsyncInit, frameElement, self, hasFocus,
     createElement, appendChild, characterSet, charset, all,
     addEventListener, attachEvent, removeEventListener, detachEvent, disableCookies,
     cookie, domain, readyState, documentElement, doScroll, title, text,
@@ -979,8 +979,8 @@ if (typeof JSON2 !== 'object' && window.JSON) {
     getAttributionReferrerTimestamp, getAttributionReferrerUrl,
     setCustomData, getCustomData,
     setCustomRequestProcessing,
-    setCustomVariable, getCustomVariable, deleteCustomVariable, storeCustomVariablesInCookie,
-    setDownloadExtensions, addDownloadExtensions, removeDownloadExtensions,
+    setCustomVariable, getCustomVariable, deleteCustomVariable, storeCustomVariablesInCookie, setCustomDimension, getCustomDimension,
+    deleteCustomDimension, setDownloadExtensions, addDownloadExtensions, removeDownloadExtensions,
     setDomains, setIgnoreClasses, setRequestMethod, setRequestContentType,
     setReferrerUrl, setCustomUrl, setAPIUrl, setDocumentTitle,
     setDownloadClasses, setLinkClasses,
@@ -1021,7 +1021,7 @@ if (typeof JSON2 !== 'object' && window.JSON) {
     trackVisibleContentImpressions, isTrackOnlyVisibleContentEnabled, port, isUrlToCurrentDomain,
     isNodeAuthorizedToTriggerInteraction, replaceHrefIfInternalLink, getConfigDownloadExtensions, disableLinkTracking,
     substr, setAnyAttribute, wasContentTargetAttrReplaced, max, abs, childNodes, compareDocumentPosition, body,
-    getConfigVisitorCookieTimeout, getRemainingVisitorCookieTimeout,
+    getConfigVisitorCookieTimeout, getRemainingVisitorCookieTimeout, getDomains, getConfigCookiePath,
     newVisitor, uuid, createTs, visitCount, currentVisitTs, lastVisitTs, lastEcommerceOrderTs,
      "", "\b", "\t", "\n", "\f", "\r", "\"", "\\", apply, call, charCodeAt, getUTCDate, getUTCFullYear, getUTCHours,
     getUTCMinutes, getUTCMonth, getUTCSeconds, hasOwnProperty, join, lastIndex, length, parse, prototype, push, replace,
@@ -1046,8 +1046,8 @@ if (typeof _paq !== 'object') {
 }
 
 // Piwik singleton and namespace
-if (typeof Piwik !== 'object') {
-    Piwik = (function () {
+if (typeof window.Piwik !== 'object') {
+    window.Piwik = (function () {
         'use strict';
 
         /************************************************************
@@ -1067,10 +1067,6 @@ if (typeof Piwik !== 'object') {
 
             /* performance timing */
             performanceAlias = windowAlias.performance || windowAlias.mozPerformance || windowAlias.msPerformance || windowAlias.webkitPerformance,
-
-            /* DOM Ready */
-            hasLoaded = false,
-            registeredOnLoadHandlers = [],
 
             /* encode */
             encodeWrapper = windowAlias.encodeURIComponent,
@@ -1141,6 +1137,23 @@ if (typeof Piwik !== 'object') {
          */
         function isString(property) {
             return typeof property === 'string' || property instanceof String;
+        }
+
+        function isObjectEmpty(property)
+        {
+            if (!property) {
+                return true;
+            }
+
+            var i;
+            var isEmpty = true;
+            for (i in property) {
+                if (Object.prototype.hasOwnProperty.call(property, i)) {
+                    isEmpty = false;
+                }
+            }
+
+            return isEmpty;
         }
 
         /*
@@ -1227,72 +1240,6 @@ if (typeof Piwik !== 'object') {
                     now = new Date();
                 } while (now.getTimeAlias() < expireDateTime);
             }
-        }
-
-        /*
-         * Handler for onload event
-         */
-        function loadHandler() {
-            var i;
-
-            if (!hasLoaded) {
-                hasLoaded = true;
-                executePluginMethod('load');
-                for (i = 0; i < registeredOnLoadHandlers.length; i++) {
-                    registeredOnLoadHandlers[i]();
-                }
-            }
-
-            return true;
-        }
-
-        /*
-         * Add onload or DOM ready handler
-         */
-        function addReadyListener() {
-            var _timer;
-
-            if (documentAlias.addEventListener) {
-                addEventListener(documentAlias, 'DOMContentLoaded', function ready() {
-                    documentAlias.removeEventListener('DOMContentLoaded', ready, false);
-                    loadHandler();
-                });
-            } else if (documentAlias.attachEvent) {
-                documentAlias.attachEvent('onreadystatechange', function ready() {
-                    if (documentAlias.readyState === 'complete') {
-                        documentAlias.detachEvent('onreadystatechange', ready);
-                        loadHandler();
-                    }
-                });
-
-                if (documentAlias.documentElement.doScroll && windowAlias === windowAlias.top) {
-                    (function ready() {
-                        if (!hasLoaded) {
-                            try {
-                                documentAlias.documentElement.doScroll('left');
-                            } catch (error) {
-                                setTimeout(ready, 0);
-
-                                return;
-                            }
-                            loadHandler();
-                        }
-                    }());
-                }
-            }
-
-            // sniff for older WebKit versions
-            if ((new RegExp('WebKit')).test(navigatorAlias.userAgent)) {
-                _timer = setInterval(function () {
-                    if (hasLoaded || /loaded|complete/.test(documentAlias.readyState)) {
-                        clearInterval(_timer);
-                        loadHandler();
-                    }
-                }, 10);
-            }
-
-            // fallback
-            addEventListener(windowAlias, 'load', loadHandler, false);
         }
 
         /*
@@ -1535,6 +1482,14 @@ if (typeof Piwik !== 'object') {
          * Fix-up URL when page rendered from search engine cache or translated page
          */
         function urlFixup(hostName, href, referrer) {
+            if (!hostName) {
+                hostName = '';
+            }
+
+            if (!href) {
+                href = '';
+            }
+
             if (hostName === 'translate.googleusercontent.com') {       // Google
                 if (referrer === '') {
                     referrer = href;
@@ -1566,6 +1521,10 @@ if (typeof Piwik !== 'object') {
             // remove leading '*'
             if (domain.slice(0, 2) === '*.') {
                 domain = domain.slice(1);
+            }
+
+            if (domain.indexOf('/') !== -1) {
+                domain = domain.substr(0, domain.indexOf('/'));
             }
 
             return domain;
@@ -1671,6 +1630,21 @@ if (typeof Piwik !== 'object') {
                 k++;
             }
             return -1;
+        }
+
+        function stringEndsWith(str, suffix) {
+            str = String(str);
+            return str.indexOf(suffix, str.length - suffix.length) !== -1;
+        }
+
+        function stringContains(str, needle) {
+            str = String(str);
+            return str.indexOf(needle) !== -1;
+        }
+
+        function removeCharactersFromEndOfString(str, numCharactersToRemove) {
+            str = String(str);
+            return str.substr(0, str.length - numCharactersToRemove);
         }
 
         /************************************************************
@@ -2057,7 +2031,7 @@ if (typeof Piwik !== 'object') {
                     var foundNodes = nodeToSearch.getElementsByClassName(className);
                     return this.htmlCollectionToArray(foundNodes);
                 }
-                
+
                 var children = getChildrenFromNode(nodeToSearch);
 
                 if (!children || !children.length) {
@@ -2629,10 +2603,29 @@ if (typeof Piwik !== 'object') {
                 return apiUrl;
             }
 
-            if (trackerUrl.slice(-9) === 'piwik.php') {
-                trackerUrl = trackerUrl.slice(0, trackerUrl.length - 9);
+            // if eg http://www.example.com/js/tracker.php?version=232323 => http://www.example.com/js/tracker.php
+            if (stringContains(trackerUrl, '?')) {
+                var posQuery = trackerUrl.indexOf('?');
+                trackerUrl   = trackerUrl.slice(0, posQuery);
             }
 
+            if (stringEndsWith(trackerUrl, 'piwik.php')) {
+                // if eg without domain or path "piwik.php" => ''
+                trackerUrl = removeCharactersFromEndOfString(trackerUrl, 'piwik.php'.length);
+            } else if (stringEndsWith(trackerUrl, '.php')) {
+                // if eg http://www.example.com/js/piwik.php => http://www.example.com/js/
+                // or if eg http://www.example.com/tracker.php => http://www.example.com/
+                var lastSlash = trackerUrl.lastIndexOf('/');
+                var includeLastSlash = 1;
+                trackerUrl = trackerUrl.slice(0, lastSlash + includeLastSlash);
+            }
+
+            // if eg http://www.example.com/js/ => http://www.example.com/ (when not minified Piwik JS loaded)
+            if (stringEndsWith(trackerUrl, '/js/')) {
+                trackerUrl = removeCharactersFromEndOfString(trackerUrl, 'js/'.length);
+            }
+
+            // http://www.example.com/
             return trackerUrl;
         }
 
@@ -2648,7 +2641,7 @@ if (typeof Piwik !== 'object') {
 
             // check whether we were redirected from the piwik overlay plugin
             var referrerRegExp = new RegExp('index\\.php\\?module=Overlay&action=startOverlaySession'
-                               + '&idSite=([0-9]+)&period=([^&]+)&date=([^&]+)$');
+                               + '&idSite=([0-9]+)&period=([^&]+)&date=([^&]+)(&segment=.*)?$');
 
             var match = referrerRegExp.exec(documentAlias.referrer);
 
@@ -2662,15 +2655,22 @@ if (typeof Piwik !== 'object') {
 
                 // store overlay session info in window name
                 var period = match[2],
-                    date = match[3];
+                    date = match[3],
+                    segment = match[4];
 
-                windowAlias.name = windowName + '###' + period + '###' + date;
+                if (!segment) {
+                    segment = '';
+                } else if (segment.indexOf('&segment=') === 0) {
+                    segment = segment.substr('&segment='.length);
+                }
+
+                windowAlias.name = windowName + '###' + period + '###' + date + '###' + segment;
             }
 
             // retrieve and check data from window name
             var windowNameParts = windowAlias.name.split('###');
 
-            return windowNameParts.length === 3 && windowNameParts[0] === windowName;
+            return windowNameParts.length === 4 && windowNameParts[0] === windowName;
         }
 
         /*
@@ -2680,14 +2680,27 @@ if (typeof Piwik !== 'object') {
             var windowNameParts = windowAlias.name.split('###'),
                 period = windowNameParts[1],
                 date = windowNameParts[2],
+                segment = windowNameParts[3],
                 piwikUrl = getPiwikUrlForOverlay(configTrackerUrl, configApiUrl);
 
             loadScript(
                 piwikUrl + 'plugins/Overlay/client/client.js?v=1',
                 function () {
-                    Piwik_Overlay_Client.initialize(piwikUrl, configTrackerSiteId, period, date);
+                    Piwik_Overlay_Client.initialize(piwikUrl, configTrackerSiteId, period, date, segment);
                 }
             );
+        }
+
+        function isInsideAnIframe () {
+            if (isDefined(windowAlias.frameElement)) {
+                return (windowAlias.frameElement && String(windowAlias.frameElement.nodeName).toLowerCase() === 'iframe');
+            }
+
+            try {
+                return windowAlias.self !== windowAlias.top;
+            } catch (e) {
+                return true;
+            }
         }
 
         /************************************************************
@@ -2848,6 +2861,9 @@ if (typeof Piwik !== 'object') {
                 // Custom Variables, scope "event"
                 customVariablesEvent = {},
 
+                // Custom Dimensions (can be any scope)
+                customDimensions = {},
+
                 // Custom Variables names and values are each truncated before being sent in the request or recorded in the cookie
                 customVariableMaximumLength = 200,
 
@@ -2872,6 +2888,11 @@ if (typeof Piwik !== 'object') {
 
                 // Guard against installing the activity tracker more than once per Tracker instance
                 heartBeatSetUp = false,
+
+                // bool used to detect whether this browser window had focus at least once. So far we cannot really
+                // detect this 100% correct for an iframe so whenever Piwik is loaded inside an iframe we presume
+                // the window had focus at least once.
+                hadWindowFocusAtLeastOnce = isInsideAnIframe(),
 
                 // Timestamp of last tracker request sent to Piwik
                 lastTrackerRequestTime = null,
@@ -2976,10 +2997,134 @@ if (typeof Piwik !== 'object') {
                 return baseUrl + url;
             }
 
+            function isSameHost (hostName, alias) {
+                var offset;
+
+                hostName = String(hostName).toLowerCase();
+                alias = String(alias).toLowerCase();
+
+                if (hostName === alias) {
+                    return true;
+                }
+
+                if (alias.slice(0, 1) === '.') {
+                    if (hostName === alias.slice(1)) {
+                        return true;
+                    }
+
+                    offset = hostName.length - alias.length;
+
+                    if ((offset > 0) && (hostName.slice(offset) === alias)) {
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+
+            /*
+             * Extract pathname from URL. element.pathname is actually supported by pretty much all browsers including
+             * IE6 apart from some rare very old ones
+             */
+            function getPathName(url) {
+                var parser = document.createElement('a');
+                if (url.indexOf('//') !== 0 && url.indexOf('http') !== 0) {
+                    url = 'http://' + url;
+                }
+
+                parser.href = content.toAbsoluteUrl(url);
+                if (parser.pathname) {
+                    return parser.pathname;
+                }
+
+                return '';
+            }
+
+            function isSitePath (path, pathAlias)
+            {
+                var matchesAnyPath = (!pathAlias || pathAlias === '/' || pathAlias === '/*');
+
+                if (matchesAnyPath) {
+                    return true;
+                }
+
+                if (path === pathAlias) {
+                    return true;
+                }
+
+                if (!path) {
+                    return false;
+                }
+
+                pathAlias = String(pathAlias).toLowerCase();
+                path = String(path).toLowerCase();
+
+                // wildcard path support
+                if(stringEndsWith(pathAlias, '*')) {
+                    // remove the final '*' before comparing
+                    pathAlias = pathAlias.slice(0, -1);
+
+                    // Note: this is almost duplicated from just few lines above
+                    matchesAnyPath = (!pathAlias || pathAlias === '/');
+
+                    if (matchesAnyPath) {
+                        return true;
+                    }
+
+                    if (path === pathAlias) {
+                        return true;
+                    }
+
+                    // wildcard match
+                    return path.indexOf(pathAlias) === 0;
+                }
+
+                // we need to append slashes so /foobarbaz won't match a site /foobar
+                if (!stringEndsWith(path, '/')) {
+                    path += '/';
+                }
+
+                if (!stringEndsWith(pathAlias, '/')) {
+                    pathAlias += '/';
+                }
+
+                return path.indexOf(pathAlias) === 0;
+            }
+
+            /**
+             * Whether the specified domain name and path belong to any of the alias domains (eg. set via setDomains).
+             *
+             * Note: this function is used to determine whether a click on a URL will be considered an "Outlink".
+             *
+             * @param host
+             * @param path
+             * @returns {boolean}
+             */
+            function isSiteHostPath(host, path)
+            {
+                var i,
+                    alias,
+                    configAlias,
+                    aliasHost,
+                    aliasPath;
+
+                for (i = 0; i < configHostsAlias.length; i++) {
+                    aliasHost = domainFixup(configHostsAlias[i]);
+                    aliasPath = getPathName(configHostsAlias[i]);
+
+                    if (isSameHost(host, aliasHost) && isSitePath(path, aliasPath)) {
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+
             /*
              * Is the host local? (i.e., not an outlink)
              */
             function isSiteHostName(hostName) {
+
                 var i,
                     alias,
                     offset;
@@ -3083,6 +3228,19 @@ if (typeof Piwik !== 'object') {
 
                 heartBeatTimeout = setTimeout(function heartBeat() {
                     heartBeatTimeout = null;
+
+                    if (!hadWindowFocusAtLeastOnce) {
+                        // if browser does not support .hasFocus (eg IE5), we assume that the window has focus.
+                        hadWindowFocusAtLeastOnce = (!documentAlias.hasFocus || documentAlias.hasFocus());
+                    }
+
+                    if (!hadWindowFocusAtLeastOnce) {
+                        // only send a ping if the tab actually had focus at least once. For example do not send a ping
+                        // if window was opened via "right click => open in new window" and never had focus see #9504
+                        heartBeatUp(configHeartBeatDelay);
+                        return;
+                    }
+
                     if (heartBeatPingIfActivityAlias()) {
                         return;
                     }
@@ -3108,6 +3266,8 @@ if (typeof Piwik !== 'object') {
             }
 
             function heartBeatOnFocus() {
+                hadWindowFocusAtLeastOnce = true;
+
                 // since it's possible for a user to come back to a tab after several hours or more, we try to send
                 // a ping if the page is active. (after the ping is sent, the heart beat timeout will be set)
                 if (heartBeatPingIfActivityAlias()) {
@@ -3678,6 +3838,34 @@ if (typeof Piwik !== 'object') {
                     }
                 }
 
+                var customDimensionIdsAlreadyHandled = [];
+                if (customData) {
+                    for (i in customData) {
+                        if (Object.prototype.hasOwnProperty.call(customData, i) && /^dimension\d+$/.test(i)) {
+                            var index = i.replace('dimension', '');
+                            customDimensionIdsAlreadyHandled.push(parseInt(index, 10));
+                            customDimensionIdsAlreadyHandled.push(String(index));
+                            request += '&' + i + '=' + customData[i];
+                            delete customData[i];
+                        }
+                    }
+                }
+
+                if (customData && isObjectEmpty(customData)) {
+                    customData = null;
+                    // we deleted all keys from custom data
+                }
+
+                // custom dimensions
+                for (i in customDimensions) {
+                    if (Object.prototype.hasOwnProperty.call(customDimensions, i)) {
+                        var isNotSetYet = (-1 === customDimensionIdsAlreadyHandled.indexOf(i));
+                        if (isNotSetYet) {
+                            request += '&dimension' + i + '=' + customDimensions[i];
+                        }
+                    }
+                }
+
                 // custom data
                 if (customData) {
                     request += '&data=' + encodeWrapper(JSON2.stringify(customData));
@@ -3845,8 +4033,7 @@ if (typeof Piwik !== 'object') {
              * Log the page view / visit
              */
             function logPageView(customTitle, customData) {
-                var now = new Date(),
-                    request = getRequest('action_name=' + encodeWrapper(titleFixup(customTitle || configTitle)), customData, 'log');
+                var request = getRequest('action_name=' + encodeWrapper(titleFixup(customTitle || configTitle)), customData, 'log');
 
                 sendRequest(request, configTrackerPause);
             }
@@ -3940,17 +4127,19 @@ if (typeof Piwik !== 'object') {
                     return;
                 }
 
+                var originalSourcePath = sourceElement.pathname || getPathName(sourceElement.href);
+
                 // browsers, such as Safari, don't downcase hostname and href
                 var originalSourceHostName = sourceElement.hostname || getHostName(sourceElement.href);
                 var sourceHostName = originalSourceHostName.toLowerCase();
                 var sourceHref = sourceElement.href.replace(originalSourceHostName, sourceHostName);
 
                 // browsers, such as Safari, don't downcase hostname and href
-                var scriptProtocol = new RegExp('^(javascript|vbscript|jscript|mocha|livescript|ecmascript|mailto):', 'i');
+                var scriptProtocol = new RegExp('^(javascript|vbscript|jscript|mocha|livescript|ecmascript|mailto|tel):', 'i');
 
                 if (!scriptProtocol.test(sourceHref)) {
                     // track outlinks and all downloads
-                    var linkType = getLinkType(sourceElement.className, sourceHref, isSiteHostName(sourceHostName), query.hasNodeAttribute(sourceElement, 'download'));
+                    var linkType = getLinkType(sourceElement.className, sourceHref, isSiteHostPath(sourceHostName, originalSourcePath), query.hasNodeAttribute(sourceElement, 'download'));
 
                     if (linkType) {
                         return {
@@ -4267,7 +4456,9 @@ if (typeof Piwik !== 'object') {
                         'contentImpressions'
                     );
 
-                    requests.push(request);
+                    if (request) {
+                        requests.push(request);
+                    }
                 }
 
                 return requests;
@@ -4459,7 +4650,7 @@ if (typeof Piwik !== 'object') {
                 } else if (windowAlias.addEventListener) {
                     windowAlias.addEventListener('load', callback);
                 } else if (windowAlias.attachEvent) {
-                    windowAlias.attachEvent('onLoad', callback);
+                    windowAlias.attachEvent('onload', callback);
                 }
             }
 
@@ -4468,18 +4659,61 @@ if (typeof Piwik !== 'object') {
                 var loaded = false;
 
                 if (documentAlias.attachEvent) {
-                    loaded = documentAlias.readyState === "complete";
+                    loaded = documentAlias.readyState === 'complete';
                 } else {
-                    loaded = documentAlias.readyState !== "loading";
+                    loaded = documentAlias.readyState !== 'loading';
                 }
 
                 if (loaded) {
                     callback();
-                } else if (documentAlias.addEventListener) {
-                    documentAlias.addEventListener('DOMContentLoaded', callback);
-                } else if (documentAlias.attachEvent) {
-                    documentAlias.attachEvent('onreadystatechange', callback);
+                    return;
                 }
+
+                var _timer;
+
+                if (documentAlias.addEventListener) {
+                    addEventListener(documentAlias, 'DOMContentLoaded', function ready() {
+                        documentAlias.removeEventListener('DOMContentLoaded', ready, false);
+                        if (!loaded) {
+                            loaded = true;
+                            callback();
+                        }
+                    });
+                } else if (documentAlias.attachEvent) {
+                    documentAlias.attachEvent('onreadystatechange', function ready() {
+                        if (documentAlias.readyState === 'complete') {
+                            documentAlias.detachEvent('onreadystatechange', ready);
+                            if (!loaded) {
+                                loaded = true;
+                                callback();
+                            }
+                        }
+                    });
+
+                    if (documentAlias.documentElement.doScroll && windowAlias === windowAlias.top) {
+                        (function ready() {
+                            if (!loaded) {
+                                try {
+                                    documentAlias.documentElement.doScroll('left');
+                                } catch (error) {
+                                    setTimeout(ready, 0);
+
+                                    return;
+                                }
+                                loaded = true;
+                                callback();
+                            }
+                        }());
+                    }
+                }
+
+                // fallback
+                addEventListener(windowAlias, 'load', function () {
+                    if (!loaded) {
+                        loaded = true;
+                        callback();
+                    }
+                }, false);
             }
 
             /*
@@ -4771,8 +5005,9 @@ if (typeof Piwik !== 'object') {
                     browserFeatures.cookie = hasCookies();
                 }
 
-                // screen resolution
-                browserFeatures.res = screenAlias.width * devicePixelRatio + 'x' + screenAlias.height * devicePixelRatio;
+                var width = parseInt(screenAlias.width, 10) * devicePixelRatio;
+                var height = parseInt(screenAlias.height, 10) * devicePixelRatio;
+                browserFeatures.res = parseInt(width, 10) + 'x' + parseInt(height, 10);
             }
 
 /*<DEBUG>*/
@@ -4853,6 +5088,12 @@ if (typeof Piwik !== 'object') {
                 internalIsNodeVisible: isVisible,
                 isNodeAuthorizedToTriggerInteraction: isNodeAuthorizedToTriggerInteraction,
                 replaceHrefIfInternalLink: replaceHrefIfInternalLink,
+                getDomains: function () {
+                    return configHostsAlias;
+                },
+                getConfigCookiePath: function () {
+                    return configCookiePath;
+                },
                 getConfigDownloadExtensions: function () {
                     return configDownloadExtensions;
                 },
@@ -5093,6 +5334,50 @@ if (typeof Piwik !== 'object') {
                 },
 
                 /**
+                 * Set Custom Dimensions. Any set Custom Dimension will be cleared after a tracked pageview. Make
+                 * sure to set them again if needed.
+                 *
+                 * @param int index A Custom Dimension index
+                 * @param string value
+                 */
+                setCustomDimension: function (customDimensionId, value) {
+                    customDimensionId = parseInt(customDimensionId, 10);
+                    if (customDimensionId > 0) {
+                        if (!isDefined(value)) {
+                            value = '';
+                        }
+                        if (!isString(value)) {
+                            value = String(value);
+                        }
+                        customDimensions[customDimensionId] = value;
+                    }
+                },
+
+                /**
+                 * Get a stored value for a specific Custom Dimension index.
+                 *
+                 * @param int index A Custom Dimension index
+                 */
+                getCustomDimension: function (customDimensionId) {
+                    customDimensionId = parseInt(customDimensionId, 10);
+                    if (customDimensionId > 0 && Object.prototype.hasOwnProperty.call(customDimensions, customDimensionId)) {
+                        return customDimensions[customDimensionId];
+                    }
+                },
+
+                /**
+                 * Delete a custom dimension.
+                 *
+                 * @param int index Custom dimension Id
+                 */
+                deleteCustomDimension: function (customDimensionId) {
+                    customDimensionId = parseInt(customDimensionId, 10);
+                    if (customDimensionId > 0) {
+                        delete customDimensions[customDimensionId];
+                    }
+                },
+
+                /**
                  * Set custom variable within this visit
                  *
                  * @param int index Custom variable slot ID from 1-5
@@ -5165,6 +5450,7 @@ if (typeof Piwik !== 'object') {
                  * Delete custom variable
                  *
                  * @param int index Custom variable slot ID from 1-5
+                 * @param string scope
                  */
                 deleteCustomVariable: function (index, scope) {
                     // Only delete if it was there already
@@ -5238,13 +5524,33 @@ if (typeof Piwik !== 'object') {
                 },
 
                 /**
-                 * Set array of domains to be treated as local
+                 * Set array of domains to be treated as local. Also supports path, eg '.piwik.org/subsite1'. In this
+                 * case all links that don't go to '*.piwik.org/subsite1/ *' would be treated as outlinks.
+                 * For example a link to 'piwik.org/' or 'piwik.org/subsite2' both would be treated as outlinks.
+                 *
+                 * Also supports page wildcard, eg 'piwik.org/index*'. In this case all links
+                 * that don't go to piwik.org/index* would be treated as outlinks.
                  *
                  * @param string|array hostsAlias
                  */
                 setDomains: function (hostsAlias) {
                     configHostsAlias = isString(hostsAlias) ? [hostsAlias] : hostsAlias;
-                    configHostsAlias.push(domainAlias);
+
+                    var hasDomainAliasAlready = false, i;
+                    for (i in configHostsAlias) {
+                        if (Object.prototype.hasOwnProperty.call(configHostsAlias, i)
+                            && isSameHost(domainAlias, domainFixup(String(configHostsAlias[i])))) {
+                            hasDomainAliasAlready = true;
+                        }
+                    }
+
+                    if (!hasDomainAliasAlready) {
+                        /**
+                         * eg if domainAlias = 'piwik.org' and someone set hostsAlias = ['piwik.org/foo'] then we should
+                         * not add piwik.org as it would increase the allowed scope.
+                         */
+                        configHostsAlias.push(domainAlias);
+                    }
                 },
 
                 /**
@@ -5511,15 +5817,11 @@ if (typeof Piwik !== 'object') {
                 enableLinkTracking: function (enable) {
                     linkTrackingEnabled = true;
 
-                    if (hasLoaded) {
-                        // the load event has already fired, add the click listeners now
-                        addClickListeners(enable);
-                    } else {
-                        // defer until page has loaded
-                        registeredOnLoadHandlers.push(function () {
+                    trackCallback(function () {
+                        trackCallbackOnReady(function () {
                             addClickListeners(enable);
                         });
-                    }
+                    });
                 },
 
                 /**
@@ -5904,10 +6206,11 @@ if (typeof Piwik !== 'object') {
                  * @param string action The Event's Action (Play, Pause, Duration, Add Playlist, Downloaded, Clicked...)
                  * @param string name (optional) The Event's object Name (a particular Movie name, or Song name, or File name...)
                  * @param float value (optional) The Event's value
+                 * @param mixed customData
                  */
-                trackEvent: function (category, action, name, value) {
+                trackEvent: function (category, action, name, value, customData) {
                     trackCallback(function () {
-                        logEvent(category, action, name, value);
+                        logEvent(category, action, name, value, customData);
                     });
                 },
 
@@ -5917,10 +6220,11 @@ if (typeof Piwik !== 'object') {
                  * @param string keyword
                  * @param string category
                  * @param int resultsCount
+                 * @param mixed customData
                  */
-                trackSiteSearch: function (keyword, category, resultsCount) {
+                trackSiteSearch: function (keyword, category, resultsCount, customData) {
                     trackCallback(function () {
-                        logSiteSearch(keyword, category, resultsCount);
+                        logSiteSearch(keyword, category, resultsCount, customData);
                     });
                 },
 
@@ -6078,13 +6382,12 @@ if (typeof Piwik !== 'object') {
 
         // initialize the Piwik singleton
         addEventListener(windowAlias, 'beforeunload', beforeUnloadHandler, false);
-        addReadyListener();
 
         Date.prototype.getTimeAlias = Date.prototype.getTime;
 
         asyncTracker = new Tracker();
 
-        var applyFirst  = ['disableCookies', 'setTrackerUrl', 'setAPIUrl', 'setCookiePath', 'setCookieDomain', 'setUserId', 'setSiteId', 'enableLinkTracking'];
+        var applyFirst  = ['disableCookies', 'setTrackerUrl', 'setAPIUrl', 'setCookiePath', 'setCookieDomain', 'setDomains', 'setUserId', 'setSiteId', 'enableLinkTracking'];
         _paq = applyMethodsInOrder(_paq, applyFirst);
 
         // apply the queue of actions
@@ -6156,7 +6459,7 @@ if (window && window.piwikAsyncInit) {
 (function () {
     var jsTrackerType = (typeof AnalyticsTracker);
     if (jsTrackerType === 'undefined') {
-        AnalyticsTracker = Piwik;
+        AnalyticsTracker = window.Piwik;
     }
 }());
 /*jslint sloppy: false */
@@ -6198,7 +6501,7 @@ if (typeof piwik_log !== 'function') {
 
         // instantiate the tracker
         var option,
-            piwikTracker = Piwik.getTracker(piwikUrl, siteId);
+            piwikTracker = window.Piwik.getTracker(piwikUrl, siteId);
 
         // initialize tracker
         piwikTracker.setDocumentTitle(documentTitle);

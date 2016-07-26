@@ -394,12 +394,7 @@ class Piwik
      */
     public static function isUserHasSomeAdminAccess()
     {
-        try {
-            self::checkUserHasSomeAdminAccess();
-            return true;
-        } catch (Exception $e) {
-            return false;
-        }
+        return Access::getInstance()->isUserHasSomeAdminAccess();
     }
 
     /**
@@ -594,7 +589,7 @@ class Piwik
         $l = strlen($userLogin);
         if (!($l >= $loginMinimumLength
             && $l <= $loginMaximumLength
-            && (preg_match('/^[A-Za-z0-9_.@+-]*$/D', $userLogin) > 0))
+            && (preg_match('/^[A-Za-zÄäÖöÜüß0-9_.@+-]*$/D', $userLogin) > 0))
         ) {
             throw new Exception(Piwik::translate('UsersManager_ExceptionInvalidLoginFormat', array($loginMinimumLength, $loginMaximumLength)));
         }

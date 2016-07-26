@@ -9,9 +9,8 @@ tables_prefix = "piwik_"
 
 [General]
 session_save_handler = "dbtable"
-salt = "22b01c857ec3eaf7ab36b2cc3135f183"
-trusted_hosts[] = "ogdch-piwik-test.clients.liip.ch"
-trusted_hosts[] = "opendata.swiss"
+salt = "806a5f70e58ec678694c121d35f0e6df"
+trusted_hosts[] = "odpch-web.begasoft.ch:443"
 
 [PluginsInstalled]
 PluginsInstalled[] = "Diagnostics"

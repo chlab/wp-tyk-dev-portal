@@ -31,7 +31,7 @@ To execute the tests:
 
 1. 	To install PHPUnit, run `php composer.phar install --dev` in the Piwik root directory.
 
-2.	Ensure the `[database_tests]` section in `piwik/config/config.php.ini` is set up correctly,
+2.	Ensure the `[database_tests]` section in `piwik/config/config.ini.php` is set up correctly,
 	i.e. with the correct password to prevent the following error:
 	`SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: NO)`
 
@@ -112,10 +112,9 @@ We also have an OmniFixture that includes all other Fixtures. OmniFixture is use
 
 #### Keep OmniFixture up to date
 
-Remember to update the [Omnifixture SQL dump](https://github.com/piwik/piwik/blob/master/tests/resources/OmniFixture-dump.sql.gz) whenever you make any change to any fixture. You can use:
+Remember to update the [Omnifixture SQL dump](https://github.com/piwik/piwik/blob/master/tests/resources/OmniFixture-dump.sql) whenever you make any change to any fixture. You can use:
 
     ./console tests:setup-fixture OmniFixture --sqldump=OmniFixture-dump.sql
-    cat OmniFixture-dump.sql | gzip > tests/resources/OmniFixture-dump.sql.gz
 
 Keeping the OmniFixture up to date makes it easier to see which tests fail after each small fixture change. 
 
