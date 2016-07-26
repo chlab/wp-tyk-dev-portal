@@ -22,7 +22,7 @@ function add_login_logout_register_menu( $items, $args ) {
 	return $items;
 }
  
-add_filter( 'wp_nav_menu_items', 'add_login_logout_register_menu', 199, 2 );
+// add_filter( 'wp_nav_menu_items', 'add_login_logout_register_menu', 199, 2 );
 
 /**
  * Add bootstrap
@@ -33,3 +33,16 @@ function add_theme_style() {
   wp_enqueue_style( 'bootstrap', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css' );
 }
 add_action( 'wp_enqueue_scripts', 'add_theme_style' );
+
+
+/**
+ * Add company field to user profile
+ * 
+ * @param  array $fields
+ * @return array
+ */
+function modify_profile_fields($fields) {
+	$fields['company'] = 'Company';
+	return $fields;
+}
+add_filter('user_contactmethods', 'modify_profile_fields');
