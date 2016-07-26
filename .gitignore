@@ -8,6 +8,7 @@ web/sitemap.xml.gz
 web/ogdch.dev/wp-local-config.php
 web/ogdch.dev/wp-test-config.php
 web/ogdch.dev/wp-live-config.php
+web/ogdch.dev/wp-unittest-config.php
 web/ogdch.dev/content/backup-db/
 web/ogdch.dev/content/backups/
 web/ogdch.dev/content/blogs.dir/
