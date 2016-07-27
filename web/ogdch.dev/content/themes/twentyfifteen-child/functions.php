@@ -22,7 +22,7 @@ function add_login_logout_register_menu( $items, $args ) {
 	return $items;
 }
  
-add_filter( 'wp_nav_menu_items', 'add_login_logout_register_menu', 199, 2 );
+// add_filter( 'wp_nav_menu_items', 'add_login_logout_register_menu', 199, 2 );
 
 /**
  * Add bootstrap
@@ -35,6 +35,21 @@ function add_theme_style() {
 add_action( 'wp_enqueue_scripts', 'add_theme_style' );
 
 
+/**
+ * Add company field to user profile
+ * 
+ * @param  array $fields
+ * @return array
+ */
+function modify_profile_fields($fields) {
+	$fields['company'] = 'Company';
+	return $fields;
+}
+add_filter('user_contactmethods', 'modify_profile_fields');
+
+/**
+ * Add Piwik script
+ */
 function add_piwik_code() {
     $piwik_siteid = 0;
     if ( defined( 'PIWIK_SITEID' ) && is_int( PIWIK_SITEID ) ) {
