@@ -16,10 +16,27 @@ Use it to make something cool, have fun, and share what you've learned with othe
 */
 @import url("../twentyfifteen/style.css");
 
-a.btn.text-danger {
+/**
+ * Twentyfifteen is messing up our bootstrap swag
+ * We won't need this in the actual theme but for now let's fix the worst things
+ */
+ #tyk-dashboard,
+ #tyk-dashboard select,
+ #tyk-dashboard input {
+ 	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;
+ }
+#tyk-dashboard a.btn.text-danger {
 	border: 0;
 }
-a.btn.text-danger:active {
+#tyk-dashboard a.btn.text-danger:active {
 	color: #333;
 	box-shadow: none;
+}
+#tyk-dashboard button.close:hover,
+#tyk-dashboard button.close:active {
+	background-color: 
+}
+#tyk-dashboard h4.list-group-item-heading {
+	margin-top: 0;
+	margin-bottom: 5px;
 }
