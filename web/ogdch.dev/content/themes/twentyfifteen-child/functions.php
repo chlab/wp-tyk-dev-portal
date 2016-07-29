@@ -51,6 +51,10 @@ add_filter('user_contactmethods', 'modify_profile_fields');
  * Add Piwik script
  */
 function add_piwik_code() {
+    if (!defined('PIWIK_URL')) {
+    	return;
+    }
+    
     $piwik_siteid = 0;
     if ( defined( 'PIWIK_SITEID' ) && is_int( PIWIK_SITEID ) ) {
         $piwik_siteid = PIWIK_SITEID;
