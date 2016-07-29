@@ -28,9 +28,6 @@
 [submodule "web/ogdch.dev/content/plugins/bootstrap-ninja-forms"]
 	path = web/ogdch.dev/content/plugins/bootstrap-ninja-forms
 	url = https://github.com/bostondv/bootstrap-ninja-forms.git
-[submodule "web/ogdch.dev/content/plugins/members"]
-	path = web/ogdch.dev/content/plugins/members
-	url = https://github.com/justintadlock/members.git
 [submodule "web/ogdch.dev/content/plugins/ninja-forms"]
 	path = web/ogdch.dev/content/plugins/ninja-forms
 	url = https://github.com/wpninjas/ninja-forms.git

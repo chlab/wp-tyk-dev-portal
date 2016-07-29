@@ -192,7 +192,7 @@ def update_wp_config():
 @roles('wordpress')
 def update_piwik_config():
     sudo('cp %s/cookbooks/vagrant/templates/default/%s /var/www/piwik/config/config.ini.php' % (env.root, env.piwik_config))
-    sudo('chown manager:manager /var/www/piwik/config/config.ini.php')
+    sudo('chown apache:apache /var/www/piwik/config/config.ini.php')
     sudo('chmod 664 /var/www/piwik/config/config.ini.php')
 
 @roles('wordpress')
@@ -339,7 +339,7 @@ def restore_piwik_db():
 def update_config():
     execute(update_ckan_config)
     execute(update_wp_config)
-    #execute(update_piwik_config)
+    execute(update_piwik_config)
 
 @roles('wordpress', 'wordpress_db', 'ckan', 'ckan_db')
 @runs_once
